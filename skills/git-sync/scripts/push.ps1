@@ -4,6 +4,8 @@
 #     .\push.ps1                      # auto commit message
 #     .\push.ps1 "add midterm files"  # custom commit message
 #     .\push.ps1 -Branch other/branch
+#     .\push.ps1 -Gate "msg"          # also run the repo gate before committing
+#                                      # (needs bash - it ships with Git for Windows)
 #
 # Branch / remote come from sync.config.json when present. A safety guard
 # refuses to push to main / master, so a stray edit can never move the shared
@@ -15,7 +17,8 @@ param(
     [string]$Message = '',
     [string]$Branch  = '',
     [string]$Remote  = '',
-    [string]$Config = ''
+    [string]$Config = '',
+    [switch]$Gate
 )
 
 $ErrorActionPreference = 'Stop'
@@ -93,6 +96,24 @@ if (-not (git status --porcelain)) {
     Write-Host ""
     Write-Host "== nothing new to commit. done." -ForegroundColor Green
     exit 0
+}
+
+# optional: run the repo gate before committing, so a broken change (e.g. a
+# .ps1 with non-ASCII bytes) can never reach the remote from this side either
+if ($Gate) {
+    $gateCmd = ''
+    if ($cfgPath -and $cfg -and $cfg.gate) { $gateCmd = [string]$cfg.gate }
+    if (-not $gateCmd) { $gateCmd = 'bash code/check_all.sh' }
+    if (-not (Get-Command bash -ErrorAction SilentlyContinue)) {
+        Write-Host "[ERROR] -Gate needs bash on PATH (it ships with Git for Windows)" -ForegroundColor Red
+        exit 1
+    }
+    Write-Host "== gate: $gateCmd" -ForegroundColor Cyan
+    bash -c $gateCmd
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "[GATE FAILED] nothing was committed. Fix the checks first (or drop -Gate to skip)." -ForegroundColor Red
+        exit 1
+    }
 }
 
 if ([string]::IsNullOrWhiteSpace($Message)) {

@@ -8,6 +8,7 @@
 #     .\download.ps1 -Set all -Dest "E:\submission"
 #     .\download.ps1 -Set final -Since 2026-09-14        # incremental: only
 #     .\download.ps1 -Set final -Since "3 days ago"      # files git saw change
+#     .\download.ps1 -Folders deliverable,examples\x     # ad-hoc: skip the sets
 #     .\download.ps1 -List              # show the sets defined in sync.config.json
 #
 # -Since uses "git log --since" on the current branch, so run .\sync.ps1
@@ -21,6 +22,7 @@
 
 param(
     [string]$Set    = 'final',
+    [string[]]$Folders = @(),
     [string]$Dest   = '',
     [string]$Since  = '',
     [string]$Config = '',
@@ -81,11 +83,17 @@ if ($List) {
     exit 0
 }
 
-if ($setNames -notcontains $Set) {
-    Write-Host ("[ERROR] unknown set '{0}'. Available: {1}" -f $Set, ($setNames -join ', ')) -ForegroundColor Red
-    exit 1
+if ($Folders.Count -gt 0) {
+    # ad-hoc download: -Folders deliverable,examples\fig3-mechanism-map
+    $folders = @($Folders)
+    Write-Host "== folders: $($folders -join ', ')  (ad-hoc, -Folders)" -ForegroundColor Cyan
+} else {
+    if ($setNames -notcontains $Set) {
+        Write-Host ("[ERROR] unknown set '{0}'. Available: {1}  (or pass -Folders a,b,c for an ad-hoc download)" -f $Set, ($setNames -join ', ')) -ForegroundColor Red
+        exit 1
+    }
+    $folders = @($cfg.download_sets.$Set)
 }
-$folders = @($cfg.download_sets.$Set)
 
 if (-not $Dest) {
     if ($cfg.download_dir) {

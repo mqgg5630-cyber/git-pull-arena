@@ -80,6 +80,11 @@ if ($cfgPath) {
     Line 'config' '(missing - using the branch from git)' 'Yellow'
 }
 
+$verFile = Join-Path $repo 'skills\git-sync\VERSION'
+if (Test-Path -LiteralPath $verFile) {
+    Line 'skill' ("v" + (Get-Content -LiteralPath $verFile -Raw).Trim())
+}
+
 Write-Host ""
 Write-Host "== git state" -ForegroundColor Cyan
 git fetch $remoteName --quiet 2>$null

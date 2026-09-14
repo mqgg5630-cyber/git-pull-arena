@@ -38,6 +38,7 @@ cd git-pull-arena
 
 .\download.ps1 -Set final                  # 把 deliverable\ 镜像到 ..\git-pull-arena_out\
 .\download.ps1 -Set final -Since 2026-09-14    # 只复制该日期后变过的文件
+.\download.ps1 -Folders examples\x         # 临时指定目录下载（不用改配置）
 .\download.ps1 -List                       # 看有哪些集合（final / skill / all）
 .\pack.ps1   -Set final                    # 或打成 _export\<日期>_final.zip（不进 git）
 
@@ -69,6 +70,8 @@ Copy-Item skills\git-sync\templates\gate.yml .github\workflows\gate.yml
 **新的 Arena 会话**里说一句话即可：
 
 > 参考 https://github.com/mqgg5630-cyber/git-pull-arena 的 skills/git-sync，用 agent-install.sh 装到本仓库当前分支。
+
+（完整的复制粘贴版提示词在 `skills\git-sync\templates\new-session-prompt.md`，含本机步骤与双向验收清单。）
 
 Agent 执行的命令（raw.githubusercontent.com 在沙箱可能被墙，git clone 稳定可用）：
 
