@@ -15,9 +15,10 @@
 # 1) 允许运行本地脚本（只做一次）
 Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 
-# 2) 克隆工作分支（示例放在 E:\0github\git-sync，要求该目录目前为空；放别处就换路径）
+# 2) 克隆工作分支（子文件夹布局：E:\0github\git-sync\git-pull-arena）
 cd E:\0github\git-sync
-git clone -b arena/01a09fc1-git-pull-arena https://github.com/mqgg5630-cyber/git-pull-arena.git .
+git clone -b arena/01a09fc1-git-pull-arena https://github.com/mqgg5630-cyber/git-pull-arena.git
+cd git-pull-arena
 
 # 3) 首次准备：git 身份 / 切分支 / 首次拉取（之后就不用再跑）
 .\bootstrap.ps1
