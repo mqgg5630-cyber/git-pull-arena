@@ -23,5 +23,6 @@
     ".csv":  "results"
   },
   "gate": "bash code/check_all.sh",
-  "_note": "branch/remote 是与本仓库 Arena 会话约定的工作分支；download_sets 是 download.ps1 -Set 可用的集合（download_dir 留空 = 下载到仓库上一级 <仓库名>_out）；upload_map 决定 upload.ps1 把附件按扩展名放到哪里；gate 是 agent-sync.sh 提交前运行的检查命令。本配置由 zhongqi 仓库 skills/git-sync 安装而来，仅改了 branch 与 download_sets。"
+  "receipt": "results/sync/last_sync.md",
+  "_note": "branch/remote 是与本仓库 Arena 会话约定的工作分支；download_sets 是 download.ps1 -Set 可用的集合（download_dir 留空 = 下载到仓库上一级 <仓库名>_out）；upload_map 决定 upload.ps1 把附件按扩展名放到哪里；gate 是 agent-sync.sh 提交前运行的检查命令；receipt 是每轮 agent-sync.sh 落盘的同步回执路径（留空 = 关闭）。配置查找顺序：-Config 参数 > sync.config.<GIT_SYNC_PROFILE>.json > 本文件。"
 }

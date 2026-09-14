@@ -16,7 +16,10 @@
 #                       the worktree is kept and history is restored
 #   4. gate           - run the "gate" command from sync.config.json
 #                       (default: bash code/check_all.sh), abort on failure
-#   5. commit + push  - git add -A, commit with the given message, push to the
+#   5. receipt        - write the sync report (config key "receipt", e.g.
+#                       results/sync/last_sync.md): which local commits were
+#                       picked up, what this round changes (diff stat)
+#   6. commit + push  - git add -A, commit with the given message, push to the
 #                       configured branch only
 #
 # Exit codes: 0 ok, 1 usage/guard error, 2 gate failed, 3 git error.
@@ -27,11 +30,12 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 cd "$REPO_ROOT"
 
 CFG="skills/git-sync/sync.config.json"
-BRANCH=""; REMOTE="origin"; GATE="bash code/check_all.sh"
+BRANCH=""; REMOTE="origin"; GATE="bash code/check_all.sh"; RECEIPT=""
 if [ -f "$CFG" ]; then
   BRANCH="$(python3 -c "import json;print(json.load(open('$CFG',encoding='utf-8')).get('branch',''))" 2>/dev/null || true)"
   REMOTE="$(python3 -c "import json;print(json.load(open('$CFG',encoding='utf-8')).get('remote','origin'))" 2>/dev/null || true)"
   GATE_CFG="$(python3 -c "import json;print(json.load(open('$CFG',encoding='utf-8')).get('gate',''))" 2>/dev/null || true)"
+  RECEIPT="$(python3 -c "import json;print(json.load(open('$CFG',encoding='utf-8')).get('receipt',''))" 2>/dev/null || true)"
   [ -n "$GATE_CFG" ] && GATE="$GATE_CFG"
 fi
 [ -z "$BRANCH" ] && BRANCH="$(git rev-parse --abbrev-ref HEAD)"
@@ -66,6 +70,9 @@ if ! git fetch "$REMOTE" 2>&1 | tail -2; then
   echo "[ERROR] git fetch failed" >&2; exit 3
 fi
 ORIGIN="$REMOTE/$BRANCH"
+
+# commits the local side pushed since our last round (user -> agent direction)
+USER_COMMITS="$(git log --oneline "HEAD..$ORIGIN" 2>/dev/null || true)"
 
 status_report() {
   echo "-- HEAD        : $(git log -1 --oneline)"
@@ -104,12 +111,48 @@ if [ "$RUN_GATE" = 1 ] && [ -n "$GATE" ]; then
   fi
 fi
 
-# --------------------------------------------------------- 5. commit + push
+# --------------------------------------------- 5. receipt (the sync report)
+# one markdown file the user can read after .\sync.ps1 to see what this round
+# changed and which of their commits were picked up (config key: "receipt")
+CHANGED="$(git status --porcelain)"
+HAD_CHANGES=0; [ -n "$CHANGED" ] && HAD_CHANGES=1
+if [ -n "$RECEIPT" ] && { [ -n "$CHANGED" ] || [ -n "$USER_COMMITS" ]; }; then
+  RECEIPT_NORM="${RECEIPT//\\//}"
+  mkdir -p "$(dirname "$RECEIPT_NORM")"
+  {
+    echo "# 最近一轮同步回执（agent -> 分支）"
+    echo ""
+    echo "- 时间：$(date -u '+%Y-%m-%d %H:%M UTC')"
+    echo "- 分支：\`$BRANCH\`"
+    if [ -n "$USER_COMMITS" ]; then
+      echo "- 本轮纳入的**本机侧**提交（本机 -> 助手 ✅）："
+      printf '%s\n' "$USER_COMMITS" | grep '.' | sed 's/^/  - /'
+    fi
+    if [ -n "${MSG:-}" ] && [ "$MSG" != "__status__" ]; then
+      echo "- 本轮助手提交：$MSG"
+    fi
+    if [ -n "$CHANGED" ]; then
+      echo "- 本轮改动文件："
+      printf '%s\n' "$CHANGED" | grep -v -F "$RECEIPT_NORM" | grep '.' | sed 's/^/  /'
+    fi
+    echo ""
+    echo "> 完整历史：\`git log --oneline -10\`；本机 \`.\\sync.ps1\` 之后即可看到本文件。"
+  } > "$RECEIPT_NORM"
+  echo "== receipt: $RECEIPT_NORM"
+fi
+
+# --------------------------------------------------------- 6. commit + push
 git add -A
 if [ -z "$(git status --porcelain)" ]; then
   echo "== nothing new to commit"
 else
-  [ -z "${MSG:-}" ] && MSG="sync: agent update $(date '+%Y-%m-%d %H:%M')"
+  if [ -z "${MSG:-}" ]; then
+    if [ "$HAD_CHANGES" = "0" ] && [ -n "$USER_COMMITS" ]; then
+      MSG="sync: 回执 - pulled $(printf '%s' "$USER_COMMITS" | grep -c .) local commit(s)"
+    else
+      MSG="sync: agent update $(date '+%Y-%m-%d %H:%M')"
+    fi
+  fi
   git -c user.name="Arena Agent" -c user.email="agent@arena.ai" commit -q -m "$MSG"
   echo "== committed: $(git log -1 --oneline)"
 fi
@@ -122,4 +165,4 @@ fi
 
 echo ""
 echo "== done: $(git log -1 --oneline --decorate)"
-echo "== user side: .\\sync.ps1   (then .\\download.ps1 -Set final to copy the deliverables out)"
+echo "== user side: .\\sync.ps1   (receipt: ${RECEIPT:-none}; deliverables: .\\download.ps1 -Set final)"
