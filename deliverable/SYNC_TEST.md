@@ -1,4 +1,4 @@
-# SYNC TEST —— 「助手 → 本机」方向测试标记
+ # SYNC TEST —— 「助手 → 本机」方向测试标记
 
 - 由 Arena 会话生成并推送到 `arena/01a09fc1-git-pull-arena`
 - 生成时间：2026-09-14 12:05 UTC（北京时间 20:05）
