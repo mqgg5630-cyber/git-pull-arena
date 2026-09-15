@@ -3,8 +3,13 @@
 > 目标是：**取、传、下载、打包、排障各一个命令**，不需要 git 知识；
 > 一份配置（`sync.config.json`）驱动全部脚本，`agent-install.sh` 一条命令装进任何新仓库
 > （新会话引导提示词在 `templates/new-session-prompt.md`，整段复制即用）。
-> 仓库根目录放着同款脚本（`sync.ps1 / push.ps1 / upload.ps1 / download.ps1 / doctor.ps1 / pack.ps1 / bootstrap.ps1 / pr.ps1`），
+> 仓库根目录放着同款脚本（`sync.ps1 / push.ps1 / upload.ps1 / download.ps1 / doctor.ps1 / pack.ps1 / bootstrap.ps1 / pr.ps1 / hardware.ps1 / watch.ps1 / auth.ps1`），
 > 这份 skill 是**通用版 + 说明书**。
+>
+> **v2.5.0 起（默认行为变了）**：推送**默认静默**（任何 git 调用都不许弹窗/等点击，拿不到凭据就快速失败并告诉你怎么修）；
+> 值守**默认零窗口**（编译一个 GUI 子系统启动器，Task Scheduler 不再有 console 闪窗）；
+> `auth.ps1` 一次配好免点击凭据并**用实跑证明**；`watch.ps1 -Register` 注册后**自检真的跑没跑**。
+> 多会话协作（模式 B/C）**暂时搁置**，先按"一会话一仓库"（模式 A）走通单会话闭环。
 
 ## 一、最短用法（在仓库目录里）
 
@@ -21,7 +26,11 @@
 .\doctor.ps1                              # 体检：环境 / 分支 / 远端 / 未提交 / stash / 大文件 / 版本
 .\doctor.ps1 -Fix                         # 一键修复：重建 refspec + stash + 切回分支 + 拉取
 .\hardware.ps1 -Deep                      # 采集本机硬件/conda环境报告并推送（每台机器一次；变化后重跑）
-.\watch.ps1 -Register                     # 自动验证循环：注册本机值守任务（每2分钟；-Interval 10 可改）
+.\auth.ps1 -Setup -Verify                 # 一次性：把推送配成免点击，并用实跑证明（不弹窗）
+.\auth.ps1                                # 看现在推送会用哪套凭据、能不能静默完成
+.\watch.ps1 -Register                     # 自动验证循环：注册本机值守（每2分钟；默认零窗口）
+.\watch.ps1 -Status                       # 值守活着吗：模式 / 上次运行 / 心跳 / 最近一轮结果
+.\watch.ps1 -Test                         # 立刻跑一次计划任务，验证"真的会跑"（而不是只注册成功）
 .\pr.ps1                                  # 开 PR：工作分支 -> main（需 GitHub CLI）
 ```
 
@@ -45,18 +54,19 @@ bash skills/git-sync/scripts/agent-pr.sh --checks          # 看 PR 的 CI 状�
 
 | 文件 | 说明 |
 |---|---|
-| `sync.config.json` | **唯一的配置**：`branch` / `remote` / `download_dir` / `download_sets` / `upload_map` / `gate` / `receipt` |
+| `sync.config.json` | **唯一的配置**：`branch` / `remote` / `download_dir` / `download_sets` / `upload_map` / `gate` / `receipt` / `handshake` / `check_cmd` / `check_timeout_min` / `lock_stale_min` |
 | `VERSION` | 技能版本号；`doctor.ps1` 和安装器都会显示，升级对账用 |
 | `scripts/sync.ps1` | 拉取；配置查找：`-Config` 参数 > `sync.config.<GIT_SYNC_PROFILE>.json` > 仓库内 `skills\git-sync\` > 脚本旁边 |
-| `scripts/push.ps1` | 提交推送；**拒绝推 `main` / `master`**；`-Gate` 提交前本机也跑一遍自检 |
+| `scripts/push.ps1` | 提交推送；**拒绝推 `main` / `master`**；`-Gate` 提交前本机也跑一遍自检；**默认静默模式**（prompts 关闭：拿不到凭据就 exit 4 并让你跑 `auth.ps1 -Setup`，绝不弹窗等待），要交互用 `-Prompt` |
 | `scripts/upload.ps1` | 附件归位：扩展名 → 目录映射取自 `upload_map`，也可 `-Ext`/`-Dest` 临时指定 |
 | `scripts/download.ps1` | robocopy 镜像下载；`-Set` 选集合，`-Mirror` 完全镜像，`-Since <日期>` 增量，`-Folders a,b` 临时指定目录 |
 | `scripts/pack.ps1` | 压缩包交付；输出到 `_export\`（已在 `.gitignore` 里，不会被推送） |
-| `scripts/doctor.ps1` | 体检报告 + 技能版本 + LFS/大文件检查；`-Fix` 一键修复；ahead/behind 对比的是 `origin/<分支>`（修复了老版本永远显示 0 的 bug） |
+| `scripts/doctor.ps1` | 体检报告 + 技能版本 + LFS/大文件检查 + **值守/心跳/凭据三行**（watcher / heartbeat / auth）；`-Fix` 一键修复；ahead/behind 对比的是 `origin/<分支>`（修复了老版本永远显示 0 的 bug） |
 | `scripts/hardware.ps1` | **本机硬件/环境上报**：OS、CPU、内存、GPU（nvidia-smi 优先，含显存/算力/CUDA 驱动）、磁盘、conda/mamba 环境列表与各环境 python，`-Deep` 再探测每个环境的 torch + CUDA；写入 `hardware_dir`（latest.md/latest.json + 历史快照）并推送 |
-| `scripts/watch.ps1` | **自动验证循环本机侧**：`-Register` 注册计划任务（默认 5 分钟轮询），发现 agent 的检查请求就自动 sync → 跑 `check_cmd` → 日志落盘 → 推回 passed/failed；`-Unregister` 摘除 |
+| `scripts/watch.ps1` | **自动验证循环本机侧**：`-Register` 注册计划任务（默认 2 分钟轮询；**默认零窗口启动器**，注册后自检"真的跑了一次"，编译失败自动回退 `-Flash`），发现 agent 的检查请求就自动 sync → 跑 `check_cmd`（带硬超时）→ 日志落盘 → 静默推回 passed/failed；`-Status` 看值守心跳、`-Test` 立刻验证、`-Pause/-Resume/-Unregister` 管理 |
 | `scripts/bootstrap.ps1` | 首次准备：执行策略、git 身份、fetch、切分支、首拉 |
 | `scripts/pr.ps1` | GitHub CLI 开 PR / 查 CI；`-Base` 换目标分支，`-Checks` 看检查状态 |
+| `scripts/auth.ps1` | **免点击推送**：`-Setup`（gh CLI 优先，其次 GCM + `credentialStore=dpapi`）/ `-Verify`（prompts 关闭下实跑 `ls-remote` + `push --dry-run`）/ `-Token`·`-TokenFile`·`-PromptToken`（无浏览器播种令牌，永不回显）/ `-Json`（给 doctor 和 agent 读）/ `-Unset` |
 | `scripts/install.ps1` | 装到另一个仓库：`.\install.ps1 -Target C:\MyProject -Branch main`（目标已有配置时只动 branch，其余保留） |
 | `scripts/agent-sync.sh` | 助手侧一键：分支守卫 → fetch → 发散自愈 → gate → **写同步回执（并按日期归档）** → commit + push |
 | `scripts/agent-hardware.sh` | 助手侧读本机硬件报告；缺失/超 30 天会提示让用户跑 `.\hardware.ps1 -Deep` |
@@ -86,6 +96,22 @@ python 版本、哪个环境的 torch 能用 CUDA——计算类工作开工前�
 → 把 passed/failed 推回分支；agent `--read` 读结果（0=过/2=败/3=等），败了修了再来一轮，
 过了且满意 `--accept` 收尾——**循环由 handshake 文件驱动，收尾后值守静默待命**。
 详见 SKILL.md 第 8 节。
+
+## 二·五、零弹窗值守 + 免点击推送（v2.5.0）
+
+两件事各自都有"看着成了其实没成"的坑，所以都配了**可验证的自检**：
+
+| 目标 | 做法 | 怎么证明 |
+|---|---|---|
+| 值守**不闪窗** | `watch.ps1 -Register` 默认编译一个 GUI 子系统启动器（`%LOCALAPPDATA%\git-sync\watchhost-<仓库>.exe`），由它用 `CreateNoWindow` 拉起 powershell——Task Scheduler 不再创建任何 console 窗口；不需要管理员、不碰已弃用的 VBScript | 注册后自动**自检**：立刻跑一次任务并等心跳文件；自检失败会自动回退 `-Flash` 并如实告知 |
+| 推送**不点确认** | `auth.ps1 -Setup`：有 gh 就 `gh auth setup-git`（令牌存在 gh 自己配置里，session 0 也能用）；否则 GCM + `credential.credentialStore=dpapi`（Windows 凭据管理器在 session 0/SSH 下读不到，dpapi 文件可以）。`push.ps1` 默认静默：prompts 全关 | `auth.ps1 -Verify`：在 prompts 关闭的情况下实跑 `git ls-remote` 与 `git push --dry-run`，退出码 0 才算过 |
+
+值守的心跳、日志、启动器都在 `%LOCALAPPDATA%\git-sync\`（**不进 git**）：
+`watch-<仓库>.json`（上次运行时间/动作/round/结论/推送结果）、`watch-<仓库>.log`（每次轮询一行，含每次 git 调用的结果）。
+出问题就看这两样，或直接 `.\watch.ps1 -Status` / `.\doctor.ps1`。
+
+长任务（本机即 Runner）记得**同步调大**两个值：`check_timeout_min`（单轮硬超时，默认 30）与
+`lock_stale_min`（锁过期，默认 45，必须大于超时）；`watch.ps1 -Register -CheckTimeoutMin 120` 也能临时覆盖。
 
 ## 三、为什么 `.ps1` 里绝对不能写中文
 
@@ -124,7 +150,11 @@ gate（`code/check_all.sh`）提交前自动扫描全部 `.ps1`，非 ASCII 直�
 | 现象 | 处理 |
 |---|---|
 | `running scripts is disabled` | 跑一次 `.\bootstrap.ps1` |
-| 要密码 / 认证失败 | GitHub 不接受密码：`gh auth login` 或 GitHub Desktop |
+| 要密码 / 认证失败 / 推送卡着等确认 | `.\auth.ps1 -Setup` → `.\auth.ps1 -Verify`（一次配好免点击；两者都支持 `-Json`） |
+| 值守推送一直不成功（agent 说"还在等"） | `.\watch.ps1 -Status` 看心跳与 `last_push`；`auth: no silent credential` 就是没配凭据，跑 `.\auth.ps1 -Setup` |
+| 值守好像没在跑（计划任务显示正常） | `.\watch.ps1 -Test`（立刻跑一次并等心跳）；`Get-ScheduledTaskInfo <任务名>` 的 LastTaskResult 不可信（v2.4.4 就是这么被骗的） |
+| 值守每 2 分钟闪一下黑窗 | 升级到 v2.5.0 后重注册：`.\watch.ps1 -Unregister` → `.\watch.ps1 -Register`（默认零窗口；`-Flash` 才是旧的闪窗模式） |
+| 单轮检查被判 failed 且写了 `TIMEOUT` | 检查超过 `check_timeout_min`（默认 30 分钟）被强杀；长任务请调大它并把 `lock_stale_min` 一起调大 |
 | `Updates were rejected`（远端有新提交） | 先 `.\sync.ps1`，再 `.\push.ps1` |
 | `pull --ff-only` 失败（本地有分叉提交） | `.\doctor.ps1` 看状态；或 `.\doctor.ps1 -Fix` |
 | 本地改动"消失"了 | 多半在 stash：`git stash list` → `git stash pop` |
@@ -143,7 +173,7 @@ gate（`code/check_all.sh`）提交前自动扫描全部 `.ps1`，非 ASCII 直�
 **助手侧 / 手动（一条命令）**：
 
 ```bash
-git clone --quiet --depth 1 -b arena/01a09fc1-git-pull-arena \
+git clone --quiet --depth 1 -b arena/01a0a4f5-git-pull-arena \
      https://github.com/mqgg5630-cyber/git-pull-arena.git /tmp/git-sync-src \
   && bash /tmp/git-sync-src/skills/git-sync/scripts/agent-install.sh --branch <工作分支>
 ```
@@ -162,6 +192,13 @@ cd E:\0github\git-sync\<目标仓库>
 所以**升级已装过的仓库 = 再跑一遍安装命令**；装完 `.\doctor.ps1` 看 `skill` 一行即可对账版本。
 
 ## 七、多会话协作模式（多个 Arena 会话 × 本地）
+
+> **现状（2026-09-15 用户决定）：模式 B / C 暂时搁置。** 多会话并行的调度、合并、
+> 冲突仲裁成本明显高于收益，先只走"一会话一仓库"（模式 A）把单会话闭环做扎实；
+> 本节内容保留备查，需要时随时可以重启。
+>
+> 单会话闭环的验收标准（唯一要满足的）：agent 请求检查 → 本机值守**零窗口**自动跑完 →
+> **免点击**推回结果 → agent 一个 `agent-wait --request ... --auto-accept` 内拿到 exit 0。
 
 铁律先行：**一个会话一个分支**（Arena 给每个会话自动建 `arena/<id>-仓库名>` 分支，这是天然隔离边界）；
 会话之间不能直接对话，**git 是唯一的总线**（提交 / 文件 / PR）。

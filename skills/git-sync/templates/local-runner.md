@@ -15,7 +15,8 @@
 
 ## 步骤（任何装了 git-sync 的仓库）
 
-1. 本机一次：`.\watch.ps1 -Register -Interval 2`
+0. 本机一次：`.\auth.ps1 -Setup -Verify`（值守在后台推产物，没人能点登录窗，必须免点击）
+1. 本机一次：`.\watch.ps1 -Register -Interval 2`（默认零窗口；注册后自检"真的跑了一次"）
 2. 把要跑的命令写进 `code\local_check.ps1`（或改 `sync.config.json` 的 `check_cmd`）：
    产物写到 `results\jobs\` 下，进程退出码 0/非0 = 成功/失败
 3. Agent：`bash skills/git-sync/scripts/agent-wait.sh --request "任务说明" --auto-accept`
@@ -30,7 +31,9 @@
 
 ## 注意事项
 
-- **长任务**：把 `agent-wait --timeout` 调大（如 3600）；值守锁 30 分钟过期自愈，不会卡死
+- **长任务**：把 `agent-wait --timeout` 调大（如 3600）；同时把 `sync.config.json` 的
+  `check_timeout_min`（单轮硬超时，默认 30 分钟）和 `lock_stale_min`（锁过期，默认 45 分钟，必须大于超时）
+  一起调大——否则任务会被判 `TIMEOUT` 强杀，或锁过期后第二个轮询插进来
 - **大产物别进 git**：写到 `build\`（ignored）或 `pack.ps1` 打包后只回传清单/校验和
 - **一次一个任务**（握手文件是单槽队列）；要并行就多仓库/多分支
 - 任务里的输出用 `Write-Output`（不用 `Write-Host`），否则计划任务里捕获不到

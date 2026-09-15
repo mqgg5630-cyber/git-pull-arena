@@ -28,6 +28,24 @@ if (Test-Path -LiteralPath '.\code\check_all.sh') {
     if ($LASTEXITCODE -ne 0) { Write-Output '[FAIL] gate failed'; $fail = 1 }
 }
 
+# 1b. informational: can a push leave this machine with no window and no click?
+#     This is what the watcher needs to push the verdict back (soft check - it
+#     never fails the round, it just tells you to run .\auth.ps1 -Setup once).
+if (Test-Path -LiteralPath '.\auth.ps1') {
+    try {
+        $authJson = (& .\auth.ps1 -Json | Out-String)
+        $authObj = $authJson | ConvertFrom-Json
+        if ($authObj.ready) {
+            Write-Output '== auth: silent push ready (no prompt, no window)'
+        } else {
+            Write-Output '== auth: NOT ready - run .\auth.ps1 -Setup once, then .\auth.ps1 -Verify'
+            Write-Output ('   probe said: ' + $authObj.credential_detail)
+        }
+    } catch {
+        Write-Output '== auth: probe failed (soft warning only)'
+    }
+}
+
 # 2. example: the deliverable must exist and not be empty
 # if (-not (Test-Path '.\deliverable\final.pptx')) {
 #     Write-Host '[FAIL] deliverable\final.pptx missing' -ForegroundColor Red; $fail = 1

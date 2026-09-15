@@ -14,11 +14,11 @@
 ```text
 请把 git-sync 技能安装到本仓库当前工作分支，作为你我双向同步的工具。
 技能来源：https://github.com/mqgg5630-cyber/git-pull-arena 的
-arena/01a09fc1-git-pull-arena 分支（skills/git-sync）。
+arena/01a0a4f5-git-pull-arena 分支（skills/git-sync）。
 
 1) 安装（在仓库根目录执行；不带 --branch 会自动装到你当前的工作分支）：
 
-git clone --quiet --depth 1 -b arena/01a09fc1-git-pull-arena https://github.com/mqgg5630-cyber/git-pull-arena.git /tmp/git-sync-src && bash /tmp/git-sync-src/skills/git-sync/scripts/agent-install.sh
+git clone --quiet --depth 1 -b arena/01a0a4f5-git-pull-arena https://github.com/mqgg5630-cyber/git-pull-arena.git /tmp/git-sync-src && bash /tmp/git-sync-src/skills/git-sync/scripts/agent-install.sh
 
 2) 提交推送（自带分支守卫 + 提交前自检 + 同步回执）：
 
@@ -53,9 +53,25 @@ cd E:\0github\git-sync
 git clone -b <它告诉你的分支> https://github.com/mqgg5630-cyber/<它告诉你的仓库>.git <新子文件夹名>
 cd <新子文件夹名>
 
-.\bootstrap.ps1     # 身份 / 切分支 / 首拉
-.\doctor.ps1        # branch 应为那个分支，in step with the remote
+.\bootstrap.ps1 -Auto     # 身份 / 切分支 / 首拉 + 免点击凭据 + 注册零窗口值守
+# 或者分步来（-Auto 就是这三条）：
+#   .\bootstrap.ps1
+#   .\auth.ps1 -Setup -Verify     # 推送不再弹窗/等点击（配完当场实跑证明）
+#   .\watch.ps1 -Register         # 自动验证值守（默认零窗口，注册后自检真的会跑）
+.\doctor.ps1              # branch 应为那个分支，in step with the remote；
+                          # 末尾的 watcher / heartbeat / auth 三行都应是好消息
 ```
+
+**两条硬要求（用户的明确要求，别省）**：
+
+1. **无弹窗**：值守每 2 分钟轮询时不能出现任何窗口。默认的 `-Register`（零窗口启动器）就是为这个；
+   `.\watch.ps1 -Status` 的 `mode` 应显示 `zero-window (launcher exe)`，且 heartbeat 时间在推进。
+2. **免点击推送**：值守在后台推结果，没人能点"确认登录"。`.\auth.ps1 -Verify` 必须 exit 0；
+   它不是"配好了应该就行"，而是在**关闭所有交互提示**的情况下实跑 `ls-remote` + `push --dry-run`。
+
+**先只做单会话闭环**（一会话一仓库）：agent 推送 → 本机 `.\sync.ps1` → agent
+`agent-wait.sh --request "..." --auto-accept` → 本机值守零窗口自动跑完 → 免点击推回 →
+一轮内拿到 exit 0。多会话并行/汇总会话（模式 B/C）暂时搁置，别自动展开。
 
 ## 三、双向验收（两小步）
 

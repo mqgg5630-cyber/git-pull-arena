@@ -4,7 +4,7 @@
 #
 # One-liner for a brand-new Arena session (run inside the target repo; git
 # clone works in the sandboxes where raw.githubusercontent.com is blocked):
-#   git clone --quiet --depth 1 -b arena/01a09fc1-git-pull-arena \
+#   git clone --quiet --depth 1 -b arena/01a0a4f5-git-pull-arena \
 #        https://github.com/mqgg5630-cyber/git-pull-arena.git /tmp/git-sync-src \
 #     && bash /tmp/git-sync-src/skills/git-sync/scripts/agent-install.sh \
 #            --branch <working-branch>
@@ -31,7 +31,7 @@
 set -u -o pipefail
 
 DEFAULT_SOURCE_REPO="https://github.com/mqgg5630-cyber/git-pull-arena.git"
-DEFAULT_SOURCE_BRANCHES=("main" "arena/01a09fc1-git-pull-arena")
+DEFAULT_SOURCE_BRANCHES=("main" "arena/01a0a4f5-git-pull-arena")
 
 REPO=""; BRANCH=""; SOURCE=""; SOURCE_BRANCH=""; GHA=0
 while [ $# -gt 0 ]; do
@@ -190,7 +190,7 @@ if git -C "$REPO" check-ignore -q "skills/git-sync/sync.config.json" 2>/dev/null
 fi
 
 # 4. the user-side scripts at the repo root
-for f in sync push upload download pack doctor bootstrap pr hardware watch; do
+for f in sync push upload download pack doctor bootstrap pr hardware watch auth; do
   if [ -f "$REPO/skills/git-sync/scripts/$f.ps1" ]; then
     cp "$REPO/skills/git-sync/scripts/$f.ps1" "$REPO/$f.ps1"
   fi
@@ -233,5 +233,6 @@ next (assistant side):
 
 next (user side, after the branch is pushed):
    git clone -b $BRANCH <remote-url> && cd <repo>
-   .\\bootstrap.ps1
+   .\\bootstrap.ps1 -Auto      # policy + identity + branch + silent-push auth + watcher
+   (or step by step: .\\bootstrap.ps1, .\\auth.ps1 -Setup, .\\watch.ps1 -Register)
 EOF

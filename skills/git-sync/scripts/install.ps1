@@ -44,7 +44,7 @@ Write-Host "  copied skills\git-sync (docs + scripts + templates)"
 # 2. the user-side scripts at the repo root
 $files = @('sync.ps1', 'push.ps1', 'upload.ps1', 'download.ps1',
            'doctor.ps1', 'pack.ps1', 'bootstrap.ps1', 'pr.ps1',
-           'hardware.ps1', 'watch.ps1')
+           'hardware.ps1', 'watch.ps1', 'auth.ps1')
 foreach ($f in $files) {
     $from = Join-Path $src ('scripts\' + $f)
     if (Test-Path -LiteralPath $from) {
@@ -96,4 +96,6 @@ Write-Host "   .\upload.ps1 / .\download.ps1   put attachments in / copy deliver
 Write-Host "   .\download.ps1 -List            show the download sets"
 Write-Host "   .\doctor.ps1 (-Fix)             health check (and auto-fix)"
 Write-Host "   .\pr.ps1                        open a PR to main (needs GitHub CLI)"
+Write-Host "   .\auth.ps1 -Setup / -Verify     make pushes silent (no popup, no click)"
+Write-Host "   .\watch.ps1 -Register           auto-verify: run this repo's checks"
 Write-Host "   edit sync.config.json to change the branch, sets or download folder"

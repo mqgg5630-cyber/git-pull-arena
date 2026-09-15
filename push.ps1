@@ -6,10 +6,18 @@
 #     .\push.ps1 -Branch other/branch
 #     .\push.ps1 -Gate "msg"          # also run the repo gate before committing
 #                                      # (needs bash - it ships with Git for Windows)
+#     .\push.ps1 -Prompt "msg"        # allow git to ask for credentials (window!)
+#     .\push.ps1 -NoPrompt "msg"      # force silent mode (the default anyway)
 #
 # Branch / remote come from sync.config.json when present. A safety guard
 # refuses to push to main / master, so a stray edit can never move the shared
 # branch.
+#
+# NO PROMPTS BY DEFAULT: every git call runs with GIT_TERMINAL_PROMPT=0,
+# GCM_INTERACTIVE=never and -c credential.interactive=false, so a push can
+# never block on a login window. If that leaves git without a credential it
+# fails fast with exit code 4 and tells you to run .\auth.ps1 -Setup once
+# (that is the same silent mode the watcher uses - see auth.ps1).
 #
 # ASCII-only on purpose (Windows PowerShell 5.1 decodes .ps1 as ANSI/GBK).
 
@@ -18,7 +26,9 @@ param(
     [string]$Branch  = '',
     [string]$Remote  = '',
     [string]$Config = '',
-    [switch]$Gate
+    [switch]$Gate,
+    [switch]$NoPrompt,
+    [switch]$Prompt
 )
 
 $ErrorActionPreference = 'Stop'
@@ -76,6 +86,47 @@ if ($Branch -eq 'main' -or $Branch -eq 'master') {
     exit 1
 }
 
+# ------------------------------------------------------------ prompt policy
+# default: silent. -Prompt restores the interactive behaviour (a credential
+# window may appear); the watcher always calls this script in silent mode.
+$noPrompt = $true
+if ($NoPrompt.IsPresent) { $noPrompt = $true }
+elseif ($Prompt.IsPresent) { $noPrompt = $false }
+elseif ($env:GIT_SYNC_PROMPT -eq '1') { $noPrompt = $false }
+$script:GP = @()
+if ($noPrompt) {
+    $env:GIT_TERMINAL_PROMPT = '0'
+    $env:GCM_INTERACTIVE = 'never'
+    $env:GH_PROMPT_DISABLED = '1'
+    $env:GIT_ASKPASS = ''
+    $env:SSH_ASKPASS = ''
+    $script:GP = @('-c', 'credential.interactive=false', '-c', 'core.askpass=')
+}
+
+# explicit argument arrays on purpose: no parameter-name guessing in the calls
+function GitRun([string[]]$a) {
+    $all = $script:GP + $a
+    & git @all
+    return $LASTEXITCODE
+}
+function GitOut([string[]]$a) {
+    $all = $script:GP + $a
+    $out = & git @all 2>&1
+    return @{ code = $LASTEXITCODE; text = (($out | Out-String).TrimEnd()) }
+}
+function Test-AuthFailure([string]$text) {
+    return [bool]($text -match 'Authentication failed|could not read Username|could not read Password|terminal prompts disabled|Permission denied \(publickey\)|403 Forbidden|Invalid username or (password|token)|Support for password authentication was removed|repository not found|fatal: Authentication')
+}
+function Show-AuthHelp {
+    Write-Host ""
+    Write-Host "[AUTH] git could not get a credential WITHOUT asking (silent mode)." -ForegroundColor Red
+    Write-Host "       fix it once, then pushes never pop a window again:" -ForegroundColor Yellow
+    Write-Host "         .\auth.ps1 -Setup      # GitHub CLI > Git Credential Manager (dpapi)" -ForegroundColor Yellow
+    Write-Host "         .\auth.ps1 -Verify     # prove it with prompts disabled" -ForegroundColor Yellow
+    Write-Host "       or answer the login window ONCE with:  .\push.ps1 -Prompt \"msg\"" -ForegroundColor Yellow
+    Write-Host "       (the watcher cannot show a window at all - it needs the silent path)" -ForegroundColor Yellow
+}
+
 # git refuses to commit without an identity; set a local one if missing
 if (-not (git config user.name)) {
     git config user.name  'mqgg5630-cyber'
@@ -85,14 +136,26 @@ if (-not (git config user.name)) {
 
 Write-Host "== repo  : $repo" -ForegroundColor Cyan
 Write-Host "== branch: $Branch" -ForegroundColor Cyan
+if ($noPrompt) { Write-Host "== mode  : silent (prompts disabled - no window can appear)" -ForegroundColor Cyan }
+else           { Write-Host "== mode  : interactive (-Prompt; git may ask for credentials)" -ForegroundColor Yellow }
 
 # Get the server side first so the push cannot be rejected as non-fast-forward
-git fetch $Remote
-git checkout $Branch
-git pull --ff-only $Remote $Branch
+$rc = GitRun @('fetch', $Remote)
+if ($rc -ne 0) { Write-Host "[ERROR] git fetch failed (network? see .\doctor.ps1)" -ForegroundColor Red; exit 3 }
+$rc = GitRun @('checkout', $Branch)
+if ($rc -ne 0) { Write-Host "[ERROR] git checkout $Branch failed (unknown branch in this clone?)" -ForegroundColor Red; exit 3 }
+$pullOut = GitOut @('pull', '--ff-only', $Remote, $Branch)
+if ($pullOut.text) { Write-Host $pullOut.text }
+if ($pullOut.code -ne 0) {
+    Write-Host "[ERROR] pull --ff-only failed - the local branch has diverged from $Remote/$Branch." -ForegroundColor Red
+    Write-Host "        run .\doctor.ps1 -Fix (it stashes, re-points the branch and pulls)." -ForegroundColor Yellow
+    if (Test-AuthFailure $pullOut.text) { Show-AuthHelp }
+    exit 3
+}
 
-git add -A
-if (-not (git status --porcelain)) {
+$null = GitRun @('add', '-A')
+$st = GitOut @('status', '--porcelain')
+if (-not $st.text) {
     Write-Host ""
     Write-Host "== nothing new to commit. done." -ForegroundColor Green
     exit 0
@@ -122,21 +185,28 @@ if ([string]::IsNullOrWhiteSpace($Message)) {
 
 Write-Host ""
 Write-Host "== files to be committed:" -ForegroundColor Cyan
-git status --short
+Write-Host $st.text
 
-git commit -m $Message
-if ($LASTEXITCODE -ne 0) { Write-Host "[ERROR] commit failed." -ForegroundColor Red; exit 1 }
+$rc = GitRun @('commit', '-m', $Message)
+if ($rc -ne 0) { Write-Host "[ERROR] commit failed." -ForegroundColor Red; exit 1 }
 
-git push $Remote $Branch
-if ($LASTEXITCODE -ne 0) {
+# the push itself: capture the output so the failure can be classified, then
+# show it unchanged (the user should see exactly what git said)
+$pushOut = GitOut @('push', $Remote, $Branch)
+if ($pushOut.text) { Write-Host $pushOut.text }
+if ($pushOut.code -ne 0) {
     Write-Host ""
+    if (Test-AuthFailure $pushOut.text) {
+        Show-AuthHelp
+        exit 4
+    }
     Write-Host "[ERROR] push failed." -ForegroundColor Red
-    Write-Host "  * If it asks for a password: GitHub needs a token, not your password." -ForegroundColor Yellow
-    Write-Host "    Install/run GitHub Desktop or 'gh auth login', then push again." -ForegroundColor Yellow
-    Write-Host "  * If it says 'rejected': the remote branch moved. Run .\sync.ps1 first." -ForegroundColor Yellow
+    Write-Host "  * 'rejected': the remote branch moved. Run .\sync.ps1 first." -ForegroundColor Yellow
+    Write-Host "  * network/proxy errors: retry, or check .\doctor.ps1." -ForegroundColor Yellow
     exit 1
 }
 
 Write-Host ""
 Write-Host "== pushed to $Branch :" -ForegroundColor Green
-git log -1 --oneline --decorate
+$null = GitRun @('log', '-1', '--oneline', '--decorate')
+exit 0

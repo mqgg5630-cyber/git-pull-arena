@@ -139,6 +139,53 @@ if ($big.Count -gt 0) {
     Line 'big file' 'none over 50 MB'
 }
 
+# ------------------------------------------- watcher / auth (auto-verification)
+Write-Host ""
+Write-Host "== auto-verification (watcher + auth)" -ForegroundColor Cyan
+$leaf = Split-Path -Leaf $repo
+$taskName = 'git-sync-watch-' + $leaf
+$t = $null
+try { $t = Get-ScheduledTask -TaskName $taskName -ErrorAction Stop } catch { }
+if ($t) {
+    $mode = 'flash (hidden powershell)'
+    try {
+        $exec  = [string]$t.Actions[0].Execute
+        $logon = [string]$t.Principal.LogonType
+        if ($logon -eq 'S4U' -or $logon -eq 'Password') { $mode = 'headless (session 0)' }
+        elseif ($exec -match 'watchhost') { $mode = 'zero-window (no flash)' }
+    } catch { }
+    $line = "$($t.State) | mode: $mode"
+    $tn = Get-ScheduledTaskInfo -TaskName $taskName -ErrorAction SilentlyContinue
+    if ($tn) { $line += " | last run: $($tn.LastRunTime) | result: $($tn.LastTaskResult)" }
+    Line 'watcher' $line
+    if ($tn -and $tn.LastTaskResult -ne 0) {
+        Write-Host "               last run failed - check .\watch.ps1 -Status and $env:LOCALAPPDATA\git-sync\watch-$leaf.log" -ForegroundColor Yellow
+    }
+} else {
+    Line 'watcher' 'not registered - run .\watch.ps1 -Register (auto-verification is OFF)' 'Yellow'
+}
+$stateDir  = if ($env:LOCALAPPDATA) { Join-Path $env:LOCALAPPDATA 'git-sync' } else { Join-Path $env:TEMP 'git-sync' }
+$stateFile = Join-Path $stateDir ('watch-' + $leaf + '.json')
+if (Test-Path -LiteralPath $stateFile) {
+    try {
+        $hb = Get-Content -LiteralPath $stateFile -Raw -Encoding UTF8 | ConvertFrom-Json
+        Line 'heartbeat' ("$($hb.last_run) | action: $($hb.last_action) | round: $($hb.last_round) | verdict: $($hb.last_verdict) | push: $($hb.last_push)")
+    } catch { Line 'heartbeat' '(unreadable)' 'Yellow' }
+} else {
+    Line 'heartbeat' '(none yet - the watcher has never completed a poll)' 'Yellow'
+}
+$authScript = Join-Path $repo 'auth.ps1'
+if (Test-Path -LiteralPath $authScript) {
+    try {
+        $auth = ((& $authScript -Json) | Out-String) | ConvertFrom-Json
+        if ($auth.ready) { Line 'auth' ("ready - $($auth.credential_detail)") 'Green' }
+        else { Line 'auth' 'NOT ready - run .\auth.ps1 -Setup (a push would need a click)' 'Yellow' }
+        Line 'auth how' ("helper=$($auth.credential_helper) store=$($auth.credential_store) gh=$($auth.gh_state) scheme=$($auth.scheme)")
+    } catch { Line 'auth' '(probe failed - run .\auth.ps1 to see why)' 'Yellow' }
+} else {
+    Line 'auth' '(auth.ps1 missing - upgrade the skill)' 'Yellow'
+}
+
 Write-Host ""
 Write-Host "== last commits" -ForegroundColor Cyan
 git log -3 --oneline --decorate
@@ -150,6 +197,9 @@ Write-Host "   .\push.ps1 `"msg`"                commit + push local changes"
 Write-Host "   .\download.ps1 -Set final        copy deliverables out of the repo"
 Write-Host "   .\download.ps1 -Set final -Since 2026-09-14   only files changed since a date"
 Write-Host "   .\pr.ps1                         open a PR from the working branch to main"
+Write-Host "   .\auth.ps1 (-Setup / -Verify)    make pushes silent: no popup, no click"
+Write-Host "   .\watch.ps1 -Status / -Test      is the auto-verification watcher alive?"
+Write-Host "   .\watch.ps1 -Register            run the local checks the agent asks for"
 
 # ---------------------------------------------------------------------- fix
 if ($Fix) {
@@ -172,6 +222,13 @@ if ($Fix) {
         git pull --ff-only $remoteName $wantBranch
         if ($LASTEXITCODE -eq 0) { Write-Host "   pulled the latest" }
         else { Write-Host "   [ERROR] pull failed - see the message above" -ForegroundColor Red }
+    }
+    if (Test-Path -LiteralPath (Join-Path $repo 'auth.ps1')) {
+        # -Fix never rewrites credentials on its own; it only says what is missing
+        try {
+            $auth = ((& (Join-Path $repo 'auth.ps1') -Json) | Out-String) | ConvertFrom-Json
+            if (-not $auth.ready) { Write-Host "   tip: pushes are not silent yet - run .\auth.ps1 -Setup once" -ForegroundColor Yellow }
+        } catch { }
     }
 } else {
     Write-Host ""

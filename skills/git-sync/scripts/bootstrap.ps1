@@ -3,6 +3,7 @@
 # Usage (inside the repo folder):
 #     .\bootstrap.ps1
 #     .\bootstrap.ps1 -Branch arena/01a09d79-zhongqi
+#     .\bootstrap.ps1 -Auto            # also: silent-push auth + register the watcher
 #
 # It will:
 #   1. allow local scripts for the current user (RemoteSigned)
@@ -15,7 +16,8 @@
 param(
     [string]$Branch = '',
     [string]$Remote = 'origin',
-    [string]$Config = ''
+    [string]$Config = '',
+    [switch]$Auto
 )
 
 $ErrorActionPreference = 'Stop'
@@ -109,9 +111,33 @@ Write-Host ""
 Write-Host "== ready. latest commit:" -ForegroundColor Green
 git log -1 --oneline --decorate
 
+# ------------------------------------------- 4. optional: unattended plumbing
+if ($Auto) {
+    Write-Host ""
+    Write-Host "== -Auto: making pushes silent and starting the watcher" -ForegroundColor Cyan
+    $auth = Join-Path $repo 'auth.ps1'
+    if (Test-Path -LiteralPath $auth) {
+        & $auth -Setup
+    } else {
+        Write-Host "   (auth.ps1 missing - upgrade the skill)" -ForegroundColor Yellow
+    }
+    $watch = Join-Path $repo 'watch.ps1'
+    if (Test-Path -LiteralPath $watch) {
+        & $watch -Register
+    } else {
+        Write-Host "   (watch.ps1 missing - upgrade the skill)" -ForegroundColor Yellow
+    }
+}
+
 Write-Host ""
 Write-Host "== daily workflow" -ForegroundColor Cyan
 Write-Host "   .\sync.ps1                 pull the latest"
 Write-Host "   .\upload.ps1               upload local attachments + push"
 Write-Host "   .\download.ps1 -Set final  copy the deliverables out"
 Write-Host "   .\doctor.ps1               health check when something looks wrong"
+Write-Host "   .\auth.ps1 -Setup          one time: pushes stop asking for a click"
+Write-Host "   .\watch.ps1 -Register      one time: auto-verify what the agent builds"
+if (-not $Auto) {
+    Write-Host ""
+    Write-Host "   (or run .\bootstrap.ps1 -Auto once to do the last two for you)" -ForegroundColor DarkGray
+}

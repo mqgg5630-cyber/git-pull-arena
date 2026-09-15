@@ -9,6 +9,9 @@
 #      branch - never main/master.
 #   3. the .ps1 copies at the repo root must be identical to the ones in
 #      skills/git-sync/scripts/ (they are the same scripts).
+#   4. every .ps1 must PARSE (PowerShell's own parser, when PowerShell is on
+#      PATH) - an unbalanced brace survives the ASCII check but breaks at
+#      runtime, and the watcher would then fail every round silently.
 #
 # Exit 0 = ok, 1 = failed.
 
@@ -45,9 +48,12 @@ fi
 
 # ------------------------------------------------- 3. root vs skill scripts
 drift=0
-for f in sync push upload download pack doctor bootstrap pr hardware watch; do
-    if [ -f "$f.ps1" ] && [ -f "skills/git-sync/scripts/$f.ps1" ]; then
-        if ! cmp -s "$f.ps1" "skills/git-sync/scripts/$f.ps1"; then
+for f in sync push upload download pack doctor bootstrap pr hardware watch auth; do
+    if [ -f "skills/git-sync/scripts/$f.ps1" ]; then
+        if [ ! -f "$f.ps1" ]; then
+            echo "[FAIL] $f.ps1 is missing at the repo root (the skill ships it)"
+            drift=1
+        elif ! cmp -s "$f.ps1" "skills/git-sync/scripts/$f.ps1"; then
             echo "[FAIL] $f.ps1 differs from skills/git-sync/scripts/$f.ps1 - copy it over"
             drift=1
         fi
@@ -57,6 +63,43 @@ if [ "$drift" = "0" ]; then
     echo "OK: root scripts identical to skills/git-sync/scripts"
 else
     fail=1
+fi
+
+# ------------------------------------------------- 4. does every .ps1 parse?
+# The ASCII check above only proves the bytes are safe; it says nothing about
+# the syntax. An unbalanced brace or quote would only show up at runtime - and
+# in the watcher that means every verification round fails silently. Use
+# PowerShell's own parser when one is on PATH (git-bash on Windows finds
+# powershell.exe; Linux/macOS may have pwsh). Skipped loudly when absent.
+SH_EXE=""
+if command -v pwsh >/dev/null 2>&1; then SH_EXE="pwsh"
+elif command -v powershell >/dev/null 2>&1; then SH_EXE="powershell"
+elif command -v powershell.exe >/dev/null 2>&1; then SH_EXE="powershell.exe"
+fi
+
+if [ -z "$SH_EXE" ]; then
+    echo "SKIP: no PowerShell on PATH - .ps1 syntax not parse-checked here"
+else
+    PS_PARSE='$bad = 0
+Get-ChildItem -Path . -Recurse -Filter *.ps1 | ForEach-Object {
+    if ($_.FullName -like "*\.git\*") { return }
+    $t = $null
+    $e = $null
+    [void][System.Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$t, [ref]$e)
+    if ($e -and $e.Count -gt 0) {
+        Write-Output ("[FAIL] PowerShell parse error in " + $_.FullName)
+        foreach ($x in $e) { Write-Output ("       " + $x.Message) }
+        $bad = 1
+    }
+}
+if ($bad -eq 0) { Write-Output "OK: every .ps1 parses" }
+exit $bad'
+    if "$SH_EXE" -NoProfile -NonInteractive -Command "$PS_PARSE"; then
+        :
+    else
+        echo "[FAIL] at least one .ps1 does not parse - fix it before committing"
+        fail=1
+    fi
 fi
 
 exit $fail

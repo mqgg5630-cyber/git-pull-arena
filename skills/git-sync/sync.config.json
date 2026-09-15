@@ -1,26 +1,34 @@
 {
-  "branch": "arena/01a09fc1-git-pull-arena",
+  "branch": "arena/01a0a4f5-git-pull-arena",
   "remote": "origin",
   "download_dir": "",
   "download_sets": {
-    "final": ["deliverable"],
-    "skill": ["skills"],
-    "all":   ["deliverable", "code", "skills"]
+    "final": [
+      "deliverable"
+    ],
+    "skill": [
+      "skills"
+    ],
+    "all": [
+      "deliverable",
+      "code",
+      "skills"
+    ]
   },
   "upload_map": {
     ".docx": "sources",
-    ".doc":  "sources",
+    ".doc": "sources",
     ".pptx": "sources",
-    ".ppt":  "sources",
-    ".pdf":  "sources",
-    ".md":   "sources",
-    ".txt":  "sources",
-    ".zip":  "sources",
-    ".py":   "code",
+    ".ppt": "sources",
+    ".pdf": "sources",
+    ".md": "sources",
+    ".txt": "sources",
+    ".zip": "sources",
+    ".py": "code",
     ".ipynb": "code",
     ".xlsx": "results",
-    ".xls":  "results",
-    ".csv":  "results"
+    ".xls": "results",
+    ".csv": "results"
   },
   "gate": "bash code/check_all.sh",
   "receipt": "results/sync/last_sync.md",
@@ -28,5 +36,7 @@
   "hardware_dir": "results/hardware",
   "handshake": "results/status/handshake.json",
   "check_cmd": "powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1",
-  "_note": "branch/remote 是与本仓库 Arena 会话约定的工作分支；download_sets 是 download.ps1 -Set 可用的集合；upload_map 决定 upload.ps1 附件归位；gate 是 agent-sync.sh 提交前自检；receipt/receipt_history 是同步回执及其归档；hardware_dir 是本机硬件报告目录；handshake 是自动验证循环的状态文件；check_cmd 是本机值守（watch.ps1）在 agent 请求检查时运行的命令。配置查找顺序：-Config 参数 > sync.config.<GIT_SYNC_PROFILE>.json > 本文件。"
+  "check_timeout_min": 30,
+  "lock_stale_min": 45,
+  "_note": "branch/remote 是与本仓库 Arena 会话约定的工作分支；download_sets 是 download.ps1 -Set 可用的集合；upload_map 决定 upload.ps1 附件归位；gate 是 agent-sync.sh 提交前自检；receipt/receipt_history 是同步回执及其归档；hardware_dir 是本机硬件报告目录；handshake 是自动验证循环的状态文件；check_cmd 是本机值守（watch.ps1）在 agent 请求检查时运行的命令；check_timeout_min 是单轮检查的硬超时（分钟，默认 30，超时判 failed）；lock_stale_min 是值守锁的过期分钟数（默认 45，必须大于 check_timeout_min，否则长任务会被并发轮询打断）。配置查找顺序：-Config 参数 > sync.config.<GIT_SYNC_PROFILE>.json > 本文件。"
 }
