@@ -51,7 +51,12 @@ done
 REPO="$(cd "$REPO" 2>/dev/null && pwd)" || { echo "[ERROR] cannot enter repo: $REPO" >&2; exit 3; }
 [ -d "$REPO/.git" ] || { echo "[ERROR] not a git repository: $REPO" >&2; exit 3; }
 cd "$REPO"
-[ -z "$BRANCH" ] && BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+[ -z "$BRANCH" ] && BRANCH="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || true)"
+case "$BRANCH" in
+  HEAD|'')
+    echo "[ERROR] cannot detect the working branch (empty repo?) - pass --branch <name>" >&2
+    exit 1 ;;
+esac
 case "$BRANCH" in
   main|master)
     echo "[REFUSED] target branch is $BRANCH - create/switch to a working branch first (--branch arena/...)" >&2
@@ -150,6 +155,8 @@ cfg.setdefault('gate', 'bash code/check_all.sh')
 cfg.setdefault('receipt', 'results/sync/last_sync.md')
 cfg.setdefault('receipt_history', 'results/sync/history')
 cfg.setdefault('hardware_dir', 'results/hardware')
+cfg.setdefault('handshake', 'results/status/handshake.json')
+cfg.setdefault('check_cmd', 'powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1')
 
 with open(cfg_path, 'w', encoding='utf-8') as f:
     json.dump(cfg, f, ensure_ascii=False, indent=2)
@@ -162,7 +169,7 @@ then
 fi
 
 # 4. the user-side scripts at the repo root
-for f in sync push upload download pack doctor bootstrap pr; do
+for f in sync push upload download pack doctor bootstrap pr hardware watch; do
   if [ -f "$REPO/skills/git-sync/scripts/$f.ps1" ]; then
     cp "$REPO/skills/git-sync/scripts/$f.ps1" "$REPO/$f.ps1"
   fi
@@ -174,6 +181,13 @@ if [ ! -f "$REPO/code/check_all.sh" ] && [ -f "$REPO/skills/git-sync/templates/c
   mkdir -p "$REPO/code"
   cp "$REPO/skills/git-sync/templates/check_all.sh" "$REPO/code/check_all.sh"
   echo "OK: code/check_all.sh created (pre-commit gate)"
+fi
+
+# 5b. the local check template for the auto-verification loop (create only)
+if [ ! -f "$REPO/code/local_check.ps1" ] && [ -f "$REPO/skills/git-sync/templates/local_check.ps1" ]; then
+  mkdir -p "$REPO/code"
+  cp "$REPO/skills/git-sync/templates/local_check.ps1" "$REPO/code/local_check.ps1"
+  echo "OK: code/local_check.ps1 created (what watch.ps1 runs - edit it per repo)"
 fi
 
 # 6. optional: the GitHub Actions workflow that runs the gate on push

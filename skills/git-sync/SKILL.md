@@ -35,6 +35,7 @@ description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件
 | `doctor.ps1` | 体检：环境/分支/远端/落后领先/未提交/stash/LFS/大文件/**技能版本**；**`-Fix` 一键修复** | `.\doctor.ps1 -Fix` |
 | `bootstrap.ps1` | 首次准备：执行策略、git 身份、fetch、切分支、首拉 | `.\bootstrap.ps1` |
 | `hardware.ps1` | **采集本机硬件与环境**（OS/CPU/内存/GPU 显存/磁盘/conda/mamba 环境列表，`-Deep` 探测每个环境的 torch+CUDA）写入 `hardware_dir` 并推送 | `.\hardware.ps1 -Deep` |
+| `watch.ps1` | **自动验证循环的本机侧**：`-Register` 注册计划任务（默认每 5 分钟轮询）；发现 agent 请求检查 → 自动 sync → 跑 `check_cmd` → 日志落盘 → 把 passed/failed 推回分支 | `.\watch.ps1 -Register` |
 | `pr.ps1` | 用 GitHub CLI 开 PR（工作分支 → main），`-Checks` 看 CI | `.\pr.ps1` |
 | `install.ps1` | 把整套技能装到另一个仓库（升级时**保留**对方已有配置） | `.\install.ps1 -Target C:\MyProject -Branch arena/xxx` |
 
@@ -43,6 +44,7 @@ description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件
 | 脚本 | 作用 | 典型用法 |
 |---|---|---|
 | `agent-sync.sh` | 分支守卫 → fetch → 发散自愈 → gate → **写同步回执并按日期归档** → commit + push | `bash skills/git-sync/scripts/agent-sync.sh "feat: ..."` |
+| `agent-check.sh` | **自动验证循环的助手侧**：`--request` 请求本机检查（round+1）/ `--read` 读结果（exit 0=过 2=败 3=等）/ `--accept` 通过收尾 | `bash skills/git-sync/scripts/agent-check.sh --request "verify X"` |
 | `agent-hardware.sh` | **读取本机硬件报告**（缺失或过期会提醒让用户跑 `hardware.ps1`） | `bash skills/git-sync/scripts/agent-hardware.sh` |
 | `agent-recover.sh` | 沙箱 `.git` 被重置回基线提交后，保住工作区恢复历史 | `bash skills/git-sync/scripts/agent-recover.sh` |
 | `agent-pr.sh` | 助手侧开 PR / 看 CI（`--dry-run` 只打印） | `bash skills/git-sync/scripts/agent-pr.sh --checks` |
@@ -55,6 +57,7 @@ description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件
 | `check_all.sh` | 通用 gate：.ps1 全 ASCII + 配置分支守卫 + 根目录与 skill 脚本一致性（含 hardware.ps1）；`agent-install.sh` 会装到 `code/check_all.sh` |
 | `gate.yml` | GitHub Actions：push 后自动跑 gate（`agent-install.sh --gha` 安装；agent 令牌若没有 workflows 权限，就由本机侧复制后 push） |
 | `new-session-prompt.md` | **新会话引导提示词模板**：整段复制到任何新 Arena 对话，一条命令装好本技能，并附本机步骤与双向验收清单 |
+| `local_check.ps1` | **本机自检模板**（装到 `code\local_check.ps1`，只建不覆盖）：默认跑 gate + 留好扩展点（文件存在性/Office COM/GPU 冒烟测试等），是 `watch.ps1` 在 agent 请求检查时实际执行的东西 |
 | `../VERSION` | 技能版本号；`doctor.ps1` 与安装器会显示，升级对账用 |
 
 ## 2. 配置：`sync.config.json`
@@ -71,7 +74,9 @@ description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件
   "gate": "bash code/check_all.sh",
   "receipt": "results/sync/last_sync.md",
   "receipt_history": "results/sync/history",
-  "hardware_dir": "results/hardware"
+  "hardware_dir": "results/hardware",
+  "handshake": "results/status/handshake.json",
+  "check_cmd": "powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1"
 }
 ```
 
@@ -142,7 +147,43 @@ git clone --quiet --depth 1 -b arena/01a09fc1-git-pull-arena \
 
 （技能合并进 main 之后把 `-b` 换成 `main`。）
 
-安装器行为：装 `skills/git-sync/` 全套 + 根目录 9 个 `.ps1`（含 `hardware.ps1`）+ gate（已存在则不动）；
+安装器行为：装 `skills/git-sync/` 全套 + 根目录 10 个 `.ps1`（含 `hardware.ps1`、`watch.ps1`）+ gate 与 `local_check.ps1`（都是只建不覆盖）；
 **目标仓库已有 `sync.config.json` 时只更新 branch/补缺失键，其余配置全部保留**
 （所以给已装过的仓库升级也是同一条命令）。`--gha` 额外装 CI；`--source` 可指定别的来源。
 升级后用 `.\doctor.ps1` 看技能版本对账。
+
+## 8. 自动验证循环（agent 干完 → 本机自动检查 → 结果回传 → 直到满意）
+
+平时是"你按命令同步"；这个循环让**本机变成自动验证机**：Arena 每轮完工时请求检查，
+你本机的值守任务自动拉取、跑 `check_cmd`（默认 `code\local_check.ps1`，可改）、
+把 passed/failed 和完整日志推回分支；Agent 读到结果，要么收尾要么修复再来一轮——
+**直到 Agent 觉得可以为止，就 `--accept`，循环不再触发**。状态全部记在
+`handshake` 文件里（`results/status/handshake.json`），一轮一档日志（`results/status/check_rN_<时间>.log`）。
+
+```
+Arena（agent）                                本机（watch.ps1 计划任务，每 5 分钟）
+  agent-sync.sh "feat: ..."
+  agent-check.sh --request "验证X"   ──推送──>  轮询发现 awaiting_check/pending
+                                                自动 .\sync.ps1 拉取
+                                                跑 check_cmd，日志落盘
+  agent-check.sh --read             <──推送──   handshake: local_state=passed/failed
+    exit 0=过 / 2=败 / 3=还在等
+  过了且满意 → --accept（循环收尾）
+  败了 → 修复 → agent-sync.sh → --request（round+1，再来一轮）
+```
+
+启用（每台机器一次）：
+
+```powershell
+.\watch.ps1 -Register              # 注册计划任务（默认 5 分钟；-Interval 10 可改）
+.\watch.ps1                        # 手动跑一次轮询（立即处理当前请求）
+.\watch.ps1 -Unregister            # 不用了就摘掉
+```
+
+要点：
+
+* 值守任务用**本机已有的 git 凭据**推送（凭据管理器里那套，无需额外配置）；
+* `check_cmd` 在 `sync.config.json` 里改；默认的 `code\local_check.ps1` 跑 gate +
+  你在模板里加的仓库专属检查（文件存在性、Office 能否打开、GPU 冒烟测试……）；
+* 同一时刻只有一个轮询在跑（文件锁防重叠）；agent 没 `--request` 时值守完全静默；
+* `--accept` 之后值守继续静默待命，直到下一次 `--request`。

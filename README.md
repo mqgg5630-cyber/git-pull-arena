@@ -45,6 +45,7 @@ cd git-pull-arena
 .\doctor.ps1                               # 体检；不对劲先跑它
 .\doctor.ps1 -Fix                          # 一键修复：refspec + stash + 切回分支 + 拉取
 .\hardware.ps1 -Deep                       # 采集本机硬件/conda环境报告并推送（每台机器一次；GPU/环境变了重跑）
+.\watch.ps1 -Register                      # 自动验证循环：注册本机值守（每5分钟轮询；-Unregister 摘除）
 .\pr.ps1                                   # 开 PR 到 main（需 GitHub CLI：winget install GitHub.cli）
 ```
 

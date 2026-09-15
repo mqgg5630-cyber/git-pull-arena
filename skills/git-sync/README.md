@@ -21,6 +21,7 @@
 .\doctor.ps1                              # 体检：环境 / 分支 / 远端 / 未提交 / stash / 大文件 / 版本
 .\doctor.ps1 -Fix                         # 一键修复：重建 refspec + stash + 切回分支 + 拉取
 .\hardware.ps1 -Deep                      # 采集本机硬件/conda环境报告并推送（每台机器一次；变化后重跑）
+.\watch.ps1 -Register                     # 自动验证循环：注册本机值守任务（每5分钟；-Interval 10 可改）
 .\pr.ps1                                  # 开 PR：工作分支 -> main（需 GitHub CLI）
 ```
 
@@ -30,6 +31,9 @@
 bash skills/git-sync/scripts/agent-sync.sh "feat: xxx"     # 守卫 + fetch + 自检 + 回执 + commit + push
 bash skills/git-sync/scripts/agent-sync.sh --status        # 只看状态，不动文件
 bash skills/git-sync/scripts/agent-hardware.sh             # 读本机硬件报告（超 30 天提醒重跑）
+bash skills/git-sync/scripts/agent-check.sh --request "验证X"  # 请求本机自动检查（自动验证循环）
+bash skills/git-sync/scripts/agent-check.sh --read         # 读本机检查结果（0=过/2=败/3=等）
+bash skills/git-sync/scripts/agent-check.sh --accept       # 通过且满意 → 收尾，循环不再触发
 bash skills/git-sync/scripts/agent-recover.sh              # 沙箱 .git 被重置后的恢复
 bash skills/git-sync/scripts/agent-pr.sh --dry-run         # 开 PR（--dry-run 只打印）
 bash skills/git-sync/scripts/agent-pr.sh --checks          # 看 PR 的 CI 状态
@@ -48,17 +52,20 @@ bash skills/git-sync/scripts/agent-pr.sh --checks          # 看 PR 的 CI 状�
 | `scripts/pack.ps1` | 压缩包交付；输出到 `_export\`（已在 `.gitignore` 里，不会被推送） |
 | `scripts/doctor.ps1` | 体检报告 + 技能版本 + LFS/大文件检查；`-Fix` 一键修复；ahead/behind 对比的是 `origin/<分支>`（修复了老版本永远显示 0 的 bug） |
 | `scripts/hardware.ps1` | **本机硬件/环境上报**：OS、CPU、内存、GPU（nvidia-smi 优先，含显存/算力/CUDA 驱动）、磁盘、conda/mamba 环境列表与各环境 python，`-Deep` 再探测每个环境的 torch + CUDA；写入 `hardware_dir`（latest.md/latest.json + 历史快照）并推送 |
+| `scripts/watch.ps1` | **自动验证循环本机侧**：`-Register` 注册计划任务（默认 5 分钟轮询），发现 agent 的检查请求就自动 sync → 跑 `check_cmd` → 日志落盘 → 推回 passed/failed；`-Unregister` 摘除 |
 | `scripts/bootstrap.ps1` | 首次准备：执行策略、git 身份、fetch、切分支、首拉 |
 | `scripts/pr.ps1` | GitHub CLI 开 PR / 查 CI；`-Base` 换目标分支，`-Checks` 看检查状态 |
 | `scripts/install.ps1` | 装到另一个仓库：`.\install.ps1 -Target C:\MyProject -Branch main`（目标已有配置时只动 branch，其余保留） |
 | `scripts/agent-sync.sh` | 助手侧一键：分支守卫 → fetch → 发散自愈 → gate → **写同步回执（并按日期归档）** → commit + push |
 | `scripts/agent-hardware.sh` | 助手侧读本机硬件报告；缺失/超 30 天会提示让用户跑 `.\hardware.ps1 -Deep` |
+| `scripts/agent-check.sh` | **自动验证循环助手侧**：`--request` 请求本机检查（round+1）/ `--read` 读结果（exit 0=过 2=败 3=等）/ `--accept` 通过收尾 |
 | `scripts/agent-pr.sh` | 助手侧开 PR / 看 CI |
 | `scripts/agent-recover.sh` | 助手侧修复：`.git` 被重置回基线提交时，保住工作区把 HEAD 挪回分支 |
 | `scripts/agent-install.sh` | **一条命令装进任何仓库**（见第六节） |
 | `templates/check_all.sh` | 通用 gate 模板（ASCII + 分支守卫 + 根目录/skill 脚本一致性） |
 | `templates/gate.yml` | GitHub Actions 模板：push 后自动跑 gate |
 | `templates/new-session-prompt.md` | **新会话引导提示词模板**：整段复制到新 Arena 对话即完成安装与验收 |
+| `templates/local_check.ps1` | **本机自检模板**（装到 `code\local_check.ps1`，只建不覆盖）：默认跑 gate + 扩展点，`watch.ps1` 请求检查时执行的就是它 |
 
 同步回执：助手每轮 `agent-sync.sh` 会把"纳入了你哪些提交、这轮改了哪些文件"写进配置里
 `receipt` 指定的文件（默认 `results/sync/last_sync.md`），同时把带时间戳的副本归档到
@@ -68,6 +75,13 @@ bash skills/git-sync/scripts/agent-pr.sh --checks          # 看 PR 的 CI 状�
 硬件报告：你跑一次 `.\hardware.ps1 -Deep`，agent 之后用 `agent-hardware.sh` 就能看到
 本机 CPU/内存/GPU（型号/显存/算力/CUDA 驱动）/磁盘/conda 与 mamba 环境列表、每个环境的
 python 版本、哪个环境的 torch 能用 CUDA——计算类工作开工前先对表。
+
+自动验证循环（v2.3）：本机 `.\watch.ps1 -Register` 一次（计划任务，每 5 分钟轮询）；
+之后 agent 每轮完工 `agent-check.sh --request "验证X"` → 你本机**自动** sync → 跑
+`check_cmd`（默认 `code\local_check.ps1`，可改）→ 日志落 `results\status\check_rN_<时间>.log`
+→ 把 passed/failed 推回分支；agent `--read` 读结果（0=过/2=败/3=等），败了修了再来一轮，
+过了且满意 `--accept` 收尾——**循环由 handshake 文件驱动，收尾后值守静默待命**。
+详见 SKILL.md 第 8 节。
 
 ## 三、为什么 `.ps1` 里绝对不能写中文
 
@@ -160,6 +174,8 @@ cd E:\0github\git-sync\<目标仓库>
 - [x] 版本标识（`VERSION`）+ `doctor.ps1` / 安装器显示版本
 - [x] 回执按日期归档（`receipt_history`，自动保留最近 50 份）
 - [x] 本机硬件/环境上报（`hardware.ps1` / `agent-hardware.sh`：GPU/CPU/内存/磁盘/conda/mamba/torch+CUDA）
+- [x] **自动验证循环**（`agent-check.sh --request/--read/--accept` + `watch.ps1` 值守 + `local_check.ps1` 模板）：agent 干完 → 本机自动检查回传 → 直到 agent 满意收尾
+- [x] 安装器补漏：`hardware.ps1` / `watch.ps1` 进根目录复制清单（v2.2 漏 hardware，由另一 Arena 会话实战发现）
 - [x] LFS / 大文件体检（>50 MB 提醒）
 
 还想加的（按需）：
