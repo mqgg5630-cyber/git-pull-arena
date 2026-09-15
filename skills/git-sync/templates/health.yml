@@ -11,13 +11,21 @@
 #   * this file must be committed to the default branch (main), not the arena/*
 #     working branch
 #   * set BRANCH below to the working branch you want watched
+#   * NOTE: skills\git-sync\ does NOT exist on main (it lives on the working
+#     branch) - pull the template out of the working branch instead of copy:
+#
 # Enable it from your LOCAL clone (agent tokens usually lack the workflows
 # permission, yours does not):
 #   git checkout main
-#   mkdir .github\workflows; copy skills\git-sync\templates\health.yml .github\workflows\
+#   mkdir -Force .github\workflows
+#   git checkout <working-branch> -- skills/git-sync/templates/health.yml .gitignore
+#   move skills\git-sync\templates\health.yml .github\workflows\health.yml
 #   notepad .github\workflows\health.yml        # set BRANCH, save
 #   git add -A; git commit -m "ci: sync-health"; git push origin main
 #   git checkout <working branch>               # back to work
+#
+#   (the .gitignore from the working branch also protects main from sweeping
+#    untracked working files into future commits)
 
 name: sync-health
 
