@@ -115,6 +115,11 @@ if ($dirty.Count -gt 10) { Write-Host ("               ... and {0} more" -f ($di
 $stash = @(git stash list)
 Line 'stash' ("$($stash.Count) entr(y|ies)")
 if ($stash.Count -gt 0) {
+    $auto = @($stash | Where-Object { $_ -match 'auto-stash before sync' }).Count
+    if ($auto -gt 0) {
+        Write-Host ("               {0} of them are 'auto-stash before sync' (watcher artifacts, regenerated every round)" -f $auto) -ForegroundColor Yellow
+        Write-Host "               inspect: git stash show --stat stash@{0}   then: git stash clear" -ForegroundColor Yellow
+    }
     Write-Host "               recover with: git stash pop   (or 'git stash drop' to throw away)" -ForegroundColor Yellow
 }
 

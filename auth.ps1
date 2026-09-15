@@ -561,9 +561,37 @@ if ($Verify -or ($Setup -and -not $SkipVerify)) {
         }
 
         if (-not $Quick) {
-            $r2 = GitG @('push', '--dry-run', $Remote, "HEAD:refs/heads/$Branch")
+            # A dry-run of HEAD:branch can be REJECTED as non-fast-forward when
+            # the local tip is not a descendant of the remote - which says
+            # nothing at all about the credential (field report 2026-09-15:
+            # "failed to push some refs" was read as an auth failure while the
+            # probe had just returned a valid token). So push a source ref that
+            # is always acceptable:
+            #   * the remote-tracking ref itself  -> a no-op push, and
+            #   * a throwaway probe branch name   -> a "create", i.e. a ff.
+            # --dry-run still authenticates and asks the server, so a success
+            # proves write access; nothing is created on the remote.
+            $srcRef = "refs/remotes/$Remote/$Branch"
+            $dstRef = "refs/heads/$Branch-git-sync-probe"
+            $hasTracking = (GitG @('rev-parse', '--verify', '--quiet', $srcRef)).code -eq 0
+            if (-not $hasTracking) {
+                $srcRef = 'HEAD'
+                $dstRef = "refs/heads/$Branch"
+                Note 'no remote-tracking ref yet - probing with HEAD (may report a rejection)'
+            }
+            $spec = $srcRef + ':' + $dstRef
+            $r2 = GitG @('push', '--dry-run', $Remote, $spec)
             if ($r2.code -eq 0) {
-                $pushState = 'passed'; Ok "git push --dry-run $Remote HEAD:refs/heads/$Branch : passed (write access, no prompt)"
+                $pushState = 'passed'
+                Ok ("git push --dry-run $Remote $spec : passed (write access, no prompt)")
+            } elseif ($r2.text -match 'non-fast-forward|failed to push some refs|\[rejected\]|stale info') {
+                # the server TALKED to us and refused the update - which means
+                # the credential was accepted: this is not an auth problem
+                $pushState = 'not-fast-forward'
+                $pushText = Brief $r2.text 3
+                Warn ("git push --dry-run : REJECTED (not a credential problem) - $pushText")
+                Note 'the credential works; the ref you pushed was simply not a fast-forward.'
+                Note 'run .\sync.ps1 to align with the remote, then push normally.'
             } else {
                 $pushState = 'failed'; $pushText = Brief $r2.text 3
                 Bad "git push --dry-run : failed - $pushText"
@@ -581,8 +609,12 @@ $cfgState = Get-ConfigState
 # ------------------------------------------------------------------ verdict
 $ready = $probe.ok
 if ($scheme -eq 'https') {
-    if ($Verify -and -not $Quick) { $ready = ($lsState -eq 'passed' -and $pushState -eq 'passed') }
-    elseif ($Verify)              { $ready = ($lsState -eq 'passed') }
+    if ($Verify -and -not $Quick) {
+        # 'not-fast-forward' means the server refused the ref update AFTER
+        # authenticating us - the credential is fine, so it counts as READY
+        $ready = ($lsState -eq 'passed' -and $pushState -in @('passed', 'not-fast-forward'))
+    }
+    elseif ($Verify) { $ready = ($lsState -eq 'passed') }
     elseif ($Setup -and ($pushState -eq 'failed' -or $lsState -eq 'failed')) { $ready = $false }
 } else {
     $ready = $true   # nothing to configure for ssh; the notes carry the caveat
@@ -657,6 +689,10 @@ if ($scheme -eq 'ssh') {
 if ($ready) {
     Say '== verdict: READY - a push completes with no window and no click.' 'Green'
     Say '   the watcher (watch.ps1) can push its results unattended.' 'Gray'
+    if ($pushState -eq 'not-fast-forward') {
+        Say '   (the dry-run was rejected only because the local ref was not a fast-forward -' 'Gray'
+        Say '    run .\sync.ps1 and a real push will go through)' 'Gray'
+    }
     exit 0
 }
 Say '== verdict: NOT READY - a push would need a human (or hang forever).' 'Red'

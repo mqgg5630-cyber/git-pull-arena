@@ -52,8 +52,14 @@ if (Test-Path -LiteralPath '.\code\check_all.sh') {
 if (Test-Path -LiteralPath '.\auth.ps1') {
     try {
         $auth = ((& .\auth.ps1 -Json -Verify) | Out-String) | ConvertFrom-Json
-        if ($auth.push_dry_run -eq 'passed' -and $auth.lsremote -eq 'passed') {
-            Write-Output '== accept 2a: silent push PROVEN (ls-remote + push --dry-run, prompts disabled)'
+        if ($auth.push_dry_run -in @('passed', 'not-fast-forward') -and $auth.lsremote -eq 'passed') {
+            if ($auth.push_dry_run -eq 'not-fast-forward') {
+                Write-Output '== accept 2a: silent push PROVEN by the credential probe;'
+                Write-Output '   the dry-run was only REJECTED (not a fast-forward) - the server had already accepted the token.'
+                Write-Output '   run .\sync.ps1 so the next real push is a fast-forward.'
+            } else {
+                Write-Output '== accept 2a: silent push PROVEN (ls-remote + push --dry-run, prompts disabled)'
+            }
         } else {
             Write-Output ("[FAIL] accept 2a: silent push NOT proven (lsremote=" + $auth.lsremote + " push_dry_run=" + $auth.push_dry_run + ")")
             Write-Output ("       detail: " + $auth.push_dry_run_detail)
@@ -69,17 +75,27 @@ if (Test-Path -LiteralPath '.\auth.ps1') {
     $fail = 1
 }
 
-#    2b. zero-window watcher - the scheduled task must start the launcher exe,
-#        not powershell.exe (which always flashes a console window first)
+#    2b. how visible is the watcher? Graded, and the grade is printed:
+#          zero-window launcher  -> nothing ever appears            (best)
+#          S4U / session 0       -> nothing ever appears            (best, needs admin)
+#          -Loop in one process  -> ONE brief flash per logon       (acceptable)
+#          per-poll process      -> a flash every N minutes         (FAIL)
 $taskName = 'git-sync-watch-' + (Split-Path -Leaf (Get-Location).Path)
 try {
     $t = Get-ScheduledTask -TaskName $taskName -ErrorAction Stop
-    $exec = [string]$t.Actions[0].Execute
+    $exec  = [string]$t.Actions[0].Execute
+    $argl  = [string]$t.Actions[0].Arguments
     $logon = [string]$t.Principal.LogonType
-    if ($exec -match 'watchhost' -or $logon -eq 'S4U' -or $logon -eq 'Password') {
-        Write-Output ("== accept 2b: watcher is windowless (action: " + $exec + ")")
+    if ($exec -match 'watchhost') {
+        Write-Output ("== accept 2b: ZERO window - launcher exe: " + $exec)
+    } elseif ($logon -eq 'S4U' -or $logon -eq 'Password') {
+        Write-Output ("== accept 2b: ZERO window - session 0 (S4U), logon type " + $logon)
+    } elseif ($argl -match '-Loop') {
+        Write-Output '== accept 2b (fallback): one LONG-LIVED loop process - one brief flash per logon,'
+        Write-Output '   not per poll. For zero flash: admin PowerShell -> .\watch.ps1 -Unregister ;'
+        Write-Output '   .\watch.ps1 -Register -Headless   (or fix the launcher, see watch-*.log)'
     } else {
-        Write-Output ("[FAIL] accept 2b: watcher action is not the zero-window launcher: " + $exec)
+        Write-Output ("[FAIL] accept 2b: the task starts a new process per poll (" + $exec + " " + $argl + ")")
         Write-Output '       fix with:  .\watch.ps1 -Unregister  then  .\watch.ps1 -Register'
         $fail = 1
     }

@@ -180,6 +180,31 @@ if ($rc -ne 0) { Write-Host "[ERROR] git checkout $Branch failed (unknown branch
 $pullOut = GitOut @('pull', '--ff-only', $Remote, $Branch)
 if ($pullOut.text) { Write-Host $pullOut.text }
 if ($pullOut.code -ne 0) {
+    # A failed push leaves this repo's own "verdict" commits behind, and the
+    # branch then diverges from the remote - which would stall the watcher on
+    # every later round (field report 2026-09-15: watchdog exits 3, forever).
+    # Those commits are regenerable, so drop them (keeping the files) and try
+    # the fast-forward once more.
+    $onlyArtifacts = $false
+    try {
+        $ahead = @(& git log --format=%s ("{0}..HEAD" -f "$Remote/$Branch") 2>$null)
+        if ($ahead.Count -gt 0) {
+            $onlyArtifacts = $true
+            foreach ($subj in $ahead) {
+                if ($subj -notmatch '^(check: round|watch: local check artifacts)') { $onlyArtifacts = $false; break }
+            }
+        }
+    } catch { $onlyArtifacts = $false }
+    if ($onlyArtifacts) {
+        Write-Host "== local commits are only watcher verdicts - realigning with the remote (files are kept)" -ForegroundColor Cyan
+        $null = GitRun @('reset', '--mixed', "$Remote/$Branch")
+        $deleted = @(& git ls-files -d 2>$null)
+        foreach ($d in $deleted) { if ($d) { $null = GitRun @('checkout', '--', $d) } }
+        $pullOut = GitOut @('pull', '--ff-only', $Remote, $Branch)
+        if ($pullOut.text) { Write-Host $pullOut.text }
+    }
+}
+if ($pullOut.code -ne 0) {
     Write-Host "[ERROR] pull --ff-only failed - the local branch has diverged from $Remote/$Branch." -ForegroundColor Red
     Write-Host "        run .\doctor.ps1 -Fix (it stashes, re-points the branch and pulls)." -ForegroundColor Yellow
     if (Test-AuthFailure $pullOut.text) { Show-AuthHelp }

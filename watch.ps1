@@ -556,6 +556,21 @@ if ($Register -or $Unregister) {
     $exe  = ''
     $arg  = ''
     if ($Headless) {
+        # S4U registration needs an elevated console (0x80070005 otherwise) -
+        # say so BEFORE failing, with the exact command to copy
+        $isAdmin = $false
+        try {
+            $wp = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
+            $isAdmin = $wp.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+        } catch { }
+        if (-not $isAdmin) {
+            Write-Host "[ERROR] -Headless (S4U / session 0) needs an ELEVATED PowerShell." -ForegroundColor Red
+            Write-Host "        open 'Windows PowerShell' with 'Run as administrator' and run:" -ForegroundColor Yellow
+            Write-Host "          cd `"$repo`"" -ForegroundColor Yellow
+            Write-Host "          .\watch.ps1 -Unregister ; .\watch.ps1 -Register -Headless" -ForegroundColor Yellow
+            Write-Host "        (it also needs a session-0 readable credential: run .\auth.ps1 -GhLogin first)" -ForegroundColor Yellow
+            exit 1
+        }
         $mode = 'headless'
         $exe = $psExe
         $arg = '-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File "{0}" -Loop' -f $taskScript
@@ -573,7 +588,9 @@ if ($Register -or $Unregister) {
                     $arg = '"{0}" "{1}" "{2}" "{3}" -Loop' -f $psExe, $taskScript, $repo, $hostLog
                 } else {
                     Write-Host "   [warn] launcher did not produce its marker - falling back to -Flash" -ForegroundColor Yellow
-                    Write-Host "          (details are in $hostLog)" -ForegroundColor DarkGray
+                    Write-Host "          host log (tail) - this says WHY:" -ForegroundColor DarkGray
+                    Get-LogTail 15 | ForEach-Object { Write-Host ("            " + $_) -ForegroundColor DarkGray }
+                    Write-Host "          send the lines above to the agent if you want zero-window mode" -ForegroundColor DarkGray
                 }
             } else {
                 Write-Host "   [warn] could not compile the launcher - falling back to -Flash" -ForegroundColor Yellow
@@ -671,8 +688,12 @@ if ($Register -or $Unregister) {
         Write-Host "   the watcher runs as ONE windowless process per logon (no flash at all)" -ForegroundColor Gray
     } elseif ($mode -eq 'flash') {
         Write-Host "   the watcher runs as ONE process per logon: expect ONE brief flash" -ForegroundColor Gray
-        Write-Host "   per logon - not per poll. For zero: -Register -Headless (admin) or" -ForegroundColor Gray
-        Write-Host "   fix the launcher (see the host log) and re-register." -ForegroundColor Gray
+        Write-Host "   per logon - not per poll (that is 1 per logon instead of 720 per day)." -ForegroundColor Gray
+        Write-Host "   For ZERO flash, either:" -ForegroundColor Gray
+        Write-Host "     * open an ADMIN PowerShell and run:" -ForegroundColor Gray
+        Write-Host "         .\watch.ps1 -Unregister ; .\watch.ps1 -Register -Headless" -ForegroundColor Gray
+        Write-Host "       (needs .\auth.ps1 -GhLogin done first - gh tokens work in session 0)" -ForegroundColor Gray
+        Write-Host "     * or send the host-log tail printed above to the agent to fix the launcher" -ForegroundColor Gray
     } else {
         Write-Host "   session 0 (S4U): no window, but the credential helper must work there" -ForegroundColor Gray
         Write-Host "   (gh auth setup-git is the easy one - see .\auth.ps1)" -ForegroundColor Gray
