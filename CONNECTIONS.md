@@ -12,15 +12,15 @@
 | **中期报告/PPT**（git-sync 技能发源地） | [mqgg5630-cyber/zhongqi](https://github.com/mqgg5630-cyber/zhongqi) | `arena/01a09d79-zhongqi` | `E:\0zhongqi\zhongqi`（你原有的克隆） | 未注册 | ✅ 可拉取（会话已结束；本会话对它只读） |
 | **AgentArena**（基准测试工具 + 本机 runner 整合） | [mqgg5630-cyber/AgentArena](https://github.com/mqgg5630-cyber/AgentArena)（fork） | 多会话并行（见下表） | 见下表 | 按文件夹注册 | ✅ 模式 C 试点中 |
 
-**AgentArena 多会话布局（两工作 + 一汇总，2026-09-15 更新）**：
+**AgentArena 多会话布局（两工作 + 一汇总，2026-09-15 确认版）**：
 
-| 角色 | 分支 | 本机路径（克隆后） | 值守任务名 |
+| 角色 | 分支（均已在远端，技能 v2.4.5） | 本机路径 | 值守任务名 |
 |---|---|---|---|
-| 工作会话 1 | `arena/01a0a3de-agentarena`（待首推创建） | `E:\0github\git-sync\agentarena-w1` | `git-sync-watch-agentarena-w1` |
-| 工作会话 2 | `arena/01a0a3d6-agentarena`（已在远端；发现并修复了 .gitignore 吞 skills/ 的问题） | `E:\0github\git-sync\agentarena-w2` | `git-sync-watch-agentarena-w2` |
-| 汇总会话（release manager） | `arena/01a0a3e6-agentarena`（待首推创建） | `E:\0github\git-sync\agentarena-int` | `git-sync-watch-agentarena-int` |
-| （旧）首轮会话 | `arena/01a0a356-agentarena` | `E:\0github\git-sync\agentarena` | `git-sync-watch-agentarena` |
-| （旧）3d5 会话 | `arena/01a0a3d5-agentarena`（疑似被替换的旧对话，待确认弃用） | 未克隆 | — |
+| 工作会话 1 | `arena/01a0a3ee-agentarena` | `E:\0github\git-sync\agentarena-w1` | `git-sync-watch-agentarena-w1` |
+| 工作会话 2（已自发写工作报告） | `arena/01a0a3d6-agentarena` | `E:\0github\git-sync\agentarena-w2` | `git-sync-watch-agentarena-w2` |
+| 汇总会话（release manager） | `arena/01a0a3f1-agentarena` | `E:\0github\git-sync\agentarena-int` | `git-sync-watch-agentarena-int` |
+| 汇总状态文件 | 工作方 `results/status/work-report.md`；汇中方 `results/status/integration.md` | — | — |
+| （旧，可清理） | `arena/01a0a356-agentarena`、`arena/01a0a3d5-agentarena` | `E:\0github\git-sync\agentarena`（旧克隆） | `git-sync-watch-agentarena`（建议暂停） |
 
 ## 二、日常命令速查（在任何已连接仓库的本机路径里）
 
