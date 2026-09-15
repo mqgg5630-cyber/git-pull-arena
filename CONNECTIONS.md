@@ -1,6 +1,6 @@
 # 连接台账 —— Arena 仓库 × 分支 × 本机路径（防忘专用）
 
-> 更新：2026-09-15 ｜ 技能版本：v2.4.2 ｜ 本文件在 `E:\0github\git-sync\git-pull-arena\CONNECTIONS.md`
+> 更新：2026-09-15 ｜ 技能版本：v2.4.4 ｜ 本文件在 `E:\0github\git-sync\git-pull-arena\CONNECTIONS.md`
 > 忘了的时候：`cd E:\0github\git-sync\git-pull-arena` 然后 `notepad CONNECTIONS.md`
 
 ## 一、当前所有连接
@@ -10,7 +10,16 @@
 | **git-sync 技能总部**（版本发布、升级源） | [mqgg5630-cyber/git-pull-arena](https://github.com/mqgg5630-cyber/git-pull-arena) | `arena/01a09fc1-git-pull-arena` | `E:\0github\git-sync\git-pull-arena` | `git-sync-watch-git-pull-arena` | ✅ 在线（本会话，值守 2 分钟） |
 | **图片→可编辑PPT 项目**（fig3 交付物在那边） | [mqgg5630-cyber/image-to-editable-pptx](https://github.com/mqgg5630-cyber/image-to-editable-pptx) | `arena/01a04caf-image-to-editable-pptx` | `E:\0github\git-sync\image-to-editable-pptx` | `git-sync-watch-image-to-editable-pptx` | ✅ 在线（[该会话](https://arena.ai/agent/01a04caf-77d4-7672-92a2-59223763a988)；v2.3.4 @ `14c1f5f`，5/5 验收通过，值守 2 分钟） |
 | **中期报告/PPT**（git-sync 技能发源地） | [mqgg5630-cyber/zhongqi](https://github.com/mqgg5630-cyber/zhongqi) | `arena/01a09d79-zhongqi` | `E:\0zhongqi\zhongqi`（你原有的克隆） | 未注册 | ✅ 可拉取（会话已结束；本会话对它只读） |
-| **AgentArena**（基准测试工具 + 本机 runner 整合） | [mqgg5630-cyber/AgentArena](https://github.com/mqgg5630-cyber/AgentArena)（fork） | `arena/01a0a356-agentarena` | `E:\0github\git-sync\agentarena` | `git-sync-watch-agentarena` | ✅ 在线（round 1 accepted `2bcc53b`；设计文档 `docs/local-runner-brief.md`；**根目录精简安装**——无 skills/git-sync 目录，升级用 agent-install 即可，v2.4.0 起根目录配置也会被保留） |
+| **AgentArena**（基准测试工具 + 本机 runner 整合） | [mqgg5630-cyber/AgentArena](https://github.com/mqgg5630-cyber/AgentArena)（fork） | 多会话并行（见下表） | 见下表 | 按文件夹注册 | ✅ 模式 C 试点中 |
+
+**AgentArena 多会话布局（两工作 + 一汇总，2026-09-15 起）**：
+
+| 角色 | 分支 | 本机路径（克隆后） | 值守任务名 |
+|---|---|---|---|
+| 工作会话 1 | `arena/01a0a3d5-agentarena` | `E:\0github\git-sync\agentarena-w1` | `git-sync-watch-agentarena-w1` |
+| 工作会话 2 | `arena/01a0a3d6-agentarena` | `E:\0github\git-sync\agentarena-w2` | `git-sync-watch-agentarena-w2` |
+| 汇总会话（release manager） | 待其首次推送后确认 | `E:\0github\git-sync\agentarena-int` | `git-sync-watch-agentarena-int` |
+| （旧）首轮会话 | `arena/01a0a356-agentarena` | `E:\0github\git-sync\agentarena` | `git-sync-watch-agentarena` |
 
 ## 二、日常命令速查（在任何已连接仓库的本机路径里）
 
