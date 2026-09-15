@@ -129,7 +129,8 @@ Set-ExecutionPolicy -Scope CurrentUser RemoteSigned      # 只做一次
 2. 你这边只记两条：`.\sync.ps1`（取）和 `.\upload.ps1`（传）；要交材料用 `.\pack.ps1`；
 3. 交付物落地 `.\download.ps1 -Set final`；增量加 `-Since <日期>`，目录不在集合里用 `-Folders`；
 4. **计算/训练类工作**：agent 开工前先 `agent-hardware.sh` 看本机报告（GPU 型号显存、哪个 conda 环境有可用 CUDA 的 torch），据此选环境、选设备、定 batch size；硬件或环境变化后重跑 `.\hardware.ps1 -Deep`；
-5. 任何"不对劲"先 `.\doctor.ps1`（或 `-Fix`），把输出贴给 Agent。
+5. **多会话分任务**：一个会话一个分支（Arena 自动分配）；同仓库多分支时本机一分支一个克隆文件夹各注册值守；3 个以上会话或任务有依赖时设一个"汇总会话"守集成分支（fetch → merge → gate → `agent-wait --auto-accept` 本机真机回归）。完整模式表见技能 README.md 第七节；
+6. 任何"不对劲"先 `.\doctor.ps1`（或 `-Fix`），把输出贴给 Agent。
 
 ## 7. 装进新仓库（未来 Arena 会话一句话）
 

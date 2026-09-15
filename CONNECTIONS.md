@@ -14,6 +14,8 @@
 
 ## 二、日常命令速查（在任何已连接仓库的本机路径里）
 
+> 多个 Arena 会话分任务 / 同仓库多分支 / 汇总会话的协作模式：见 `skills\git-sync\README.md` 第七节。
+
 ```powershell
 .\sync.ps1                # 取：拉最新
 .\push.ps1 "说明"          # 传：提交并推送
