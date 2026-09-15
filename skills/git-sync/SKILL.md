@@ -45,6 +45,7 @@ description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件
 |---|---|---|
 | `agent-sync.sh` | 分支守卫 → fetch → 发散自愈 → gate → **写同步回执并按日期归档** → commit + push | `bash skills/git-sync/scripts/agent-sync.sh "feat: ..."` |
 | `agent-check.sh` | **自动验证循环的助手侧**：`--request` 请求本机检查（round+1）/ `--read` 读结果（exit 0=过 2=败 3=等）/ `--accept` 通过收尾 | `bash skills/git-sync/scripts/agent-check.sh --request "verify X"` |
+| `agent-wait.sh` | **一条命令闭环**：`--request` 后原地轮询远端直到值守推回结果（默认 720s/30s 一次），**整个验证循环在一轮对话内完成**，无需用户每轮输入 | `bash skills/git-sync/scripts/agent-wait.sh --request "verify X"` |
 | `agent-hardware.sh` | **读取本机硬件报告**（缺失或过期会提醒让用户跑 `hardware.ps1`） | `bash skills/git-sync/scripts/agent-hardware.sh` |
 | `agent-recover.sh` | 沙箱 `.git` 被重置回基线提交后，保住工作区恢复历史 | `bash skills/git-sync/scripts/agent-recover.sh` |
 | `agent-pr.sh` | 助手侧开 PR / 看 CI（`--dry-run` 只打印） | `bash skills/git-sync/scripts/agent-pr.sh --checks` |

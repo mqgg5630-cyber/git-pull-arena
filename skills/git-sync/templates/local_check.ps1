@@ -20,8 +20,10 @@ Set-Location (Join-Path $PSScriptRoot '..')   # repo root (this file lives in co
 $fail = 0
 
 # 1. the standard gate (.ps1 ASCII + branch guard + script consistency)
+#    (forward slashes on purpose: this also runs under the scheduled task,
+#     where bash may eat backslashes)
 if (Test-Path -LiteralPath '.\code\check_all.sh') {
-    bash .\code\check_all.sh
+    bash code/check_all.sh
     if ($LASTEXITCODE -ne 0) { Write-Host '[FAIL] gate failed' -ForegroundColor Red; $fail = 1 }
 }
 

@@ -32,6 +32,7 @@ bash skills/git-sync/scripts/agent-sync.sh "feat: xxx"     # 守卫 + fetch + �
 bash skills/git-sync/scripts/agent-sync.sh --status        # 只看状态，不动文件
 bash skills/git-sync/scripts/agent-hardware.sh             # 读本机硬件报告（超 30 天提醒重跑）
 bash skills/git-sync/scripts/agent-check.sh --request "验证X"  # 请求本机自动检查（自动验证循环）
+bash skills/git-sync/scripts/agent-wait.sh --request "验证X"   # 请求 + 原地等结果（一轮对话内闭环）
 bash skills/git-sync/scripts/agent-check.sh --read         # 读本机检查结果（0=过/2=败/3=等）
 bash skills/git-sync/scripts/agent-check.sh --accept       # 通过且满意 → 收尾，循环不再触发
 bash skills/git-sync/scripts/agent-recover.sh              # 沙箱 .git 被重置后的恢复

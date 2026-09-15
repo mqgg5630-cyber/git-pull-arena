@@ -30,10 +30,11 @@ bash skills/git-sync/scripts/agent-sync.sh "feat: install git-sync skill"
    （还没有就提醒我在本机跑一次 .\hardware.ps1 -Deep，或运行
    bash skills/git-sync/scripts/agent-hardware.sh 查看报告与新旧）。
    需要我在本机机器上验证的改动，推送后运行
-   bash skills/git-sync/scripts/agent-check.sh --request "要验证什么"，
-   我本机的值守任务会自动同步、跑自检、把结果推回来；你用
-   agent-check.sh --read 读结果（0=过 / 2=败 / 3=还在跑），
-   通过且满意就 --accept 收尾。
+   bash skills/git-sync/scripts/agent-wait.sh --request "要验证什么"
+   ——它会发起请求并原地轮询（默认最多 12 分钟），我本机的值守任务会自动
+   同步、跑自检、把结果推回来；退出码 0=过 / 2=败 / 3=超时未响应。
+   一轮对话里就能完成"请求→等待→读结果→（修复→再来）→收尾"整个循环；
+   通过且满意就 agent-check.sh --accept 收尾。
 
 4) 执行完 1、2 两步后，回复我：
    - 本仓库的 GitHub 地址（git remote get-url origin 的结果）
