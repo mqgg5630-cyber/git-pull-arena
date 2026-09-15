@@ -1,9 +1,9 @@
 {
-  "round": 8,
+  "round": 9,
   "arena_state": "awaiting_check",
   "local_state": "pending",
   "host": "",
-  "note": "v2.5.1 验收（单会话闭环）round 8：本机值守必须零窗口跑完这一轮并以免点击方式推回结论。检查项 2a= auth.ps1 -Verify 在 prompts 全关下实跑通过；2b= 计划任务动作指向 watchhost 启动器（非 powershell.exe）。注意：本机需先 .\\sync.ps1 取到 v2.5.1（v2.5.0 的 watch.ps1 在此机器上解析失败、auth.ps1 会误改 credentialStore）",
-  "arena_updated": "2026-09-15 12:26:58",
+  "note": "v2.6.0 验收 round 9：① 免点击推送：auth.ps1 -Verify 退出码 0（ls-remote + push --dry-run 全过；注意公开仓库的 ls-remote 不代表鉴权）② 少/零弹窗值守：watch.ps1 -Register 后 mode 应为 'zero-window loop (launcher exe)'（零闪）或 'loop (one flash per logon)'（每次登录闪一次），heartbeat 每 2 分钟推进。本机顺序：先 .\\auth.ps1 -GhLogin -Verify（唯一一次登录），再 .\\sync.ps1，再 .\\watch.ps1 -Unregister ; .\\watch.ps1 -Register",
+  "arena_updated": "2026-09-15 12:35:19",
   "local_updated": null
 }
