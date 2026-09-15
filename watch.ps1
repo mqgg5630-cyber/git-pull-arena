@@ -375,6 +375,16 @@ function Wait-ForRun {
     return $null
 }
 
+function Test-ProxyHint {
+    $gp = ''
+    try { $gp = ((git config --get http.proxy 2>$null | Out-String).Trim()) } catch { }
+    if (-not $gp) { try { $gp = ((git config --get https.proxy 2>$null | Out-String).Trim()) } catch { } }
+    if ($gp -and -not $env:HTTPS_PROXY) {
+        Write-Host ("   hint: git uses proxy $gp but HTTPS_PROXY is not set -") -ForegroundColor Yellow
+        Write-Host "         gh and other tools will NOT use it:  $env:HTTPS_PROXY = '$gp'" -ForegroundColor Yellow
+    }
+}
+
 function Show-TaskDiagnostics {
     $ti = Get-TaskInfo
     if ($ti -and $ti.info) {
@@ -408,6 +418,7 @@ if ($Status) {
     $ti = Get-TaskInfo
     $st = Get-State
     Write-Host "== watcher status" -ForegroundColor Cyan
+    Test-ProxyHint
     Write-Host ("   repo        : {0}" -f $repo)
     Write-Host ("   branch      : {0} (remote {1})" -f $Branch, $Remote)
     Write-Host ("   task        : {0}" -f $taskName)
@@ -531,10 +542,14 @@ if ($Register -or $Unregister) {
         if (-not $bashExe) { $bashExe = [string]$bcmd.Path }
         if (-not $bashExe) { $bashExe = [string]$bcmd.Definition }
     }
+    $gitProxy = ''
+    try { $gitProxy = ((git config --get http.proxy 2>$null | Out-String).Trim()) } catch { }
+    if (-not $gitProxy) { try { $gitProxy = ((git config --get https.proxy 2>$null | Out-String).Trim()) } catch { } }
     Write-Host "== environment for the task:"
     Write-Host ("   git  : {0}" -f $gitExe)
     Write-Host ("   bash : {0}" -f $(if ($bashExe) { $bashExe } else { '(missing - the repo gate needs it)' }))
     Write-Host ("   ps   : {0}" -f $psExe)
+    Write-Host ("   proxy: {0}" -f $(if ($gitProxy) { "$gitProxy (git config http.proxy)" } else { '(none in git config - gh/other tools need HTTPS_PROXY)' }))
 
     # ---- decide the launch mode -------------------------------------------
     $mode = ''
@@ -622,10 +637,10 @@ if ($Register -or $Unregister) {
     }
 
     Set-State @{ mode = $mode; interval = $Interval; repo = $repo; branch = $Branch; remote = $Remote;
-                 skill = $skillVer; task = $taskName; git = $gitExe; bash = $bashExe; powershell = $psExe;
+                 skill = $skillVer; task = $taskName; git = $gitExe; bash = $bashExe; powershell = $psExe; proxy = $gitProxy;
                  launcher = $(if ($mode -eq 'zero-window') { $exe } else { '' });
                  registered = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss') }
-    Add-Log "registered: mode=$mode interval=${Interval}m keeper=${KeeperMin}m skill=v$skillVer git=$gitExe bash=$bashExe"
+    Add-Log "registered: mode=$mode interval=${Interval}m keeper=${KeeperMin}m skill=v$skillVer git=$gitExe bash=$bashExe proxy=$gitProxy"
     Write-Host "== registered: $taskName (mode=$mode, loop every $Interval min, keeper tick every $KeeperMin min)" -ForegroundColor Green
 
     # ---- self-test: start it now and wait for a real heartbeat -------------
@@ -824,10 +839,15 @@ function Invoke-PollRound {
         if (-not (Test-Path -LiteralPath $push)) { $push = Join-Path $PSScriptRoot 'push.ps1' }
         $pushed = $false
         $pushNote = ''
+        $pushDetail = ''
         for ($try = 1; $try -le 3; $try++) {
             $global:LASTEXITCODE = 0
-            & $push -NoPrompt ("check: round {0} {1}" -f $round, $verdict)
+            # capture the output so the heartbeat/log can say WHY it failed -
+            # "exit 3" alone tells nobody anything (field lesson 2026-09-15)
+            $pushOut = (& $push -NoPrompt ("check: round {0} {1}" -f $round, $verdict) 2>&1 | Out-String)
             $pushCode = $LASTEXITCODE
+            $pushDetail = (($pushOut -split "`r?`n" | Where-Object { $_ -match '\S' } | Select-Object -Last 4) -join ' / ')
+            if ($pushOut) { Write-Host $pushOut }
             if ($pushCode -eq 0) { $pushed = $true; break }
             if ($pushCode -eq 4) {
                 $pushNote = 'auth: no silent credential (run auth.ps1 -Setup)'
@@ -836,15 +856,15 @@ function Invoke-PollRound {
                 break
             }
             $pushNote = "push failed (exit $pushCode), attempt $try"
-            Add-Log "round ${round}: push attempt $try failed (exit $pushCode)"
+            Add-Log "round ${round}: push attempt $try failed (exit $pushCode): $pushDetail"
             if ($try -lt 3) { Start-Sleep -Seconds 20 }
         }
         if ($pushed) {
-            Set-State @{ last_action = 'push'; last_push = 'ok'; last_round = $round }
+            Set-State @{ last_action = 'push'; last_push = 'ok'; last_push_detail = ''; last_round = $round }
             Write-Host "== verdict pushed back to $Remote/$Branch" -ForegroundColor Green
             return 0
         }
-        Set-State @{ last_action = 'push'; last_push = $pushNote; last_round = $round }
+        Set-State @{ last_action = 'push'; last_push = $pushNote; last_push_detail = $pushDetail; last_round = $round }
         Write-Host "== [WARN] verdict NOT pushed ($pushNote) - the agent keeps waiting" -ForegroundColor Red
         return 1
     } finally {

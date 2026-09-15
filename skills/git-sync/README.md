@@ -6,6 +6,13 @@
 > 仓库根目录放着同款脚本（`sync.ps1 / push.ps1 / upload.ps1 / download.ps1 / doctor.ps1 / pack.ps1 / bootstrap.ps1 / pr.ps1 / hardware.ps1 / watch.ps1 / auth.ps1`），
 > 这份 skill 是**通用版 + 说明书**。
 >
+> **v2.6.1（网络/代理）**：`auth.ps1` 自动读取 `git config http.proxy` 并套用给 gh
+> （实测常见病：git 走代理能通、gh 只认 `HTTPS_PROXY` 于是超时），新增 `-HttpProxy`；
+> PAT 入库改为**离线优先**（先写凭据助手，不需要任何 API 调用，网络不通也能先存好）；
+> `sync.ps1` 不再把值守产物（`results/status/`）堆成 stash（改为本地提交，并在分叉时自动对齐远端）；
+> 值守把 push 失败原因记进心跳 `last_push_detail`，`-Register`/`-Status` 会记录并提醒 git 代理与
+> `HTTPS_PROXY` 不一致的问题。
+>
 > **v2.6.0（值守改成"一次登录一个常驻进程"）**：注册的任务跑 `watch.ps1 -Loop`，
 > 一个进程内部每 N 分钟轮询到底——所以 **flash 模式下也只在你登录系统时闪一次**
 > （以前是每 2 分钟一次，720 次/天）；默认仍优先用零窗口启动器，且**注册前先对启动器做冒烟测试**
@@ -166,6 +173,8 @@ gate（`code/check_all.sh`）提交前自动扫描全部 `.ps1`，非 ASCII 直�
 | 现象 | 处理 |
 |---|---|
 | `running scripts is disabled` | 跑一次 `.\bootstrap.ps1` |
+| `gh auth login` 超时 / `dial tcp ...:443 did not properly respond` | 网络路径问题，不是脚本：git 可能走了 `git config http.proxy`，而 gh 只认 `HTTPS_PROXY`。用 `.\auth.ps1 -GhLogin -HttpProxy http://127.0.0.1:7890`，或 `setx HTTPS_PROXY ...` 后重开窗口；不想折腾 gh 就 `.\auth.ps1 -Setup -PromptToken`（离线入库） |
+| `git stash list` 越积越多 | v2.6.1 起值守产物改为本地提交；历史堆积用 `git stash list` 检查后 `git stash clear`（确认没有你要的改动） |
 | 要密码 / 认证失败 / 推送卡着等确认 | `.\auth.ps1 -Setup` → `.\auth.ps1 -Verify`（一次配好免点击；两者都支持 `-Json`）。**如果 `-Setup` 之后反而开始要登录**：`.\auth.ps1 -MigrateStore` 或 `.\auth.ps1 -Unset`（把 `credentialStore` 改回默认，原来的凭据立刻可见） |
 | 值守注册时直接抛 ParserError（脚本一行都没跑） | 检查有没有 `"$var:"` 这种写法：`$round:` 会被当成盘符变量，**整份脚本解析失败**。gate 的 `code/scan_ps_var_colon.py` 会替你先扫出来 |
 | 计划任务报 `Disabled` / 心跳文件不存在 | 任务被 `-Pause` 过或从未成功注册：`.\watch.ps1 -Unregister` → `.\watch.ps1 -Register`；`-Status` 的 heartbeat 才可信 |

@@ -68,12 +68,29 @@ if (-not $Branch) { $Branch = (git rev-parse --abbrev-ref HEAD).Trim() }
 Write-Host "== repo  : $repo" -ForegroundColor Cyan
 Write-Host "== branch: $Branch" -ForegroundColor Cyan
 
-# Stash local changes so the pull cannot fail
+# Local changes: the watcher's own artifacts (handshake + check logs) are
+# REGENERATED every round, so committing them locally keeps the tree clean.
+# Stashing them was a bug: when a push failed, every later sync created another
+# stash entry and the pile grew (field report: 6 stale stashes).
+$dirty = @(git status --porcelain)
 $stashed = $false
-if (git status --porcelain) {
-    Write-Host "!! local changes found, stashing them first ..." -ForegroundColor Yellow
-    git stash push -u -m ("auto-stash before sync " + (Get-Date -Format 'yyyy-MM-dd HH:mm:ss'))
-    $stashed = $true
+$artifactDirty = $false
+if ($dirty.Count -gt 0) {
+    $watcherOnly = $true
+    foreach ($line in $dirty) {
+        $p = $line.Substring(3).Trim()
+        if ($p -notmatch '^"?results/status/') { $watcherOnly = $false; break }
+    }
+    if ($watcherOnly) {
+        Write-Host "== local changes are watcher artifacts (results/status/) - committing them instead of stashing" -ForegroundColor Cyan
+        git add -A -- results/status
+        git -c user.name="git-sync watcher" -c user.email="watcher@local" commit -q -m ("watch: local check artifacts " + (Get-Date -Format 'yyyy-MM-dd HH:mm'))
+        $artifactDirty = $true
+    } else {
+        Write-Host "!! local changes found, stashing them first ..." -ForegroundColor Yellow
+        git stash push -u -m ("auto-stash before sync " + (Get-Date -Format 'yyyy-MM-dd HH:mm:ss'))
+        $stashed = $true
+    }
 }
 
 git fetch $Remote
@@ -82,8 +99,26 @@ if ($LASTEXITCODE -ne 0) { Write-Host "[ERROR] git fetch failed (network / proxy
 git checkout $Branch
 git pull --ff-only $Remote $Branch
 if ($LASTEXITCODE -ne 0) {
+    # a failed push from the watcher leaves local verdict commits behind, and
+    # the branch then diverges from the remote - which would stall the loop
+    # forever. Those commits are regenerable artifacts, so drop them (the
+    # files stay in the worktree) and try once more.
+    $ahead = @(git log --format=%s "$Remote/$Branch..HEAD" 2>$null)
+    $onlyArtifacts = ($ahead.Count -gt 0)
+    foreach ($subj in $ahead) {
+        if ($subj -notmatch '^(check: round|watch: local check artifacts)') { $onlyArtifacts = $false; break }
+    }
+    if ($onlyArtifacts) {
+        Write-Host "== local commits are only watcher verdicts - realigning with the remote (files are kept)" -ForegroundColor Cyan
+        git reset --mixed "$Remote/$Branch" | Out-Null
+        git ls-files -d | ForEach-Object { git checkout -- $_ }
+        git pull --ff-only $Remote $Branch
+    }
+}
+if ($LASTEXITCODE -ne 0) {
     Write-Host "[ERROR] pull failed. Your branch has local commits that conflict." -ForegroundColor Red
-    Write-Host "        Fix with: git status   /   git stash list   /   git reset --hard $Remote/$Branch" -ForegroundColor Yellow
+    Write-Host "        Diagnose: git status ; git stash list ; git log --oneline -5" -ForegroundColor Yellow
+    Write-Host "        Hard reset (loses local commits): git reset --hard $Remote/$Branch" -ForegroundColor Yellow
     exit 1
 }
 
@@ -94,4 +129,11 @@ git log -1 --oneline --decorate
 if ($stashed) {
     Write-Host ""
     Write-Host "NOTE: your previous local changes are still in the stash. See: git stash list" -ForegroundColor Yellow
+}
+if ($artifactDirty) {
+    Write-Host "NOTE: watcher artifacts were committed locally and will be pushed with the next push." -ForegroundColor DarkGray
+}
+$stashCount = @(git stash list).Count
+if ($stashCount -ge 3) {
+    Write-Host ("NOTE: {0} stash entries are piling up - inspect with 'git stash list' and drop the auto-stash ones." -f $stashCount) -ForegroundColor Yellow
 }

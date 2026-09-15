@@ -29,6 +29,8 @@
 #                                     #   .\watch.ps1 -Register -Headless / S4U)
 #     .\auth.ps1 -GhLogin             # do the ONE interactive login for you
 #                                     #   (gh device code -> gh becomes the helper)
+#     .\auth.ps1 -GhLogin -HttpProxy http://127.0.0.1:7890   # behind a proxy
+#     .\auth.ps1 -Setup -PromptToken  # PAT route - works with NO api access at setup
 #     .\auth.ps1 -Json -Verify        # machine readable (doctor + the local check read this)
 #     .\auth.ps1 -Unset               # undo what -Setup changed (keeps credentials)
 #
@@ -45,6 +47,7 @@ param(
     [switch]$Unset,
     [switch]$MigrateStore,
     [switch]$GhLogin,
+    [string]$HttpProxy = '',
     [switch]$PreferDpapi,
     [switch]$SkipVerify,
     [string]$Store = '',
@@ -89,6 +92,35 @@ function Brief([string]$text, [int]$lines = 3) {
 
 $notes   = New-Object System.Collections.ArrayList
 $changed = New-Object System.Collections.ArrayList
+
+# ------------------------------------------------------------------- proxy
+# git may reach GitHub through a proxy configured in git config (http.proxy)
+# while gh only honours HTTPS_PROXY/HTTP_PROXY - a very common reason why
+# "git fetch works but gh auth login times out". Detect both and apply them to
+# everything this script starts.
+function Get-GitProxy {
+    foreach ($k in @('http.proxy', 'https.proxy')) {
+        $v = (git config --get $k 2>$null | Out-String).Trim()
+        if ($v) { return $v }
+    }
+    return ''
+}
+$proxyFrom = ''
+$proxyUrl = $HttpProxy
+if (-not $proxyUrl) {
+    $gp = Get-GitProxy
+    if ($gp) { $proxyUrl = $gp; $proxyFrom = 'git config http.proxy' }
+}
+if (-not $proxyUrl -and ($env:HTTPS_PROXY -or $env:HTTP_PROXY)) {
+    $proxyUrl = $(if ($env:HTTPS_PROXY) { $env:HTTPS_PROXY } else { $env:HTTP_PROXY })
+    $proxyFrom = 'environment'
+}
+if ($proxyUrl) {
+    if (-not $proxyFrom) { $proxyFrom = '-HttpProxy' }
+    $env:HTTPS_PROXY = $proxyUrl
+    $env:HTTP_PROXY  = $proxyUrl
+    $env:ALL_PROXY   = $proxyUrl
+}
 
 # ------------------------------------------------------------------- config
 if ($Config -and -not (Test-Path -LiteralPath $Config)) {
@@ -274,6 +306,14 @@ if ($GhLogin) {
     Say '== auth.ps1 -GhLogin : the ONE interactive step (device code / browser)' 'Cyan'
     Note "host: $hostName   protocol: https"
     Note 'if it asks, choose: GitHub.com -> HTTPS -> Login with a web browser'
+    if ($proxyUrl) {
+        Note "using proxy: $proxyUrl  (from $proxyFrom)"
+    } else {
+        Note 'no proxy detected. If this times out, GitHub is unreachable directly:'
+        Note '   set one of these and retry - gh reads them, git may already have one:'
+        Note '     .\auth.ps1 -GhLogin -HttpProxy http://127.0.0.1:7890'
+        Note '     setx HTTPS_PROXY http://127.0.0.1:7890     (then reopen the console)'
+    }
     Write-Host ''
     # run gh DIRECTLY (not captured): it prints a one-time code the user must
     # read, so its output has to stay visible on screen
@@ -281,7 +321,12 @@ if ($GhLogin) {
     $glCode = $LASTEXITCODE
     if ($glCode -ne 0) {
         Warn "gh auth login exited with $glCode"
-        Note 'you can also run it yourself:  gh auth login'
+        Note 'if the message was a timeout / connection failure, GitHub is not reachable'
+        Note 'directly from this machine. Fix the network path first, then retry:'
+        Note '   .\auth.ps1 -GhLogin -HttpProxy http://127.0.0.1:7890'
+        Note '   or skip gh entirely and store a PAT offline (no API call at setup):'
+        Note '   .\auth.ps1 -Setup -PromptToken'
+        Note 'you can also run it yourself later:  gh auth login'
     } else {
         Ok 'gh login finished'
     }
@@ -346,26 +391,33 @@ if ($Setup) {
         finally { [System.Runtime.InteropServices.Marshal]::ZeroFreeBSTR($bstr) }
     }
     if ($seed) {
+        # OFFLINE FIRST: writing the credential through the configured helper
+        # needs no API call at all, so this works even when api.github.com is
+        # unreachable (proxy/VPN not set up yet). gh's own store is tried next
+        # because it also works from a session-0 task.
+        $savedOffline = Save-Cred 'x-access-token' $seed $Store
+        if ($savedOffline) {
+            Ok 'token stored through the credential helper (offline - no API call needed)'
+            $null = $changed.Add('credential stored in the helper (token)')
+        }
         if ($ghVer) {
             $tmpTok = [System.IO.Path]::GetTempFileName()
             try {
                 [System.IO.File]::WriteAllText($tmpTok, $seed, (New-Object System.Text.UTF8Encoding($false)))
                 $rr = RunLine ('gh auth login --hostname ' + $hostName + ' --git-protocol https --with-token < "' + $tmpTok + '"')
                 if ($rr.code -eq 0) {
-                    Ok "token accepted by gh (kept in gh's own config, never in this repo)"
+                    Ok "token also stored in gh's own config (works from session 0 too)"
                     $ghState = 'logged in'
-                    $ghVer = (RunExe 'gh' @('--version')).text
                 } else {
-                    Warn "gh refused the token: $(Brief $rr.text 2)"
-                    Note 'check the scopes (repo; add workflow if you push CI files)'
+                    if (-not $savedOffline) { Warn "gh refused the token: $(Brief $rr.text 2)" }
+                    else { Note 'gh could not store it too (network/API) - the helper copy is enough' }
                 }
             } finally {
                 Remove-Item -LiteralPath $tmpTok -Force -ErrorAction SilentlyContinue
             }
-        } else {
-            $saved = Save-Cred 'x-access-token' $seed $Store
-            if ($saved) { Ok 'token stored in the credential store' }
-            else { Warn 'could not store the token (is a credential helper configured?)' }
+        }
+        if (-not $savedOffline -and -not ($ghVer -and $ghState -eq 'logged in')) {
+            Warn 'could not store the token (is a credential helper configured?)'
         }
         $seed = ''; $Token = ''
         $probe = Invoke-CredProbe ''
@@ -550,6 +602,8 @@ if ($Json) {
         host                   = $hostName
         git                    = $gitVer
         powershell             = $psVer
+        proxy                  = $proxyUrl
+        proxy_from             = $proxyFrom
         credential_helper      = $cfgState.helper
         host_helper            = $cfgState.hostHelp
         credential_store       = $cfgState.store
@@ -576,6 +630,7 @@ if ($Json) {
 Say '== auth state' 'Cyan'
 Say ("   repo    : {0}   branch: {1}   remote: {2} -> {3} [{4}]" -f $repo, $Branch, $Remote, $remoteUrl, $scheme)
 Say ("   git     : {0}   PowerShell: {1}" -f $gitVer, $psVer)
+Say ("   proxy   : {0}" -f $(if ($proxyUrl) { "$proxyUrl  [$proxyFrom]" } else { '(none detected - git config http.proxy / HTTPS_PROXY)' }))
 $helperTxt = if ($cfgState.helper) { $cfgState.helper } else { '(none configured)' }
 $storeTxt  = if ($cfgState.store)  { $cfgState.store }  else { '(default: wincredman / Windows Credential Manager)' }
 $interTxt  = if ($cfgState.inter)  { $cfgState.inter }  else { '(unset)' }

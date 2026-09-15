@@ -130,6 +130,7 @@ function Test-AuthFailure([string]$text) {
     $patterns = @(
         'Could not read from remote repository',
         'could not read Username',
+        'unable to get password from user',
         'could not read Password',
         'terminal prompts disabled',
         'Cannot prompt because user interactivity',
@@ -234,7 +235,14 @@ if ($pushOut.code -ne 0) {
     }
     Write-Host "[ERROR] push failed." -ForegroundColor Red
     Write-Host "  * 'rejected': the remote branch moved. Run .\sync.ps1 first." -ForegroundColor Yellow
-    Write-Host "  * network/proxy errors: retry, or check .\doctor.ps1." -ForegroundColor Yellow
+    if ($pushOut.text -match 'Could not resolve host|Failed to connect|Connection (timed out|refused)|unable to access|operation timed out|proxy') {
+        Write-Host "  * this looks like a NETWORK/proxy problem, not a credential problem:" -ForegroundColor Yellow
+        Write-Host "      git config --global --get http.proxy     # git's proxy (git uses it)" -ForegroundColor Yellow
+        Write-Host "      echo \$env:HTTPS_PROXY                    # gh/other tools need THIS one" -ForegroundColor Yellow
+        Write-Host "      .\auth.ps1 -Setup -PromptToken           # store a PAT offline (no API call)" -ForegroundColor Yellow
+    } else {
+        Write-Host "  * retry, or check .\doctor.ps1." -ForegroundColor Yellow
+    }
     exit 1
 }
 
