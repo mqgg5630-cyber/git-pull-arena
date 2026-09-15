@@ -20,7 +20,9 @@
 #   mkdir -Force .github\workflows
 #   git checkout <working-branch> -- skills/git-sync/templates/health.yml .gitignore
 #   Copy-Item skills\git-sync\templates\health.yml .github\workflows\health.yml -Force
-#   git rm -r --quiet skills        # (only if a previous attempt left it on main)
+#   git rm -r -f --quiet skills   # (-f is required: staged changes block a plain
+#                                  #  rm; the template content now lives in the
+#                                  #  workflow file, the stray dir must not stay)
 #   notepad .github\workflows\health.yml        # set BRANCH, save
 #   git add -A; git commit -m "ci: sync-health"; git push origin main
 #   git checkout <working branch>               # back to work
@@ -46,7 +48,7 @@ jobs:
   health:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
