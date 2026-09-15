@@ -1,9 +1,9 @@
 {
-    "round":  3,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "live round 3: 收官验证（日志 .txt + 中文备注）",
-    "arena_updated":  "2026-09-15 02:48:29",
-    "local_updated":  "2026-09-15 10:49:59"
+  "round": 3,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "live round 3: 收官验证（日志 .txt + 中文备注）",
+  "arena_updated": "2026-09-15 02:53:18",
+  "local_updated": "2026-09-15 10:49:59"
 }
