@@ -62,8 +62,8 @@ hs_from_origin() {
   git show "$ORIGIN:$HS_NORM" 2>/dev/null
 }
 
-json_get() {  # $1 = json text, $2 = key
-  printf '%s' "$1" | python3 -c "import json,sys;d=json.load(sys.stdin);print(d.get('$2',''))" 2>/dev/null
+json_get() {  # $1 = json text, $2 = key  (utf-8-sig: PS 5.1 writes a BOM)
+  printf '%s' "$1" | python3 -c "import json,sys;d=json.loads(sys.stdin.buffer.read().decode('utf-8-sig'));print(d.get('$2',''))" 2>/dev/null
 }
 
 if [ "$ACTION" = "read" ]; then
@@ -74,7 +74,7 @@ if [ "$ACTION" = "read" ]; then
   fi
   ROUND="$(json_get "$HS" round)"; ASTATE="$(json_get "$HS" arena_state)"; LSTATE="$(json_get "$HS" local_state)"
   echo "== handshake (round $ROUND): arena=$ASTATE local=$LSTATE"
-  printf '%s\n' "$HS" | python3 -m json.tool 2>/dev/null || printf '%s\n' "$HS"
+  printf '%s\n' "$HS" | python3 -c "import json,sys;print(json.dumps(json.loads(sys.stdin.buffer.read().decode('utf-8-sig')),indent=2,ensure_ascii=False))" 2>/dev/null || printf '%s\n' "$HS"
   LOG="$(ls -1 "$(dirname "$HS_NORM")"/check_r${ROUND}_*.log 2>/dev/null | sort | tail -1)"
   if [ -n "$LOG" ] && [ -f "$LOG" ]; then
     echo ""

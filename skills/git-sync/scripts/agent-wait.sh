@@ -55,7 +55,9 @@ else
 fi
 
 echo "== waiting for the local watcher (polling every ${INTERVAL}s, timeout ${TIMEOUT}s) ..."
-state="$(git show "$ORIGIN:$HS_NORM" 2>/dev/null | python3 -c "import json,sys;print(json.load(sys.stdin).get('local_state',''))" 2>/dev/null || true)"
+read_hs() { git show "$ORIGIN:$HS_NORM" 2>/dev/null; }
+hs_key() { printf '%s' "$(read_hs)" | python3 -c "import json,sys;d=json.loads(sys.stdin.buffer.read().decode('utf-8-sig'));print(d.get('$1',''))" 2>/dev/null; }
+state="$(hs_key local_state)"
 start=$SECONDS
 while [ "$state" = "pending" ] || [ -z "$state" ]; do
   slept=$((SECONDS - start))
@@ -63,8 +65,8 @@ while [ "$state" = "pending" ] || [ -z "$state" ]; do
   printf '  [%3ds/%ds] still pending ...\r' "$slept" "$TIMEOUT"
   sleep "$INTERVAL"
   git fetch "$REMOTE" --quiet || true
-  state="$(git show "$ORIGIN:$HS_NORM" 2>/dev/null | python3 -c "import json,sys;print(json.load(sys.stdin).get('local_state',''))" 2>/dev/null || true)"
-  astate="$(git show "$ORIGIN:$HS_NORM" 2>/dev/null | python3 -c "import json,sys;print(json.load(sys.stdin).get('arena_state',''))" 2>/dev/null || true)"
+  state="$(hs_key local_state)"
+  astate="$(hs_key arena_state)"
   [ "$astate" = "accepted" ] && state="passed"
 done
 echo ""

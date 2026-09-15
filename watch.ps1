@@ -111,8 +111,12 @@ try {
     git fetch $Remote --quiet 2>$null
 
     # read the handshake from the REMOTE tip - do not touch the worktree yet
+    # (decode git output as UTF-8 so the Chinese note survives PS 5.1's GBK)
     $hsGit = $Handshake -replace '\\', '/'
+    $prevEnc = [Console]::OutputEncoding
+    try { [Console]::OutputEncoding = New-Object System.Text.UTF8Encoding($false) } catch { }
     $raw = git show "$Remote/$Branch`:$hsGit" 2>$null
+    try { [Console]::OutputEncoding = $prevEnc } catch { }
     if (-not $raw) { exit 0 }                        # no handshake yet
     $hs = (($raw -join "`n") | ConvertFrom-Json)
     if ($hs.arena_state -ne 'awaiting_check' -or $hs.local_state -ne 'pending') { exit 0 }
@@ -126,6 +130,10 @@ try {
     $global:LASTEXITCODE = 0
     & $sync
     if ($LASTEXITCODE -ne 0) { Write-Host "[ERROR] sync failed - retrying next poll" -ForegroundColor Red; exit 1 }
+
+    # 1b. re-read the handshake from the synced worktree (UTF-8, BOM-tolerant)
+    $hsAbs = Join-Path $repo $hsGit
+    $hs = Get-Content -LiteralPath $hsAbs -Encoding UTF8 -Raw | ConvertFrom-Json
 
     # 2. run the local check and capture everything to a log
     $stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
@@ -148,12 +156,15 @@ try {
     [System.IO.File]::WriteAllText($logAbs, ($text -join "`r`n"), $utf8)
     Write-Host ("== check {0} (log: {1})" -f $verdict, $logRel) -ForegroundColor $(if ($code -eq 0) { 'Green' } else { 'Red' })
 
-    # 3. update the handshake (worktree) with the verdict
-    $hsAbs = Join-Path $repo $hsGit
+    # 3. update the handshake (worktree) with the verdict - UTF-8 WITHOUT BOM
+    #    (PS 5.1 Set-Content -Encoding UTF8 adds a BOM that breaks json.load
+    #     on the agent side, so write the bytes explicitly)
     $hs.local_state  = $verdict
     $hs.local_updated = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss')
     $hs.host = $env:COMPUTERNAME
-    $hs | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $hsAbs -Encoding UTF8
+    $hsJson = $hs | ConvertTo-Json -Depth 6
+    $utf8nb = New-Object System.Text.UTF8Encoding($false)
+    [System.IO.File]::WriteAllText($hsAbs, $hsJson + "`r`n", $utf8nb)
 
     # 4. push the verdict back
     $push = Join-Path $repo 'push.ps1'
