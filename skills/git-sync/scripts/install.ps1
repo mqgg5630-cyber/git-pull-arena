@@ -64,6 +64,15 @@ if ((Test-Path -LiteralPath $gateSrc) -and -not (Test-Path -LiteralPath $gateDst
     Write-Host "  created code\check_all.sh (gate)"
 }
 
+# 3b. the gate helper that catches "$var:" typos (create only)
+$scanSrc = Join-Path $src 'templates\scan_ps_var_colon.py'
+$scanDst = Join-Path $Target 'code\scan_ps_var_colon.py'
+if ((Test-Path -LiteralPath $scanSrc) -and -not (Test-Path -LiteralPath $scanDst)) {
+    New-Item -ItemType Directory -Force -Path (Join-Path $Target 'code') | Out-Null
+    Copy-Item -Force -LiteralPath $scanSrc -Destination $scanDst
+    Write-Host "  created code\scan_ps_var_colon.py (gate helper)"
+}
+
 # 4. the config: create, or keep an existing one on upgrade
 $cfgSrc = Join-Path $src 'sync.config.json'
 $cfgDst = Join-Path $Target 'sync.config.json'

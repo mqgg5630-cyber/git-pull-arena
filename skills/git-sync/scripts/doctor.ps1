@@ -177,10 +177,29 @@ if (Test-Path -LiteralPath $stateFile) {
 $authScript = Join-Path $repo 'auth.ps1'
 if (Test-Path -LiteralPath $authScript) {
     try {
-        $auth = ((& $authScript -Json) | Out-String) | ConvertFrom-Json
-        if ($auth.ready) { Line 'auth' ("ready - $($auth.credential_detail)") 'Green' }
-        else { Line 'auth' 'NOT ready - run .\auth.ps1 -Setup (a push would need a click)' 'Yellow' }
-        Line 'auth how' ("helper=$($auth.credential_helper) store=$($auth.credential_store) gh=$($auth.gh_state) scheme=$($auth.scheme)")
+        # one probe, report-only flags: no -Setup/-Verify side effects here.
+        # (-Verify would push a dry-run AND add git's binary progress bar to
+        #  the parse stream, which is more noise than this line is worth.)
+        $authJson = (& $authScript -Json | Out-String)
+        $auth = $null
+        foreach ($ln in ($authJson -split "`r?`n")) {
+            if ($ln -match '^\s*\{') { $auth = $ln | ConvertFrom-Json; break }
+        }
+        if ($auth) {
+            $remoteExists = $false
+            $probe = git -c credential.interactive=false rev-parse --verify --quiet ("refs/remotes/$remoteName/$wantBranch") 2>$null
+            if ($LASTEXITCODE -eq 0) { $remoteExists = $true }
+            if ($auth.ready) {
+                Line 'auth' ("ready - $($auth.credential_detail)") 'Green'
+            } elseif (-not $remoteExists) {
+                Line 'auth' 'probe only (the remote branch is not fetched yet - no verdict)' 'DarkGray'
+            } else {
+                Line 'auth' 'NOT ready - run .\auth.ps1 -Setup (a push would need a click)' 'Yellow'
+            }
+            Line 'auth how' ("helper=$($auth.credential_helper) store=$($auth.credential_store) gh=$($auth.gh_state) scheme=$($auth.scheme)")
+        } else {
+            Line 'auth' '(no json from auth.ps1 - run .\auth.ps1 by hand)' 'Yellow'
+        }
     } catch { Line 'auth' '(probe failed - run .\auth.ps1 to see why)' 'Yellow' }
 } else {
     Line 'auth' '(auth.ps1 missing - upgrade the skill)' 'Yellow'

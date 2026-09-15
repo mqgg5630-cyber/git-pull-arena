@@ -24,8 +24,22 @@ $fail = 0
 #     where bash may eat backslashes; Write-Output on purpose: the watcher
 #     captures stdout, and PS 5.1 Write-Host bypasses it)
 if (Test-Path -LiteralPath '.\code\check_all.sh') {
-    bash code/check_all.sh
-    if ($LASTEXITCODE -ne 0) { Write-Output '[FAIL] gate failed'; $fail = 1 }
+    if (-not (Get-Command bash -ErrorAction SilentlyContinue)) {
+        Write-Output '[FAIL] bash is not on PATH - the gate cannot run (install Git for Windows)'
+        $fail = 1
+    } else {
+        $gateOut = bash code/check_all.sh 2>&1
+        $gateCode = $LASTEXITCODE
+        if ($gateOut) { Write-Output $gateOut }
+        if ($gateCode -ne 0) {
+            Write-Output ('[FAIL] gate failed (exit ' + $gateCode + ')')
+            $fail = 1
+        } elseif (-not $gateOut) {
+            # a command that produces NOTHING must not be trusted as a pass
+            Write-Output '[FAIL] gate produced no output - not trusting that pass'
+            $fail = 1
+        }
+    }
 }
 
 # 1b. the two hard requirements are asserted strictly in section 2 (2a/2b) -

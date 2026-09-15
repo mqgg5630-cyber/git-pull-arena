@@ -6,6 +6,13 @@
 > 仓库根目录放着同款脚本（`sync.ps1 / push.ps1 / upload.ps1 / download.ps1 / doctor.ps1 / pack.ps1 / bootstrap.ps1 / pr.ps1 / hardware.ps1 / watch.ps1 / auth.ps1`），
 > 这份 skill 是**通用版 + 说明书**。
 >
+> **v2.5.1**：`auth.ps1 -Setup` 改为**先探测、只在必要时才改配置**（v2.5.0 会在有好凭据的机器上把
+> `credentialStore` 改成 dpapi，等于把原来 Windows 凭据管理器里的登录"藏起来"——实测踩到）；
+> 新增 `-MigrateStore`（把凭据**复制**一份到 dpapi，给 S4U/-Headless 用）；
+> `watch.ps1` 修了一个会**整份脚本解析失败**的写法（`"$round:"` → `"${round}:"`，PowerShell 会把它当盘符变量），
+> gate 新增 `code/scan_ps_var_colon.py` 专扫这类陷阱；`watch.ps1 -Register` 增加 git/bash/powershell 环境预检；
+> `local_check.ps1` 不允许 gate "空转通过"；gate 的 python 解释器按 `python3` → `python` 探测（Windows/conda 常常只有 `python`）。
+>
 > **v2.5.0 起（默认行为变了）**：推送**默认静默**（任何 git 调用都不许弹窗/等点击，拿不到凭据就快速失败并告诉你怎么修）；
 > 值守**默认零窗口**（编译一个 GUI 子系统启动器，Task Scheduler 不再有 console 闪窗）；
 > `auth.ps1` 一次配好免点击凭据并**用实跑证明**；`watch.ps1 -Register` 注册后**自检真的跑没跑**。
@@ -66,7 +73,7 @@ bash skills/git-sync/scripts/agent-pr.sh --checks          # 看 PR 的 CI 状�
 | `scripts/watch.ps1` | **自动验证循环本机侧**：`-Register` 注册计划任务（默认 2 分钟轮询；**默认零窗口启动器**，注册后自检"真的跑了一次"，编译失败自动回退 `-Flash`），发现 agent 的检查请求就自动 sync → 跑 `check_cmd`（带硬超时）→ 日志落盘 → 静默推回 passed/failed；`-Status` 看值守心跳、`-Test` 立刻验证、`-Pause/-Resume/-Unregister` 管理 |
 | `scripts/bootstrap.ps1` | 首次准备：执行策略、git 身份、fetch、切分支、首拉 |
 | `scripts/pr.ps1` | GitHub CLI 开 PR / 查 CI；`-Base` 换目标分支，`-Checks` 看检查状态 |
-| `scripts/auth.ps1` | **免点击推送**：`-Setup`（gh CLI 优先，其次 GCM + `credentialStore=dpapi`）/ `-Verify`（prompts 关闭下实跑 `ls-remote` + `push --dry-run`）/ `-Token`·`-TokenFile`·`-PromptToken`（无浏览器播种令牌，永不回显）/ `-Json`（给 doctor 和 agent 读）/ `-Unset` |
+| `scripts/auth.ps1` | **免点击推送**：`-Setup`（**先探测现有配置，能静默拿到凭据就什么都不改**；否则 gh CLI 优先，再退到 GCM，并逐个 store 找已有凭据）/ `-Verify`（prompts 关闭下实跑 `ls-remote` + `push --dry-run`）/ `-MigrateStore`（复制凭据到 dpapi，给 S4U/-Headless 用）/ `-Token`·`-TokenFile`·`-PromptToken`（无浏览器播种令牌，永不回显）/ `-Json`（给 doctor、gate、agent 读）/ `-Unset` |
 | `scripts/install.ps1` | 装到另一个仓库：`.\install.ps1 -Target C:\MyProject -Branch main`（目标已有配置时只动 branch，其余保留） |
 | `scripts/agent-sync.sh` | 助手侧一键：分支守卫 → fetch → 发散自愈 → gate → **写同步回执（并按日期归档）** → commit + push |
 | `scripts/agent-hardware.sh` | 助手侧读本机硬件报告；缺失/超 30 天会提示让用户跑 `.\hardware.ps1 -Deep` |
@@ -150,7 +157,9 @@ gate（`code/check_all.sh`）提交前自动扫描全部 `.ps1`，非 ASCII 直�
 | 现象 | 处理 |
 |---|---|
 | `running scripts is disabled` | 跑一次 `.\bootstrap.ps1` |
-| 要密码 / 认证失败 / 推送卡着等确认 | `.\auth.ps1 -Setup` → `.\auth.ps1 -Verify`（一次配好免点击；两者都支持 `-Json`） |
+| 要密码 / 认证失败 / 推送卡着等确认 | `.\auth.ps1 -Setup` → `.\auth.ps1 -Verify`（一次配好免点击；两者都支持 `-Json`）。**如果 `-Setup` 之后反而开始要登录**：`.\auth.ps1 -MigrateStore` 或 `.\auth.ps1 -Unset`（把 `credentialStore` 改回默认，原来的凭据立刻可见） |
+| 值守注册时直接抛 ParserError（脚本一行都没跑） | 检查有没有 `"$var:"` 这种写法：`$round:` 会被当成盘符变量，**整份脚本解析失败**。gate 的 `code/scan_ps_var_colon.py` 会替你先扫出来 |
+| 计划任务报 `Disabled` / 心跳文件不存在 | 任务被 `-Pause` 过或从未成功注册：`.\watch.ps1 -Unregister` → `.\watch.ps1 -Register`；`-Status` 的 heartbeat 才可信 |
 | 值守推送一直不成功（agent 说"还在等"） | `.\watch.ps1 -Status` 看心跳与 `last_push`；`auth: no silent credential` 就是没配凭据，跑 `.\auth.ps1 -Setup` |
 | 值守好像没在跑（计划任务显示正常） | `.\watch.ps1 -Test`（立刻跑一次并等心跳）；`Get-ScheduledTaskInfo <任务名>` 的 LastTaskResult 不可信（v2.4.4 就是这么被骗的） |
 | 值守每 2 分钟闪一下黑窗 | 升级到 v2.5.0 后重注册：`.\watch.ps1 -Unregister` → `.\watch.ps1 -Register`（默认零窗口；`-Flash` 才是旧的闪窗模式） |

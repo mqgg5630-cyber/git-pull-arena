@@ -19,6 +19,12 @@ set -u -o pipefail
 cd "$(dirname "$0")/.."
 fail=0
 
+# Windows/conda often ships "python" and not "python3" - resolve once
+PY=""
+if command -v python3 >/dev/null 2>&1; then PY="python3"
+elif command -v python >/dev/null 2>&1; then PY="python"
+fi
+
 # ---------------------------------------------------------------- 1. ps1
 while IFS= read -r -d '' f; do
     if LC_ALL=C grep -qn '[^[:print:][:space:]]' "$f"; then
@@ -31,7 +37,7 @@ if [ "$fail" -eq 0 ]; then
 fi
 
 # -------------------------------------------------------------- 2. config
-if python3 - <<'PY'
+if [ -n "$PY" ] && $PY - <<'PY'
 import json
 cfg = json.load(open('skills/git-sync/sync.config.json', encoding='utf-8'))
 branch = cfg.get('branch', '')
@@ -41,6 +47,8 @@ print('OK: sync.config.json branch=%s' % branch)
 PY
 then
     :
+elif [ -z "$PY" ]; then
+    echo "SKIP: no python on PATH - sync.config.json not validated here"
 else
     echo "[FAIL] skills/git-sync/sync.config.json is invalid or branch is main/master"
     fail=1
@@ -61,6 +69,26 @@ for f in sync push upload download pack doctor bootstrap pr hardware watch auth;
 done
 if [ "$drift" = "0" ]; then
     echo "OK: root scripts identical to skills/git-sync/scripts"
+else
+    fail=1
+fi
+
+# --------------------------------- 3b. "$var:" inside a string = dead script
+# "$round: text" is read as a DRIVE-qualified variable name -> ParserError ->
+# and PowerShell parses a whole file before running it, so ONE of these makes
+# the script do nothing at all (field incident 2026-09-15: watch.ps1 never ran,
+# every scheduled task stayed silently dead). Scopes/drives ($env:, $script:)
+# are fine; anything else must be written as ${var}:
+SCANNER=""
+for cand in code/scan_ps_var_colon.py skills/git-sync/templates/scan_ps_var_colon.py; do
+    if [ -f "$cand" ]; then SCANNER="$cand"; break; fi
+done
+if [ -z "$SCANNER" ]; then
+    echo "SKIP: \$var: typo scanner not present in this repo"
+elif [ -z "$PY" ]; then
+    echo "SKIP: no python on PATH - \$var: typo scan skipped"
+elif $PY "$SCANNER"; then
+    echo "OK: no drive-style variable typos (\$var:)"
 else
     fail=1
 fi

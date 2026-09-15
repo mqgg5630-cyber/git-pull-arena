@@ -10,7 +10,7 @@
 - **连接台账**：所有已连接仓库 × 分支 × 本机路径 × 值守任务，见 [`CONNECTIONS.md`](CONNECTIONS.md)（防忘专用，忘了一条命令就能翻到）
 - **助手侧**：每轮用 `skills/git-sync/scripts/agent-sync.sh` 提交推送——提交前自动跑 `code/check_all.sh` 自检（.ps1 全 ASCII + 配置分支守卫 + 根目录/skill 脚本一致性），提交后把**同步回执**写进 `results/sync/last_sync.md`
 - **双向测试**：已于 2026-09-14 通过（见 `deliverable/SYNC_TEST.md`）；v2.5.0 的升级与验收清单见 [`deliverable/UPGRADE_v2.5.0.md`](deliverable/UPGRADE_v2.5.0.md)
-- **本机要做的（一次）**：切到新分支 + 重配凭据 + 重注册值守 —— 5 条命令，见 `CONNECTIONS.md` 第"二·五"节
+- **本机要做的（一次）**：切到新分支 + 重配凭据 + 重注册值守 —— 5 条命令，见 [`deliverable/FIX_v2.5.1.md`](deliverable/FIX_v2.5.1.md)（v2.5.0 实测的两个 bug 已修）
 
 ## 一、本机首次安装（Windows PowerShell，只做一次）
 
@@ -96,8 +96,8 @@ Copy-Item skills\git-sync\templates\gate.yml .github\workflows\gate.yml
 | 2 | 本机 → 助手 | 在 `SYNC_TEST.md` 加一句话 → `.\push.ps1`，助手在远端拉到并确认 | ✅ 2026-09-14 |
 | 3 | 交付物落地 | `.\download.ps1 -Set final`（在 zhongqi 仓库验证） | ✅ 2026-09-14 |
 | 4 | 自动验证循环（单会话） | `agent-wait.sh --request "..." --auto-accept` 一轮内 exit 0；handshake `local_state=passed`、`arena_state=accepted` | ✅ 2026-09-15（round 6） |
-| 5 | **零弹窗值守**（v2.5.0） | `.\watch.ps1 -Register` 自检通过后，值守每 2 分钟轮询**看不到任何窗口**；`.\watch.ps1 -Status` 的 heartbeat 时间在推进 | ⏳ 已排入 round 7（检查项 2b），本机升级后自动判定 |
-| 6 | **免点击推送**（v2.5.0） | `auth.ps1 -Verify` exit 0；值守轮询里 `last_push=ok`，全程没有人点过任何东西 | ⏳ 已排入 round 7（检查项 2a），本机升级后自动判定 |
+| 5 | **零弹窗值守**（v2.5.0/v2.5.1） | `.\watch.ps1 -Register` 自检通过后，值守每 2 分钟轮询**看不到任何窗口**；`.\watch.ps1 -Status` 的 heartbeat 时间在推进 | ⏳ round 8（检查项 2b），本机升级后自动判定 |
+| 6 | **免点击推送**（v2.5.0/v2.5.1） | `auth.ps1 -Verify` exit 0；值守轮询里 `last_push=ok`，全程没有人点过任何东西 | ⏳ round 8（检查项 2a），本机升级后自动判定 |
 
 > 多会话协作（同仓库多分支 / 汇总会话）实测成本高于收益，**暂时不做**；
 > 需要时按 `skills\git-sync\README.md` 第七节重启。

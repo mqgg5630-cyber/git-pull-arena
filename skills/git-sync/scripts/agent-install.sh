@@ -204,6 +204,14 @@ if [ ! -f "$REPO/code/check_all.sh" ] && [ -f "$REPO/skills/git-sync/templates/c
   echo "OK: code/check_all.sh created (pre-commit gate)"
 fi
 
+# 5a. the gate's .ps1 typo scanner (create only; the gate falls back to the
+#     skill copy when this is missing, so older installs keep working)
+if [ -f "$REPO/skills/git-sync/templates/scan_ps_var_colon.py" ] && [ ! -f "$REPO/code/scan_ps_var_colon.py" ]; then
+  mkdir -p "$REPO/code"
+  cp "$REPO/skills/git-sync/templates/scan_ps_var_colon.py" "$REPO/code/scan_ps_var_colon.py"
+  echo "OK: code/scan_ps_var_colon.py created (gate helper: catches \$var: typos)"
+fi
+
 # 5b. the local check template for the auto-verification loop (create only)
 if [ ! -f "$REPO/code/local_check.ps1" ] && [ -f "$REPO/skills/git-sync/templates/local_check.ps1" ]; then
   mkdir -p "$REPO/code"

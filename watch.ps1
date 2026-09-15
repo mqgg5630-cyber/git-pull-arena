@@ -39,6 +39,11 @@
 # cannot flash either. Local state (heartbeat, log, launcher) lives in
 # %LOCALAPPDATA%\git-sync\ - never in the repo, so nothing of it reaches git.
 #
+# NB: inside a double-quoted string write "${round}:" - a bare "$round:" is
+# parsed as a drive-qualified variable name and kills the WHOLE file at parse
+# time (PowerShell parses before it runs, so nothing at all happens). The gate
+# now scans every .ps1 for that pattern.
+#
 # ASCII-only on purpose (Windows PowerShell 5.1 decodes .ps1 as ANSI/GBK).
 
 param(
@@ -346,6 +351,7 @@ if ($Status) {
     if ($st) {
         Write-Host ""
         Write-Host "   heartbeat   :" -ForegroundColor Cyan
+        $null = 0
         foreach ($p in $st.PSObject.Properties) { Write-Host ("     {0,-14} {1}" -f $p.Name, $p.Value) }
     } else {
         Write-Host "   heartbeat   : (none yet - the task has never completed a poll)" -ForegroundColor Yellow
@@ -400,6 +406,39 @@ if ($Register -or $Unregister) {
     if ($wantHeadless) { $modes = @('headless') }
     elseif ($wantFlash) { $modes = @('flash') }
     else { $modes = @('zero-window', 'flash') }
+
+    # environment preflight: the task inherits the USER environment, which is
+    # not always the same PATH this console has (custom/portable git installs,
+    # conda-only tools). Record what the watcher will actually use, and warn
+    # now instead of failing silently every poll.
+    $gitExe = ''
+    $gcmd = Get-Command git -ErrorAction SilentlyContinue
+    if ($gcmd) {
+        $gitExe = [string]$gcmd.Source
+        if (-not $gitExe) { $gitExe = [string]$gcmd.Path }
+        if (-not $gitExe) { $gitExe = [string]$gcmd.Definition }
+    }
+    if (-not $gitExe) {
+        Write-Host "[ERROR] git is not on PATH in this console - the watcher will not find it." -ForegroundColor Red
+        Write-Host "        add git to the PATH of your USER account (System properties > Environment" -ForegroundColor Yellow
+        Write-Host "        Variables), reopen the console and register again." -ForegroundColor Yellow
+        exit 1
+    }
+    $bashExe = ''
+    $bcmd = Get-Command bash -ErrorAction SilentlyContinue
+    if ($bcmd) {
+        $bashExe = [string]$bcmd.Source
+        if (-not $bashExe) { $bashExe = [string]$bcmd.Path }
+        if (-not $bashExe) { $bashExe = [string]$bcmd.Definition }
+    }
+    if (-not $bashExe) {
+        Write-Host "[warn] bash is not on PATH: the repo gate (code/check_all.sh) needs it." -ForegroundColor Yellow
+        Write-Host "       install Git for Windows (or fix PATH) before the checks can pass." -ForegroundColor Yellow
+    }
+    Write-Host "== environment for the task:"
+    Write-Host ("   git  : {0}" -f $gitExe)
+    Write-Host ("   bash : {0}" -f $(if ($bashExe) { $bashExe } else { '(missing - gate will fail)' }))
+    Write-Host ("   ps   : {0}" -f $psExe)
 
     $registered = $false
     $activeMode = ''
@@ -459,8 +498,8 @@ if ($Register -or $Unregister) {
         if (-not $registered) { continue }
 
         Write-Host "== registered: $taskName (mode=$mode, every $Interval min)" -ForegroundColor Green
-        Set-State @{ mode = $mode; interval = $Interval; repo = $repo; branch = $Branch; remote = $Remote; skill = $skillVer; task = $taskName; registered = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss') }
-        Add-Log "registered: mode=$mode interval=${Interval}m skill=v$skillVer"
+        Set-State @{ mode = $mode; interval = $Interval; repo = $repo; branch = $Branch; remote = $Remote; skill = $skillVer; task = $taskName; git = $gitExe; bash = $bashExe; powershell = $psExe; registered = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss') }
+        Add-Log "registered: mode=$mode interval=${Interval}m skill=v$skillVer git=$gitExe bash=$bashExe"
 
         # SELF-TEST: v2.4.4 taught that "registered" does not mean "runs" -
         # run the task once and wait for the heartbeat before believing it
@@ -544,7 +583,7 @@ function Invoke-PollRound {
         & $sync
         if ($LASTEXITCODE -ne 0) {
             Write-Host "[ERROR] sync failed - retrying next poll" -ForegroundColor Red
-            Add-Log "round $round: sync FAILED (exit $LASTEXITCODE)"
+            Add-Log "round ${round}: sync FAILED (exit $LASTEXITCODE)"
             Set-State @{ last_action = 'error'; last_note = 'sync failed' }
             return 1
         }
@@ -579,7 +618,7 @@ function Invoke-PollRound {
         $logAbs = Join-Path $repo ($logRel -replace '/', '\')
         New-Item -ItemType Directory -Force -Path (Split-Path -Parent $logAbs) | Out-Null
         Write-Host ("== running: {0}" -f $CheckCmd)
-        Add-Log "round $round: running $CheckCmd"
+        Add-Log "round ${round}: running $CheckCmd"
 
         $outFile = [System.IO.Path]::GetTempFileName()
         $errFile = [System.IO.Path]::GetTempFileName()
@@ -637,7 +676,7 @@ function Invoke-PollRound {
         $text = $head + @('') + $outLines
         [System.IO.File]::WriteAllText($logAbs, ($text -join "`r`n"), (New-Object System.Text.UTF8Encoding($false)))
         Write-Host ("== check {0} (log: {1}, {2}s)" -f $verdict, $logRel, $secs) -ForegroundColor $(if ($code -eq 0) { 'Green' } else { 'Red' })
-        Add-Log "round $round: check $verdict (exit $code, ${secs}s)"
+        Add-Log "round ${round}: check $verdict (exit $code, ${secs}s)"
         Set-State @{ last_action = 'check'; last_round = $round; last_verdict = $verdict; last_check = $logRel; last_check_secs = $secs }
 
         # 3. update the handshake (worktree) with the verdict - UTF-8 WITHOUT BOM
@@ -661,12 +700,12 @@ function Invoke-PollRound {
             if ($pushCode -eq 0) { $pushed = $true; break }
             if ($pushCode -eq 4) {
                 $pushNote = 'auth: no silent credential (run auth.ps1 -Setup)'
-                Add-Log "round $round: push BLOCKED by auth - run .\auth.ps1 -Setup"
+                Add-Log "round ${round}: push BLOCKED by auth - run .\auth.ps1 -Setup"
                 Write-Host '[AUTH] the verdict could not be pushed silently - run .\auth.ps1 -Setup' -ForegroundColor Red
                 break
             }
             $pushNote = "push failed (exit $pushCode), attempt $try"
-            Add-Log "round $round: push attempt $try failed (exit $pushCode)"
+            Add-Log "round ${round}: push attempt $try failed (exit $pushCode)"
             if ($try -lt 3) { Start-Sleep -Seconds 20 }
         }
         if ($pushed) {

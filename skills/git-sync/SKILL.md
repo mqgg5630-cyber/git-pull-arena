@@ -30,7 +30,7 @@ description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件
 | `sync.ps1` | fetch + 切分支 + `pull --ff-only`；本地有改动先自动 stash | `.\sync.ps1` |
 | `upload.ps1` | 附件按 `upload_map` 归位到 `sources/ code/ results/`，再调用 `push.ps1` | `.\upload.ps1 -Src "E:\附件"` |
 | `push.ps1` | `pull --ff-only` → `add -A` → commit → push；**拒绝推 main/master**；`-Gate` 提交前本机也跑一遍自检；**默认静默**（prompts 全关，拿不到凭据 exit 4 并提示跑 `auth.ps1`，绝不弹窗等待；`-Prompt` 才允许交互） | `.\push.ps1 -Gate "add files"` |
-| `auth.ps1` | **免点击推送**：`-Setup`（gh 优先 / GCM+dpapi 兜底）/ `-Verify`（prompts 关闭实跑 ls-remote + push --dry-run）/ `-Token`·`-TokenFile`·`-PromptToken`（播种令牌，永不回显）/ `-Json`（doctor、agent 可读）/ `-Unset` | `.\auth.ps1 -Setup -Verify` |
+| `auth.ps1` | **免点击推送**：`-Setup`（**先探测，能静默拿到凭据就不动配置**；否则 gh 优先 / GCM，并在 dpapi·wincredman 里找已有凭据，命中 wincredman 就 unset 回默认）/ `-Verify`（prompts 关闭实跑 ls-remote + push --dry-run）/ `-MigrateStore`（复制凭据到 dpapi）/ `-Token`·`-TokenFile`·`-PromptToken`（播种令牌，永不回显）/ `-Json` / `-Unset` | `.\auth.ps1 -Setup -Verify` |
 | `download.ps1` | 按 `download_sets` 用 robocopy 镜像到本机；**`-Since` 只复制某日期后变过的文件**；**`-Folders a,b` 临时指定目录** | `.\download.ps1 -Folders deliverable,examples\x` |
 | `pack.ps1` | 把某个集合压成一个 zip（默认 `_export\<日期>_<集合>.zip`，不进 git） | `.\pack.ps1 -Set final` |
 | `doctor.ps1` | 体检：环境/分支/远端/落后领先/未提交/stash/LFS/大文件/**技能版本** + **值守/心跳/凭据**（watcher / heartbeat / auth 三行）；**`-Fix` 一键修复** | `.\doctor.ps1 -Fix` |
@@ -56,7 +56,7 @@ description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件
 
 | 文件 | 作用 |
 |---|---|
-| `check_all.sh` | 通用 gate：.ps1 全 ASCII + 配置分支守卫 + 根目录与 skill 脚本一致性（含 auth.ps1；缺根目录副本也算失败）+ **每个 .ps1 语法可解析**（PATH 上有 powershell/pwsh 时用 PowerShell 自己的解析器，没有就显式 SKIP）；`agent-install.sh` 会装到 `code/check_all.sh` |
+| `check_all.sh` | 通用 gate：.ps1 全 ASCII + 配置分支守卫 + 根目录与 skill 脚本一致性（含 auth.ps1；缺根目录副本也算失败）+ **每个 .ps1 语法可解析**（PATH 上有 powershell/pwsh 时用 PowerShell 自己的解析器，没有就显式 SKIP）；典型坑扫描器 `scan_ps_var_colon.py` 找 `"$var:"`（盘符变量陷阱，会让整份脚本一行都不跑）；python 解释器按 python3 → python 依次探测（Windows/conda 常常只有 python）；`agent-install.sh` 会装到 `code/check_all.sh` |
 | `gate.yml` | GitHub Actions：push 后自动跑 gate（`agent-install.sh --gha` 安装；agent 令牌若没有 workflows 权限，就由本机侧复制后 push） |
 | `new-session-prompt.md` | **新会话引导提示词模板**：整段复制到任何新 Arena 对话，一条命令装好本技能，并附本机步骤与双向验收清单 |
 | `local_check.ps1` | **本机自检模板**（装到 `code\local_check.ps1`，只建不覆盖）：默认跑 gate + 留好扩展点（文件存在性/Office COM/GPU 冒烟测试等），是 `watch.ps1` 在 agent 请求检查时实际执行的东西 |
@@ -215,7 +215,9 @@ bash skills/git-sync/scripts/agent-wait.sh --request "验证X" --auto-accept
 
 要点：
 
-* 值守任务用**本机已有的 git 凭据**推送（`auth.ps1` 配好的那套：gh helper 或 GCM+dpapi）；
+* 值守任务用**本机已有的 git 凭据**推送（`auth.ps1` 探到的、或配好的那套）；
+* **`"$var:"` 是禁用写法**：`"$round: x"` 会被 PowerShell 当作盘符变量 → ParserError →
+  整份脚本**一行都不会执行**（实测把 watch.ps1 全废掉）。写 `"${round}: x"`，gate 会替你扫；
 * `check_cmd` 在 `sync.config.json` 里改；默认的 `code\local_check.ps1` 跑 gate +
   你在模板里加的仓库专属检查（文件存在性、Office 能否打开、GPU 冒烟测试……），
   并顺带打一行 `== auth: ...` 告诉你免点击推送是否就绪（软提示，不影响 verdict）；

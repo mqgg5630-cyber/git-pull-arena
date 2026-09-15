@@ -1,6 +1,6 @@
 # 连接台账 —— Arena 仓库 × 分支 × 本机路径（防忘专用）
 
-> 更新：2026-09-15（v2.5.0：零弹窗值守 + 免点击推送；多会话协作搁置）｜ 技能版本：v2.5.0 ｜ 本文件在 `E:\0github\git-sync\git-pull-arena\CONNECTIONS.md`
+> 更新：2026-09-15（v2.5.1：auth 改为"先探测再动手" + watch 的 `$var:` 解析陷阱修复 + gate 新增扫描器：零弹窗值守 + 免点击推送；多会话协作搁置）｜ 技能版本：v2.5.1 ｜ 本文件在 `E:\0github\git-sync\git-pull-arena\CONNECTIONS.md`
 > 忘了的时候：`cd E:\0github\git-sync\git-pull-arena` 然后 `notepad CONNECTIONS.md`
 
 ## 一、当前所有连接
@@ -105,6 +105,8 @@ git clone --quiet --depth 1 -b arena/01a0a4f5-git-pull-arena \
 |---|---|
 | 在 main 上提交时把未跟踪文件误扫进去（main 没有 .gitignore） | 修正：`git checkout <工作分支> -- .gitignore` 随下一次 main 提交带上；skills/ 模板只在工作分支上，跨分支取文件用 `git checkout <工作分支> -- <路径>`，不要 copy；清残留目录用 `git rm -r -f`（暂存改动会挡住不带 -f 的 rm，然后被 add -A 又提交回去） |
 | 值守 12 分钟没响应（那边第 5 轮遇到过） | 本机手动 `.\watch.ps1` 跑一轮；`del $env:TEMP\git-sync-watch-*.lock`；`Get-ScheduledTaskInfo <任务名>` 看上次运行 |
+| `-Setup` 之后反而开始要登录（v2.5.0 的坑） | v2.5.1 已修：`-Setup` 先探测再动手；若已受影响，跑 `.\auth.ps1 -MigrateStore` 或 `.\auth.ps1 -Unset`，原凭据立刻可见 |
+| 值守注册/运行时报 ParserError（`InvalidVariableReferenceWithDrive`） | `"$var:"` 写法会让**整份 .ps1 解析失败**（一行都不跑）：改成 `"${var}:"`；gate 已内置 `code/scan_ps_var_colon.py` |
 | 值守推送卡住等同意 / 要手动点确认 | v2.5.0 起推送默认静默：`.\auth.ps1 -Setup -Verify` 一次配好免点击凭据（gh helper 或 GCM+`credentialStore=dpapi`）；心跳里出现 `auth: no silent credential` 就是这个没配 |
 | 值守每 2 分钟闪一下黑窗（无弹窗要求） | v2.5.0 默认零窗口（编译 GUI 子系统启动器）：`.\watch.ps1 -Unregister` → `.\watch.ps1 -Register`；`-Status` 的 mode 应显示 `zero-window`（`-Flash` 才是旧的闪窗模式） |
 | 值守"注册了但没在跑" | `.\watch.ps1 -Test`（立刻跑一次并等心跳）；别信 `LastTaskResult`（v2.4.4 的 VBScript 启动器就是 0 但没跑），要看 `%LOCALAPPDATA%\git-sync\watch-*.log` 与心跳 json |
@@ -127,5 +129,6 @@ git clone --quiet --depth 1 -b arena/01a0a4f5-git-pull-arena \
 - 2026-09-15：AgentArena 会话开工即验收通过（round 1 accepted `2bcc53b`：文档在位 + npm 冒烟；local-runner 设计文档落仓）
 - 2026-09-15：v2.4.0（`agent-wait --auto-accept` / 本机即 Runner 配方 / health.yml 每日体检 / 安装器保留根目录配置）
 - 2026-09-15：v2.4.4→v2.4.6（wscript+vbs 隐形启动器实战判死：Win11 弃用 VBScript，值守全线静默停摆、LastTaskResult 0 假象 → 回退 `powershell -WindowStyle Hidden` + `-Headless` S4U 实验项）；恢复命令执行后**值守首次全自动闭环**——w2 round 3 请求 30 秒自动判定回推（`f6c74bf`）、w1 round 2 39 秒、3f1 回归 92 秒，全程无人碰机器
+- 2026-09-15：**v2.5.1**（实测修复：`auth.ps1` 改为"先探测、只在必要时改"，并会 unset 误设的 `credentialStore`；新增 `-MigrateStore`；`watch.ps1` 的 `$var:` 盘符陷阱根治 + 注册环境预检（git/bash/powershell 路径入心跳）；`local_check.ps1` 禁止 gate 空转通过；gate 新增 `code/scan_ps_var_colon.py`）
 - 2026-09-15：**v2.5.0**（零弹窗值守 + 免点击推送：`auth.ps1`（gh/GCM-dpapi + 关闭提示的实跑验证）；`watch.ps1` 默认 GUI 子系统启动器（CreateNoWindow，无管理员、不碰 VBScript）+ 注册自检 + `-Status`/`-Test` + 心跳/日志落 `%LOCALAPPDATA%\git-sync\`+ 检查硬超时；`push.ps1` 默认静默、认证失败 exit 4；gate 增加"每个 .ps1 可解析"；多会话协作搁置）
 - 2026-09-15：v2.4.7（实测吸收：S4U 注册/切换需管理员控制台 0x80070005；检查日志加 `elapsed:` 行 + 空输出显式标记——w1 的 check_cmd 链空转、轮轮假通过的教训）；356/3d5 旧分支已由 3f1 清理
