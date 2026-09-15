@@ -1,9 +1,9 @@
-{
-  "round": 1,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "arena_updated": "2026-09-15 02:23:31",
-  "local_updated": null,
-  "host": "",
-  "note": "live test round 1: 真机验证 v2.3.1 自动闭环（值守→同步→自检→回传）"
+﻿{
+    "round":  1,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "arena_updated":  "2026-09-15 02:23:31",
+    "local_updated":  "2026-09-15 10:24:59",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "live test round 1: 鐪熸満楠岃瘉 v2.3.1 鑷姩闂幆锛堝€煎畧鈫掑悓姝モ啋鑷鈫掑洖浼狅級"
 }
