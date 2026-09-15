@@ -75,7 +75,7 @@ if [ "$ACTION" = "read" ]; then
   ROUND="$(json_get "$HS" round)"; ASTATE="$(json_get "$HS" arena_state)"; LSTATE="$(json_get "$HS" local_state)"
   echo "== handshake (round $ROUND): arena=$ASTATE local=$LSTATE"
   printf '%s\n' "$HS" | python3 -c "import json,sys;print(json.dumps(json.loads(sys.stdin.buffer.read().decode('utf-8-sig')),indent=2,ensure_ascii=False))" 2>/dev/null || printf '%s\n' "$HS"
-  LOG="$(ls -1 "$(dirname "$HS_NORM")"/check_r${ROUND}_*.log 2>/dev/null | sort | tail -1)"
+  LOG="$(ls -1 "$(dirname "$HS_NORM")"/check_r${ROUND}_*.txt 2>/dev/null | sort | tail -1)"
   if [ -n "$LOG" ] && [ -f "$LOG" ]; then
     echo ""
     echo "== last check log: $LOG (tail)"

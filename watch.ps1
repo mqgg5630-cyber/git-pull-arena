@@ -137,7 +137,7 @@ try {
 
     # 2. run the local check and capture everything to a log
     $stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
-    $logRel = "results/status/check_r${round}_${stamp}.log"
+    $logRel = "results/status/check_r${round}_${stamp}.txt"
     $logAbs = Join-Path $repo ($logRel -replace '/', '\')
     New-Item -ItemType Directory -Force -Path (Split-Path -Parent $logAbs) | Out-Null
     Write-Host ("== running: {0}" -f $CheckCmd)

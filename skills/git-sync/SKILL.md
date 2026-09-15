@@ -159,7 +159,7 @@ git clone --quiet --depth 1 -b arena/01a09fc1-git-pull-arena \
 你本机的值守任务自动拉取、跑 `check_cmd`（默认 `code\local_check.ps1`，可改）、
 把 passed/failed 和完整日志推回分支；Agent 读到结果，要么收尾要么修复再来一轮——
 **直到 Agent 觉得可以为止，就 `--accept`，循环不再触发**。状态全部记在
-`handshake` 文件里（`results/status/handshake.json`），一轮一档日志（`results/status/check_rN_<时间>.log`）。
+`handshake` 文件里（`results/status/handshake.json`），一轮一档日志（`results/status/check_rN_<时间>.txt`）。
 
 ```
 Arena（agent）                                本机（watch.ps1 计划任务，每 5 分钟）

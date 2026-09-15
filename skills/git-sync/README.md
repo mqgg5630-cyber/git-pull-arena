@@ -79,7 +79,7 @@ python 版本、哪个环境的 torch 能用 CUDA——计算类工作开工前�
 
 自动验证循环（v2.3）：本机 `.\watch.ps1 -Register` 一次（计划任务，每 5 分钟轮询）；
 之后 agent 每轮完工 `agent-check.sh --request "验证X"` → 你本机**自动** sync → 跑
-`check_cmd`（默认 `code\local_check.ps1`，可改）→ 日志落 `results\status\check_rN_<时间>.log`
+`check_cmd`（默认 `code\local_check.ps1`，可改）→ 日志落 `results\status\check_rN_<时间>.txt`
 → 把 passed/failed 推回分支；agent `--read` 读结果（0=过/2=败/3=等），败了修了再来一轮，
 过了且满意 `--accept` 收尾——**循环由 handshake 文件驱动，收尾后值守静默待命**。
 详见 SKILL.md 第 8 节。
