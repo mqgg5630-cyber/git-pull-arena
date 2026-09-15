@@ -1,16 +1,16 @@
 # 连接台账 —— Arena 仓库 × 分支 × 本机路径（防忘专用）
 
-> 更新：2026-09-15 ｜ 技能版本：v2.3.4 ｜ 本文件在 `E:\0github\git-sync\git-pull-arena\CONNECTIONS.md`
+> 更新：2026-09-15 ｜ 技能版本：v2.3.5 ｜ 本文件在 `E:\0github\git-sync\git-pull-arena\CONNECTIONS.md`
 > 忘了的时候：`cd E:\0github\git-sync\git-pull-arena` 然后 `notepad CONNECTIONS.md`
 
 ## 一、当前所有连接
 
 | 用途 | GitHub 仓库 | 工作分支 | 本机路径 | 值守任务名 | 状态 |
 |---|---|---|---|---|---|
-| **git-sync 技能总部**（版本发布、升级源） | [mqgg5630-cyber/git-pull-arena](https://github.com/mqgg5630-cyber/git-pull-arena) | `arena/01a09fc1-git-pull-arena` | `E:\0github\git-sync\git-pull-arena` | `git-sync-watch-git-pull-arena` | ✅ 已连（本会话） |
-| **图片→可编辑PPT 项目**（fig3 交付物在那边） | [mqgg5630-cyber/image-to-editable-pptx](https://github.com/mqgg5630-cyber/image-to-editable-pptx) | `arena/01a04caf-image-to-editable-pptx` | `E:\0github\git-sync\image-to-editable-pptx` | `git-sync-watch-image-to-editable-pptx` | ✅ 已连（[该会话](https://arena.ai/agent/01a04caf-77d4-7672-92a2-59223763a988)，5 轮真机验收通过） |
+| **git-sync 技能总部**（版本发布、升级源） | [mqgg5630-cyber/git-pull-arena](https://github.com/mqgg5630-cyber/git-pull-arena) | `arena/01a09fc1-git-pull-arena` | `E:\0github\git-sync\git-pull-arena` | `git-sync-watch-git-pull-arena` | ✅ 在线（本会话，值守 2 分钟） |
+| **图片→可编辑PPT 项目**（fig3 交付物在那边） | [mqgg5630-cyber/image-to-editable-pptx](https://github.com/mqgg5630-cyber/image-to-editable-pptx) | `arena/01a04caf-image-to-editable-pptx` | `E:\0github\git-sync\image-to-editable-pptx` | `git-sync-watch-image-to-editable-pptx` | ✅ 在线（[该会话](https://arena.ai/agent/01a04caf-77d4-7672-92a2-59223763a988)；v2.3.4 @ `14c1f5f`，5/5 验收通过，值守 2 分钟） |
 | **中期报告/PPT**（git-sync 技能发源地） | [mqgg5630-cyber/zhongqi](https://github.com/mqgg5630-cyber/zhongqi) | `arena/01a09d79-zhongqi` | `E:\0zhongqi\zhongqi`（你原有的克隆） | 未注册 | ✅ 可拉取（会话已结束；本会话对它只读） |
-| **AgentArena**（基准测试工具，待整合） | [hukeying85-ux/AgentArena](https://github.com/hukeying85-ux/AgentArena) | `arena/01a090f5-agentarena` | 未克隆 | — | ⏳ 待打通（需要该仓库的推送权限） |
+| **AgentArena**（基准测试工具，待整合） | [mqgg5630-cyber/AgentArena](https://github.com/mqgg5630-cyber/AgentArena)（fork，只含 main，与上游同步） | 待新会话创建（会是 `arena/<新id>-agentarena`） | 未克隆（建议 `E:\0github\git-sync\agentarena`） | 待注册 | 🟢 就绪（权限已解决：fork 是你自己的仓库；上游更新时点 Sync fork） |
 
 ## 二、日常命令速查（在任何已连接仓库的本机路径里）
 
@@ -59,4 +59,6 @@ git clone --quiet --depth 1 -b arena/01a09fc1-git-pull-arena \
 - 2026-09-15：v2.2（回执归档 + 硬件上报：GTX 1650 / 22 conda 环境）
 - 2026-09-15：v2.3（自动验证循环）→ 真机 4 轮闭环（BOM / .gitignore .log 两个真 bug 修复）
 - 2026-09-15：image-to-editable-pptx 项目级验收 5 轮全过（fig3 PPTX：227 形状 / 0 贴图 / 1139 可编辑字符）
-- 2026-09-15：v2.3.4（移植 add -A 假删除守卫 / 值守默认 2 分钟 / 模板日志可捕获）
+- 2026-09-15：v2.3.4（移植 add -A 假删除守卫 / 值守默认 2 分钟 / 模板日志可捕获）；CONNECTIONS.md 台账建立
+- 2026-09-15：AgentArena fork 建立（mqgg5630-cyber/AgentArena，只含 main，与上游同步——权限障碍解除）
+- 2026-09-15：v2.3.5（值守锁 30 分钟过期自愈——进程硬崩后锁残留会让值守永久停摆）

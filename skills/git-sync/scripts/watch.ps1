@@ -105,7 +105,17 @@ if ($Register -or $Unregister) {
 
 # ------------------------------------------------------------- single poll
 $lock = Join-Path $env:TEMP ($taskName + '.lock')
-if (Test-Path -LiteralPath $lock) { exit 0 }        # previous poll still running
+if (Test-Path -LiteralPath $lock) {
+    # a hard crash can leave the lock behind and stall the watcher forever -
+    # a lock older than 30 minutes is stale: drop it and continue
+    try {
+        $lockAge = ((Get-Date) - (Get-Item -LiteralPath $lock).LastWriteTime).TotalMinutes
+        if ($lockAge -gt 30) {
+            Remove-Item -LiteralPath $lock -Force -ErrorAction SilentlyContinue
+            Write-Output "stale lock removed (age: $([int]$lockAge) min)"
+        } else { exit 0 }
+    } catch { exit 0 }
+}
 Set-Content -LiteralPath $lock -Value (Get-Date).ToString('s')
 try {
     git fetch $Remote --quiet 2>$null
