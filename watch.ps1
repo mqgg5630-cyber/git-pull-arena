@@ -31,7 +31,9 @@
 #   (needs an ELEVATED console: a normal one fails with 0x80070005, and pushes
 #   need credentialStore=dpapi or the gh helper - see auth.ps1).
 #   Register always SELF-TESTS (runs the task once and waits for the heartbeat)
-#   and falls back to -Flash automatically if the launcher does not run.
+#   and falls back to -Flash automatically if the launcher does not run. The
+#   task also gets an ExecutionTimeLimit (check timeout + 10 min) so a hung
+#   poll can never keep the task "Running" and block every later run.
 #
 # All of watch.ps1's own child processes inherit its hidden console, so they
 # cannot flash either. Local state (heartbeat, log, launcher) lives in
@@ -427,12 +429,22 @@ if ($Register -or $Unregister) {
             $trigger = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(1) `
                         -RepetitionInterval (New-TimeSpan -Minutes $Interval) `
                         -RepetitionDuration (New-TimeSpan -Days 3650)
+            # Task Scheduler must be able to KILL a stuck instance: the launcher
+            # waits for the poll to finish, and without a time limit a hung fetch
+            # would keep the task "Running" forever (IgnoreNew then blocks every
+            # later poll - a silent stall). The limit is the check timeout +10.
+            $settings = $null
+            try {
+                $settings = New-ScheduledTaskSettingsSet -StartWhenAvailable `
+                    -MultipleInstances IgnoreNew `
+                    -ExecutionTimeLimit (New-TimeSpan -Minutes ($TimeoutMin + 10)) -ErrorAction Stop
+            } catch { $settings = $null }
+            $regArgs = @{ TaskName = $taskName; Action = $action; Trigger = $trigger; Description = $desc; Force = $true }
+            if ($settings) { $regArgs['Settings'] = $settings }
             if ($mode -eq 'headless') {
-                $principal = New-ScheduledTaskPrincipal -UserId $env:USERNAME -LogonType S4U -RunLevel Limited
-                Register-ScheduledTask -TaskName $taskName -Action $action -Trigger $trigger -Principal $principal -Description $desc -Force | Out-Null
-            } else {
-                Register-ScheduledTask -TaskName $taskName -Action $action -Trigger $trigger -Description $desc -Force | Out-Null
+                $regArgs['Principal'] = (New-ScheduledTaskPrincipal -UserId $env:USERNAME -LogonType S4U -RunLevel Limited)
             }
+            Register-ScheduledTask @regArgs | Out-Null
             $registered = $true
         } catch {
             Write-Host "   [warn] Register-ScheduledTask failed: $($_.Exception.Message)" -ForegroundColor Yellow
@@ -503,7 +515,8 @@ function Invoke-PollRound {
         Set-State @{ last_run = $pollStart.ToString('yyyy-MM-dd HH:mm:ss'); last_action = 'poll'; host = $env:COMPUTERNAME; pid = $PID }
         Add-Log "poll start (pid $PID)"
 
-        git fetch $Remote --quiet 2>$null
+        # low-speed timeouts: a stalled network must not hang the poll forever
+        git -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=60 fetch $Remote --quiet 2>$null
 
         # read the handshake from the REMOTE tip - do not touch the worktree yet
         # (decode git output as UTF-8 so the Chinese note survives PS 5.1's GBK)
