@@ -118,9 +118,13 @@ trap cleanup EXIT
 
 # ---------------------------------------------------------------- 3. install
 # keep the target's existing config across the upgrade
+# (some repos keep the config at the repo ROOT - a minimal install without
+#  the skills folder, as seen on AgentArena - so check both locations)
 OLD_CFG_B64=""
 if [ -f "$REPO/skills/git-sync/sync.config.json" ]; then
   OLD_CFG_B64="$(base64 -w0 "$REPO/skills/git-sync/sync.config.json" 2>/dev/null || true)"
+elif [ -f "$REPO/sync.config.json" ]; then
+  OLD_CFG_B64="$(base64 -w0 "$REPO/sync.config.json" 2>/dev/null || true)"
 fi
 
 mkdir -p "$REPO/skills"

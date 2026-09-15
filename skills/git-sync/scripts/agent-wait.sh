@@ -6,6 +6,9 @@
 #     bash skills/git-sync/scripts/agent-wait.sh                          # wait for the pending request
 #     bash skills/git-sync/scripts/agent-wait.sh --request "verify X"     # new round, then wait
 #     bash skills/git-sync/scripts/agent-wait.sh --request "X" --timeout 900 --interval 30
+#     bash skills/git-sync/scripts/agent-wait.sh --request "X" --auto-accept
+#                                                         # passed -> accept automatically:
+#                                                         # "work -> verify -> close" in one command
 #
 # Flow: [--request] -> agent-check.sh --request -> poll the remote handshake
 # every --interval seconds until the local watcher pushes passed/failed (or
@@ -32,12 +35,13 @@ fi
 HS_NORM="${HANDSHAKE//\\//}"
 ORIGIN="$REMOTE/$BRANCH"
 
-NOTE=""; DO_REQUEST=0; TIMEOUT=600; INTERVAL=30
+NOTE=""; DO_REQUEST=0; TIMEOUT=600; INTERVAL=30; AUTO_ACCEPT=0
 while [ $# -gt 0 ]; do
   case "$1" in
     --request) DO_REQUEST=1; shift ;;
     --timeout) TIMEOUT="$2"; shift 2 ;;
     --interval) INTERVAL="$2"; shift 2 ;;
+    --auto-accept) AUTO_ACCEPT=1; shift ;;
     *) NOTE="$1"; shift ;;
   esac
 done
@@ -76,6 +80,12 @@ case "$state" in
   failed) echo "== verdict: FAILED (after $((SECONDS - start))s)" ;;
   *)      echo "== verdict: still pending after ${TIMEOUT}s (watcher offline? check .\\watch.ps1 and Get-ScheduledTask git-sync-watch-*)" ;;
 esac
+
+# --auto-accept: close the loop right away when the local checks passed
+if [ "$state" = "passed" ] && [ "$AUTO_ACCEPT" = 1 ]; then
+  echo "== auto-accept: local checks passed - closing the loop"
+  bash "$HERE/agent-check.sh" --accept | head -2
+fi
 
 # full report + exit code from the reader (0 passed / 2 failed / 3 pending)
 exec bash "$HERE/agent-check.sh" --read

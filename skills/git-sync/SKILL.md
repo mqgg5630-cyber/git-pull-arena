@@ -45,7 +45,7 @@ description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件
 |---|---|---|
 | `agent-sync.sh` | 分支守卫 → fetch → 发散自愈 → gate → **写同步回执并按日期归档** → commit + push | `bash skills/git-sync/scripts/agent-sync.sh "feat: ..."` |
 | `agent-check.sh` | **自动验证循环的助手侧**：`--request` 请求本机检查（round+1）/ `--read` 读结果（exit 0=过 2=败 3=等）/ `--accept` 通过收尾 | `bash skills/git-sync/scripts/agent-check.sh --request "verify X"` |
-| `agent-wait.sh` | **一条命令闭环**：`--request` 后原地轮询远端直到值守推回结果（默认 720s/30s 一次），**整个验证循环在一轮对话内完成**，无需用户每轮输入 | `bash skills/git-sync/scripts/agent-wait.sh --request "verify X"` |
+| `agent-wait.sh` | **一条命令闭环**：`--request` 后原地轮询远端直到值守推回结果（默认 600s/30s 一次），**整个验证循环在一轮对话内完成**；`--auto-accept` 通过即自动收尾 | `bash skills/git-sync/scripts/agent-wait.sh --request "verify X" --auto-accept` |
 | `agent-hardware.sh` | **读取本机硬件报告**（缺失或过期会提醒让用户跑 `hardware.ps1`） | `bash skills/git-sync/scripts/agent-hardware.sh` |
 | `agent-recover.sh` | 沙箱 `.git` 被重置回基线提交后，保住工作区恢复历史 | `bash skills/git-sync/scripts/agent-recover.sh` |
 | `agent-pr.sh` | 助手侧开 PR / 看 CI（`--dry-run` 只打印） | `bash skills/git-sync/scripts/agent-pr.sh --checks` |
@@ -59,6 +59,8 @@ description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件
 | `gate.yml` | GitHub Actions：push 后自动跑 gate（`agent-install.sh --gha` 安装；agent 令牌若没有 workflows 权限，就由本机侧复制后 push） |
 | `new-session-prompt.md` | **新会话引导提示词模板**：整段复制到任何新 Arena 对话，一条命令装好本技能，并附本机步骤与双向验收清单 |
 | `local_check.ps1` | **本机自检模板**（装到 `code\local_check.ps1`，只建不覆盖）：默认跑 gate + 留好扩展点（文件存在性/Office COM/GPU 冒烟测试等），是 `watch.ps1` 在 agent 请求检查时实际执行的东西 |
+| `local-runner.md` | **本机即 Runner 配方**：把自动验证循环当远程任务执行器用（任务在真实本机环境跑、产物自动回传、`--auto-accept` 自动收尾），含两个实战案例 |
+| `health.yml` | GitHub Actions **每日体检**：握手卡死 / 硬件报告过期自动开 issue 提醒（注意：定时任务只跑默认分支，启用时把文件放 main 并改 `BRANCH`；agent 令牌无 workflows 权限时由本机复制启用） |
 | `../VERSION` | 技能版本号；`doctor.ps1` 与安装器会显示，升级对账用 |
 
 ## 2. 配置：`sync.config.json`
@@ -172,6 +174,15 @@ Arena（agent）                                本机（watch.ps1 计划任务�
   过了且满意 → --accept（循环收尾）
   败了 → 修复 → agent-sync.sh → --request（round+1，再来一轮）
 ```
+
+最快的一条命令版（工作 → 验证 → 自动收尾）：
+
+```bash
+bash skills/git-sync/scripts/agent-wait.sh --request "验证X" --auto-accept
+```
+
+把这个循环**当远程任务执行器用**（任务在你真实机器上跑、产物自动回传）的完整配方
+见 `templates/local-runner.md`——AgentArena 的"真实本机环境 runner"整合就是这个模式。
 
 启用（每台机器一次）：
 

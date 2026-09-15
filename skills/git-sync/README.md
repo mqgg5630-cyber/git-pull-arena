@@ -33,6 +33,7 @@ bash skills/git-sync/scripts/agent-sync.sh --status        # 只看状态，不�
 bash skills/git-sync/scripts/agent-hardware.sh             # 读本机硬件报告（超 30 天提醒重跑）
 bash skills/git-sync/scripts/agent-check.sh --request "验证X"  # 请求本机自动检查（自动验证循环）
 bash skills/git-sync/scripts/agent-wait.sh --request "验证X"   # 请求 + 原地等结果（一轮对话内闭环）
+bash skills/git-sync/scripts/agent-wait.sh --request "X" --auto-accept   # 通过即自动收尾
 bash skills/git-sync/scripts/agent-check.sh --read         # 读本机检查结果（0=过/2=败/3=等）
 bash skills/git-sync/scripts/agent-check.sh --accept       # 通过且满意 → 收尾，循环不再触发
 bash skills/git-sync/scripts/agent-recover.sh              # 沙箱 .git 被重置后的恢复
@@ -67,6 +68,8 @@ bash skills/git-sync/scripts/agent-pr.sh --checks          # 看 PR 的 CI 状�
 | `templates/gate.yml` | GitHub Actions 模板：push 后自动跑 gate |
 | `templates/new-session-prompt.md` | **新会话引导提示词模板**：整段复制到新 Arena 对话即完成安装与验收 |
 | `templates/local_check.ps1` | **本机自检模板**（装到 `code\local_check.ps1`，只建不覆盖）：默认跑 gate + 扩展点，`watch.ps1` 请求检查时执行的就是它 |
+| `templates/local-runner.md` | **本机即 Runner 配方**：自动验证循环的推广用法——任务在真实本机环境执行、产物自动回传（AgentArena 整合的理论基础） |
+| `templates/health.yml` | GitHub Actions **每日体检**：握手卡死 / 硬件报告过期自动开 issue；定时只跑默认分支，从本机复制到 main 并改 `BRANCH` 启用 |
 
 同步回执：助手每轮 `agent-sync.sh` 会把"纳入了你哪些提交、这轮改了哪些文件"写进配置里
 `receipt` 指定的文件（默认 `results/sync/last_sync.md`），同时把带时间戳的副本归档到
@@ -176,6 +179,9 @@ cd E:\0github\git-sync\<目标仓库>
 - [x] 回执按日期归档（`receipt_history`，自动保留最近 50 份）
 - [x] 本机硬件/环境上报（`hardware.ps1` / `agent-hardware.sh`：GPU/CPU/内存/磁盘/conda/mamba/torch+CUDA）
 - [x] **自动验证循环**（`agent-check.sh --request/--read/--accept` + `watch.ps1` 值守 + `local_check.ps1` 模板）：agent 干完 → 本机自动检查回传 → 直到 agent 满意收尾
+- [x] `agent-wait.sh --auto-accept`：通过即自动收尾（"干完→验证→关闭"一条命令）
+- [x] 本机即 Runner 配方（`templates/local-runner.md`）+ GitHub Actions 每日体检（`templates/health.yml`：握手卡死/硬件过期自动开 issue）
+- [x] 安装器：根目录精简安装（无 skills 夹）的 `sync.config.json` 升级时同样保留（AgentArena 场景）
 - [x] 安装器补漏：`hardware.ps1` / `watch.ps1` 进根目录复制清单（v2.2 漏 hardware，由另一 Arena 会话实战发现）
 - [x] LFS / 大文件体检（>50 MB 提醒）
 
