@@ -65,6 +65,10 @@ git checkout arena/01a0a4f5-git-pull-arena     # 带上 v2.5.0 脚本与新配�
 .\doctor.ps1                                   # 四行都要好看：sync / watcher / heartbeat / auth
 ```
 
+> **round 7 已排好**（2026-09-15）：新分支上的 handshake 是 `awaiting_check/pending`，
+> 本机升级 + 重注册值守后，第一次轮询就会自动跑这轮验收并推回结论；检查项 2a/2b
+> 分别断言"免点击推送"与"零窗口启动器"，所以这一轮就是两条硬要求的机器证明。
+
 验收（两条硬要求）：
 
 * **无弹窗**：`.\watch.ps1 -Status` 的 `mode` 是 `zero-window (launcher exe)`，

@@ -96,8 +96,8 @@ Copy-Item skills\git-sync\templates\gate.yml .github\workflows\gate.yml
 | 2 | 本机 → 助手 | 在 `SYNC_TEST.md` 加一句话 → `.\push.ps1`，助手在远端拉到并确认 | ✅ 2026-09-14 |
 | 3 | 交付物落地 | `.\download.ps1 -Set final`（在 zhongqi 仓库验证） | ✅ 2026-09-14 |
 | 4 | 自动验证循环（单会话） | `agent-wait.sh --request "..." --auto-accept` 一轮内 exit 0；handshake `local_state=passed`、`arena_state=accepted` | ✅ 2026-09-15（round 6） |
-| 5 | **零弹窗值守**（v2.5.0） | `.\watch.ps1 -Register` 自检通过后，值守每 2 分钟轮询**看不到任何窗口**；`.\watch.ps1 -Status` 的 heartbeat 时间在推进 | 待本机确认（升级 v2.5.0 后重注册） |
-| 6 | **免点击推送**（v2.5.0） | `auth.ps1 -Verify` exit 0；值守轮询里 `last_push=ok`，全程没有人点过任何东西 | 待本机确认（跑一次 `auth.ps1 -Setup -Verify`） |
+| 5 | **零弹窗值守**（v2.5.0） | `.\watch.ps1 -Register` 自检通过后，值守每 2 分钟轮询**看不到任何窗口**；`.\watch.ps1 -Status` 的 heartbeat 时间在推进 | ⏳ 已排入 round 7（检查项 2b），本机升级后自动判定 |
+| 6 | **免点击推送**（v2.5.0） | `auth.ps1 -Verify` exit 0；值守轮询里 `last_push=ok`，全程没有人点过任何东西 | ⏳ 已排入 round 7（检查项 2a），本机升级后自动判定 |
 
 > 多会话协作（同仓库多分支 / 汇总会话）实测成本高于收益，**暂时不做**；
 > 需要时按 `skills\git-sync\README.md` 第七节重启。

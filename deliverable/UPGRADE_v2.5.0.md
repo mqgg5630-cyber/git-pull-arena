@@ -113,7 +113,24 @@ git checkout arena/01a0a4f5-git-pull-arena     # 本地有改动就先 git stash
 
 ---
 
-## 五、回退
+## 五、验收轮已经排好（round 7，升级完自动跑）
+
+我在新分支上已经**提前发起了一轮验收请求**（`results/status/handshake.json`：round 7、
+`arena_state=awaiting_check`、`local_state=pending`）。你本机升级完成后：
+
+1. 新的值守第一次轮询（≤2 分钟）看到 pending → 自动 `sync` → 跑 `code/local_check.ps1`；
+2. 这一轮的检查**本身就断言两条硬要求**：
+   * 2a：`auth.ps1 -Verify` 必须实跑通过（prompts 全关下的 `ls-remote` + `push --dry-run`）；
+   * 2b：计划任务的动作必须指向 `watchhost` 启动器（而不是 `powershell.exe`）；
+3. 结论（passed/failed）由值守**免点击**推回分支，我这边 `agent-check.sh --read` 就能看到。
+
+也就是说：**这一轮就是"单个测试成功 + 无弹窗 + 不用手点"的验收**——
+它需要满足"零窗口启动器真的在跑"和"推送真的不需要人"，否则会明确报 2a/2b 哪一项没过。
+
+> 如果你还没升级就看到这轮 waiting：不要紧，请求会一直挂着，升级后第一次轮询就会处理；
+> 我这边读到"超时未响应"只说明"本机还没升级"，不是失败。
+
+## 六、回退
 
 ```powershell
 .\watch.ps1 -Unregister ; .\watch.ps1 -Register -Flash   # 回到"隐藏窗口"模式（每轮闪一下）
