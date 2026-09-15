@@ -137,6 +137,12 @@ with open(path, 'w', encoding='utf-8') as f:
 PY
   MSG="check: request round $NEW_ROUND (awaiting local check)"
 else
+  # seed the file from the REMOTE handshake first: the worktree copy can be
+  # stale (no sync since the request), and accepting on top of it would
+  # clobber the watcher's verdict (local_state / host / local_updated)
+  if [ -n "$HS_OLD" ]; then
+    printf '%s\n' "$HS_OLD" > "$HS_NORM"
+  fi
   python3 - "$HS_NORM" "$NOTE" <<'PY'
 import json, sys, datetime
 path, note = sys.argv[1], sys.argv[2]
