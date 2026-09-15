@@ -1,9 +1,9 @@
 {
-  "round": 6,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "v2.4.0 live: --auto-accept 全自动闭环演示",
-  "arena_updated": "2026-09-15 05:07:35",
-  "local_updated": "2026-09-15 13:04:58"
+  "round": 7,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "v2.5.0 验收（单会话闭环）：本机值守必须零窗口跑完这一轮，并在免点击情况下把结论推回来。检查项：2a auth.ps1 -Verify 实跑通过（prompts 全关）；2b 计划任务的动作指向 watchhost 启动器（不是 powershell.exe）",
+  "arena_updated": "2026-09-15 12:16:53",
+  "local_updated": null
 }
