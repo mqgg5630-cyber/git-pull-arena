@@ -1,9 +1,9 @@
 {
-  "round": 9,
+  "round": 10,
   "arena_state": "awaiting_check",
   "local_state": "pending",
   "host": "",
-  "note": "v2.6.0 验收 round 9：① 免点击推送：auth.ps1 -Verify 退出码 0（ls-remote + push --dry-run 全过；注意公开仓库的 ls-remote 不代表鉴权）② 少/零弹窗值守：watch.ps1 -Register 后 mode 应为 'zero-window loop (launcher exe)'（零闪）或 'loop (one flash per logon)'（每次登录闪一次），heartbeat 每 2 分钟推进。本机顺序：先 .\\auth.ps1 -GhLogin -Verify（唯一一次登录），再 .\\sync.ps1，再 .\\watch.ps1 -Unregister ; .\\watch.ps1 -Register",
-  "arena_updated": "2026-09-15 12:35:19",
+  "note": "v2.6.1 验收 round 10：① 免点击推送 auth.ps1 -Verify 退出码 0（2a）② 值守模式为零闪或每次登录闪一次（2b）。注意本机网络：gh 需走代理时用 auth.ps1 -GhLogin -HttpProxy <url>，或改用 auth.ps1 -Setup -PromptToken 离线入库。顺序：.\\sync.ps1 → .\\auth.ps1 -Setup -Verify → .\\watch.ps1 -Unregister ; .\\watch.ps1 -Register → .\\doctor.ps1",
+  "arena_updated": "2026-09-15 12:44:53",
   "local_updated": null
 }
