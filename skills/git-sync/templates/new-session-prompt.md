@@ -26,6 +26,9 @@ bash skills/git-sync/scripts/agent-sync.sh "feat: install git-sync skill"
 
 3) 装完先读 skills/git-sync/README.md 和 SKILL.md 再开始干活；
    以后每轮工作结束都用第 2 步的命令提交推送，我本机用 .\sync.ps1 拉取。
+   计算/训练类任务，先看 results/hardware/latest.md 了解我的本机硬件
+   （还没有就提醒我在本机跑一次 .\hardware.ps1 -Deep，或运行
+   bash skills/git-sync/scripts/agent-hardware.sh 查看报告与新旧）。
 
 4) 执行完 1、2 两步后，回复我：
    - 本仓库的 GitHub 地址（git remote get-url origin 的结果）

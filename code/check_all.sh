@@ -45,7 +45,7 @@ fi
 
 # ------------------------------------------------- 3. root vs skill scripts
 drift=0
-for f in sync push upload download pack doctor bootstrap pr; do
+for f in sync push upload download pack doctor bootstrap pr hardware; do
     if [ -f "$f.ps1" ] && [ -f "skills/git-sync/scripts/$f.ps1" ]; then
         if ! cmp -s "$f.ps1" "skills/git-sync/scripts/$f.ps1"; then
             echo "[FAIL] $f.ps1 differs from skills/git-sync/scripts/$f.ps1 - copy it over"

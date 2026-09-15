@@ -30,12 +30,13 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 cd "$REPO_ROOT"
 
 CFG="skills/git-sync/sync.config.json"
-BRANCH=""; REMOTE="origin"; GATE="bash code/check_all.sh"; RECEIPT=""
+BRANCH=""; REMOTE="origin"; GATE="bash code/check_all.sh"; RECEIPT=""; RECEIPT_HIST="results/sync/history"
 if [ -f "$CFG" ]; then
   BRANCH="$(python3 -c "import json;print(json.load(open('$CFG',encoding='utf-8')).get('branch',''))" 2>/dev/null || true)"
   REMOTE="$(python3 -c "import json;print(json.load(open('$CFG',encoding='utf-8')).get('remote','origin'))" 2>/dev/null || true)"
   GATE_CFG="$(python3 -c "import json;print(json.load(open('$CFG',encoding='utf-8')).get('gate',''))" 2>/dev/null || true)"
   RECEIPT="$(python3 -c "import json;print(json.load(open('$CFG',encoding='utf-8')).get('receipt',''))" 2>/dev/null || true)"
+  RECEIPT_HIST="$(python3 -c "import json;print(json.load(open('$CFG',encoding='utf-8')).get('receipt_history','results/sync/history'))" 2>/dev/null || true)"
   [ -n "$GATE_CFG" ] && GATE="$GATE_CFG"
 fi
 [ -z "$BRANCH" ] && BRANCH="$(git rev-parse --abbrev-ref HEAD)"
@@ -66,6 +67,9 @@ if [ "$CURRENT" != "$BRANCH" ]; then
 fi
 
 # ---------------------------------------------------------------- 2. fetch
+# a sandbox .git reset often leaves a narrow fetch refspec behind, which hides
+# the remote branch and would silently disable the self-heal below - fix it
+git config "remote.$REMOTE.fetch" "+refs/heads/*:refs/remotes/$REMOTE/*"
 if ! git fetch "$REMOTE" 2>&1 | tail -2; then
   echo "[ERROR] git fetch failed" >&2; exit 3
 fi
@@ -139,6 +143,16 @@ if [ -n "$RECEIPT" ] && { [ -n "$CHANGED" ] || [ -n "$USER_COMMITS" ]; }; then
     echo "> 完整历史：\`git log --oneline -10\`；本机 \`.\\sync.ps1\` 之后即可看到本文件。"
   } > "$RECEIPT_NORM"
   echo "== receipt: $RECEIPT_NORM"
+  # archive a dated copy (config key: receipt_history, empty = off; newest 50 kept)
+  if [ -n "$RECEIPT_HIST" ]; then
+    RECEIPT_HIST_NORM="${RECEIPT_HIST//\\//}"
+    mkdir -p "$RECEIPT_HIST_NORM"
+    HIST_FILE="$RECEIPT_HIST_NORM/$(date -u '+%Y%m%d-%H%M%S').md"
+    cp "$RECEIPT_NORM" "$HIST_FILE"
+    ls -1 "$RECEIPT_HIST_NORM" 2>/dev/null | sort -r | tail -n +51 | \
+      while IFS= read -r old; do rm -f "$RECEIPT_HIST_NORM/$old"; done
+    echo "== archived: $HIST_FILE"
+  fi
 fi
 
 # --------------------------------------------------------- 6. commit + push

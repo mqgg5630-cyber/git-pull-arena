@@ -20,6 +20,7 @@
 .\pack.ps1 -Set final                     # 打包：生成 _export\20260914_2030_final.zip
 .\doctor.ps1                              # 体检：环境 / 分支 / 远端 / 未提交 / stash / 大文件 / 版本
 .\doctor.ps1 -Fix                         # 一键修复：重建 refspec + stash + 切回分支 + 拉取
+.\hardware.ps1 -Deep                      # 采集本机硬件/conda环境报告并推送（每台机器一次；变化后重跑）
 .\pr.ps1                                  # 开 PR：工作分支 -> main（需 GitHub CLI）
 ```
 
@@ -28,6 +29,7 @@
 ```bash
 bash skills/git-sync/scripts/agent-sync.sh "feat: xxx"     # 守卫 + fetch + 自检 + 回执 + commit + push
 bash skills/git-sync/scripts/agent-sync.sh --status        # 只看状态，不动文件
+bash skills/git-sync/scripts/agent-hardware.sh             # 读本机硬件报告（超 30 天提醒重跑）
 bash skills/git-sync/scripts/agent-recover.sh              # 沙箱 .git 被重置后的恢复
 bash skills/git-sync/scripts/agent-pr.sh --dry-run         # 开 PR（--dry-run 只打印）
 bash skills/git-sync/scripts/agent-pr.sh --checks          # 看 PR 的 CI 状态
@@ -45,10 +47,12 @@ bash skills/git-sync/scripts/agent-pr.sh --checks          # 看 PR 的 CI 状�
 | `scripts/download.ps1` | robocopy 镜像下载；`-Set` 选集合，`-Mirror` 完全镜像，`-Since <日期>` 增量，`-Folders a,b` 临时指定目录 |
 | `scripts/pack.ps1` | 压缩包交付；输出到 `_export\`（已在 `.gitignore` 里，不会被推送） |
 | `scripts/doctor.ps1` | 体检报告 + 技能版本 + LFS/大文件检查；`-Fix` 一键修复；ahead/behind 对比的是 `origin/<分支>`（修复了老版本永远显示 0 的 bug） |
+| `scripts/hardware.ps1` | **本机硬件/环境上报**：OS、CPU、内存、GPU（nvidia-smi 优先，含显存/算力/CUDA 驱动）、磁盘、conda/mamba 环境列表与各环境 python，`-Deep` 再探测每个环境的 torch + CUDA；写入 `hardware_dir`（latest.md/latest.json + 历史快照）并推送 |
 | `scripts/bootstrap.ps1` | 首次准备：执行策略、git 身份、fetch、切分支、首拉 |
 | `scripts/pr.ps1` | GitHub CLI 开 PR / 查 CI；`-Base` 换目标分支，`-Checks` 看检查状态 |
 | `scripts/install.ps1` | 装到另一个仓库：`.\install.ps1 -Target C:\MyProject -Branch main`（目标已有配置时只动 branch，其余保留） |
-| `scripts/agent-sync.sh` | 助手侧一键：分支守卫 → fetch → 发散自愈 → gate → **写同步回执** → commit + push |
+| `scripts/agent-sync.sh` | 助手侧一键：分支守卫 → fetch → 发散自愈 → gate → **写同步回执（并按日期归档）** → commit + push |
+| `scripts/agent-hardware.sh` | 助手侧读本机硬件报告；缺失/超 30 天会提示让用户跑 `.\hardware.ps1 -Deep` |
 | `scripts/agent-pr.sh` | 助手侧开 PR / 看 CI |
 | `scripts/agent-recover.sh` | 助手侧修复：`.git` 被重置回基线提交时，保住工作区把 HEAD 挪回分支 |
 | `scripts/agent-install.sh` | **一条命令装进任何仓库**（见第六节） |
@@ -57,7 +61,13 @@ bash skills/git-sync/scripts/agent-pr.sh --checks          # 看 PR 的 CI 状�
 | `templates/new-session-prompt.md` | **新会话引导提示词模板**：整段复制到新 Arena 对话即完成安装与验收 |
 
 同步回执：助手每轮 `agent-sync.sh` 会把"纳入了你哪些提交、这轮改了哪些文件"写进配置里
-`receipt` 指定的文件（默认 `results/sync/last_sync.md`），你 `.\sync.ps1` 之后打开就能看到。
+`receipt` 指定的文件（默认 `results/sync/last_sync.md`），同时把带时间戳的副本归档到
+`receipt_history` 目录（默认 `results/sync/history/`，自动保留最近 50 份），你 `.\sync.ps1`
+之后打开就能看到。
+
+硬件报告：你跑一次 `.\hardware.ps1 -Deep`，agent 之后用 `agent-hardware.sh` 就能看到
+本机 CPU/内存/GPU（型号/显存/算力/CUDA 驱动）/磁盘/conda 与 mamba 环境列表、每个环境的
+python 版本、哪个环境的 torch 能用 CUDA——计算类工作开工前先对表。
 
 ## 三、为什么 `.ps1` 里绝对不能写中文
 
@@ -103,7 +113,8 @@ gate（`code/check_all.sh`）提交前自动扫描全部 `.ps1`，非 ASCII 直�
 | 下载后文件是旧的 | 先 `.\sync.ps1` 再 `.\download.ps1`；只要增量加 `-Since <日期>` |
 | 想下的目录不在集合里 | `.\download.ps1 -Folders <目录1>,<目录2>`，或改进 `download_sets` |
 | robocopy 返回 1—7 | 正常（有文件被复制 / 无变化 / 有额外文件），只有 ≥8 才算失败 |
-| 想看这轮助手到底改了什么 | `.\sync.ps1` 后打开 `results\sync\last_sync.md`（同步回执） |
+| 想看这轮助手到底改了什么 | `.\sync.ps1` 后打开 `results\sync\last_sync.md`（历史回执在 `results\sync\history\`） |
+| Agent 不知道本机算力/该用哪个环境 | 本机 `.\hardware.ps1 -Deep`；agent 侧 `agent-hardware.sh` 读取（超 30 天自动提醒） |
 | **助手侧**工作区正常但历史回到基线提交 | `bash skills/git-sync/scripts/agent-recover.sh` → `agent-sync.sh` |
 
 ## 六、装到别的项目 / 给已装过的仓库升级
@@ -147,10 +158,14 @@ cd E:\0github\git-sync\<目标仓库>
 - [x] 新会话引导提示词模板（`templates/new-session-prompt.md`）
 - [x] `push.ps1 -Gate`：本机侧提交前也跑同一套自检
 - [x] 版本标识（`VERSION`）+ `doctor.ps1` / 安装器显示版本
+- [x] 回执按日期归档（`receipt_history`，自动保留最近 50 份）
+- [x] 本机硬件/环境上报（`hardware.ps1` / `agent-hardware.sh`：GPU/CPU/内存/磁盘/conda/mamba/torch+CUDA）
 - [x] LFS / 大文件体检（>50 MB 提醒）
 
 还想加的（按需）：
 
+- [ ] 实验环境快照：`hardware.ps1 -Deep` 顺带把各环境 `pip freeze` / `conda env export` 存进 `results\hardware\envs\`（复现实验用）
 - [ ] `agent-sync.sh` 自动 `git lfs install` + push 前 `lfs status` 检查（真有大文件时）
-- [ ] 回执归档：每轮按日期留档，不只覆盖最近一轮
+- [ ] 数据集清单与校验和：`dataset-manifest`（目录 + md5 + 大小），换机器核对数据没变
+- [ ] 定时同步：`schedule.ps1` 注册 Windows 计划任务，每小时自动 `.\sync.ps1`
 - [ ] 增量清单进回执（`-Since` 语义写进 `last_sync.md`）

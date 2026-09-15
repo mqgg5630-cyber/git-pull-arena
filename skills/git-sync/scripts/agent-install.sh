@@ -148,6 +148,8 @@ cfg.setdefault('upload_map', {
     '.xlsx': 'results', '.xls': 'results', '.csv': 'results'})
 cfg.setdefault('gate', 'bash code/check_all.sh')
 cfg.setdefault('receipt', 'results/sync/last_sync.md')
+cfg.setdefault('receipt_history', 'results/sync/history')
+cfg.setdefault('hardware_dir', 'results/hardware')
 
 with open(cfg_path, 'w', encoding='utf-8') as f:
     json.dump(cfg, f, ensure_ascii=False, indent=2)
