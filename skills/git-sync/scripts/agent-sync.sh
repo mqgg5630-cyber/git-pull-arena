@@ -97,11 +97,13 @@ if git rev-parse --verify --quiet "$ORIGIN" >/dev/null; then
     echo "!! HEAD and $ORIGIN have diverged (the sandbox .git reset to the baseline commit does this)."
     echo "   keeping the worktree, moving HEAD onto $ORIGIN ..."
     git reset --mixed "$ORIGIN" || { echo "[ERROR] recovery failed" >&2; exit 3; }
+    git ls-files -d | xargs -r git checkout --
   elif git merge-base --is-ancestor HEAD "$ORIGIN" 2>/dev/null; then
     BEHIND="$(git rev-list --count "HEAD..$ORIGIN")"
     if [ "$BEHIND" != "0" ]; then
       echo "!! $BEHIND commit(s) behind $ORIGIN - fast-forwarding"
       git reset --mixed "$ORIGIN" || { echo "[ERROR] fast-forward failed" >&2; exit 3; }
+      git ls-files -d | xargs -r git checkout --
     fi
   fi
 fi

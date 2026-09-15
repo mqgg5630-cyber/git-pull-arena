@@ -20,7 +20,7 @@
 # ASCII-only on purpose (Windows PowerShell 5.1 decodes .ps1 as ANSI/GBK).
 
 param(
-    [int]$Interval = 5,
+    [int]$Interval = 2,
     [string]$Config = '',
     [switch]$Register,
     [switch]$Unregister

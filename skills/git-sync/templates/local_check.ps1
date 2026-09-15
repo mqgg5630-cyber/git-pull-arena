@@ -21,10 +21,11 @@ $fail = 0
 
 # 1. the standard gate (.ps1 ASCII + branch guard + script consistency)
 #    (forward slashes on purpose: this also runs under the scheduled task,
-#     where bash may eat backslashes)
+#     where bash may eat backslashes; Write-Output on purpose: the watcher
+#     captures stdout, and PS 5.1 Write-Host bypasses it)
 if (Test-Path -LiteralPath '.\code\check_all.sh') {
     bash code/check_all.sh
-    if ($LASTEXITCODE -ne 0) { Write-Host '[FAIL] gate failed' -ForegroundColor Red; $fail = 1 }
+    if ($LASTEXITCODE -ne 0) { Write-Output '[FAIL] gate failed'; $fail = 1 }
 }
 
 # 2. example: the deliverable must exist and not be empty
@@ -34,5 +35,5 @@ if (Test-Path -LiteralPath '.\code\check_all.sh') {
 
 # 3. add your own checks here ...
 
-if ($fail -eq 0) { Write-Host '== local checks passed' -ForegroundColor Green }
+if ($fail -eq 0) { Write-Output '== local checks passed' }
 exit $fail

@@ -9,8 +9,8 @@
 #
 # Flow: [--request] -> agent-check.sh --request -> poll the remote handshake
 # every --interval seconds until the local watcher pushes passed/failed (or
-# arena_state=accepted) or --timeout (default 720s = up to 3 polls of a
-# 5-minute watcher) -> print the verdict via agent-check.sh --read.
+# arena_state=accepted) or --timeout (default 600s = up to 3 polls of a
+# 2-minute watcher) -> print the verdict via agent-check.sh --read.
 #
 # Exit codes (same as agent-check.sh --read):
 #     0 passed / accepted      2 failed      3 still pending / timeout
@@ -32,7 +32,7 @@ fi
 HS_NORM="${HANDSHAKE//\\//}"
 ORIGIN="$REMOTE/$BRANCH"
 
-NOTE=""; DO_REQUEST=0; TIMEOUT=720; INTERVAL=30
+NOTE=""; DO_REQUEST=0; TIMEOUT=600; INTERVAL=30
 while [ $# -gt 0 ]; do
   case "$1" in
     --request) DO_REQUEST=1; shift ;;

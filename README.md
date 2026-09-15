@@ -5,6 +5,7 @@
 （本仓库已升级到 v2，安装器 `agent-install.sh` 可以把它一条命令装进任何新仓库）。
 
 - **工作分支**：`arena/01a09fc1-git-pull-arena`（所有脚本只拉/推这个分支；`push.ps1` 直接拒绝 main/master）
+- **连接台账**：所有已连接仓库 × 分支 × 本机路径 × 值守任务，见 [`CONNECTIONS.md`](CONNECTIONS.md)（防忘专用，忘了一条命令就能翻到）
 - **助手侧**：每轮用 `skills/git-sync/scripts/agent-sync.sh` 提交推送——提交前自动跑 `code/check_all.sh` 自检（.ps1 全 ASCII + 配置分支守卫 + 根目录/skill 脚本一致性），提交后把**同步回执**写进 `results/sync/last_sync.md`
 - **双向测试**：已于 2026-09-14 通过（见 `deliverable/SYNC_TEST.md`）
 
@@ -45,7 +46,7 @@ cd git-pull-arena
 .\doctor.ps1                               # 体检；不对劲先跑它
 .\doctor.ps1 -Fix                          # 一键修复：refspec + stash + 切回分支 + 拉取
 .\hardware.ps1 -Deep                       # 采集本机硬件/conda环境报告并推送（每台机器一次；GPU/环境变了重跑）
-.\watch.ps1 -Register                      # 自动验证循环：注册本机值守（每5分钟轮询；-Unregister 摘除）
+.\watch.ps1 -Register                      # 自动验证循环：注册本机值守（每2分钟轮询；-Unregister 摘除）
 .\pr.ps1                                   # 开 PR 到 main（需 GitHub CLI：winget install GitHub.cli）
 ```
 

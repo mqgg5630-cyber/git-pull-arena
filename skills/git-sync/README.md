@@ -21,7 +21,7 @@
 .\doctor.ps1                              # 体检：环境 / 分支 / 远端 / 未提交 / stash / 大文件 / 版本
 .\doctor.ps1 -Fix                         # 一键修复：重建 refspec + stash + 切回分支 + 拉取
 .\hardware.ps1 -Deep                      # 采集本机硬件/conda环境报告并推送（每台机器一次；变化后重跑）
-.\watch.ps1 -Register                     # 自动验证循环：注册本机值守任务（每5分钟；-Interval 10 可改）
+.\watch.ps1 -Register                     # 自动验证循环：注册本机值守任务（每2分钟；-Interval 10 可改）
 .\pr.ps1                                  # 开 PR：工作分支 -> main（需 GitHub CLI）
 ```
 
@@ -77,7 +77,7 @@ bash skills/git-sync/scripts/agent-pr.sh --checks          # 看 PR 的 CI 状�
 本机 CPU/内存/GPU（型号/显存/算力/CUDA 驱动）/磁盘/conda 与 mamba 环境列表、每个环境的
 python 版本、哪个环境的 torch 能用 CUDA——计算类工作开工前先对表。
 
-自动验证循环（v2.3）：本机 `.\watch.ps1 -Register` 一次（计划任务，每 5 分钟轮询）；
+自动验证循环（v2.3）：本机 `.\watch.ps1 -Register` 一次（计划任务，每 2 分钟轮询）；
 之后 agent 每轮完工 `agent-check.sh --request "验证X"` → 你本机**自动** sync → 跑
 `check_cmd`（默认 `code\local_check.ps1`，可改）→ 日志落 `results\status\check_rN_<时间>.txt`
 → 把 passed/failed 推回分支；agent `--read` 读结果（0=过/2=败/3=等），败了修了再来一轮，

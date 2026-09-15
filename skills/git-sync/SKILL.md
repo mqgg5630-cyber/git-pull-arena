@@ -35,7 +35,7 @@ description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件
 | `doctor.ps1` | 体检：环境/分支/远端/落后领先/未提交/stash/LFS/大文件/**技能版本**；**`-Fix` 一键修复** | `.\doctor.ps1 -Fix` |
 | `bootstrap.ps1` | 首次准备：执行策略、git 身份、fetch、切分支、首拉 | `.\bootstrap.ps1` |
 | `hardware.ps1` | **采集本机硬件与环境**（OS/CPU/内存/GPU 显存/磁盘/conda/mamba 环境列表，`-Deep` 探测每个环境的 torch+CUDA）写入 `hardware_dir` 并推送 | `.\hardware.ps1 -Deep` |
-| `watch.ps1` | **自动验证循环的本机侧**：`-Register` 注册计划任务（默认每 5 分钟轮询）；发现 agent 请求检查 → 自动 sync → 跑 `check_cmd` → 日志落盘 → 把 passed/failed 推回分支 | `.\watch.ps1 -Register` |
+| `watch.ps1` | **自动验证循环的本机侧**：`-Register` 注册计划任务（默认每 2 分钟轮询）；发现 agent 请求检查 → 自动 sync → 跑 `check_cmd` → 日志落盘 → 把 passed/failed 推回分支 | `.\watch.ps1 -Register` |
 | `pr.ps1` | 用 GitHub CLI 开 PR（工作分支 → main），`-Checks` 看 CI | `.\pr.ps1` |
 | `install.ps1` | 把整套技能装到另一个仓库（升级时**保留**对方已有配置） | `.\install.ps1 -Target C:\MyProject -Branch arena/xxx` |
 
@@ -162,7 +162,7 @@ git clone --quiet --depth 1 -b arena/01a09fc1-git-pull-arena \
 `handshake` 文件里（`results/status/handshake.json`），一轮一档日志（`results/status/check_rN_<时间>.txt`）。
 
 ```
-Arena（agent）                                本机（watch.ps1 计划任务，每 5 分钟）
+Arena（agent）                                本机（watch.ps1 计划任务，每 2 分钟）
   agent-sync.sh "feat: ..."
   agent-check.sh --request "验证X"   ──推送──>  轮询发现 awaiting_check/pending
                                                 自动 .\sync.ps1 拉取
