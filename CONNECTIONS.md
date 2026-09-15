@@ -16,6 +16,15 @@
 下表作为历史与"随时重启"的说明书保留；今后默认"一会话一仓库"（模式 A）。
 重启方法、命名规则与合并纪律见 `skills\git-sync\README.md` 第七节。
 
+**先做一件事：把搁置会话的本机值守摘掉**（3~4 个任务每 2 分钟各闪一次窗，就是"老是弹窗"的主因）：
+
+```powershell
+cd E:\0github\git-sync\agentarena-w1  ; .\watch.ps1 -Unregister
+cd E:\0github\git-sync\agentarena-w2  ; .\watch.ps1 -Unregister
+cd E:\0github\git-sync\agentarena-int ; .\watch.ps1 -Unregister
+Get-ScheduledTask git-sync-watch-* | Select-Object TaskName, State   # 应只剩 git-sync-watch-git-pull-arena
+```
+
 | 角色 | 分支（均已在远端，技能 v2.4.6；总部 v2.4.7 已发，非紧急） | 本机路径 | 值守任务名 |
 |---|---|---|---|
 | 工作会话 1 | `arena/01a0a3ee-agentarena` | `E:\0github\git-sync\agentarena-w1` | `git-sync-watch-agentarena-w1` |

@@ -130,7 +130,25 @@ git checkout arena/01a0a4f5-git-pull-arena     # 本地有改动就先 git stash
 > 如果你还没升级就看到这轮 waiting：不要紧，请求会一直挂着，升级后第一次轮询就会处理；
 > 我这边读到"超时未响应"只说明"本机还没升级"，不是失败。
 
-## 六、回退
+## 六、顺手清理：摘掉搁置会话的值守（这条最影响"弹窗感"）
+
+以前一个本机文件夹一个值守，AgentArena 那几个（w1 / w2 / int）+ 总部 = **同时 3~4 个计划任务
+每 2 分钟轮询一次**，每个都闪一次窗——这才是"老是弹窗"的主因。多会话既然搁置，
+把它们的值守摘掉（只留总部这一个）：
+
+```powershell
+cd E:\0github\git-sync\agentarena-w1  ; .\watch.ps1 -Unregister
+cd E:\0github\git-sync\agentarena-w2  ; .\watch.ps1 -Unregister
+cd E:\0github\git-sync\agentarena-int ; .\watch.ps1 -Unregister
+
+Get-ScheduledTask git-sync-watch-* | Select-Object TaskName, State   # 核对：应只剩 git-sync-watch-git-pull-arena
+```
+
+（不想删就临时停：`Disable-ScheduledTask -TaskName <名字>`，`Enable-` 恢复。
+AgentArena 远端的三条会话分支 `arena/01a0a3ee-*`、`arena/01a0a3d6-*`、`arena/01a0a3f1-*`
+也可以留着当档案；哪天要重启多会话协作，按 `skills\git-sync\README.md` 第七节再来。）
+
+## 七、回退
 
 ```powershell
 .\watch.ps1 -Unregister ; .\watch.ps1 -Register -Flash   # 回到"隐藏窗口"模式（每轮闪一下）
