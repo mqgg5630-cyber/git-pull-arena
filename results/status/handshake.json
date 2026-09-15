@@ -1,9 +1,9 @@
 {
-  "round": 4,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "live round 4: 验证检查日志随裁决入库",
-  "arena_updated": "2026-09-15 02:53:47",
-  "local_updated": null
+    "round":  4,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "live round 4: 验证检查日志随裁决入库",
+    "arena_updated":  "2026-09-15 02:53:47",
+    "local_updated":  "2026-09-15 10:54:59"
 }
