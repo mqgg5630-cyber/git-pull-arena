@@ -1,7 +1,9 @@
-﻿{
-  "round": 1,
+{
+  "round": 2,
   "arena_state": "awaiting_check",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "真机验证：值守自动回传"
+  "local_state": "pending",
+  "host": "",
+  "note": "live round 2: 验证 BOM 修复后的完整自动闭环",
+  "arena_updated": "2026-09-15 02:40:35",
+  "local_updated": null
 }
