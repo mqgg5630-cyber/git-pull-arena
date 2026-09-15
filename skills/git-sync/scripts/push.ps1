@@ -115,15 +115,38 @@ function GitOut([string[]]$a) {
     return @{ code = $LASTEXITCODE; text = (($out | Out-String).TrimEnd()) }
 }
 function Test-AuthFailure([string]$text) {
-    return [bool]($text -match 'Authentication failed|could not read Username|could not read Password|terminal prompts disabled|Permission denied \(publickey\)|403 Forbidden|Invalid username or (password|token)|Support for password authentication was removed|repository not found|fatal: Authentication')
+    # the exact wording differs per helper; keep every variant that has been
+    # seen in the field ("Cannot prompt because user interactivity has been
+    # disabled." is GCM 2.x with GCM_INTERACTIVE=never)
+    $patterns = @(
+        'Could not read from remote repository',
+        'could not read Username',
+        'could not read Password',
+        'terminal prompts disabled',
+        'Cannot prompt because user interactivity',
+        'interactivity has been disabled',
+        'Authentication failed',
+        'Invalid username or (password|token)',
+        'Support for password authentication was removed',
+        'Permission denied \(publickey\)',
+        '403 Forbidden',
+        'Repository not found',
+        'fatal: Authentication',
+        'GCM_INTERACTIVE'
+    )
+    foreach ($p in $patterns) { if ($text -match $p) { return $true } }
+    return $false
 }
 function Show-AuthHelp {
     Write-Host ""
     Write-Host "[AUTH] git could not get a credential WITHOUT asking (silent mode)." -ForegroundColor Red
+    Write-Host "       (this is the same thing the watcher sees - it can never click anything)" -ForegroundColor DarkGray
     Write-Host "       fix it once, then pushes never pop a window again:" -ForegroundColor Yellow
     Write-Host "         .\auth.ps1 -Setup      # GitHub CLI > Git Credential Manager (dpapi)" -ForegroundColor Yellow
     Write-Host "         .\auth.ps1 -Verify     # prove it with prompts disabled" -ForegroundColor Yellow
-    Write-Host "       or answer the login window ONCE with:  .\push.ps1 -Prompt \"msg\"" -ForegroundColor Yellow
+    Write-Host "       or do ONE interactive login (then it never asks again):" -ForegroundColor Yellow
+    Write-Host "         gh auth login                          # device code, no window to click" -ForegroundColor Yellow
+    Write-Host "         .\push.ps1 -Prompt \"msg\"               # or let the login window appear once" -ForegroundColor Yellow
     Write-Host "       (the watcher cannot show a window at all - it needs the silent path)" -ForegroundColor Yellow
 }
 

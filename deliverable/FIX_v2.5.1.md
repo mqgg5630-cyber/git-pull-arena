@@ -88,13 +88,18 @@ Git Credential Manager 的默认存储是 **Windows 凭据管理器（wincredman
 interactivity has been disabled` 就是它）。v2.5.1 起所有外部命令都通过
 `cmd /c "... 2>&1"` 走，输出干净、退出码可靠。
 
-### 顺手加的两道闸（都是"静默失败"类问题）
+### 顺手加的几道闸（都是"静默失败"类问题）
 
 * `watch.ps1 -Register` 现在**预检环境**：git / bash / powershell 的真实路径会打印出来，
   并记进心跳（你的 git 是 `E:\hermes\git\...` 这种自定义安装，计划任务的 PATH 不一定有它，
   早发现早好）；缺 git 直接拒绝注册，缺 bash 会警告（gate 需要它）。
 * `local_check.ps1` 不再允许 gate "空转通过"：bash 不在 PATH、或 gate 没有任何输出，
   一律判 FAIL（而不是沿用上一次的退出码）。
+* `push.ps1` 的认证失败识别补齐了 GCM 的真实措辞（`Cannot prompt because user
+  interactivity has been disabled.` 这类），遇到就 exit 4 + 打印一次性登录的三种做法，
+  而不是当成"网络/分支问题"重试。
+* gate 的解释器按 `python3` → `python` 回退（Windows/conda 常常只有 `python`），
+  免得整条自检因为"没有 python3"而失败或空跑。
 
 ---
 
