@@ -1,9 +1,9 @@
-{
-  "round": 2,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "live round 2: 验证 BOM 修复后的完整自动闭环",
-  "arena_updated": "2026-09-15 02:40:35",
-  "local_updated": null
+﻿{
+    "round":  2,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "live round 2: 楠岃瘉 BOM 淇鍚庣殑瀹屾暣鑷姩闂幆",
+    "arena_updated":  "2026-09-15 02:40:35",
+    "local_updated":  "2026-09-15 10:44:59"
 }
