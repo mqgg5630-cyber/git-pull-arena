@@ -1,9 +1,9 @@
 {
-  "round": 7,
+  "round": 8,
   "arena_state": "awaiting_check",
   "local_state": "pending",
   "host": "",
-  "note": "v2.5.0 验收（单会话闭环）：本机值守必须零窗口跑完这一轮，并在免点击情况下把结论推回来。检查项：2a auth.ps1 -Verify 实跑通过（prompts 全关）；2b 计划任务的动作指向 watchhost 启动器（不是 powershell.exe）",
-  "arena_updated": "2026-09-15 12:16:53",
+  "note": "v2.5.1 验收（单会话闭环）round 8：本机值守必须零窗口跑完这一轮并以免点击方式推回结论。检查项 2a= auth.ps1 -Verify 在 prompts 全关下实跑通过；2b= 计划任务动作指向 watchhost 启动器（非 powershell.exe）。注意：本机需先 .\\sync.ps1 取到 v2.5.1（v2.5.0 的 watch.ps1 在此机器上解析失败、auth.ps1 会误改 credentialStore）",
+  "arena_updated": "2026-09-15 12:26:58",
   "local_updated": null
 }
