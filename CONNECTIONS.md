@@ -1,6 +1,6 @@
 # 连接台账 —— Arena 仓库 × 分支 × 本机路径（防忘专用）
 
-> 更新：2026-09-15 ｜ 技能版本：v2.4.6 ｜ 本文件在 `E:\0github\git-sync\git-pull-arena\CONNECTIONS.md`
+> 更新：2026-09-15 ｜ 技能版本：v2.4.7 ｜ 本文件在 `E:\0github\git-sync\git-pull-arena\CONNECTIONS.md`
 > 忘了的时候：`cd E:\0github\git-sync\git-pull-arena` 然后 `notepad CONNECTIONS.md`
 
 ## 一、当前所有连接
@@ -14,13 +14,13 @@
 
 **AgentArena 多会话布局（两工作 + 一汇总，2026-09-15 确认版）**：
 
-| 角色 | 分支（均已在远端，技能 v2.4.5） | 本机路径 | 值守任务名 |
+| 角色 | 分支（均已在远端，技能 v2.4.6；总部 v2.4.7 已发，非紧急） | 本机路径 | 值守任务名 |
 |---|---|---|---|
 | 工作会话 1 | `arena/01a0a3ee-agentarena` | `E:\0github\git-sync\agentarena-w1` | `git-sync-watch-agentarena-w1` |
 | 工作会话 2（已自发写工作报告） | `arena/01a0a3d6-agentarena` | `E:\0github\git-sync\agentarena-w2` | `git-sync-watch-agentarena-w2` |
 | 汇总会话（release manager） | `arena/01a0a3f1-agentarena` | `E:\0github\git-sync\agentarena-int` | `git-sync-watch-agentarena-int` |
 | 汇总状态文件 | 工作方 `results/status/work-report.md`；汇中方 `results/status/integration.md` | — | — |
-| （旧，可清理） | `arena/01a0a356-agentarena`、`arena/01a0a3d5-agentarena` | `E:\0github\git-sync\agentarena`（旧克隆） | `git-sync-watch-agentarena`（建议暂停） |
+| （旧，已清理 2026-09-15） | `arena/01a0a356-agentarena`（由 3f1 并入零丢失后删）、`arena/01a0a3d5-agentarena`（无独有交付物，删） | `E:\0github\git-sync\agentarena`（旧克隆，可删可留） | 已 Unregister |
 
 ## 二、日常命令速查（在任何已连接仓库的本机路径里）
 
@@ -37,6 +37,8 @@
 
 ```powershell
 .\watch.ps1 -Register -Interval 2   # 注册值守（每 2 分钟轮询；v2.3.4 起默认就是 2）
+.\watch.ps1 -Register -Interval 10  # 降频：闪窗减 5 倍（代价：请求最多等 10 分钟才被消化）
+.\watch.ps1 -Register -Headless     # 零窗口（S4U）——必须"以管理员身份运行"的 PowerShell；push 停摆就回退重注册
 .\watch.ps1                         # 手动跑一轮（立即处理 pending 的请求）
 .\watch.ps1 -Unregister             # 摘除值守
 Get-ScheduledTask git-sync-watch-*  # 看本机注册了哪些值守
@@ -61,6 +63,8 @@ git clone --quiet --depth 1 -b arena/01a09fc1-git-pull-arena \
 | 在 main 上提交时把未跟踪文件误扫进去（main 没有 .gitignore） | 修正：`git checkout <工作分支> -- .gitignore` 随下一次 main 提交带上；skills/ 模板只在工作分支上，跨分支取文件用 `git checkout <工作分支> -- <路径>`，不要 copy；清残留目录用 `git rm -r -f`（暂存改动会挡住不带 -f 的 rm，然后被 add -A 又提交回去） |
 | 值守 12 分钟没响应（那边第 5 轮遇到过） | 本机手动 `.\watch.ps1` 跑一轮；`del $env:TEMP\git-sync-watch-*.lock`；`Get-ScheduledTaskInfo <任务名>` 看上次运行 |
 | 值守推送卡住等同意 | 通常是凭据管理器在计划任务里要交互确认：手动 `.\watch.ps1` 一轮即可完成推送 |
+| S4U/-Headless 报"拒绝访问 0x80070005" | 改任务 Principal 必须管理员权限：用"以管理员身份运行"的 PowerShell 重跑同一条命令；回退 Interactive 同样要在管理员窗口做 |
+| 检查日志只有头部几行、exit 0 疑似空转 | v2.4.7 起日志带 `elapsed:` 行 + 空输出显式标记；elapsed≈0 且本该有产出 → check_cmd 链没真跑（w1 实战：powershell -File 链空转，改 `bash code/local_check.sh` 原生链修复） |
 | agent 说读不到你的检查结果 | 大概率是 BOM/编码，v2.3.2 已修——确认那边技能 ≥ v2.3.2 |
 | 本地改动"消失" | 在 stash 里：`git stash list` → `git stash pop` |
 
@@ -77,3 +81,5 @@ git clone --quiet --depth 1 -b arena/01a09fc1-git-pull-arena \
 - 2026-09-15：v2.3.5（值守锁 30 分钟过期自愈——进程硬崩后锁残留会让值守永久停摆）
 - 2026-09-15：AgentArena 会话开工即验收通过（round 1 accepted `2bcc53b`：文档在位 + npm 冒烟；local-runner 设计文档落仓）
 - 2026-09-15：v2.4.0（`agent-wait --auto-accept` / 本机即 Runner 配方 / health.yml 每日体检 / 安装器保留根目录配置）
+- 2026-09-15：v2.4.4→v2.4.6（wscript+vbs 隐形启动器实战判死：Win11 弃用 VBScript，值守全线静默停摆、LastTaskResult 0 假象 → 回退 `powershell -WindowStyle Hidden` + `-Headless` S4U 实验项）；恢复命令执行后**值守首次全自动闭环**——w2 round 3 请求 30 秒自动判定回推（`f6c74bf`）、w1 round 2 39 秒、3f1 回归 92 秒，全程无人碰机器
+- 2026-09-15：v2.4.7（实测吸收：S4U 注册/切换需管理员控制台 0x80070005；检查日志加 `elapsed:` 行 + 空输出显式标记——w1 的 check_cmd 链空转、轮轮假通过的教训）；356/3d5 旧分支已由 3f1 清理
