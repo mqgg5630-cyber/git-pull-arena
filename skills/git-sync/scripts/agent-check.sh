@@ -104,6 +104,14 @@ HS_OLD="$(hs_from_origin)"
 [ -n "$HS_OLD" ] && round_prev="$(json_get "$HS_OLD" round)"
 [ -z "$round_prev" ] && round_prev=0
 
+# align HEAD with the remote first: the watcher may have pushed its verdict
+# since our last sync, and committing on a stale HEAD gets the push rejected
+# (worktree is kept; phantom deletions from the reset are restored)
+if ! git merge-base --is-ancestor "$ORIGIN" HEAD 2>/dev/null; then
+  git reset --mixed "$ORIGIN" || { echo "[ERROR] cannot align with $ORIGIN" >&2; exit 1; }
+  git ls-files -d | xargs -r git checkout --
+fi
+
 mkdir -p "$(dirname "$HS_NORM")"
 if [ "$ACTION" = "request" ]; then
   NEW_ROUND=$((round_prev + 1))
@@ -159,7 +167,7 @@ fi
 
 if [ "$ACTION" = "request" ]; then
   echo ""
-  echo "== the local watcher will pick this up on its next poll (default 5 min)."
+  echo "== the local watcher will pick this up on its next poll (default 2 min)."
   echo "   read the verdict later with: agent-check.sh --read"
 else
   echo ""
