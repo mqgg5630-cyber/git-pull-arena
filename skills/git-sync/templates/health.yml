@@ -19,7 +19,8 @@
 #   git checkout main
 #   mkdir -Force .github\workflows
 #   git checkout <working-branch> -- skills/git-sync/templates/health.yml .gitignore
-#   move skills\git-sync\templates\health.yml .github\workflows\health.yml
+#   Copy-Item skills\git-sync\templates\health.yml .github\workflows\health.yml -Force
+#   git rm -r --quiet skills        # (only if a previous attempt left it on main)
 #   notepad .github\workflows\health.yml        # set BRANCH, save
 #   git add -A; git commit -m "ci: sync-health"; git push origin main
 #   git checkout <working branch>               # back to work
