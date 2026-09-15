@@ -1,9 +1,9 @@
 {
-  "round": 4,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "live round 4: 验证检查日志随裁决入库",
-  "arena_updated": "2026-09-15 02:57:12",
-  "local_updated": "2026-09-15 10:54:59"
+  "round": 5,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "v2.3.5 cadence test: 验证 2 分钟值守节奏端到端闭环",
+  "arena_updated": "2026-09-15 04:24:25",
+  "local_updated": null
 }
