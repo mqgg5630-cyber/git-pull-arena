@@ -6,6 +6,15 @@
 > 仓库根目录放着同款脚本（`sync.ps1 / push.ps1 / upload.ps1 / download.ps1 / doctor.ps1 / pack.ps1 / bootstrap.ps1 / pr.ps1 / hardware.ps1 / watch.ps1 / auth.ps1`），
 > 这份 skill 是**通用版 + 说明书**。
 >
+> **v2.6.0（值守改成"一次登录一个常驻进程"）**：注册的任务跑 `watch.ps1 -Loop`，
+> 一个进程内部每 N 分钟轮询到底——所以 **flash 模式下也只在你登录系统时闪一次**
+> （以前是每 2 分钟一次，720 次/天）；默认仍优先用零窗口启动器，且**注册前先对启动器做冒烟测试**
+> （失败的诊断会直接打印任务结果 + host 日志）；新增 keeper 心跳触发器（每 30 分钟，
+> 进程死了才拉起，活着不动）；`-Status` 增加"循环是否活着 / 心跳年龄"；`auth.ps1` 新增
+> **`-GhLogin`**（一条命令完成那唯一一次交互登录，并自动 setup-git）与"公开仓库的 ls-remote
+> 不能证明鉴权"的明确提示；`push.ps1 -Prompt` 会显式打开交互（对付机器级
+> `credential.interactive=false`）。**升级技能后要重注册值守**，常驻进程才会用上新代码。
+>
 > **v2.5.1**：`auth.ps1 -Setup` 改为**先探测、只在必要时才改配置**（v2.5.0 会在有好凭据的机器上把
 > `credentialStore` 改成 dpapi，等于把原来 Windows 凭据管理器里的登录"藏起来"——实测踩到）；
 > 新增 `-MigrateStore`（把凭据**复制**一份到 dpapi，给 S4U/-Headless 用）；
@@ -70,7 +79,7 @@ bash skills/git-sync/scripts/agent-pr.sh --checks          # 看 PR 的 CI 状�
 | `scripts/pack.ps1` | 压缩包交付；输出到 `_export\`（已在 `.gitignore` 里，不会被推送） |
 | `scripts/doctor.ps1` | 体检报告 + 技能版本 + LFS/大文件检查 + **值守/心跳/凭据三行**（watcher / heartbeat / auth）；`-Fix` 一键修复；ahead/behind 对比的是 `origin/<分支>`（修复了老版本永远显示 0 的 bug） |
 | `scripts/hardware.ps1` | **本机硬件/环境上报**：OS、CPU、内存、GPU（nvidia-smi 优先，含显存/算力/CUDA 驱动）、磁盘、conda/mamba 环境列表与各环境 python，`-Deep` 再探测每个环境的 torch + CUDA；写入 `hardware_dir`（latest.md/latest.json + 历史快照）并推送 |
-| `scripts/watch.ps1` | **自动验证循环本机侧**：`-Register` 注册计划任务（默认 2 分钟轮询；**默认零窗口启动器**，注册后自检"真的跑了一次"，编译失败自动回退 `-Flash`），发现 agent 的检查请求就自动 sync → 跑 `check_cmd`（带硬超时）→ 日志落盘 → 静默推回 passed/failed；`-Status` 看值守心跳、`-Test` 立刻验证、`-Pause/-Resume/-Unregister` 管理 |
+| `scripts/watch.ps1` | **自动验证循环本机侧**：`-Register` 注册计划任务跑**常驻循环**（`-Loop`，一个进程内部轮询；零窗口启动器优先、冒烟测试失败自动回退 `-Flash`=每次登录一次闪窗；keeper 心跳每 30 分钟保活），发现 agent 请求就 sync → 跑 `check_cmd`（硬超时）→ 日志落盘 → 静默推回 passed/failed；`-Status`（模式/心跳年龄/pid 存活）、`-Test`、`-Pause/-Resume/-Unregister` |
 | `scripts/bootstrap.ps1` | 首次准备：执行策略、git 身份、fetch、切分支、首拉 |
 | `scripts/pr.ps1` | GitHub CLI 开 PR / 查 CI；`-Base` 换目标分支，`-Checks` 看检查状态 |
 | `scripts/auth.ps1` | **免点击推送**：`-Setup`（**先探测现有配置，能静默拿到凭据就什么都不改**；否则 gh CLI 优先，再退到 GCM，并逐个 store 找已有凭据）/ `-Verify`（prompts 关闭下实跑 `ls-remote` + `push --dry-run`）/ `-MigrateStore`（复制凭据到 dpapi，给 S4U/-Headless 用）/ `-Token`·`-TokenFile`·`-PromptToken`（无浏览器播种令牌，永不回显）/ `-Json`（给 doctor、gate、agent 读）/ `-Unset` |
@@ -162,7 +171,8 @@ gate（`code/check_all.sh`）提交前自动扫描全部 `.ps1`，非 ASCII 直�
 | 计划任务报 `Disabled` / 心跳文件不存在 | 任务被 `-Pause` 过或从未成功注册：`.\watch.ps1 -Unregister` → `.\watch.ps1 -Register`；`-Status` 的 heartbeat 才可信 |
 | 值守推送一直不成功（agent 说"还在等"） | `.\watch.ps1 -Status` 看心跳与 `last_push`；`auth: no silent credential` 就是没配凭据，跑 `.\auth.ps1 -Setup` |
 | 值守好像没在跑（计划任务显示正常） | `.\watch.ps1 -Test`（立刻跑一次并等心跳）；`Get-ScheduledTaskInfo <任务名>` 的 LastTaskResult 不可信（v2.4.4 就是这么被骗的） |
-| 值守每 2 分钟闪一下黑窗 | 升级到 v2.5.0 后重注册：`.\watch.ps1 -Unregister` → `.\watch.ps1 -Register`（默认零窗口；`-Flash` 才是旧的闪窗模式） |
+| 值守闪黑窗 | v2.6.0 起是常驻循环：`-Register` 首选零窗口启动器（0 闪），回退 `-Flash` 也只是**每次登录闪一次**。升级后务必重注册：`.\watch.ps1 -Unregister` → `.\watch.ps1 -Register` |
+| 启动器自检失败（`no heartbeat`） | 现在会直接打印任务结果 + `%LOCALAPPDATA%\git-sync\watch-*.log` 尾部；把这段发我即可定位。临时用 `-Register -Flash`（每次登录一次闪窗）或管理员 `-Register -Headless`（零窗口，但需要 gh 助手） |
 | 单轮检查被判 failed 且写了 `TIMEOUT` | 检查超过 `check_timeout_min`（默认 30 分钟）被强杀；长任务请调大它并把 `lock_stale_min` 一起调大 |
 | `Updates were rejected`（远端有新提交） | 先 `.\sync.ps1`，再 `.\push.ps1` |
 | `pull --ff-only` 失败（本地有分叉提交） | `.\doctor.ps1` 看状态；或 `.\doctor.ps1 -Fix` |

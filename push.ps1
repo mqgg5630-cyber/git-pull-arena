@@ -101,6 +101,15 @@ if ($noPrompt) {
     $env:GIT_ASKPASS = ''
     $env:SSH_ASKPASS = ''
     $script:GP = @('-c', 'credential.interactive=false', '-c', 'core.askpass=')
+} else {
+    # -Prompt: make interactivity EXPLICIT. A machine-level
+    # credential.interactive=false (some helpers write it) would otherwise
+    # silently keep the login window away and the push would just fail.
+    Remove-Item Env:GIT_TERMINAL_PROMPT -ErrorAction SilentlyContinue
+    Remove-Item Env:GCM_INTERACTIVE -ErrorAction SilentlyContinue
+    Remove-Item Env:GH_PROMPT_DISABLED -ErrorAction SilentlyContinue
+    $script:GP = @('-c', 'credential.interactive=true')
+    Write-Host "== note: this run may open a login window once - it stores the credential" -ForegroundColor Yellow
 }
 
 # explicit argument arrays on purpose: no parameter-name guessing in the calls

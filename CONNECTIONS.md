@@ -1,6 +1,6 @@
 # 连接台账 —— Arena 仓库 × 分支 × 本机路径（防忘专用）
 
-> 更新：2026-09-15（v2.5.1：auth 改为"先探测再动手" + watch 的 `$var:` 解析陷阱修复 + gate 新增扫描器：零弹窗值守 + 免点击推送；多会话协作搁置）｜ 技能版本：v2.5.1 ｜ 本文件在 `E:\0github\git-sync\git-pull-arena\CONNECTIONS.md`
+> 更新：2026-09-15（v2.6.0：值守=常驻循环（每次登录最多闪一次）+ 启动器冒烟测试 + keeper 保活；auth 新增 -GhLogin：auth 改为"先探测再动手" + watch 的 `$var:` 解析陷阱修复 + gate 新增扫描器：零弹窗值守 + 免点击推送；多会话协作搁置）｜ 技能版本：v2.6.0 ｜ 本文件在 `E:\0github\git-sync\git-pull-arena\CONNECTIONS.md`
 > 忘了的时候：`cd E:\0github\git-sync\git-pull-arena` 然后 `notepad CONNECTIONS.md`
 
 ## 一、当前所有连接
@@ -129,6 +129,7 @@ git clone --quiet --depth 1 -b arena/01a0a4f5-git-pull-arena \
 - 2026-09-15：AgentArena 会话开工即验收通过（round 1 accepted `2bcc53b`：文档在位 + npm 冒烟；local-runner 设计文档落仓）
 - 2026-09-15：v2.4.0（`agent-wait --auto-accept` / 本机即 Runner 配方 / health.yml 每日体检 / 安装器保留根目录配置）
 - 2026-09-15：v2.4.4→v2.4.6（wscript+vbs 隐形启动器实战判死：Win11 弃用 VBScript，值守全线静默停摆、LastTaskResult 0 假象 → 回退 `powershell -WindowStyle Hidden` + `-Headless` S4U 实验项）；恢复命令执行后**值守首次全自动闭环**——w2 round 3 请求 30 秒自动判定回推（`f6c74bf`）、w1 round 2 39 秒、3f1 回归 92 秒，全程无人碰机器
+- 2026-09-15：**v2.6.0**（实测定位：本机 GCM 从未存过凭据=推送必然要人点，必须登录一次（`auth.ps1 -GhLogin` 一条命令，gh 令牌放自己配置里，session 0 也能读）；值守改为**常驻循环**——flash 模式也只每次登录闪一次，替代每 2 分钟闪一次；注册前对启动器做冒烟测试并在失败时打印任务结果+host 日志；keeper 触发器每 30 分钟保活；`-Status` 报告循环存活/心跳年龄；`push.ps1 -Prompt` 显式开交互；`auth.ps1` 说明"公开仓库 ls-remote 不代表鉴权"）
 - 2026-09-15：**v2.5.1**（实测修复：`auth.ps1` 改为"先探测、只在必要时改"，并会 unset 误设的 `credentialStore`；新增 `-MigrateStore`；`watch.ps1` 的 `$var:` 盘符陷阱根治 + 注册环境预检（git/bash/powershell 路径入心跳）；`local_check.ps1` 禁止 gate 空转通过；gate 新增 `code/scan_ps_var_colon.py`）
 - 2026-09-15：**v2.5.0**（零弹窗值守 + 免点击推送：`auth.ps1`（gh/GCM-dpapi + 关闭提示的实跑验证）；`watch.ps1` 默认 GUI 子系统启动器（CreateNoWindow，无管理员、不碰 VBScript）+ 注册自检 + `-Status`/`-Test` + 心跳/日志落 `%LOCALAPPDATA%\git-sync\`+ 检查硬超时；`push.ps1` 默认静默、认证失败 exit 4；gate 增加"每个 .ps1 可解析"；多会话协作搁置）
 - 2026-09-15：v2.4.7（实测吸收：S4U 注册/切换需管理员控制台 0x80070005；检查日志加 `elapsed:` 行 + 空输出显式标记——w1 的 check_cmd 链空转、轮轮假通过的教训）；356/3d5 旧分支已由 3f1 清理

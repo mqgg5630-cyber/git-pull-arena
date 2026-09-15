@@ -27,6 +27,8 @@
 #     .\auth.ps1 -Setup -TokenFile C:\secrets\gh_pat.txt
 #     .\auth.ps1 -MigrateStore        # copy the credential into dpapi (needed for
 #                                     #   .\watch.ps1 -Register -Headless / S4U)
+#     .\auth.ps1 -GhLogin             # do the ONE interactive login for you
+#                                     #   (gh device code -> gh becomes the helper)
 #     .\auth.ps1 -Json -Verify        # machine readable (doctor + the local check read this)
 #     .\auth.ps1 -Unset               # undo what -Setup changed (keeps credentials)
 #
@@ -42,6 +44,7 @@ param(
     [switch]$Json,
     [switch]$Unset,
     [switch]$MigrateStore,
+    [switch]$GhLogin,
     [switch]$PreferDpapi,
     [switch]$SkipVerify,
     [string]$Store = '',
@@ -258,6 +261,52 @@ if ($Unset) {
     exit 0
 }
 
+# ---------------------------------------------------------------- gh login
+if ($GhLogin) {
+    if ($Json) {
+        Write-Host '[ERROR] -GhLogin is interactive and cannot be combined with -Json' -ForegroundColor Red
+        exit 1
+    }
+    if (-not $ghVer) {
+        Bad 'gh is not installed - install it (winget install GitHub.cli) or use -PromptToken'
+        exit 1
+    }
+    Say '== auth.ps1 -GhLogin : the ONE interactive step (device code / browser)' 'Cyan'
+    Note "host: $hostName   protocol: https"
+    Note 'if it asks, choose: GitHub.com -> HTTPS -> Login with a web browser'
+    Write-Host ''
+    # run gh DIRECTLY (not captured): it prints a one-time code the user must
+    # read, so its output has to stay visible on screen
+    & gh auth login --hostname $hostName --git-protocol https --web
+    $glCode = $LASTEXITCODE
+    if ($glCode -ne 0) {
+        Warn "gh auth login exited with $glCode"
+        Note 'you can also run it yourself:  gh auth login'
+    } else {
+        Ok 'gh login finished'
+    }
+    $ghState = 'unknown'
+    $st = RunExe 'gh' @('auth', 'status', '--hostname', $hostName)
+    if ($st.code -eq 0) {
+        $ghState = 'logged in'
+        if     ($st.text -match '(?m)account\s+(\S+)') { $ghUser = $Matches[1] }
+        elseif ($st.text -match '(?m)as\s+(\S+)')      { $ghUser = $Matches[1] }
+        $rr = RunExe 'gh' @('auth', 'setup-git', '--hostname', $hostName)
+        if ($rr.code -eq 0) {
+            Ok "gh is now git's credential helper for $hostName (no prompt, works in session 0 too)"
+            $null = $changed.Add("credential.https://$hostName.helper = gh")
+        } else {
+            Warn "gh auth setup-git failed: $(Brief $rr.text 2)"
+        }
+    } else {
+        Bad 'gh still reports "not logged in" - rerun it by hand:  gh auth login'
+    }
+    Say ''
+    # fall through: the verify block below runs when -Verify is also given
+    $Setup = $true
+    $probe = Invoke-CredProbe ''
+}
+
 # ------------------------------------------------------------------- setup
 $migrated = ''
 if ($Setup) {
@@ -450,7 +499,10 @@ if ($Verify -or ($Setup -and -not $SkipVerify)) {
     } else {
         $r1 = GitG @('ls-remote', '--heads', $Remote)
         if ($r1.code -eq 0) {
-            $lsState = 'passed'; Ok "git ls-remote $Remote : passed (read access, no prompt)"
+            $lsState = 'passed'
+            Ok "git ls-remote $Remote : passed (read access, no prompt)"
+            Note 'a PUBLIC repo answers anonymous reads, so this line alone does not prove auth -'
+            Note 'the push dry-run below is the one that counts' 
         } else {
             $lsState = 'failed'; $lsText = Brief $r1.text 3
             Bad "git ls-remote $Remote : failed - $lsText"

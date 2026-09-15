@@ -158,8 +158,10 @@ if ($t) {
     $tn = Get-ScheduledTaskInfo -TaskName $taskName -ErrorAction SilentlyContinue
     if ($tn) { $line += " | last run: $($tn.LastRunTime) | result: $($tn.LastTaskResult)" }
     Line 'watcher' $line
-    if ($tn -and $tn.LastTaskResult -ne 0) {
-        Write-Host "               last run failed - check .\watch.ps1 -Status and $env:LOCALAPPDATA\git-sync\watch-$leaf.log" -ForegroundColor Yellow
+    # 267009 / 0x41301 = the task is RUNNING - which is exactly what the
+    # long-lived loop mode wants, so it must not look like a failure
+    if ($tn -and $tn.LastTaskResult -ne 0 -and $tn.LastTaskResult -ne 267009) {
+        Write-Host "               last run did not finish cleanly - check .\watch.ps1 -Status and $env:LOCALAPPDATA\git-sync\watch-$leaf.log" -ForegroundColor Yellow
     }
 } else {
     Line 'watcher' 'not registered - run .\watch.ps1 -Register (auto-verification is OFF)' 'Yellow'
