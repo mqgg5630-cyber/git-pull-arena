@@ -1,9 +1,9 @@
-﻿{
-    "round":  2,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "live round 2: 楠岃瘉 BOM 淇鍚庣殑瀹屾暣鑷姩闂幆",
-    "arena_updated":  "2026-09-15 02:40:35",
-    "local_updated":  "2026-09-15 10:44:59"
+{
+  "round": 2,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "live round 2: 楠岃瘉 BOM 淇鍚庣殑瀹屾暣鑷姩闂幆",
+  "arena_updated": "2026-09-15 02:46:38",
+  "local_updated": "2026-09-15 10:44:59"
 }
