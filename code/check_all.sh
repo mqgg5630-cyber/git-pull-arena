@@ -12,6 +12,8 @@
 #   4. every .ps1 must PARSE (PowerShell's own parser, when PowerShell is on
 #      PATH) - an unbalanced brace survives the ASCII check but breaks at
 #      runtime, and the watcher would then fail every round silently.
+#   (3b. no drive-style "$var:" typos; 3c. every watcher poll exit must record
+#    a closing summary line - see code/check_loop_summary.py)
 #
 # Exit 0 = ok, 1 = failed.
 
@@ -82,7 +84,7 @@ fi
 
 # ------------------------------------------------- 3. root vs skill scripts
 drift=0
-for f in sync push upload download pack doctor bootstrap pr hardware watch auth; do
+for f in sync push upload download pack doctor bootstrap pr hardware watch auth install; do
     if [ -f "skills/git-sync/scripts/$f.ps1" ]; then
         if [ ! -f "$f.ps1" ]; then
             echo "[FAIL] $f.ps1 is missing at the repo root (the skill ships it)"
@@ -120,6 +122,39 @@ elif $PY "$SCANNER"; then
     echo "OK: no drive-style variable typos (\$var:)"
 else
     fail=1
+fi
+
+# ------------------------ 3c. does every poll exit print a closing line?
+# A poll that returns without recording a closing line leaves the watcher
+# console sitting on whatever the previous round printed, which reads as
+# "stuck" (field question 2026-09-16). watch.ps1 v2.6.8 therefore sets
+# $script:PollSummary on EVERY exit of Invoke-PollRound / Invoke-PollOnce and
+# the loop / manual poll print it. This check keeps that rule from rotting the
+# next time somebody adds a `return`.
+LOOPCHK=""
+for cand in code/check_loop_summary.py skills/git-sync/templates/check_loop_summary.py; do
+    if [ -f "$cand" ]; then LOOPCHK="$cand"; break; fi
+done
+WATCHSRC=""
+for cand in watch.ps1 skills/git-sync/scripts/watch.ps1; do
+    if [ -f "$cand" ]; then WATCHSRC="$cand"; break; fi
+done
+if [ -z "$LOOPCHK" ]; then
+    echo "SKIP: check_loop_summary.py not present in this repo"
+elif [ -z "$WATCHSRC" ]; then
+    echo "SKIP: no watch.ps1 to check for closing lines"
+elif [ -z "$PY" ]; then
+    echo "SKIP: no python on PATH - watcher closing-line check skipped"
+elif ! $PY -c 'import sys; sys.exit(0)' >/dev/null 2>&1; then
+    echo "SKIP: $PY is not a working python - watcher closing-line check skipped here"
+    echo "      (it still runs in the agent sandbox before every push)"
+else
+    loopOut=$($PY "$LOOPCHK" "$WATCHSRC" 2>&1)
+    loopCode=$?
+    echo "$loopOut"
+    if [ $loopCode -ne 0 ]; then
+        fail=1
+    fi
 fi
 
 # ------------------------------------------------- 4. does every .ps1 parse?

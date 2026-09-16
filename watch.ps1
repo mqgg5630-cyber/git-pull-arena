@@ -181,7 +181,10 @@ function Add-Log {
 function Get-LogTail {
     param([int]$Lines = 12)
     if (-not (Test-Path -LiteralPath $hostLog)) { return @() }
-    return @(Get-Content -LiteralPath $hostLog -Tail $Lines -ErrorAction SilentlyContinue)
+    # Add-Log writes UTF-8 without BOM. Reading it back with the default
+    # (ANSI/GBK on a Chinese Windows) turned a Chinese user name or note into
+    # mojibake in "-Status", so the tail must be read as UTF-8 explicitly.
+    return @(Get-Content -LiteralPath $hostLog -Tail $Lines -Encoding UTF8 -ErrorAction SilentlyContinue)
 }
 
 # ------------------------------------------------------- launcher (no window)
@@ -302,11 +305,29 @@ function Resolve-ToolPath {
 }
 
 function Get-PowerShellExe {
+    # Prefer a 64-bit PowerShell, in this order:
+    #   1. pwsh (PowerShell 7+) is respected exactly as it is - it is its own
+    #      product and never WOW64-redirected in a way we should second-guess
+    #   2. from a 32-BIT process, %WINDIR%\System32 is redirected by WOW64 to
+    #      SysWOW64, so the 64-bit powershell.exe is only reachable through
+    #      SysNative. A 32-bit watcher silently produced 32-bit children (and
+    #      32-bit git-bash could not see some paths) - hence the explicit hop.
+    #   3. System32 (already 64-bit when this process is 64-bit)
+    #   4. only then fall back to whatever this process itself is
     $cand = $null
     try { $cand = (Get-Process -Id $PID).Path } catch { }
-    if ($cand -and ($cand -match 'powershell\.exe$' -or $cand -match 'pwsh\.exe$')) { return $cand }
-    $sys = Join-Path $env:WINDIR 'System32\WindowsPowerShell\v1.0\powershell.exe'
-    if (Test-Path -LiteralPath $sys) { return $sys }
+    if ($cand -and $cand -match 'pwsh\.exe$') { return $cand }
+    $is32 = $false
+    try { $is32 = -not [Environment]::Is64BitProcess } catch { }
+    if ($is32 -and $env:WINDIR) {
+        $native = Join-Path $env:WINDIR 'SysNative\WindowsPowerShell\v1.0\powershell.exe'
+        if (Test-Path -LiteralPath $native) { return $native }
+    }
+    if ($env:WINDIR) {
+        $sys = Join-Path $env:WINDIR 'System32\WindowsPowerShell\v1.0\powershell.exe'
+        if (Test-Path -LiteralPath $sys) { return $sys }
+    }
+    if ($cand -and $cand -match 'powershell\.exe$') { return $cand }
     return 'powershell.exe'
 }
 
@@ -518,20 +539,56 @@ function Wait-ForRun {
     return $null
 }
 
+# Scheduled-task result codes that are NORMAL for a long-lived loop. Anything
+# outside this list is worth a warning; anything inside it is not a failure.
+#   0            completed
+#   267009       0x41301  the task is running right now (the loop never exits)
+#   267011       0x41303  the task has never run yet (just registered)
+#   267014       0x41306  terminated by the user (-Pause / -Unregister)
+#   2147946720   0x800710E0 the operator or administrator has refused the
+#                request - i.e. an instance is already running, which is
+#                exactly what the keeper trigger produces every 10 min
+$script:NormalTaskResults = @(0, 267009, 267011, 267014, 2147946720)
+
+function Get-TaskResultNote {
+    param($Code)
+    $n = 0
+    try { $n = [int64]$Code } catch { return '' }
+    switch ($n) {
+        0          { return 'completed' }
+        267009     { return 'still RUNNING (0x41301) - normal, the loop never exits' }
+        267011     { return 'has never run yet (0x41303) - just registered' }
+        267014     { return 'terminated by the user (0x41306) - -Pause / -Unregister' }
+        2147946720 { return 'launch refused (0x800710E0) - an instance is already running; normal with the keeper trigger' }
+        default    { return '' }
+    }
+}
+
+function Test-TaskResultNormal {
+    param($Code)
+    $n = -1
+    try { $n = [int64]$Code } catch { return $false }
+    return ($script:NormalTaskResults -contains $n)
+}
+
 function Test-ProxyHint {
     $gp = ''
     try { $gp = ((git config --get http.proxy 2>$null | Out-String).Trim()) } catch { }
     if (-not $gp) { try { $gp = ((git config --get https.proxy 2>$null | Out-String).Trim()) } catch { } }
     if ($gp -and -not $env:HTTPS_PROXY) {
-        Write-Host ("   hint: git uses proxy $gp but HTTPS_PROXY is not set -") -ForegroundColor Yellow
-        Write-Host "         gh and other tools will NOT use it:  $env:HTTPS_PROXY = '$gp'" -ForegroundColor Yellow
+        Write-Host ("   hint: git uses proxy $gp but HTTPS_PROXY is not set - gh will NOT use it.") -ForegroundColor Yellow
+        Write-Host '         copy this line into a NEW cmd/PowerShell window, then reopen the window:' -ForegroundColor Yellow
+        Write-Host ('         setx HTTPS_PROXY "' + $gp + '"') -ForegroundColor Yellow
     }
 }
 
 function Show-TaskDiagnostics {
     $ti = Get-TaskInfo
     if ($ti -and $ti.info) {
-        Write-Host ("     task: last run {0} | result {1} | next {2}" -f $ti.info.LastRunTime, $ti.info.LastTaskResult, $ti.info.NextRunTime) -ForegroundColor DarkGray
+        $note = Get-TaskResultNote $ti.info.LastTaskResult
+        $shown = [string]$ti.info.LastTaskResult
+        if ($note) { $shown = $shown + ' (' + $note + ')' }
+        Write-Host ("     task: last run {0} | result {1} | next {2}" -f $ti.info.LastRunTime, $shown, $ti.info.NextRunTime) -ForegroundColor DarkGray
     }
     if (Test-Path -LiteralPath $hostLog) {
         Write-Host "     host log (tail):" -ForegroundColor DarkGray
@@ -582,7 +639,14 @@ if ($Status) {
         try { $state = [string]$ti.task.State } catch { }
         Write-Host ("   scheduled   : {0} | mode: {1}" -f $state, (Get-TaskMode $ti.task))
         if ($ti.info) {
-            Write-Host ("   last run    : {0} | schedule result: {1}" -f $ti.info.LastRunTime, $ti.info.LastTaskResult)
+            $note = Get-TaskResultNote $ti.info.LastTaskResult
+            $shown = [string]$ti.info.LastTaskResult
+            if ($note) { $shown = $shown + ' = ' + $note }
+            Write-Host ("   last run    : {0} | schedule result: {1}" -f $ti.info.LastRunTime, $shown)
+            if (-not (Test-TaskResultNormal $ti.info.LastTaskResult)) {
+                Write-Host "                 ^ not one of the normal codes (0 / 267009 / 267011 / 267014 / 2147946720)" -ForegroundColor Yellow
+                Write-Host "                   read the host log tail below before re-registering" -ForegroundColor Yellow
+            }
             Write-Host ("   next keeper : {0}" -f $ti.info.NextRunTime)
         }
     }
@@ -890,6 +954,11 @@ if ($Register -or $Unregister) {
 # leave a stale lock behind (which would stall the watcher until it expires).
 function Invoke-PollRound {
     $pollStart = Get-Date
+    # Every exit of this function MUST leave a closing line in
+    # $script:PollSummary; the loop and the manual poll both print it, so a
+    # round can never end in silence (that silence is what made the console
+    # look frozen on its last line). code/check_loop_summary.* enforces this.
+    $script:PollSummary = ''
     try {
         Set-State @{ last_run = $pollStart.ToString('yyyy-MM-dd HH:mm:ss'); last_action = 'poll'; host = $env:COMPUTERNAME; pid = $PID }
         Add-Log "poll start (pid $PID)"
@@ -904,7 +973,12 @@ function Invoke-PollRound {
         try { [Console]::OutputEncoding = New-Object System.Text.UTF8Encoding($false) } catch { }
         $raw = git show "$Remote/$Branch`:$hsGit" 2>$null
         try { [Console]::OutputEncoding = $prevEnc } catch { }
-        if (-not $raw) { Add-Log 'no handshake yet - idle'; Set-State @{ last_action = 'idle'; last_note = 'no handshake' }; return 0 }
+        if (-not $raw) {
+            Add-Log 'no handshake yet - idle'
+            Set-State @{ last_action = 'idle'; last_note = 'no handshake' }
+            $script:PollSummary = ("== idle - no handshake file yet on {0}/{1}" -f $Remote, $Branch)
+            return 0
+        }
         $hs = (($raw -join "`n") | ConvertFrom-Json)
 
         # SELF-HEAL: if a verdict commit from an earlier round never made it to
@@ -928,6 +1002,7 @@ function Invoke-PollRound {
         if ($hs.arena_state -ne 'awaiting_check' -or $hs.local_state -ne 'pending') {
             Add-Log ("idle (arena={0} local={1})" -f $hs.arena_state, $hs.local_state)
             Set-State @{ last_action = 'idle'; last_note = ("arena={0} local={1}" -f $hs.arena_state, $hs.local_state); last_round = [int]$hs.round }
+            $script:PollSummary = ("== idle - no check requested (arena={0} local={1})" -f $hs.arena_state, $hs.local_state)
             return 0
         }
 
@@ -941,9 +1016,9 @@ function Invoke-PollRound {
         $global:LASTEXITCODE = 0
         & $sync
         if ($LASTEXITCODE -ne 0) {
-            Write-Host "[ERROR] sync failed - retrying next poll" -ForegroundColor Red
             Add-Log "round ${round}: sync FAILED (exit $LASTEXITCODE)"
             Set-State @{ last_action = 'error'; last_note = 'sync failed' }
+            $script:PollSummary = ("== round {0}: sync FAILED - will retry next poll" -f $round)
             return 1
         }
 
@@ -961,9 +1036,9 @@ function Invoke-PollRound {
             try {
                 $hsRemote = (($rawRemote -join "`n") | ConvertFrom-Json)
                 if ($hsRemote.round -eq $round -and $hsRemote.local_state -ne 'pending') {
-                    Write-Host ("== round {0} was already answered elsewhere ({1}) - nothing to do" -f $round, $hsRemote.local_state) -ForegroundColor Yellow
                     Add-Log "round ${round} already answered remotely ($($hsRemote.local_state)) - skipping"
                     Set-State @{ last_action = 'skipped'; last_note = 'round already answered elsewhere'; last_round = $round }
+                    $script:PollSummary = ("== round {0} was already answered elsewhere - nothing to do" -f $round)
                     return 0
                 }
             } catch { }
@@ -1100,13 +1175,18 @@ function Invoke-PollRound {
         }
         if ($pushed) {
             Set-State @{ last_action = 'push'; last_push = 'ok'; last_push_detail = ''; last_round = $round }
-            Write-Host "== verdict pushed back to $Remote/$Branch" -ForegroundColor Green
+            $script:PollSummary = ("== round {0} checked ({1}) - verdict pushed back to {2}/{3}" -f $round, $verdict, $Remote, $Branch)
             return 0
         }
         Set-State @{ last_action = 'push'; last_push = $pushNote; last_push_detail = $pushDetail; last_round = $round }
-        Write-Host "== [WARN] verdict NOT pushed ($pushNote) - the agent keeps waiting" -ForegroundColor Red
+        $script:PollSummary = ("== round {0} checked ({1}) but the verdict was NOT pushed ({2})" -f $round, $verdict, $pushNote)
         return 1
     } finally {
+        # safety net: an unexpected throw must still leave a closing line, so
+        # the caller never prints an empty summary
+        if (-not $script:PollSummary) {
+            $script:PollSummary = "== poll ended without a recorded outcome - see $hostLog"
+        }
         Add-Log ("poll took {0}s" -f [int]((Get-Date) - $pollStart).TotalSeconds)
     }
 }
@@ -1125,7 +1205,10 @@ function Invoke-PollOnce {
             } else { $skip = $true }
         } catch { $skip = $true }
     }
-    if ($skip) { return 0 }
+    if ($skip) {
+        $script:PollSummary = '== another poll is still running (lock held) - skipped this tick'
+        return 0
+    }
 
     Set-Content -LiteralPath $lockFile -Value (Get-Date).ToString('s')
     $code = 1
@@ -1133,13 +1216,24 @@ function Invoke-PollOnce {
         $code = Invoke-PollRound
     } catch {
         Add-Log "poll crashed: $($_.Exception.Message)"
-        Write-Host "[ERROR] poll crashed: $($_.Exception.Message)" -ForegroundColor Red
         Set-State @{ last_action = 'error'; last_note = ("poll crashed: " + $_.Exception.Message) }
+        $script:PollSummary = ("== poll CRASHED: {0} - the next tick retries" -f $_.Exception.Message)
         $code = 1
     } finally {
         Remove-Item -LiteralPath $lockFile -Force -ErrorAction SilentlyContinue
     }
     return $code
+}
+
+# Print + log the closing line the poll recorded. The loop and the manual poll
+# both go through here, so a round can never end in silence and the line is
+# never printed twice (the exits themselves only RECORD it).
+function Show-PollSummary {
+    param([bool]$ToHost = $true)
+    $sum = [string]$script:PollSummary
+    if (-not $sum.Trim()) { $sum = '== poll ended without a recorded outcome' }
+    if ($ToHost) { Write-Host $sum }
+    Add-Log $sum
 }
 
 if ($Loop) {
@@ -1195,9 +1289,13 @@ if ($Loop) {
     }
     try {
         while ($true) {
+            $script:PollSummary = ''
             $null = Invoke-PollOnce
+            # 1) what this tick concluded, 2) when the next one is - always
+            #    both, to the console (when there is one) and to the host log
+            Show-PollSummary $attached
             $next = (Get-Date).AddSeconds($Interval * 60)
-            $line = "== idle - next poll at {0} (Ctrl+C stops this loop)" -f $next.ToString('HH:mm:ss')
+            $line = "== next poll at {0} (Ctrl+C stops this loop)" -f $next.ToString('HH:mm:ss')
             if ($attached) { Write-Host $line -ForegroundColor DarkGray }
             Add-Log $line
             Start-Sleep -Seconds ($Interval * 60)
@@ -1207,5 +1305,14 @@ if ($Loop) {
         Add-Log "loop exit (pid $PID)"
     }
 } else {
-    exit (Invoke-PollOnce)
+    # manual single poll (.\watch.ps1 with no -Loop): the same closing line the
+    # loop prints, then an explicit end marker - a bare return to the prompt
+    # looked like a crash / a hang
+    $script:PollSummary = ''
+    $code = Invoke-PollOnce
+    Show-PollSummary $true
+    $line = "== finished at {0} (manual poll; the scheduled loop keeps running)" -f (Get-Date).ToString('HH:mm:ss')
+    Write-Host $line
+    Add-Log $line
+    exit $code
 }

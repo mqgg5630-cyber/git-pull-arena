@@ -1,12 +1,22 @@
-> 当前版本 **v2.6.7**（已发布到 `main`，PR #1；发行说明 `deliverable/RELEASE_v2.6.7.md`）。
+> 当前版本 **v2.6.8**（开发分支，**待真机复验**；已核实证据与复验清单 `deliverable/CASE_STUDY_v2.6.7.md`）。`main` 上是 **v2.6.7**（PR #1；发行说明 `deliverable/RELEASE_v2.6.7.md`）。
 
 # 本地 ↔ Agent 同步 skill —— 使用说明
 
 > 目标是：**取、传、下载、打包、排障各一个命令**，不需要 git 知识；
 > 一份配置（`sync.config.json`）驱动全部脚本，`agent-install.sh` 一条命令装进任何新仓库
 > （新会话引导提示词在 `templates/new-session-prompt.md`，整段复制即用）。
-> 仓库根目录放着同款脚本（`sync.ps1 / push.ps1 / upload.ps1 / download.ps1 / doctor.ps1 / pack.ps1 / bootstrap.ps1 / pr.ps1 / hardware.ps1 / watch.ps1 / auth.ps1`），
-> 这份 skill 是**通用版 + 说明书**。
+> 仓库根目录放着同款脚本（`sync.ps1 / push.ps1 / upload.ps1 / download.ps1 / doctor.ps1 / pack.ps1 / bootstrap.ps1 / pr.ps1 / hardware.ps1 / watch.ps1 / auth.ps1 / install.ps1`），
+> 这份 skill 是**通用版 + 说明书**；根目录副本必须与 `scripts\` 下的**逐字节相同**（`code/check_all.sh` 第 3 节会卡）。
+>
+> **v2.6.8（值守"每轮都要有收尾行"）**：`watch.ps1` 的 `Invoke-PollRound`（6 个出口）与
+> `Invoke-PollOnce`（锁被占 / 崩溃，2 个出口）现在**每个出口都设置 `$script:PollSummary`**，
+> 循环与手动单轮都把它打印出来（手动单轮再补一行 `== finished at ...`），所以窗口不会再停在
+> 上一轮的旧行上看着像卡死。这条规则由 `code/check_loop_summary.py`（闸门 §3c）与
+> `code/check_loop_summary.ps1`（本机检查项 2c）**静态盯住**：删掉任意一条赋值，闸门 exit 1。
+> 另外 `Get-PowerShellExe` 优先 64 位（32 位进程走 `SysNative`）；`-Status` 的 host log 尾部按
+> UTF-8 读（修中文乱码），并给计划任务结果码加人话注释（`0 / 267009 / 267011 / 267014 /
+> 2147946720=0x800710E0` 都是正常码，`doctor.ps1` 同步不再误报），代理提示改成可直接照抄的
+> `setx HTTPS_PROXY "..."`；安装/升级的两块照抄命令见 `templates/install-one-liner.md`。
 >
 > **v2.6.1（网络/代理）**：`auth.ps1` 自动读取 `git config http.proxy` 并套用给 gh
 > （实测常见病：git 走代理能通、gh 只认 `HTTPS_PROXY` 于是超时），新增 `-HttpProxy`；

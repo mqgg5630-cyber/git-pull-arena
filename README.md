@@ -2,15 +2,40 @@
 
 这个仓库验证一条完整链路：**Arena 会话分支（GitHub 远端）⇄ 你的 Windows 本机**。
 同步工具就是 [zhongqi 仓库 arena 分支](https://github.com/mqgg5630-cyber/zhongqi/tree/arena%2F01a09d79-zhongqi) 沉淀的 `skills/git-sync` 技能
-（本仓库已升级到 **v2.6.7**，并**已发布到 `main`**：零弹窗值守 + 免点击推送；安装器 `agent-install.sh` 可以把它一条命令装进任何新仓库。发行说明见 [`deliverable/RELEASE_v2.6.7.md`](deliverable/RELEASE_v2.6.7.md)）。
+（本仓库 `main` 上是 **v2.6.7**（已发布）：零弹窗值守 + 免点击推送；开发分支上已有 **v2.6.8**（值守每个出口都有收尾行 + 64 位 shell 优先 + `-Status` 结果码人话解释，**待真机复验**，证据与复验清单见 [`deliverable/CASE_STUDY_v2.6.7.md`](deliverable/CASE_STUDY_v2.6.7.md)）。安装器 `agent-install.sh` 可以把它一条命令装进任何新仓库。发行说明见 [`deliverable/RELEASE_v2.6.7.md`](deliverable/RELEASE_v2.6.7.md)）。
 
 - **工作分支**：`arena/01a0a4f5-git-pull-arena`（所有脚本只拉/推这个分支；`push.ps1` 直接拒绝 main/master）
 - **两条硬要求（v2.5.0 起是默认行为；v2.6.7 真机验收通过）**：① 值守**零弹窗**（默认编译 GUI 子系统启动器，Task Scheduler 不再闪黑窗）；② 推送**免点击**（`auth.ps1` 一次配好，`push.ps1` 默认静默模式，拿不到凭据快速失败并告诉你怎么修）
 - **只用单会话闭环**：多会话并行/汇总会话（模式 B/C）**暂时搁置**（2026-09-15 决定）；本仓库就是"一会话一仓库"的样板
 - **连接台账**：所有已连接仓库 × 分支 × 本机路径 × 值守任务，见 [`CONNECTIONS.md`](CONNECTIONS.md)（防忘专用，忘了一条命令就能翻到）
 - **助手侧**：每轮用 `skills/git-sync/scripts/agent-sync.sh` 提交推送——提交前自动跑 `code/check_all.sh` 自检（.ps1 全 ASCII + 配置分支守卫 + 根目录/skill 脚本一致性），提交后把**同步回执**写进 `results/sync/last_sync.md`
-- **双向测试**：已于 2026-09-14 通过（见 `deliverable/SYNC_TEST.md`）；v2.5.0 的升级与验收清单见 [`deliverable/UPGRADE_v2.5.0.md`](deliverable/UPGRADE_v2.5.0.md)；**当前版本 v2.6.7 的发行说明见 [`deliverable/RELEASE_v2.6.7.md`](deliverable/RELEASE_v2.6.7.md)**
-- **本机要做的（一次）**：`.\sync.ps1` → `.\watch.ps1 -Unregister ; .\watch.ps1 -Register` → `.\watch.ps1 -Status`（升到 v2.6.7 只需这三步；历史修复见 `deliverable/FIX_v2.5.1.md` … `FIX_v2.6.5.md`）
+- **双向测试**：已于 2026-09-14 通过（见 `deliverable/SYNC_TEST.md`）；v2.5.0 的升级与验收清单见 [`deliverable/UPGRADE_v2.5.0.md`](deliverable/UPGRADE_v2.5.0.md)；**`main` 上 v2.6.7 的发行说明见 [`deliverable/RELEASE_v2.6.7.md`](deliverable/RELEASE_v2.6.7.md)；v2.6.8 的已核实证据与待复验清单见 [`deliverable/CASE_STUDY_v2.6.7.md`](deliverable/CASE_STUDY_v2.6.7.md)**
+- **本机要做的（一次）**：`.\sync.ps1` → `.\watch.ps1 -Unregister ; .\watch.ps1 -Register` → `.\watch.ps1 -Status`（升到 v2.6.8 同样只需这三步，完整版见上面「零」节；历史修复见 `deliverable/FIX_v2.5.1.md` … `FIX_v2.6.5.md`）
+
+## 零、最快路径：四行装好 / 三行升级
+
+> 完整版（含 `-Status` 每行的期望值、代理机器额外一步、装到别的项目）见
+> [`skills/git-sync/templates/install-one-liner.md`](skills/git-sync/templates/install-one-liner.md)。
+
+**新机器 —— 四行安装块：**
+
+```powershell
+cd E:\0github\git-sync                                                            # 1) 放仓库的父目录
+git clone -b arena/01a0a4f5-git-pull-arena https://github.com/mqgg5630-cyber/git-pull-arena.git   # 2) 克隆工作分支
+.\bootstrap.ps1 -Auto                                                              # 3) 策略/身份/切分支 + 免点击推送 + 注册值守
+.\doctor.ps1                                                                       # 4) 体检：三行都应是好消息
+```
+
+**已装过 —— 三命令升级块：**
+
+```powershell
+cd E:\0github\git-sync\git-pull-arena                                              # 1) 进仓库目录
+.\sync.ps1                                                                         # 2) 拉最新
+.\watch.ps1 -Unregister ; .\watch.ps1 -Register                                     # 3) 重注册值守（顺手清掉旧循环）
+.\watch.ps1 -Status                                                                 #    确认 other loops 为空、last_push: ok
+```
+
+（第 3 步必须重注册：计划任务里写死的是启动命令行，不重注册就还在跑旧版本的启动方式。）
 
 ## 一、本机首次安装（Windows PowerShell，只做一次）
 
@@ -98,6 +123,7 @@ Copy-Item skills\git-sync\templates\gate.yml .github\workflows\gate.yml
 | 4 | 自动验证循环（单会话） | `agent-wait.sh --request "..." --auto-accept` 一轮内 exit 0；handshake `local_state=passed`、`arena_state=accepted` | ✅ 2026-09-15（round 6） |
 | 5 | **零弹窗值守**（v2.5.0→v2.6.5） | 值守**不占用你的控制台**（v2.6.5：循环自我脱离）；`-Status` 显示 `loop process: pid ... (running)`、heartbeat 每 2 分钟推进 | ✅ **round 14 通过**（检查项 2b：常驻循环=每次登录最多闪一次；严格零闪可用 `-Register -Headless`） |
 | 6 | **免点击推送**（v2.5.0→v2.6.5） | `auth.ps1 -Verify` exit 0；值守轮询里 `last_push=ok`，全程没有人点过任何东西 | ✅ **round 14 通过**（检查项 2a：`silent push PROVEN (ls-remote + push --dry-run, prompts disabled)`） |
+| 7 | **每轮都有收尾行**（v2.6.8） | 值守每个出口都打印 `== ...` 收尾行；手动单轮以 `== finished at ...` 结束；闸门 `bash code/check_all.sh` 打印 `OK: loop closing lines covered (6 exit paths, ...)`，检查项 2c 通过 | ⏳ **静态闸门已通过；待真机复验**（见 `deliverable/CASE_STUDY_v2.6.7.md` 第 4、6 节） |
 
 > 多会话协作（同仓库多分支 / 汇总会话）实测成本高于收益，**暂时不做**；
 > 需要时按 `skills\git-sync\README.md` 第七节重启。

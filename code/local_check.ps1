@@ -121,6 +121,29 @@ try {
     $fail = 1
 }
 
+#    2c. every watcher poll exit must record a closing line, so a round can
+#        never end in silence (a silent exit looks like a hung window). This is
+#        the PowerShell twin of the gate check in code/check_all.sh (3c).
+$loopChk = '.\code\check_loop_summary.ps1'
+if (Test-Path -LiteralPath $loopChk) {
+    try {
+        $chkOut = (& $loopChk -WatchPath '.\watch.ps1' 2>&1 | Out-String)
+        $chkCode = $LASTEXITCODE
+        if ($chkOut.Trim()) { Write-Output $chkOut.TrimEnd() }
+        if ($chkCode -eq 0) {
+            Write-Output '== accept 2c: watcher closing lines verified (every exit path has its summary)'
+        } else {
+            Write-Output ('[FAIL] accept 2c: watcher closing-line check failed (exit ' + $chkCode + ')')
+            $fail = 1
+        }
+    } catch {
+        Write-Output ('[FAIL] accept 2c: check_loop_summary.ps1 threw: ' + $_.Exception.Message)
+        $fail = 1
+    }
+} else {
+    Write-Output '[WARN] accept 2c: code\check_loop_summary.ps1 is missing - skipped (upgrade the skill)'
+}
+
 # 3. example: the deliverable must exist and not be empty
 # if (-not (Test-Path '.\deliverable\final.pptx')) {
 #     Write-Host '[FAIL] deliverable\final.pptx missing' -ForegroundColor Red; $fail = 1

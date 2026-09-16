@@ -1,6 +1,6 @@
 # 连接台账 —— Arena 仓库 × 分支 × 本机路径（防忘专用）
 
-> 更新：2026-09-16（**v2.6.7 已发布到 `main`**（PR #1 / `009fb6a`）：免点击推送 + 零弹窗值守**真机验收通过**（round 14/15 passed，值守免点击推回结论））｜ 技能版本：v2.6.7 ｜ 开发分支 `arena/01a0a4f5-git-pull-arena` ｜ 退路 `arena/01a09fc1-git-pull-arena`（v2.4.7）｜ 本文件在 `E:\0github\git-sync\git-pull-arena\CONNECTIONS.md`
+> 更新：2026-09-16（**v2.6.8 在开发分支上，待真机复验**：值守每个出口都有收尾行 + 64 位 shell 优先 + `-Status` 结果码人话解释；证据与复验清单见 `deliverable/CASE_STUDY_v2.6.7.md`。**v2.6.7 已发布到 `main`**（PR #1 / `009fb6a`）：免点击推送 + 零弹窗值守**真机验收通过**（round 14/15 passed，值守免点击推回结论））｜ 技能版本：v2.6.8（开发分支）/ v2.6.7（`main`）｜ 开发分支 `arena/01a0a4f5-git-pull-arena` ｜ 退路 `arena/01a09fc1-git-pull-arena`（v2.4.7）｜ 本文件在 `E:\0github\git-sync\git-pull-arena\CONNECTIONS.md`
 > 忘了的时候：`cd E:\0github\git-sync\git-pull-arena` 然后 `notepad CONNECTIONS.md`
 
 ## 一、当前所有连接
@@ -129,6 +129,7 @@ git clone --quiet --depth 1 -b arena/01a0a4f5-git-pull-arena \
 - 2026-09-15：AgentArena 会话开工即验收通过（round 1 accepted `2bcc53b`：文档在位 + npm 冒烟；local-runner 设计文档落仓）
 - 2026-09-15：v2.4.0（`agent-wait --auto-accept` / 本机即 Runner 配方 / health.yml 每日体检 / 安装器保留根目录配置）
 - 2026-09-15：v2.4.4→v2.4.6（wscript+vbs 隐形启动器实战判死：Win11 弃用 VBScript，值守全线静默停摆、LastTaskResult 0 假象 → 回退 `powershell -WindowStyle Hidden` + `-Headless` S4U 实验项）；恢复命令执行后**值守首次全自动闭环**——w2 round 3 请求 30 秒自动判定回推（`f6c74bf`）、w1 round 2 39 秒、3f1 回归 92 秒，全程无人碰机器
+- 2026-09-16：**v2.6.8**（**待真机复验**。① 值守每个出口都必须留收尾行：`Invoke-PollRound` 6 个出口 + `Invoke-PollOnce` 2 个出口各自设置 `$script:PollSummary`，循环与手动单轮都打印它，手动单轮再以 `== finished at ...` 收尾（不再静默退回提示符）；新增 `code/check_loop_summary.py`（闸门 §3c）+ `code/check_loop_summary.ps1`（accept 2c）**静态**盯住这条规则，删掉任意一条赋值闸门就 exit 1 ② `Get-PowerShellExe` 优先 64 位（32 位进程走 `SysNative`）③ `-Status` 的 host log 尾部按 UTF-8 读（修中文乱码）+ 任务结果码人话注释（0/267009/267011/267014/2147946720=0x800710E0 都是正常码）+ 代理提示改成可照抄的 `setx HTTPS_PROXY "..."` ④ `doctor.ps1` 同步把这些码当正常 ⑤ 新增 `templates/install-one-liner.md` 与 README「零」节的四行安装块/三命令升级块 ⑥ 删掉 `f0d5d1c` 带进来的 0 字节 `code/accept_test.ps1`）
 - 2026-09-16：**v2.6.7**（值守循环拿到可见控制台时打印"这个窗口就是值守"的说明 + 每轮打印 `== idle - next poll at HH:MM:SS`，消除"卡在 verdict pushed back"的误解；round 15 已验证：单轮不再重跑）
 - 2026-09-16：**v2.6.6**（修我自己的两个真 bug：① agent-sync.sh 用过期握手覆盖本地已推回的 passed→pending，害值守重跑同一轮；改为提交前比对、本地侧已答则取远端 ② 旧版本循环无 pid 文件、-Unregister 停不掉 → 循环启动时清理同仓库旧循环，-Status 列出 other loops，-Pause/-Unregister 一并清理（"窗口卡住/刷屏"的根因））
 - 2026-09-16：**v2.6.5**（round 13 **通过**：2a 免点击推送 PROVEN、2b 分级通过，结论自动推回=闭环；"卡住"=值守常驻循环被挂到用户控制台 → 循环自我脱离（隐藏重启）+ 单实例 pid 闸 + -Pause/-Unregister 真停循环；退出码改用 `/v:on` + `!ERRORLEVEL!`（修"闸门失败却报 passed"）；防坑扫描器在 python 不可用时 SKIP）
