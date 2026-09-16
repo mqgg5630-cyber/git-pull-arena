@@ -1,9 +1,9 @@
 {
-    "round":  30,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "verify round 30: the loop should now be fully green on this machine - 4a exit 0, 4b environment=windows deck_slides=12 checker_blocking=0 markers=ok, 4c real PowerPoint open; the machine\u0027s own deck evidence (results/status/pptmaster_local_quality.json + svg/) is already in the repo from round 29",
-    "arena_updated":  "2026-09-16 12:38:59",
-    "local_updated":  "2026-09-16 20:40:26"
+  "round": 30,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-16 12:40:34",
+  "local_updated": "2026-09-16 20:40:26"
 }

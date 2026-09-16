@@ -4,7 +4,7 @@
   "target": "E:\\0github\\git-sync\\ppt-master\\projects\\arena-local-01a0aa00",
   "source_fingerprint": {
     "algorithm": "sha256",
-    "digest": "d18ae89c1c2a4db343b135abe62d870ce9c7248368d23d7fa52f2c0f2e59cbf7",
+    "digest": "07f45babbdbb04313f8b69f055cb318bd157162cd0aa51e625f89a9f56fac0a8",
     "file_count": 12,
     "files": [
       {
@@ -37,7 +37,7 @@
       },
       {
         "file": "08_numbers.svg",
-        "sha256": "e026a3c7c574e26b64dbea58fb8d54b5b7f3ae226106d68ee30f029c152f0824"
+        "sha256": "ff770a853d87a4581fa5acabb403b8af7167872fdd62077f98968571ca575053"
       },
       {
         "file": "09_deliverables.svg",
@@ -53,7 +53,7 @@
       },
       {
         "file": "12_ending.svg",
-        "sha256": "4f402ad02e1251fdadc4137e821f77b04e2f2620c9d143052d7e5e7f23e7528b"
+        "sha256": "a2a1d12587cb5ecdfd4a747d92d98897df79b79668bc20d5d8e4737fe4a175d9"
       }
     ]
   },
@@ -623,7 +623,7 @@
         "tspan_elements": 0
       },
       "passed": true,
-      "source_sha256": "e026a3c7c574e26b64dbea58fb8d54b5b7f3ae226106d68ee30f029c152f0824"
+      "source_sha256": "ff770a853d87a4581fa5acabb403b8af7167872fdd62077f98968571ca575053"
     },
     {
       "file": "09_deliverables.svg",
@@ -859,7 +859,7 @@
         "tspan_elements": 0
       },
       "passed": true,
-      "source_sha256": "4f402ad02e1251fdadc4137e821f77b04e2f2620c9d143052d7e5e7f23e7528b"
+      "source_sha256": "a2a1d12587cb5ecdfd4a747d92d98897df79b79668bc20d5d8e4737fe4a175d9"
     }
   ]
 }
