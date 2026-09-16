@@ -7,10 +7,13 @@
 1. **「与本地打通」= 用户 Windows 上的 git 克隆 + `.\watch.ps1` 计划任务。**
    不是沙箱里建 `local/inbox/`，不是 python `local_bridge`，不是 `copy_to_local()`，
    不是自己写一套 `skills/docx_skill.py`。那些都是假本机。
+   **沙箱里的工具链不受限（v2.8.0 起）**：`pip install` / `.venv` / python-docx / python-pptx
+   随便用——它们只是生成工具。唯一要求是产物**经 git 到本机**、并由**本机值守**回传判定。
+   以前的「禁止 .venv」是把「别拿沙箱冒充本机」错写成了「别装库」，现已改正。
 2. **必须安装的 skills** 只有这一份：
    `https://github.com/mqgg5630-cyber/git-pull-arena` 分支 `arena/01a0a821-git-pull-arena`
    里的 `skills/git-sync`（第 1 节那条 clone 命令）。
-   `arena.ai/agent/01a0a821-...` **不要去打开**（要登录）。技能只在 GitHub。**禁止**用 python 复刻，禁止 `.venv` 冒充本机。
+   `arena.ai/agent/01a0a821-...` **不要去打开**（要登录）。技能只在 GitHub。**禁止**用 python 复刻这套同步技能来冒充它。
 3. **给用户的第一条可见回复必须是第 2 节填好的 PowerShell**（clone 新文件夹 + `bootstrap -Auto`）。
    那段由 `bash skills/git-sync/scripts/agent-handoff.sh` **生成**，助手不得手打（仓库/分支/路径填错
    = 本机永远收不到请求）。在用户还没拿到这段命令之前：不许生成 docx/pptx、不许自循环、

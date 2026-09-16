@@ -1,4 +1,4 @@
-> 当前版本 **v2.7.5**（交接块由 `agent-handoff.sh` 生成，不再手打；闸门新增「配置分支 == HEAD」；pending 超时停止空轮询。含 v2.7.0 解放双手 / v2.6.9 `-Focus`）。`main` 上是 **v2.6.7**。说明 `deliverable/HANDS_FREE_v2.7.0.md`。
+> 当前版本 **v2.8.0**（放开沙箱工具链限制：`pip`/`.venv`/python-docx 随便用，只禁「冒充本机」；安装器不再降级 + 取最新分支；值守每行带时间戳；轮询自适应提速；`.gitattributes` 统一 LF 修 CRLF 假失败）。成功案例 `deliverable/CASE_STUDY_v2.8.0.md`。`main` 上是 **v2.6.7**。
 
 # 本地 ↔ Agent 同步 skill —— 使用说明
 
@@ -12,7 +12,7 @@
 >
 > **v2.7.4（短句仍用 arena.ai，助手自己展开）**：用户不改提示词。`arena.ai/agent/01a0a821` → clone 本仓库；根目录 `01a0a821.md`。禁止向用户索要长命令。
 >
-> **v2.7.3（曾要求用户粘带 GitHub clone 的长提示词）**：沙箱打不开 arena.ai。v2.7.4 起改回：用户继续短句，助手自己 clone GitHub。`.venv` 不是本机。
+> **v2.7.3（曾要求用户粘带 GitHub clone 的长提示词）**：沙箱打不开 arena.ai。v2.7.4 起改回：用户继续短句，助手自己 clone GitHub。（注意：`.venv` 不是本机，但装库本身从 v2.8.0 起不再禁止。）
 >
 > **v2.7.2（先打通本机，禁止假 local/）**：给用户的第一条回复必须是 `git clone` + `.\bootstrap.ps1 -Auto`；沙箱 `local/inbox` / 自制 python skills **不算**打通；自循环只准 `agent-handsfree.sh`。`agent-install.sh` 补拷 `install.ps1`。
 >

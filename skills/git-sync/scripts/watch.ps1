@@ -1265,8 +1265,9 @@ function Invoke-AutoPull {
         Set-State @{ last_auto_pull = "fail exit $code" }
         return $code
     }
-    Add-Log 'auto_pull: ok'
-    Set-State @{ last_auto_pull = 'ok'; last_auto_pull_at = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss') }
+    $nowAp = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss')
+    Add-Log ('auto_pull: ok at ' + $nowAp)
+    Set-State @{ last_auto_pull = 'ok'; last_auto_pull_at = $nowAp }
     return 0
 }
 
@@ -1274,8 +1275,8 @@ function Invoke-AutoPush {
     if (-not $AutoPush) { return 0 }
     $dirty = @(Get-DirtyPaths)
     if ($dirty.Count -eq 0) {
-        Add-Log 'auto_push: clean'
-        Set-State @{ last_auto_push = 'clean' }
+        Add-Log ('auto_push: clean at ' + (Get-Date).ToString('yyyy-MM-dd HH:mm:ss'))
+        Set-State @{ last_auto_push = 'clean'; last_auto_push_at = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss') }
         return 0
     }
     $push = Join-Path $repo 'push.ps1'
@@ -1293,7 +1294,7 @@ function Invoke-AutoPush {
     $code = $LASTEXITCODE
     if ($out.TrimEnd()) { Write-Host $out.TrimEnd() }
     if ($code -eq 0) {
-        Add-Log "auto_push: ok ($msg)"
+        Add-Log ("auto_push: ok at " + (Get-Date).ToString('yyyy-MM-dd HH:mm:ss') + " ($msg)")
         Set-State @{ last_auto_push = 'ok'; last_auto_push_msg = $msg; last_auto_push_at = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss'); last_auto_push_files = $dirty.Count }
         return 0
     }
@@ -1609,6 +1610,9 @@ function Show-PollSummary {
     param([bool]$ToHost = $true)
     $sum = [string]$script:PollSummary
     if (-not $sum.Trim()) { $sum = '== poll ended without a recorded outcome' }
+    # Timestamp every closing line: "did it actually run, and when?" must be
+    # answerable from the window/log alone (user request 2026-09-16).
+    $sum = ('[{0}] {1}' -f (Get-Date -Format 'yyyy-MM-dd HH:mm:ss'), $sum)
     if ($ToHost) { Write-Host $sum }
     Add-Log $sum
 }

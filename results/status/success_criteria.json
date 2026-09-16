@@ -22,7 +22,7 @@
   ],
   "require_contains": {
     "skills/git-sync/VERSION": "2.8.0",
-    "01a0a821.md": "git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena",
+    "01a0a821.md": "git clone --quiet --depth 1 -b arena/01a0a98d-git-pull-arena",
     "skills/git-sync/sync.config.json": "\"hands_free\"",
     "skills/git-sync/templates/one-sentence.md": "agent-handoff.sh",
     "skills/git-sync/scripts/agent-install.sh": "refusing to downgrade",

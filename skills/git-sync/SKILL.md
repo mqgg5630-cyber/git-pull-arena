@@ -1,9 +1,9 @@
 ---
 name: git-local-arena-sync
-description: "TRIGGER: user says 安装https://arena.ai/agent/01a0a821 的skills 与本地打通 (or 安装 arena/01a0a821-git-pull-arena skills). Do NOT open arena.ai (login wall). Immediately: git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena https://github.com/mqgg5630-cyber/git-pull-arena.git /tmp/git-sync-src && bash /tmp/git-sync-src/skills/git-sync/scripts/agent-install.sh && bash skills/git-sync/scripts/agent-sync.sh. Root must have watch.ps1. First user-visible reply MUST be filled Windows PowerShell: git clone -b BRANCH URL NEW_FOLDER then .\bootstrap.ps1 -Auto. Forbidden: python skill, .venv, local/inbox as local. Then do the user task (docx/pptx) and agent-handsfree.sh --timeout auto. Also Windows PowerShell <-> Arena git-sync (sync/push/watch/doctor/auth silent push, zero-window watcher)."
+description: "TRIGGER: user says 安装https://arena.ai/agent/01a0a821 的skills 与本地打通 (or 安装 arena/01a0a821-git-pull-arena skills). Do NOT open arena.ai (login wall). Immediately: git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena https://github.com/mqgg5630-cyber/git-pull-arena.git /tmp/git-sync-src && bash /tmp/git-sync-src/skills/git-sync/scripts/agent-install.sh && bash skills/git-sync/scripts/agent-sync.sh. Root must have watch.ps1. First user-visible reply MUST be filled Windows PowerShell: git clone -b BRANCH URL NEW_FOLDER then .\bootstrap.ps1 -Auto. Forbidden: faking the local side (local/inbox, hand-made stand-in skill). Sandbox may pip install / use .venv freely (v2.8.0). Then do the user task (docx/pptx) and agent-handsfree.sh --timeout auto. Also Windows PowerShell <-> Arena git-sync (sync/push/watch/doctor/auth silent push, zero-window watcher)."
 ---
 
-> 当前版本 **v2.7.5**（交接块由 `agent-handoff.sh` 生成、闸门校验「配置分支 == HEAD」、pending 超时停止空轮询；一句话触发装技能+自循环；`--timeout auto` 值守一回传就停）。开发自 v2.7.0；`main` 上仍是 v2.6.7。
+> 当前版本 **v2.8.0**（沙箱可自由装库；安装器取最新分支且拒绝降级；值守日志带时间戳；轮询自适应；LF 统一）。一句话触发装技能+自循环；`--timeout auto` 值守一回传就停。`main` 上仍是 v2.6.7。
 > 用户侧升级三步：`.\sync.ps1` → `.\watch.ps1 -Unregister ; .\watch.ps1 -Register` → `.\watch.ps1 -Status`（应看到 `hands-free: master=True`）。切回本会话：`.\watch.ps1 -Focus`。
 
 
