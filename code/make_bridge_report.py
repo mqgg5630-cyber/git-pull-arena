@@ -34,6 +34,8 @@ OUT = os.path.join(ROOT, 'deliverable')
 MANIFEST = os.path.join(OUT, 'OFFICE_HASHES.json')
 DOCX = os.path.join(OUT, 'BRIDGE_01a0aa00_v2.8.1.docx')
 PPTX = os.path.join(OUT, 'BRIDGE_01a0aa00_v2.8.1.pptx')
+GUIDE_DOCX = os.path.join(OUT, 'GUIDE_01a0aa00_v2.8.1.docx')
+GUIDE_PPTX = os.path.join(OUT, 'GUIDE_01a0aa00_v2.8.1.pptx')
 
 SESSION = '01a0aa00'
 SOURCE_SESSION = '01a0a9f0'
@@ -42,6 +44,8 @@ SKILL_DEV_BRANCH = 'arena/01a0a98d-git-pull-arena'
 BRANCH_FALLBACK = 'arena/01a0aa00-git-pull-arena'
 FOLDER = 'git-pull-arena-01a0aa00'
 MARKERS = ['2.8.1', 'git-sync', 'local_check.ps1']
+GUIDE_MARKERS = ['2.8.1', 'git-sync', 'local_check.ps1', '使用说明',
+                 '.\\bootstrap.ps1 -Auto', '.\\download.ps1', 'agent-handoff.sh']
 
 HANDOFF = """cd E:\\0github\\git-sync
 git clone -b %s https://github.com/mqgg5630-cyber/git-pull-arena.git %s
@@ -102,6 +106,9 @@ def docx_body(facts):
     """[(kind, text)] - kept in one place so the docx and the markers agree."""
     host = facts['host'] or 'LAPTOP-R77M5D6M'
     body = [
+        ('p', '本会话另外交付了一份《使用说明》：deliverable/GUIDE_01a0aa00_v2.8.1.docx 与同内容的 '
+              '幻灯片 GUIDE_01a0aa00_v2.8.1.pptx（安装 / 日常命令 / 值守 / 故障 / 边界，逐条可照抄）。'),
+
         ('h1', '1. 这一轮装了什么（session %s）' % SESSION),
         ('b', '安装来源：用户给的 arena.ai/agent/%s —— 也就是 GitHub 分支 %s 上的 '
               'skills/git-sync v%s（那个会话的技能又取自开发分支 %s）。'
@@ -164,9 +171,8 @@ def docx_body(facts):
         ('b', 'results/status/handshake.json —— round、arena_state（awaiting_check / accepted）、'
               'local_state（pending / passed / failed）、host、时间戳'),
         ('b', 'results/status/check_rN_<时间戳>.txt —— 本机推回的第 N 轮完整日志'),
-        ('b', ('本轮（round %d）状态：awaiting_check / pending —— 等这台机器的值守回传。'
-               '在本机粘完第 2 节并跑完 bootstrap 之后，最多一个轮询间隔（默认 2 分钟）就会自动判定。')
-              % facts['round']),
+        ('b', '本轮的读写：agent-check.sh --request 把 handshake 写成 awaiting_check / pending，'
+              '值守回传后变成 passed / failed 并 push 回分支；当前值永远看 results/status/handshake.json。'),
 
         ('h1', '7. 不糊弄的边界'),
         ('b', '「本机」= 你 Windows 上那个计划任务值守（git-sync-watch-%s）；'
@@ -227,8 +233,7 @@ def build_docx(facts):
                 row[i].text = value
 
     doc.add_paragraph()
-    doc.add_paragraph(('round %d = 这一轮（awaiting_check / pending）  |  markers: '
-                       % facts['round']) + ' , '.join(MARKERS + ['round %d' % facts['round'], host, facts['branch']]))
+    doc.add_paragraph('markers: ' + ' , '.join(MARKERS + [host, facts['branch']]))
     doc.save(DOCX)
 
 
@@ -299,7 +304,7 @@ def build_pptx(facts):
     content('怎么读结论', [
         'results/status/handshake.json：round / arena_state / local_state / host',
         'results/status/check_rN_<时间戳>.txt：本机推回的第 N 轮完整日志',
-        '本轮 round %d：awaiting_check / pending —— 等值守回传（默认 2 分钟一轮询）' % facts['round'],
+        '值守默认 2 分钟一轮询：pull -> 跑检查 -> 把结论和日志 push 回分支',
         'passed -> agent-check.sh --accept 关闭这一轮',
     ])
 
@@ -318,6 +323,148 @@ def build_pptx(facts):
     ])
 
     prs.save(PPTX)
+
+
+# --------------------------------------------------------------------- guide
+def guide_rows():
+    """(章节, [(小标题, 正文)]) - the user guide's content, one source of truth."""
+    return [
+        ('1. 这条链路是什么', [
+            ('一句话', 'Arena 会话（沙箱）<-> 你的 Windows 本机，中间只有 git；本机侧是一个计划任务值守。'),
+            ('分支', '本会话分支 arena/01a0aa00-git-pull-arena（所有脚本只拉/推它；push.ps1 拒绝 main/master）。'),
+            ('目录', '本机克隆在 E:\\0github\\git-sync\\git-pull-arena-01a0aa00（新文件夹，不覆盖旧克隆）。'),
+            ('为什么可靠', '每个结论都来自你机器上的值守：它 pull、跑 code/local_check.ps1、再把 passed/failed 与完整日志 push 回分支。'),
+        ]),
+        ('2. 首次安装（只做一次）', [
+            ('命令', 'cd E:\\0github\\git-sync -> git clone -b arena/01a0aa00-git-pull-arena <repo> git-pull-arena-01a0aa00 -> cd 进去 -> .\\bootstrap.ps1 -Auto'),
+            ('bootstrap 做什么', 'git 身份 + 切到工作分支 + 配置免点击推送凭据 + 注册值守（并暂停本机其它 git-sync-watch-*，任务保留）。'),
+            ('验收', '.\\doctor.ps1 应显示 branch 正确、ahead/behind 0/0，末尾 watcher / heartbeat / auth / hands-free master=True 都是好消息。'),
+            ('值守任务名', 'git-sync-watch-git-pull-arena-01a0aa00；Get-ScheduledTask git-sync-watch-* 可以看到本机所有值守。'),
+            ('命令别手打', 'bash skills/git-sync/scripts/agent-handoff.sh 会打印上面这段填好真值的 PowerShell（仓库/分支/文件夹名来自 git remote + sync.config.json）。'),
+        ]),
+        ('3. 日常命令', [
+            ('.\\sync.ps1', '取：拉最新（本地有改动会先自动 stash）。'),
+            ('.\\push.ps1 "说明"', '传：pull --ff-only -> add -> commit -> push（默认静默，不用点任何确认）。'),
+            ('.\\doctor.ps1', '体检；不对劲先跑它，-Fix 一键修 refspec / stash / 切分支 / 拉取。'),
+            ('.\\download.ps1 -Set final', '把 deliverable\\ 镜像到 ..\\git-pull-arena_out\\（docx/pptx 就在里面）。'),
+            ('.\\pack.ps1 -Set final', '打成 _export\\<日期>_final.zip（不进 git）。'),
+            ('.\\auth.ps1 -Setup -Verify', '一次性配好免点击推送并当场证明（每台机器一次）。'),
+        ]),
+        ('4. 值守（自动验证循环）', [
+            ('.\\watch.ps1 -Status', '值守活着吗：模式 / 上次运行 / 心跳 / 最近一轮 / other loops。'),
+            ('.\\watch.ps1 -Test', '立刻跑一次，验证"真的会跑"（别信 LastTaskResult）。'),
+            ('.\\watch.ps1 -Register', '重新注册（每 2 分钟轮询；-Interval 10 可降频；-Headless 是零窗口 S4U，需要管理员）。'),
+            ('.\\watch.ps1 -Focus', '只留这一会话：暂停其它 git-sync-watch-*（任务保留，循环停掉）。'),
+            ('.\\watch.ps1 -RestoreParked', '把 -Focus / -Register 暂停过的值守全部拉回来。'),
+            ('.\\watch.ps1 -Unregister', '摘除值守。'),
+        ]),
+        ('5. 一轮循环里发生什么', [
+            ('① 助手提交', 'bash skills/git-sync/scripts/agent-sync.sh "feat: ..." —— 提交前自动跑仓库闸门 code/check_all.sh。'),
+            ('② 助手请求检查', 'bash skills/git-sync/scripts/agent-check.sh --request "verify ..." —— handshake 变 awaiting_check / pending。'),
+            ('③ 本机自动', '值守 pull -> 跑 code/local_check.ps1 -> 把 passed/failed 与日志 push 回分支（hands-free 还会自动 push 本机改动）。'),
+            ('④ 助手读结论', 'agent-check.sh --read：0 = passed / 2 = failed / 3 = 还在等；满足成功标准就 --accept 收尾。'),
+            ('一条命令', 'bash skills/git-sync/scripts/agent-handsfree.sh --sync "..." --request "verify ..." --timeout auto（一回传就返回）。'),
+        ]),
+        ('6. 结论与交付物在哪', [
+            ('状态', 'results/status/handshake.json（round / arena_state / local_state / host / 时间戳）。'),
+            ('日志', 'results/status/check_rN_<时间戳>.txt（本机推回的第 N 轮完整日志，含每条 OK/FAIL）。'),
+            ('成功标准', 'results/status/success_criteria.json（可机读的"没问题"定义，本机逐条验）。'),
+            ('交付物', 'deliverable\\GUIDE_01a0aa00_v2.8.1.docx / .pptx（本说明）+ deliverable/OFFICE_HASHES.json（哈希清单，3h 开档测试按它找文件）。'),
+            ('回执', 'results/sync/last_sync.md（每轮 agent-sync 后更新，本机 .\\sync.ps1 一下就能看到）。'),
+        ]),
+        ('7. 常见故障', [
+            ('推送卡住要确认', '跑 .\\auth.ps1 -Setup -Verify（gh 优先，其次 GCM + credentialStore=dpapi），再 .\\watch.ps1 -Test。'),
+            ('轮询窗口闪 / 占控制台', '默认已是常驻循环：每次登录最多闪一次；要严格零窗口用管理员 PowerShell 跑 .\\watch.ps1 -Register -Headless。'),
+            ('值守注册了却不动', '.\\watch.ps1 -Test 看心跳；日志在 %LOCALAPPDATA%\\git-sync\\watch-*.log；卡住先 del $env:TEMP\\git-sync-watch-*.lock。'),
+            ('本轮一直 pending', '多半是值守在看另一个分支/另一个克隆：cd 到本会话文件夹，.\\sync.ps1 ; .\\watch.ps1 -Focus ; .\\doctor.ps1。'),
+            ('python 检查全 SKIP', 'v2.8.1 闸门会逐个验证 python3 / python / py -3，Store 存根不会再骗过它；确认 conda base 的 python 在 PATH。'),
+        ]),
+        ('8. 不糊弄的边界', [
+            ('"本机"的定义', '你 Windows 上那个计划任务值守——不是沙箱里的 local/inbox，也不是自制脚本冒充的本地。'),
+            ('沙箱能做什么', 'pip install / .venv / python-docx / python-pptx 都可以（v2.8.0 起）；生成器只是工具，不是证据。'),
+            ('证据在哪', '产物经 git 到本机，由本机的真 Word / 真 PowerPoint 打开 + 结构校验（3a-3h）判定，结论再从远端读回来。'),
+        ]),
+    ]
+
+
+def build_guide_docx(facts):
+    from docx import Document
+
+    host = facts['host'] or 'LAPTOP-R77M5D6M'
+    doc = Document()
+    doc.core_properties.title = 'git-sync v%s 使用说明（session %s）' % (facts['version'], SESSION)
+    doc.core_properties.comments = 'branch %s | generated by code/make_bridge_report.py' % facts['branch']
+
+    doc.add_heading('git-sync v%s 使用说明' % facts['version'], 0)
+    doc.add_paragraph('session %s  |  branch %s  |  本机 %s（值守 git-sync-watch-%s）'
+                      % (SESSION, facts['branch'], host, FOLDER))
+    doc.add_paragraph('这份说明和同目录的 GUIDE_01a0aa00_v2.8.1.pptx 是同一份内容；'
+                      '两个文件都由 code/make_bridge_report.py 生成，'
+                      '清单 deliverable/OFFICE_HASHES.json 记录它们的哈希与必需部件。')
+
+    for section, items in guide_rows():
+        doc.add_heading(section, level=1)
+        table = doc.add_table(rows=1, cols=2)
+        table.style = 'Table Grid'
+        hdr = table.rows[0].cells
+        hdr[0].text = '项'
+        hdr[1].text = '说明'
+        for name, text in items:
+            cells = table.add_row().cells
+            cells[0].text = name
+            cells[1].text = text
+
+    doc.add_heading('9. 本机回执（真实证据）', level=1)
+    for line in [
+        'round 20（2026-09-16 19:43 本机时间）判定 passed：exit 0，用时 27 秒，host ' + host,
+        '3a-3g 全 OK：sha256/字节、OOXML 必需部件、XML 解析、关系不断链、内容类型、标记词、页数',
+        '3h：真 Word.Application 只读打开 BRIDGE_01a0aa00_v2.8.1.docx；'
+        '真 PowerPoint.Application 只读打开 BRIDGE_01a0aa00_v2.8.1.pptx（9 页）',
+        '2a-2d：免点击推送 PROVEN（ls-remote + push --dry-run，全程关闭交互提示）、值守收尾行齐全、'
+        'hands-free auto_pull/auto_push 都在',
+        '完整日志：results/status/check_r20_20260916-194327.txt（本机值守推回本分支）',
+    ]:
+        doc.add_paragraph(line, style='List Bullet')
+
+    doc.add_paragraph()
+    doc.add_paragraph('markers: ' + ' , '.join(GUIDE_MARKERS + [host, facts['branch']]))
+    doc.save(GUIDE_DOCX)
+
+
+def build_guide_pptx(facts):
+    from pptx import Presentation
+    from pptx.util import Pt
+
+    host = facts['host'] or 'LAPTOP-R77M5D6M'
+    prs = Presentation()
+
+    def content(title, items, size=13):
+        slide = prs.slides.add_slide(prs.slide_layouts[1])
+        slide.shapes.title.text = title
+        frame = slide.placeholders[1].text_frame
+        frame.clear()
+        for i, item in enumerate(items):
+            para = frame.paragraphs[0] if i == 0 else frame.add_paragraph()
+            para.text = item
+            para.font.size = Pt(size)
+
+    slide = prs.slides.add_slide(prs.slide_layouts[0])
+    slide.shapes.title.text = 'git-sync v%s 使用说明' % facts['version']
+    slide.placeholders[1].text = ('session %s  |  %s\n本机 %s  值守 git-sync-watch-%s'
+                                  % (SESSION, facts['branch'], host, FOLDER))
+
+    pairs = guide_rows()
+    for section, items in pairs:
+        content(section, ['%s：%s' % (name, text) for name, text in items])
+
+    content('本机回执（真实证据）', [
+        'round 20 判定 passed：exit 0，27 秒，host ' + host,
+        '3a-3g 全 OK：哈希/字节、OOXML 部件、XML、关系、内容类型、标记词、页数',
+        '3h：真 Word 打开 .docx；真 PowerPoint 打开 .pptx（9 页）',
+        '2a-2d：免点击推送 PROVEN、值守收尾行齐全、hands-free 自动拉推',
+    ], 14)
+
+    prs.save(GUIDE_PPTX)
 
 
 # --------------------------------------------------- mirror of local_check 3a-3g
@@ -433,8 +580,10 @@ def main():
     if not verify_only:
         build_docx(facts)
         build_pptx(facts)
-        print('built: %s' % os.path.relpath(DOCX, ROOT))
-        print('built: %s' % os.path.relpath(PPTX, ROOT))
+        build_guide_docx(facts)
+        build_guide_pptx(facts)
+        for p in (DOCX, PPTX, GUIDE_DOCX, GUIDE_PPTX):
+            print('built: %s' % os.path.relpath(p, ROOT))
     elif not (os.path.isfile(DOCX) and os.path.isfile(PPTX)):
         print('[ERROR] nothing to verify - run without --verify first', file=sys.stderr)
         return 1
@@ -443,12 +592,20 @@ def main():
     for path, kind, required, main_part, markers, min_slides in [
         (DOCX, 'docx', ['[Content_Types].xml', '_rels/.rels', 'word/document.xml', 'word/styles.xml',
                         'word/_rels/document.xml.rels', 'docProps/core.xml'], 'word/document.xml',
-         MARKERS + ['round %d' % facts['round'], facts['host'], facts['branch']], None),
+         MARKERS + [facts['host'], facts['branch']], None),
         (PPTX, 'pptx', ['[Content_Types].xml', '_rels/.rels', 'ppt/presentation.xml',
                         'ppt/_rels/presentation.xml.rels', 'ppt/slides/slide1.xml',
                         'ppt/slideMasters/slideMaster1.xml', 'ppt/slideLayouts/slideLayout1.xml',
                         'ppt/theme/theme1.xml', 'docProps/core.xml'], 'ppt/presentation.xml',
-         MARKERS + ['round %d' % facts['round'], facts['host'], facts['branch']], 8),
+         MARKERS + [facts['host'], facts['branch']], 8),
+        (GUIDE_DOCX, 'docx', ['[Content_Types].xml', '_rels/.rels', 'word/document.xml', 'word/styles.xml',
+                              'word/_rels/document.xml.rels', 'docProps/core.xml'], 'word/document.xml',
+         GUIDE_MARKERS + [facts['host'], facts['branch']], None),
+        (GUIDE_PPTX, 'pptx', ['[Content_Types].xml', '_rels/.rels', 'ppt/presentation.xml',
+                              'ppt/_rels/presentation.xml.rels', 'ppt/slides/slide1.xml',
+                              'ppt/slideMasters/slideMaster1.xml', 'ppt/slideLayouts/slideLayout1.xml',
+                              'ppt/theme/theme1.xml', 'docProps/core.xml'], 'ppt/presentation.xml',
+         GUIDE_MARKERS + [facts['host'], facts['branch']], 10),
     ]:
         rel = os.path.relpath(path, ROOT).replace(os.sep, '/')
         if verify_only and os.path.isfile(MANIFEST):

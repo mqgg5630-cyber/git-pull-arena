@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-16T11:41:58Z",
+  "generated_utc": "2026-09-16T11:46:26Z",
   "generator": "code/make_bridge_report.py",
   "generator_note": "python-docx + python-pptx (allowed in the sandbox since v2.8.0); this manifest is the contract the REAL machine verifies in code/local_check.ps1 section 3, and the same 3a-3g rules are mirrored in Python here so a package that cannot pass is never pushed",
   "branch": "arena/01a0aa00-git-pull-arena",
@@ -12,8 +12,8 @@
     {
       "path": "deliverable/BRIDGE_01a0aa00_v2.8.1.docx",
       "kind": "docx",
-      "bytes": 40630,
-      "sha256": "c3735de8ff2e8bd259defbf3b9a5fd1a03389a8853fd34de5ab41a263b55a595",
+      "bytes": 40685,
+      "sha256": "d6d09da04deb4b561082b0601b268399c39bb767d3bca0b69e549329c43a353d",
       "required_parts": [
         "[Content_Types].xml",
         "_rels/.rels",
@@ -27,7 +27,6 @@
         "2.8.1",
         "git-sync",
         "local_check.ps1",
-        "round 20",
         "LAPTOP-R77M5D6M",
         "arena/01a0aa00-git-pull-arena"
       ],
@@ -40,8 +39,8 @@
     {
       "path": "deliverable/BRIDGE_01a0aa00_v2.8.1.pptx",
       "kind": "pptx",
-      "bytes": 37474,
-      "sha256": "ea602f8894942459cb49f43e0b1acd9452099e7dea2cd6cc7506a2cfc4ea6c4a",
+      "bytes": 37466,
+      "sha256": "db0ca69be9b6ffb46865ffa510b1720e0bee2f9d598de1be6abd3ecf268f2514",
       "required_parts": [
         "[Content_Types].xml",
         "_rels/.rels",
@@ -58,7 +57,6 @@
         "2.8.1",
         "git-sync",
         "local_check.ps1",
-        "round 20",
         "LAPTOP-R77M5D6M",
         "arena/01a0aa00-git-pull-arena"
       ],
@@ -66,6 +64,71 @@
       "sandbox_selftest": {
         "parts": 54,
         "slides": 9
+      }
+    },
+    {
+      "path": "deliverable/GUIDE_01a0aa00_v2.8.1.docx",
+      "kind": "docx",
+      "bytes": 40598,
+      "sha256": "9c7c1997edda021b4728e9a7a6a2824dbc67880014453099ffbd00a3dbff63ea",
+      "required_parts": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "word/document.xml",
+        "word/styles.xml",
+        "word/_rels/document.xml.rels",
+        "docProps/core.xml"
+      ],
+      "main_part": "word/document.xml",
+      "must_contain": [
+        "2.8.1",
+        "git-sync",
+        "local_check.ps1",
+        "使用说明",
+        ".\\bootstrap.ps1 -Auto",
+        ".\\download.ps1",
+        "agent-handoff.sh",
+        "LAPTOP-R77M5D6M",
+        "arena/01a0aa00-git-pull-arena"
+      ],
+      "min_slides": null,
+      "sandbox_selftest": {
+        "parts": 17,
+        "slides": 0
+      }
+    },
+    {
+      "path": "deliverable/GUIDE_01a0aa00_v2.8.1.pptx",
+      "kind": "pptx",
+      "bytes": 40308,
+      "sha256": "c3f0277b62889230876c4a736da5bc2a30d4a44b5b9ffa439fa600b16c0f40cd",
+      "required_parts": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "ppt/presentation.xml",
+        "ppt/_rels/presentation.xml.rels",
+        "ppt/slides/slide1.xml",
+        "ppt/slideMasters/slideMaster1.xml",
+        "ppt/slideLayouts/slideLayout1.xml",
+        "ppt/theme/theme1.xml",
+        "docProps/core.xml"
+      ],
+      "main_part": "ppt/presentation.xml",
+      "must_contain": [
+        "2.8.1",
+        "git-sync",
+        "local_check.ps1",
+        "使用说明",
+        ".\\bootstrap.ps1 -Auto",
+        ".\\download.ps1",
+        "agent-handoff.sh",
+        "LAPTOP-R77M5D6M",
+        "arena/01a0aa00-git-pull-arena"
+      ],
+      "min_slides": 10,
+      "sandbox_selftest": {
+        "parts": 56,
+        "slides": 10
       }
     }
   ]

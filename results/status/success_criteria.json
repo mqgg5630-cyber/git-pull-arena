@@ -1,5 +1,5 @@
 {
-  "description": "session 01a0aa00 on arena/01a0aa00-git-pull-arena: install the skills of the session the user linked (arena.ai/agent/01a0a9f0 = branch arena/01a0a9f0-git-pull-arena, which carries git-sync v2.8.1 from the dev branch arena/01a0a98d-git-pull-arena) and hook them up to the real Windows box. The skill is installed here in its newest form (v2.8.1, installer refuses to downgrade), the gate code/check_all.sh proves each python candidate (python3 / python / py -3), and code/local_check.ps1 is what the scheduled watcher runs. The bridge report BRIDGE_01a0aa00_v2.8.1.docx / .pptx travels through git and is judged on that machine: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide count and a real Word/PowerPoint open (3a-3h). 'Local' always means the scheduled watcher on the user's PC - never a sandbox folder, never a stand-in skill.",
+  "description": "session 01a0aa00 on arena/01a0aa00-git-pull-arena (round 21, self-loop): the user asked to clear the other watchers, then loop docx+pptx production -> push -> real-machine check -> verdict back, until nothing is wrong. Delivered this round: the bridge report BRIDGE_01a0aa00_v2.8.1.docx/.pptx plus the new user guide GUIDE_01a0aa00_v2.8.1.docx/.pptx (install / daily commands / watcher / troubleshooting / limits), all four declared in deliverable/OFFICE_HASHES.json. The Windows watcher judges them: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide counts and a real Word/PowerPoint open (3a-3h), plus the gate and 2a-2d (silent push, closing lines, hands-free auto pull/push). 'Local' is always that scheduled task on the user's PC - never a sandbox folder, never a stand-in skill. Skill v2.8.1, installer refuses to downgrade.",
   "require_files": [
     "01a0a821.md",
     "results/status/handshake.json",
@@ -20,7 +20,9 @@
     "deliverable/OFFICE_HASHES.json",
     "deliverable/BRIDGE_01a0aa00_v2.8.1.docx",
     "deliverable/BRIDGE_01a0aa00_v2.8.1.pptx",
-    "watch.ps1"
+    "watch.ps1",
+    "deliverable/GUIDE_01a0aa00_v2.8.1.docx",
+    "deliverable/GUIDE_01a0aa00_v2.8.1.pptx"
   ],
   "forbid_files": [
     "local/inbox",
@@ -54,10 +56,14 @@
     "deliverable/OFFICE_HASHES.json": 500,
     "deliverable/BRIDGE_01a0aa00_v2.8.1.docx": 5000,
     "deliverable/BRIDGE_01a0aa00_v2.8.1.pptx": 15000,
-    "watch.ps1": 20000
+    "watch.ps1": 20000,
+    "deliverable/GUIDE_01a0aa00_v2.8.1.docx": 5000,
+    "deliverable/GUIDE_01a0aa00_v2.8.1.pptx": 15000
   },
   "max_bytes": {
     "deliverable/BRIDGE_01a0aa00_v2.8.1.docx": 3000000,
-    "deliverable/BRIDGE_01a0aa00_v2.8.1.pptx": 3000000
+    "deliverable/BRIDGE_01a0aa00_v2.8.1.pptx": 3000000,
+    "deliverable/GUIDE_01a0aa00_v2.8.1.docx": 3000000,
+    "deliverable/GUIDE_01a0aa00_v2.8.1.pptx": 3000000
   }
 }
