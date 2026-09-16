@@ -145,6 +145,7 @@ foreach ($cand in @((Join-Path $env:ProgramData 'git-sync'), (Join-Path $env:PUB
 if (-not $hostDir) { $hostDir = $stateDir }
 $hostExe   = Join-Path $hostDir ('watchhost-' + $repoName + '.exe')
 $lockFile  = Join-Path $env:TEMP ($taskName + '.lock')
+$loopFile  = Join-Path $stateDir ('watchloop-' + $repoName + '.pid')
 
 # ------------------------------------------------------------- state helpers
 function Get-State {
@@ -399,6 +400,31 @@ function Test-WatchHost {
     return $false
 }
 
+function Get-LoopPid {
+    if (-not (Test-Path -LiteralPath $loopFile)) { return 0 }
+    try {
+        $t = (Get-Content -LiteralPath $loopFile -Raw -ErrorAction SilentlyContinue) -replace '[^0-9]', ''
+        if ($t) { return [int]$t }
+    } catch { }
+    return 0
+}
+function Test-VisibleConsole {
+    # true when this process owns a console window the user can see
+    try {
+        if (-not ('GitSyncWin' -as [type])) {
+            Add-Type -Namespace GitSyncWin -Name Native -ErrorAction Stop -MemberDefinition @'
+[System.Runtime.InteropServices.DllImport("kernel32.dll")]
+public static extern System.IntPtr GetConsoleWindow();
+[System.Runtime.InteropServices.DllImport("user32.dll")]
+public static extern bool IsWindowVisible(System.IntPtr hWnd);
+'@
+        }
+        $h = [GitSyncWin.Native]::GetConsoleWindow()
+        if ($h -eq [System.IntPtr]::Zero) { return $false }
+        return [GitSyncWin.Native]::IsWindowVisible($h)
+    } catch { return $true }
+}
+
 function Get-TaskInfo {
     $t = $null
     try { $t = Get-ScheduledTask -TaskName $taskName -ErrorAction Stop } catch { return $null }
@@ -476,6 +502,12 @@ function Show-TaskDiagnostics {
 # ----------------------------------------------------------- pause / resume
 if ($Pause) {
     $null = Stop-TaskNow
+    $lp = Get-LoopPid
+    if ($lp -gt 0 -and (Get-Process -Id $lp -ErrorAction SilentlyContinue)) {
+        Stop-Process -Id $lp -Force -ErrorAction SilentlyContinue
+        Write-Host "   (stopped the running loop, pid $lp)"
+    }
+    Remove-Item -LiteralPath $loopFile -Force -ErrorAction SilentlyContinue
     $null = Disable-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
     if ($?) { Write-Host "== paused : $taskName  (stopped + disabled until .\watch.ps1 -Resume)" -ForegroundColor Green }
     else { Write-Host "[ERROR] task not found: $taskName (nothing to pause)" -ForegroundColor Red }
@@ -521,6 +553,11 @@ if ($Status) {
             if (Get-Process -Id ([int]$st.pid) -ErrorAction SilentlyContinue) { $alive = "yes (pid $($st.pid) is running)" }
             else { $alive = "no (pid $($st.pid) exited)" }
         }
+        $lpShown = Get-LoopPid
+        if ($lpShown -gt 0) {
+            $lpAlive = [bool](Get-Process -Id $lpShown -ErrorAction SilentlyContinue)
+            Write-Host ("   loop process: pid {0} {1}" -f $lpShown, $(if ($lpAlive) { '(running)' } else { '(gone - the keeper tick restarts it within 10 min)' }))
+        }
         if ($st.last_run) {
             try {
                 $age = [int]((Get-Date) - [datetime]$st.last_run).TotalMinutes
@@ -554,13 +591,13 @@ if ($Test) {
     # a long-lived loop is meant to keep running: if it is alive and its
     # heartbeat is fresh, that IS the proof - do not wait for a new launch
     $st0 = Get-State
-    $taskState = ''
-    try { $taskState = [string]$ti.task.State } catch { }
-    if ($taskState -eq 'Running' -and $st0 -and $st0.last_run) {
+    $loopPid0 = Get-LoopPid
+    $loopAlive0 = ($loopPid0 -gt 0 -and (Get-Process -Id $loopPid0 -ErrorAction SilentlyContinue))
+    if ($loopAlive0 -and $st0 -and $st0.last_run) {
         try {
             $age0 = [int]((Get-Date) - [datetime]$st0.last_run).TotalMinutes
             if ($age0 -le ($Interval * 2 + 2)) {
-                Write-Host ("== OK: the watcher loop is already running (heartbeat {0}, {1} min ago)" -f $st0.last_run, $age0) -ForegroundColor Green
+                Write-Host ("== OK: the watcher loop is already running (pid {0}, heartbeat {1}, {2} min ago)" -f $loopPid0, $st0.last_run, $age0) -ForegroundColor Green
                 exit 0
             }
         } catch { }
@@ -583,6 +620,12 @@ if ($Test) {
 if ($Register -or $Unregister) {
     if ($Unregister) {
         $null = Stop-TaskNow
+        $lp = Get-LoopPid
+        if ($lp -gt 0 -and (Get-Process -Id $lp -ErrorAction SilentlyContinue)) {
+            Stop-Process -Id $lp -Force -ErrorAction SilentlyContinue
+            Write-Host "   (stopped the running loop, pid $lp)"
+        }
+        Remove-Item -LiteralPath $loopFile -Force -ErrorAction SilentlyContinue
         Unregister-ScheduledTask -TaskName $taskName -Confirm:$false -ErrorAction SilentlyContinue
         if ($?) { Write-Host "== removed scheduled task: $taskName" -ForegroundColor Green }
         else { schtasks /Delete /TN $taskName /F 2>$null; Write-Host "== removed (schtasks): $taskName" }
@@ -908,9 +951,13 @@ function Invoke-PollRound {
         # Process.ExitCode back can come out empty (the header "failed (exit )"
         # in the field report), and the marker file cannot lie
         $codeFile = [System.IO.Path]::GetTempFileName()
-        $redir = '"' + $cmdLine + ' > "' + $outFile + '" 2> "' + $errFile + '" & echo %ERRORLEVEL% > "' + $codeFile + '""'
+        # /v:on + !ERRORLEVEL!: with the plain %ERRORLEVEL% form cmd expands the
+        # variable while PARSING the line, i.e. before the check has run, so the
+        # recorded code was a stale 0 or empty ("failed (exit )" / a false
+        # "passed" in the field report)
+        $redir = '"' + $cmdLine + ' > "' + $outFile + '" 2> "' + $errFile + '" & echo !ERRORLEVEL! > "' + $codeFile + '""'
         try {
-            $p = Start-Process -FilePath $cmdExe -ArgumentList @('/d', '/c', $redir) -WorkingDirectory $repo -NoNewWindow -PassThru
+            $p = Start-Process -FilePath $cmdExe -ArgumentList @('/v:on', '/d', '/c', $redir) -WorkingDirectory $repo -NoNewWindow -PassThru
             if (-not $p.WaitForExit($TimeoutMin * 60 * 1000)) {
                 $timedOut = $true
                 # kill the TREE: the shell alone would leave the real check running
@@ -1047,10 +1094,42 @@ function Invoke-PollOnce {
 }
 
 if ($Loop) {
-    Add-Log "loop start (pid $PID, every ${Interval}m, skill v$skillVer)"
-    while ($true) {
-        $null = Invoke-PollOnce
-        Start-Sleep -Seconds ($Interval * 60)
+    # Task Scheduler can hand the process it starts the console of whoever
+    # registered the task, and a loop that lives forever then occupies that
+    # window ("the console looks stuck" - field report 2026-09-16). Re-launch
+    # ourselves hidden with a console of our own and leave the visible one alone.
+    if ($env:GIT_SYNC_WATCH_DETACHED -ne '1' -and (Test-VisibleConsole)) {
+        try {
+            $psExe = Get-PowerShellExe
+            $env:GIT_SYNC_WATCH_DETACHED = '1'
+            $null = Start-Process -FilePath $psExe -WindowStyle Hidden -ArgumentList @(
+                '-NoProfile', '-ExecutionPolicy', 'Bypass', '-WindowStyle', 'Hidden',
+                '-File', $PSCommandPath, '-Loop', '-Interval', $Interval, '-KeeperMin', $KeeperMin)
+            Add-Log 'loop: re-launched itself detached (hidden) - this console is free again'
+            Start-Sleep -Seconds 2
+            exit 0
+        } catch {
+            Add-Log "loop: could not detach ($($_.Exception.Message)) - staying in this console"
+        }
+    }
+    # single instance: the keeper trigger starts the task again every KeeperMin
+    # minutes and now that the task instance exits after detaching, without this
+    # guard every keeper tick would add another loop
+    $existing = Get-LoopPid
+    if ($existing -gt 0 -and $existing -ne $PID -and (Get-Process -Id $existing -ErrorAction SilentlyContinue)) {
+        Add-Log "loop: another loop is already running (pid $existing) - exiting this instance"
+        exit 0
+    }
+    [System.IO.File]::WriteAllText($loopFile, "$PID", (New-Object System.Text.UTF8Encoding($false)))
+    Add-Log "loop start (pid $PID, every ${Interval}m, skill v$skillVer, detach=$($env:GIT_SYNC_WATCH_DETACHED))"
+    try {
+        while ($true) {
+            $null = Invoke-PollOnce
+            Start-Sleep -Seconds ($Interval * 60)
+        }
+    } finally {
+        Remove-Item -LiteralPath $loopFile -Force -ErrorAction SilentlyContinue
+        Add-Log "loop exit (pid $PID)"
     }
 } else {
     exit (Invoke-PollOnce)

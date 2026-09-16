@@ -113,6 +113,9 @@ if [ -z "$SCANNER" ]; then
     echo "SKIP: \$var: typo scanner not present in this repo"
 elif [ -z "$PY" ]; then
     echo "SKIP: no python on PATH - \$var: typo scan skipped"
+elif ! $PY -c 'import sys; sys.exit(0)' >/dev/null 2>&1; then
+    echo "SKIP: $PY is not a working python - \$var: typo scan skipped here"
+    echo "      (it still runs in the agent sandbox before every push)"
 elif $PY "$SCANNER"; then
     echo "OK: no drive-style variable typos (\$var:)"
 else
