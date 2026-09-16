@@ -452,9 +452,33 @@ if (Test-Path -LiteralPath $pptScript) {
     Write-Output '== ppt-master: local install + local deck generation'
     $pptOut = Join-Path $env:TEMP ('pptmaster_out_' + (Get-Date -Format 'HHmmss') + '.log')
     $pptErr = Join-Path $env:TEMP ('pptmaster_err_' + (Get-Date -Format 'HHmmss') + '.log')
+    # resolve a REAL powershell.exe: the bare name can hit a Store app-execution
+    # alias ("%1 is not a valid Win32 application", round 25) - the same lesson
+    # watch.ps1 learned, so the same preference order (pwsh > SysNative >
+    # System32 > this process).
+    $psExe = ''
+    $me = ''
+    try { $me = [string](Get-Process -Id $PID).Path } catch { $me = '' }
+    if ($me -match 'pwsh\.exe$') {
+        $psExe = $me
+    } else {
+        $is32 = $false
+        try { $is32 = -not [Environment]::Is64BitProcess } catch { }
+        if ($is32 -and $env:WINDIR) {
+            $native = Join-Path $env:WINDIR 'SysNative\WindowsPowerShell\v1.0\powershell.exe'
+            if (Test-Path -LiteralPath $native) { $psExe = $native }
+        }
+        if (-not $psExe -and $env:WINDIR) {
+            $sys = Join-Path $env:WINDIR 'System32\WindowsPowerShell\v1.0\powershell.exe'
+            if (Test-Path -LiteralPath $sys) { $psExe = $sys }
+        }
+        if (-not $psExe -and $me -match 'powershell\.exe$') { $psExe = $me }
+    }
+    if (-not $psExe) { $psExe = 'powershell.exe' }
+    Write-Output ('   .. 4a launcher: ' + $psExe)
     $pptCode = 124
     try {
-        $proc = Start-Process -FilePath 'powershell' -PassThru -WindowStyle Hidden -WorkingDirectory (Get-Location).Path -ArgumentList @(
+        $proc = Start-Process -FilePath $psExe -PassThru -WindowStyle Hidden -WorkingDirectory (Get-Location).Path -ArgumentList @(
             '-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'Bypass',
             '-File', ('"' + $pptScript + '"')
         ) -RedirectStandardOutput $pptOut -RedirectStandardError $pptErr
@@ -468,8 +492,16 @@ if (Test-Path -LiteralPath $pptScript) {
             $pptCode = $proc.ExitCode
         }
     } catch {
-        Write-Output ('   FAIL 4a could not start pptmaster_local.ps1: ' + $_.Exception.Message)
-        $fail = 1
+        # last resort: run it in this process (no exit code, so 4b/4c carry the
+        # verdict from the receipt instead)
+        Write-Output ('   WARN 4a could not start a child powershell (' + $_.Exception.Message + ') - running it in-process')
+        try {
+            & $pptScript *> $pptOut
+            $pptCode = 0
+        } catch {
+            Write-Output ('   FAIL 4a pptmaster_local.ps1 threw: ' + $_.Exception.Message)
+            $fail = 1
+        }
     }
     foreach ($f in @($pptOut, $pptErr)) {
         if (Test-Path -LiteralPath $f) {
@@ -488,7 +520,9 @@ if (Test-Path -LiteralPath $pptScript) {
     $recTxt = '.\results\status\pptmaster_local.txt'
     if (Test-Path -LiteralPath $recTxt) {
         $rec = [System.IO.File]::ReadAllText((Resolve-Path -LiteralPath $recTxt).Path)
-        foreach ($needle in @('deck_slides=12', 'checker_blocking=0', 'markers=ok')) {
+        # environment=windows matters: without it a receipt committed by the
+        # agent's sandbox would be read as if THIS machine had verified it
+        foreach ($needle in @('environment=windows', 'deck_slides=12', 'checker_blocking=0', 'markers=ok')) {
             if ($rec.Contains($needle)) {
                 Write-Output ('   OK   4b receipt: ' + $needle)
             } else {
