@@ -1,0 +1,75 @@
+check round 21 on LAPTOP-R77M5D6M - passed (exit 0)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 13s
+
+OK: all .ps1 files are ASCII-only
+NOTE: python3 is not a working python - trying plain text
+OK: sync.config.json branch=arena/01a0a9ba-git-pull-arena remote=origin (checked without python)
+OK: root scripts identical to skills/git-sync/scripts
+SKIP: python3 is not a working python - $var: typo scan skipped here
+      (it still runs in the agent sandbox before every push)
+SKIP: python3 is not a working python - watcher closing-line check skipped here
+      (it still runs in the agent sandbox before every push)
+OK: every .ps1 parses
+   (gate ran via E:\hermes\git\bin\bash.exe [git])
+== accept 2a: silent push PROVEN (ls-remote + push --dry-run, prompts disabled)
+== accept 2b (fallback): one LONG-LIVED loop process - one brief flash per logon,
+   not per poll. For zero flash: admin PowerShell -> .\watch.ps1 -Unregister ;
+   .\watch.ps1 -Register -Headless   (or fix the launcher, see watch-*.log)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+== check_loop_summary PASSED
+== accept 2c: watcher closing lines verified (every exit path has its summary)
+== deliverables: 2 Office file(s) declared in deliverable/OFFICE_HASHES.json
+   OK   3a sha256 + bytes match: deliverable/BRIDGE_REPORT_v2.7.4.docx (6575 B, docx)
+   OK   3b all 7 required parts present in deliverable/BRIDGE_REPORT_v2.7.4.docx
+   OK   3c every XML part parses in deliverable/BRIDGE_REPORT_v2.7.4.docx (7 parts)
+   OK   3d every relationship target resolves in deliverable/BRIDGE_REPORT_v2.7.4.docx
+   OK   3e content types cover every part of deliverable/BRIDGE_REPORT_v2.7.4.docx
+   OK   3f all 4 text markers present in deliverable/BRIDGE_REPORT_v2.7.4.docx
+   OK   3a sha256 + bytes match: deliverable/BRIDGE_REPORT_v2.7.4.pptx (20741 B, pptx)
+   OK   3b all 11 required parts present in deliverable/BRIDGE_REPORT_v2.7.4.pptx
+   OK   3c every XML part parses in deliverable/BRIDGE_REPORT_v2.7.4.pptx (31 parts)
+   OK   3d every relationship target resolves in deliverable/BRIDGE_REPORT_v2.7.4.pptx
+   OK   3e content types cover every part of deliverable/BRIDGE_REPORT_v2.7.4.pptx
+   OK   3f all 3 text markers present in deliverable/BRIDGE_REPORT_v2.7.4.pptx
+   OK   3g slides in deliverable/BRIDGE_REPORT_v2.7.4.pptx : 9 >= 9
+   SKIP 3h Office COM open test (set GIT_SYNC_OFFICE_COM=1 on this machine to enable)
+== accept 2d: hands-free auto_pull/auto_push present in watch.ps1
+== success criteria: results/status/success_criteria.json
+   round 21: real Office deliverables (docx + pptx) written by a pure-stdlib OOXML generator, pushed through the git working branch, and verified ON THE REAL MACHINE by sha256 + byte size + OOXML package structure. No fake local bridge: no local/inbox, no .venv, no self-made docx_skill.py.
+   OK   exists: deliverable/BRIDGE_REPORT_v2.7.4.docx (6575 B)
+   OK   exists: deliverable/BRIDGE_REPORT_v2.7.4.pptx (20741 B)
+   OK   exists: deliverable/OFFICE_HASHES.json (2366 B)
+   OK   exists: code/make_bridge_report.py (42748 B)
+   OK   exists: code/local_check.ps1 (25385 B)
+   OK   exists: skills/git-sync/VERSION (7 B)
+   OK   exists: skills/git-sync/scripts/agent-handsfree.sh (4111 B)
+   OK   exists: skills/git-sync/scripts/agent-criteria.sh (5361 B)
+   OK   exists: watch.ps1 (85361 B)
+   OK   exists: 01a0a821.md (1743 B)
+   OK   absent: local/inbox
+   OK   absent: local/status_receipts
+   OK   absent: .venv
+   OK   absent: venv
+   OK   absent: skills/docx_skill.py
+   OK   absent: local_bridge_skill.py
+   OK   contains skills/git-sync/VERSION <- 2.7.4
+   OK   contains skills/git-sync/sync.config.json <- arena/01a0a9ba-git-pull-arena
+   OK   contains code/make_bridge_report.py <- import zipfile
+   OK   contains code/local_check.ps1 <- System.IO.Compression.ZipFile
+   OK   contains deliverable/OFFICE_HASHES.json <- sha256
+   OK   contains watch.ps1 <- function Invoke-AutoPull
+   OK   regex code/local_check.ps1
+   OK   regex deliverable/OFFICE_HASHES.json
+   OK   regex watch.ps1
+   OK   size deliverable/BRIDGE_REPORT_v2.7.4.docx: 6575 >= 5000
+   OK   size deliverable/BRIDGE_REPORT_v2.7.4.pptx: 20741 >= 15000
+   OK   size code/make_bridge_report.py: 42748 >= 20000
+   OK   size code/local_check.ps1: 25385 >= 12000
+   OK   size watch.ps1: 85361 >= 20000
+   OK   size deliverable/BRIDGE_REPORT_v2.7.4.docx: 6575 <= 3000000
+   OK   size deliverable/BRIDGE_REPORT_v2.7.4.pptx: 20741 <= 3000000
+== local checks passed
