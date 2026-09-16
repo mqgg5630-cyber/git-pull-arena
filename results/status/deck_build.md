@@ -119,3 +119,7 @@ line / M-H-V-L-Z path / text），用 Noto Sans SC 逐页画出来，再拼成�
 
 它是**近似预览**（忽略滤镜/渐变，字体也不是 PowerPoint 里那个），用来快速看版式；
 最终判定仍是本机 PowerPoint 只读开档那一步。
+
+## 8. 本机也装了同一套 ppt-master
+
+round 25 起，这套工具链也装到了你的机器上（`E:\0github\git-sync\ppt-master`），并且每一轮本机验证都会在那台机器上重跑一遍出稿 + 验证；安装/验证细节与手工命令见 `results/status/pptmaster_install.md`。

@@ -438,7 +438,79 @@ foreach ($ct in $comTargets) {
     }
 }
 
-# 4. add your own checks here ...
+# 4. PPT Master installed ON THIS MACHINE, and a deck produced BY this machine.
+#    code\pptmaster_local.ps1 clones/creates the toolchain outside the repo
+#    (default <parent>\ppt-master), runs the full pipeline here (author the 12
+#    SVG pages from this repo -> svg_quality_checker -> svg_to_pptx), verifies
+#    the pptx it produced and opens it read-only in the real PowerPoint, then
+#    writes results\status\pptmaster_local.json / .txt - which the watcher
+#    pushes back, so the agent can see what this machine actually did.
+#    Run in a child process so its exit code is unambiguous and no console
+#    window can flash.
+$pptScript = Join-Path (Get-Location).Path 'code\pptmaster_local.ps1'
+if (Test-Path -LiteralPath $pptScript) {
+    Write-Output '== ppt-master: local install + local deck generation'
+    $pptOut = Join-Path $env:TEMP ('pptmaster_out_' + (Get-Date -Format 'HHmmss') + '.log')
+    $pptErr = Join-Path $env:TEMP ('pptmaster_err_' + (Get-Date -Format 'HHmmss') + '.log')
+    $pptCode = 124
+    try {
+        $proc = Start-Process -FilePath 'powershell' -PassThru -WindowStyle Hidden -WorkingDirectory (Get-Location).Path -ArgumentList @(
+            '-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'Bypass',
+            '-File', ('"' + $pptScript + '"')
+        ) -RedirectStandardOutput $pptOut -RedirectStandardError $pptErr
+        # 20 minutes: below the watcher's 30 minute hard cap, so a stall here
+        # still produces a verdict instead of a TIMEOUT with no detail
+        if (-not $proc.WaitForExit(1200000)) {
+            try { $proc.Kill() } catch { }
+            Write-Output '   FAIL 4a pptmaster_local.ps1 did not finish in 20 minutes'
+            $fail = 1
+        } else {
+            $pptCode = $proc.ExitCode
+        }
+    } catch {
+        Write-Output ('   FAIL 4a could not start pptmaster_local.ps1: ' + $_.Exception.Message)
+        $fail = 1
+    }
+    foreach ($f in @($pptOut, $pptErr)) {
+        if (Test-Path -LiteralPath $f) {
+            $body = ([System.IO.File]::ReadAllText($f)).TrimEnd()
+            if ($body) { Write-Output $body }
+        }
+    }
+    if ($pptCode -eq 0) {
+        Write-Output '   OK   4a ppt-master installed + verified on this machine (exit 0)'
+    } elseif ($pptCode -ne 124) {
+        Write-Output ('   FAIL 4a ppt-master local install/verification failed (exit ' + $pptCode + ')')
+        $fail = 1
+    }
+
+    # 4b/4c read the receipt, so the verdict names exactly which claim failed
+    $recTxt = '.\results\status\pptmaster_local.txt'
+    if (Test-Path -LiteralPath $recTxt) {
+        $rec = [System.IO.File]::ReadAllText((Resolve-Path -LiteralPath $recTxt).Path)
+        foreach ($needle in @('deck_slides=12', 'checker_blocking=0', 'markers=ok')) {
+            if ($rec.Contains($needle)) {
+                Write-Output ('   OK   4b receipt: ' + $needle)
+            } else {
+                Write-Output ('   FAIL 4b receipt is missing ' + $needle)
+                $fail = 1
+            }
+        }
+        if ($rec.Contains('powerpoint=yes')) {
+            Write-Output '   OK   4c real PowerPoint opened the deck this machine generated'
+        } elseif ($rec.Contains('powerpoint=na')) {
+            Write-Output '   WARN 4c PowerPoint COM unavailable - counted as SKIP (structural checks stand)'
+        } else {
+            Write-Output '   FAIL 4c PowerPoint refused the deck this machine generated'
+            $fail = 1
+        }
+    } else {
+        Write-Output '[FAIL] 4b results\status\pptmaster_local.txt was never written'
+        $fail = 1
+    }
+} else {
+    Write-Output '[WARN] 4. code\pptmaster_local.ps1 is missing - local ppt-master install not verified'
+}
 
 
 #    2d. v2.7.0 hands-free helpers must be in watch.ps1 (on disk after sync;
