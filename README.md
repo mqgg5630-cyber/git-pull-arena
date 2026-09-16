@@ -23,7 +23,7 @@
 同步工具就是 [zhongqi 仓库 arena 分支](https://github.com/mqgg5630-cyber/zhongqi/tree/arena%2F01a09d79-zhongqi) 沉淀的 `skills/git-sync` 技能
 （本仓库 `main` 上是 **v2.6.7**（已发布）：零弹窗值守 + 免点击推送；开发分支上已有 **v2.7.4**（解放双手：值守自动 pull/push + Agent `agent-handsfree.sh` 按成功标准自动 accept；含 v2.6.9 `-Focus`）。v2.6.8 收尾行闸门 **round 18 真机推送闭环已通过**，证据见 [`deliverable/CASE_STUDY_v2.6.7.md`](deliverable/CASE_STUDY_v2.6.7.md)）。安装器 `agent-install.sh` 可以把它一条命令装进任何新仓库。发行说明见 [`deliverable/RELEASE_v2.6.7.md`](deliverable/RELEASE_v2.6.7.md)）。
 
-- **工作分支**：`arena/01a0a821-git-pull-arena`（所有脚本只拉/推这个分支；`push.ps1` 直接拒绝 main/master）。本机请克隆到**新文件夹** `git-pull-arena-s2`，不要覆盖 `git-pull-arena`（v2.6.7）和 `git-pull-arena-v268`（上一会话）
+- **工作分支**：`skills/git-sync/sync.config.json` 里的 `branch`（本会话 = `arena/01a0a98d-git-pull-arena`）；所有脚本只拉/推这个分支，`push.ps1` 直接拒绝 main/master，v2.7.5 起 `code/check_all.sh` 还会卡「配置分支 ≠ HEAD」。本机请克隆到**新文件夹**（`bash skills/git-sync/scripts/agent-handoff.sh` 会生成文件夹名与整段命令），不要覆盖 `git-pull-arena` / `git-pull-arena-v268` / `git-pull-arena-s2`
 - **两条硬要求（v2.5.0 起是默认行为；v2.6.7 真机验收通过）**：① 值守**零弹窗**（默认编译 GUI 子系统启动器，Task Scheduler 不再闪黑窗）；② 推送**免点击**（`auth.ps1` 一次配好，`push.ps1` 默认静默模式，拿不到凭据快速失败并告诉你怎么修）
 - **只用单会话闭环**：多会话并行/汇总会话（模式 B/C）**暂时搁置**（2026-09-15 决定）；本仓库就是"一会话一仓库"的样板
 - **连接台账**：所有已连接仓库 × 分支 × 本机路径 × 值守任务，见 [`CONNECTIONS.md`](CONNECTIONS.md)（防忘专用，忘了一条命令就能翻到）

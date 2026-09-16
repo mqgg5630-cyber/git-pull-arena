@@ -12,8 +12,9 @@
    里的 `skills/git-sync`（第 1 节那条 clone 命令）。
    `arena.ai/agent/01a0a821-...` **不要去打开**（要登录）。技能只在 GitHub。**禁止**用 python 复刻，禁止 `.venv` 冒充本机。
 3. **给用户的第一条可见回复必须是第 2 节填好的 PowerShell**（clone 新文件夹 + `bootstrap -Auto`）。
-   在用户还没拿到这段命令之前：不许生成 docx/pptx、不许自循环、不许写 LOOP_COMPLETED、
-   不许说「已返回本机」。
+   那段由 `bash skills/git-sync/scripts/agent-handoff.sh` **生成**，助手不得手打（仓库/分支/路径填错
+   = 本机永远收不到请求）。在用户还没拿到这段命令之前：不许生成 docx/pptx、不许自循环、
+   不许写 LOOP_COMPLETED、不许说「已返回本机」。
 4. 自循环只准走 `agent-handsfree.sh --timeout auto`（git 握手 + 本机值守回传）。
    exit 3 = 本机值守没起来 → **停**，再贴一次 PowerShell，**不要**假装成功。
 5. 禁止覆盖文件夹：`git-pull-arena` / `git-pull-arena-v268` / `git-pull-arena-s2`。
@@ -72,7 +73,21 @@ HEAD 若是 `main` / `master`：**停**，先切到本会话工作分支再装�
 
 ## 2. 助手必须立刻回复的本机代码（填好，可直接粘）——第一条回复就是这个
 
-新文件夹建议：`<仓库名>-<工作分支短号>`。
+**不要手打这段。** 让脚本生成，然后原样贴给用户（v2.7.5）：
+
+```bash
+bash skills/git-sync/scripts/agent-handoff.sh        # 打印填好的 PowerShell 块
+bash skills/git-sync/scripts/agent-handoff.sh --json # 需要真值时用这个
+```
+
+它自己读 `git remote get-url` + `sync.config.json` 的 branch，仓库/分支/文件夹名不可能填错；
+配置分支与 HEAD 不一致时直接 **exit 3 拒绝**（那正是「本机永远收不到请求」的根因）。
+
+手写时的三个真实事故（2026-09-16）：写成另一个仓库（`zhongqi` vs `git-pull-arena`，
+请求在 `pending` 挂了 2 小时）、写成上一个会话的分支、把沙箱路径 `/home/user/...` 写进
+Windows PowerShell 块。生成器就是为了杜绝这三条。
+
+生成结果长这样（占位符已被真值替换）：
 
 ```powershell
 cd E:\0github\git-sync
@@ -83,8 +98,6 @@ Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 .\doctor.ps1
 .\watch.ps1 -Status
 ```
-
-把 `<BRANCH>` / `<ORIGIN_URL>` / `<NEW_FOLDER>` 换成刚才读到的真值。不要留占位符。
 
 成功标志：`doctor.ps1` 的 branch 是工作分支、ahead/behind = 0/0、末尾 watcher / heartbeat / auth / **hands-free master=True**。
 
@@ -116,6 +129,7 @@ bash skills/git-sync/scripts/agent-handsfree.sh \
 
 - exit 0：本机检查过 + 标准过 + 已 accept → 停。
 - exit 2：看 `results/status/check_r*_*.txt` → 修 → 再跑（round+1）。
-- exit 3：本机没通。再贴第 2 节。**禁止**改口说「沙箱 local/ 已打通」。
+- exit 3：本机没通。**不要继续轮询**——`agent-check.sh --read` 会告诉你这轮已经 pending 了多少分钟；
+  超过 10 分钟就重跑 `agent-handoff.sh` 把第 2 节再贴一次。**禁止**改口说「沙箱 local/ 已打通」。
 
 `--timeout auto`：结论一到就返回。细节：`templates/task-loop.md`。

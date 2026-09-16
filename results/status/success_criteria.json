@@ -1,5 +1,5 @@
 {
-  "description": "v2.7.4: short arena.ai prompt maps to GitHub clone; real Windows watcher; no fake local/inbox.",
+  "description": "v2.7.5: handoff block is generated (agent-handoff.sh); config branch must equal HEAD; stale rounds stop polling. Real Windows watcher; no fake local/inbox.",
   "require_files": [
     "01a0a821.md",
     "skills/git-sync/scripts/agent-handsfree.sh",
@@ -7,14 +7,16 @@
     "skills/git-sync/scripts/watch.ps1",
     "deliverable/HANDS_FREE_v2.7.0.md",
     "skills/git-sync/VERSION",
-    "skills/git-sync/templates/USER_PROMPT.md"
+    "skills/git-sync/templates/USER_PROMPT.md",
+    "skills/git-sync/scripts/agent-handoff.sh"
   ],
   "require_contains": {
-    "skills/git-sync/VERSION": "2.7.4",
+    "skills/git-sync/VERSION": "2.7.5",
     "01a0a821.md": "git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena",
     "skills/git-sync/sync.config.json": "\"hands_free\"",
     "watch.ps1": "function Invoke-AutoPull",
-    "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus"
+    "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus",
+    "skills/git-sync/templates/one-sentence.md": "agent-handoff.sh"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush"
@@ -23,6 +25,7 @@
     "skills/git-sync/scripts/agent-handsfree.sh": 1000,
     "skills/git-sync/scripts/agent-criteria.sh": 1000,
     "deliverable/HANDS_FREE_v2.7.0.md": 800,
-    "watch.ps1": 20000
+    "watch.ps1": 20000,
+    "skills/git-sync/scripts/agent-handoff.sh": 2000
   }
 }

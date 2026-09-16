@@ -1,4 +1,4 @@
-> 当前版本 **v2.7.4**（解放双手：auto_pull/auto_push + `agent-handsfree.sh`；含 v2.6.9 `-Focus`）。`main` 上是 **v2.6.7**。说明 `deliverable/HANDS_FREE_v2.7.0.md`。
+> 当前版本 **v2.7.5**（交接块由 `agent-handoff.sh` 生成，不再手打；闸门新增「配置分支 == HEAD」；pending 超时停止空轮询。含 v2.7.0 解放双手 / v2.6.9 `-Focus`）。`main` 上是 **v2.6.7**。说明 `deliverable/HANDS_FREE_v2.7.0.md`。
 
 # 本地 ↔ Agent 同步 skill —— 使用说明
 
@@ -7,6 +7,8 @@
 > （新会话引导提示词在 `templates/new-session-prompt.md`，整段复制即用）。
 > 仓库根目录放着同款脚本（`sync.ps1 / push.ps1 / upload.ps1 / download.ps1 / doctor.ps1 / pack.ps1 / bootstrap.ps1 / pr.ps1 / hardware.ps1 / watch.ps1 / auth.ps1 / install.ps1`），
 > 这份 skill 是**通用版 + 说明书**；根目录副本必须与 `scripts\` 下的**逐字节相同**（`code/check_all.sh` 第 3 节会卡）。
+>
+> **v2.7.5（交接块生成化 + 分支一致性闸门）**：三个真实事故（2026-09-16：`01a0a95e` 请求在 `pending` 挂 2 小时、`01a0a98d` 配置分支停在上个会话、把 `/home/user/...` 写进 Windows PowerShell 块）都源于**手打交接命令**。现在：① `scripts/agent-handoff.sh` 从 `git remote get-url` + 配置 branch 生成可粘的 PowerShell（`--json` 给真值），配置分支 ≠ HEAD 时 exit 3 拒绝；② `code/check_all.sh` 新增 2b 段「`sync.config.json` 的 branch 必须等于 HEAD」，不一致直接 exit 1（值守轮询的是配置分支，不一致 = 本机永远收不到请求）；③ `agent-check.sh --read` 报告本轮 pending 了多少分钟，≥10 分钟就提示重发交接块而不是继续轮询；④ `agent-install.sh` 本来就会用 HEAD 写 branch（v2.7.5 起由闸门兜底）。
 >
 > **v2.7.4（短句仍用 arena.ai，助手自己展开）**：用户不改提示词。`arena.ai/agent/01a0a821` → clone 本仓库；根目录 `01a0a821.md`。禁止向用户索要长命令。
 >

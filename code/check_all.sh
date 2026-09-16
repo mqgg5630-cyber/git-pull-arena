@@ -6,7 +6,8 @@
 #      .ps1 as ANSI/GBK, so any non-ASCII byte breaks the parser.
 #      (Chinese goes into .md / .json only.)
 #   2. skills/git-sync/sync.config.json must parse and point at a working
-#      branch - never main/master.
+#      branch - never main/master - and that branch must be the one HEAD is on
+#      (2b), otherwise the local watcher polls a branch nobody pushes to.
 #   3. the .ps1 copies at the repo root must be identical to the ones in
 #      skills/git-sync/scripts/ (they are the same scripts).
 #   4. every .ps1 must PARSE (PowerShell's own parser, when PowerShell is on
@@ -80,6 +81,28 @@ if [ $cfgDone -eq 0 ]; then
         echo "[FAIL] $CFG has no usable branch/remote (branch='$CFGBR' remote='$CFGRM')"
         fail=1
     fi
+fi
+
+# ------------------------------------------- 2b. config branch == HEAD branch
+# The single failure that silently kills a round (field report 2026-09-16):
+# a new session inherits sync.config.json from the PREVIOUS one, so the agent
+# pushes to branch A while the local watcher polls branch B. Nothing errors -
+# the request just sits in `pending` forever. agent-sync.sh refuses to run in
+# that state, so catch it here too, before any push.
+HEADBR="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo '')"
+CFGBRANCH="$(sed -n 's/.*"branch"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' "$CFG" 2>/dev/null | head -1)"
+if [ -z "$HEADBR" ]; then
+    echo "NOTE: not a git checkout - branch match not checked"
+elif [ -z "$CFGBRANCH" ]; then
+    echo "NOTE: $CFG has no branch key - branch match not checked"
+elif [ "$CFGBRANCH" = "$HEADBR" ]; then
+    echo "OK: sync.config.json branch matches HEAD ($HEADBR)"
+else
+    echo "[FAIL] sync.config.json branch=$CFGBRANCH but HEAD is $HEADBR"
+    echo "       the local watcher polls the config branch, so it would never see"
+    echo "       this session's requests. Point the config at HEAD (or re-run"
+    echo "       skills/git-sync/scripts/agent-install.sh) before pushing."
+    fail=1
 fi
 
 # ------------------------------------------------- 3. root vs skill scripts
