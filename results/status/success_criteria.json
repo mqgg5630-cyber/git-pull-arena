@@ -1,31 +1,50 @@
 {
-  "description": "v2.7.5: handoff block is generated (agent-handoff.sh); config branch must equal HEAD; stale rounds stop polling. Real Windows watcher; no fake local/inbox.",
+  "description": "v2.8.0: skill health + the round-21/22 style real-Office proof. Third-party packages and .venv are ALLOWED in the sandbox now - the only hard rule left is that 'local' means the user's own machine: no local/inbox, no hand-made stand-in skill, the receipt must come from the Windows watcher.",
   "require_files": [
     "01a0a821.md",
+    "skills/git-sync/VERSION",
+    "skills/git-sync/scripts/agent-install.sh",
+    "skills/git-sync/scripts/agent-handoff.sh",
     "skills/git-sync/scripts/agent-handsfree.sh",
     "skills/git-sync/scripts/agent-criteria.sh",
     "skills/git-sync/scripts/watch.ps1",
-    "deliverable/HANDS_FREE_v2.7.0.md",
-    "skills/git-sync/VERSION",
-    "skills/git-sync/templates/USER_PROMPT.md",
-    "skills/git-sync/scripts/agent-handoff.sh"
+    "skills/git-sync/templates/one-sentence.md",
+    "deliverable/CASE_STUDY_v2.8.0.md",
+    "deliverable/OFFICE_HASHES.json",
+    "code/local_check.ps1",
+    "watch.ps1"
+  ],
+  "forbid_files": [
+    "local/inbox",
+    "local/status_receipts",
+    "skills/docx_skill.py",
+    "local_bridge_skill.py"
   ],
   "require_contains": {
-    "skills/git-sync/VERSION": "2.7.5",
+    "skills/git-sync/VERSION": "2.8.0",
     "01a0a821.md": "git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena",
     "skills/git-sync/sync.config.json": "\"hands_free\"",
+    "skills/git-sync/templates/one-sentence.md": "agent-handoff.sh",
+    "skills/git-sync/scripts/agent-install.sh": "refusing to downgrade",
+    "code/local_check.ps1": "System.IO.Compression.ZipFile",
     "watch.ps1": "function Invoke-AutoPull",
-    "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus",
-    "skills/git-sync/templates/one-sentence.md": "agent-handoff.sh"
+    "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus"
   },
   "require_regex": {
-    "watch.ps1": "function Invoke-AutoPush"
+    "watch.ps1": "function Invoke-AutoPush",
+    "code/local_check.ps1": "Get-FileHash",
+    "deliverable/OFFICE_HASHES.json": "[0-9a-f]{64}"
   },
   "min_bytes": {
-    "skills/git-sync/scripts/agent-handsfree.sh": 1000,
-    "skills/git-sync/scripts/agent-criteria.sh": 1000,
-    "deliverable/HANDS_FREE_v2.7.0.md": 800,
-    "watch.ps1": 20000,
-    "skills/git-sync/scripts/agent-handoff.sh": 2000
+    "skills/git-sync/scripts/agent-handoff.sh": 2000,
+    "skills/git-sync/scripts/agent-install.sh": 10000,
+    "code/local_check.ps1": 12000,
+    "deliverable/CASE_STUDY_v2.8.0.md": 3000,
+    "deliverable/OFFICE_HASHES.json": 500,
+    "watch.ps1": 20000
+  },
+  "max_bytes": {
+    "deliverable/BRIDGE_REPORT_v2.7.4.docx": 3000000,
+    "deliverable/BRIDGE_REPORT_v2.7.4.pptx": 3000000
   }
 }
