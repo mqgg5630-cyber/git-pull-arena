@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" lang="zh-CN" font-family="Microsoft YaHei, Segoe UI, sans-serif" data-pptx-page-role="content">
+  <defs>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="#0B1220" id="bg" data-pptx-role="background"/>
+  <g id="page-title" data-pptx-bounds="70 44 1140 144">
+  <text x="74" y="78" font-size="16" fill="#22D3EE" font-family="Consolas, monospace" letter-spacing="3">//  DELIVERABLES</text>
+  <text x="70" y="138" font-size="44" fill="#F1F5F9" font-weight="700">交付物（都在本会话分支的 deliverable/）</text>
+  <text x="72" y="176" font-size="20" fill="#94A3B8">本机 .\download.ps1 -Set final 可以把整个目录镜像出来</text>
+  </g>
+  <text x="1208" y="78" font-size="16" fill="#64748B" id="page-number" data-pptx-role="page-number" font-family="Consolas, monospace" text-anchor="end">08 / 12</text>
+  <line x1="72" y1="622" x2="1208" y2="622" stroke="#17293F" stroke-width="1" id="frame-rule" data-pptx-role="decoration"/>
+  <text x="72" y="652" font-size="14" fill="#64748B" id="footer-left" data-pptx-role="footer" font-family="Consolas, monospace">git-sync v2.8.1  ·  arena/01a0aa00-git-pull-arena  ·  ppt-master v6.4.0</text>
+  <text x="1208" y="652" font-size="14" fill="#64748B" id="footer-right" data-pptx-role="footer" font-family="Consolas, monospace" text-anchor="end">LAPTOP-R77M5D6M</text>
+  <g id="deliverable-1" data-pptx-bounds="72 232 1136 64">
+  <rect x="72" y="232" width="1136" height="64" fill="#121C2E" stroke="#17293F" stroke-width="1" rx="10"/>
+  <text x="98" y="270" font-size="18" fill="#F1F5F9" font-family="Consolas, monospace">BRIDGE_01a0aa00_v2.8.1.docx / .pptx</text>
+  <text x="600" y="270" font-size="17" fill="#94A3B8">打通报告</text>
+  <text x="800" y="270" font-size="16" fill="#94A3B8">装了什么、链路怎么走、本机粘哪段命令</text>
+  </g>
+  <g id="deliverable-2" data-pptx-bounds="72 304 1136 64">
+  <rect x="72" y="304" width="1136" height="64" fill="#121C2E" stroke="#17293F" stroke-width="1" rx="10"/>
+  <text x="98" y="342" font-size="18" fill="#F1F5F9" font-family="Consolas, monospace">GUIDE_01a0aa00_v2.8.1.docx / .pptx</text>
+  <text x="600" y="342" font-size="17" fill="#94A3B8">使用说明 · 10 页</text>
+  <text x="800" y="342" font-size="16" fill="#94A3B8">安装 / 日常命令 / 值守 / 故障 / 边界</text>
+  </g>
+  <g id="deliverable-3" data-pptx-bounds="72 376 1136 64">
+  <rect x="72" y="376" width="1136" height="64" fill="#121C2E" stroke="#A3E635" stroke-width="1" rx="10"/>
+  <text x="98" y="414" font-size="18" fill="#F1F5F9" font-family="Consolas, monospace">DECK_01a0aa00_v2.8.1.pptx</text>
+  <text x="600" y="414" font-size="17" fill="#22D3EE">本文件 · ppt-master</text>
+  <text x="800" y="414" font-size="16" fill="#94A3B8">12 页设计稿，原生 DrawingML 形状，可直接改</text>
+  </g>
+  <g id="deliverable-4" data-pptx-bounds="72 448 1136 64">
+  <rect x="72" y="448" width="1136" height="64" fill="#121C2E" stroke="#17293F" stroke-width="1" rx="10"/>
+  <text x="98" y="486" font-size="18" fill="#F1F5F9" font-family="Consolas, monospace">DELIVERY_01a0aa00_v2.8.1.docx / .pptx</text>
+  <text x="600" y="486" font-size="17" fill="#94A3B8">交付清单</text>
+  <text x="800" y="486" font-size="16" fill="#94A3B8">文件哈希 + 本机回执</text>
+  </g>
+  <g id="deliverable-5" data-pptx-bounds="72 520 1136 64">
+  <rect x="72" y="520" width="1136" height="64" fill="#121C2E" stroke="#17293F" stroke-width="1" rx="10"/>
+  <text x="98" y="558" font-size="18" fill="#F1F5F9" font-family="Consolas, monospace">OFFICE_HASHES.json</text>
+  <text x="600" y="558" font-size="17" fill="#94A3B8">哈希清单</text>
+  <text x="800" y="558" font-size="16" fill="#94A3B8">真机开档测试按它决定打开哪些文件</text>
+  </g>
+  <g id="deliverables-note" data-pptx-bounds="72 596 1136 26">
+  <text x="72" y="614" font-size="16" fill="#64748B">生成器也一起进仓库：code/make_deck_pptmaster.py（本 pptx）、code/make_bridge_report.py（报告与清单）。</text>
+  </g>
+</svg>

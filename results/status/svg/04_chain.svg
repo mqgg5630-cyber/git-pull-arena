@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" lang="zh-CN" font-family="Microsoft YaHei, Segoe UI, sans-serif" data-pptx-page-role="content">
+  <defs>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="#0B1220" id="bg" data-pptx-role="background"/>
+  <g id="page-title" data-pptx-bounds="70 44 1140 144">
+  <text x="74" y="78" font-size="16" fill="#22D3EE" font-family="Consolas, monospace" letter-spacing="3">//  TOPOLOGY</text>
+  <text x="70" y="138" font-size="44" fill="#F1F5F9" font-weight="700">一条链路的三个角色</text>
+  <text x="72" y="176" font-size="20" fill="#94A3B8">每一段都只传 git 提交</text>
+  </g>
+  <text x="1208" y="78" font-size="16" fill="#64748B" id="page-number" data-pptx-role="page-number" font-family="Consolas, monospace" text-anchor="end">03 / 12</text>
+  <line x1="72" y1="622" x2="1208" y2="622" stroke="#17293F" stroke-width="1" id="frame-rule" data-pptx-role="decoration"/>
+  <text x="72" y="652" font-size="14" fill="#64748B" id="footer-left" data-pptx-role="footer" font-family="Consolas, monospace">git-sync v2.8.1  ·  arena/01a0aa00-git-pull-arena  ·  ppt-master v6.4.0</text>
+  <text x="1208" y="652" font-size="14" fill="#64748B" id="footer-right" data-pptx-role="footer" font-family="Consolas, monospace" text-anchor="end">LAPTOP-R77M5D6M</text>
+  <g id="chain-sandbox" data-pptx-bounds="72 232 344 274">
+  <rect x="72" y="232" width="344" height="274" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <rect x="72" y="232" width="4" height="274" fill="#22D3EE" rx="2"/>
+  <text x="104" y="286" font-size="26" fill="#F1F5F9" font-weight="700">Arena 沙箱</text>
+  <line x1="104" y1="306" x2="384" y2="306" stroke="#17293F" stroke-width="1"/>
+  <text x="104" y="344" font-size="17" fill="#94A3B8">生成交付物（docx / pptx）</text>
+  <text x="104" y="382" font-size="15" fill="#7DD3FC" font-family="Consolas, monospace">agent-sync.sh 提交并推送</text>
+  <text x="104" y="420" font-size="15" fill="#7DD3FC" font-family="Consolas, monospace">agent-check.sh --request</text>
+  <text x="104" y="458" font-size="17" fill="#94A3B8">请求检查，round + 1</text>
+  </g>
+  <g id="chain-branch" data-pptx-bounds="468 232 344 274">
+  <rect x="468" y="232" width="344" height="274" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <rect x="468" y="232" width="4" height="274" fill="#60A5FA" rx="2"/>
+  <text x="500" y="286" font-size="26" fill="#F1F5F9" font-weight="700">GitHub 分支</text>
+  <line x1="500" y1="306" x2="780" y2="306" stroke="#17293F" stroke-width="1"/>
+  <text x="500" y="344" font-size="15" fill="#7DD3FC" font-family="Consolas, monospace">arena/01a0aa00-git-pull-arena</text>
+  <text x="500" y="382" font-size="16" fill="#94A3B8">唯一交换面：提交 + 日志 + 握手</text>
+  <text x="500" y="420" font-size="15" fill="#7DD3FC" font-family="Consolas, monospace">results/status/handshake.json</text>
+  <text x="500" y="458" font-size="17" fill="#94A3B8">两端只认这个分支</text>
+  </g>
+  <g id="chain-watcher" data-pptx-bounds="864 232 344 274">
+  <rect x="864" y="232" width="344" height="274" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <rect x="864" y="232" width="4" height="274" fill="#A3E635" rx="2"/>
+  <text x="896" y="286" font-size="26" fill="#F1F5F9" font-weight="700">本机值守</text>
+  <line x1="896" y1="306" x2="1176" y2="306" stroke="#17293F" stroke-width="1"/>
+  <text x="896" y="344" font-size="15" fill="#7DD3FC" font-family="Consolas, monospace">计划任务 git-sync-watch-</text>
+  <text x="896" y="382" font-size="15" fill="#7DD3FC" font-family="Consolas, monospace">git-pull-arena-01a0aa00</text>
+  <text x="896" y="420" font-size="16" fill="#94A3B8">每 2 分钟一轮询：pull → 跑</text>
+  <text x="896" y="458" font-size="16" fill="#94A3B8">local_check.ps1，再推回结论</text>
+  </g>
+  <path d="M420 368H456" fill="none" id="chain-arrow-1" data-pptx-role="decoration" stroke="#2B4E75" stroke-width="3"/>
+  <path d="M456 360L470 368L456 376Z" fill="#2B4E75" id="chain-arrow-2" data-pptx-role="decoration"/>
+  <path d="M816 368H852" fill="none" id="chain-arrow-3" data-pptx-role="decoration" stroke="#2B4E75" stroke-width="3"/>
+  <path d="M852 360L866 368L852 376Z" fill="#2B4E75" id="chain-arrow-4" data-pptx-role="decoration"/>
+  <g id="chain-note" data-pptx-bounds="72 526 1136 74">
+  <rect x="72" y="526" width="1136" height="74" fill="#0D1626" stroke="#1E3A5F" stroke-width="1" rx="12"/>
+  <text x="100" y="572" font-size="19" fill="#7DD3FC">唯一通道是 git：产物经分支到本机，结论从分支读回来；值守没回传之前，助手不会说“已打通”。</text>
+  </g>
+</svg>

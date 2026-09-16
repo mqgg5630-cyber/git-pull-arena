@@ -1,0 +1,865 @@
+{
+  "schema": "ppt-master.svg-quality-report.v1",
+  "stage": "final",
+  "target": "E:\\0github\\git-sync\\ppt-master\\projects\\arena-local-01a0aa00",
+  "source_fingerprint": {
+    "algorithm": "sha256",
+    "digest": "07f45babbdbb04313f8b69f055cb318bd157162cd0aa51e625f89a9f56fac0a8",
+    "file_count": 12,
+    "files": [
+      {
+        "file": "01_cover.svg",
+        "sha256": "48a2a9d01698450144be4790a5e9912766ed31b3c2f50718fe48843595378451"
+      },
+      {
+        "file": "02_toc.svg",
+        "sha256": "fb5cc0194550e8387df5c92316627c00652523b1121bbddd726848a53067a654"
+      },
+      {
+        "file": "03_section_a.svg",
+        "sha256": "2a609df660df9429714c1d2d4c82efa78d0879eea7e7cbd2f48369a4f54e9707"
+      },
+      {
+        "file": "04_chain.svg",
+        "sha256": "1a8ec85310d1bc19f17846e026f948be16f1a782eb5c940565c2193766647803"
+      },
+      {
+        "file": "05_installed.svg",
+        "sha256": "f19fff07dc45a9f3dd69d988dd5675ceac7ab05f06f35d67770cd8c563d1893d"
+      },
+      {
+        "file": "06_loop.svg",
+        "sha256": "24c27b09e963468ff8487bf5cf75924e7fca5bce947d6e745c48ad98ca3fea65"
+      },
+      {
+        "file": "07_checks.svg",
+        "sha256": "64acf3738a5473352e998fdc7efb69ff467c6f15b63e4112c199870f76adaa58"
+      },
+      {
+        "file": "08_numbers.svg",
+        "sha256": "ff770a853d87a4581fa5acabb403b8af7167872fdd62077f98968571ca575053"
+      },
+      {
+        "file": "09_deliverables.svg",
+        "sha256": "85101363107a4dda9abbe614436a80e295ceec991a08f25adede3df3ea7d4148"
+      },
+      {
+        "file": "10_section_b.svg",
+        "sha256": "842052c5f8d5db3081b8ab842ab386fed71cab46f09ed57a37b58dccc5bb9960"
+      },
+      {
+        "file": "11_commands.svg",
+        "sha256": "a11e1dc4b5fd797705ec3c24c0aceeba3e7a966dd2adf3b233102ce6347f37e7"
+      },
+      {
+        "file": "12_ending.svg",
+        "sha256": "a2a1d12587cb5ecdfd4a747d92d98897df79b79668bc20d5d8e4737fe4a175d9"
+      }
+    ]
+  },
+  "summary": {
+    "total": 12,
+    "passed": 11,
+    "warnings": 1,
+    "errors": 0
+  },
+  "issue_types": {},
+  "categories": {
+    "blocking": {
+      "count": 0,
+      "issues": []
+    },
+    "introduced": {
+      "count": 1,
+      "issues": [
+        {
+          "file": "06_loop.svg",
+          "message": "Detected 2 paragraph-like line run(s) split across sibling <text> elements (<g id=\"loop-step-2\"> x=332.0, y=342.0..370.0, 2 lines; <g id=\"loop-step-5\"> x=1034.0, y=342.0..370.0, 2 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy=\"0\". Keep semantically independent text frames separate."
+        }
+      ]
+    },
+    "inherited": {
+      "count": 0,
+      "issues": []
+    },
+    "source-import": {
+      "count": 0,
+      "summary": {
+        "warning_count": 0,
+        "by_code": {}
+      }
+    }
+  },
+  "drift": {
+    "colors": {},
+    "fonts": {},
+    "sizes": {}
+  },
+  "carrier_receipt": {
+    "scope": "informational-not-a-quota",
+    "pages": 12,
+    "totals": {
+      "text_elements": 219,
+      "image_placements": 0,
+      "icons": 0,
+      "svg_geometry_elements": 112,
+      "preset_shapes": 0,
+      "page_frame_elements": 42,
+      "marker_uses": 0,
+      "inline_emphasis_runs": 0,
+      "gradient_uses": 0,
+      "filter_uses": 2,
+      "text_effects": 0
+    },
+    "pages_with": {
+      "images": 0,
+      "icons": 0,
+      "presets": 0,
+      "charts": 0,
+      "tables": 0,
+      "formulas": 0,
+      "inline_emphasis_runs": 0,
+      "gradient_uses": 0,
+      "filter_uses": 1,
+      "text_effects": 0
+    },
+    "relationship_pages": null,
+    "geometry_elements": {
+      "circle": 7,
+      "ellipse": 0,
+      "line": 18,
+      "path": 18,
+      "polygon": 0,
+      "polyline": 0,
+      "rect": 69
+    },
+    "preset_names": {},
+    "native_objects": {
+      "chart": 0,
+      "formula_block": 0,
+      "formula_inline": 0,
+      "other": 0,
+      "table": 0
+    },
+    "image_page_max_frame_share_range": []
+  },
+  "project_issues": {
+    "template": [],
+    "animation": [],
+    "illustration": [],
+    "communication_trace": [],
+    "pptx_structure": []
+  },
+  "files": [
+    {
+      "file": "01_cover.svg",
+      "path": "E:\\0github\\git-sync\\ppt-master\\projects\\arena-local-01a0aa00\\svg_output\\01_cover.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 11,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 2,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 6,
+              "circle": 2,
+              "ellipse": 0,
+              "line": 0,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 2
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 6,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Consolas, monospace",
+          "Microsoft YaHei, Segoe UI, sans-serif"
+        ],
+        "text_elements": 11,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "48a2a9d01698450144be4790a5e9912766ed31b3c2f50718fe48843595378451"
+    },
+    {
+      "file": "02_toc.svg",
+      "path": "E:\\0github\\git-sync\\ppt-master\\projects\\arena-local-01a0aa00\\svg_output\\02_toc.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 24,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 1,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 7,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 0
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 2,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Consolas, monospace",
+          "Microsoft YaHei, Segoe UI, sans-serif"
+        ],
+        "text_elements": 24,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "fb5cc0194550e8387df5c92316627c00652523b1121bbddd726848a53067a654"
+    },
+    {
+      "file": "03_section_a.svg",
+      "path": "E:\\0github\\git-sync\\ppt-master\\projects\\arena-local-01a0aa00\\svg_output\\03_section_a.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 6,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 2,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 0,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 1
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 2,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Consolas, monospace",
+          "Microsoft YaHei, Segoe UI, sans-serif"
+        ],
+        "text_elements": 6,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "2a609df660df9429714c1d2d4c82efa78d0879eea7e7cbd2f48369a4f54e9707"
+    },
+    {
+      "file": "04_chain.svg",
+      "path": "E:\\0github\\git-sync\\ppt-master\\projects\\arena-local-01a0aa00\\svg_output\\04_chain.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 22,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 8,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 4,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 4
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 6,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Consolas, monospace",
+          "Microsoft YaHei, Segoe UI, sans-serif"
+        ],
+        "text_elements": 22,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "1a8ec85310d1bc19f17846e026f948be16f1a782eb5c940565c2193766647803"
+    },
+    {
+      "file": "05_installed.svg",
+      "path": "E:\\0github\\git-sync\\ppt-master\\projects\\arena-local-01a0aa00\\svg_output\\05_installed.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 22,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 9,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 1,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 0
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 2,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Consolas, monospace",
+          "Microsoft YaHei, Segoe UI, sans-serif"
+        ],
+        "text_elements": 22,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "f19fff07dc45a9f3dd69d988dd5675ceac7ab05f06f35d67770cd8c563d1893d"
+    },
+    {
+      "file": "06_loop.svg",
+      "path": "E:\\0github\\git-sync\\ppt-master\\projects\\arena-local-01a0aa00\\svg_output\\06_loop.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [
+        "Detected 2 paragraph-like line run(s) split across sibling <text> elements (<g id=\"loop-step-2\"> x=332.0, y=342.0..370.0, 2 lines; <g id=\"loop-step-5\"> x=1034.0, y=342.0..370.0, 2 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy=\"0\". Keep semantically independent text frames separate."
+      ],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 33,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 7,
+              "circle": 5,
+              "ellipse": 0,
+              "line": 1,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 8
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 10,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Consolas, monospace",
+          "Microsoft YaHei, Segoe UI, sans-serif"
+        ],
+        "text_elements": 33,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "24c27b09e963468ff8487bf5cf75924e7fca5bce947d6e745c48ad98ca3fea65"
+    },
+    {
+      "file": "07_checks.svg",
+      "path": "E:\\0github\\git-sync\\ppt-master\\projects\\arena-local-01a0aa00\\svg_output\\07_checks.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 24,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 10,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 1,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 0
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 2,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Consolas, monospace",
+          "Microsoft YaHei, Segoe UI, sans-serif"
+        ],
+        "text_elements": 24,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "64acf3738a5473352e998fdc7efb69ff467c6f15b63e4112c199870f76adaa58"
+    },
+    {
+      "file": "08_numbers.svg",
+      "path": "E:\\0github\\git-sync\\ppt-master\\projects\\arena-local-01a0aa00\\svg_output\\08_numbers.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 25,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 9,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 2,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 0
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 3,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Consolas, monospace",
+          "Microsoft YaHei, Segoe UI, sans-serif"
+        ],
+        "text_elements": 25,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "ff770a853d87a4581fa5acabb403b8af7167872fdd62077f98968571ca575053"
+    },
+    {
+      "file": "09_deliverables.svg",
+      "path": "E:\\0github\\git-sync\\ppt-master\\projects\\arena-local-01a0aa00\\svg_output\\09_deliverables.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 22,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 6,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 1,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 0
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 2,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Consolas, monospace",
+          "Microsoft YaHei, Segoe UI, sans-serif"
+        ],
+        "text_elements": 22,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "85101363107a4dda9abbe614436a80e295ceec991a08f25adede3df3ea7d4148"
+    },
+    {
+      "file": "10_section_b.svg",
+      "path": "E:\\0github\\git-sync\\ppt-master\\projects\\arena-local-01a0aa00\\svg_output\\10_section_b.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 6,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 2,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 0,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 1
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 2,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Consolas, monospace",
+          "Microsoft YaHei, Segoe UI, sans-serif"
+        ],
+        "text_elements": 6,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "842052c5f8d5db3081b8ab842ab386fed71cab46f09ed57a37b58dccc5bb9960"
+    },
+    {
+      "file": "11_commands.svg",
+      "path": "E:\\0github\\git-sync\\ppt-master\\projects\\arena-local-01a0aa00\\svg_output\\11_commands.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 18,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 7,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 1,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 0
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 2,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Consolas, monospace",
+          "Microsoft YaHei, Segoe UI, sans-serif"
+        ],
+        "text_elements": 18,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "a11e1dc4b5fd797705ec3c24c0aceeba3e7a966dd2adf3b233102ce6347f37e7"
+    },
+    {
+      "file": "12_ending.svg",
+      "path": "E:\\0github\\git-sync\\ppt-master\\projects\\arena-local-01a0aa00\\svg_output\\12_ending.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 6,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 2,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 0,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 2
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 3,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Consolas, monospace",
+          "Microsoft YaHei, Segoe UI, sans-serif"
+        ],
+        "text_elements": 6,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "a2a1d12587cb5ecdfd4a747d92d98897df79b79668bc20d5d8e4737fe4a175d9"
+    }
+  ]
+}
