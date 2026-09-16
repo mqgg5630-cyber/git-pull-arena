@@ -1,9 +1,9 @@
 {
-  "round": 22,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-09-16 10:50:57",
-  "local_updated": "2026-09-16 18:50:36"
+  "round": 23,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "verify v2.8.1: 3h 读 OFFICE_HASHES.json + 闸门找到可用 python（本机三项 SKIP 应消失）",
+  "arena_updated": "2026-09-16 11:20:59",
+  "local_updated": null
 }
