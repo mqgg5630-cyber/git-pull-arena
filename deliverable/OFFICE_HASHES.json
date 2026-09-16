@@ -1,0 +1,67 @@
+{
+  "generated_utc": "2026-09-16T10:30:00Z",
+  "generator": "code/make_bridge_report.py",
+  "generator_note": "pure stdlib OOXML writer; deterministic ZIP timestamps; no network access",
+  "how_local_verifies": "code/local_check.ps1 section 3 compares sha256/bytes, opens the package, checks required_parts exist, parses every .xml/.rels part, proves every relationship target resolves and content types cover every part, then searches must_contain across ALL xml parts (main_part is the structural anchor, not the text scope) and counts slides against min_slides; the Office COM open test is opt-in because the watcher is non-interactive",
+  "files": [
+    {
+      "path": "deliverable/BRIDGE_REPORT_v2.7.4.docx",
+      "kind": "docx",
+      "bytes": 6575,
+      "sha256": "36e092b738c4ef3dc2ba8fcc6293d6c3aefcb982e77252b3a67ec98b8ebc71b3",
+      "required_parts": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "word/document.xml",
+        "word/styles.xml",
+        "word/_rels/document.xml.rels",
+        "docProps/core.xml",
+        "docProps/app.xml"
+      ],
+      "main_part": "word/document.xml",
+      "must_contain": [
+        "git-sync",
+        "2.7.4",
+        "LAPTOP-R77M5D6M",
+        "arena/01a0a9ba-git-pull-arena"
+      ],
+      "min_slides": null,
+      "sandbox_selftest": {
+        "parts": 7,
+        "slides": 0,
+        "main_bytes": 33310
+      }
+    },
+    {
+      "path": "deliverable/BRIDGE_REPORT_v2.7.4.pptx",
+      "kind": "pptx",
+      "bytes": 20741,
+      "sha256": "39394848129fd6187d2e355d02c99284022badebc621aaea7b73974fe4d1e3e5",
+      "required_parts": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "ppt/presentation.xml",
+        "ppt/_rels/presentation.xml.rels",
+        "ppt/slideMasters/slideMaster1.xml",
+        "ppt/slideLayouts/slideLayout1.xml",
+        "ppt/slideLayouts/slideLayout2.xml",
+        "ppt/theme/theme1.xml",
+        "ppt/slides/slide1.xml",
+        "docProps/core.xml",
+        "docProps/app.xml"
+      ],
+      "main_part": "ppt/presentation.xml",
+      "must_contain": [
+        "git-sync",
+        "2.7.4",
+        "arena/01a0a9ba-git-pull-arena"
+      ],
+      "min_slides": 9,
+      "sandbox_selftest": {
+        "parts": 31,
+        "slides": 9,
+        "main_bytes": 778
+      }
+    }
+  ]
+}

@@ -1,9 +1,9 @@
 {
-    "round":  20,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "verify: git-sync v2.7.4 installed on arena/01a0a9ba (gate + local_check + success_criteria)",
-    "arena_updated":  "2026-09-16 10:24:17",
-    "local_updated":  "2026-09-16 18:27:00"
+  "round": 20,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "round 20: git-sync v2.7.4 install verified by the local watcher (passed)",
+  "arena_updated": "2026-09-16 10:45:16",
+  "local_updated": "2026-09-16 18:27:00"
 }

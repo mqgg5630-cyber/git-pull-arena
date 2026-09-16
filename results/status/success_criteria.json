@@ -1,28 +1,47 @@
 {
-  "description": "v2.7.4: short arena.ai prompt maps to GitHub clone; real Windows watcher; no fake local/inbox.",
+  "description": "round 21: real Office deliverables (docx + pptx) written by a pure-stdlib OOXML generator, pushed through the git working branch, and verified ON THE REAL MACHINE by sha256 + byte size + OOXML package structure. No fake local bridge: no local/inbox, no .venv, no self-made docx_skill.py.",
   "require_files": [
-    "01a0a821.md",
+    "deliverable/BRIDGE_REPORT_v2.7.4.docx",
+    "deliverable/BRIDGE_REPORT_v2.7.4.pptx",
+    "deliverable/OFFICE_HASHES.json",
+    "code/make_bridge_report.py",
+    "code/local_check.ps1",
+    "skills/git-sync/VERSION",
     "skills/git-sync/scripts/agent-handsfree.sh",
     "skills/git-sync/scripts/agent-criteria.sh",
-    "skills/git-sync/scripts/watch.ps1",
-    "deliverable/HANDS_FREE_v2.7.0.md",
-    "skills/git-sync/VERSION",
-    "skills/git-sync/templates/USER_PROMPT.md"
+    "watch.ps1",
+    "01a0a821.md"
+  ],
+  "forbid_files": [
+    "local/inbox",
+    "local/status_receipts",
+    ".venv",
+    "venv",
+    "skills/docx_skill.py",
+    "local_bridge_skill.py"
   ],
   "require_contains": {
     "skills/git-sync/VERSION": "2.7.4",
-    "01a0a821.md": "git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena",
-    "skills/git-sync/sync.config.json": "\"hands_free\"",
-    "watch.ps1": "function Invoke-AutoPull",
-    "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus"
+    "skills/git-sync/sync.config.json": "arena/01a0a9ba-git-pull-arena",
+    "code/make_bridge_report.py": "import zipfile",
+    "code/local_check.ps1": "System.IO.Compression.ZipFile",
+    "deliverable/OFFICE_HASHES.json": "sha256",
+    "watch.ps1": "function Invoke-AutoPull"
   },
   "require_regex": {
+    "code/local_check.ps1": "Get-FileHash",
+    "deliverable/OFFICE_HASHES.json": "[0-9a-f]{64}",
     "watch.ps1": "function Invoke-AutoPush"
   },
   "min_bytes": {
-    "skills/git-sync/scripts/agent-handsfree.sh": 1000,
-    "skills/git-sync/scripts/agent-criteria.sh": 1000,
-    "deliverable/HANDS_FREE_v2.7.0.md": 800,
+    "deliverable/BRIDGE_REPORT_v2.7.4.docx": 5000,
+    "deliverable/BRIDGE_REPORT_v2.7.4.pptx": 15000,
+    "code/make_bridge_report.py": 20000,
+    "code/local_check.ps1": 12000,
     "watch.ps1": 20000
+  },
+  "max_bytes": {
+    "deliverable/BRIDGE_REPORT_v2.7.4.docx": 3000000,
+    "deliverable/BRIDGE_REPORT_v2.7.4.pptx": 3000000
   }
 }
