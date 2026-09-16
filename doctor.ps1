@@ -205,6 +205,24 @@ if (Test-Path -LiteralPath $stateFile) {
 } else {
     Line 'heartbeat' '(none yet - the watcher has never completed a poll)' 'Yellow'
 }
+$otherTasks = @()
+try { $otherTasks = @(Get-ScheduledTask -TaskName 'git-sync-watch-*' -ErrorAction SilentlyContinue) } catch { }
+$otherTasks = @($otherTasks | Where-Object { [string]$_.TaskName -ne $taskName })
+if ($otherTasks.Count -gt 0) {
+    $bits = @($otherTasks | ForEach-Object { ('{0}[{1}]' -f $_.TaskName, $_.State) })
+    Line 'other tasks' (($bits -join '  ') + '  - .\\watch.ps1 -Focus parks them')
+}
+$parkFile = Join-Path $stateDir 'parked.json'
+if (Test-Path -LiteralPath $parkFile) {
+    try {
+        $pl = Get-Content -LiteralPath $parkFile -Raw -Encoding UTF8 | ConvertFrom-Json
+        $pc = 0
+        if ($pl.items) { $pc = @($pl.items).Count }
+        if ($pc -gt 0) {
+            Line 'parked' ("$pc task(s) by $($pl.last_focus) - restore: .\\watch.ps1 -RestoreParked") 'Yellow'
+        }
+    } catch { }
+}
 $authScript = Join-Path $repo 'auth.ps1'
 if (Test-Path -LiteralPath $authScript) {
     try {
@@ -250,6 +268,8 @@ Write-Host "   .\pr.ps1                         open a PR from the working branc
 Write-Host "   .\auth.ps1 (-Setup / -Verify)    make pushes silent: no popup, no click"
 Write-Host "   .\watch.ps1 -Status / -Test      is the auto-verification watcher alive?"
 Write-Host "   .\watch.ps1 -Register            run the local checks the agent asks for"
+Write-Host "   .\watch.ps1 -Focus               pause other conversations' watchers (this one stays)"
+Write-Host "   .\watch.ps1 -RestoreParked       resume the watchers -Focus paused"
 
 # ---------------------------------------------------------------------- fix
 if ($Fix) {

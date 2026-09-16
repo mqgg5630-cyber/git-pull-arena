@@ -16,6 +16,10 @@
 #     .\watch.ps1                        # one manual poll right now
 #     .\watch.ps1 -Loop                  # poll forever in this console (what the task runs)
 #     .\watch.ps1 -Pause / -Resume       # stop / restart polling (task stays)
+#     .\watch.ps1 -Focus                 # this clone only: pause other git-sync-watch-*
+#                                        # tasks + kill their loops (does NOT delete them)
+#     .\watch.ps1 -RestoreParked         # resume the tasks -Focus paused
+#     .\watch.ps1 -Register -KeepOthers  # register without pausing other conversations
 #     .\watch.ps1 -Unregister            # remove the scheduled task
 #     .\watch.ps1 -Register -Flash       # fallback launcher (brief flash per LOGON)
 #     .\watch.ps1 -Register -Headless    # zero window via S4U (session 0, ADMIN console!)
@@ -63,6 +67,9 @@ param(
     [switch]$Loop,
     [switch]$Headless,
     [switch]$Flash,
+    [switch]$Focus,
+    [switch]$RestoreParked,
+    [switch]$KeepOthers,
     [int]$CheckTimeoutMin = 0,
     [int]$SelfTestSec = 90,
     [int]$KeeperMin = 10
@@ -146,6 +153,9 @@ if (-not $hostDir) { $hostDir = $stateDir }
 $hostExe   = Join-Path $hostDir ('watchhost-' + $repoName + '.exe')
 $lockFile  = Join-Path $env:TEMP ($taskName + '.lock')
 $loopFile  = Join-Path $stateDir ('watchloop-' + $repoName + '.pid')
+# one machine-wide ledger of watchers paused by -Focus (so -RestoreParked
+# can bring the previous conversation back without re-registering)
+$parkFile  = Join-Path $stateDir 'parked.json'
 
 # ------------------------------------------------------------- state helpers
 function Get-State {
@@ -170,7 +180,7 @@ function Add-Log {
         if (Test-Path -LiteralPath $hostLog) {
             $len = (Get-Item -LiteralPath $hostLog -ErrorAction SilentlyContinue).Length
             if ($len -gt 2MB) {
-                $keep = @(Get-Content -LiteralPath $hostLog -Tail 200 -ErrorAction SilentlyContinue)
+                $keep = @(Get-Content -LiteralPath $hostLog -Tail 200 -Encoding UTF8 -ErrorAction SilentlyContinue)
                 [System.IO.File]::WriteAllLines($hostLog, (@('(log rotated)') + $keep), (New-Object System.Text.UTF8Encoding($false)))
             }
         }
@@ -447,22 +457,25 @@ public static extern bool IsWindowVisible(System.IntPtr hWnd);
 }
 
 function Get-WatchLoops {
-    # every powershell process running THIS repo's watch.ps1 -Loop. Needed
+    # every powershell process running a clone's watch.ps1 -Loop. Needed
     # because a loop started by an older version carries no pid file, so it
     # cannot be found by pid alone - and a leftover loop keeps polling (and, if
     # it owns a console, keeps printing in it = "the console looks stuck",
-    # field report 2026-09-16).
+    # field report 2026-09-16). -Name defaults to THIS clone; -Focus uses it
+    # for every other clone too.
+    param([string]$Name = $repoName)
     $out = @()
+    if (-not $Name) { return $out }
     try {
         $mine = $PID
-        $needle = 'watch.ps1'
         $q = Get-CimInstance Win32_Process -Filter "Name = 'powershell.exe' OR Name = 'pwsh.exe'" -ErrorAction Stop
         foreach ($proc in $q) {
             $cl = [string]$proc.CommandLine
             if (-not $cl) { continue }
             if ($cl -notmatch '\-Loop\b') { continue }
-            if ($cl -notmatch [regex]::Escape($needle)) { continue }
-            if ($cl -notmatch [regex]::Escape($repoName)) { continue }
+            # match the clone folder as a path segment (...\Name\watch.ps1)
+            # so git-pull-arena does not also kill git-pull-arena-s2
+            if ($cl -notmatch ([regex]::Escape($Name) + '[\\/]watch\.ps1')) { continue }
             if ($proc.ProcessId -eq $mine) { continue }
             $out += [pscustomobject]@{ Pid = $proc.ProcessId; Command = $cl }
         }
@@ -596,7 +609,155 @@ function Show-TaskDiagnostics {
     }
 }
 
+function Get-AllWatchTasks {
+    $out = @()
+    try { $out = @(Get-ScheduledTask -TaskName 'git-sync-watch-*' -ErrorAction SilentlyContinue) } catch { }
+    if (-not $out) { return @() }
+    return @($out)
+}
+
+function Stop-RepoLoops {
+    # stop the long-lived loop of ANY clone (pid file + leftover processes)
+    param([string]$Name)
+    $killed = 0
+    if (-not $Name) { return 0 }
+    $pf = Join-Path $stateDir ('watchloop-' + $Name + '.pid')
+    if (Test-Path -LiteralPath $pf) {
+        $lp = 0
+        try {
+            $raw = (Get-Content -LiteralPath $pf -Raw -ErrorAction SilentlyContinue) -replace '[^0-9]', ''
+            if ($raw) { $lp = [int]$raw }
+        } catch { }
+        if ($lp -gt 0) {
+            try { Stop-Process -Id $lp -Force -ErrorAction Stop; $killed++ } catch { }
+        }
+        Remove-Item -LiteralPath $pf -Force -ErrorAction SilentlyContinue
+    }
+    foreach ($l in (Get-WatchLoops -Name $Name)) {
+        try { Stop-Process -Id $l.Pid -Force -ErrorAction Stop; $killed++ } catch { }
+    }
+    return $killed
+}
+
+function Get-ParkLedger {
+    if (-not (Test-Path -LiteralPath $parkFile)) {
+        return [pscustomobject]@{ updated = ''; last_focus = ''; items = @() }
+    }
+    try {
+        return (Get-Content -LiteralPath $parkFile -Raw -Encoding UTF8 | ConvertFrom-Json)
+    } catch {
+        return [pscustomobject]@{ updated = ''; last_focus = ''; items = @() }
+    }
+}
+
+function Save-ParkLedger {
+    param($Ledger)
+    try {
+        $json = ($Ledger | ConvertTo-Json -Depth 6)
+        [System.IO.File]::WriteAllText($parkFile, $json + "`r`n", (New-Object System.Text.UTF8Encoding($false)))
+    } catch { }
+}
+
+function Invoke-ParkOthers {
+    # pause every OTHER git-sync-watch-* task and kill its loop. Does NOT
+    # Unregister: the task stays so -RestoreParked / -Focus on that clone
+    # can bring it back. Already-Disabled tasks are left alone (frozen).
+    $now = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss')
+    $did = @()
+    foreach ($t in (Get-AllWatchTasks)) {
+        $tn = [string]$t.TaskName
+        if (-not $tn) { continue }
+        if ($tn -eq $taskName) { continue }
+        $st = ''
+        try { $st = [string]$t.State } catch { }
+        if ($st -eq 'Disabled') { continue }
+        $other = $tn
+        if ($tn.Length -gt 16 -and $tn.Substring(0, 16) -eq 'git-sync-watch-') {
+            $other = $tn.Substring(16)
+        }
+        try { Stop-ScheduledTask -TaskName $tn -ErrorAction SilentlyContinue } catch { }
+        $n = Stop-RepoLoops $other
+        try { Disable-ScheduledTask -TaskName $tn -ErrorAction SilentlyContinue } catch { }
+        $did += [pscustomobject]@{
+            task = $tn; repo = $other; state_before = $st
+            loops_stopped = $n; parked_at = $now; parked_by = $taskName
+        }
+        Add-Log ("parked other watcher: $tn (was $st, stopped $n loop(s))")
+    }
+    $ledger = Get-ParkLedger
+    $byName = @{}
+    if ($ledger.items) {
+        foreach ($it in @($ledger.items)) {
+            $k = [string]$it.task
+            if ($k -and $k -ne $taskName) { $byName[$k] = $it }
+        }
+    }
+    foreach ($it in $did) { $byName[$it.task] = $it }
+    $merged = @()
+    foreach ($k in $byName.Keys) { $merged += $byName[$k] }
+    Save-ParkLedger ([ordered]@{ updated = $now; last_focus = $taskName; items = $merged })
+    return $did
+}
+
+function Invoke-RestoreParked {
+    $ledger = Get-ParkLedger
+    $items = @()
+    if ($ledger.items) { $items = @($ledger.items) }
+    $n = 0
+    foreach ($it in $items) {
+        $tn = [string]$it.task
+        if (-not $tn) { continue }
+        try { Enable-ScheduledTask -TaskName $tn -ErrorAction SilentlyContinue } catch { }
+        try { Start-ScheduledTask -TaskName $tn -ErrorAction SilentlyContinue } catch { }
+        Add-Log ("restored parked watcher: $tn")
+        $n++
+    }
+    Save-ParkLedger ([ordered]@{
+        updated = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss')
+        last_focus = ''
+        items = @()
+    })
+    return $n
+}
+
+function Invoke-Focus {
+    # this clone is the active conversation: park every other watcher, then
+    # make sure THIS task is enabled and running
+    if (Get-TaskInfo) {
+        try { Enable-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue } catch { }
+        $null = Start-TaskNow
+    }
+    return (Invoke-ParkOthers)
+}
+
 # ----------------------------------------------------------- pause / resume
+if ($Focus) {
+    $parked = @(Invoke-Focus)
+    Write-Host ("== focus : {0}  (this conversation is the active watcher)" -f $taskName) -ForegroundColor Green
+    if (-not (Get-TaskInfo)) {
+        Write-Host "   [warn] this clone has no scheduled task yet - run .\\watch.ps1 -Register" -ForegroundColor Yellow
+    }
+    if ($parked.Count -eq 0) {
+        Write-Host "   no other git-sync-watch-* tasks were running"
+    } else {
+        Write-Host ("   parked {0} other conversation(s) (task kept, loop stopped):" -f $parked.Count)
+        foreach ($it in $parked) {
+            Write-Host ("     {0}  (was {1}, stopped {2} loop(s))" -f $it.task, $it.state_before, $it.loops_stopped)
+        }
+        Write-Host "   come back later with:  cd <that-clone> ; .\\watch.ps1 -Focus"
+        Write-Host "   or resume them all:    .\\watch.ps1 -RestoreParked"
+    }
+    exit 0
+}
+if ($RestoreParked) {
+    $n = Invoke-RestoreParked
+    if ($n -eq 0) {
+        Write-Host "== nothing parked (ledger empty) - no other watchers to restore"
+    } else {
+        Write-Host ("== restored {0} parked watcher(s) - they poll again" -f $n) -ForegroundColor Green
+    }
+    exit 0
+}
 if ($Pause) {
     $null = Stop-TaskNow
     $lp = Get-LoopPid
@@ -687,7 +848,32 @@ if ($Status) {
     if ($logs.Count -gt 0) {
         Write-Host ""
         Write-Host ("   last check  : {0}" -f $logs[0].FullName) -ForegroundColor Cyan
-        Get-Content -LiteralPath $logs[0].FullName -Tail 8 | ForEach-Object { Write-Host ("     " + $_) }
+        Get-Content -LiteralPath $logs[0].FullName -Tail 8 -Encoding UTF8 | ForEach-Object { Write-Host ("     " + $_) }
+    }
+    $others = @()
+    foreach ($ot in (Get-AllWatchTasks)) {
+        if ([string]$ot.TaskName -eq $taskName) { continue }
+        $others += $ot
+    }
+    if ($others.Count -gt 0) {
+        Write-Host ""
+        Write-Host "   other tasks :" -ForegroundColor Cyan
+        foreach ($ot in $others) {
+            $ost = ''
+            try { $ost = [string]$ot.State } catch { }
+            Write-Host ("     {0}  [{1}]" -f $ot.TaskName, $ost)
+        }
+        Write-Host "                 switch: .\watch.ps1 -Focus    restore all: .\watch.ps1 -RestoreParked" -ForegroundColor DarkGray
+    }
+    if (Test-Path -LiteralPath $parkFile) {
+        try {
+            $pl = Get-ParkLedger
+            $pc = 0
+            if ($pl.items) { $pc = @($pl.items).Count }
+            if ($pc -gt 0) {
+                Write-Host ("   parked      : {0} task(s) by {1} at {2} - .\watch.ps1 -RestoreParked" -f $pc, $pl.last_focus, $pl.updated) -ForegroundColor Yellow
+            }
+        } catch { }
     }
     Write-Host ""
     Write-Host "   host log    : $hostLog (tail)" -ForegroundColor Cyan
@@ -943,8 +1129,26 @@ if ($Register -or $Unregister) {
     Write-Host "   verify it any time with: .\watch.ps1 -Status   /   .\watch.ps1 -Test"
     Write-Host "   remove any time with:    .\watch.ps1 -Unregister"
     Write-Host "   pause / resume:          .\watch.ps1 -Pause  /  .\watch.ps1 -Resume"
+    Write-Host "   this conversation only:  .\watch.ps1 -Focus          (pauses other clones)"
+    Write-Host "   restore other clones:    .\watch.ps1 -RestoreParked"
     Write-Host "   after upgrading the skill, re-register so the loop runs the new code"
     Write-Host "   if a push needs a login window, fix it once with .\auth.ps1 -Setup"
+    if (-not $KeepOthers) {
+        Write-Host ""
+        $parked = @(Invoke-ParkOthers)
+        if ($parked.Count -gt 0) {
+            Write-Host ("== parked {0} other conversation watcher(s) (kept the task, stopped the loop):" -f $parked.Count) -ForegroundColor Cyan
+            foreach ($it in $parked) {
+                Write-Host ("     {0}  (was {1})" -f $it.task, $it.state_before)
+            }
+            Write-Host "   go back later:  cd <that-clone> ; .\watch.ps1 -Focus"
+            Write-Host "   or resume all:  .\watch.ps1 -RestoreParked"
+        } else {
+            Write-Host "== no other git-sync-watch-* tasks were running"
+        }
+    } else {
+        Write-Host "== -KeepOthers: left other conversation watchers running"
+    }
     exit 0
 }
 

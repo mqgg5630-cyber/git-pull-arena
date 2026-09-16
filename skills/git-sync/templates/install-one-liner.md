@@ -18,6 +18,7 @@ git clone -b <工作分支> https://github.com/<owner>/<repo>.git               
 - 第 2 行的分支就是 `sync.config.json` 里的 `branch`（本仓库当前是 `arena/01a0a821-git-pull-arena`）。
   `push.ps1` 会直接拒绝 main/master，所以克隆错分支会立刻暴露，不会静默推坏东西。
 - 第 3 行 `-Auto` 等价于 `bootstrap.ps1` + `auth.ps1 -Setup -Verify` + `watch.ps1 -Register` 三步。
+- `-Register`（v2.6.9）会**暂停其他会话**的 `git-sync-watch-*`（任务保留、循环停掉）。切回本会话 HQ：`cd E:\0github\git-sync\git-pull-arena-s2 ; .\watch.ps1 -Focus`。不想动别人：`.\watch.ps1 -Register -KeepOthers`。
 - 第 4 行期望：`branch` 是工作分支、`ahead/behind = 0/0`、末尾 `watcher / heartbeat / auth` 三行都正常。
   前置只有一个：本机装好 Git（`git --version` 出版本号；没有就到 <https://git-scm.com/download/win>）。
 
@@ -42,6 +43,7 @@ cd <repo>                                                                       
 | `heartbeat age` | 小于轮询间隔的 2 倍，标 `fresh` |
 | `last run / schedule result` | 带人话注释；`0 / 267009 / 267011 / 267014 / 2147946720(0x800710E0)` 都是**正常**码 |
 | `host log (tail)` | 每轮都有一行 `== ...` 收尾行 + 一行 `== next poll at HH:MM:SS (Ctrl+C stops this loop)` |
+| `other tasks` / `parked` | 其他会话的 `git-sync-watch-*`；被暂停的会标 Disabled。切回：`.\watch.ps1 -Focus`；全恢复：`.\watch.ps1 -RestoreParked` |
 
 > `2147946720` 看着吓人，其实是 `0x800710E0`「已有实例在跑，本次启动被拒」——常驻循环 + 10 分钟
 > keeper 触发器的**正常**结果，v2.6.8 起 `doctor.ps1` 也不再把它当异常提示。

@@ -1,4 +1,4 @@
-> 当前版本 **v2.6.8**（开发分支，**待真机复验**；已核实证据与复验清单 `deliverable/CASE_STUDY_v2.6.7.md`）。`main` 上是 **v2.6.7**（PR #1；发行说明 `deliverable/RELEASE_v2.6.7.md`）。
+> 当前版本 **v2.6.9**（开发分支：新会话暂停其他值守 / `-Focus` 切回；v2.6.8 收尾行 round 18 已通过，清单 `deliverable/CASE_STUDY_v2.6.7.md`）。`main` 上是 **v2.6.7**（PR #1；发行说明 `deliverable/RELEASE_v2.6.7.md`）。
 
 # 本地 ↔ Agent 同步 skill —— 使用说明
 
@@ -7,6 +7,8 @@
 > （新会话引导提示词在 `templates/new-session-prompt.md`，整段复制即用）。
 > 仓库根目录放着同款脚本（`sync.ps1 / push.ps1 / upload.ps1 / download.ps1 / doctor.ps1 / pack.ps1 / bootstrap.ps1 / pr.ps1 / hardware.ps1 / watch.ps1 / auth.ps1 / install.ps1`），
 > 这份 skill 是**通用版 + 说明书**；根目录副本必须与 `scripts\` 下的**逐字节相同**（`code/check_all.sh` 第 3 节会卡）。
+>
+> **v2.6.9（新会话暂停其他值守 / 切回本会话）**：`-Register` 默认把其他 `git-sync-watch-*` **暂停**（Stop + Disable + 杀掉循环 PID，**不 Unregister**）；台账 `%LOCALAPPDATA%\git-sync\parked.json`。新对话装完即只留这一份值守。继续原来的对话：在 HQ 克隆里 `.\watch.ps1 -Focus`（本克隆恢复、其他再暂停）。一次全恢复：`.\watch.ps1 -RestoreParked`。不想动别人：`-Register -KeepOthers`。`-Status` / `doctor.ps1` 列出 other tasks 与 parked 行。last-check 日志按 UTF-8 读（修中文乱码）。说明 `deliverable/FIX_v2.6.9.md`。
 >
 > **v2.6.8（值守"每轮都要有收尾行"）**：`watch.ps1` 的 `Invoke-PollRound`（6 个出口）与
 > `Invoke-PollOnce`（锁被占 / 崩溃，2 个出口）现在**每个出口都设置 `$script:PollSummary`**，
@@ -98,7 +100,7 @@ bash skills/git-sync/scripts/agent-pr.sh --checks          # 看 PR 的 CI 状�
 | `scripts/pack.ps1` | 压缩包交付；输出到 `_export\`（已在 `.gitignore` 里，不会被推送） |
 | `scripts/doctor.ps1` | 体检报告 + 技能版本 + LFS/大文件检查 + **值守/心跳/凭据三行**（watcher / heartbeat / auth）；`-Fix` 一键修复；ahead/behind 对比的是 `origin/<分支>`（修复了老版本永远显示 0 的 bug） |
 | `scripts/hardware.ps1` | **本机硬件/环境上报**：OS、CPU、内存、GPU（nvidia-smi 优先，含显存/算力/CUDA 驱动）、磁盘、conda/mamba 环境列表与各环境 python，`-Deep` 再探测每个环境的 torch + CUDA；写入 `hardware_dir`（latest.md/latest.json + 历史快照）并推送 |
-| `scripts/watch.ps1` | **自动验证循环本机侧**：`-Register` 注册计划任务跑**常驻循环**（`-Loop`，一个进程内部轮询；零窗口启动器优先、冒烟测试失败自动回退 `-Flash`=每次登录一次闪窗；keeper 心跳每 30 分钟保活），发现 agent 请求就 sync → 跑 `check_cmd`（硬超时）→ 日志落盘 → 静默推回 passed/failed；`-Status`（模式/心跳年龄/pid 存活）、`-Test`、`-Pause/-Resume/-Unregister` |
+| `scripts/watch.ps1` | **自动验证循环本机侧**：`-Register` 注册计划任务跑**常驻循环**（`-Loop`，一个进程内部轮询；零窗口启动器优先、冒烟测试失败自动回退 `-Flash`=每次登录一次闪窗；keeper 心跳每 30 分钟保活；**默认暂停其他会话的值守**），发现 agent 请求就 sync → 跑 `check_cmd`（硬超时）→ 日志落盘 → 静默推回 passed/failed；`-Status`（模式/心跳年龄/pid 存活/other tasks）、`-Test`、`-Pause/-Resume/-Unregister`、**`-Focus` / `-RestoreParked` / `-KeepOthers`** |
 | `scripts/bootstrap.ps1` | 首次准备：执行策略、git 身份、fetch、切分支、首拉 |
 | `scripts/pr.ps1` | GitHub CLI 开 PR / 查 CI；`-Base` 换目标分支，`-Checks` 看检查状态 |
 | `scripts/auth.ps1` | **免点击推送**：`-Setup`（**先探测现有配置，能静默拿到凭据就什么都不改**；否则 gh CLI 优先，再退到 GCM，并逐个 store 找已有凭据）/ `-Verify`（prompts 关闭下实跑 `ls-remote` + `push --dry-run`）/ `-MigrateStore`（复制凭据到 dpapi，给 S4U/-Headless 用）/ `-Token`·`-TokenFile`·`-PromptToken`（无浏览器播种令牌，永不回显）/ `-Json`（给 doctor、gate、agent 读）/ `-Unset` |
@@ -189,9 +191,10 @@ gate（`code/check_all.sh`）提交前自动扫描全部 `.ps1`，非 ASCII 直�
 | `git stash list` 越积越多 | v2.6.1 起值守产物改为本地提交；历史堆积用 `git stash list` 检查后 `git stash clear`（确认没有你要的改动） |
 | 要密码 / 认证失败 / 推送卡着等确认 | `.\auth.ps1 -Setup` → `.\auth.ps1 -Verify`（一次配好免点击；两者都支持 `-Json`）。**如果 `-Setup` 之后反而开始要登录**：`.\auth.ps1 -MigrateStore` 或 `.\auth.ps1 -Unset`（把 `credentialStore` 改回默认，原来的凭据立刻可见） |
 | 值守注册时直接抛 ParserError（脚本一行都没跑） | 检查有没有 `"$var:"` 这种写法：`$round:` 会被当成盘符变量，**整份脚本解析失败**。gate 的 `code/scan_ps_var_colon.py` 会替你先扫出来 |
-| 计划任务报 `Disabled` / 心跳文件不存在 | 任务被 `-Pause` 过或从未成功注册：`.\watch.ps1 -Unregister` → `.\watch.ps1 -Register`；`-Status` 的 heartbeat 才可信 |
+| 计划任务报 `Disabled` / 心跳文件不存在 | 任务被 `-Pause` / `-Focus` 过或从未成功注册：本克隆 `.\watch.ps1 -Focus` 或 `.\watch.ps1 -Resume`；一次全恢复 `.\watch.ps1 -RestoreParked`；真要重来才 `-Unregister` → `-Register` |
 | 值守推送一直不成功（agent 说"还在等"） | `.\watch.ps1 -Status` 看心跳与 `last_push`；`auth: no silent credential` 就是没配凭据，跑 `.\auth.ps1 -Setup` |
 | 值守好像没在跑（计划任务显示正常） | `.\watch.ps1 -Test`（立刻跑一次并等心跳）；`Get-ScheduledTaskInfo <任务名>` 的 LastTaskResult 不可信（v2.4.4 就是这么被骗的） |
+| 新会话装完，旧会话值守不跑了 | 这是 v2.6.9 的默认：`-Register` 暂停其他 `git-sync-watch-*`（任务还在）。回原会话：`cd <原克隆> ; .\watch.ps1 -Focus`。全恢复：`.\watch.ps1 -RestoreParked`。新会话不想动别人：`-Register -KeepOthers` |
 | 值守闪黑窗 | v2.6.0 起是常驻循环：`-Register` 首选零窗口启动器（0 闪），回退 `-Flash` 也只是**每次登录闪一次**。升级后务必重注册：`.\watch.ps1 -Unregister` → `.\watch.ps1 -Register` |
 | 启动器自检失败（`no heartbeat`） | 现在会直接打印任务结果 + `%LOCALAPPDATA%\git-sync\watch-*.log` 尾部；把这段发我即可定位。临时用 `-Register -Flash`（每次登录一次闪窗）或管理员 `-Register -Headless`（零窗口，但需要 gh 助手） |
 | 单轮检查被判 failed 且写了 `TIMEOUT` | 检查超过 `check_timeout_min`（默认 30 分钟）被强杀；长任务请调大它并把 `lock_stale_min` 一起调大 |

@@ -1,5 +1,5 @@
-> 当前版本 **v2.6.8**（开发分支；round 18 真机推送闭环已通过）；`main` 上是 **v2.6.7**。安装/升级：本机 `agent-install.sh` 或 `install.ps1`；
-> 用户侧升级三步：`.\sync.ps1` → `.\watch.ps1 -Unregister ; .\watch.ps1 -Register` → `.\watch.ps1 -Status`。
+> 当前版本 **v2.6.9**（开发分支；新会话暂停其他值守 / `-Focus` 切回；v2.6.8 round 18 真机推送闭环已通过）；`main` 上是 **v2.6.7**。安装/升级：本机 `agent-install.sh` 或 `install.ps1`；
+> 用户侧升级三步：`.\sync.ps1` → `.\watch.ps1 -Unregister ; .\watch.ps1 -Register` → `.\watch.ps1 -Status`。切回本会话：`.\watch.ps1 -Focus`。
 
 ---
 name: git-local-arena-sync
@@ -39,7 +39,7 @@ description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件
 | `doctor.ps1` | 体检：环境/分支/远端/落后领先/未提交/stash/LFS/大文件/**技能版本** + **值守/心跳/凭据**（watcher / heartbeat / auth 三行）；**`-Fix` 一键修复** | `.\doctor.ps1 -Fix` |
 | `bootstrap.ps1` | 首次准备：执行策略、git 身份、fetch、切分支、首拉；`-Auto` 追加"免点击凭据 + 注册值守" | `.\bootstrap.ps1 -Auto` |
 | `hardware.ps1` | **采集本机硬件与环境**（OS/CPU/内存/GPU 显存/磁盘/conda/mamba 环境列表，`-Deep` 探测每个环境的 torch+CUDA）写入 `hardware_dir` 并推送 | `.\hardware.ps1 -Deep` |
-| `watch.ps1` | **自动验证循环的本机侧**：`-Register` 注册计划任务跑**常驻循环**（`-Loop`；零窗口启动器优先，冒烟测试失败自动回退 `-Flash`=每次登录闪一次；keeper 每 30 分钟保活）；发现 agent 请求检查 → 自动 sync → 跑 `check_cmd`（硬超时）→ 日志落盘 → 静默推回 passed/failed；`-Status`（模式/心跳年龄/pid）、`-Test`、`-Pause`/`-Resume`/`-Unregister` | `.\watch.ps1 -Register` |
+| `watch.ps1` | **自动验证循环的本机侧**：`-Register` 注册计划任务跑**常驻循环**（`-Loop`；零窗口启动器优先，冒烟测试失败自动回退 `-Flash`=每次登录闪一次；keeper 每 30 分钟保活；**默认暂停其他会话值守**）；发现 agent 请求检查 → 自动 sync → 跑 `check_cmd`（硬超时）→ 日志落盘 → 静默推回 passed/failed；`-Status`、`-Test`、`-Pause`/`-Resume`/`-Unregister`、**`-Focus` / `-RestoreParked` / `-KeepOthers`** | `.\watch.ps1 -Register` |
 | `pr.ps1` | 用 GitHub CLI 开 PR（工作分支 → main），`-Checks` 看 CI | `.\pr.ps1` |
 | `install.ps1` | 把整套技能装到另一个仓库（升级时**保留**对方已有配置） | `.\install.ps1 -Target C:\MyProject -Branch arena/xxx` |
 
@@ -199,8 +199,10 @@ bash skills/git-sync/scripts/agent-wait.sh --request "验证X" --auto-accept
 
 ```powershell
 .\auth.ps1 -Setup -Verify          # 1) 凭据：让推送不弹窗、不等点击（实跑证明）
-.\watch.ps1 -Register              # 2) 注册计划任务（默认 2 分钟；默认零窗口 + 注册后自检）
-.\watch.ps1 -Status                # 值守活着吗（模式 / 上次运行 / 心跳 / last_push）
+.\watch.ps1 -Register              # 2) 注册计划任务（默认 2 分钟；默认零窗口 + 注册后自检；暂停其他会话值守）
+.\watch.ps1 -Status                # 值守活着吗（模式 / 上次运行 / 心跳 / last_push / other tasks）
+.\watch.ps1 -Focus                 # 只留这一会话：暂停其他 git-sync-watch-*（不删任务）
+.\watch.ps1 -RestoreParked         # 把暂停的值守全部拉回来
 .\watch.ps1 -Test                  # 立刻跑一次任务，验证"真的会跑"
 .\watch.ps1                        # 手动跑一次轮询（立即处理当前请求）
 .\watch.ps1 -Unregister            # 不用了就摘掉
@@ -220,7 +222,12 @@ bash skills/git-sync/scripts/agent-wait.sh --request "验证X" --auto-accept
   `credential.interactive=false`）。**没有可静默使用的凭据就直接失败**（exit 4），并把 `auth: no silent credential`
   写进心跳，绝不挂在那里等点击——`auth.ps1 -Setup` 是修它的唯一命令。
 * 状态全在 `%LOCALAPPDATA%\git-sync\`：`watch-<仓库>.json`（心跳）、`watch-<仓库>.log`（每次轮询一行，
-  含每次 git 调用的结果），**不进 git**；`-Status` 与 `doctor.ps1` 都会读。
+  含每次 git 调用的结果）、`parked.json`（被 `-Focus`/`-Register` 暂停的其他会话值守），**不进 git**；
+  `-Status` 与 `doctor.ps1` 都会读。
+* **一会话一份值守（v2.6.9）**：新会话 `.\watch.ps1 -Register`（或 `bootstrap -Auto`）默认暂停其他
+  `git-sync-watch-*`（Stop+Disable+杀循环，**不删任务**）。继续原来的对话：在 HQ 克隆
+  `cd E:\0github\git-sync\git-pull-arena-s2 ; .\watch.ps1 -Focus`。一次全恢复：`.\watch.ps1 -RestoreParked`。
+  不想动别人：`-Register -KeepOthers`。
 
 要点：
 

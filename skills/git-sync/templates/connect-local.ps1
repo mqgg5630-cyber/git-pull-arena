@@ -72,3 +72,6 @@ if (Test-Path -LiteralPath '.\watch.ps1') { & .\watch.ps1 -Status }
 Write-Host ''
 Write-Host ('== ready: ' + $dest)
 Write-Host '   daily: .\sync.ps1   /   .\push.ps1 "msg"   /   .\watch.ps1 -Status'
+Write-Host '   this clone only: .\watch.ps1 -Focus     (parks other git-sync-watch-* tasks)'
+Write-Host '   resume parked:   .\watch.ps1 -RestoreParked'
+Write-Host '   HQ clone:        cd E:\0github\git-sync\git-pull-arena-s2 ; .\watch.ps1 -Focus'

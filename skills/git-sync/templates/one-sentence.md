@@ -53,3 +53,14 @@ Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 把 `<BRANCH>` / `<ORIGIN_URL>` / `<NEW_FOLDER>` 换成刚才读到的真值。不要留占位符。
 
 成功标志：`doctor.ps1` 的 branch 是工作分支、ahead/behind = 0/0、末尾 watcher / heartbeat / auth 三行正常。
+
+`bootstrap.ps1 -Auto`（内部 `.\watch.ps1 -Register`）会**暂停其他会话**的 `git-sync-watch-*`：Stop + Disable + 杀掉循环进程，**不删除**计划任务。台账在 `%LOCALAPPDATA%\git-sync\parked.json`。不想动别人就 `-Register -KeepOthers`。
+
+回到本会话 HQ（恢复本克隆、暂停其他会话）：
+
+```powershell
+cd E:\0github\git-sync\git-pull-arena-s2
+.\watch.ps1 -Focus
+```
+
+一次恢复所有被暂停的值守：`.\watch.ps1 -RestoreParked`

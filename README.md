@@ -10,7 +10,7 @@
 
 这个仓库验证一条完整链路：**Arena 会话分支（GitHub 远端）⇄ 你的 Windows 本机**。
 同步工具就是 [zhongqi 仓库 arena 分支](https://github.com/mqgg5630-cyber/zhongqi/tree/arena%2F01a09d79-zhongqi) 沉淀的 `skills/git-sync` 技能
-（本仓库 `main` 上是 **v2.6.7**（已发布）：零弹窗值守 + 免点击推送；开发分支上已有 **v2.6.8**（值守每个出口都有收尾行 + 64 位 shell 优先 + `-Status` 结果码人话解释；**round 18 真机推送闭环已通过**，证据见 [`deliverable/CASE_STUDY_v2.6.7.md`](deliverable/CASE_STUDY_v2.6.7.md)）。安装器 `agent-install.sh` 可以把它一条命令装进任何新仓库。发行说明见 [`deliverable/RELEASE_v2.6.7.md`](deliverable/RELEASE_v2.6.7.md)）。
+（本仓库 `main` 上是 **v2.6.7**（已发布）：零弹窗值守 + 免点击推送；开发分支上已有 **v2.6.9**（新会话自动暂停其他值守 / `-Focus` 切回本会话 + 中文日志 UTF-8；v2.6.8 收尾行闸门 **round 18 真机推送闭环已通过**，证据见 [`deliverable/CASE_STUDY_v2.6.7.md`](deliverable/CASE_STUDY_v2.6.7.md)）。安装器 `agent-install.sh` 可以把它一条命令装进任何新仓库。发行说明见 [`deliverable/RELEASE_v2.6.7.md`](deliverable/RELEASE_v2.6.7.md)）。
 
 - **工作分支**：`arena/01a0a821-git-pull-arena`（所有脚本只拉/推这个分支；`push.ps1` 直接拒绝 main/master）。本机请克隆到**新文件夹** `git-pull-arena-s2`，不要覆盖 `git-pull-arena`（v2.6.7）和 `git-pull-arena-v268`（上一会话）
 - **两条硬要求（v2.5.0 起是默认行为；v2.6.7 真机验收通过）**：① 值守**零弹窗**（默认编译 GUI 子系统启动器，Task Scheduler 不再闪黑窗）；② 推送**免点击**（`auth.ps1` 一次配好，`push.ps1` 默认静默模式，拿不到凭据快速失败并告诉你怎么修）
@@ -18,7 +18,7 @@
 - **连接台账**：所有已连接仓库 × 分支 × 本机路径 × 值守任务，见 [`CONNECTIONS.md`](CONNECTIONS.md)（防忘专用，忘了一条命令就能翻到）
 - **助手侧**：每轮用 `skills/git-sync/scripts/agent-sync.sh` 提交推送——提交前自动跑 `code/check_all.sh` 自检（.ps1 全 ASCII + 配置分支守卫 + 根目录/skill 脚本一致性），提交后把**同步回执**写进 `results/sync/last_sync.md`
 - **双向测试**：已于 2026-09-14 通过（见 `deliverable/SYNC_TEST.md`）；v2.5.0 的升级与验收清单见 [`deliverable/UPGRADE_v2.5.0.md`](deliverable/UPGRADE_v2.5.0.md)；**`main` 上 v2.6.7 的发行说明见 [`deliverable/RELEASE_v2.6.7.md`](deliverable/RELEASE_v2.6.7.md)；v2.6.8 的已核实证据与待复验清单见 [`deliverable/CASE_STUDY_v2.6.7.md`](deliverable/CASE_STUDY_v2.6.7.md)**
-- **本机要做的（一次）**：`.\sync.ps1` → `.\watch.ps1 -Unregister ; .\watch.ps1 -Register` → `.\watch.ps1 -Status`（升到 v2.6.8 同样只需这三步，完整版见上面「零」节；历史修复见 `deliverable/FIX_v2.5.1.md` … `FIX_v2.6.5.md`）
+- **本机要做的（一次）**：`.\sync.ps1` → `.\watch.ps1 -Unregister ; .\watch.ps1 -Register` → `.\watch.ps1 -Status`（升到 v2.6.9 同样这三步；`-Register` 会暂停其他会话的值守。切回本会话：`.\watch.ps1 -Focus`。说明见 `deliverable/FIX_v2.6.9.md`；历史修复见 `deliverable/FIX_v2.5.1.md` … `FIX_v2.6.5.md`）
 
 ## 零、最快路径：四行装好 / 三行升级
 
@@ -101,7 +101,9 @@ cd git-pull-arena-s2
 .\doctor.ps1                               # 体检；不对劲先跑它
 .\doctor.ps1 -Fix                          # 一键修复：refspec + stash + 切回分支 + 拉取
 .\hardware.ps1 -Deep                       # 采集本机硬件/conda环境报告并推送（每台机器一次；GPU/环境变了重跑）
-.\watch.ps1 -Register                      # 自动验证循环：注册本机值守（每2分钟轮询；-Unregister 摘除）
+.\watch.ps1 -Register                      # 自动验证循环：注册本机值守（每2分钟轮询；默认暂停其他会话的值守）
+.\watch.ps1 -Focus                         # 只留这一会话：暂停其他 git-sync-watch-*（任务保留，循环停掉）
+.\watch.ps1 -RestoreParked                 # 把 -Focus / -Register 暂停的值守全部拉回来
 .\pr.ps1                                   # 开 PR 到 main（需 GitHub CLI：winget install GitHub.cli）
 ```
 
@@ -135,6 +137,7 @@ Copy-Item skills\git-sync\templates\gate.yml .github\workflows\gate.yml
 | 5 | **零弹窗值守**（v2.5.0→v2.6.5） | 值守**不占用你的控制台**（v2.6.5：循环自我脱离）；`-Status` 显示 `loop process: pid ... (running)`、heartbeat 每 2 分钟推进 | ✅ **round 14 通过**（检查项 2b：常驻循环=每次登录最多闪一次；严格零闪可用 `-Register -Headless`） |
 | 6 | **免点击推送**（v2.5.0→v2.6.5） | `auth.ps1 -Verify` exit 0；值守轮询里 `last_push=ok`，全程没有人点过任何东西 | ✅ **round 14 通过**（检查项 2a：`silent push PROVEN (ls-remote + push --dry-run, prompts disabled)`） |
 | 7 | **每轮都有收尾行**（v2.6.8） | 值守每个出口都打印 `== ...` 收尾行；手动单轮以 `== finished at ...` 结束；闸门 `bash code/check_all.sh` 打印 `OK: loop closing lines covered (6 exit paths, ...)`，检查项 2c 通过 | ✅ **round 18 通过**（`85b17a6 check: round 18 passed`；accept 2c + `verdict pushed back to origin/arena/01a0a821-git-pull-arena`；见 `deliverable/CASE_STUDY_v2.6.7.md` 第 8 节） |
+| 8 | **新会话暂停 / 切回恢复**（v2.6.9） | 新克隆 `.\watch.ps1 -Register`（或 `bootstrap -Auto`）暂停其他 `git-sync-watch-*`（Stop+Disable+杀循环，不删任务）；HQ `cd git-pull-arena-s2 ; .\watch.ps1 -Focus` 切回；`-RestoreParked` 一次全恢复；`-Status` last-check 按 UTF-8 读 | ⏳ 代码已推，待本机 `git-pull-arena-s2` 重注册后验证 |
 
 > 多会话协作（同仓库多分支 / 汇总会话）实测成本高于收益，**暂时不做**；
 > 需要时按 `skills\git-sync\README.md` 第七节重启。
