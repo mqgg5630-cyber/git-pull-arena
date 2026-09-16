@@ -1,9 +1,9 @@
 {
-    "round":  29,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "verify round 29: PPT Master install on this machine - venv + deps + author the 12 deck pages HERE + svg_quality_checker + svg_to_pptx + real PowerPoint read-only open; receipt results/status/pptmaster_local.txt must read environment=windows, deck_slides=12, checker_blocking=0, markers=ok",
-    "arena_updated":  "2026-09-16 12:34:37",
-    "local_updated":  "2026-09-16 20:37:25"
+  "round": 30,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "verify round 30: the loop should now be fully green on this machine - 4a exit 0, 4b environment=windows deck_slides=12 checker_blocking=0 markers=ok, 4c real PowerPoint open; the machine's own deck evidence (results/status/pptmaster_local_quality.json + svg/) is already in the repo from round 29",
+  "arena_updated": "2026-09-16 12:38:59",
+  "local_updated": null
 }
