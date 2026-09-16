@@ -23,14 +23,14 @@
   </g>
   <g id="cover-kpis" data-pptx-bounds="94 524 1006 118">
   <rect x="98" y="536" width="250" height="92" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="12" />
-  <text x="122" y="578" font-size="26" fill="#A3E635" font-weight="700">3 / 3 轮</text>
-  <text x="122" y="608" font-size="15" fill="#94A3B8">真机判定 passed</text>
+  <text x="122" y="578" font-size="26" fill="#A3E635" font-weight="700">4 / 4 轮</text>
+  <text x="122" y="608" font-size="15" fill="#94A3B8">真机逐轮 passed</text>
   <rect x="372" y="536" width="250" height="92" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="12" />
   <text x="396" y="578" font-size="26" fill="#F1F5F9" font-weight="700">7 份交付物</text>
   <text x="396" y="608" font-size="15" fill="#94A3B8">docx · pptx · 清单</text>
   <rect x="646" y="536" width="250" height="92" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="12" />
   <text x="670" y="578" font-size="26" fill="#7DD3FC" font-weight="700">0 失败 / 0 跳过</text>
-  <text x="670" y="608" font-size="15" fill="#94A3B8">60 条成功标准全过</text>
+  <text x="670" y="608" font-size="15" fill="#94A3B8">68 条成功标准全过</text>
   </g>
   <g id="cover-meta" data-pptx-bounds="94 646 1010 36">
   <text x="98" y="672" font-size="16" fill="#64748B" font-family="Consolas, monospace">2026-09-16   ·   git-sync v2.8.1   ·   LAPTOP-R77M5D6M</text>

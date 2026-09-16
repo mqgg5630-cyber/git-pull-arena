@@ -76,3 +76,46 @@ OK deliverable/DECK_01a0aa00_v2.8.1.pptx (46582 B, pptx, slides=12)
 必需部件按包内实际名字推导，不写死）。本机值守会在这一轮里对 7 份文件跑
 3a–3h：哈希/字节、OOXML 部件、XML 解析、关系、内容类型、标记词、页数，
 以及**真 PowerPoint 只读开档**（DECK 要求 ≥12 页）。结论与完整日志推回本分支。
+
+## 6. 第二轮迭代（round 24）：数据不再手写
+
+第一次建稿时 08 页的轮次/耗时是手写的（写的是 round 20–22）。为了让设计稿不会随着
+循环继续而变成旧的，生成器改成**从仓库自己读数据**：
+
+| 页面上的数 | 来源 |
+|---|---|
+| 轮次 + 每轮耗时 + passed/failed | `results/status/check_r*.txt`（按文件名时间戳取最近 4 份） |
+| 「68 条成功标准全过」 | `results/status/success_criteria.json` 里六类断言的条数 |
+| 「7 份交付物」 | `deliverable/OFFICE_HASHES.json` 的 files 数 |
+| 末页 `round N · accepted` | 最近一份检查日志的轮号 |
+
+重跑一遍流水线（生成 → compact → 质检 → 导出）：
+
+```
+svg_quality_checker: Total files: 12 | [OK] Fully passed: 11 (91%) | [WARN] 1 | [ERROR] 0
+                     blocking: 0 hard findings
+svg_to_pptx        : 12 slides, [POSTFLIGHT] status=passed-with-warnings
+                     quality_gate=passed, quality_introduced_warnings=1 (was 3)
+                     deliverable/DECK_01a0aa00_v2.8.1.pptx = 46727 B
+```
+
+这一轮修掉的东西：08 页 host 行的 305 px 溢出（拆成两行，同时分组加高到 308×112）、
+章节页大号数字 4.5% 的竖向溢出（分组 150→210 高）。剩下的一条 advisory 是
+06 页「两行并排文本看起来像段落」的提示——那两行是两个独立数据（命令 + 说明），
+按契约本来就该分开，不合并。
+
+## 7. 在工作区里预览（沙箱没有 cairo，自己画）
+
+沙箱没有 cairo / rsvg / LibreOffice，装不了真正的 SVG 渲染器，所以写了
+`code/render_deck_preview.py`：只认这套生成器用到的 SVG 子集（rect / circle /
+line / M-H-V-L-Z path / text），用 Noto Sans SC 逐页画出来，再拼成一张
+12 页联页图 `results/status/deck_preview.png`。
+
+```
+/tmp/venv-ppt/bin/python code/render_deck_preview.py \
+    --svg /tmp/ppt-master/projects/arena-loop-01a0aa00_20260916/svg_output \
+    --out results/status/deck_preview.png
+```
+
+它是**近似预览**（忽略滤镜/渐变，字体也不是 PowerPoint 里那个），用来快速看版式；
+最终判定仍是本机 PowerPoint 只读开档那一步。

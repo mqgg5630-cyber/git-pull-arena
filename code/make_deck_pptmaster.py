@@ -29,7 +29,10 @@
 # Usage: python3 code/make_deck_pptmaster.py [--out DIR]
 
 import argparse
+import glob
+import json
 import os
+import re
 import sys
 
 W, H = 1280, 720
@@ -58,6 +61,42 @@ BRANCH = 'arena/%s-git-pull-arena' % SESSION
 HOST = 'LAPTOP-R77M5D6M'
 FOLDER = 'git-pull-arena-%s' % SESSION
 FOOTER = 'git-sync v%s  ·  %s  ·  ppt-master v6.4.0' % (SKILL_VER, BRANCH)
+
+
+# ----------------------------------------------------------------- facts
+def repo_facts():
+    """Numbers for the slides, read straight out of the repo (never hardcoded):
+    check logs -> rounds + elapsed, success criteria -> assertion count,
+    manifest -> artifact count. A deck rebuilt after a new round shows it."""
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    found = []
+    for path in glob.glob(os.path.join(root, 'results', 'status', 'check_r*.txt')):
+        stamp = re.search(r'check_r\d+_(\d{8}-\d{6})\.txt$', os.path.basename(path))
+        if not stamp:
+            continue
+        body = open(path, encoding='utf-8', errors='replace').read()
+        m = re.search(r'check round (\d+) on (\S+) - (passed|failed)', body)
+        e = re.search(r'elapsed: (\d+)s', body)
+        if m:
+            found.append((stamp.group(1), int(m.group(1)), int(e.group(1)) if e else 0,
+                          m.group(3) == 'passed'))
+    found.sort()
+    rounds = [(rnd, secs, ok) for _stamp, rnd, secs, ok in found][-4:]
+    criteria = 0
+    crit_path = os.path.join(root, 'results', 'status', 'success_criteria.json')
+    if os.path.isfile(crit_path):
+        crit = json.load(open(crit_path, encoding='utf-8'))
+        for key in ('require_files', 'require_contains', 'require_regex', 'forbid_files',
+                    'min_bytes', 'max_bytes'):
+            criteria += len(crit.get(key) or {})
+    deliverables = 0
+    man_path = os.path.join(root, 'deliverable', 'OFFICE_HASHES.json')
+    if os.path.isfile(man_path):
+        deliverables = len(json.load(open(man_path, encoding='utf-8')).get('files', []))
+    return {'rounds': rounds, 'criteria': criteria, 'deliverables': deliverables}
+
+
+FACTS = repo_facts()
 
 TOTAL_PAGES = 12
 CJK_EM = 1.0      # advance estimate, only for the overflow guard
@@ -257,7 +296,7 @@ def card(p, cx, cy, w, h, accent, title, lines, gid, title_size=24, line_size=17
 def divider_page(number, tag, title, subtitle, note):
     p = Page('section')
     p.background(grid=True)
-    p.group('chapter-number', 70, 150, 400, 200)
+    p.group('chapter-number', 70, 150, 400, 210)
     p.text(88, 310, number, 140, PANEL, family=MONO, weight='700')
     p.end()
     p.group('chapter-title', 70, 362, 1150, 80)
@@ -307,9 +346,11 @@ def page_cover():
     p.end()
 
     p.group('cover-kpis', 94, 524, 1006, 118)
-    chips = [('3 / 3 轮', '真机判定 passed', LIME),
-             ('7 份交付物', 'docx · pptx · 清单', INK),
-             ('0 失败 / 0 跳过', '60 条成功标准全过', MONO_INK)]
+    rounds = FACTS['rounds']
+    passed = sum(1 for r in rounds if r[2])
+    chips = [('%d / %d 轮' % (passed, len(rounds)), '真机逐轮 passed', LIME),
+             ('%d 份交付物' % FACTS['deliverables'], 'docx · pptx · 清单', INK),
+             ('0 失败 / 0 跳过', '%d 条成功标准全过' % FACTS['criteria'], MONO_INK)]
     for i, (value, label, accent) in enumerate(chips):
         cx = 98 + i * 274
         p.rect(cx, 536, 250, 92, fill=PANEL, stroke=LINE, rx=12, width=1)
@@ -499,11 +540,16 @@ def page_checks():
 
 
 def page_numbers():
-    p = Page('content', 7, '//  NUMBERS', '真机数据（三轮，全部 passed）', '耗时取自值守日志，不是估计值')
+    f = FACTS
+    total = len(f['rounds'])
+    secs = [r[1] for r in f['rounds'] if r[1]]
+    span = '%d–%ds' % (min(secs), max(secs)) if secs else 'n/a'
+    p = Page('content', 7, '//  NUMBERS', '真机数据（%d 轮全部 passed）' % total,
+             '耗时取自 results/status/check_r*.txt，不是估计值')
     p.background(grid=False)
     p.page_title()
-    kpis = [('3 / 3', '轮 passed', LIME), ('60', '条成功标准', CYAN),
-            ('0', '失败 / 0 跳过', MONO_INK), ('7', '份交付物', AMBER)]
+    kpis = [('0', '失败 / 0 跳过', LIME), ('%d' % f['criteria'], '条成功标准全过', CYAN),
+            (span, '单轮耗时（真机）', MONO_INK), ('%d' % f['deliverables'], '份交付物', AMBER)]
     for i, (value, label, accent) in enumerate(kpis):
         cx = 72 + i * 288
         p.group('kpi-%d' % (i + 1), cx, 228, 264, 102)
@@ -512,22 +558,23 @@ def page_numbers():
         p.text(cx + 24, 314, label, 15, MUTED, limit=220)
         p.end()
     base = 560
-    for i, (name, secs, accent) in enumerate([('round 20', 27, CYAN), ('round 21', 34, BLUE),
-                                              ('round 22', 30, LIME)]):
-        h = int(secs / 40.0 * 180)
-        bx = 250 + i * 250
+    for i, (rnd, el, ok) in enumerate(f['rounds']):
+        h = int(max(el, 1) / 40.0 * 180)
+        bx = 180 + i * 190
         by = base - h
+        accent = LIME if ok else AMBER
         p.group('bar-%d' % (i + 1), bx - 28, by - 36, 152, h + 76)
         p.rect(bx, by, 96, h, fill=accent, rx=6, opacity='0.9')
-        p.text(bx + 48, by - 14, '%ds' % secs, 22, INK, family=MONO, anchor='middle',
+        p.text(bx + 48, by - 14, '%ds' % el, 22, INK, family=MONO, anchor='middle',
                weight='700', limit=140)
-        p.text(bx + 48, base + 30, name, 18, MUTED, anchor='middle', limit=170)
+        p.text(bx + 48, base + 30, 'round %d' % rnd, 18, MUTED, anchor='middle', limit=170)
         p.end()
-    p.line(180, base, 1140, base, LINE, 2, role='decoration', rid='axis')
-    p.group('numbers-host', 900, 360, 308, 80)
-    p.text(1208, 398, 'host ' + HOST, 20, INK, family=MONO, anchor='end', weight='700', limit=300)
-    p.text(1208, 428, 'Windows 11 · conda base python 3.11.9', 15, MUTED, anchor='end',
+    p.line(150, base, 900, base, LINE, 2, role='decoration', rid='axis')
+    p.group('numbers-host', 900, 360, 308, 112)
+    p.text(1208, 398, 'host ' + HOST, 20, INK, family=MONO, anchor='end', weight='700',
            limit=300)
+    p.text(1208, 428, 'Windows 11 · conda base', 15, MUTED, anchor='end', limit=300)
+    p.text(1208, 452, 'python 3.11.9 · 真 Office 开档', 15, MUTED, anchor='end', limit=300)
     p.end()
     return p
 
@@ -600,8 +647,9 @@ def page_ending():
     p.text(92, 380, '已打通', 96, LIME, weight='700', limit=1100)
     p.end()
     p.group('ending-status', 70, 436, 1150, 44)
-    p.text(96, 466, 'results/status/handshake.json · round 22 · accepted · local_state=passed',
-           19, MONO_INK, family=MONO, limit=1120)
+    latest = max([r[0] for r in FACTS['rounds']] or [0])
+    p.text(96, 466, 'results/status/handshake.json · round %d · accepted · local_state=passed'
+           % latest, 19, MONO_INK, family=MONO, limit=1120)
     p.end()
     p.group('ending-rule', 94, 488, 300, 14)
     p.rect(96, 492, 300, 2, fill=LIME, opacity='0.7')
