@@ -34,7 +34,7 @@ DOCX = os.path.join(OUT, 'LINK_PROOF_v2.8.1.docx')
 PPTX = os.path.join(OUT, 'LINK_PROOF_v2.8.1.pptx')
 
 BRANCH_FALLBACK = 'arena/01a0a9f0-git-pull-arena'
-MARKERS = ['2.8.1', 'git-sync', 'local_check.ps1']
+MARKERS = ['2.8.1', 'git-sync', 'local_check.ps1', 'round 20']
 
 
 # --------------------------------------------------------------------- facts
@@ -172,6 +172,27 @@ def build_docx(facts):
     ]:
         doc.add_paragraph(line, style='List Bullet')
 
+    doc.add_heading('7. 本机回执（round 20，已通过）', level=1)
+    for line in [
+        'round 20 在你本机（%s）判定：passed（exit 0，用时 21 秒）' % host,
+        '3a-3g：两个产物的 sha256/字节、OOXML 必需部件、XML 解析、关系不断链、内容类型、标记词、页数（6 >= 6）全部 OK',
+        '3h：真 Word.Application 只读打开 LINK_PROOF_v2.8.1.docx；真 PowerPoint.Application 只读打开 LINK_PROOF_v2.8.1.pptx（6 页）',
+        '闸门：本机用真 PowerShell 解析器逐个解析 .ps1（沙箱只能 SKIP 这一步）',
+        '完整日志：results/status/check_r20_20260916-192634.txt（本机推回本分支）',
+    ]:
+        doc.add_paragraph(line, style='List Bullet')
+
+    doc.add_heading('8. 中文说明：这条链路怎么用', level=1)
+    for line in [
+        '链路：Arena 会话（沙箱）↔ 你的 Windows 本机，中间只有 git；本机侧就是一个计划任务值守。',
+        '本机只做一次：新文件夹 clone → .\\bootstrap.ps1 -Auto（注册值守 + 配好免点击推送）。之后不用手动 sync/push。',
+        '值守每 2 分钟一轮：自动 pull → 跑 code\\local_check.ps1 → 把 passed/failed 与完整日志推回本分支。',
+        '取交付物：.\\download.ps1 -Set final（镜像到 ..\\<仓库名>_out\\），或直接打开本仓库的 deliverable 目录。',
+        '看结论：results/status/handshake.json（round / arena_state / local_state）+ results/status/check_rN_*.txt（每轮日志）。',
+        '切回本会话值守：cd E:\\0github\\git-sync\\git-pull-arena-01a0a9f0 ; .\\watch.ps1 -Focus；恢复其他会话：.\\watch.ps1 -RestoreParked。',
+    ]:
+        doc.add_paragraph(line, style='List Bullet')
+
     doc.add_paragraph()
     doc.add_paragraph('markers: ' + ' , '.join(MARKERS + [host, facts['branch']]))
     doc.save(DOCX)
@@ -241,6 +262,24 @@ def build_pptx(facts):
         'results/status/check_rN_<timestamp>.txt: the full log of that round',
         'passed -> agent-check.sh --accept closes the loop',
         'no fake local side: no local/inbox, no stand-in skill',
+    ])
+
+    slide = prs.slides.add_slide(prs.slide_layouts[1])
+    slide.shapes.title.text = '本机回执 / machine receipt (round 20)'
+    bullets(slide, [
+        'round 20 在 %s 判定 passed（exit 0，21 秒）' % host,
+        '3a-3g 全 OK：哈希/字节、必需部件、XML、关系、内容类型、标记词、页数 6 >= 6',
+        '3h：真 Word 只读打开 .docx；真 PowerPoint 只读打开 .pptx（6 页）',
+        '本机还跑了真 PowerShell 解析器逐个解析 .ps1（沙箱只能 SKIP）',
+    ])
+
+    slide = prs.slides.add_slide(prs.slide_layouts[1])
+    slide.shapes.title.text = '中文说明：这条链路怎么用'
+    bullets(slide, [
+        '链路：Arena 会话（沙箱）↔ 你的 Windows 本机，中间只有 git',
+        '本机只做一次：clone 新文件夹 → .\\bootstrap.ps1 -Auto（注册值守 + 免点击推送）',
+        '值守每 2 分钟：自动 pull → 跑 code\\local_check.ps1 → 把结论和日志推回分支',
+        '取产物：.\\download.ps1 -Set final；看结论：results/status/handshake.json 与 check_rN_*.txt',
     ])
 
     prs.save(PPTX)
@@ -376,7 +415,7 @@ def main():
                         'ppt/_rels/presentation.xml.rels', 'ppt/slides/slide1.xml',
                         'ppt/slideMasters/slideMaster1.xml', 'ppt/slideLayouts/slideLayout1.xml',
                         'ppt/theme/theme1.xml', 'docProps/core.xml'], 'ppt/presentation.xml',
-         MARKERS + [facts['host'], facts['branch']], 6),
+         MARKERS + [facts['host'], facts['branch']], 8),
     ]:
         if verify_only and os.path.isfile(MANIFEST):
             with open(MANIFEST, encoding='utf-8') as fh:

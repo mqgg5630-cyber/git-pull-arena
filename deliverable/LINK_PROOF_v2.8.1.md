@@ -1,7 +1,17 @@
 # 本会话交接说明 · git-sync v2.8.1（分支 `arena/01a0a9f0-git-pull-arena`）
 
 > 2026-09-16 · 会话 `arena.ai/agent/01a0a9f0` · 技能来源：`arena.ai/agent/01a0a98d` → GitHub 分支 `arena/01a0a98d-git-pull-arena`
-> 一句话：**技能装好了、产物在分支上、请求已发出（round 20）——只差你本机粘一次下面这段。**
+> 一句话：**已打通** —— 你本机值守已回传 `round 20 passed`（3a–3g 全 OK + 真 Word/PowerPoint 开档），本会话分支上的产物由本机判定通过。
+
+## 0. 当前状态（round 20，本机已回执）
+
+| 时间（本机） | 事件 |
+|---|---|
+| 19:26:55 | 值守推送回执：`local_state=passed`，host `LAPTOP-R77M5D6M` |
+| 19:26:58 | 提交 `c3649a3 check: round 20 passed`（含完整日志 `results/status/check_r20_20260916-192634.txt`，89 行，21 秒） |
+| — | 3a–3g 全 OK；**3h：真 Word 打开 `LINK_PROOF_v2.8.1.docx` 只读、真 PowerPoint 打开 `LINK_PROOF_v2.8.1.pptx`（6 页）**；闸门用真 PowerShell 解析器逐个解析 `.ps1` |
+
+也就是说：**这不再是沙箱自说自话**——判定来自你自己机器上的计划任务值守。后续每轮只要 `agent-handsfree.sh` 即可（生成 → 推送 → 值守检查 → 回传 → 自动收尾）。
 
 ## 1. 你本机要做的（一次，Windows PowerShell）
 

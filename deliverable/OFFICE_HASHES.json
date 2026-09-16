@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-16T11:22:49Z",
+  "generated_utc": "2026-09-16T11:31:33Z",
   "generator": "code/make_link_proof.py",
   "generator_note": "python-docx + python-pptx (allowed in the sandbox since v2.8.0); the manifest is the contract the REAL machine verifies in code/local_check.ps1 section 3, and the same 3a-3g rules are mirrored in Python here so a package that cannot pass is never pushed",
   "branch": "arena/01a0a9f0-git-pull-arena",
@@ -9,8 +9,8 @@
     {
       "path": "deliverable/LINK_PROOF_v2.8.1.docx",
       "kind": "docx",
-      "bytes": 38758,
-      "sha256": "7a59d44cb402e6ce77c8f19da8961edecda88f8a5a3e426f9653f52380690983",
+      "bytes": 39743,
+      "sha256": "8637d9f0442e80a0a1480612de053335c1ade4b7c7434c286d48fac248bb7163",
       "required_parts": [
         "[Content_Types].xml",
         "_rels/.rels",
@@ -24,6 +24,7 @@
         "2.8.1",
         "git-sync",
         "local_check.ps1",
+        "round 20",
         "LAPTOP-R77M5D6M",
         "arena/01a0a9f0-git-pull-arena"
       ],
@@ -36,8 +37,8 @@
     {
       "path": "deliverable/LINK_PROOF_v2.8.1.pptx",
       "kind": "pptx",
-      "bytes": 33469,
-      "sha256": "f0587796d04d7d562057204874411c2df6f58e2c8ffd4d06bbdcf9d06ed13e46",
+      "bytes": 35886,
+      "sha256": "4aee7b2f88aa9e2e04de044d1a75dc209c2f67bd0b1c284af7ca73eef36dd25d",
       "required_parts": [
         "[Content_Types].xml",
         "_rels/.rels",
@@ -54,13 +55,14 @@
         "2.8.1",
         "git-sync",
         "local_check.ps1",
+        "round 20",
         "LAPTOP-R77M5D6M",
         "arena/01a0a9f0-git-pull-arena"
       ],
-      "min_slides": 6,
+      "min_slides": 8,
       "sandbox_selftest": {
-        "parts": 48,
-        "slides": 6
+        "parts": 52,
+        "slides": 8
       }
     }
   ]
