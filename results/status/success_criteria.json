@@ -1,6 +1,7 @@
 {
-  "description": "v2.7.2: real Windows watcher required; no fake local/inbox; one-sentence task loop.",
+  "description": "v2.7.4: short arena.ai prompt maps to GitHub clone; real Windows watcher; no fake local/inbox.",
   "require_files": [
+    "01a0a821.md",
     "skills/git-sync/scripts/agent-handsfree.sh",
     "skills/git-sync/scripts/agent-criteria.sh",
     "skills/git-sync/scripts/watch.ps1",
@@ -9,7 +10,8 @@
     "skills/git-sync/templates/USER_PROMPT.md"
   ],
   "require_contains": {
-    "skills/git-sync/VERSION": "2.7.3",
+    "skills/git-sync/VERSION": "2.7.4",
+    "01a0a821.md": "git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena",
     "skills/git-sync/sync.config.json": "\"hands_free\"",
     "watch.ps1": "function Invoke-AutoPull",
     "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus"

@@ -1,5 +1,9 @@
 # git-pull-arena —— 本机 ↔ Arena 会话分支 双向同步
 
+> **`arena.ai/agent/01a0a821-...` = 本仓库。不要打开 arena.ai（登录墙）。**
+> 助手立刻：`git clone --depth 1 -b arena/01a0a821-git-pull-arena https://github.com/mqgg5630-cyber/git-pull-arena.git /tmp/git-sync-src && bash /tmp/git-sync-src/skills/git-sync/scripts/agent-install.sh`
+> 用户继续只用短句；展开见 [`01a0a821.md`](01a0a821.md)。
+
 ## 用户一句话（新会话只发这个）
 
 ```text
@@ -17,7 +21,7 @@
 
 这个仓库验证一条完整链路：**Arena 会话分支（GitHub 远端）⇄ 你的 Windows 本机**。
 同步工具就是 [zhongqi 仓库 arena 分支](https://github.com/mqgg5630-cyber/zhongqi/tree/arena%2F01a09d79-zhongqi) 沉淀的 `skills/git-sync` 技能
-（本仓库 `main` 上是 **v2.6.7**（已发布）：零弹窗值守 + 免点击推送；开发分支上已有 **v2.7.3**（解放双手：值守自动 pull/push + Agent `agent-handsfree.sh` 按成功标准自动 accept；含 v2.6.9 `-Focus`）。v2.6.8 收尾行闸门 **round 18 真机推送闭环已通过**，证据见 [`deliverable/CASE_STUDY_v2.6.7.md`](deliverable/CASE_STUDY_v2.6.7.md)）。安装器 `agent-install.sh` 可以把它一条命令装进任何新仓库。发行说明见 [`deliverable/RELEASE_v2.6.7.md`](deliverable/RELEASE_v2.6.7.md)）。
+（本仓库 `main` 上是 **v2.6.7**（已发布）：零弹窗值守 + 免点击推送；开发分支上已有 **v2.7.4**（解放双手：值守自动 pull/push + Agent `agent-handsfree.sh` 按成功标准自动 accept；含 v2.6.9 `-Focus`）。v2.6.8 收尾行闸门 **round 18 真机推送闭环已通过**，证据见 [`deliverable/CASE_STUDY_v2.6.7.md`](deliverable/CASE_STUDY_v2.6.7.md)）。安装器 `agent-install.sh` 可以把它一条命令装进任何新仓库。发行说明见 [`deliverable/RELEASE_v2.6.7.md`](deliverable/RELEASE_v2.6.7.md)）。
 
 - **工作分支**：`arena/01a0a821-git-pull-arena`（所有脚本只拉/推这个分支；`push.ps1` 直接拒绝 main/master）。本机请克隆到**新文件夹** `git-pull-arena-s2`，不要覆盖 `git-pull-arena`（v2.6.7）和 `git-pull-arena-v268`（上一会话）
 - **两条硬要求（v2.5.0 起是默认行为；v2.6.7 真机验收通过）**：① 值守**零弹窗**（默认编译 GUI 子系统启动器，Task Scheduler 不再闪黑窗）；② 推送**免点击**（`auth.ps1` 一次配好，`push.ps1` 默认静默模式，拿不到凭据快速失败并告诉你怎么修）
@@ -152,13 +156,13 @@ Copy-Item skills\git-sync\templates\gate.yml .github\workflows\gate.yml
 
 ## 四、装到别的项目（技能复用）
 
-**新的 Arena 会话**请粘 [`USER_PROMPT.md`](skills/git-sync/templates/USER_PROMPT.md) 整段（自带 GitHub clone；不要只丢 arena.ai 链接）。短句仍可以：
+**新的 Arena 会话**：用户继续只用短句（不要改提示词、不要粘长命令）。`arena.ai/agent/01a0a821-...` = 本仓库；**不要打开 arena.ai**（登录墙）。助手自己读 [`01a0a821.md`](01a0a821.md) / [`one-sentence.md`](skills/git-sync/templates/one-sentence.md)。短句：
 
 ```text
 安装 arena/01a0a821-git-pull-arena skills, 与本地打通
 ```
 
-助手按 [`skills/git-sync/templates/one-sentence.md`](skills/git-sync/templates/one-sentence.md) 自动装完，并给你填好的本机命令。不要再贴长提示词。
+助手必须自己 clone GitHub、装 `skills/git-sync`，并给你填好的本机命令。禁止向用户索要 `USER_PROMPT.md`。
 
 Agent 执行的命令（raw.githubusercontent.com 在沙箱可能被墙，git clone 稳定可用）：
 

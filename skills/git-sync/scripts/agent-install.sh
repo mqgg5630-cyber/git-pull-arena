@@ -229,6 +229,18 @@ if [ ! -f "$REPO/code/local_check.ps1" ] && [ -f "$REPO/skills/git-sync/template
   echo "OK: code/local_check.ps1 created (what watch.ps1 runs - edit it per repo)"
 fi
 
+# 5c. short-prompt mapping page (arena.ai/01a0a821 -> this GitHub clone)
+MAP_SRC=""
+if [ -f "$SRC/01a0a821.md" ]; then
+  MAP_SRC="$SRC/01a0a821.md"
+elif [ -f "$REPO/skills/git-sync/templates/01a0a821.md" ]; then
+  MAP_SRC="$REPO/skills/git-sync/templates/01a0a821.md"
+fi
+if [ -n "$MAP_SRC" ]; then
+  cp "$MAP_SRC" "$REPO/01a0a821.md"
+  echo "OK: 01a0a821.md (short prompt maps to GitHub clone; do not open arena.ai)"
+fi
+
 # 6. optional: the GitHub Actions workflow that runs the gate on push
 #    (the push needs workflows permission - user-side installs always work)
 if [ "$GHA" = "1" ] && [ -f "$REPO/skills/git-sync/templates/gate.yml" ]; then

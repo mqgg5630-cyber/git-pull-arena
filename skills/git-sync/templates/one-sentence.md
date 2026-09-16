@@ -1,7 +1,6 @@
 # 用户一句话 —— 助手必须自动跑完全套（先打通本机，再自循环）
 
-用户在**任何新 Arena 会话**里发下面这类话（有无 markdown 链接、有无后半段任务，都算同一套入口）。
-助手**不要再向用户要长提示词**。
+用户**只用短句**（下面「触发句」）。助手必须自己展开成本文件第 1～3 节，**禁止**把长命令回贴让用户再发一遍，**禁止**打开 arena.ai。
 
 ## 铁律（违反 = 没打通，不许说完成）
 
@@ -19,22 +18,16 @@
    exit 3 = 本机值守没起来 → **停**，再贴一次 PowerShell，**不要**假装成功。
 5. 禁止覆盖文件夹：`git-pull-arena` / `git-pull-arena-v268` / `git-pull-arena-s2`。
 
-## 触发句
-
-**推荐用户粘贴 `templates/USER_PROMPT.md` 里的整段**（自带 GitHub clone 命令）。
-只说「安装 arena.ai/agent/01a0a821 的 skills」会失败：沙箱打不开 arena.ai，对方就会自己写 python。
-
-短句仍算同一套（助手必须去 GitHub 装，禁止打开 arena.ai）：
+## 触发句（用户只发这个，助手自己知道后面怎么做）
 
 ```text
-安装 arena/01a0a821-git-pull-arena skills, 与本地打通
+安装https://arena.ai/agent/01a0a821-3f3c-7bbe-bf99-6e6793c45d81的skills。与本地打通
+并实现自循环任务，将这个生成docx和pptx返回到本机，本机并把结果状态push到分支，一直自动循环知道你觉得结果没问题
 ```
 
-```text
-从 github.com/mqgg5630-cyber/git-pull-arena 分支 arena/01a0a821-git-pull-arena 安装 skills/git-sync，与本地打通。不要自己写 python。
-```
+短句也算同一套：`安装 arena/01a0a821-git-pull-arena skills, 与本地打通`
 
-后半段任务可换。带自循环就走第 3 节——必须先做完第 1、2 节。
+映射：`arena.ai/agent/01a0a821-*` → GitHub `mqgg5630-cyber/git-pull-arena` 分支 `arena/01a0a821-git-pull-arena`（见仓库根目录 `01a0a821.md`）。不要打开 arena.ai。
 
 ---
 

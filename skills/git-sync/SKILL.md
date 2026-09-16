@@ -1,10 +1,11 @@
-> 当前版本 **v2.7.3**（一句话触发装技能+自循环；`--timeout auto` 值守一回传就停，上限随 `check_timeout_min`）。开发自 v2.7.0；`main` 上仍是 v2.6.7。
-> 用户侧升级三步：`.\sync.ps1` → `.\watch.ps1 -Unregister ; .\watch.ps1 -Register` → `.\watch.ps1 -Status`（应看到 `hands-free: master=True`）。切回本会话：`.\watch.ps1 -Focus`。
-
 ---
 name: git-local-arena-sync
-description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件同步技能：拉取、上传、下载交付物（含按日期增量与临时指定目录）、打包提交、体检与自动修复（doctor -Fix）、开 PR、本机硬件与 conda/mamba 环境自动上报（hardware.ps1 / agent-hardware.sh），以及助手侧的"提交+推送+同步回执（按日期归档）"与沙箱 .git 被重置后的历史恢复；自带新会话引导提示词模板，一条命令装进任何新仓库。Use when a user needs repeatable pull / upload / download / pack / fix helpers for a repo shared with an AI agent, when the agent must know the local hardware (GPU/CPU/RAM/conda envs) before compute-heavy work, when .ps1 files must stay ASCII-only (Windows PowerShell 5.1 GBK decoding), when a stray push to main must be blocked, when the skill must be installed into a brand-new repo or agent session with one command (agent-install.sh + templates/new-session-prompt.md), or when the sandbox repository silently resets to its baseline commit and the worktree must be kept, when pushes must never show a login popup / wait for a click (auth.ps1: gh helper or GCM with credentialStore=dpapi, verified with prompts disabled), or when the local watcher task must run with ZERO console flash (GUI-subsystem launcher, self-tested after -Register) and the user prefers ONE session per repo over multi-session collaboration.
+description: "TRIGGER: user says 安装https://arena.ai/agent/01a0a821 的skills 与本地打通 (or 安装 arena/01a0a821-git-pull-arena skills). Do NOT open arena.ai (login wall). Immediately: git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena https://github.com/mqgg5630-cyber/git-pull-arena.git /tmp/git-sync-src && bash /tmp/git-sync-src/skills/git-sync/scripts/agent-install.sh && bash skills/git-sync/scripts/agent-sync.sh. Root must have watch.ps1. First user-visible reply MUST be filled Windows PowerShell: git clone -b BRANCH URL NEW_FOLDER then .\bootstrap.ps1 -Auto. Forbidden: python skill, .venv, local/inbox as local. Then do the user task (docx/pptx) and agent-handsfree.sh --timeout auto. Also Windows PowerShell <-> Arena git-sync (sync/push/watch/doctor/auth silent push, zero-window watcher)."
 ---
+
+> 当前版本 **v2.7.4**（一句话触发装技能+自循环；`--timeout auto` 值守一回传就停，上限随 `check_timeout_min`）。开发自 v2.7.0；`main` 上仍是 v2.6.7。
+> 用户侧升级三步：`.\sync.ps1` → `.\watch.ps1 -Unregister ; .\watch.ps1 -Register` → `.\watch.ps1 -Status`（应看到 `hands-free: master=True`）。切回本会话：`.\watch.ps1 -Focus`。
+
 
 # 本地 ↔ Agent 双向同步（skill）
 
@@ -111,6 +112,7 @@ description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件
 4. **推送前先 `pull --ff-only`**（两个方向的脚本都内建），避免 non-fast-forward。
 5. **大文件不进 git**。放 `build/` 之类被 ignore 的目录，或本地 `pack.ps1` 外发；`doctor.ps1` 会列出超过 50 MB 的被跟踪文件提醒上 Git LFS。
 6. **「与本地打通」不是沙箱 `local/` 目录。** 必须是用户 Windows 上的 `watch.ps1` 计划任务。禁止用 python 复刻 skills、禁止 `local_bridge` / `local/inbox` 冒充本机。给用户的第一条回复必须是填好的 `git clone` + `.\bootstrap.ps1 -Auto`。自循环只准 `agent-handsfree.sh`；exit 3 就是没打通。
+7. **用户只用短句。** `安装https://arena.ai/agent/01a0a821-...的skills。与本地打通` 就是完整入口。禁止打开 arena.ai（登录墙），禁止向用户索要 `USER_PROMPT.md`。映射：clone `https://github.com/mqgg5630-cyber/git-pull-arena.git` 分支 `arena/01a0a821-git-pull-arena`（根目录 `01a0a821.md`）。
 
 ## 4. 故障对照表
 

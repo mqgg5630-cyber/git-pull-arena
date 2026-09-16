@@ -1,4 +1,4 @@
-> 当前版本 **v2.7.3**（解放双手：auto_pull/auto_push + `agent-handsfree.sh`；含 v2.6.9 `-Focus`）。`main` 上是 **v2.6.7**。说明 `deliverable/HANDS_FREE_v2.7.0.md`。
+> 当前版本 **v2.7.4**（解放双手：auto_pull/auto_push + `agent-handsfree.sh`；含 v2.6.9 `-Focus`）。`main` 上是 **v2.6.7**。说明 `deliverable/HANDS_FREE_v2.7.0.md`。
 
 # 本地 ↔ Agent 同步 skill —— 使用说明
 
@@ -8,7 +8,9 @@
 > 仓库根目录放着同款脚本（`sync.ps1 / push.ps1 / upload.ps1 / download.ps1 / doctor.ps1 / pack.ps1 / bootstrap.ps1 / pr.ps1 / hardware.ps1 / watch.ps1 / auth.ps1 / install.ps1`），
 > 这份 skill 是**通用版 + 说明书**；根目录副本必须与 `scripts\` 下的**逐字节相同**（`code/check_all.sh` 第 3 节会卡）。
 >
-> **v2.7.3（提示词必须带 GitHub clone）**：沙箱打不开 arena.ai，只贴 Agent 链接对方就会自己写 python。用户应粘 `templates/USER_PROMPT.md`。`.venv` 不是本机。
+> **v2.7.4（短句仍用 arena.ai，助手自己展开）**：用户不改提示词。`arena.ai/agent/01a0a821` → clone 本仓库；根目录 `01a0a821.md`。禁止向用户索要长命令。
+>
+> **v2.7.3（曾要求用户粘带 GitHub clone 的长提示词）**：沙箱打不开 arena.ai。v2.7.4 起改回：用户继续短句，助手自己 clone GitHub。`.venv` 不是本机。
 >
 > **v2.7.2（先打通本机，禁止假 local/）**：给用户的第一条回复必须是 `git clone` + `.\bootstrap.ps1 -Auto`；沙箱 `local/inbox` / 自制 python skills **不算**打通；自循环只准 `agent-handsfree.sh`。`agent-install.sh` 补拷 `install.ps1`。
 >
@@ -218,8 +220,7 @@ gate（`code/check_all.sh`）提交前自动扫描全部 `.ps1`，非 ASCII 直�
 
 ## 六、装到别的项目 / 给已装过的仓库升级
 
-**新 Arena 会话**：打开 `templates/new-session-prompt.md`，把第一节的提示词整段复制进对话即可
-（含安装命令、成功标志、本机步骤、双向验收）。
+**新 Arena 会话**：用户只用短句 `安装 arena.ai/agent/01a0a821 的skills，与本地打通`。助手自己按 `templates/one-sentence.md` / 根目录 `01a0a821.md` 装技能（不要打开 arena.ai，不要向用户要长命令）。
 
 **助手侧 / 手动（一条命令）**：
 

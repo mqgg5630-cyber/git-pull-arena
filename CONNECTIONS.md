@@ -1,13 +1,13 @@
 # 连接台账 —— Arena 仓库 × 分支 × 本机路径（防忘专用）
 
-> 更新：2026-09-16（**本会话 HQ = 新克隆 git-pull-arena-s2 / arena/01a0a821；不要覆盖旧目录**：值守每个出口都有收尾行 + 64 位 shell 优先 + `-Status` 结果码人话解释；证据与复验清单见 `deliverable/CASE_STUDY_v2.6.7.md`。**v2.6.7 已发布到 `main`**（PR #1 / `009fb6a`）：免点击推送 + 零弹窗值守**真机验收通过**（round 14/15 passed，值守免点击推回结论））｜ 技能版本：v2.7.3（开发分支）/ v2.6.7（`main`）｜ 开发分支 `arena/01a0a821-git-pull-arena`（本会话；接替已冻结的 `arena/01a0a7de-git-pull-arena`）｜ 退路 `arena/01a0a4f5-git-pull-arena`（v2.6.7）/ `arena/01a09fc1-git-pull-arena`（v2.4.7）｜ 本文件在 `E:\0github\git-sync\git-pull-arena-s2\CONNECTIONS.md`
+> 更新：2026-09-16（**本会话 HQ = 新克隆 git-pull-arena-s2 / arena/01a0a821；不要覆盖旧目录**：值守每个出口都有收尾行 + 64 位 shell 优先 + `-Status` 结果码人话解释；证据与复验清单见 `deliverable/CASE_STUDY_v2.6.7.md`。**v2.6.7 已发布到 `main`**（PR #1 / `009fb6a`）：免点击推送 + 零弹窗值守**真机验收通过**（round 14/15 passed，值守免点击推回结论））｜ 技能版本：v2.7.4（开发分支）/ v2.6.7（`main`）｜ 开发分支 `arena/01a0a821-git-pull-arena`（本会话；接替已冻结的 `arena/01a0a7de-git-pull-arena`）｜ 退路 `arena/01a0a4f5-git-pull-arena`（v2.6.7）/ `arena/01a09fc1-git-pull-arena`（v2.4.7）｜ 本文件在 `E:\0github\git-sync\git-pull-arena-s2\CONNECTIONS.md`
 > 忘了的时候：`cd E:\0github\git-sync\git-pull-arena-s2` 然后 `notepad CONNECTIONS.md`
 
 ## 一、当前所有连接
 
 | 用途 | GitHub 仓库 | 工作分支 | 本机路径 | 值守任务名 | 状态 |
 |---|---|---|---|---|---|
-| **git-sync 技能总部**（本会话） | [mqgg5630-cyber/git-pull-arena](https://github.com/mqgg5630-cyber/git-pull-arena) | **`arena/01a0a821-git-pull-arena`**（v2.7.3） | `E:\0github\git-sync\git-pull-arena-s2` | `git-sync-watch-git-pull-arena-s2` | ✅ round 18 推送闭环通过（`85b17a6`；**不要覆盖这个目录**） |
+| **git-sync 技能总部**（本会话） | [mqgg5630-cyber/git-pull-arena](https://github.com/mqgg5630-cyber/git-pull-arena) | **`arena/01a0a821-git-pull-arena`**（v2.7.4） | `E:\0github\git-sync\git-pull-arena-s2` | `git-sync-watch-git-pull-arena-s2` | ✅ round 18 推送闭环通过（`85b17a6`；**不要覆盖这个目录**） |
 | git-sync 上一会话克隆（v2.6.8 静态/收尾行已验，冻结） | 同上 | `arena/01a0a7de-git-pull-arena`（v2.6.8；PR #3 已关） | `E:\0github\git-sync\git-pull-arena-v268` | `git-sync-watch-git-pull-arena-v268` | ⏸ **不要覆盖、不要在这里跑本会话的 `.\sync.ps1`** |
 | git-sync 旧安装（v2.6.7，冻结当退路） | 同上 | `arena/01a0a4f5-git-pull-arena`（v2.6.7） | `E:\0github\git-sync\git-pull-arena` | `git-sync-watch-git-pull-arena`（2026-09-16 已 `-Pause`） | ⏸ 不要在这里跑 `.\sync.ps1`，会停在 v2.6.7 |
 | **图片→可编辑PPT 项目**（fig3 交付物在那边） | [mqgg5630-cyber/image-to-editable-pptx](https://github.com/mqgg5630-cyber/image-to-editable-pptx) | `arena/01a04caf-image-to-editable-pptx` | `E:\0github\git-sync\image-to-editable-pptx` | `git-sync-watch-image-to-editable-pptx` | ✅ 在线（[该会话](https://arena.ai/agent/01a04caf-77d4-7672-92a2-59223763a988)；v2.3.4 @ `14c1f5f`，5/5 验收通过，值守 2 分钟） |
@@ -136,6 +136,7 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - 2026-09-15：AgentArena 会话开工即验收通过（round 1 accepted `2bcc53b`：文档在位 + npm 冒烟；local-runner 设计文档落仓）
 - 2026-09-15：v2.4.0（`agent-wait --auto-accept` / 本机即 Runner 配方 / health.yml 每日体检 / 安装器保留根目录配置）
 - 2026-09-15：v2.4.4→v2.4.6（wscript+vbs 隐形启动器实战判死：Win11 弃用 VBScript，值守全线静默停摆、LastTaskResult 0 假象 → 回退 `powershell -WindowStyle Hidden` + `-Headless` S4U 实验项）；恢复命令执行后**值守首次全自动闭环**——w2 round 3 请求 30 秒自动判定回推（`f6c74bf`）、w1 round 2 39 秒、3f1 回归 92 秒，全程无人碰机器
+- 2026-09-16：**v2.7.4**（用户坚持短句 `安装 arena.ai/agent/01a0a821 的skills，与本地打通`：助手必须自己映射到 GitHub clone，禁止打开 arena.ai、禁止向用户要长提示词。入口 `01a0a821.md` + SKILL description TRIGGER。zhongqi `01a0a954` 再次没先打通本机）
 - 2026-09-16：**v2.7.3**（根因：新会话只贴 arena.ai 链接 → 沙箱打不开 → 对方自制 python/.venv 冒充本机。用户应粘 `templates/USER_PROMPT.md` 整段，内含 GitHub clone。test-auto-arena `01a0a948` 再次踩坑）
 - 2026-09-16：**v2.7.2**（铁律：与本地打通 = Windows `watch.ps1`，禁止沙箱 `local/inbox` / 自制 python skills；第一条回复必须是填好的 PowerShell；`agent-install.sh` 补拷 `install.ps1`。test-auto-arena 那次就是踩了假本机）
 - 2026-09-16：**v2.7.1**（新会话一句话触发装技能+自循环；`agent-wait`/`agent-handsfree` 默认 `--timeout auto`：值守一回传就停，上限=check_timeout_min*60+180，不再死等 600s。协议 `templates/one-sentence.md` / `task-loop.md`。Arena 链接 `arena.ai/agent/01a0a821-...` 等同本技能总部）

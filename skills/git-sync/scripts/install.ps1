@@ -100,6 +100,14 @@ foreach ($helper in @('check_loop_summary.py', 'check_loop_summary.ps1')) {
     }
 }
 
+# 3d. short-prompt mapping page (arena.ai/01a0a821 -> GitHub clone)
+$mapSrc = Join-Path $src 'templates\01a0a821.md'
+$mapDst = Join-Path $Target '01a0a821.md'
+if (Test-Path -LiteralPath $mapSrc) {
+    Copy-Item -Force -LiteralPath $mapSrc -Destination $mapDst
+    Write-Host "  copied 01a0a821.md (short prompt maps to GitHub clone)"
+}
+
 # 4. the config: create, or keep an existing one on upgrade
 $cfgSrc = Join-Path $src 'sync.config.json'
 $cfgDst = Join-Path $Target 'sync.config.json'
