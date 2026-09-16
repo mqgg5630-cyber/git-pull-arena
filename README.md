@@ -1,5 +1,13 @@
 # git-pull-arena —— 本机 ↔ Arena 会话分支 双向同步
 
+## 用户一句话（新会话只发这个）
+
+```text
+安装 arena/01a0a821-git-pull-arena skills, 与本地打通
+```
+
+助手看到这一句必须立刻：从本分支安装 `skills/git-sync` → `agent-sync.sh` 推送 → 回复一段**已填好**的本机 `git clone` + `.\bootstrap.ps1 -Auto`（新文件夹；禁止覆盖 `git-pull-arena` / `git-pull-arena-v268` / `git-pull-arena-s2`）。完整协议：[`skills/git-sync/templates/one-sentence.md`](skills/git-sync/templates/one-sentence.md)。
+
 这个仓库验证一条完整链路：**Arena 会话分支（GitHub 远端）⇄ 你的 Windows 本机**。
 同步工具就是 [zhongqi 仓库 arena 分支](https://github.com/mqgg5630-cyber/zhongqi/tree/arena%2F01a09d79-zhongqi) 沉淀的 `skills/git-sync` 技能
 （本仓库 `main` 上是 **v2.6.7**（已发布）：零弹窗值守 + 免点击推送；开发分支上已有 **v2.6.8**（值守每个出口都有收尾行 + 64 位 shell 优先 + `-Status` 结果码人话解释；**round 18 真机推送闭环已通过**，证据见 [`deliverable/CASE_STUDY_v2.6.7.md`](deliverable/CASE_STUDY_v2.6.7.md)）。安装器 `agent-install.sh` 可以把它一条命令装进任何新仓库。发行说明见 [`deliverable/RELEASE_v2.6.7.md`](deliverable/RELEASE_v2.6.7.md)）。
@@ -133,11 +141,13 @@ Copy-Item skills\git-sync\templates\gate.yml .github\workflows\gate.yml
 
 ## 四、装到别的项目（技能复用）
 
-**新的 Arena 会话**里说一句话即可：
+**新的 Arena 会话**里只说这一句：
 
-> 参考 https://github.com/mqgg5630-cyber/git-pull-arena 的 skills/git-sync，用 agent-install.sh 装到本仓库当前分支。
+```text
+安装 arena/01a0a821-git-pull-arena skills, 与本地打通
+```
 
-（完整的复制粘贴版提示词在 `skills\git-sync\templates\new-session-prompt.md`，含本机步骤与双向验收清单。）
+助手按 [`skills/git-sync/templates/one-sentence.md`](skills/git-sync/templates/one-sentence.md) 自动装完，并给你填好的本机命令。不要再贴长提示词。
 
 Agent 执行的命令（raw.githubusercontent.com 在沙箱可能被墙，git clone 稳定可用）：
 

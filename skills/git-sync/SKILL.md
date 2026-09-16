@@ -140,13 +140,15 @@ Set-ExecutionPolicy -Scope CurrentUser RemoteSigned      # 只做一次
 5. **单会话优先（2026-09-15 决定）**：只走"一会话一仓库"，把单会话闭环做扎实——agent 请求检查 → 本机值守**零窗口**跑完 → **免点击**推回 → `agent-wait --auto-accept` 一次拿到 exit 0。多会话并行/汇总会话（模式 B/C）**暂时搁置**（调度、合并、冲突仲裁成本高于收益），需要时按技能 README.md 第七节重启；
 6. 任何"不对劲"先 `.\doctor.ps1`（或 `-Fix`），把输出贴给 Agent。
 
-## 7. 装进新仓库（未来 Arena 会话一句话）
+## 7. 装进新仓库（用户只发一句话）
 
-**完整的复制粘贴版提示词在 `templates/new-session-prompt.md`**（含安装命令、成功标志、
-本机步骤、双向验收清单，装好技能的仓库都随身带着它）。最短一句话版：
+用户在任何新 Arena 会话里只说：
 
-> 参考 https://github.com/mqgg5630-cyber/git-pull-arena 的 skills/git-sync，
-> 用 agent-install.sh 把它装到本仓库的当前分支。
+```text
+安装 arena/01a0a821-git-pull-arena skills, 与本地打通
+```
+
+助手必须立刻按 `templates/one-sentence.md` 执行（clone 本分支 → `agent-install.sh` → `agent-sync.sh` → 回复填好的本机 PowerShell）。不要向用户要长提示词。协议与本机模板：`templates/one-sentence.md`、`templates/new-session-prompt.md`、`templates/connect-local.ps1`。
 
 Agent 实际执行的命令（沙箱里 git clone 可用、raw.githubusercontent.com 可能被墙）：
 
