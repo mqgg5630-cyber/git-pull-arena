@@ -1,9 +1,9 @@
 {
     "round":  17,
     "arena_state":  "awaiting_check",
-    "local_state":  "pending",
-    "host":  "",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
     "note":  "few-step check round 17",
     "arena_updated":  "2026-09-16 00:48:09",
-    "local_updated":  null
+    "local_updated":  "2026-09-16 09:36:13"
 }
