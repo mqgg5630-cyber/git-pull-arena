@@ -1,6 +1,6 @@
 # 连接台账 —— Arena 仓库 × 分支 × 本机路径（防忘专用）
 
-> 更新：2026-09-15（v2.6.2：探针不再把"非快进被拒"当认证失败；push.ps1 自动对齐结论提交；2b 分级验收）｜ 技能版本：v2.6.7（**round 14 全绿：2a 免点击推送 / 2b 零弹窗值守 双双通过，值守免点击推回结论**） ｜ 本文件在 `E:\0github\git-sync\git-pull-arena\CONNECTIONS.md`
+> 更新：2026-09-16（**v2.6.7 已发布到 `main`**（PR #1 / `009fb6a`）：免点击推送 + 零弹窗值守**真机验收通过**（round 14/15 passed，值守免点击推回结论））｜ 技能版本：v2.6.7 ｜ 开发分支 `arena/01a0a4f5-git-pull-arena` ｜ 退路 `arena/01a09fc1-git-pull-arena`（v2.4.7）｜ 本文件在 `E:\0github\git-sync\git-pull-arena\CONNECTIONS.md`
 > 忘了的时候：`cd E:\0github\git-sync\git-pull-arena` 然后 `notepad CONNECTIONS.md`
 
 ## 一、当前所有连接

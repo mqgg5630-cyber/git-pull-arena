@@ -1,3 +1,6 @@
+> 当前版本 **v2.6.7**（已发布到 `main`）。安装/升级：本机 `agent-install.sh` 或 `install.ps1`；
+> 用户侧升级三步：`.\sync.ps1` → `.\watch.ps1 -Unregister ; .\watch.ps1 -Register` → `.\watch.ps1 -Status`。
+
 ---
 name: git-local-arena-sync
 description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件同步技能：拉取、上传、下载交付物（含按日期增量与临时指定目录）、打包提交、体检与自动修复（doctor -Fix）、开 PR、本机硬件与 conda/mamba 环境自动上报（hardware.ps1 / agent-hardware.sh），以及助手侧的"提交+推送+同步回执（按日期归档）"与沙箱 .git 被重置后的历史恢复；自带新会话引导提示词模板，一条命令装进任何新仓库。Use when a user needs repeatable pull / upload / download / pack / fix helpers for a repo shared with an AI agent, when the agent must know the local hardware (GPU/CPU/RAM/conda envs) before compute-heavy work, when .ps1 files must stay ASCII-only (Windows PowerShell 5.1 GBK decoding), when a stray push to main must be blocked, when the skill must be installed into a brand-new repo or agent session with one command (agent-install.sh + templates/new-session-prompt.md), or when the sandbox repository silently resets to its baseline commit and the worktree must be kept, when pushes must never show a login popup / wait for a click (auth.ps1: gh helper or GCM with credentialStore=dpapi, verified with prompts disabled), or when the local watcher task must run with ZERO console flash (GUI-subsystem launcher, self-tested after -Register) and the user prefers ONE session per repo over multi-session collaboration.
