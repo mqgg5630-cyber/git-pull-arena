@@ -5,10 +5,11 @@
     "skills/git-sync/scripts/agent-criteria.sh",
     "skills/git-sync/scripts/watch.ps1",
     "deliverable/HANDS_FREE_v2.7.0.md",
-    "skills/git-sync/VERSION"
+    "skills/git-sync/VERSION",
+    "skills/git-sync/templates/USER_PROMPT.md"
   ],
   "require_contains": {
-    "skills/git-sync/VERSION": "2.7.2",
+    "skills/git-sync/VERSION": "2.7.3",
     "skills/git-sync/sync.config.json": "\"hands_free\"",
     "watch.ps1": "function Invoke-AutoPull",
     "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus"

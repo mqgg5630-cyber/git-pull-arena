@@ -1,4 +1,4 @@
-> 当前版本 **v2.7.2**（一句话触发装技能+自循环；`--timeout auto` 值守一回传就停，上限随 `check_timeout_min`）。开发自 v2.7.0；`main` 上仍是 v2.6.7。
+> 当前版本 **v2.7.3**（一句话触发装技能+自循环；`--timeout auto` 值守一回传就停，上限随 `check_timeout_min`）。开发自 v2.7.0；`main` 上仍是 v2.6.7。
 > 用户侧升级三步：`.\sync.ps1` → `.\watch.ps1 -Unregister ; .\watch.ps1 -Register` → `.\watch.ps1 -Status`（应看到 `hands-free: master=True`）。切回本会话：`.\watch.ps1 -Focus`。
 
 ---
