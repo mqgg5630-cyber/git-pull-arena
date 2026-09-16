@@ -1,9 +1,9 @@
 {
-  "round": 19,
+  "round": 20,
   "arena_state": "awaiting_check",
   "local_state": "pending",
   "host": "",
-  "note": "verify v2.7.0 hands-free skill + success_criteria",
-  "arena_updated": "2026-09-16 07:38:11",
+  "note": "verify round 1: git-sync v2.8.1 (installed from the branch the user linked, arena/01a0a9f0) on this session's branch + the bridge report BRIDGE_01a0aa00_v2.8.1.docx/.pptx judged on the real machine (3a-3h + success criteria)",
+  "arena_updated": "2026-09-16 11:41:30",
   "local_updated": null
 }
