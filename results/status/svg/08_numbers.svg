@@ -32,25 +32,25 @@
   <text x="960" y="282" font-size="28" fill="#FBBF24" font-weight="700">7</text>
   <text x="960" y="314" font-size="15" fill="#94A3B8">份交付物</text>
   </g>
-  <g id="bar-1" data-pptx-bounds="152 429 152 171">
-  <rect x="180" y="465" width="96" height="95" fill="#FBBF24" rx="6" opacity="0.9" />
-  <text x="228" y="451" font-size="22" fill="#F1F5F9" font-family="Consolas, monospace" font-weight="700" text-anchor="middle">54s</text>
-  <text x="228" y="590" font-size="18" fill="#94A3B8" text-anchor="middle">round 26</text>
+  <g id="bar-1" data-pptx-bounds="152 450 152 150">
+  <rect x="180" y="486" width="96" height="74" fill="#FBBF24" rx="6" opacity="0.9" />
+  <text x="228" y="472" font-size="22" fill="#F1F5F9" font-family="Consolas, monospace" font-weight="700" text-anchor="middle">42s</text>
+  <text x="228" y="590" font-size="18" fill="#94A3B8" text-anchor="middle">round 27</text>
   </g>
-  <g id="bar-2" data-pptx-bounds="342 450 152 150">
-  <rect x="370" y="486" width="96" height="74" fill="#FBBF24" rx="6" opacity="0.9" />
-  <text x="418" y="472" font-size="22" fill="#F1F5F9" font-family="Consolas, monospace" font-weight="700" text-anchor="middle">42s</text>
-  <text x="418" y="590" font-size="18" fill="#94A3B8" text-anchor="middle">round 27</text>
+  <g id="bar-2" data-pptx-bounds="342 374 152 226">
+  <rect x="370" y="410" width="96" height="150" fill="#FBBF24" rx="6" opacity="0.9" />
+  <text x="418" y="396" font-size="22" fill="#F1F5F9" font-family="Consolas, monospace" font-weight="700" text-anchor="middle">85s</text>
+  <text x="418" y="590" font-size="18" fill="#94A3B8" text-anchor="middle">round 28</text>
   </g>
-  <g id="bar-3" data-pptx-bounds="532 374 152 226">
-  <rect x="560" y="410" width="96" height="150" fill="#FBBF24" rx="6" opacity="0.9" />
-  <text x="608" y="396" font-size="22" fill="#F1F5F9" font-family="Consolas, monospace" font-weight="700" text-anchor="middle">85s</text>
-  <text x="608" y="590" font-size="18" fill="#94A3B8" text-anchor="middle">round 28</text>
+  <g id="bar-3" data-pptx-bounds="532 440 152 160">
+  <rect x="560" y="476" width="96" height="84" fill="#FBBF24" rx="6" opacity="0.9" />
+  <text x="608" y="462" font-size="22" fill="#F1F5F9" font-family="Consolas, monospace" font-weight="700" text-anchor="middle">48s</text>
+  <text x="608" y="590" font-size="18" fill="#94A3B8" text-anchor="middle">round 29</text>
   </g>
-  <g id="bar-4" data-pptx-bounds="722 440 152 160">
-  <rect x="750" y="476" width="96" height="84" fill="#FBBF24" rx="6" opacity="0.9" />
-  <text x="798" y="462" font-size="22" fill="#F1F5F9" font-family="Consolas, monospace" font-weight="700" text-anchor="middle">48s</text>
-  <text x="798" y="590" font-size="18" fill="#94A3B8" text-anchor="middle">round 29</text>
+  <g id="bar-4" data-pptx-bounds="722 438 152 162">
+  <rect x="750" y="474" width="96" height="86" fill="#A3E635" rx="6" opacity="0.9" />
+  <text x="798" y="460" font-size="22" fill="#F1F5F9" font-family="Consolas, monospace" font-weight="700" text-anchor="middle">49s</text>
+  <text x="798" y="590" font-size="18" fill="#94A3B8" text-anchor="middle">round 30</text>
   </g>
   <line x1="150" y1="560" x2="900" y2="560" stroke="#1E3A5F" stroke-width="2" id="axis" data-pptx-role="decoration" />
   <g id="numbers-host" data-pptx-bounds="900 360 308 112" text-anchor="end">

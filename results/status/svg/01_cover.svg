@@ -23,7 +23,7 @@
   </g>
   <g id="cover-kpis" data-pptx-bounds="94 524 1006 118">
   <rect x="98" y="536" width="250" height="92" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="12" />
-  <text x="122" y="578" font-size="26" fill="#A3E635" font-weight="700">0 / 4 轮</text>
+  <text x="122" y="578" font-size="26" fill="#A3E635" font-weight="700">1 / 4 轮</text>
   <text x="122" y="608" font-size="15" fill="#94A3B8">真机逐轮 passed</text>
   <rect x="372" y="536" width="250" height="92" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="12" />
   <text x="396" y="578" font-size="26" fill="#F1F5F9" font-weight="700">7 份交付物</text>

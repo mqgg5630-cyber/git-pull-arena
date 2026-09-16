@@ -4,12 +4,12 @@
   "target": "E:\\0github\\git-sync\\ppt-master\\projects\\arena-local-01a0aa00",
   "source_fingerprint": {
     "algorithm": "sha256",
-    "digest": "d18ae89c1c2a4db343b135abe62d870ce9c7248368d23d7fa52f2c0f2e59cbf7",
+    "digest": "845805e79fdc4587233c8b9b87580f5994b83dca9156708b57dde8c24ecefd8a",
     "file_count": 12,
     "files": [
       {
         "file": "01_cover.svg",
-        "sha256": "48a2a9d01698450144be4790a5e9912766ed31b3c2f50718fe48843595378451"
+        "sha256": "30513c5fa88c20407bb08e16472ecc8fbf2a743be36fd14c21c631363c83a02e"
       },
       {
         "file": "02_toc.svg",
@@ -37,7 +37,7 @@
       },
       {
         "file": "08_numbers.svg",
-        "sha256": "e026a3c7c574e26b64dbea58fb8d54b5b7f3ae226106d68ee30f029c152f0824"
+        "sha256": "24dae7dd3f9f44402eab9e0b25d44a157b93928f763792c02cc4c26d82c466cf"
       },
       {
         "file": "09_deliverables.svg",
@@ -53,7 +53,7 @@
       },
       {
         "file": "12_ending.svg",
-        "sha256": "4f402ad02e1251fdadc4137e821f77b04e2f2620c9d143052d7e5e7f23e7528b"
+        "sha256": "eb6a4caf8cdec1bbb5d3775773c526c96202686f63a8c900dc2345eb8fe2b4a5"
       }
     ]
   },
@@ -208,7 +208,7 @@
         "tspan_elements": 0
       },
       "passed": true,
-      "source_sha256": "48a2a9d01698450144be4790a5e9912766ed31b3c2f50718fe48843595378451"
+      "source_sha256": "30513c5fa88c20407bb08e16472ecc8fbf2a743be36fd14c21c631363c83a02e"
     },
     {
       "file": "02_toc.svg",
@@ -623,7 +623,7 @@
         "tspan_elements": 0
       },
       "passed": true,
-      "source_sha256": "e026a3c7c574e26b64dbea58fb8d54b5b7f3ae226106d68ee30f029c152f0824"
+      "source_sha256": "24dae7dd3f9f44402eab9e0b25d44a157b93928f763792c02cc4c26d82c466cf"
     },
     {
       "file": "09_deliverables.svg",
@@ -859,7 +859,7 @@
         "tspan_elements": 0
       },
       "passed": true,
-      "source_sha256": "4f402ad02e1251fdadc4137e821f77b04e2f2620c9d143052d7e5e7f23e7528b"
+      "source_sha256": "eb6a4caf8cdec1bbb5d3775773c526c96202686f63a8c900dc2345eb8fe2b4a5"
     }
   ]
 }
