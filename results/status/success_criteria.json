@@ -1,28 +1,63 @@
 {
-  "description": "v2.7.4: short arena.ai prompt maps to GitHub clone; real Windows watcher; no fake local/inbox.",
+  "description": "session 01a0aa00 on arena/01a0aa00-git-pull-arena: install the skills of the session the user linked (arena.ai/agent/01a0a9f0 = branch arena/01a0a9f0-git-pull-arena, which carries git-sync v2.8.1 from the dev branch arena/01a0a98d-git-pull-arena) and hook them up to the real Windows box. The skill is installed here in its newest form (v2.8.1, installer refuses to downgrade), the gate code/check_all.sh proves each python candidate (python3 / python / py -3), and code/local_check.ps1 is what the scheduled watcher runs. The bridge report BRIDGE_01a0aa00_v2.8.1.docx / .pptx travels through git and is judged on that machine: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide count and a real Word/PowerPoint open (3a-3h). 'Local' always means the scheduled watcher on the user's PC - never a sandbox folder, never a stand-in skill.",
   "require_files": [
     "01a0a821.md",
+    "results/status/handshake.json",
+    "skills/git-sync/VERSION",
+    "skills/git-sync/scripts/agent-install.sh",
+    "skills/git-sync/scripts/agent-handoff.sh",
+    "skills/git-sync/scripts/agent-check.sh",
+    "skills/git-sync/scripts/agent-wait.sh",
     "skills/git-sync/scripts/agent-handsfree.sh",
     "skills/git-sync/scripts/agent-criteria.sh",
     "skills/git-sync/scripts/watch.ps1",
-    "deliverable/HANDS_FREE_v2.7.0.md",
-    "skills/git-sync/VERSION",
-    "skills/git-sync/templates/USER_PROMPT.md"
+    "skills/git-sync/templates/one-sentence.md",
+    "skills/git-sync/templates/task-loop.md",
+    "skills/git-sync/templates/gate.yml",
+    "code/check_all.sh",
+    "code/local_check.ps1",
+    "code/make_bridge_report.py",
+    "deliverable/OFFICE_HASHES.json",
+    "deliverable/BRIDGE_01a0aa00_v2.8.1.docx",
+    "deliverable/BRIDGE_01a0aa00_v2.8.1.pptx",
+    "watch.ps1"
+  ],
+  "forbid_files": [
+    "local/inbox",
+    "local/status_receipts",
+    "skills/docx_skill.py",
+    "local_bridge_skill.py"
   ],
   "require_contains": {
-    "skills/git-sync/VERSION": "2.7.4",
-    "01a0a821.md": "git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena",
-    "skills/git-sync/sync.config.json": "\"hands_free\"",
+    "skills/git-sync/VERSION": "2.8.1",
+    "skills/git-sync/sync.config.json": "arena/01a0aa00-git-pull-arena",
+    "01a0a821.md": "arena/01a0aa00-git-pull-arena",
+    "skills/git-sync/templates/one-sentence.md": "agent-handoff.sh",
+    "skills/git-sync/scripts/agent-install.sh": "refusing to downgrade",
+    "code/check_all.sh": "py -3",
     "watch.ps1": "function Invoke-AutoPull",
-    "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus"
+    "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus",
+    "deliverable/OFFICE_HASHES.json": "arena/01a0aa00-git-pull-arena"
   },
   "require_regex": {
-    "watch.ps1": "function Invoke-AutoPush"
+    "watch.ps1": "function Invoke-AutoPush",
+    "code/local_check.ps1": "Get-FileHash",
+    "deliverable/OFFICE_HASHES.json": "[0-9a-f]{64}"
   },
   "min_bytes": {
-    "skills/git-sync/scripts/agent-handsfree.sh": 1000,
-    "skills/git-sync/scripts/agent-criteria.sh": 1000,
-    "deliverable/HANDS_FREE_v2.7.0.md": 800,
+    "skills/git-sync/scripts/agent-handoff.sh": 2000,
+    "skills/git-sync/scripts/agent-install.sh": 10000,
+    "skills/git-sync/scripts/agent-check.sh": 4000,
+    "code/check_all.sh": 8000,
+    "code/local_check.ps1": 12000,
+    "code/make_bridge_report.py": 8000,
+    "deliverable/OFFICE_HASHES.json": 500,
+    "deliverable/BRIDGE_01a0aa00_v2.8.1.docx": 5000,
+    "deliverable/BRIDGE_01a0aa00_v2.8.1.pptx": 15000,
     "watch.ps1": 20000
+  },
+  "max_bytes": {
+    "deliverable/BRIDGE_01a0aa00_v2.8.1.docx": 3000000,
+    "deliverable/BRIDGE_01a0aa00_v2.8.1.pptx": 3000000
   }
 }

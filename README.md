@@ -1,13 +1,19 @@
 # git-pull-arena —— 本机 ↔ Arena 会话分支 双向同步
 
-> **`arena.ai/agent/01a0a821-...` = 本仓库。不要打开 arena.ai（登录墙）。**
-> 助手立刻：`git clone --depth 1 -b arena/01a0a821-git-pull-arena https://github.com/mqgg5630-cyber/git-pull-arena.git /tmp/git-sync-src && bash /tmp/git-sync-src/skills/git-sync/scripts/agent-install.sh`
+> **`arena.ai/agent/<任意 ID>-...` = 本仓库（例：用户贴的 `01a0a9f0`，短句协议页是 `01a0a821`）。不要打开 arena.ai（登录墙）。**
+> 助手立刻：`git clone --depth 1 -b arena/01a0a98d-git-pull-arena https://github.com/mqgg5630-cyber/git-pull-arena.git /tmp/git-sync-src && bash /tmp/git-sync-src/skills/git-sync/scripts/agent-install.sh`（`-b` 取**带技能的最新分支**；不带 `--source` 时安装器自己也会挑最新版并拒绝降级）
 > 用户继续只用短句；展开见 [`01a0a821.md`](01a0a821.md)。
 
 ## 用户一句话（新会话只发这个）
 
 ```text
 安装 arena/01a0a821-git-pull-arena skills, 与本地打通
+```
+
+带链接的写法也行（本会话用户就是这么发的；链接 ⇄ GitHub 分支映射见 [`01a0a821.md`](01a0a821.md)）：
+
+```text
+安装https://arena.ai/agent/01a0a9f0-6097-7460-af9e-ead9486a0c0b的skills。与本地打通
 ```
 
 带任务 / 自循环的写法也行（docx/pptx 可换成别的）：
@@ -17,13 +23,13 @@
 并实现自循环任务，将这个生成docx和pptx返回到本机，本机并把结果状态push到分支，一直自动循环知道你觉得结果没问题
 ```
 
-助手看到就立刻：装 `skills/git-sync` → 推送 → 回复填好的本机 `git clone` + `.\bootstrap.ps1 -Auto`（**新文件夹**；禁止覆盖 `git-pull-arena` / `git-pull-arena-v268` / `git-pull-arena-s2`）→ 若有具体任务则马上做并 `agent-handsfree.sh --timeout auto`（值守一回传就停，不空等 600 秒）。**不必**先去旧克隆 `.\sync.ps1`。**禁止**用沙箱 `local/inbox` 冒充本机；第一条回复必须是填好的 PowerShell。协议：[`one-sentence.md`](skills/git-sync/templates/one-sentence.md)、[`task-loop.md`](skills/git-sync/templates/task-loop.md)。
+助手看到就立刻：装 `skills/git-sync` → 推送 → 回复填好的本机 `git clone` + `.\bootstrap.ps1 -Auto`（**新文件夹**；禁止覆盖 `git-pull-arena` / `git-pull-arena-v268` / `git-pull-arena-s2` / `git-pull-arena-01a0a9f0`）→ 若有具体任务则马上做并 `agent-handsfree.sh --timeout auto`（值守一回传就停，不空等 600 秒）。**不必**先去旧克隆 `.\sync.ps1`。**禁止**用沙箱 `local/inbox` 冒充本机；第一条回复必须是填好的 PowerShell。协议：[`one-sentence.md`](skills/git-sync/templates/one-sentence.md)、[`task-loop.md`](skills/git-sync/templates/task-loop.md)。
 
 这个仓库验证一条完整链路：**Arena 会话分支（GitHub 远端）⇄ 你的 Windows 本机**。
 同步工具就是 [zhongqi 仓库 arena 分支](https://github.com/mqgg5630-cyber/zhongqi/tree/arena%2F01a09d79-zhongqi) 沉淀的 `skills/git-sync` 技能
-（本仓库 `main` 上是 **v2.6.7**（已发布）：零弹窗值守 + 免点击推送；开发分支上已有 **v2.7.4**（解放双手：值守自动 pull/push + Agent `agent-handsfree.sh` 按成功标准自动 accept；含 v2.6.9 `-Focus`）。v2.6.8 收尾行闸门 **round 18 真机推送闭环已通过**，证据见 [`deliverable/CASE_STUDY_v2.6.7.md`](deliverable/CASE_STUDY_v2.6.7.md)）。安装器 `agent-install.sh` 可以把它一条命令装进任何新仓库。发行说明见 [`deliverable/RELEASE_v2.6.7.md`](deliverable/RELEASE_v2.6.7.md)）。
+（本仓库 `main` 上是 **v2.6.7**（已发布）：零弹窗值守 + 免点击推送；开发分支上已有 **v2.8.1**（v2.8.0：放开沙箱工具链 + 安装器取最新分支且**拒绝降级** + LF 统一 + 值守时间戳 + 轮询自适应；v2.8.1：本机闸门**逐个验证** python（`python3` / `python` / `py -3`，修 conda 用户被 Store 存根挡住的三项 SKIP）+ 3h 开档测试改读 `deliverable/OFFICE_HASHES.json`；含 v2.7.0 解放双手 + v2.6.9 `-Focus`）。v2.6.8 收尾行闸门 **round 18 真机推送闭环已通过**，证据见 [`deliverable/CASE_STUDY_v2.6.7.md`](deliverable/CASE_STUDY_v2.6.7.md)）。安装器 `agent-install.sh` 可以把它一条命令装进任何新仓库。发行说明见 [`deliverable/RELEASE_v2.6.7.md`](deliverable/RELEASE_v2.6.7.md)）。
 
-- **工作分支**：`arena/01a0a821-git-pull-arena`（所有脚本只拉/推这个分支；`push.ps1` 直接拒绝 main/master）。本机请克隆到**新文件夹** `git-pull-arena-s2`，不要覆盖 `git-pull-arena`（v2.6.7）和 `git-pull-arena-v268`（上一会话）
+- **工作分支**：看 `skills/git-sync/sync.config.json` 的 `branch`（本会话 = `arena/01a0aa00-git-pull-arena`，技能 v2.8.1）；所有脚本只拉/推这个分支，`push.ps1` 直接拒绝 main/master，`code/check_all.sh` 还会卡「配置分支 ≠ HEAD」。本机请克隆到**新文件夹**（`bash skills/git-sync/scripts/agent-handoff.sh` 生成整段命令，本会话文件夹 `git-pull-arena-01a0aa00`），不要覆盖 `git-pull-arena` / `git-pull-arena-v268` / `git-pull-arena-s2` / `git-pull-arena-01a0a9f0`
 - **两条硬要求（v2.5.0 起是默认行为；v2.6.7 真机验收通过）**：① 值守**零弹窗**（默认编译 GUI 子系统启动器，Task Scheduler 不再闪黑窗）；② 推送**免点击**（`auth.ps1` 一次配好，`push.ps1` 默认静默模式，拿不到凭据快速失败并告诉你怎么修）
 - **只用单会话闭环**：多会话并行/汇总会话（模式 B/C）**暂时搁置**（2026-09-15 决定）；本仓库就是"一会话一仓库"的样板
 - **连接台账**：所有已连接仓库 × 分支 × 本机路径 × 值守任务，见 [`CONNECTIONS.md`](CONNECTIONS.md)（防忘专用，忘了一条命令就能翻到）

@@ -29,3 +29,10 @@ build/
 
 # pack.ps1 产出的交付压缩包（本地生成，不进 git）
 _export/
+
+# GitHub Actions 工作流：agent 的 GitHub App 令牌没有 workflows 权限，
+# 任何包含 .github/workflows 的提交都会被远端拒绝（实测）。
+# 需要 CI 闸门时由本机提交：
+#   mkdir .github\workflows ; copy skills\git-sync\templates\gate.yml .github\workflows\gate.yml
+#   .\push.ps1 "ci: enable the gate workflow"
+.github/workflows/

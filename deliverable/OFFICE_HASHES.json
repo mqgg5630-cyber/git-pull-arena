@@ -1,0 +1,72 @@
+{
+  "generated_utc": "2026-09-16T11:40:19Z",
+  "generator": "code/make_bridge_report.py",
+  "generator_note": "python-docx + python-pptx (allowed in the sandbox since v2.8.0); this manifest is the contract the REAL machine verifies in code/local_check.ps1 section 3, and the same 3a-3g rules are mirrored in Python here so a package that cannot pass is never pushed",
+  "branch": "arena/01a0aa00-git-pull-arena",
+  "session": "01a0aa00",
+  "skill_source": "arena/01a0a9f0-git-pull-arena",
+  "skill_version": "2.8.1",
+  "how_local_verifies": "code/local_check.ps1 compares sha256/bytes, opens the package, requires every required_parts entry, parses every .xml/.rels part, resolves every relationship target and content type, searches must_contain across all xml parts and counts slides against min_slides; the Office COM open test (3h) runs on the real machine",
+  "handoff": "cd E:\\0github\\git-sync\ngit clone -b arena/01a0aa00-git-pull-arena https://github.com/mqgg5630-cyber/git-pull-arena.git git-pull-arena-01a0aa00\ncd git-pull-arena-01a0aa00\nSet-ExecutionPolicy -Scope CurrentUser RemoteSigned\n.\\bootstrap.ps1 -Auto      # 身份 + 分支 + 免点击推送凭据 + 注册值守\n.\\doctor.ps1               # branch=arena/01a0aa00-git-pull-arena, ahead/behind 0/0, watcher/heartbeat/auth\n.\\watch.ps1 -Status        # 应看到 hands-free: master=True",
+  "files": [
+    {
+      "path": "deliverable/BRIDGE_01a0aa00_v2.8.1.docx",
+      "kind": "docx",
+      "bytes": 40629,
+      "sha256": "bcdc3d7cfe0e8059e580382cc49b2362d6cb17049e28d227c17847008b13b47f",
+      "required_parts": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "word/document.xml",
+        "word/styles.xml",
+        "word/_rels/document.xml.rels",
+        "docProps/core.xml"
+      ],
+      "main_part": "word/document.xml",
+      "must_contain": [
+        "2.8.1",
+        "git-sync",
+        "local_check.ps1",
+        "round 1",
+        "LAPTOP-R77M5D6M",
+        "arena/01a0aa00-git-pull-arena"
+      ],
+      "min_slides": null,
+      "sandbox_selftest": {
+        "parts": 17,
+        "slides": 0
+      }
+    },
+    {
+      "path": "deliverable/BRIDGE_01a0aa00_v2.8.1.pptx",
+      "kind": "pptx",
+      "bytes": 37473,
+      "sha256": "16582754a45c92754c63e3bff2c9da08e4525ec1877d787241a1c4ca35be9345",
+      "required_parts": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "ppt/presentation.xml",
+        "ppt/_rels/presentation.xml.rels",
+        "ppt/slides/slide1.xml",
+        "ppt/slideMasters/slideMaster1.xml",
+        "ppt/slideLayouts/slideLayout1.xml",
+        "ppt/theme/theme1.xml",
+        "docProps/core.xml"
+      ],
+      "main_part": "ppt/presentation.xml",
+      "must_contain": [
+        "2.8.1",
+        "git-sync",
+        "local_check.ps1",
+        "round 1",
+        "LAPTOP-R77M5D6M",
+        "arena/01a0aa00-git-pull-arena"
+      ],
+      "min_slides": 8,
+      "sandbox_selftest": {
+        "parts": 54,
+        "slides": 9
+      }
+    }
+  ]
+}

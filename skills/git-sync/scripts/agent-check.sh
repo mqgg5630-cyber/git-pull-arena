@@ -75,6 +75,31 @@ if [ "$ACTION" = "read" ]; then
   ROUND="$(json_get "$HS" round)"; ASTATE="$(json_get "$HS" arena_state)"; LSTATE="$(json_get "$HS" local_state)"
   echo "== handshake (round $ROUND): arena=$ASTATE local=$LSTATE"
   printf '%s\n' "$HS" | python3 -c "import json,sys;print(json.dumps(json.loads(sys.stdin.buffer.read().decode('utf-8-sig')),indent=2,ensure_ascii=False))" 2>/dev/null || printf '%s\n' "$HS"
+  # A round that stays pending is not "the loop is running" - it is a machine
+  # that is not there. Say how long, and hand over the one command that fixes
+  # it, instead of polling again (field report 2026-09-16: round 19 waited
+  # 2 hours while the agent kept committing).
+  if [ "$ASTATE" = "awaiting_check" ] && [ "$LSTATE" = "pending" ]; then
+    ARENA_AT="$(json_get "$HS" arena_updated)"
+    AGE="$(python3 - "$ARENA_AT" <<'PY' 2>/dev/null
+import sys, datetime
+try:
+    t = datetime.datetime.strptime(sys.argv[1].strip(), '%Y-%m-%d %H:%M:%S')
+except Exception:
+    sys.exit(1)
+print(int((datetime.datetime.utcnow() - t).total_seconds() // 60))
+PY
+)"
+    if [ -n "$AGE" ]; then
+      echo "== pending for ${AGE} minute(s) - the local watcher has not answered."
+      if [ "$AGE" -ge 10 ]; then
+        echo "   It is offline, parked, or pointed at another branch. Stop polling and"
+        echo "   give the user the paste block again:"
+        echo "       bash skills/git-sync/scripts/agent-handoff.sh"
+        echo "   (on their machine: .\\sync.ps1 ; .\\watch.ps1 -Focus ; .\\doctor.ps1)"
+      fi
+    fi
+  fi
   LOG="$(ls -1 "$(dirname "$HS_NORM")"/check_r${ROUND}_*.txt 2>/dev/null | sort | tail -1)"
   if [ -n "$LOG" ] && [ -f "$LOG" ]; then
     echo ""

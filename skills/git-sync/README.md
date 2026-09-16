@@ -1,4 +1,4 @@
-> 当前版本 **v2.7.4**（解放双手：auto_pull/auto_push + `agent-handsfree.sh`；含 v2.6.9 `-Focus`）。`main` 上是 **v2.6.7**。说明 `deliverable/HANDS_FREE_v2.7.0.md`。
+> 当前版本 **v2.8.1**（放开沙箱工具链限制：`pip`/`.venv`/python-docx 随便用，只禁「冒充本机」；安装器不再降级 + 取最新分支；值守每行带时间戳；轮询自适应提速；`.gitattributes` 统一 LF 修 CRLF 假失败）。成功案例 `deliverable/CASE_STUDY_v2.8.0.md`。`main` 上是 **v2.6.7**。
 
 # 本地 ↔ Agent 同步 skill —— 使用说明
 
@@ -8,9 +8,13 @@
 > 仓库根目录放着同款脚本（`sync.ps1 / push.ps1 / upload.ps1 / download.ps1 / doctor.ps1 / pack.ps1 / bootstrap.ps1 / pr.ps1 / hardware.ps1 / watch.ps1 / auth.ps1 / install.ps1`），
 > 这份 skill 是**通用版 + 说明书**；根目录副本必须与 `scripts\` 下的**逐字节相同**（`code/check_all.sh` 第 3 节会卡）。
 >
+> **v2.8.1（三处「本机侧假 SKIP / 硬编码」根治 + CI 兜底）**：① `local_check.ps1` 的 3h 开档测试不再写死文件名，改读 `deliverable/OFFICE_HASHES.json`（换交付物自动覆盖，没声明就 SKIP 并说明）② 闸门解析 python 时逐个**验证可用**并补 `py -3`（本机 conda python 被 Store 存根挡住 → 三项检查一直 SKIP）③ `.github/workflows/gate.yml` 随包安装：本机不在线也有独立核验 ④ `agent-handoff.sh` 在没有 remote 的克隆里给出可照抄的修复命令。
+>
+> **v2.7.5（交接块生成化 + 分支一致性闸门）**：三个真实事故（2026-09-16：`01a0a95e` 请求在 `pending` 挂 2 小时、`01a0a98d` 配置分支停在上个会话、把 `/home/user/...` 写进 Windows PowerShell 块）都源于**手打交接命令**。现在：① `scripts/agent-handoff.sh` 从 `git remote get-url` + 配置 branch 生成可粘的 PowerShell（`--json` 给真值），配置分支 ≠ HEAD 时 exit 3 拒绝；② `code/check_all.sh` 新增 2b 段「`sync.config.json` 的 branch 必须等于 HEAD」，不一致直接 exit 1（值守轮询的是配置分支，不一致 = 本机永远收不到请求）；③ `agent-check.sh --read` 报告本轮 pending 了多少分钟，≥10 分钟就提示重发交接块而不是继续轮询；④ `agent-install.sh` 本来就会用 HEAD 写 branch（v2.7.5 起由闸门兜底）。
+>
 > **v2.7.4（短句仍用 arena.ai，助手自己展开）**：用户不改提示词。`arena.ai/agent/01a0a821` → clone 本仓库；根目录 `01a0a821.md`。禁止向用户索要长命令。
 >
-> **v2.7.3（曾要求用户粘带 GitHub clone 的长提示词）**：沙箱打不开 arena.ai。v2.7.4 起改回：用户继续短句，助手自己 clone GitHub。`.venv` 不是本机。
+> **v2.7.3（曾要求用户粘带 GitHub clone 的长提示词）**：沙箱打不开 arena.ai。v2.7.4 起改回：用户继续短句，助手自己 clone GitHub。（注意：`.venv` 不是本机，但装库本身从 v2.8.0 起不再禁止。）
 >
 > **v2.7.2（先打通本机，禁止假 local/）**：给用户的第一条回复必须是 `git clone` + `.\bootstrap.ps1 -Auto`；沙箱 `local/inbox` / 自制 python skills **不算**打通；自循环只准 `agent-handsfree.sh`。`agent-install.sh` 补拷 `install.ps1`。
 >

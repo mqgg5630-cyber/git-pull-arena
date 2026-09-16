@@ -1,13 +1,15 @@
 # 连接台账 —— Arena 仓库 × 分支 × 本机路径（防忘专用）
 
-> 更新：2026-09-16（**本会话 HQ = 新克隆 git-pull-arena-s2 / arena/01a0a821；不要覆盖旧目录**：值守每个出口都有收尾行 + 64 位 shell 优先 + `-Status` 结果码人话解释；证据与复验清单见 `deliverable/CASE_STUDY_v2.6.7.md`。**v2.6.7 已发布到 `main`**（PR #1 / `009fb6a`）：免点击推送 + 零弹窗值守**真机验收通过**（round 14/15 passed，值守免点击推回结论））｜ 技能版本：v2.7.4（开发分支）/ v2.6.7（`main`）｜ 开发分支 `arena/01a0a821-git-pull-arena`（本会话；接替已冻结的 `arena/01a0a7de-git-pull-arena`）｜ 退路 `arena/01a0a4f5-git-pull-arena`（v2.6.7）/ `arena/01a09fc1-git-pull-arena`（v2.4.7）｜ 本文件在 `E:\0github\git-sync\git-pull-arena-s2\CONNECTIONS.md`
-> 忘了的时候：`cd E:\0github\git-sync\git-pull-arena-s2` 然后 `notepad CONNECTIONS.md`
+> 更新：2026-09-16（**本会话（`arena/01a0aa00`）HQ = 新克隆 `git-pull-arena-01a0aa00` / `arena/01a0aa00-git-pull-arena`，技能 **v2.8.1**（用户链接的 `arena/01a0a9f0` → 技能出处 `arena/01a0a98d`）；**不要覆盖旧目录**。四个禁止覆盖的目录：`git-pull-arena`（旧 v2.6.7）、`git-pull-arena-v268`、`git-pull-arena-s2`、`git-pull-arena-01a0a9f0`。上一个会话 HQ = `git-pull-arena-01a0a9f0` / `arena/01a0a9f0`（v2.8.1，值守可能已被本会话 park，可 `.\\watch.ps1 -Focus` 切回））｜ 技能版本：v2.8.1（开发分支）/ v2.6.7（`main`）｜ 开发分支 `arena/01a0aa00-git-pull-arena`（本会话）｜ 技能出处 `arena/01a0a98d-git-pull-arena` ｜ 退路 `arena/01a0a4f5-git-pull-arena`（v2.6.7）/ `arena/01a09fc1-git-pull-arena`（v2.4.7）｜ 本文件在 `E:\\0github\\git-sync\\git-pull-arena-01a0aa00\\CONNECTIONS.md`
+> 忘了的时候：`cd E:\\0github\\git-sync\\git-pull-arena-01a0aa00` 然后 `notepad CONNECTIONS.md`
 
 ## 一、当前所有连接
 
 | 用途 | GitHub 仓库 | 工作分支 | 本机路径 | 值守任务名 | 状态 |
 |---|---|---|---|---|---|
-| **git-sync 技能总部**（本会话） | [mqgg5630-cyber/git-pull-arena](https://github.com/mqgg5630-cyber/git-pull-arena) | **`arena/01a0a821-git-pull-arena`**（v2.7.4） | `E:\0github\git-sync\git-pull-arena-s2` | `git-sync-watch-git-pull-arena-s2` | ✅ round 18 推送闭环通过（`85b17a6`；**不要覆盖这个目录**） |
+| **git-sync 技能总部（本会话）** | [mqgg5630-cyber/git-pull-arena](https://github.com/mqgg5630-cyber/git-pull-arena) | **`arena/01a0aa00-git-pull-arena`**（技能 v2.8.1，出处 `arena/01a0a9f0` / `arena/01a0a98d`） | `E:\0github\git-sync\git-pull-arena-01a0aa00` | `git-sync-watch-git-pull-arena-01a0aa00` | ⏳ 本机粘一次交接块（`bash skills/git-sync/scripts/agent-handoff.sh` 生成的）后收 round 1 回执；产物 `deliverable/BRIDGE_01a0aa00_v2.8.1.docx/.pptx`；**不要覆盖旧目录** |
+| git-sync 上一会话克隆（v2.8.1，值守可能已被本会话 park） | 同上 | `arena/01a0a9f0-git-pull-arena`（技能 v2.8.1） | `E:\0github\git-sync\git-pull-arena-01a0a9f0` | `git-sync-watch-git-pull-arena-01a0a9f0` | ⏸ 切回：`cd git-pull-arena-01a0a9f0 ; .\watch.ps1 -Focus`（不要覆盖这个目录） |
+| git-sync 上一会话克隆（v2.7.4，值守已被本会话 park） | 同上 | `arena/01a0a821-git-pull-arena`（v2.7.4） | `E:\0github\git-sync\git-pull-arena-s2` | `git-sync-watch-git-pull-arena-s2` | ⏸ 切回：`cd git-pull-arena-s2 ; .\watch.ps1 -Focus`（不要覆盖这个目录） |
 | git-sync 上一会话克隆（v2.6.8 静态/收尾行已验，冻结） | 同上 | `arena/01a0a7de-git-pull-arena`（v2.6.8；PR #3 已关） | `E:\0github\git-sync\git-pull-arena-v268` | `git-sync-watch-git-pull-arena-v268` | ⏸ **不要覆盖、不要在这里跑本会话的 `.\sync.ps1`** |
 | git-sync 旧安装（v2.6.7，冻结当退路） | 同上 | `arena/01a0a4f5-git-pull-arena`（v2.6.7） | `E:\0github\git-sync\git-pull-arena` | `git-sync-watch-git-pull-arena`（2026-09-16 已 `-Pause`） | ⏸ 不要在这里跑 `.\sync.ps1`，会停在 v2.6.7 |
 | **图片→可编辑PPT 项目**（fig3 交付物在那边） | [mqgg5630-cyber/image-to-editable-pptx](https://github.com/mqgg5630-cyber/image-to-editable-pptx) | `arena/01a04caf-image-to-editable-pptx` | `E:\0github\git-sync\image-to-editable-pptx` | `git-sync-watch-image-to-editable-pptx` | ✅ 在线（[该会话](https://arena.ai/agent/01a04caf-77d4-7672-92a2-59223763a988)；v2.3.4 @ `14c1f5f`，5/5 验收通过，值守 2 分钟） |
@@ -123,6 +125,9 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 | 本地改动"消失" | 在 stash 里：`git stash list` → `git stash pop` |
 
 ## 五、历史里程碑
+
+- 2026-09-16：**本会话（`arena/01a0aa00`）装用户链接会话（`arena/01a0a9f0`）的技能 + 与本地打通**：用户短句＝「安装 https://arena.ai/agent/01a0a9f0-… 的skills」+「与本机（spyder / conda base，`E:\0github\git-sync`）打通」。动作：`agent-install.sh --source <01a0a9f0 分支本地检出>` 把 `skills/git-sync` 从 v2.7.4 升到 **v2.8.1** 并把配置分支改成本会话分支 `arena/01a0aa00-git-pull-arena`；仓库级 `code/check_all.sh`（含 2b「配置分支 == HEAD」）、`code/local_check.ps1`（3a–3h + 成功标准）、`.gitattributes`（文本统一 LF）、`.gitignore` 一并对齐；新增 `code/make_bridge_report.py` + `deliverable/BRIDGE_01a0aa00_v2.8.1.docx/.pptx` + `OFFICE_HASHES.json`（沙箱内先用 Python 跑同一套 3a–3g 镜像自检，再交本机真 Word/PowerPoint 判定）。本机侧只需粘一次 `agent-handoff.sh` 生成的交接块（新文件夹 `git-pull-arena-01a0aa00`）。
+- 2026-09-16：**上一会话（`arena/01a0a9f0`）装 v2.8.1 + 与本地打通**：用户短句＝「安装 `arena.ai/agent/01a0a98d` 的 skills，与本机（spyder/conda base，`E:\0github\git-sync`）打通」。动作：`agent-install.sh`（`--source` = 分支 `arena/01a0a98d`）把 `skills/git-sync` 从 v2.7.4 升到 **v2.8.1** 并把配置分支改成本会话分支；仓库级 `code/check_all.sh`、`code/local_check.ps1`（3a–3h）、`.gitattributes`（LF 统一）、`.gitignore` 一并对齐；新增 `code/make_link_proof.py` + `deliverable/LINK_PROOF_v2.8.1.docx/.pptx` + `OFFICE_HASHES.json`（沙箱内先用 Python 跑同一套 3a–3g 镜像自检，再交本机真 Word/PowerPoint 判定）。本机侧只需粘一次 `agent-handoff.sh` 生成的交接块。
 
 - 2026-09-14：git-sync v1（zhongqi 沉淀）→ 本仓库安装 → 双向打通（`1d4d62f`）
 - 2026-09-14：v2（agent-install / 回执 / doctor -Fix / 增量下载 / PR / profile）

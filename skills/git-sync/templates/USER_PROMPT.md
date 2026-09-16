@@ -13,4 +13,4 @@
 2. 第一条回复 = 填好的本机 PowerShell（`bootstrap.ps1 -Auto`）。
 3. 再做任务 + `agent-handsfree.sh --timeout auto`。
 
-禁止：自制 python skill、`.venv`、`local/inbox`。
+禁止：用 `local/inbox` 或自制 python skill **冒充本机**。（沙箱装第三方库 / `.venv` 不受限，v2.8.0 起。）
