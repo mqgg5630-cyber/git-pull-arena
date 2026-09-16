@@ -1,0 +1,45 @@
+check round 20 on LAPTOP-R77M5D6M - passed (exit 0)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 13s
+
+OK: all .ps1 files are ASCII-only
+NOTE: python3 is not a working python - trying plain text
+OK: sync.config.json branch=arena/01a0a9ba-git-pull-arena remote=origin (checked without python)
+OK: root scripts identical to skills/git-sync/scripts
+SKIP: python3 is not a working python - $var: typo scan skipped here
+      (it still runs in the agent sandbox before every push)
+SKIP: python3 is not a working python - watcher closing-line check skipped here
+      (it still runs in the agent sandbox before every push)
+OK: every .ps1 parses
+   (gate ran via E:\hermes\git\bin\bash.exe [git])
+== accept 2a: silent push PROVEN (ls-remote + push --dry-run, prompts disabled)
+== accept 2b (fallback): one LONG-LIVED loop process - one brief flash per logon,
+   not per poll. For zero flash: admin PowerShell -> .\watch.ps1 -Unregister ;
+   .\watch.ps1 -Register -Headless   (or fix the launcher, see watch-*.log)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+== check_loop_summary PASSED
+== accept 2c: watcher closing lines verified (every exit path has its summary)
+== accept 2d: hands-free auto_pull/auto_push present in watch.ps1
+== success criteria: results/status/success_criteria.json
+   v2.7.4: short arena.ai prompt maps to GitHub clone; real Windows watcher; no fake local/inbox.
+   OK   exists: 01a0a821.md (1743 B)
+   OK   exists: skills/git-sync/scripts/agent-handsfree.sh (4111 B)
+   OK   exists: skills/git-sync/scripts/agent-criteria.sh (5361 B)
+   OK   exists: skills/git-sync/scripts/watch.ps1 (85361 B)
+   OK   exists: deliverable/HANDS_FREE_v2.7.0.md (4954 B)
+   OK   exists: skills/git-sync/VERSION (7 B)
+   OK   exists: skills/git-sync/templates/USER_PROMPT.md (796 B)
+   OK   contains skills/git-sync/VERSION <- 2.7.4
+   OK   contains 01a0a821.md <- git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena
+   OK   contains skills/git-sync/sync.config.json <- "hands_free"
+   OK   contains watch.ps1 <- function Invoke-AutoPull
+   OK   contains skills/git-sync/scripts/watch.ps1 <- function Invoke-Focus
+   OK   regex watch.ps1
+   OK   size skills/git-sync/scripts/agent-handsfree.sh: 4111 >= 1000
+   OK   size skills/git-sync/scripts/agent-criteria.sh: 5361 >= 1000
+   OK   size deliverable/HANDS_FREE_v2.7.0.md: 4954 >= 800
+   OK   size watch.ps1: 85361 >= 20000
+== local checks passed
