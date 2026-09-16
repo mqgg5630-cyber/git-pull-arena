@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-16T11:46:26Z",
+  "generated_utc": "2026-09-16T11:49:52Z",
   "generator": "code/make_bridge_report.py",
   "generator_note": "python-docx + python-pptx (allowed in the sandbox since v2.8.0); this manifest is the contract the REAL machine verifies in code/local_check.ps1 section 3, and the same 3a-3g rules are mirrored in Python here so a package that cannot pass is never pushed",
   "branch": "arena/01a0aa00-git-pull-arena",
@@ -13,7 +13,7 @@
       "path": "deliverable/BRIDGE_01a0aa00_v2.8.1.docx",
       "kind": "docx",
       "bytes": 40685,
-      "sha256": "d6d09da04deb4b561082b0601b268399c39bb767d3bca0b69e549329c43a353d",
+      "sha256": "1ce046503c0e9353694d87a84601b2e388d7ee993aa8677b6b3826f7d963a8f3",
       "required_parts": [
         "[Content_Types].xml",
         "_rels/.rels",
@@ -40,7 +40,7 @@
       "path": "deliverable/BRIDGE_01a0aa00_v2.8.1.pptx",
       "kind": "pptx",
       "bytes": 37466,
-      "sha256": "db0ca69be9b6ffb46865ffa510b1720e0bee2f9d598de1be6abd3ecf268f2514",
+      "sha256": "27528248996a22903e4c5e8698188738fd87be91750c09a9f7172b9304ef4d3f",
       "required_parts": [
         "[Content_Types].xml",
         "_rels/.rels",
@@ -70,7 +70,7 @@
       "path": "deliverable/GUIDE_01a0aa00_v2.8.1.docx",
       "kind": "docx",
       "bytes": 40598,
-      "sha256": "9c7c1997edda021b4728e9a7a6a2824dbc67880014453099ffbd00a3dbff63ea",
+      "sha256": "6753333d8ae5e130d7c3da8c77710da135926b426ecbaf2611d7b76746474fd2",
       "required_parts": [
         "[Content_Types].xml",
         "_rels/.rels",
@@ -101,7 +101,7 @@
       "path": "deliverable/GUIDE_01a0aa00_v2.8.1.pptx",
       "kind": "pptx",
       "bytes": 40308,
-      "sha256": "c3f0277b62889230876c4a736da5bc2a30d4a44b5b9ffa439fa600b16c0f40cd",
+      "sha256": "8fc97ca9cad0dcd5dbff231200e66203cb498c9063b293e51a24e99fb26b4fa7",
       "required_parts": [
         "[Content_Types].xml",
         "_rels/.rels",
@@ -130,6 +130,70 @@
         "parts": 56,
         "slides": 10
       }
+    },
+    {
+      "path": "deliverable/DELIVERY_01a0aa00_v2.8.1.docx",
+      "kind": "docx",
+      "bytes": 39251,
+      "sha256": "0656378cfa98403ba79a0244933c82cbde1b0a2535ebe7bc9fe0464e949af888",
+      "required_parts": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "word/document.xml",
+        "word/styles.xml",
+        "word/_rels/document.xml.rels",
+        "docProps/core.xml"
+      ],
+      "main_part": "word/document.xml",
+      "must_contain": [
+        "2.8.1",
+        "git-sync",
+        "交付清单",
+        "download.ps1",
+        "results/status/handshake.json",
+        "round 21",
+        "LAPTOP-R77M5D6M",
+        "arena/01a0aa00-git-pull-arena"
+      ],
+      "min_slides": null,
+      "sandbox_selftest": {
+        "parts": 17,
+        "slides": 0
+      }
+    },
+    {
+      "path": "deliverable/DELIVERY_01a0aa00_v2.8.1.pptx",
+      "kind": "pptx",
+      "bytes": 35007,
+      "sha256": "aa6870e15d3b54a88ed1b8d6fce347ebe99a9fe1e195fa52f0181aa06099e49a",
+      "required_parts": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "ppt/presentation.xml",
+        "ppt/_rels/presentation.xml.rels",
+        "ppt/slides/slide1.xml",
+        "ppt/slideMasters/slideMaster1.xml",
+        "ppt/slideLayouts/slideLayout1.xml",
+        "ppt/theme/theme1.xml",
+        "docProps/core.xml"
+      ],
+      "main_part": "ppt/presentation.xml",
+      "must_contain": [
+        "2.8.1",
+        "git-sync",
+        "交付清单",
+        "download.ps1",
+        "results/status/handshake.json",
+        "round 21",
+        "LAPTOP-R77M5D6M",
+        "arena/01a0aa00-git-pull-arena"
+      ],
+      "min_slides": 6,
+      "sandbox_selftest": {
+        "parts": 50,
+        "slides": 7
+      }
     }
-  ]
+  ],
+  "delivery_pair": true
 }

@@ -1,5 +1,5 @@
 {
-  "description": "session 01a0aa00 on arena/01a0aa00-git-pull-arena (round 21, self-loop): the user asked to clear the other watchers, then loop docx+pptx production -> push -> real-machine check -> verdict back, until nothing is wrong. Delivered this round: the bridge report BRIDGE_01a0aa00_v2.8.1.docx/.pptx plus the new user guide GUIDE_01a0aa00_v2.8.1.docx/.pptx (install / daily commands / watcher / troubleshooting / limits), all four declared in deliverable/OFFICE_HASHES.json. The Windows watcher judges them: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide counts and a real Word/PowerPoint open (3a-3h), plus the gate and 2a-2d (silent push, closing lines, hands-free auto pull/push). 'Local' is always that scheduled task on the user's PC - never a sandbox folder, never a stand-in skill. Skill v2.8.1, installer refuses to downgrade.",
+  "description": "session 01a0aa00 on arena/01a0aa00-git-pull-arena (round 22, self-loop close-out): the user asked to clear the other watchers, then loop docx+pptx production -> push -> real-machine check -> verdict back, until nothing is wrong. Delivered across the loop: BRIDGE_01a0aa00_v2.8.1.docx/.pptx (what was installed and how the link works), GUIDE_01a0aa00_v2.8.1.docx/.pptx (install / daily commands / watcher / troubleshooting / limits) and now DELIVERY_01a0aa00_v2.8.1.docx/.pptx (delivery list + the real machine's receipts for rounds 20-21). All six are declared in deliverable/OFFICE_HASHES.json and judged by the Windows watcher: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide counts and a real Word/PowerPoint open (3a-3h), plus the gate and 2a-2d (silent push, closing lines, hands-free auto pull/push). 'Local' is always that scheduled task on the user's PC - never a sandbox folder, never a stand-in skill. Skill v2.8.1, installer refuses to downgrade.",
   "require_files": [
     "01a0a821.md",
     "results/status/handshake.json",
@@ -22,7 +22,9 @@
     "deliverable/BRIDGE_01a0aa00_v2.8.1.pptx",
     "watch.ps1",
     "deliverable/GUIDE_01a0aa00_v2.8.1.docx",
-    "deliverable/GUIDE_01a0aa00_v2.8.1.pptx"
+    "deliverable/GUIDE_01a0aa00_v2.8.1.pptx",
+    "deliverable/DELIVERY_01a0aa00_v2.8.1.docx",
+    "deliverable/DELIVERY_01a0aa00_v2.8.1.pptx"
   ],
   "forbid_files": [
     "local/inbox",
@@ -58,12 +60,16 @@
     "deliverable/BRIDGE_01a0aa00_v2.8.1.pptx": 15000,
     "watch.ps1": 20000,
     "deliverable/GUIDE_01a0aa00_v2.8.1.docx": 5000,
-    "deliverable/GUIDE_01a0aa00_v2.8.1.pptx": 15000
+    "deliverable/GUIDE_01a0aa00_v2.8.1.pptx": 15000,
+    "deliverable/DELIVERY_01a0aa00_v2.8.1.docx": 5000,
+    "deliverable/DELIVERY_01a0aa00_v2.8.1.pptx": 15000
   },
   "max_bytes": {
     "deliverable/BRIDGE_01a0aa00_v2.8.1.docx": 3000000,
     "deliverable/BRIDGE_01a0aa00_v2.8.1.pptx": 3000000,
     "deliverable/GUIDE_01a0aa00_v2.8.1.docx": 3000000,
-    "deliverable/GUIDE_01a0aa00_v2.8.1.pptx": 3000000
+    "deliverable/GUIDE_01a0aa00_v2.8.1.pptx": 3000000,
+    "deliverable/DELIVERY_01a0aa00_v2.8.1.docx": 3000000,
+    "deliverable/DELIVERY_01a0aa00_v2.8.1.pptx": 3000000
   }
 }
