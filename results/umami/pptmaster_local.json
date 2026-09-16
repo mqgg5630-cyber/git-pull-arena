@@ -47,8 +47,5 @@
   "deck_name": "DECK_umami_01a0aa00_v1.pptx",
   "generator": "code/make_deck_umami.py",
   "evidence_dir": "results/umami",
-  "powerpoint": "yes",
-  "powerpoint_ok": true,
-  "powerpoint_slides": 12,
-  "powerpoint_detail": "ok slides=12"
+  "powerpoint": "na"
 }

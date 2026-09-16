@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" lang="zh-CN" font-family="Microsoft YaHei, Segoe UI, sans-serif" data-pptx-page-role="content">
+  <defs>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="#0B1220" id="bg" data-pptx-role="background"/>
+  <g id="page-title" data-pptx-bounds="70 44 1140 144">
+  <text x="74" y="78" font-size="16" fill="#22D3EE" font-family="Consolas, monospace" letter-spacing="3">//  WET LAB</text>
+  <text x="70" y="138" font-size="44" fill="#F1F5F9" font-weight="700">湿实验验证协议</text>
+  <text x="72" y="176" font-size="20" fill="#94A3B8">模型给出排序，实验给出结论</text>
+  </g>
+  <text x="1208" y="78" font-size="16" fill="#64748B" id="page-number" data-pptx-role="page-number" font-family="Consolas, monospace" text-anchor="end">09 / 12</text>
+  <line x1="72" y1="622" x2="1208" y2="622" stroke="#17293F" stroke-width="1" id="frame-rule" data-pptx-role="decoration"/>
+  <text x="72" y="652" font-size="14" fill="#64748B" id="footer-left" data-pptx-role="footer" font-family="Consolas, monospace">umami peptides  ·  ppt-master deck  ·  session 01a0aa00</text>
+  <text x="1208" y="652" font-size="14" fill="#64748B" id="footer-right" data-pptx-role="footer" font-family="Consolas, monospace" text-anchor="end">LAPTOP-R77M5D6M</text>
+  <g id="wetlab-row-1" data-pptx-bounds="70 212 1140 56">
+  <rect x="70" y="212" width="1140" height="56" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="10"/>
+  <text x="96" y="248" font-size="20" fill="#22D3EE" font-weight="700">感官评价</text>
+  <text x="320" y="248" font-size="18" fill="#F1F5F9">阈值测定（mg/L）</text>
+  <text x="816" y="248" font-size="17" fill="#94A3B8">评审小组 + 空白对照</text>
+  </g>
+  <g id="wetlab-row-2" data-pptx-bounds="70 274 1140 56">
+  <rect x="70" y="274" width="1140" height="56" fill="#0D1626" stroke="#1E3A5F" stroke-width="1" rx="10"/>
+  <text x="96" y="310" font-size="20" fill="#A3E635" font-weight="700">电子舌</text>
+  <text x="320" y="310" font-size="18" fill="#F1F5F9">传感器响应 / 与已知鲜味肽比对</text>
+  <text x="816" y="310" font-size="17" fill="#94A3B8">无创、通量高</text>
+  </g>
+  <g id="wetlab-row-3" data-pptx-bounds="70 336 1140 56">
+  <rect x="70" y="336" width="1140" height="56" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="10"/>
+  <text x="96" y="372" font-size="20" fill="#60A5FA" font-weight="700">受体功能</text>
+  <text x="320" y="372" font-size="18" fill="#F1F5F9">T1R1-T1R3 钙成像，拟合 EC50</text>
+  <text x="816" y="372" font-size="17" fill="#94A3B8">机制证据</text>
+  </g>
+  <g id="wetlab-row-4" data-pptx-bounds="70 398 1140 56">
+  <rect x="70" y="398" width="1140" height="56" fill="#0D1626" stroke="#1E3A5F" stroke-width="1" rx="10"/>
+  <text x="96" y="434" font-size="20" fill="#FBBF24" font-weight="700">分子对接</text>
+  <text x="320" y="434" font-size="18" fill="#F1F5F9">结合位点与相互作用预测</text>
+  <text x="816" y="434" font-size="17" fill="#94A3B8">解释性补充，不作为唯一证据</text>
+  </g>
+  <g id="wetlab-rule" data-pptx-bounds="70 486 1138 60">
+  <rect x="70" y="486" width="1138" height="60" fill="#0D1626" stroke="#1E3A5F" stroke-width="1" rx="12"/>
+  <text x="96" y="522" font-size="20" fill="#F1F5F9" font-weight="700">判定顺序：先电子舌筛响应，再用阈值 + 受体实验确认——避免把假阳性带进结论。</text>
+  </g>
+  <g id="demo-note" data-pptx-bounds="70 580 1140 40">
+  <text x="96" y="606" font-size="15" fill="#FBBF24">示例：协议字段按自己实验室的能力增减；这里只是流程骨架。</text>
+  </g>
+</svg>

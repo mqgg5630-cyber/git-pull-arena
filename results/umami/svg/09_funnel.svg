@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" lang="zh-CN" font-family="Microsoft YaHei, Segoe UI, sans-serif" data-pptx-page-role="content">
+  <defs>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="#0B1220" id="bg" data-pptx-role="background"/>
+  <g id="page-title" data-pptx-bounds="70 44 1140 144">
+  <text x="74" y="78" font-size="16" fill="#22D3EE" font-family="Consolas, monospace" letter-spacing="3">//  FUNNEL</text>
+  <text x="70" y="138" font-size="44" fill="#F1F5F9" font-weight="700">筛选漏斗：从库里到可合成</text>
+  <text x="72" y="176" font-size="20" fill="#94A3B8">每一级都要能说清砍掉了什么</text>
+  </g>
+  <text x="1208" y="78" font-size="16" fill="#64748B" id="page-number" data-pptx-role="page-number" font-family="Consolas, monospace" text-anchor="end">08 / 12</text>
+  <line x1="72" y1="622" x2="1208" y2="622" stroke="#17293F" stroke-width="1" id="frame-rule" data-pptx-role="decoration"/>
+  <text x="72" y="652" font-size="14" fill="#64748B" id="footer-left" data-pptx-role="footer" font-family="Consolas, monospace">umami peptides  ·  ppt-master deck  ·  session 01a0aa00</text>
+  <text x="1208" y="652" font-size="14" fill="#64748B" id="footer-right" data-pptx-role="footer" font-family="Consolas, monospace" text-anchor="end">LAPTOP-R77M5D6M</text>
+  <g id="funnel-step-1" data-pptx-bounds="70 206 1140 62">
+  <rect x="70" y="206" width="1030" height="62" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="12"/>
+  <rect x="70" y="206" width="4" height="62" fill="#22D3EE" rx="2"/>
+  <text x="96" y="246" font-size="21" fill="#F1F5F9" font-weight="700">候选库（酶解 / 计算生成）</text>
+  <text x="1178" y="246" font-size="20" fill="#22D3EE" font-family="Consolas, monospace" font-weight="700" text-anchor="end">10^6</text>
+  </g>
+  <g id="funnel-step-2" data-pptx-bounds="70 284 1140 62">
+  <rect x="70" y="284" width="880" height="62" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="12"/>
+  <rect x="70" y="284" width="4" height="62" fill="#60A5FA" rx="2"/>
+  <text x="96" y="324" font-size="21" fill="#F1F5F9" font-weight="700">去冗余 + 长度 / 组成过滤</text>
+  <text x="1178" y="324" font-size="20" fill="#60A5FA" font-family="Consolas, monospace" font-weight="700" text-anchor="end">10^4</text>
+  </g>
+  <g id="funnel-step-3" data-pptx-bounds="70 362 1140 62">
+  <rect x="70" y="362" width="700" height="62" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="12"/>
+  <rect x="70" y="362" width="4" height="62" fill="#A3E635" rx="2"/>
+  <text x="96" y="402" font-size="21" fill="#F1F5F9" font-weight="700">模型打分，取头部</text>
+  <text x="1178" y="402" font-size="20" fill="#A3E635" font-family="Consolas, monospace" font-weight="700" text-anchor="end">10^2</text>
+  </g>
+  <g id="funnel-step-4" data-pptx-bounds="70 440 1140 62">
+  <rect x="70" y="440" width="540" height="62" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="12"/>
+  <rect x="70" y="440" width="4" height="62" fill="#A3E635" rx="2"/>
+  <text x="96" y="480" font-size="21" fill="#F1F5F9" font-weight="700">理化 · 毒性 · 溶解性过滤</text>
+  <text x="1178" y="480" font-size="20" fill="#A3E635" font-family="Consolas, monospace" font-weight="700" text-anchor="end">30 条</text>
+  </g>
+  <g id="funnel-step-5" data-pptx-bounds="70 518 1140 62">
+  <rect x="70" y="518" width="360" height="62" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="12"/>
+  <rect x="70" y="518" width="4" height="62" fill="#FBBF24" rx="2"/>
+  <text x="96" y="558" font-size="21" fill="#F1F5F9" font-weight="700">合成 + 感官 / 电子舌验证</text>
+  <text x="1178" y="558" font-size="20" fill="#FBBF24" font-family="Consolas, monospace" font-weight="700" text-anchor="end">12 条命中</text>
+  </g>
+  <g id="demo-note" data-pptx-bounds="70 580 1140 40">
+  <text x="96" y="606" font-size="15" fill="#FBBF24">示例：数量级是示例；替换成自己库的统计，几何形状会自动跟着变。</text>
+  </g>
+</svg>

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" lang="zh-CN" font-family="Microsoft YaHei, Segoe UI, sans-serif" data-pptx-page-role="content">
+  <defs>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="#0B1220" id="bg" data-pptx-role="background"/>
+  <g id="page-title" data-pptx-bounds="70 44 1140 144">
+  <text x="74" y="78" font-size="16" fill="#22D3EE" font-family="Consolas, monospace" letter-spacing="3">//  EVAL</text>
+  <text x="70" y="138" font-size="44" fill="#F1F5F9" font-weight="700">评估：指标与陷阱</text>
+  <text x="72" y="176" font-size="20" fill="#94A3B8">模型的分数只有在划分干净时才算证据</text>
+  </g>
+  <text x="1208" y="78" font-size="16" fill="#64748B" id="page-number" data-pptx-role="page-number" font-family="Consolas, monospace" text-anchor="end">07 / 12</text>
+  <line x1="72" y1="622" x2="1208" y2="622" stroke="#17293F" stroke-width="1" id="frame-rule" data-pptx-role="decoration"/>
+  <text x="72" y="652" font-size="14" fill="#64748B" id="footer-left" data-pptx-role="footer" font-family="Consolas, monospace">umami peptides  ·  ppt-master deck  ·  session 01a0aa00</text>
+  <text x="1208" y="652" font-size="14" fill="#64748B" id="footer-right" data-pptx-role="footer" font-family="Consolas, monospace" text-anchor="end">LAPTOP-R77M5D6M</text>
+  <g id="eval-row-1" data-pptx-bounds="70 210 1140 52">
+  <rect x="70" y="210" width="1140" height="52" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="10"/>
+  <text x="96" y="244" font-size="20" fill="#22D3EE" font-weight="700">AUC</text>
+  <text x="320" y="244" font-size="18" fill="#F1F5F9">整体排序能力</text>
+  <text x="576" y="244" font-size="17" fill="#94A3B8">对不平衡不敏感，但掩盖阈值问题</text>
+  </g>
+  <g id="eval-row-2" data-pptx-bounds="70 268 1140 52">
+  <rect x="70" y="268" width="1140" height="52" fill="#0D1626" stroke="#1E3A5F" stroke-width="1" rx="10"/>
+  <text x="96" y="302" font-size="20" fill="#A3E635" font-weight="700">PR-AUC</text>
+  <text x="320" y="302" font-size="18" fill="#F1F5F9">正类识别能力</text>
+  <text x="576" y="302" font-size="17" fill="#94A3B8">正样本稀少时更该看它</text>
+  </g>
+  <g id="eval-row-3" data-pptx-bounds="70 326 1140 52">
+  <rect x="70" y="326" width="1140" height="52" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="10"/>
+  <text x="96" y="360" font-size="20" fill="#60A5FA" font-weight="700">MCC</text>
+  <text x="320" y="360" font-size="18" fill="#F1F5F9">综合混淆矩阵</text>
+  <text x="576" y="360" font-size="17" fill="#94A3B8">比准确率稳，适合不平衡</text>
+  </g>
+  <g id="eval-row-4" data-pptx-bounds="70 384 1140 52">
+  <rect x="70" y="384" width="1140" height="52" fill="#0D1626" stroke="#1E3A5F" stroke-width="1" rx="10"/>
+  <text x="96" y="418" font-size="20" fill="#FBBF24" font-weight="700">F1 / 召回@前 N</text>
+  <text x="320" y="418" font-size="18" fill="#F1F5F9">筛选用</text>
+  <text x="576" y="418" font-size="17" fill="#94A3B8">决定进湿实验的数量</text>
+  </g>
+  <g id="eval-traps" data-pptx-bounds="70 458 552 110">
+  <rect x="70" y="458" width="552" height="110" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <rect x="70" y="458" width="4" height="110" fill="#FBBF24" rx="2"/>
+  <text x="102" y="506" font-size="22" fill="#F1F5F9" font-weight="700">三个常见陷阱</text>
+  <text x="102" y="548" font-size="16" fill="#94A3B8">相似序列跨训练/测试 → 泄漏</text>
+  </g>
+  <g id="eval-split" data-pptx-bounds="656 458 554 110">
+  <rect x="656" y="458" width="554" height="110" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <rect x="656" y="458" width="4" height="110" fill="#A3E635" rx="2"/>
+  <text x="688" y="506" font-size="22" fill="#F1F5F9" font-weight="700">划分与复现</text>
+  <text x="688" y="548" font-size="16" fill="#94A3B8">5-fold + 独立物种留出，固定随机种子</text>
+  </g>
+  <g id="demo-note" data-pptx-bounds="70 580 1140 40">
+  <text x="96" y="606" font-size="15" fill="#FBBF24">示例：阈值、指标和划分都要写进结果表，别只贴一个最好看的分数。</text>
+  </g>
+</svg>
