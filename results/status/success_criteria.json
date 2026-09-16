@@ -1,5 +1,5 @@
 {
-  "description": "session 01a0aa00 on arena/01a0aa00-git-pull-arena (round 22, self-loop close-out): the user asked to clear the other watchers, then loop docx+pptx production -> push -> real-machine check -> verdict back, until nothing is wrong. Delivered across the loop: BRIDGE_01a0aa00_v2.8.1.docx/.pptx (what was installed and how the link works), GUIDE_01a0aa00_v2.8.1.docx/.pptx (install / daily commands / watcher / troubleshooting / limits) and now DELIVERY_01a0aa00_v2.8.1.docx/.pptx (delivery list + the real machine's receipts for rounds 20-21). All six are declared in deliverable/OFFICE_HASHES.json and judged by the Windows watcher: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide counts and a real Word/PowerPoint open (3a-3h), plus the gate and 2a-2d (silent push, closing lines, hands-free auto pull/push). 'Local' is always that scheduled task on the user's PC - never a sandbox folder, never a stand-in skill. Skill v2.8.1, installer refuses to downgrade.",
+  "description": "session 01a0aa00 on arena/01a0aa00-git-pull-arena (round 23, new-task test): the user asked to regenerate a good-looking pptx with PPT Master and to exercise the self-loop again. DECK_01a0aa00_v2.8.1.pptx is that deck - 12 pages authored as canonical SVG by code/make_deck_pptmaster.py and compiled by PPT Master v6.4.0 (hugohe3/ppt-master, route Quick Generate) into NATIVE DrawingML shapes (no page images): dark-tech style, Microsoft YaHei + Consolas, page checker 0 blocking findings, export postflight passed. It sits in deliverable/OFFICE_HASHES.json next to the bridge report, the guide and the delivery sheet, and the Windows watcher judges all seven artifacts: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide counts and a real Word/PowerPoint open (3a-3h), plus the gate and 2a-2d. 'Local' is always that scheduled task on the user's PC - never a sandbox folder, never a stand-in skill.",
   "require_files": [
     "01a0a821.md",
     "results/status/handshake.json",
@@ -24,7 +24,10 @@
     "deliverable/GUIDE_01a0aa00_v2.8.1.docx",
     "deliverable/GUIDE_01a0aa00_v2.8.1.pptx",
     "deliverable/DELIVERY_01a0aa00_v2.8.1.docx",
-    "deliverable/DELIVERY_01a0aa00_v2.8.1.pptx"
+    "deliverable/DELIVERY_01a0aa00_v2.8.1.pptx",
+    "code/make_deck_pptmaster.py",
+    "deliverable/DECK_01a0aa00_v2.8.1.pptx",
+    "results/status/deck_build.md"
   ],
   "forbid_files": [
     "local/inbox",
@@ -41,7 +44,9 @@
     "code/check_all.sh": "py -3",
     "watch.ps1": "function Invoke-AutoPull",
     "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus",
-    "deliverable/OFFICE_HASHES.json": "arena/01a0aa00-git-pull-arena"
+    "deliverable/OFFICE_HASHES.json": "arena/01a0aa00-git-pull-arena",
+    "code/make_deck_pptmaster.py": "svg_to_pptx.py",
+    "results/status/deck_build.md": "svg_quality_checker.py"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
@@ -62,7 +67,9 @@
     "deliverable/GUIDE_01a0aa00_v2.8.1.docx": 5000,
     "deliverable/GUIDE_01a0aa00_v2.8.1.pptx": 15000,
     "deliverable/DELIVERY_01a0aa00_v2.8.1.docx": 5000,
-    "deliverable/DELIVERY_01a0aa00_v2.8.1.pptx": 15000
+    "deliverable/DELIVERY_01a0aa00_v2.8.1.pptx": 15000,
+    "deliverable/DECK_01a0aa00_v2.8.1.pptx": 20000,
+    "code/make_deck_pptmaster.py": 8000
   },
   "max_bytes": {
     "deliverable/BRIDGE_01a0aa00_v2.8.1.docx": 3000000,
@@ -70,6 +77,7 @@
     "deliverable/GUIDE_01a0aa00_v2.8.1.docx": 3000000,
     "deliverable/GUIDE_01a0aa00_v2.8.1.pptx": 3000000,
     "deliverable/DELIVERY_01a0aa00_v2.8.1.docx": 3000000,
-    "deliverable/DELIVERY_01a0aa00_v2.8.1.pptx": 3000000
+    "deliverable/DELIVERY_01a0aa00_v2.8.1.pptx": 3000000,
+    "deliverable/DECK_01a0aa00_v2.8.1.pptx": 3000000
   }
 }

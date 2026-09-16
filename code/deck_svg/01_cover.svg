@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" lang="zh-CN" font-family="Microsoft YaHei, Segoe UI, sans-serif" data-pptx-page-role="cover">
+  <defs>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="7" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="#0B1220" id="bg" data-pptx-role="background" />
+  <path d="M80 0V720M160 0V720M240 0V720M320 0V720M400 0V720M480 0V720M560 0V720M640 0V720M720 0V720M800 0V720M880 0V720M960 0V720M1040 0V720M1120 0V720M1200 0V720M0 90H1280M0 180H1280M0 270H1280M0 360H1280M0 450H1280M0 540H1280M0 630H1280" fill="none" id="bg-grid" data-pptx-role="decoration" stroke="#17293F" stroke-width="1" opacity="0.5" />
+  <path d="M0 470L1280 250" fill="none" id="cover-trace" data-pptx-role="decoration" stroke="#16324D" stroke-width="2" />
+  <circle cx="1042" cy="214" r="5" fill="#A3E635" id="cover-node-a" data-pptx-role="decoration" filter="url(#glow)" />
+  <circle cx="893" cy="300" r="4" fill="#22D3EE" id="cover-node-b" data-pptx-role="decoration" filter="url(#glow)" />
+  <rect x="0" y="0" width="6" height="720" fill="#22D3EE" id="cover-edge" data-pptx-role="decoration" opacity="0.9" />
+  <g id="cover-kicker" data-pptx-bounds="90 96 900 40">
+  <text x="96" y="128" font-size="18" fill="#22D3EE" font-family="Consolas, monospace" letter-spacing="4">//  ARENA  ⇄  LOCAL   ·   SESSION 01A0AA00</text>
+  </g>
+  <g id="cover-title" data-pptx-bounds="70 186 1150 250" font-size="92" font-weight="700">
+  <text x="94" y="300" fill="#F1F5F9">Arena 与本机</text>
+  <text x="94" y="400" fill="#22D3EE">自循环打通报告</text>
+  </g>
+  <g id="cover-subtitle" data-pptx-bounds="92 438 1010 58">
+  <text x="98" y="474" font-size="26" fill="#7DD3FC">沙箱生成 → git 分支 → 本机值守判定 → 结论回传</text>
+  </g>
+  <g id="cover-rule" data-pptx-bounds="96 502 300 12">
+  <rect x="98" y="506" width="300" height="2" fill="#22D3EE" opacity="0.7" />
+  </g>
+  <g id="cover-kpis" data-pptx-bounds="94 524 1006 118">
+  <rect x="98" y="536" width="250" height="92" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="12" />
+  <text x="122" y="578" font-size="26" fill="#A3E635" font-weight="700">3 / 3 轮</text>
+  <text x="122" y="608" font-size="15" fill="#94A3B8">真机判定 passed</text>
+  <rect x="372" y="536" width="250" height="92" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="12" />
+  <text x="396" y="578" font-size="26" fill="#F1F5F9" font-weight="700">7 份交付物</text>
+  <text x="396" y="608" font-size="15" fill="#94A3B8">docx · pptx · 清单</text>
+  <rect x="646" y="536" width="250" height="92" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="12" />
+  <text x="670" y="578" font-size="26" fill="#7DD3FC" font-weight="700">0 失败 / 0 跳过</text>
+  <text x="670" y="608" font-size="15" fill="#94A3B8">60 条成功标准全过</text>
+  </g>
+  <g id="cover-meta" data-pptx-bounds="94 646 1010 36">
+  <text x="98" y="672" font-size="16" fill="#64748B" font-family="Consolas, monospace">2026-09-16   ·   git-sync v2.8.1   ·   LAPTOP-R77M5D6M</text>
+  </g>
+</svg>

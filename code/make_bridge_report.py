@@ -511,6 +511,10 @@ def build_delivery_docx(facts, files):
     doc.add_paragraph('这一轮（自循环的最后一步）不再生成新内容，只把"交付了什么、本机怎么判的、'
                       '在本机哪里取"列成一张可核对的清单；哈希与构件数和 deliverable/OFFICE_HASHES.json 一致。')
 
+    doc.add_paragraph('内容是动态生成的：清单里的每一行就是 deliverable/OFFICE_HASHES.json 里的一项，'
+                      '本机按同一份清单逐项判定（sha256、OOXML 部件、XML、关系、内容类型、标记词、'
+                      '页数，真 Office 开档）。')
+
     doc.add_heading('1. 交付清单（deliverable/）', level=1)
     table = doc.add_table(rows=1, cols=4)
     table.style = 'Table Grid'
@@ -522,8 +526,10 @@ def build_delivery_docx(facts, files):
         cells[1].text = entry['kind']
         cells[2].text = str(entry['bytes'])
         cells[3].text = entry['sha256'][:16]
-    doc.add_paragraph('生成器：code/make_bridge_report.py（build 四个内容文件 + 本清单；'
-                      '跑完先在沙箱里过同一套 3a-3g 的 Python 镜像自检，再交本机判定）。')
+    doc.add_paragraph('生成器：code/make_bridge_report.py（报告与清单，docx/pptx）'
+                      '与 code/make_deck_pptmaster.py（本清单里的 DECK，12 页，走 PPT Master 的'
+                      ' SVG → 原生 DrawingML 流水线）。两者都会先在沙箱里过同一套 3a-3g 的 Python 镜像自检，'
+                      '再交本机判定。')
 
     doc.add_heading('2. 本机回执（真机判定）', level=1)
     for rnd, hostn, verdict, elapsed, name in machine_receipts():
@@ -535,7 +541,8 @@ def build_delivery_docx(facts, files):
         '内容类型覆盖、标记词、页数（3a-3g）全部 OK',
         '3h：真 Word.Application 只读打开两份 .docx；真 PowerPoint.Application 只读打开两份 .pptx',
         '2a：免点击推送 PROVEN（ls-remote + push --dry-run，全程关闭交互提示）',
-        '2b-2d：值守三行/收尾行齐全、hands-free auto_pull/auto_push 都在；成功标准 54 条全过、0 fail',
+        '2b-2d：值守三行/收尾行齐全、hands-free auto_pull/auto_push 都在；成功标准逐条全过、0 fail',
+        '本轮（DECK 加入后）本机判定的是上表全部 %d 份产物——结论见 results/status/handshake.json' % len(files),
     ]:
         doc.add_paragraph(line, style='List Bullet')
 
@@ -543,7 +550,7 @@ def build_delivery_docx(facts, files):
     for line in [
         'cd E:\\0github\\git-sync\\' + FOLDER + '  然后 .\\sync.ps1（拉最新；本轮的回执会写进 results\\sync\\last_sync.md）',
         '.\\download.ps1 -Set final  把 deliverable\\ 整个镜像到 ..\\git-pull-arena_out\\（不想动 git 的话用这个）',
-        '或直接打开克隆目录里的 deliverable\\（四份 Office 文件 + 清单 OFFICE_HASHES.json 就在里面）',
+        '或直接打开克隆目录里的 deliverable\\（上表全部文件 + 清单 OFFICE_HASHES.json 就在里面）',
         '.\\pack.ps1 -Set final  也可以，打成 _export\\<日期>_final.zip',
     ]:
         doc.add_paragraph(line, style='List Bullet')
@@ -563,7 +570,9 @@ def build_delivery_docx(facts, files):
     for line in [
         'round 20：装上用户链接会话（arena/01a0a9f0 -> v2.8.1）的技能 + 打通报告 BRIDGE，本机 passed 并已 accept',
         'round 21：新增《使用说明》GUIDE（docx + 10 页 pptx），四份产物一起被本机判定，passed 并已 accept',
-        '本轮（收尾）：把上面两轮的结果与清单固化成本文件（DELIVERY），同样推给本机判定',
+        'round 22：把前两轮的结果与清单固化成 DELIVERY，同样交本机判定',
+        'round 23：用 PPT Master v6.4.0 重新生成 12 页 DECK（先写 SVG 设计稿，再由它的导出器'
+        '编译成原生 DrawingML 形状），7 份产物一起交本机判定',
         '每一步都在 results/status/check_rN_<时间戳>.txt 留了完整日志，handshake 的最终状态是 accepted',
     ]:
         doc.add_paragraph(line, style='List Bullet')
@@ -662,6 +671,45 @@ def entry_for(path, kind, required, main_part, markers, min_slides):
 
 
 # --------------------------------------------------- mirror of local_check 3a-3g
+# --------------------------------------------------------- parts per kind
+DOCX_PARTS = ['[Content_Types].xml', '_rels/.rels', 'word/document.xml', 'word/styles.xml',
+              'word/_rels/document.xml.rels', 'docProps/core.xml']
+PPTX_PARTS = ['[Content_Types].xml', '_rels/.rels', 'ppt/presentation.xml',
+              'ppt/_rels/presentation.xml.rels', 'ppt/slides/slide1.xml',
+              'ppt/slideMasters/slideMaster1.xml', 'ppt/slideLayouts/slideLayout1.xml',
+              'ppt/theme/theme1.xml', 'docProps/core.xml']
+
+
+def parts_for(kind):
+    return DOCX_PARTS if kind == 'docx' else PPTX_PARTS
+
+
+def parts_from_package(path, kind):
+    """Required parts derived from the package itself - third-party exporters
+    (PPT Master) name their layouts freely, so do not hardcode part names."""
+    with zipfile.ZipFile(path) as zf:
+        names = set(zf.namelist())
+    req = ['[Content_Types].xml', '_rels/.rels']
+    if kind == 'pptx':
+        req += ['ppt/presentation.xml', 'ppt/_rels/presentation.xml.rels', 'ppt/slides/slide1.xml']
+        for prefix in ('ppt/slideMasters/slideMaster', 'ppt/slideLayouts/slideLayout',
+                       'ppt/theme/theme'):
+            cands = sorted(n for n in names if n.startswith(prefix) and n.endswith('.xml'))
+            if cands:
+                req.append(cands[0])
+    else:
+        req += ['word/document.xml', 'word/_rels/document.xml.rels']
+        if 'word/styles.xml' in names:
+            req.append('word/styles.xml')
+    if 'docProps/core.xml' in names:
+        req.append('docProps/core.xml')
+    return req
+
+
+def main_part_for(kind):
+    return 'word/document.xml' if kind == 'docx' else 'ppt/presentation.xml'
+
+
 def rels_base(name):
     segs = name.split('/')
     return '/'.join(segs[:-2]) if len(segs) > 2 else ''
@@ -769,8 +817,58 @@ def verify(manifest):
 def main():
     verify_only = '--verify' in sys.argv[1:]
     delivery = '--delivery' in sys.argv[1:]
+    add_artifact = ''
+    artifact_markers = ''
+    min_slides = 0
+    if '--add-artifact' in sys.argv[1:]:
+        add_artifact = sys.argv[sys.argv.index('--add-artifact') + 1]
+    if '--markers' in sys.argv[1:]:
+        artifact_markers = sys.argv[sys.argv.index('--markers') + 1]
+    if '--min-slides' in sys.argv[1:]:
+        min_slides = int(sys.argv[sys.argv.index('--min-slides') + 1])
     facts = repo_facts()
     os.makedirs(OUT, exist_ok=True)
+
+
+    if add_artifact:
+        # step 3: register an artifact built OUTSIDE this generator (the deck
+        # PPT Master compiled from authored SVG) under the same 3a-3g contract.
+        if not os.path.isfile(MANIFEST):
+            print('[ERROR] no manifest yet - build the base files first', file=sys.stderr)
+            return 1
+        with open(MANIFEST, encoding='utf-8') as fh:
+            manifest = json.load(fh)
+        path = os.path.join(ROOT, add_artifact.replace('/', os.sep))
+        if not os.path.isfile(path):
+            print('[ERROR] not found: %s' % add_artifact, file=sys.stderr)
+            return 1
+        kind = os.path.splitext(add_artifact)[1].lstrip('.').lower()
+        markers = [m for m in (artifact_markers.split(',') if artifact_markers else
+                               ['2.8.1', 'ppt-master', 'local_check.ps1', facts['host'], facts['branch']])
+                   if m.strip()]
+        entry = entry_for(path, kind, parts_from_package(path, kind), main_part_for(kind),
+                          markers, min_slides or None)
+        files = [e for e in manifest.get('files', []) if e['path'] != entry['path']]
+        files.append(entry)
+        manifest['files'] = files
+        manifest['generated_utc'] = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
+        manifest['extra_artifacts'] = True
+        problems = verify(manifest)
+        if problems:
+            print('[FAIL] the 3a-3g mirror found %d problem(s) - manifest NOT written:' % len(problems),
+                  file=sys.stderr)
+            for item in problems:
+                print('       ' + item, file=sys.stderr)
+            return 1
+        with open(MANIFEST, 'w', encoding='utf-8') as fh:
+            json.dump(manifest, fh, ensure_ascii=False, indent=2)
+            fh.write('\n')
+        print('wrote: %s (%d file(s))' % (os.path.relpath(MANIFEST, ROOT), len(files)))
+        print('== 3a-3g mirror PASSED for %d file(s)' % len(files))
+        for item in files:
+            print('   OK %s (%d B, %s, slides=%s)'
+                  % (item['path'], item['bytes'], item['kind'], item['sandbox_selftest']['slides']))
+        return 0
 
     if delivery:
         # step 2: the wrap-up pair. It lists the files built by step 1, so it
@@ -783,6 +881,8 @@ def main():
             manifest = json.load(fh)
         base = [e for e in manifest.get('files', [])
                 if not os.path.basename(e['path']).startswith('DELIVERY_')]
+        # the manifest is the single source of truth for "what is delivered"
+        manifest['delivered_count'] = len(base)
         build_delivery_docx(facts, base)
         build_delivery_pptx(facts, base)
         print('built: %s' % os.path.relpath(DELIVERY_DOCX, ROOT))

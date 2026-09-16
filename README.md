@@ -32,6 +32,10 @@
 - **工作分支**：看 `skills/git-sync/sync.config.json` 的 `branch`（本会话 = `arena/01a0aa00-git-pull-arena`，技能 v2.8.1）；所有脚本只拉/推这个分支，`push.ps1` 直接拒绝 main/master，`code/check_all.sh` 还会卡「配置分支 ≠ HEAD」。本机请克隆到**新文件夹**（`bash skills/git-sync/scripts/agent-handoff.sh` 生成整段命令，本会话文件夹 `git-pull-arena-01a0aa00`），不要覆盖 `git-pull-arena` / `git-pull-arena-v268` / `git-pull-arena-s2` / `git-pull-arena-01a0a9f0`
 - **两条硬要求（v2.5.0 起是默认行为；v2.6.7 真机验收通过）**：① 值守**零弹窗**（默认编译 GUI 子系统启动器，Task Scheduler 不再闪黑窗）；② 推送**免点击**（`auth.ps1` 一次配好，`push.ps1` 默认静默模式，拿不到凭据快速失败并告诉你怎么修）
 - **只用单会话闭环**：多会话并行/汇总会话（模式 B/C）**暂时搁置**（2026-09-15 决定）；本仓库就是"一会话一仓库"的样板
+> **本会话新增交付**：`deliverable/DECK_01a0aa00_v2.8.1.pptx` —— 12 页原生 DrawingML 设计稿，
+> 由 [PPT Master](https://github.com/hugohe3/ppt-master) v6.4.0 从 `code/deck_svg/*.svg`
+> （生成器 `code/make_deck_pptmaster.py`）编译而来；构建记录见 `results/status/deck_build.md`。
+
 - **连接台账**：所有已连接仓库 × 分支 × 本机路径 × 值守任务，见 [`CONNECTIONS.md`](CONNECTIONS.md)（防忘专用，忘了一条命令就能翻到）
 - **助手侧**：每轮用 `skills/git-sync/scripts/agent-sync.sh` 提交推送——提交前自动跑 `code/check_all.sh` 自检（.ps1 全 ASCII + 配置分支守卫 + 根目录/skill 脚本一致性），提交后把**同步回执**写进 `results/sync/last_sync.md`
 - **双向测试**：已于 2026-09-14 通过（见 `deliverable/SYNC_TEST.md`）；v2.5.0 的升级与验收清单见 [`deliverable/UPGRADE_v2.5.0.md`](deliverable/UPGRADE_v2.5.0.md)；**`main` 上 v2.6.7 的发行说明见 [`deliverable/RELEASE_v2.6.7.md`](deliverable/RELEASE_v2.6.7.md)；v2.6.8 的已核实证据与待复验清单见 [`deliverable/CASE_STUDY_v2.6.7.md`](deliverable/CASE_STUDY_v2.6.7.md)**

@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-16T11:49:52Z",
+  "generated_utc": "2026-09-16T12:01:25Z",
   "generator": "code/make_bridge_report.py",
   "generator_note": "python-docx + python-pptx (allowed in the sandbox since v2.8.0); this manifest is the contract the REAL machine verifies in code/local_check.ps1 section 3, and the same 3a-3g rules are mirrored in Python here so a package that cannot pass is never pushed",
   "branch": "arena/01a0aa00-git-pull-arena",
@@ -132,10 +132,42 @@
       }
     },
     {
+      "path": "deliverable/DECK_01a0aa00_v2.8.1.pptx",
+      "kind": "pptx",
+      "bytes": 46582,
+      "sha256": "0c2ff1af1f798df5ba3631febea4ade5095eb07996a9a18ff4d7cda5d743bc37",
+      "required_parts": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "ppt/presentation.xml",
+        "ppt/_rels/presentation.xml.rels",
+        "ppt/slides/slide1.xml",
+        "ppt/slideMasters/slideMaster1.xml",
+        "ppt/slideLayouts/slideLayout7.xml",
+        "ppt/theme/theme1.xml",
+        "docProps/core.xml"
+      ],
+      "main_part": "ppt/presentation.xml",
+      "must_contain": [
+        "2.8.1",
+        "ppt-master",
+        "local_check.ps1",
+        "已打通",
+        "自循环",
+        "LAPTOP-R77M5D6M",
+        "arena/01a0aa00-git-pull-arena"
+      ],
+      "min_slides": 12,
+      "sandbox_selftest": {
+        "parts": 40,
+        "slides": 12
+      }
+    },
+    {
       "path": "deliverable/DELIVERY_01a0aa00_v2.8.1.docx",
       "kind": "docx",
-      "bytes": 39251,
-      "sha256": "0656378cfa98403ba79a0244933c82cbde1b0a2535ebe7bc9fe0464e949af888",
+      "bytes": 39546,
+      "sha256": "75e0f78f96f3de49a888137aa5dbdf06523809b36cb42467341784f2a9ba532d",
       "required_parts": [
         "[Content_Types].xml",
         "_rels/.rels",
@@ -164,8 +196,8 @@
     {
       "path": "deliverable/DELIVERY_01a0aa00_v2.8.1.pptx",
       "kind": "pptx",
-      "bytes": 35007,
-      "sha256": "aa6870e15d3b54a88ed1b8d6fce347ebe99a9fe1e195fa52f0181aa06099e49a",
+      "bytes": 35029,
+      "sha256": "34b866baee0bce9d15c24ba284fea7bb98b6593aecfd948af1cd9b97b45ac12e",
       "required_parts": [
         "[Content_Types].xml",
         "_rels/.rels",
@@ -195,5 +227,7 @@
       }
     }
   ],
-  "delivery_pair": true
+  "delivery_pair": true,
+  "extra_artifacts": true,
+  "delivered_count": 5
 }
