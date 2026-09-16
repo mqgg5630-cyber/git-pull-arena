@@ -4,7 +4,7 @@
 同步工具就是 [zhongqi 仓库 arena 分支](https://github.com/mqgg5630-cyber/zhongqi/tree/arena%2F01a09d79-zhongqi) 沉淀的 `skills/git-sync` 技能
 （本仓库 `main` 上是 **v2.6.7**（已发布）：零弹窗值守 + 免点击推送；开发分支上已有 **v2.6.8**（值守每个出口都有收尾行 + 64 位 shell 优先 + `-Status` 结果码人话解释，**待真机复验**，证据与复验清单见 [`deliverable/CASE_STUDY_v2.6.7.md`](deliverable/CASE_STUDY_v2.6.7.md)）。安装器 `agent-install.sh` 可以把它一条命令装进任何新仓库。发行说明见 [`deliverable/RELEASE_v2.6.7.md`](deliverable/RELEASE_v2.6.7.md)）。
 
-- **工作分支**：`arena/01a0a4f5-git-pull-arena`（所有脚本只拉/推这个分支；`push.ps1` 直接拒绝 main/master）
+- **工作分支**：`arena/01a0a7de-git-pull-arena`（所有脚本只拉/推这个分支；`push.ps1` 直接拒绝 main/master）
 - **两条硬要求（v2.5.0 起是默认行为；v2.6.7 真机验收通过）**：① 值守**零弹窗**（默认编译 GUI 子系统启动器，Task Scheduler 不再闪黑窗）；② 推送**免点击**（`auth.ps1` 一次配好，`push.ps1` 默认静默模式，拿不到凭据快速失败并告诉你怎么修）
 - **只用单会话闭环**：多会话并行/汇总会话（模式 B/C）**暂时搁置**（2026-09-15 决定）；本仓库就是"一会话一仓库"的样板
 - **连接台账**：所有已连接仓库 × 分支 × 本机路径 × 值守任务，见 [`CONNECTIONS.md`](CONNECTIONS.md)（防忘专用，忘了一条命令就能翻到）
@@ -21,7 +21,7 @@
 
 ```powershell
 cd E:\0github\git-sync                                                            # 1) 放仓库的父目录
-git clone -b arena/01a0a4f5-git-pull-arena https://github.com/mqgg5630-cyber/git-pull-arena.git   # 2) 克隆工作分支
+git clone -b arena/01a0a7de-git-pull-arena https://github.com/mqgg5630-cyber/git-pull-arena.git   # 2) 克隆工作分支
 .\bootstrap.ps1 -Auto                                                              # 3) 策略/身份/切分支 + 免点击推送 + 注册值守
 .\doctor.ps1                                                                       # 4) 体检：三行都应是好消息
 ```
@@ -47,7 +47,7 @@ Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 
 # 2) 克隆工作分支（子文件夹布局：E:\0github\git-sync\git-pull-arena）
 cd E:\0github\git-sync
-git clone -b arena/01a0a4f5-git-pull-arena https://github.com/mqgg5630-cyber/git-pull-arena.git
+git clone -b arena/01a0a7de-git-pull-arena https://github.com/mqgg5630-cyber/git-pull-arena.git
 cd git-pull-arena
 
 # 3) 首次准备：git 身份 / 切分支 / 首次拉取（之后就不用再跑）
@@ -60,7 +60,7 @@ cd git-pull-arena
 # 5) 值守：注册自动验证（零窗口；注册后会自检"真的跑了一次"）
 .\watch.ps1 -Register
 
-# 6) 体检：branch 应显示 arena/01a0a4f5-git-pull-arena，ahead/behind = 0/0，
+# 6) 体检：branch 应显示 arena/01a0a7de-git-pull-arena，ahead/behind = 0/0，
 #    末尾应看到 watcher / heartbeat / auth 三行都是好消息
 .\doctor.ps1
 ```
@@ -139,7 +139,7 @@ Copy-Item skills\git-sync\templates\gate.yml .github\workflows\gate.yml
 Agent 执行的命令（raw.githubusercontent.com 在沙箱可能被墙，git clone 稳定可用）：
 
 ```bash
-git clone --quiet --depth 1 -b arena/01a0a4f5-git-pull-arena \
+git clone --quiet --depth 1 -b arena/01a0a7de-git-pull-arena \
      https://github.com/mqgg5630-cyber/git-pull-arena.git /tmp/git-sync-src \
   && bash /tmp/git-sync-src/skills/git-sync/scripts/agent-install.sh --branch <工作分支>
 ```

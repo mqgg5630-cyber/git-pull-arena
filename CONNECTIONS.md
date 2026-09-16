@@ -1,13 +1,14 @@
 # 连接台账 —— Arena 仓库 × 分支 × 本机路径（防忘专用）
 
-> 更新：2026-09-16（**v2.6.8 在开发分支上，待真机复验**：值守每个出口都有收尾行 + 64 位 shell 优先 + `-Status` 结果码人话解释；证据与复验清单见 `deliverable/CASE_STUDY_v2.6.7.md`。**v2.6.7 已发布到 `main`**（PR #1 / `009fb6a`）：免点击推送 + 零弹窗值守**真机验收通过**（round 14/15 passed，值守免点击推回结论））｜ 技能版本：v2.6.8（开发分支）/ v2.6.7（`main`）｜ 开发分支 `arena/01a0a4f5-git-pull-arena` ｜ 退路 `arena/01a09fc1-git-pull-arena`（v2.4.7）｜ 本文件在 `E:\0github\git-sync\git-pull-arena\CONNECTIONS.md`
+> 更新：2026-09-16（**v2.6.8 在开发分支上，待真机复验**：值守每个出口都有收尾行 + 64 位 shell 优先 + `-Status` 结果码人话解释；证据与复验清单见 `deliverable/CASE_STUDY_v2.6.7.md`。**v2.6.7 已发布到 `main`**（PR #1 / `009fb6a`）：免点击推送 + 零弹窗值守**真机验收通过**（round 14/15 passed，值守免点击推回结论））｜ 技能版本：v2.6.8（开发分支）/ v2.6.7（`main`）｜ 开发分支 `arena/01a0a7de-git-pull-arena`（v2.6.8；2026-09-16 起接替 `arena/01a0a4f5-git-pull-arena`，后者停在 v2.6.7）｜ 退路 `arena/01a09fc1-git-pull-arena`（v2.4.7）｜ 本文件在 `E:\0github\git-sync\git-pull-arena\CONNECTIONS.md`
 > 忘了的时候：`cd E:\0github\git-sync\git-pull-arena` 然后 `notepad CONNECTIONS.md`
 
 ## 一、当前所有连接
 
 | 用途 | GitHub 仓库 | 工作分支 | 本机路径 | 值守任务名 | 状态 |
 |---|---|---|---|---|---|
-| **git-sync 技能总部**（版本发布、升级源） | [mqgg5630-cyber/git-pull-arena](https://github.com/mqgg5630-cyber/git-pull-arena) | **`arena/01a0a4f5-git-pull-arena`**（2026-09-15 起，v2.5.0） | `E:\0github\git-sync\git-pull-arena` | `git-sync-watch-git-pull-arena` | ✅ 本会话 HQ；本机需切到新分支并重注册值守（见下"本机升级步骤"） |
+| **git-sync 技能总部**（版本发布、升级源） | [mqgg5630-cyber/git-pull-arena](https://github.com/mqgg5630-cyber/git-pull-arena) | **`arena/01a0a7de-git-pull-arena`**（2026-09-16 起，v2.6.8） | `E:\0github\git-sync\git-pull-arena-v268` | `git-sync-watch-git-pull-arena-v268` | ✅ 本会话 HQ（v2.6.8 真机验收用这个克隆） |
+| git-sync 旧安装（v2.6.7，冻结当退路） | 同上 | `arena/01a0a4f5-git-pull-arena`（v2.6.7） | `E:\0github\git-sync\git-pull-arena` | `git-sync-watch-git-pull-arena`（2026-09-16 已 `-Pause`，且该任务其实不存在，只杀掉了一个 pid 81808 的循环） | ⏸ 不要在这里跑 `.\sync.ps1`，会停在 v2.6.7 |
 | **图片→可编辑PPT 项目**（fig3 交付物在那边） | [mqgg5630-cyber/image-to-editable-pptx](https://github.com/mqgg5630-cyber/image-to-editable-pptx) | `arena/01a04caf-image-to-editable-pptx` | `E:\0github\git-sync\image-to-editable-pptx` | `git-sync-watch-image-to-editable-pptx` | ✅ 在线（[该会话](https://arena.ai/agent/01a04caf-77d4-7672-92a2-59223763a988)；v2.3.4 @ `14c1f5f`，5/5 验收通过，值守 2 分钟） |
 | **中期报告/PPT**（git-sync 技能发源地） | [mqgg5630-cyber/zhongqi](https://github.com/mqgg5630-cyber/zhongqi) | `arena/01a09d79-zhongqi` | `E:\0zhongqi\zhongqi`（你原有的克隆） | 未注册 | ✅ 可拉取（会话已结束；本会话对它只读） |
 | **AgentArena**（基准测试工具 + 本机 runner 整合） | [mqgg5630-cyber/AgentArena](https://github.com/mqgg5630-cyber/AgentArena)（fork） | 多会话并行（见下表） | 见下表 | 按文件夹注册 | ✅ 模式 C 试点中 |
@@ -67,7 +68,7 @@ v2.5.0 的脚本在新分支上，所以本机克隆要**切一次分支**（旧
 ```powershell
 cd E:\0github\git-sync\git-pull-arena
 git fetch origin
-git checkout arena/01a0a4f5-git-pull-arena     # 带上 v2.5.0 脚本与新配置（本地有改动就先 git stash）
+git checkout arena/01a0a7de-git-pull-arena     # 带上最新脚本与新配置（本地有改动就先 git stash）
 .\auth.ps1 -Setup -Verify                      # 免点击推送：配好 + 实跑证明（不弹窗）
 .\watch.ps1 -Unregister                        # 换掉旧值守
 .\watch.ps1 -Register                          # 新值守：零窗口 + 注册后自检
@@ -92,7 +93,7 @@ git checkout arena/01a0a4f5-git-pull-arena     # 带上 v2.5.0 脚本与新配�
 给那个仓库的 Arena 会话说"升级 git-sync"，或手动：
 
 ```bash
-git clone --quiet --depth 1 -b arena/01a0a4f5-git-pull-arena \
+git clone --quiet --depth 1 -b arena/01a0a7de-git-pull-arena \
      https://github.com/mqgg5630-cyber/git-pull-arena.git /tmp/src \
   && bash /tmp/src/skills/git-sync/scripts/agent-install.sh
 ```

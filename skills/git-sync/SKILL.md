@@ -73,7 +73,7 @@ description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件
 
 ```json
 {
-  "branch": "arena/01a0a4f5-git-pull-arena",
+  "branch": "arena/01a0a7de-git-pull-arena",
   "remote": "origin",
   "download_dir": "",
   "download_sets": { "final": ["deliverable"], "all": ["deliverable", "code", "skills"] },
@@ -151,7 +151,7 @@ Set-ExecutionPolicy -Scope CurrentUser RemoteSigned      # 只做一次
 Agent 实际执行的命令（沙箱里 git clone 可用、raw.githubusercontent.com 可能被墙）：
 
 ```bash
-git clone --quiet --depth 1 -b arena/01a0a4f5-git-pull-arena \
+git clone --quiet --depth 1 -b arena/01a0a7de-git-pull-arena \
      https://github.com/mqgg5630-cyber/git-pull-arena.git /tmp/git-sync-src \
   && bash /tmp/git-sync-src/skills/git-sync/scripts/agent-install.sh \
          --branch <本会话工作分支>

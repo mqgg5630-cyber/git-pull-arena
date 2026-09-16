@@ -14,11 +14,11 @@
 ```text
 请把 git-sync 技能安装到本仓库当前工作分支，作为你我双向同步的工具。
 技能来源：https://github.com/mqgg5630-cyber/git-pull-arena 的
-arena/01a0a4f5-git-pull-arena 分支（skills/git-sync）。
+arena/01a0a7de-git-pull-arena 分支（skills/git-sync）。
 
 1) 安装（在仓库根目录执行；不带 --branch 会自动装到你当前的工作分支）：
 
-git clone --quiet --depth 1 -b arena/01a0a4f5-git-pull-arena https://github.com/mqgg5630-cyber/git-pull-arena.git /tmp/git-sync-src && bash /tmp/git-sync-src/skills/git-sync/scripts/agent-install.sh
+git clone --quiet --depth 1 -b arena/01a0a7de-git-pull-arena https://github.com/mqgg5630-cyber/git-pull-arena.git /tmp/git-sync-src && bash /tmp/git-sync-src/skills/git-sync/scripts/agent-install.sh
 
 2) 提交推送（自带分支守卫 + 提交前自检 + 同步回执）：
 
