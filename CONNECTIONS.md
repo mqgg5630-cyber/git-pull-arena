@@ -7,7 +7,7 @@
 
 | 用途 | GitHub 仓库 | 工作分支 | 本机路径 | 值守任务名 | 状态 |
 |---|---|---|---|---|---|
-| **git-sync 技能总部**（本会话） | [mqgg5630-cyber/git-pull-arena](https://github.com/mqgg5630-cyber/git-pull-arena) | **`arena/01a0a821-git-pull-arena`**（2026-09-16 起，v2.6.8 推送闭环） | `E:\0github\git-sync\git-pull-arena-s2` | `git-sync-watch-git-pull-arena-s2` | ✅ 本会话 HQ（**新克隆，不要覆盖旧目录**） |
+| **git-sync 技能总部**（本会话） | [mqgg5630-cyber/git-pull-arena](https://github.com/mqgg5630-cyber/git-pull-arena) | **`arena/01a0a821-git-pull-arena`**（v2.6.8） | `E:\0github\git-sync\git-pull-arena-s2` | `git-sync-watch-git-pull-arena-s2` | ✅ round 18 推送闭环通过（`85b17a6`；**不要覆盖这个目录**） |
 | git-sync 上一会话克隆（v2.6.8 静态/收尾行已验，冻结） | 同上 | `arena/01a0a7de-git-pull-arena`（v2.6.8；PR #3 已关） | `E:\0github\git-sync\git-pull-arena-v268` | `git-sync-watch-git-pull-arena-v268` | ⏸ **不要覆盖、不要在这里跑本会话的 `.\sync.ps1`** |
 | git-sync 旧安装（v2.6.7，冻结当退路） | 同上 | `arena/01a0a4f5-git-pull-arena`（v2.6.7） | `E:\0github\git-sync\git-pull-arena` | `git-sync-watch-git-pull-arena`（2026-09-16 已 `-Pause`） | ⏸ 不要在这里跑 `.\sync.ps1`，会停在 v2.6.7 |
 | **图片→可编辑PPT 项目**（fig3 交付物在那边） | [mqgg5630-cyber/image-to-editable-pptx](https://github.com/mqgg5630-cyber/image-to-editable-pptx) | `arena/01a04caf-image-to-editable-pptx` | `E:\0github\git-sync\image-to-editable-pptx` | `git-sync-watch-image-to-editable-pptx` | ✅ 在线（[该会话](https://arena.ai/agent/01a04caf-77d4-7672-92a2-59223763a988)；v2.3.4 @ `14c1f5f`，5/5 验收通过，值守 2 分钟） |

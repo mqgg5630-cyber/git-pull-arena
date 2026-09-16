@@ -2,7 +2,7 @@
 
 这个仓库验证一条完整链路：**Arena 会话分支（GitHub 远端）⇄ 你的 Windows 本机**。
 同步工具就是 [zhongqi 仓库 arena 分支](https://github.com/mqgg5630-cyber/zhongqi/tree/arena%2F01a09d79-zhongqi) 沉淀的 `skills/git-sync` 技能
-（本仓库 `main` 上是 **v2.6.7**（已发布）：零弹窗值守 + 免点击推送；开发分支上已有 **v2.6.8**（值守每个出口都有收尾行 + 64 位 shell 优先 + `-Status` 结果码人话解释；收尾行闸门已在真机 PowerShell 跑过，**推送闭环待本会话新克隆验收**，证据见 [`deliverable/CASE_STUDY_v2.6.7.md`](deliverable/CASE_STUDY_v2.6.7.md)）。安装器 `agent-install.sh` 可以把它一条命令装进任何新仓库。发行说明见 [`deliverable/RELEASE_v2.6.7.md`](deliverable/RELEASE_v2.6.7.md)）。
+（本仓库 `main` 上是 **v2.6.7**（已发布）：零弹窗值守 + 免点击推送；开发分支上已有 **v2.6.8**（值守每个出口都有收尾行 + 64 位 shell 优先 + `-Status` 结果码人话解释；**round 18 真机推送闭环已通过**，证据见 [`deliverable/CASE_STUDY_v2.6.7.md`](deliverable/CASE_STUDY_v2.6.7.md)）。安装器 `agent-install.sh` 可以把它一条命令装进任何新仓库。发行说明见 [`deliverable/RELEASE_v2.6.7.md`](deliverable/RELEASE_v2.6.7.md)）。
 
 - **工作分支**：`arena/01a0a821-git-pull-arena`（所有脚本只拉/推这个分支；`push.ps1` 直接拒绝 main/master）。本机请克隆到**新文件夹** `git-pull-arena-s2`，不要覆盖 `git-pull-arena`（v2.6.7）和 `git-pull-arena-v268`（上一会话）
 - **两条硬要求（v2.5.0 起是默认行为；v2.6.7 真机验收通过）**：① 值守**零弹窗**（默认编译 GUI 子系统启动器，Task Scheduler 不再闪黑窗）；② 推送**免点击**（`auth.ps1` 一次配好，`push.ps1` 默认静默模式，拿不到凭据快速失败并告诉你怎么修）
@@ -126,7 +126,7 @@ Copy-Item skills\git-sync\templates\gate.yml .github\workflows\gate.yml
 | 4 | 自动验证循环（单会话） | `agent-wait.sh --request "..." --auto-accept` 一轮内 exit 0；handshake `local_state=passed`、`arena_state=accepted` | ✅ 2026-09-15（round 6） |
 | 5 | **零弹窗值守**（v2.5.0→v2.6.5） | 值守**不占用你的控制台**（v2.6.5：循环自我脱离）；`-Status` 显示 `loop process: pid ... (running)`、heartbeat 每 2 分钟推进 | ✅ **round 14 通过**（检查项 2b：常驻循环=每次登录最多闪一次；严格零闪可用 `-Register -Headless`） |
 | 6 | **免点击推送**（v2.5.0→v2.6.5） | `auth.ps1 -Verify` exit 0；值守轮询里 `last_push=ok`，全程没有人点过任何东西 | ✅ **round 14 通过**（检查项 2a：`silent push PROVEN (ls-remote + push --dry-run, prompts disabled)`） |
-| 7 | **每轮都有收尾行**（v2.6.8） | 值守每个出口都打印 `== ...` 收尾行；手动单轮以 `== finished at ...` 结束；闸门 `bash code/check_all.sh` 打印 `OK: loop closing lines covered (6 exit paths, ...)`，检查项 2c 通过 | ⏳ **闸门已在真机 PS 跑过；推送闭环（accept 2c + verdict pushed back）待本会话新克隆**（见 `deliverable/CASE_STUDY_v2.6.7.md` 第 4、8 节） |
+| 7 | **每轮都有收尾行**（v2.6.8） | 值守每个出口都打印 `== ...` 收尾行；手动单轮以 `== finished at ...` 结束；闸门 `bash code/check_all.sh` 打印 `OK: loop closing lines covered (6 exit paths, ...)`，检查项 2c 通过 | ✅ **round 18 通过**（`85b17a6 check: round 18 passed`；accept 2c + `verdict pushed back to origin/arena/01a0a821-git-pull-arena`；见 `deliverable/CASE_STUDY_v2.6.7.md` 第 8 节） |
 
 > 多会话协作（同仓库多分支 / 汇总会话）实测成本高于收益，**暂时不做**；
 > 需要时按 `skills\git-sync\README.md` 第七节重启。

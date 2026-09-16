@@ -1,4 +1,4 @@
-> 当前版本 **v2.6.8**（开发分支；收尾行闸门已在真机 PowerShell 跑过，推送闭环待本会话新克隆验收）；`main` 上是 **v2.6.7**。安装/升级：本机 `agent-install.sh` 或 `install.ps1`；
+> 当前版本 **v2.6.8**（开发分支；round 18 真机推送闭环已通过）；`main` 上是 **v2.6.7**。安装/升级：本机 `agent-install.sh` 或 `install.ps1`；
 > 用户侧升级三步：`.\sync.ps1` → `.\watch.ps1 -Unregister ; .\watch.ps1 -Register` → `.\watch.ps1 -Status`。
 
 ---

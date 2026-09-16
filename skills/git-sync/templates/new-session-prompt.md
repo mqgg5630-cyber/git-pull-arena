@@ -12,9 +12,10 @@
 ## 一、粘贴给新会话的部分（从下一行开始复制）
 
 ```text
-请把 git-sync 技能安装到本仓库当前工作分支，作为你我双向同步的工具。
+请把 git-sync 技能安装到本仓库当前工作分支，作为你我双向同步的工具，并与我本机打通。
 技能来源：https://github.com/mqgg5630-cyber/git-pull-arena 的
-arena/01a0a821-git-pull-arena 分支（skills/git-sync）。
+arena/01a0a821-git-pull-arena 分支（skills/git-sync，v2.6.8，round 18 真机推送闭环已通过）。
+本机克隆必须用一个新的子文件夹名，不要覆盖已有的 git-pull-arena / git-pull-arena-v268 / git-pull-arena-s2。
 
 1) 安装（在仓库根目录执行；不带 --branch 会自动装到你当前的工作分支）：
 

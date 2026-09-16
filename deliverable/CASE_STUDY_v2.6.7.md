@@ -1,4 +1,4 @@
-# CASE_STUDY —— v2.6.7 值守闭环的**已核实**证据，与 v2.6.8 真机进度（推送闭环待本会话）
+# CASE_STUDY —— v2.6.7 值守闭环的**已核实**证据，与 v2.6.8 真机进度（round 18 推送闭环已通过）
 
 > **这份文件的诚实边界**
 > - 第 1、2 节的每一条都能在 `git` 里复核（给了 sha，`git show <sha>` 即可）。
@@ -7,8 +7,7 @@
 >   表格按那一轮改成实测。该会话因 PR #3 关闭而无法把结果推上来；本会话
 >   （`arena/01a0a821`）把转述落盘。未触发的出口仍标 **未触发**。
 > - 第 7 节是上一会话转述的终端原文（能逐字引用的才引用；没有全文的标「转述」）。
-> - 第 8 节是本会话还要做的：新克隆 `git-pull-arena-s2` 上的推送闭环
->   （accept 2c + `verdict pushed back`）。**推送测试通 = 本会话成功。**
+> - 第 8 节是本会话 round 18 的真机原文（`85b17a6 check: round 18 passed`）。**推送测试已通过。**
 > - 沙箱是 Linux，**没有 PowerShell**。`.ps1` 的静态闸门见第 5 节；真机 PowerShell
 >   行为以第 4、7 节为准。
 
@@ -161,12 +160,12 @@ v2.6.8 起这一行会带 `= still RUNNING (0x41301) - normal, the loop never ex
 | 7 | 删掉 0 字节的 `code/accept_test.ps1` | ✅ | n/a |
 | 8 | `install.ps1`：`$src` 自适应、`check_loop_summary.*` create-only | ⚠️ 仅静态 | **未测** |
 
-**上一会话没跑到的**（本会话用新克隆补）：
+**上一会话没跑到、本会话 round 18 已补上的：**
 
-- `Invoke-PollRound` 其余出口：`verdict pushed back to` / `sync FAILED` / `already answered` / `no handshake`
-- `Invoke-PollOnce`：`poll CRASHED` / `lock held`
-- 结果码注释 `267011` / `267014` / `2147946720` 从未出现
-- accept 2c（要一个真检查轮次才会跑到 `local_check.ps1`）
+- ✅ `verdict pushed back to origin/arena/01a0a821-git-pull-arena`（host log 11:03:04）
+- ✅ accept 2c（`check_r18_20260916-110247.txt`）
+
+**仍未触发（不是成功标准，不挡发布）：** `sync FAILED` / `already answered` / `no handshake` / `poll CRASHED` / `lock held`；结果码 `267011` / `267014` / `2147946720`。
 
 旁证（与 v2.6.8 无关，既有问题）：`watchhost-*.exe size: 6144` 启动器失败，回退 `-Flash`。本会话不碰它。
 
@@ -239,8 +238,8 @@ git branch --show-current                        # 必须是 arena/01a0a821-git-
 .\code\check_loop_summary.ps1 -WatchPath .\watch.ps1
 ```
 
-助手侧已经把 round 18 的检查请求推到本分支。值守第一次轮询（或你手动 `.\watch.ps1`）就会跑。
-**推送测试通就算本会话成功。** 要核对的：
+助手侧把 round 18 的检查请求推到本分支。值守在 **bootstrap 后第一次轮询**（11:02:42）就捡起来了。
+**推送测试已通过（`85b17a6`）。** 当时核对的：
 
 | 期望 | 在哪看 |
 |---|---|
@@ -276,17 +275,74 @@ OK: loop closing lines covered (6 exit paths, all with their own summary)
 
 **`doctor.ps1`（转述）：** `result: 267009 = still running (0x41301) - normal for the long-lived loop`，没有黄色告警。
 
-## 8. 本会话还差什么
+## 8. 本会话 round 18 —— 推送闭环通过（2026-09-16，`git-pull-arena-s2`）
 
 工作分支：`arena/01a0a821-git-pull-arena`。本机路径：`E:\0github\git-sync\git-pull-arena-s2`。
-**不开 PR 到 `main`**（上一会话关 PR 会结束编码会话；`main` 仍是 v2.6.7）。
+任务名：`git-sync-watch-git-pull-arena-s2`。主机：`LAPTOP-R77M5D6M`。
+提交：`85b17a6 check: round 18 passed`（author 是本机 git 身份，`push.ps1` 静默推回）。
 
-成功标准只有一条：新克隆上的值守把 round 18 的结论**免点击推回**这条分支
-（`check: round 18 passed` + host log 的 `verdict pushed back to origin/arena/01a0a821-git-pull-arena` +
-检查文件里的 accept 2c）。
+时间线（+0800）：
+
+- 11:02:40 注册值守（mode=flash；启动器仍是 6144 字节、`%1 不是有效的 Win32 应用程序`，既有问题）
+- 11:02:42 循环启动 pid 79772；heartbeat 自检 PASSED
+- 11:02:44 捡到 round 18
+- 11:02:47 跑 `local_check.ps1`（解析到 64 位 `C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe`）
+- 11:02:58 检查通过（exit 0，12s）
+- 11:03:04 结论推回；host log 收尾行 + next poll
+
+成功标准四条，全部对上：
+
+| 期望 | 结果 |
+|---|---|
+| `git log` 出现 `check: round 18 passed` | ✅ `85b17a6` |
+| host log `== round 18 checked (passed) - verdict pushed back to origin/arena/01a0a821-git-pull-arena` 紧跟 `== next poll at 11:05:04` | ✅ |
+| `check_r18_*.txt` 有 accept 2c | ✅ 原文见下 |
+| `last_round` = 18、`last_push` = `ok` | ✅ |
+
+`check_r18_20260916-110247.txt` 原文：
+
+```text
+check round 18 on LAPTOP-R77M5D6M - passed (exit 0)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 12s
+
+OK: all .ps1 files are ASCII-only
+NOTE: python3 is not a working python - trying plain text
+OK: sync.config.json branch=arena/01a0a821-git-pull-arena remote=origin (checked without python)
+OK: root scripts identical to skills/git-sync/scripts
+SKIP: python3 is not a working python - $var: typo scan skipped here
+      (it still runs in the agent sandbox before every push)
+SKIP: python3 is not a working python - watcher closing-line check skipped here
+      (it still runs in the agent sandbox before every push)
+OK: every .ps1 parses
+   (gate ran via E:\hermes\git\bin\bash.exe [git])
+== accept 2a: silent push PROVEN (ls-remote + push --dry-run, prompts disabled)
+== accept 2b (fallback): one LONG-LIVED loop process - one brief flash per logon,
+   not per poll. For zero flash: admin PowerShell -> .\watch.ps1 -Unregister ;
+   .\watch.ps1 -Register -Headless   (or fix the launcher, see watch-*.log)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+== check_loop_summary PASSED
+== accept 2c: watcher closing lines verified (every exit path has its summary)
+== local checks passed
+```
+
+host log 收尾行原文：
+
+```text
+[2026-09-16 11:03:04] poll took 22s
+[2026-09-16 11:03:04] == round 18 checked (passed) - verdict pushed back to origin/arena/01a0a821-git-pull-arena
+[2026-09-16 11:03:04] == next poll at 11:05:04 (Ctrl+C stops this loop)
+```
+
+2b 走的是 flash 常驻循环（每次登录最多闪一次），不是严格零闪——启动器 6144 字节仍被拦，与 v2.6.8 无关，单独立账。
+
+**不开 PR 到 `main`**（关 PR 会结束编码会话；`main` 仍是 v2.6.7）。其它 Arena 对话要装这套技能，用来源分支 `arena/01a0a821-git-pull-arena`，本机另开新文件夹，不要覆盖 `git-pull-arena-s2`。
 
 ---
 
-*本文档原随 v2.6.8 提交到 `arena/01a0a7de-git-pull-arena`。本会话把它接到
-`arena/01a0a821-git-pull-arena`，并改成新克隆 `git-pull-arena-s2`。2026-09-16 决定：
+*本文档原随 v2.6.8 提交到 `arena/01a0a7de-git-pull-arena`。本会话接到
+`arena/01a0a821-git-pull-arena` + 新克隆 `git-pull-arena-s2`。round 18 推送闭环已通过。2026-09-16 决定：
 **暂不开 PR 到 `main`**。*
