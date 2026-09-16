@@ -40,7 +40,7 @@ on:
   workflow_dispatch:        # also runnable by hand from the Actions tab
 
 env:
-  BRANCH: arena/01a0a7de-git-pull-arena   # <-- EDIT: the branch to watch
+  BRANCH: arena/01a0a821-git-pull-arena   # <-- EDIT: the branch to watch
 
 permissions:
   contents: read

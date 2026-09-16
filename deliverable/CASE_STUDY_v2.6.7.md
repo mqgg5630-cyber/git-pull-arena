@@ -1,12 +1,16 @@
-# CASE_STUDY —— v2.6.7 值守闭环的**已核实**证据，与 v2.6.8 的待复验清单
+# CASE_STUDY —— v2.6.7 值守闭环的**已核实**证据，与 v2.6.8 真机进度（推送闭环待本会话）
 
 > **这份文件的诚实边界**
 > - 第 1、2 节的每一条都能在 `git` 里复核（给了 sha，`git show <sha>` 即可）。
-> - 第 3 节是**用户本机**（`LAPTOP-R77M5D6M`）真机检查文件的原文，逐字复制，未加工。
-> - 第 4 节起全部是 **v2.6.8 新增内容**，在写这份文件时**尚未在真机上跑过**，逐条标
->   **待真机复验**。这里不写任何"已通过"的记录。
-> - 本文档由 Arena 沙箱侧撰写；沙箱是 Linux，**没有 PowerShell**，因此 v2.6.8 的 `.ps1`
->   改动只经过静态闸门（见第 5 节），语法与真机行为都还没被 PowerShell 验证过。
+> - 第 3、3b 节是**用户本机**（`LAPTOP-R77M5D6M`）真机检查文件 / 终端原文，逐字复制。
+> - 第 4 节是 v2.6.8 新增项。2026-09-16 上一会话（`arena/01a0a7de`）已在真机跑过一轮，
+>   表格按那一轮改成实测。该会话因 PR #3 关闭而无法把结果推上来；本会话
+>   （`arena/01a0a821`）把转述落盘。未触发的出口仍标 **未触发**。
+> - 第 7 节是上一会话转述的终端原文（能逐字引用的才引用；没有全文的标「转述」）。
+> - 第 8 节是本会话还要做的：新克隆 `git-pull-arena-s2` 上的推送闭环
+>   （accept 2c + `verdict pushed back`）。**推送测试通 = 本会话成功。**
+> - 沙箱是 Linux，**没有 PowerShell**。`.ps1` 的静态闸门见第 5 节；真机 PowerShell
+>   行为以第 4、7 节为准。
 
 ---
 
@@ -141,18 +145,30 @@ v2.6.8 起这一行会带 `= still RUNNING (0x41301) - normal, the loop never ex
 > `%1 is not a valid Win32 application`，于是自动回退 `-Flash` 模式。6144 字节的 exe 说明编译产物
 > 被杀软拦掉或没写全。这条 v2.6.8 没有动，单独立账。
 
-## 4. v2.6.8 新增项 —— 全部 **待真机复验**
+## 4. v2.6.8 新增项 —— 上一会话真机结果（`git-pull-arena-v268`，2026-09-16）
 
-| # | 改动 | 静态闸门已验证 | 真机行为 |
+主机 `LAPTOP-R77M5D6M`，PowerShell 5.1.26100.8875。克隆路径
+`E:\0github\git-sync\git-pull-arena-v268`（上一会话，**本会话不要覆盖**）。
+
+| # | 改动 | 静态闸门 | 真机（上一会话） |
 |---|---|---|---|
-| 1 | `watch.ps1`：`Invoke-PollRound` 6 个出口 + `Invoke-PollOnce` 2 个出口各自设置 `$script:PollSummary`，循环与手动单轮都打印 | ✅ `check_loop_summary.py`（6 exit paths） | **待真机复验** |
-| 2 | 新增 `code/check_loop_summary.py`（闸门 §3c）+ `code/check_loop_summary.ps1`（accept 2c） | ✅ 正/负向都跑过（见第 5 节） | **待真机复验**（`.ps1` 那份还没被 PowerShell 执行过） |
-| 3 | `Get-PowerShellExe` 优先 64 位：pwsh 原样 → 32 位进程走 `SysNative` → `System32` → 当前进程 | ⚠️ 仅静态（无 PowerShell 可跑） | **待真机复验** |
-| 4 | `-Status`：host log 尾部按 UTF-8 读；任务结果码加人话注释（0 / 267009 / 267011 / 267014 / 2147946720）；代理提示改成可照抄的 `setx HTTPS_PROXY "..."` | ⚠️ 仅静态 | **待真机复验** |
-| 5 | `doctor.ps1`：上述结果码一律视为正常，只有别的码才提示 | ⚠️ 仅静态 | **待真机复验** |
-| 6 | 文档：`skills/git-sync/templates/install-one-liner.md`（新）、README「零」节、本文件 | n/a | n/a |
-| 7 | 删掉分支上那个 0 字节的 `code/accept_test.ps1`（`f0d5d1c` 引入的垃圾） | ✅ | n/a |
-| 8 | `install.ps1`：`$src` 自适应（根目录/`scripts\` 两种位置都能跑）、`code\check_loop_summary.*` create-only 安装、根目录镜像加 `install.ps1` | ⚠️ 仅静态 | **待真机复验** |
+| 1 | `watch.ps1` 每个出口设 `$script:PollSummary`，循环与手动单轮都打印 | ✅ `check_loop_summary.py`（6 exit paths） | ✅ **部分**：手动单轮从**零输出**变成 `== idle - no check requested (...)` + `== finished at 10:27:02 (manual poll; ...)`；循环 host log 每轮 `== idle - no check requested` 紧跟 `== next poll at 10:28:32`。6 个 `Invoke-PollRound` 出口只触发了 1 个（no check requested） |
+| 2 | `code/check_loop_summary.py`（闸门 §3c）+ `code/check_loop_summary.ps1`（accept 2c） | ✅ 正/负向都跑过（见第 5 节） | ✅ **完整通过**（PS 5.1 实跑，原文见第 7 节）。这是上一会话明说的最大风险项 |
+| 3 | `Get-PowerShellExe` 优先 64 位：pwsh 原样 → 32 位进程走 `SysNative` → `System32` → 当前进程 | ⚠️ 仅静态 | ⚠️ **部分**：走到 `C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe`（64 位进程的正确结果）；`SysNative` 分支未触发（本机 PS 是 64 位，`$is32` 为 false） |
+| 4 | `-Status`：host log 尾部按 UTF-8 读；任务结果码加人话注释（0 / 267009 / 267011 / 267014 / 2147946720） | ⚠️ 仅静态 | ✅ 同一条日志行：v2.6.7 是 `鐢变簬鍑虹幇浠ヤ笅閿欒…`，v2.6.8 是「由于出现以下错误，无法运行此命令…」`schedule result: 267009 = still RUNNING (0x41301) - normal, the loop never exits` |
+| 5 | `doctor.ps1`：上述结果码一律视为正常，只有别的码才提示 | ⚠️ 仅静态 | ✅ `result: 267009 = still running (0x41301) - normal for the long-lived loop`，没有黄色告警 |
+| 6 | 文档：`install-one-liner.md`、README「零」节、本文件 | n/a | n/a |
+| 7 | 删掉 0 字节的 `code/accept_test.ps1` | ✅ | n/a |
+| 8 | `install.ps1`：`$src` 自适应、`check_loop_summary.*` create-only | ⚠️ 仅静态 | **未测** |
+
+**上一会话没跑到的**（本会话用新克隆补）：
+
+- `Invoke-PollRound` 其余出口：`verdict pushed back to` / `sync FAILED` / `already answered` / `no handshake`
+- `Invoke-PollOnce`：`poll CRASHED` / `lock held`
+- 结果码注释 `267011` / `267014` / `2147946720` 从未出现
+- accept 2c（要一个真检查轮次才会跑到 `local_check.ps1`）
+
+旁证（与 v2.6.8 无关，既有问题）：`watchhost-*.exe size: 6144` 启动器失败，回退 `-Flash`。本会话不碰它。
 
 ### 收尾行文案（逐字，用户已熟悉，不要改写）
 
@@ -201,45 +217,76 @@ $ echo $?
 **沙箱跑不了的**：`.ps1` 语法解析（无 PowerShell）、`Get-PowerShellExe` 的 64 位分支、
 `-Status` / `doctor.ps1` 的结果码注释、`install.ps1` 的实际拷贝行为。
 
-## 6. 真机复验清单（用户执行）
+## 6. 本会话真机清单（新克隆，不要覆盖旧目录）
+
+上一会话的克隆 `E:\0github\git-sync\git-pull-arena-v268` **冻结，不要覆盖、不要在那里跑
+`.\sync.ps1`**（它的配置指向已关闭的 `arena/01a0a7de`）。v2.6.7 的
+`E:\0github\git-sync\git-pull-arena` 同样冻结。
+
+本会话用**新文件夹**对接新分支 `arena/01a0a821-git-pull-arena`（任务名/心跳/日志都独立）：
 
 ```powershell
-cd E:\0github\git-sync\git-pull-arena-v268          # v2.6.8 的独立克隆（任务名/心跳/日志都独立）
-.\sync.ps1
-.\watch.ps1 -Unregister ; .\watch.ps1 -Register
-.\watch.ps1 -Status                                 # skill 那行必须是 v2.6.8，否则你在测 v2.6.7
-.\watch.ps1 -Test
+cd E:\0github\git-sync
+git clone -b arena/01a0a821-git-pull-arena https://github.com/mqgg5630-cyber/git-pull-arena.git git-pull-arena-s2
+cd git-pull-arena-s2
+
+Get-Content skills\git-sync\VERSION              # 必须是 2.6.8
+Test-Path code\check_loop_summary.ps1            # 必须是 True
+git branch --show-current                        # 必须是 arena/01a0a821-git-pull-arena
+
+.\bootstrap.ps1 -Auto                            # 身份 / 免点击凭据 / 注册值守（任务名带 -s2）
+.\watch.ps1 -Status
 .\code\check_loop_summary.ps1 -WatchPath .\watch.ps1
 ```
 
-> **先确认版本再往下走**（2026-09-16 就栽在这一步：克隆的是 `arena/01a0a4f5` = v2.6.7，
-> 于是 `check_loop_summary.ps1` 根本不存在、`-Status` 显示 `skill : v2.6.7`）：
->
-> ```powershell
-> Get-Content skills\git-sync\VERSION              # 必须是 2.6.8
-> Test-Path code\check_loop_summary.ps1            # 必须是 True
-> git log --oneline -1                             # 必须能看到 5882cc8 或其后代
-> ```
-
-然后造一个新轮次（`handshake.json` 的 `round` +1，`arena_state=awaiting_check`、
-`local_state=pending`，用 `.\push.ps1` 推请求），等 2~3 分钟，逐条核对：
+助手侧已经把 round 18 的检查请求推到本分支。值守第一次轮询（或你手动 `.\watch.ps1`）就会跑。
+**推送测试通就算本会话成功。** 要核对的：
 
 | 期望 | 在哪看 |
 |---|---|
-| `last_round` = 新轮次、`last_push` = `ok` | `.\watch.ps1 -Status` |
-| `git log` 出现 `check: round N passed` | `git log --oneline -3` |
-| host log 出现 `== round N checked (passed) - verdict pushed back to ...` | `-Status` 的 host log tail |
+| `last_round` = 18、`last_push` = `ok` | `.\watch.ps1 -Status` |
+| `git log` 出现 `check: round 18 passed` | `git log --oneline -3` |
+| host log 出现 `== round 18 checked (passed) - verdict pushed back to origin/arena/01a0a821-git-pull-arena` | `-Status` 的 host log tail |
 | 紧接着出现 `== next poll at HH:MM:SS (Ctrl+C stops this loop)` | 同上 |
-| `last run / schedule result` 带人话注释，且 267009 / 2147946720 不再被当异常 | `-Status` 与 `.\doctor.ps1` |
-| host log 里的中文不再乱码（v2.6.7 实测是乱码，见第 3b 节） | `-Status` 的 host log tail |
-| 手动单轮 `.\watch.ps1`（不带 `-Loop`）以 `== <summary>` + `== finished at ...` 结束，不静默退回提示符 | 手动跑一次 |
-| `code\check_loop_summary.ps1` 单独跑输出 `== check_loop_summary PASSED`，exit 0 | `.\code\check_loop_summary.ps1 -WatchPath .\watch.ps1` |
-| `local_check.ps1` 输出 `== accept 2c: watcher closing lines verified (every exit path has its summary)` | 下一轮检查文件 |
+| `check_r18_*.txt` 里出现 `== accept 2c: watcher closing lines verified (every exit path has its summary)` | `Get-Content (Get-ChildItem results\status\check_r18_*.txt | Select-Object -Last 1).FullName` |
 
-任何一条对不上，把 `-Status` 与对应 `results\status\check_rN_*.txt` 的原文贴回来。
+跑完把 `-Status` 和 `check_r18_*.txt` 的原文贴回来。
+
+## 7. 上一会话转述的终端原文（2026-09-16，`git-pull-arena-v268`）
+
+上一会话（`arena/01a0a7de`）在关 PR #3 后失去推送权限，原文没能进 git。下面能逐字引用的才放进代码块。
+
+**`check_loop_summary.ps1` 第一次在真 PowerShell 上执行（完整通过）：**
+
+```text
+.\code\check_loop_summary.ps1 -WatchPath .\watch.ps1
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+== check_loop_summary PASSED
+```
+
+**收尾行（转述，手动单轮 + 循环）：**
+
+- 手动 `.\watch.ps1`：从零输出变成 `== idle - no check requested (...)` + `== finished at 10:27:02 (manual poll; ...)`
+- 循环 host log：每轮 `== idle - no check requested` 紧跟 `== next poll at 10:28:32`
+
+**`-Status` UTF-8 + 结果码（转述）：** 同一条日志行，v2.6.7 是 `鐢变簬鍑虹幇浠ヤ笅閿欒…`，v2.6.8 是「由于出现以下错误，无法运行此命令…」`schedule result: 267009 = still RUNNING (0x41301) - normal, the loop never exits`。
+
+**`doctor.ps1`（转述）：** `result: 267009 = still running (0x41301) - normal for the long-lived loop`，没有黄色告警。
+
+## 8. 本会话还差什么
+
+工作分支：`arena/01a0a821-git-pull-arena`。本机路径：`E:\0github\git-sync\git-pull-arena-s2`。
+**不开 PR 到 `main`**（上一会话关 PR 会结束编码会话；`main` 仍是 v2.6.7）。
+
+成功标准只有一条：新克隆上的值守把 round 18 的结论**免点击推回**这条分支
+（`check: round 18 passed` + host log 的 `verdict pushed back to origin/arena/01a0a821-git-pull-arena` +
+检查文件里的 accept 2c）。
 
 ---
 
-*本文档随 v2.6.8 一起提交到工作分支 `arena/01a0a7de-git-pull-arena`。真机复验通过后，第 4 节的
-「待真机复验」应逐条改写成实测结果（连同当时的 `-Status` 原文与检查文件）。2026-09-16 决定：
-**暂不开 PR 到 `main`**，v2.6.8 就停在工作分支上；`main` 仍是 v2.6.7。*
+*本文档原随 v2.6.8 提交到 `arena/01a0a7de-git-pull-arena`。本会话把它接到
+`arena/01a0a821-git-pull-arena`，并改成新克隆 `git-pull-arena-s2`。2026-09-16 决定：
+**暂不开 PR 到 `main`**。*

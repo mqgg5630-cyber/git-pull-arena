@@ -15,7 +15,7 @@ git clone -b <工作分支> https://github.com/<owner>/<repo>.git               
 .\doctor.ps1                                                                       # 4) 体检：三行都应是好消息
 ```
 
-- 第 2 行的分支就是 `sync.config.json` 里的 `branch`（本仓库当前是 `arena/01a0a7de-git-pull-arena`）。
+- 第 2 行的分支就是 `sync.config.json` 里的 `branch`（本仓库当前是 `arena/01a0a821-git-pull-arena`）。
   `push.ps1` 会直接拒绝 main/master，所以克隆错分支会立刻暴露，不会静默推坏东西。
 - 第 3 行 `-Auto` 等价于 `bootstrap.ps1` + `auth.ps1 -Setup -Verify` + `watch.ps1 -Register` 三步。
 - 第 4 行期望：`branch` 是工作分支、`ahead/behind = 0/0`、末尾 `watcher / heartbeat / auth` 三行都正常。

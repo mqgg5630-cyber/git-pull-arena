@@ -213,7 +213,7 @@ gate（`code/check_all.sh`）提交前自动扫描全部 `.ps1`，非 ASCII 直�
 **助手侧 / 手动（一条命令）**：
 
 ```bash
-git clone --quiet --depth 1 -b arena/01a0a7de-git-pull-arena \
+git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
      https://github.com/mqgg5630-cyber/git-pull-arena.git /tmp/git-sync-src \
   && bash /tmp/git-sync-src/skills/git-sync/scripts/agent-install.sh --branch <工作分支>
 ```

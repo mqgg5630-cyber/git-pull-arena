@@ -4,7 +4,7 @@
 #
 # One-liner for a brand-new Arena session (run inside the target repo; git
 # clone works in the sandboxes where raw.githubusercontent.com is blocked):
-#   git clone --quiet --depth 1 -b arena/01a0a7de-git-pull-arena \
+#   git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 #        https://github.com/mqgg5630-cyber/git-pull-arena.git /tmp/git-sync-src \
 #     && bash /tmp/git-sync-src/skills/git-sync/scripts/agent-install.sh \
 #            --branch <working-branch>
@@ -31,7 +31,7 @@
 set -u -o pipefail
 
 DEFAULT_SOURCE_REPO="https://github.com/mqgg5630-cyber/git-pull-arena.git"
-DEFAULT_SOURCE_BRANCHES=("main" "arena/01a0a7de-git-pull-arena")
+DEFAULT_SOURCE_BRANCHES=("main" "arena/01a0a821-git-pull-arena")
 
 REPO=""; BRANCH=""; SOURCE=""; SOURCE_BRANCH=""; GHA=0
 while [ $# -gt 0 ]; do
