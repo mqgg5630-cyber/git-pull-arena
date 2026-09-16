@@ -1,9 +1,9 @@
 {
-  "round": 20,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "round 20: git-sync v2.7.4 install verified by the local watcher (passed)",
-  "arena_updated": "2026-09-16 10:45:16",
-  "local_updated": "2026-09-16 18:27:00"
+  "round": 21,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "verify: docx+pptx arrived byte-identical (sha256) and are well-formed OOXML; loop healthy",
+  "arena_updated": "2026-09-16 10:45:19",
+  "local_updated": null
 }
