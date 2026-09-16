@@ -1,5 +1,5 @@
 {
-  "description": "session 01a0aa00 on arena/01a0aa00-git-pull-arena (round 25): the user asked whether PPT Master can be installed on THEIR machine and for the self-loop to verify both the install and that the machine can produce a good pptx. Round 25 does exactly that: code/pptmaster_local.ps1 is executed by code/local_check.ps1 on the Windows machine (section 4 of every verification round) - it clones hugohe3/ppt-master into <parent>\\ppt-master, creates a venv, pip-installs the dependencies, runs attribution_guard, authors the 12 deck pages from code/make_deck_pptmaster.py, passes svg_quality_checker with 0 blocking findings, exports a native DrawingML pptx, verifies that file structurally, runs ppt-master's own pptx_delivery_check and opens it read-only in the real PowerPoint. The machine writes results/status/pptmaster_local.json + .txt (env=windows, deck_slides=12, checker_blocking=0, markers=ok, powerpoint=yes) and the watcher pushes them back. Round 25's earlier work still stands: DECK_01a0aa00_v2.8.1.pptx is the delivered 12-page deck, every number on its slides is read from the repo, and the seven artifacts in deliverable/OFFICE_HASHES.json are judged 3a-3h by the same machine. 'Local' is always that scheduled task on the user's PC - never a sandbox folder, never a stand-in skill.",
+  "description": "session 01a0aa00 on arena/01a0aa00-git-pull-arena (round 32): PPT Master is installed on the user's Windows machine (E:\\0github\\git-sync\\ppt-master, its own venv python 3.11.9) and the machine builds the deck there. Rounds 28-31 proved that loop with the git-sync deck; the user then asked for a NEW deck on a different subject - machine-learning screening of umami peptides (鲜味肽) - generated with the installed venv, and explicitly NOT overwriting the deck the previous task produced (E:\\0github\\git-sync\\ppt-master\\out\\DECK_local_20260916.pptx). So the deck subject now lives in code/pptmaster_deck.json: generator code/make_deck_umami.py, project umami-01a0aa00, output DECK_umami_01a0aa00_v1.pptx in its own project directory (nothing of the git-sync deck is touched), evidence in results/umami/. The 12 pages go through svg_quality_checker (0 blocking), svg_to_pptx and a real PowerPoint read-only open, all on that machine, and the finished pptx plus the checker report and the page sources are pushed back into results/umami/ as the evidence. code/deck_kit.py is the shared framework both decks use; code/deck_layout_selftest.py stress-tests every deck in the repo (including the exact round-28 machine state) on every push. Every number in the umami deck is marked 示例 (illustrative) - the repo has no peptide dataset and the deck says so on the page instead of inventing measurements.",
   "require_files": [
     "01a0a821.md",
     "results/status/handshake.json",
@@ -32,7 +32,14 @@
     "code/pptmaster_pipeline.py",
     "results/status/pptmaster_install.md",
     "results/status/pptmaster_local.json",
-    "results/status/pptmaster_local.txt"
+    "results/status/pptmaster_local.txt",
+    "results/umami/DECK_umami_01a0aa00_v1.pptx",
+    "results/umami/pptmaster_local_quality.json",
+    "results/umami/pptmaster_local.txt",
+    "code/make_deck_umami.py",
+    "code/deck_kit.py",
+    "code/pptmaster_deck.json",
+    "code/deck_layout_selftest.py"
   ],
   "forbid_files": [
     "local/inbox",
@@ -55,12 +62,17 @@
     "results/status/pptmaster_local.txt": "deck_slides=12",
     "code/pptmaster_local.ps1": "attribution_guard",
     "code/pptmaster_pipeline.py": "svg_quality_checker.py",
-    "results/status/pptmaster_install.md": "make-deck.cmd"
+    "results/status/pptmaster_install.md": "make-deck.cmd",
+    "code/pptmaster_deck.json": "make_deck_umami.py",
+    "code/make_deck_umami.py": "鲜味肽",
+    "code/deck_kit.py": "bounds_overlaps",
+    "results/umami/pptmaster_local.txt": "checker_blocking=0"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
     "code/local_check.ps1": "Get-FileHash",
-    "deliverable/OFFICE_HASHES.json": "[0-9a-f]{64}"
+    "deliverable/OFFICE_HASHES.json": "[0-9a-f]{64}",
+    "code/pptmaster_deck.json": "DECK_umami_[0-9a-z_]+\\.pptx"
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,
@@ -82,7 +94,10 @@
     "code/pptmaster_local.ps1": 8000,
     "code/pptmaster_pipeline.py": 8000,
     "results/status/pptmaster_install.md": 2000,
-    "results/status/pptmaster_local.txt": 100
+    "results/status/pptmaster_local.txt": 100,
+    "code/make_deck_umami.py": 8000,
+    "code/deck_kit.py": 8000,
+    "results/umami/DECK_umami_01a0aa00_v1.pptx": 20000
   },
   "max_bytes": {
     "deliverable/BRIDGE_01a0aa00_v2.8.1.docx": 3000000,
@@ -91,6 +106,7 @@
     "deliverable/GUIDE_01a0aa00_v2.8.1.pptx": 3000000,
     "deliverable/DELIVERY_01a0aa00_v2.8.1.docx": 3000000,
     "deliverable/DELIVERY_01a0aa00_v2.8.1.pptx": 3000000,
-    "deliverable/DECK_01a0aa00_v2.8.1.pptx": 3000000
+    "deliverable/DECK_01a0aa00_v2.8.1.pptx": 3000000,
+    "results/umami/DECK_umami_01a0aa00_v1.pptx": 3000000
   }
 }

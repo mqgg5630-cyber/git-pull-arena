@@ -61,17 +61,41 @@ code/pptmaster_local.ps1   找 git / 找 python / 建 venv / pip 装依赖 / 开
 `local_check.ps1` 再读这两个回执做 4a/4b/4c 判定：缺任何一个断言 → 这一轮 verdict = failed，
 日志里会指名道姓说是哪一条（比如 `4b receipt is missing deck_slides=12`）。
 
+## 3b. 换主题：这份回执现在描述的是哪一套 deck
+
+出稿的主题不写死在这份文档里，而是写在 **`code/pptmaster_deck.json`**（`generator` / `project` /
+`deck_name` / `evidence_dir` / `markers`）。`pptmaster_pipeline.py`、`pptmaster_local.ps1`
+和 `make-deck.cmd` 都读它，所以换主题＝改这一个文件，别的都不动：
+
+| 字段 | 现在的值 | 含义 |
+|---|---|---|
+| `generator` | `code/make_deck_umami.py` | 12 页 SVG 的生成器（机器学习筛选鲜味肽） |
+| `project` | `umami-01a0aa00` | ppt-master 项目名（实际目录会带日期后缀）；**和上一套 deck 的项目目录不同** |
+| `deck_name` | `DECK_umami_01a0aa00_v1.pptx` | 本机 `out\` 里的成品名；不会覆盖旧的 `DECK_local_*.pptx` |
+| `evidence_dir` | `results/umami` | 质检报告、页源、成品 pptx 回传到仓库的位置 |
+| `markers` | `鲜味肽` / `umami` / `T1R1` / `make-deck.cmd` | 拆包校验时必须出现的字符串 |
+
+页面的公共框架在 `code/deck_kit.py`（画布、token、转义、`data-pptx-bounds` 规则、
+XML/重叠自检 + runner），两套 deck 共用；`code/deck_layout_selftest.py` 会把**每一套**
+deck 在包括 round-28 机器状态在内的极端输入下全部跑一遍，作为每次 push 前的门禁。
+鲜味肽那套页面上所有数字都标了 **示例** —— 仓库里没有肽数据集，所以页面明说是占位，
+而不是编造实验数据。
+
 ## 4. 手工怎么用（装好之后，你自己随时可以用）
 
 ```powershell
 # 双击就行（重跑一遍出稿并打开成品）
 E:\0github\git-sync\ppt-master\make-deck.cmd
 
-# 或者命令行：先出 SVG，再导出原生 pptx
+# 或者命令行：按 code\pptmaster_deck.json 重建整套（这一步就是自循环每轮跑的东西）
 $pm = 'E:\0github\git-sync\ppt-master'
 $py = "$pm\.venv\Scripts\python.exe"
+$repo = 'E:\0github\git-sync\git-pull-arena-01a0aa00'
+& $py "$repo\code\pptmaster_pipeline.py" --ppt-master $pm --python $py --repo $repo --environment windows --host $env:COMPUTERNAME --python-mode venv
+
+# 想只想手工走一遍底层四步（换主题时改的是 --out 里的页源生成器）：
 & $py "$pm\skills\ppt-master\scripts\project_manager.py" init my-deck --quick-generate
-& $py 'E:\0github\git-sync\git-pull-arena-01a0aa00\code\make_deck_pptmaster.py' --out "$pm\projects\my-deck\svg_output"
+& $py "$repo\code\make_deck_umami.py" --out "$pm\projects\my-deck\svg_output"
 & $py "$pm\skills\ppt-master\scripts\svg_quality_checker.py" "$pm\projects\my-deck" --quick-generate --canonical-authoring --stage final --json
 & $py "$pm\skills\ppt-master\scripts\svg_to_pptx.py" "$pm\projects\my-deck" --quick-generate --no-notes -o "$pm\out\my-deck.pptx"
 

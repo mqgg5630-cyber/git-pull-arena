@@ -23,14 +23,24 @@ import importlib.util
 import json
 import os
 import sys
+import xml.etree.ElementTree as ET
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import deck_kit  # noqa: E402  (the shared framework: escaping + layout rules)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-GENERATOR = os.path.join(HERE, 'make_deck_pptmaster.py')
 EXPECT_PAGES = 12
 
+# every deck this repo can build. Each one is stress-tested separately: a deck
+# that only survives today's numbers is exactly the bug this file exists for.
+DECKS = [
+    ('umami', 'make_deck_umami.py'),
+    ('git-sync', 'make_deck_pptmaster.py'),
+]
 
-def load_generator():
-    spec = importlib.util.spec_from_file_location('deckgen', GENERATOR)
+
+def load_generator(path):
+    spec = importlib.util.spec_from_file_location('deckgen_' + os.path.basename(path), path)
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
@@ -53,33 +63,39 @@ def variants(base):
         ('extreme', {'rounds': [[9999, 3600, False], [1, 0, True], [77, 9999, True],
                                 [3, 1, False]],
                      'criteria': 9999, 'deliverables': 9999}),
+        ('empty', {'rounds': [], 'criteria': 0, 'deliverables': 0}),
         ('tiny', {'rounds': [[1, 1, True], [2, 2, True], [3, 3, False], [4, 4, True]],
                   'criteria': 0, 'deliverables': 0}),
     ]
 
 
-def check_page(name, svg, mod):
+def check_page(name, svg):
+    """Assert what the machine's checker asserts about one page."""
     problems = []
     try:
-        mod.ET.fromstring(svg)
-    except mod.ET.ParseError as exc:
+        ET.fromstring(svg)
+    except ET.ParseError as exc:
         problems.append('%s: not well-formed XML (%s)' % (name, exc))
         return problems
-    for msg in mod.bounds_overlaps(svg):
+    for msg in deck_kit.bounds_overlaps(svg):
         problems.append('%s: %s' % (name, msg))
-    bad = mod.xml_invalid_chars(svg)
+    bad = deck_kit.xml_invalid_chars(svg)
     if bad:
         problems.append('%s: XML-illegal code point(s) %s' % (name, [hex(c) for c in bad]))
     return problems
 
 
-def main():
-    mod = load_generator()
+def check_deck(label, filename):
+    path = os.path.join(HERE, filename)
+    if not os.path.isfile(path):
+        print('SKIP: %s not present in this repo' % filename)
+        return 0
+    mod = load_generator(path)
     if len(mod.BUILDERS) != EXPECT_PAGES:
-        print('[FAIL] generator builds %d page(s), expected %d'
-              % (len(mod.BUILDERS), EXPECT_PAGES))
+        print('[FAIL] %s builds %d page(s), expected %d'
+              % (filename, len(mod.BUILDERS), EXPECT_PAGES))
         return 1
-    base = json.loads(json.dumps(mod.FACTS))
+    base = json.loads(json.dumps(getattr(mod, 'FACTS', {})))
     failures = 0
     for label, facts in variants(base):
         mod.FACTS = facts
@@ -87,23 +103,32 @@ def main():
         for name, builder in mod.BUILDERS:
             page = builder()
             svg = page.svg()
-            problems.extend(check_page(name, svg, mod))
+            problems.extend(check_page(name, svg))
             for w in page.warn:
                 problems.append('%s: text does not fit its box: %s' % (name, w))
         if problems:
             failures += len(problems)
-            print('[FAIL] %s: %d layout problem(s)' % (label, len(problems)))
+            print('[FAIL] %s/%s: %d layout problem(s)' % (filename, label, len(problems)))
             for item in problems[:6]:
                 print('       ' + item)
         else:
-            print('OK: %s - %d page(s), xml ok, no overlapping module zones'
-                  % (label, len(mod.BUILDERS)))
-    mod.FACTS = base
+            print('OK: %s/%s - %d page(s), xml ok, no overlapping module zones'
+                  % (filename, label, len(mod.BUILDERS)))
+    if base:
+        mod.FACTS = base
+    return failures
+
+
+def main():
+    failures = 0
+    for label, filename in DECKS:
+        failures += check_deck(label, filename)
     if failures:
         print('[FAIL] %d layout problem(s) - the machine checker would reject this deck'
               % failures)
         return 1
-    print('OK: every page survives every tested input (including the round-28 machine state)')
+    print('OK: every page of every deck survives every tested input '
+          '(including the round-28 machine state)')
     return 0
 
 

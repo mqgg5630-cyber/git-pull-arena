@@ -31,8 +31,8 @@ param(
     [switch]$SkipCom,         # do not open PowerPoint
     [string]$Root = '',       # install parent dir (default: the repo's parent)
     [string]$Repo = '',       # repo root (default: this script's parent)
-    [string]$Project = 'arena-local-01a0aa00',
-    [int]$ExpectSlides = 12
+    [string]$Project = '',    # empty = take the deck config (code/pptmaster_deck.json)
+    [int]$ExpectSlides = 0    # 0 = take the deck config
 )
 
 $ErrorActionPreference = 'Continue'
@@ -427,19 +427,60 @@ if (-not (Test-Path -LiteralPath $pipeScript)) {
 }
 $depsFullFlag = '-1'
 if ($fullOk) { $depsFullFlag = '1' } elseif ($coreOk) { $depsFullFlag = '0' }
-$r = Run-Native $pyExe (@($pyPre) + @($pipeScript, '--ppt-master', $Install, '--python', $pyExe,
-                            '--repo', $Repo, '--project', $Project, '--environment', 'windows',
-                            '--host', $host_, '--expect-slides', [string]$ExpectSlides,
-                            '--python-mode', $pyMode, '--deps-full-ok', $depsFullFlag))
+$pipeArgs = @($pipeScript, '--ppt-master', $Install, '--python', $pyExe, '--repo', $Repo,
+              '--environment', 'windows', '--host', $host_, '--python-mode', $pyMode,
+              '--deps-full-ok', $depsFullFlag)
+# only pass an explicit project / slide count when the caller really set one:
+# otherwise the pipeline reads code/pptmaster_deck.json, which is what decides
+# which deck this machine builds and what the finished file is called
+if ($Project) { $pipeArgs += @('--project', $Project) }
+if ($ExpectSlides -gt 0) { $pipeArgs += @('--expect-slides', [string]$ExpectSlides) }
+
+# what is already in out\ before this run: the deck a previous task produced
+# must still be there afterwards (the user asked for a new deck, not a
+# replacement), so both states are printed into the round log
+$outDir = Join-Path $Install 'out'
+if (Test-Path -LiteralPath $outDir) {
+    foreach ($f in (Get-ChildItem -LiteralPath $outDir -Filter '*.pptx' -ErrorAction SilentlyContinue |
+                    Sort-Object Name)) {
+        Say ('out before: ' + $f.Name + '  ' + $f.Length + ' B  ' +
+             $f.LastWriteTime.ToString('yyyy-MM-dd HH:mm'))
+    }
+}
+$r = Run-Native $pyExe (@($pyPre) + $pipeArgs)
 $pipeCode = $r.code
 if ($r.out.Trim()) { Write-Output $r.out.TrimEnd() }
 
 # ------------------------------------------------ 6. real PowerPoint opening
+# which deck to open: the one THIS run just built. code/pptmaster_deck.json
+# decides the deck name (the loop switches subjects by editing that file), and
+# the pipeline records the file it actually exported in the receipt - so the
+# COM check follows the config instead of a hardcoded DECK_local_* glob, and a
+# new deck never depends on the old one being absent.
 $deck = $null
 $outDir = Join-Path $Install 'out'
-if (Test-Path -LiteralPath $outDir) {
-    $deck = Get-ChildItem -LiteralPath $outDir -Filter 'DECK_local_*.pptx' -ErrorAction SilentlyContinue |
+$recJson = Join-Path $Repo 'results\status\pptmaster_local.json'
+if (Test-Path -LiteralPath $recJson) {
+    try {
+        $rec = [System.IO.File]::ReadAllText($recJson) | ConvertFrom-Json
+        if ($rec.deck_path) {
+            $cand = Get-Item -LiteralPath ([string]$rec.deck_path) -ErrorAction SilentlyContinue
+            if ($cand -and $cand.Extension -eq '.pptx') { $deck = $cand }
+        }
+    } catch { $deck = $null }
+}
+if (-not $deck -and (Test-Path -LiteralPath $outDir)) {
+    # fallback for a receipt that predates deck_path (or a first, failed run)
+    $deck = Get-ChildItem -LiteralPath $outDir -Filter 'DECK_*.pptx' -ErrorAction SilentlyContinue |
             Sort-Object LastWriteTime | Select-Object -Last 1
+}
+Say ('deck    : ' + $(if ($deck) { $deck.FullName } else { '(none found)' }))
+if (Test-Path -LiteralPath $outDir) {
+    foreach ($f in (Get-ChildItem -LiteralPath $outDir -Filter '*.pptx' -ErrorAction SilentlyContinue |
+                    Sort-Object Name)) {
+        Say ('out after : ' + $f.Name + '  ' + $f.Length + ' B  ' +
+             $f.LastWriteTime.ToString('yyyy-MM-dd HH:mm'))
+    }
 }
 $comResult = 'skip no deck to open'
 if ($deck -and -not $SkipCom) {
@@ -492,6 +533,14 @@ if ($r.out.Trim()) { Write-Output $r.out.TrimEnd() }
 
 # ------------------------------------------------- 7. the one-click launcher
 # so the user can regenerate the deck locally without the agent
+$deckName = 'DECK_local.pptx'
+$cfgPath = Join-Path $Repo 'code\pptmaster_deck.json'
+if (Test-Path -LiteralPath $cfgPath) {
+    try {
+        $dcfg = [System.IO.File]::ReadAllText($cfgPath) | ConvertFrom-Json
+        if ($dcfg.deck_name) { $deckName = [string]$dcfg.deck_name }
+    } catch { }
+}
 try {
     $cmdPath = Join-Path $Install 'make-deck.cmd'
     $cmdBody = @(
@@ -509,7 +558,8 @@ try {
         ')',
         'echo.',
         'echo Opening the deck PPT Master just built...',
-        'for %%f in ("%PM%\out\DECK_local_*.pptx") do start "" "%%f"'
+        'set "DECK=%PM%\out\' + $deckName + '"',
+        'if exist "%DECK%" start "" "%DECK%"'
     ) -join "`r`n"
     $needsWrite = $true
     if (Test-Path -LiteralPath $cmdPath) {
