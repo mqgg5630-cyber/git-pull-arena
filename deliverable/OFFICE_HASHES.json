@@ -1,0 +1,67 @@
+{
+  "generated_utc": "2026-09-16T11:22:49Z",
+  "generator": "code/make_link_proof.py",
+  "generator_note": "python-docx + python-pptx (allowed in the sandbox since v2.8.0); the manifest is the contract the REAL machine verifies in code/local_check.ps1 section 3, and the same 3a-3g rules are mirrored in Python here so a package that cannot pass is never pushed",
+  "branch": "arena/01a0a9f0-git-pull-arena",
+  "skill_version": "2.8.1",
+  "how_local_verifies": "code/local_check.ps1 compares sha256/bytes, opens the package, requires every required_parts entry, parses every .xml/.rels part, resolves every relationship target and content type, searches must_contain across all xml parts and counts slides against min_slides; the Office COM open test (3h) runs on the real machine",
+  "files": [
+    {
+      "path": "deliverable/LINK_PROOF_v2.8.1.docx",
+      "kind": "docx",
+      "bytes": 38758,
+      "sha256": "7a59d44cb402e6ce77c8f19da8961edecda88f8a5a3e426f9653f52380690983",
+      "required_parts": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "word/document.xml",
+        "word/styles.xml",
+        "word/_rels/document.xml.rels",
+        "docProps/core.xml"
+      ],
+      "main_part": "word/document.xml",
+      "must_contain": [
+        "2.8.1",
+        "git-sync",
+        "local_check.ps1",
+        "LAPTOP-R77M5D6M",
+        "arena/01a0a9f0-git-pull-arena"
+      ],
+      "min_slides": null,
+      "sandbox_selftest": {
+        "parts": 17,
+        "slides": 0
+      }
+    },
+    {
+      "path": "deliverable/LINK_PROOF_v2.8.1.pptx",
+      "kind": "pptx",
+      "bytes": 33469,
+      "sha256": "f0587796d04d7d562057204874411c2df6f58e2c8ffd4d06bbdcf9d06ed13e46",
+      "required_parts": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "ppt/presentation.xml",
+        "ppt/_rels/presentation.xml.rels",
+        "ppt/slides/slide1.xml",
+        "ppt/slideMasters/slideMaster1.xml",
+        "ppt/slideLayouts/slideLayout1.xml",
+        "ppt/theme/theme1.xml",
+        "docProps/core.xml"
+      ],
+      "main_part": "ppt/presentation.xml",
+      "must_contain": [
+        "2.8.1",
+        "git-sync",
+        "local_check.ps1",
+        "LAPTOP-R77M5D6M",
+        "arena/01a0a9f0-git-pull-arena"
+      ],
+      "min_slides": 6,
+      "sandbox_selftest": {
+        "parts": 48,
+        "slides": 6
+      }
+    }
+  ]
+}

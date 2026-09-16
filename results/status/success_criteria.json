@@ -1,28 +1,59 @@
 {
-  "description": "v2.7.4: short arena.ai prompt maps to GitHub clone; real Windows watcher; no fake local/inbox.",
+  "description": "v2.8.1 on arena/01a0a9f0-git-pull-arena: the newest skill (source branch arena/01a0a98d-git-pull-arena, installer refuses to downgrade) plus the repo gate (code/check_all.sh, which now proves each python candidate python3 / python / py -3) and the real-machine check (code/local_check.ps1, sections 3a-3h). The deliverables LINK_PROOF_v2.8.1.docx / .pptx travel through git and are judged by the Windows watcher: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide count and a real Word/PowerPoint open. 'Local' means that machine's scheduled watcher - never a sandbox folder, never a hand-made stand-in skill.",
   "require_files": [
     "01a0a821.md",
+    "skills/git-sync/VERSION",
+    "skills/git-sync/scripts/agent-install.sh",
+    "skills/git-sync/scripts/agent-handoff.sh",
     "skills/git-sync/scripts/agent-handsfree.sh",
     "skills/git-sync/scripts/agent-criteria.sh",
     "skills/git-sync/scripts/watch.ps1",
-    "deliverable/HANDS_FREE_v2.7.0.md",
-    "skills/git-sync/VERSION",
-    "skills/git-sync/templates/USER_PROMPT.md"
+    "skills/git-sync/templates/one-sentence.md",
+    "skills/git-sync/templates/gate.yml",
+    "code/check_all.sh",
+    "code/local_check.ps1",
+    "code/make_link_proof.py",
+    "deliverable/OFFICE_HASHES.json",
+    "deliverable/LINK_PROOF_v2.8.1.docx",
+    "deliverable/LINK_PROOF_v2.8.1.pptx",
+    "watch.ps1"
+  ],
+  "forbid_files": [
+    "local/inbox",
+    "local/status_receipts",
+    "skills/docx_skill.py",
+    "local_bridge_skill.py"
   ],
   "require_contains": {
-    "skills/git-sync/VERSION": "2.7.4",
-    "01a0a821.md": "git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena",
-    "skills/git-sync/sync.config.json": "\"hands_free\"",
+    "skills/git-sync/VERSION": "2.8.1",
+    "01a0a821.md": "arena/01a0a98d-git-pull-arena",
+    "skills/git-sync/sync.config.json": "arena/01a0a9f0-git-pull-arena",
+    "skills/git-sync/templates/one-sentence.md": "agent-handoff.sh",
+    "skills/git-sync/scripts/agent-install.sh": "refusing to downgrade",
+    "code/check_all.sh": "py -3",
+    "code/local_check.ps1": "no Office deliverable declared",
+    "deliverable/OFFICE_HASHES.json": "arena/01a0a9f0-git-pull-arena",
     "watch.ps1": "function Invoke-AutoPull",
     "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus"
   },
   "require_regex": {
-    "watch.ps1": "function Invoke-AutoPush"
+    "watch.ps1": "function Invoke-AutoPush",
+    "code/local_check.ps1": "Get-FileHash",
+    "deliverable/OFFICE_HASHES.json": "[0-9a-f]{64}"
   },
   "min_bytes": {
-    "skills/git-sync/scripts/agent-handsfree.sh": 1000,
-    "skills/git-sync/scripts/agent-criteria.sh": 1000,
-    "deliverable/HANDS_FREE_v2.7.0.md": 800,
+    "skills/git-sync/scripts/agent-handoff.sh": 2000,
+    "skills/git-sync/scripts/agent-install.sh": 10000,
+    "code/check_all.sh": 8000,
+    "code/local_check.ps1": 12000,
+    "code/make_link_proof.py": 8000,
+    "deliverable/OFFICE_HASHES.json": 500,
+    "deliverable/LINK_PROOF_v2.8.1.docx": 5000,
+    "deliverable/LINK_PROOF_v2.8.1.pptx": 15000,
     "watch.ps1": 20000
+  },
+  "max_bytes": {
+    "deliverable/LINK_PROOF_v2.8.1.docx": 3000000,
+    "deliverable/LINK_PROOF_v2.8.1.pptx": 3000000
   }
 }

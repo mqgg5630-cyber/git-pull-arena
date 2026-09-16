@@ -96,8 +96,14 @@ fi
 echo "== waiting for the local watcher (polling every ${INTERVAL}s, max ${TIMEOUT}s; returns as soon as a verdict arrives) ..."
 read_hs() { git show "$ORIGIN:$HS_NORM" 2>/dev/null; }
 hs_key() { printf '%s' "$(read_hs)" | python3 -c "import json,sys;d=json.loads(sys.stdin.buffer.read().decode('utf-8-sig'));print(d.get('$1',''))" 2>/dev/null; }
+tip_sha() { git ls-remote "$REMOTE" "refs/heads/$BRANCH" 2>/dev/null | cut -f1; }
 state="$(hs_key local_state)"
 start=$SECONDS
+# Round 21 closed in 47s of which most was polling latency: a fixed 15s sleep
+# plus a FULL `git fetch` every tick. So (a) poll fast for the first two minutes
+# - that is when a verdict normally lands - then relax, and (b) only fetch when
+# ls-remote says the branch tip actually moved.
+last_tip="$(tip_sha)"
 while [ "$state" = "pending" ] || [ -z "$state" ]; do
   slept=$((SECONDS - start))
   remain=$((TIMEOUT - slept))
@@ -105,13 +111,17 @@ while [ "$state" = "pending" ] || [ -z "$state" ]; do
     break
   fi
   printf '  [%3ds/%ds] still pending ...\r' "$slept" "$TIMEOUT"
-  slp=$INTERVAL
+  if [ "$slept" -lt 120 ]; then slp=5; else slp=$INTERVAL; fi
   if [ "$slp" -gt "$remain" ]; then slp=$remain; fi
   sleep "$slp"
-  git fetch "$REMOTE" --quiet || true
-  state="$(hs_key local_state)"
-  astate="$(hs_key arena_state)"
-  [ "$astate" = "accepted" ] && state="passed"
+  tip="$(tip_sha)"
+  if [ "$tip" != "$last_tip" ]; then
+    git fetch "$REMOTE" --quiet || true
+    last_tip="$tip"
+    state="$(hs_key local_state)"
+    astate="$(hs_key arena_state)"
+    [ "$astate" = "accepted" ] && state="passed"
+  fi
 done
 echo ""
 
