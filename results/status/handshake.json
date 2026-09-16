@@ -1,9 +1,9 @@
 {
-    "round":  17,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "few-step check round 17",
-    "arena_updated":  "2026-09-16 00:48:09",
-    "local_updated":  "2026-09-16 09:36:13"
+  "round": 18,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "v2.6.8 s2 push-loop acceptance (new clone git-pull-arena-s2; do not touch v268)",
+  "arena_updated": "2026-09-16 03:00:16",
+  "local_updated": null
 }
