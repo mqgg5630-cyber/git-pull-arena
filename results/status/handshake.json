@@ -1,9 +1,9 @@
 {
-    "round":  24,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "verify round 24 (new-task test, iteration 2): DECK_01a0aa00_v2.8.1.pptx - 12 slides, native DrawingML, PPT Master v6.4.0, numbers sourced from the repo; judged with the other six artifacts (3a-3h incl. real Word/PowerPoint open + success criteria)",
-    "arena_updated":  "2026-09-16 12:06:11",
-    "local_updated":  "2026-09-16 20:07:37"
+  "round": 24,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-16 12:07:45",
+  "local_updated": "2026-09-16 20:07:37"
 }
