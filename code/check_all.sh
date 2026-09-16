@@ -225,4 +225,25 @@ exit $bad'
     fi
 fi
 
+# ------------------- 5. is the deck layout safe for any numbers the repo has?
+# The deck pages read rounds / elapsed / counts out of the repo and those feed
+# the geometry, so one input can build a page whose module boxes overlap - the
+# machine's checker fails such a page (round 28: blocking=2 on 08_numbers.svg,
+# found only after a full remote round). This builds every page over a matrix
+# of inputs, including the exact round-28 machine state, and asserts the same
+# rules. Pure python, no dependencies, runs here and on the machine.
+if [ ! -f code/deck_layout_selftest.py ]; then
+    echo "SKIP: code/deck_layout_selftest.py not present in this repo"
+elif [ -z "$PY" ]; then
+    echo "SKIP: no python on PATH - deck layout self-test skipped"
+elif ! $PY -c 'import sys; sys.exit(0)' >/dev/null 2>&1; then
+    echo "SKIP: $PY is not a working python - deck layout self-test skipped here"
+else
+    if $PY code/deck_layout_selftest.py; then
+        :
+    else
+        fail=1
+    fi
+fi
+
 exit $fail

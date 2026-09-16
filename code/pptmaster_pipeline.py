@@ -48,8 +48,48 @@ SCHEMA = 'git-pull-arena.pptmaster-local.v1'
 
 
 def log(msg):
-    print('PPTMASTER: %s' % msg)
+    """Print one log line, never raising.
+
+    A GBK console cannot print the checker's own tip text (it carries a
+    copyright sign), and print() writes nothing when the encoder rejects the
+    whole line - round 28 died there and lost the complete problem list that
+    would have named the failing page. Fall back to an ASCII-escaped line so the
+    round log always carries the reason.
+    """
+    text = 'PPTMASTER: %s' % msg
+    try:
+        print(text)
+    except UnicodeEncodeError:
+        try:
+            print(text.encode('ascii', 'backslashreplace').decode('ascii'))
+        except Exception:
+            print('PPTMASTER: <unprintable log line>')
     sys.stdout.flush()
+
+
+def dump_evidence(repo, report_path, pages):
+    """Copy the machine's own checker evidence into results/status/.
+
+    Without this the only trace of a rejected page is one line in a round log
+    from another machine (round 28: "errors=1 blocking=2" and a crash); with it
+    the next round can be read - and replayed - straight from the repo.
+    """
+    status_dir = os.path.join(repo, 'results', 'status')
+    os.makedirs(status_dir, exist_ok=True)
+    copied = []
+    if report_path and os.path.isfile(report_path):
+        dst = os.path.join(status_dir, 'pptmaster_local_quality.json')
+        shutil.copyfile(report_path, dst)
+        copied.append('pptmaster_local_quality.json')
+    svg_dir = os.path.join(status_dir, 'svg')
+    if pages:
+        os.makedirs(svg_dir, exist_ok=True)
+        for old in glob.glob(os.path.join(svg_dir, '*.svg')):
+            os.remove(old)
+        for page in pages:
+            shutil.copyfile(page, os.path.join(svg_dir, os.path.basename(page)))
+        copied.append('svg/ (%d page(s))' % len(pages))
+    return copied
 
 
 def run(cmd, cwd=None, timeout=1800, env=None):
@@ -386,6 +426,10 @@ def main():
     data['svg_pages'] = len(pages)
     log('authored %d SVG page(s) with code/make_deck_pptmaster.py (exit %d)'
         % (len(pages), code))
+    notes = [ln.strip() for ln in out.splitlines()
+             if ln.strip().startswith(('wrote ', 'pages sha256', '[FAIL]', '[WARN]', '       '))]
+    for line in notes[:16]:
+        log('  generator: %s' % line)
     if code != 0 or not pages:
         problems.append('deck generator failed (exit %d): %s' % (code, tail(out)))
 
@@ -401,6 +445,7 @@ def main():
                     cwd=pm, timeout=900)
     report_path = os.path.join(project, 'validation', 'svg_quality_report.json')
     summary = {}
+    rep = {}
     if os.path.isfile(report_path):
         try:
             with open(report_path, encoding='utf-8') as fh:
@@ -417,6 +462,26 @@ def main():
     log('svg_quality_checker exit=%d: total=%s passed=%s warnings=%s errors=%s blocking=%s'
         % (code, data['checker_total'], data['checker_passed'], data['checker_warnings'],
            data['checker_errors'], data.get('checker_blocking')))
+    # name the rejected pages in the log itself (ascii-safe) and keep the whole
+    # report + the authored pages in the repo: guessing at a remote failure is
+    # what cost rounds 26-28
+    rejected = [(f.get('file'), (f.get('errors') or [])[:1])
+                for f in (rep.get('files') or []) if f.get('errors')]
+    for fname, errs in rejected[:4]:
+        log('checker rejects %s: %s' % (fname, str(errs[0] if errs else '')[:220]))
+    checker_log = os.path.join(repo, 'results', 'status', 'pptmaster_local_checker.log')
+    try:
+        os.makedirs(os.path.dirname(checker_log), exist_ok=True)
+        with open(checker_log, 'w', encoding='utf-8') as fh:
+            fh.write(out)
+    except Exception as exc:
+        log('[WARN] could not keep the checker log: %s' % exc)
+    try:
+        kept = dump_evidence(repo, report_path, pages)
+        if kept:
+            log('checker evidence: results/status/%s' % ' + '.join(kept))
+    except Exception as exc:
+        log('[WARN] could not keep the checker evidence: %s' % exc)
     if code != 0:
         problems.append('svg_quality_checker exit %d: %s' % (code, tail(out)))
     if data.get('checker_errors'):

@@ -30,10 +30,12 @@
 
 import argparse
 import glob
+import hashlib
 import json
 import os
 import re
 import sys
+import xml.etree.ElementTree as ET
 
 W, H = 1280, 720
 
@@ -109,8 +111,73 @@ def text_width(s, size):
     return (cjk * CJK_EM + (len(s) - cjk) * ASCII_EM) * size
 
 
+# XML 1.0 has no way to carry these, not even as numeric references: the C0
+# controls other than tab/newline/carriage-return, DEL, the C1 block and lone
+# surrogates. One of them in a page makes svg_quality_checker fail the whole
+# page ("Invalid XML"), so drop them at the door instead of discovering it in
+# the machine's round log.
+BAD_XML_CHAR = re.compile(
+    '[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f\ud800-\udfff\ufffe\uffff]')
+
+
 def esc(s):
-    return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+    s = BAD_XML_CHAR.sub('', s)
+    return (s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+             .replace('"', '&quot;').replace("'", '&apos;'))
+
+
+# ------------------------------------------------------- layout assertions
+# svg_quality_checker fails a page when two of its ordinary direct-root module
+# zones overlap ("keep ordinary direct-root module zones disjoint beyond the
+# 1px tolerance") or when a page is not well-formed XML. Both are cheaper to
+# catch here, where the page name and the two ids are still known, than in a
+# machine round log (field report round 28: 08_numbers.svg, kpi-2/kpi-3 over
+# bar-3, checker exit 1 / blocking=2).
+STRUCTURAL_ROLES = frozenset({
+    'background', 'chrome', 'decoration', 'footer', 'header', 'logo',
+    'page-number', 'watermark'})
+BOUNDS_TOLERANCE = 1.0
+
+
+def root_bounds(svg):
+    """[(id, (left, top, right, bottom))] for the ordinary root module zones."""
+    root = ET.fromstring(svg)
+    zones = []
+    for g in list(root):
+        if g.tag.split('}')[-1] != 'g':
+            continue
+        box = g.get('data-pptx-bounds')
+        if not box:
+            continue
+        role = (g.get('data-pptx-role') or '').strip().lower()
+        if role in STRUCTURAL_ROLES or g.get('data-pptx-placeholder') is not None:
+            continue
+        parts = box.split()
+        if len(parts) != 4:
+            continue
+        x, y, w, h = [float(v) for v in parts]
+        zones.append((g.get('id') or '?', (x, y, x + w, y + h)))
+    return zones
+
+
+def bounds_overlaps(svg):
+    """Messages for every pair of root module zones that overlap on both axes."""
+    bad = []
+    zones = root_bounds(svg)
+    for i in range(len(zones)):
+        for j in range(i + 1, len(zones)):
+            id_a, a = zones[i]
+            id_b, b = zones[j]
+            ox = min(a[2], b[2]) - max(a[0], b[0])
+            oy = min(a[3], b[3]) - max(a[1], b[1])
+            if ox > BOUNDS_TOLERANCE and oy > BOUNDS_TOLERANCE:
+                bad.append('%s overlaps %s by %.0fpx x %.0fpx' % (id_a, id_b, ox, oy))
+    return bad
+
+
+def xml_invalid_chars(svg):
+    """Code points in the text that XML 1.0 cannot carry."""
+    return sorted({ord(ch) for ch in svg if BAD_XML_CHAR.search(ch)})
 
 
 class Page(object):
@@ -557,9 +624,14 @@ def page_numbers():
         p.text(cx + 24, 282, value, 28, accent, weight='700', limit=220)
         p.text(cx + 24, 314, label, 15, MUTED, limit=220)
         p.end()
+    # Scale every bar against the slowest round and cap the height. The old
+    # fixed slope (elapsed/40*180) let a slow round grow its module box up into
+    # the KPI row, and the machine's own numbers did exactly that: kpi-2/kpi-3
+    # data-pptx-bounds overlapped bar-3 (checker exit 1, blocking=2, round 28).
     base = 560
+    slow = max([el for _r, el, _ok in f['rounds']] or [1]) or 1
     for i, (rnd, el, ok) in enumerate(f['rounds']):
-        h = int(max(el, 1) / 40.0 * 180)
+        h = max(24, int(min(max(el, 0), slow) / float(slow) * 150))
         bx = 180 + i * 190
         by = base - h
         accent = LIME if ok else AMBER
@@ -691,27 +763,66 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--out', default='.', help='svg_output directory of the ppt-master project')
     ap.add_argument('--session', default=SESSION)
+    ap.add_argument('--facts', default=None,
+                    help='JSON object replacing the repo-derived numbers '
+                         '(used by code/deck_layout_selftest.py to stress the layout)')
     args = ap.parse_args()
 
     if args.session != SESSION:
         print('[ERROR] this generator is pinned to session %s' % SESSION, file=sys.stderr)
         return 1
 
+    if args.facts:
+        globals()['FACTS'] = json.loads(args.facts)
+
     os.makedirs(args.out, exist_ok=True)
     problems = []
+    notes = []
+    digest = hashlib.sha256()
+    written = []
     for name, builder in BUILDERS:
         page = builder()
         svg = page.svg()
         with open(os.path.join(args.out, name), 'w', encoding='utf-8') as fh:
             fh.write(svg)
-        print('wrote %-24s %6d B' % (name, len(svg.encode('utf-8'))))
-        problems.extend('%s: %s' % (name, w) for w in page.warn)
+        digest.update(svg.encode('utf-8'))
+        written.append(name)
+        print('wrote %-24s %6d B  zones=%2d' % (name, len(svg.encode('utf-8')),
+                                                len(root_bounds(svg))))
+        notes.extend('%s: %s' % (name, w) for w in page.warn)
+        bad_chars = xml_invalid_chars(svg)
+        try:
+            ET.fromstring(svg)
+        except ET.ParseError as exc:
+            problems.append('%s: not well-formed XML (%s); illegal code point(s) %s'
+                            % (name, exc, [hex(c) for c in bad_chars] or 'none'))
+        else:
+            if bad_chars:
+                problems.append('%s: XML-illegal code point(s) %s survived escaping'
+                                % (name, [hex(c) for c in bad_chars]))
+        problems.extend('%s: %s' % (name, m) for m in bounds_overlaps(svg))
 
+    stray = sorted(set(os.path.basename(f) for f in glob.glob(os.path.join(args.out, '*.svg')))
+                   - set(written))
+    if stray:
+        problems.append('unexpected page file(s) in %s: %s' % (args.out, stray))
+
+    print('pages sha256=%s bytes=%d' % (digest.hexdigest()[:16],
+                                        sum(len(open(os.path.join(args.out, n),
+                                                     encoding='utf-8').read().encode('utf-8'))
+                                            for n in written)))
+    if notes:
+        print('[WARN] %d estimated text overflow(s):' % len(notes))
+        for item in notes:
+            print('       ' + item)
     if problems:
-        print('\n[WARN] %d estimated text overflow(s):' % len(problems), file=sys.stderr)
+        print('[FAIL] %d page problem(s) - the machine checker would reject these:'
+              % len(problems))
         for item in problems:
-            print('       ' + item, file=sys.stderr)
-    print('== %d page(s) written to %s' % (len(BUILDERS), os.path.abspath(args.out)))
+            print('       ' + item)
+        return 2
+    print('== %d page(s) written to %s - xml ok, no overlapping module zones'
+          % (len(BUILDERS), os.path.abspath(args.out)))
     return 0
 
 
