@@ -478,18 +478,44 @@ if (Test-Path -LiteralPath $pptScript) {
     Write-Output ('   .. 4a launcher: ' + $psExe)
     $pptCode = 124
     try {
-        $proc = Start-Process -FilePath $psExe -PassThru -WindowStyle Hidden -WorkingDirectory (Get-Location).Path -ArgumentList @(
-            '-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'Bypass',
-            '-File', ('"' + $pptScript + '"')
-        ) -RedirectStandardOutput $pptOut -RedirectStandardError $pptErr
+        # The child is launched through the .NET Process class, not
+        # Start-Process: on this machine Start-Process -PassThru combined with
+        # -RedirectStandardOutput handed back a process object whose ExitCode
+        # was $null, so round 29 reported "failed (exit )" for a child that had
+        # verified the whole install (checker 0 blocking, 12 slides, PowerPoint
+        # opened it, receipt clean). Never read an exit code through that path.
+        $psi = New-Object System.Diagnostics.ProcessStartInfo
+        $psi.FileName = $psExe
+        $psi.Arguments = ('-NoProfile -NonInteractive -ExecutionPolicy Bypass -File "' + $pptScript + '"')
+        $psi.UseShellExecute = $false
+        $psi.RedirectStandardOutput = $true
+        $psi.RedirectStandardError = $true
+        $psi.CreateNoWindow = $true
+        $psi.WorkingDirectory = (Get-Location).Path
+        $child = New-Object System.Diagnostics.Process
+        $child.StartInfo = $psi
+        $null = $child.Start()
+        # drain both pipes as raw bytes while the child runs - reading them one
+        # after the other would deadlock once the second buffer fills, and
+        # decoding here would have to guess between the GBK console text and
+        # the UTF-8 file text the child mixes
+        $outBuf = New-Object System.IO.MemoryStream
+        $errBuf = New-Object System.IO.MemoryStream
+        $outCopy = $child.StandardOutput.BaseStream.CopyToAsync($outBuf)
+        $errCopy = $child.StandardError.BaseStream.CopyToAsync($errBuf)
         # 20 minutes: below the watcher's 30 minute hard cap, so a stall here
         # still produces a verdict instead of a TIMEOUT with no detail
-        if (-not $proc.WaitForExit(1200000)) {
-            try { $proc.Kill() } catch { }
+        if (-not $child.WaitForExit(1200000)) {
+            try { $child.Kill() } catch { }
             Write-Output '   FAIL 4a pptmaster_local.ps1 did not finish in 20 minutes'
             $fail = 1
         } else {
-            $pptCode = $proc.ExitCode
+            $child.WaitForExit()
+            $null = $outCopy.Wait(60000)
+            $null = $errCopy.Wait(60000)
+            [System.IO.File]::WriteAllBytes($pptOut, $outBuf.ToArray())
+            [System.IO.File]::WriteAllBytes($pptErr, $errBuf.ToArray())
+            $pptCode = [int]$child.ExitCode
         }
     } catch {
         # last resort: run it in this process (no exit code, so 4b/4c carry the
@@ -511,6 +537,8 @@ if (Test-Path -LiteralPath $pptScript) {
     }
     if ($pptCode -eq 0) {
         Write-Output '   OK   4a ppt-master installed + verified on this machine (exit 0)'
+    } elseif ($pptCode -eq 126) {
+        Write-Output '   WARN 4a child exit code could not be read - 4b/4c judged the receipt'
     } elseif ($pptCode -ne 124) {
         Write-Output ('   FAIL 4a ppt-master local install/verification failed (exit ' + $pptCode + ')')
         $fail = 1
