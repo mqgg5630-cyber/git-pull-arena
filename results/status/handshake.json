@@ -1,9 +1,9 @@
 {
-  "round": 22,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "verify round 22: local_check.ps1 still parses on this machine, deliverable sha256/OOXML checks pass, 3h reports OK or SKIP (never a false FAIL)",
-  "arena_updated": "2026-09-16 10:48:51",
-  "local_updated": null
+    "round":  22,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "verify round 22: local_check.ps1 still parses on this machine, deliverable sha256/OOXML checks pass, 3h reports OK or SKIP (never a false FAIL)",
+    "arena_updated":  "2026-09-16 10:48:51",
+    "local_updated":  "2026-09-16 18:50:36"
 }
