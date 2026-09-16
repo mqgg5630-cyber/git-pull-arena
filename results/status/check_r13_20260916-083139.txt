@@ -1,0 +1,14 @@
+check round 13 on LAPTOP-R77M5D6M - passed (exit 0)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 11s
+
+OK: all .ps1 files are ASCII-only
+NOTE: python3 is not a working python - trying plain text
+OK: sync.config.json branch=arena/01a0a4f5-git-pull-arena remote=origin (checked without python)
+OK: root scripts identical to skills/git-sync/scripts
+OK: every .ps1 parses
+[FAIL] gate failed (exit 1)
+== accept 2a: silent push PROVEN (ls-remote + push --dry-run, prompts disabled)
+== accept 2b (fallback): one LONG-LIVED loop process - one brief flash per logon,
+   not per poll. For zero flash: admin PowerShell -> .\watch.ps1 -Unregister ;
+   .\watch.ps1 -Register -Headless   (or fix the launcher, see watch-*.log)

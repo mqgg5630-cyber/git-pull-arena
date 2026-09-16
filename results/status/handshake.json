@@ -1,9 +1,9 @@
 {
-  "round": 13,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "v2.6.4 验收 round 13（收尾轮）：① 2a 免点击推送（已达成，复验 auth.ps1 -Verify exit 0）② 2b 值守可见性分级（已达成，复验 watch.ps1 -Status 的 mode）③ 本轮新增：gate 不再假失败（sync.config.json 校验在 python 不可用时走 sed 回退）→ 期望本轮 verdict=passed。本机顺序：.\\sync.ps1 → .\\watch.ps1 -Unregister ; .\\watch.ps1 -Register → 等 2 分钟 → .\\watch.ps1 -Status（last_verdict 应为 passed / last_push: ok）",
-  "arena_updated": "2026-09-16 00:30:02",
-  "local_updated": null
+    "round":  13,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "v2.6.4 验收 round 13（收尾轮）：① 2a 免点击推送（已达成，复验 auth.ps1 -Verify exit 0）② 2b 值守可见性分级（已达成，复验 watch.ps1 -Status 的 mode）③ 本轮新增：gate 不再假失败（sync.config.json 校验在 python 不可用时走 sed 回退）→ 期望本轮 verdict=passed。本机顺序：.\\sync.ps1 → .\\watch.ps1 -Unregister ; .\\watch.ps1 -Register → 等 2 分钟 → .\\watch.ps1 -Status（last_verdict 应为 passed / last_push: ok）",
+    "arena_updated":  "2026-09-16 00:30:02",
+    "local_updated":  "2026-09-16 08:31:50"
 }
