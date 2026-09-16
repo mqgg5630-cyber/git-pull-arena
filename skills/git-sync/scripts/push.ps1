@@ -113,15 +113,34 @@ if ($noPrompt) {
 }
 
 # explicit argument arrays on purpose: no parameter-name guessing in the calls
+# Every git call goes through cmd.exe. Reason (field report 2026-09-16): git
+# writes perfectly ordinary lines to STDERR ("Already on 'branch'", "Switched to
+# branch ..."), and Windows PowerShell 5.1 turns a native command's stderr into
+# a TERMINATING error while $ErrorActionPreference is 'Stop'. That aborted the
+# watcher's poll in the middle of the push step, so the verdict never reached
+# the branch. Through cmd.exe the stderr stays stderr and the exit code is
+# git's own.
+function GitLine([string[]]$a) {
+    $line = 'git'
+    foreach ($x in ($script:GP + $a)) {
+        if ($x -match '[\s"]') { $line += ' "' + ($x -replace '"', '""') + '"' } else { $line += ' ' + $x }
+    }
+    return $line
+}
 function GitRun([string[]]$a) {
-    $all = $script:GP + $a
-    & git @all
+    $null = (cmd /c ((GitLine $a) + ' 2>&1') | Out-String)
     return $LASTEXITCODE
 }
+function GitShow([string[]]$a) {
+    # run it and let the caller see the output on screen
+    $out = (cmd /c ((GitLine $a) + ' 2>&1') | Out-String)
+    $code = $LASTEXITCODE
+    if ($out.TrimEnd()) { Write-Host $out.TrimEnd() }
+    return $code
+}
 function GitOut([string[]]$a) {
-    $all = $script:GP + $a
-    $out = & git @all 2>&1
-    return @{ code = $LASTEXITCODE; text = (($out | Out-String).TrimEnd()) }
+    $out = (cmd /c ((GitLine $a) + ' 2>&1') | Out-String)
+    return @{ code = $LASTEXITCODE; text = $out.TrimEnd() }
 }
 function Test-AuthFailure([string]$text) {
     # the exact wording differs per helper; keep every variant that has been
@@ -187,7 +206,7 @@ if ($pullOut.code -ne 0) {
     # the fast-forward once more.
     $onlyArtifacts = $false
     try {
-        $ahead = @(& git log --format=%s ("{0}..HEAD" -f "$Remote/$Branch") 2>$null)
+        $ahead = @(((GitOut @('log', '--format=%s', ("{0}..HEAD" -f "$Remote/$Branch"))).text) -split "`r?`n" | Where-Object { $_ -match '\S' })
         if ($ahead.Count -gt 0) {
             $onlyArtifacts = $true
             foreach ($subj in $ahead) {
@@ -198,7 +217,7 @@ if ($pullOut.code -ne 0) {
     if ($onlyArtifacts) {
         Write-Host "== local commits are only watcher verdicts - realigning with the remote (files are kept)" -ForegroundColor Cyan
         $null = GitRun @('reset', '--mixed', "$Remote/$Branch")
-        $deleted = @(& git ls-files -d 2>$null)
+        $deleted = @(((GitOut @('ls-files', '-d')).text) -split "`r?`n" | Where-Object { $_ -match '\S' })
         foreach ($d in $deleted) { if ($d) { $null = GitRun @('checkout', '--', $d) } }
         $pullOut = GitOut @('pull', '--ff-only', $Remote, $Branch)
         if ($pullOut.text) { Write-Host $pullOut.text }
@@ -273,5 +292,5 @@ if ($pushOut.code -ne 0) {
 
 Write-Host ""
 Write-Host "== pushed to $Branch :" -ForegroundColor Green
-$null = GitRun @('log', '-1', '--oneline', '--decorate')
+$null = GitShow @('log', '-1', '--oneline', '--decorate')
 exit 0

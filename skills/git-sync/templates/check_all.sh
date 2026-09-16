@@ -37,21 +37,47 @@ if [ "$fail" -eq 0 ]; then
 fi
 
 # -------------------------------------------------------------- 2. config
-if [ -n "$PY" ] && $PY - <<'PY'
+CFG='skills/git-sync/sync.config.json'
+cfgDone=0
+if [ -n "$PY" ]; then
+    # a python on PATH is not necessarily a WORKING python (the Windows Store
+    # stub answers `command -v` and then fails), so prove it before trusting it
+    if $PY -c 'import sys; sys.exit(0)' >/dev/null 2>&1; then
+        cfgOut=$($PY - <<'PYCHECK' 2>&1
 import json
 cfg = json.load(open('skills/git-sync/sync.config.json', encoding='utf-8'))
 branch = cfg.get('branch', '')
 assert branch and branch not in ('main', 'master'), 'bad branch: %r' % branch
 assert cfg.get('remote'), 'remote missing'
 print('OK: sync.config.json branch=%s' % branch)
-PY
-then
-    :
-elif [ -z "$PY" ]; then
-    echo "SKIP: no python on PATH - sync.config.json not validated here"
-else
-    echo "[FAIL] skills/git-sync/sync.config.json is invalid or branch is main/master"
-    fail=1
+PYCHECK
+)
+        cfgCode=$?
+        if [ $cfgCode -eq 0 ]; then
+            echo "$cfgOut"
+            cfgDone=1
+        else
+            echo "NOTE: python could not validate the config (exit $cfgCode) - trying plain text"
+            echo "$cfgOut" | tail -2 | sed 's/^/      /'
+        fi
+    else
+        echo "NOTE: $PY is not a working python - trying plain text"
+    fi
+fi
+if [ $cfgDone -eq 0 ]; then
+    # portable fallback: read the two keys with sed, so a broken/absent python
+    # cannot fail a perfectly valid config (field report 2026-09-16)
+    CFGBR=$(sed -n 's/.*"branch"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' "$CFG" | head -1)
+    CFGRM=$(sed -n 's/.*"remote"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' "$CFG" | head -1)
+    if [ -n "$CFGBR" ] && [ "$CFGBR" != "main" ] && [ "$CFGBR" != "master" ] && [ -n "$CFGRM" ]; then
+        echo "OK: sync.config.json branch=$CFGBR remote=$CFGRM (checked without python)"
+    elif [ ! -f "$CFG" ]; then
+        echo "[FAIL] $CFG is missing"
+        fail=1
+    else
+        echo "[FAIL] $CFG has no usable branch/remote (branch='$CFGBR' remote='$CFGRM')"
+        fail=1
+    fi
 fi
 
 # ------------------------------------------------- 3. root vs skill scripts

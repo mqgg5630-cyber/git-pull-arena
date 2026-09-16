@@ -131,7 +131,19 @@ $stateDir = if ($env:LOCALAPPDATA) { Join-Path $env:LOCALAPPDATA 'git-sync' } el
 if (-not (Test-Path -LiteralPath $stateDir)) { New-Item -ItemType Directory -Force -Path $stateDir | Out-Null }
 $stateFile = Join-Path $stateDir ('watch-' + $repoName + '.json')
 $hostLog   = Join-Path $stateDir ('watch-' + $repoName + '.log')
-$hostExe   = Join-Path $stateDir ('watchhost-' + $repoName + '.exe')
+# the launcher goes into an ASCII-only directory: with a CJK user name
+# (C:\Users\<CJK>\AppData\...) Process.Start on the freshly compiled exe
+# failed with ERROR_BAD_EXE_FORMAT in the field report
+$hostDir = ''
+foreach ($cand in @((Join-Path $env:ProgramData 'git-sync'), (Join-Path $env:PUBLIC 'git-sync'), 'C:\git-sync')) {
+    if (-not $cand) { continue }
+    try {
+        if (-not (Test-Path -LiteralPath $cand)) { New-Item -ItemType Directory -Force -Path $cand -ErrorAction Stop | Out-Null }
+        if (Test-Path -LiteralPath $cand) { $hostDir = $cand; break }
+    } catch { }
+}
+if (-not $hostDir) { $hostDir = $stateDir }
+$hostExe   = Join-Path $hostDir ('watchhost-' + $repoName + '.exe')
 $lockFile  = Join-Path $env:TEMP ($taskName + '.lock')
 
 # ------------------------------------------------------------- state helpers
@@ -323,6 +335,22 @@ function New-WatchHost {
         } catch { $ok = $false }
     }
     if (-not $ok) { return '' }
+    # sanity: a real Windows executable starts with "MZ" - if it does not, the
+    # compiler output was quarantined/blocked (antivirus) and Process.Start will
+    # report "%1 is not a valid Win32 application"
+    try {
+        $fs = [System.IO.File]::OpenRead($tmp)
+        $head = New-Object byte[] 2
+        $null = $fs.Read($head, 0, 2)
+        $fs.Close()
+        if (-not ($head[0] -eq 0x4D -and $head[1] -eq 0x5A)) {
+            Add-Log "launcher exe is not a PE file (MZ missing) - antivirus may have rewritten it: $tmp"
+            return ''
+        }
+    } catch {
+        Add-Log "could not verify the launcher exe: $($_.Exception.Message)"
+        return ''
+    }
     try {
         Move-Item -LiteralPath $tmp -Destination $exe -Force -ErrorAction Stop
         return $exe
@@ -352,6 +380,9 @@ function Test-WatchHost {
         $p = Start-Process -FilePath $Exe -ArgumentList @($PsExe, $smokePs, $repo, $markerB) -NoNewWindow -PassThru
     } catch {
         Add-Log "launcher smoke test could not start: $($_.Exception.Message)"
+        Add-Log "   exe: $Exe ($([System.IO.File]::Exists($Exe)))  size: $((Get-Item -LiteralPath $Exe -ErrorAction SilentlyContinue).Length)"
+        Add-Log '   "%1 is not a valid Win32 application" here means the file was blocked by antivirus'
+        Add-Log '   or the path is not usable - see the launcher path in the message above'
         return $false
     }
     $deadline = (Get-Date).AddSeconds(60)
@@ -503,7 +534,8 @@ if ($Status) {
     } else {
         Write-Host "   heartbeat   : (none yet - the task has never completed a poll)" -ForegroundColor Yellow
     }
-    $logs = @(Get-ChildItem -Path (Join-Path $repo 'results\status') -Filter 'check_r*.txt' -ErrorAction SilentlyContinue | Sort-Object LastWriteTime | Select-Object -Last 1)
+    $logs = @(Get-ChildItem -Path (Join-Path $repo 'results\status') -Filter 'check_r*.txt' -ErrorAction SilentlyContinue |
+              Sort-Object { try { [int]([regex]::Match($_.Name, 'check_r(\d+)').Groups[1].Value) } catch { 0 } } | Select-Object -Last 1)
     if ($logs.Count -gt 0) {
         Write-Host ""
         Write-Host ("   last check  : {0}" -f $logs[0].FullName) -ForegroundColor Cyan
@@ -626,6 +658,7 @@ if ($Register -or $Unregister) {
             $hostPath = New-WatchHost
             if ($hostPath) {
                 Write-Host ("   launcher: {0}" -f $hostPath)
+                Write-Host ("   (ASCII-only path on purpose - a CJK user name breaks Process.Start)" -f $hostPath)
                 Write-Host "== smoke-testing the launcher (throwaway script, 60s max) ..." -ForegroundColor Cyan
                 if (Test-WatchHost -Exe $hostPath -PsExe $psExe) {
                     Write-Host "   launcher works - the task will run with ZERO windows" -ForegroundColor Green
@@ -781,6 +814,25 @@ function Invoke-PollRound {
         try { [Console]::OutputEncoding = $prevEnc } catch { }
         if (-not $raw) { Add-Log 'no handshake yet - idle'; Set-State @{ last_action = 'idle'; last_note = 'no handshake' }; return 0 }
         $hs = (($raw -join "`n") | ConvertFrom-Json)
+
+        # SELF-HEAL: if a verdict commit from an earlier round never made it to
+        # the remote (the push step crashed - field report 2026-09-16), the
+        # agent would wait forever. Push it on this poll, before anything else.
+        $pending = @(((git log --format=%s "$Remote/$Branch..HEAD" 2>$null) | Out-String) -split "`r?`n" |
+                     Where-Object { $_ -match '^check: round' })
+        if ($pending.Count -gt 0) {
+            Write-Host ("== {0} unpushed verdict commit(s) from an earlier round - pushing them now" -f $pending.Count) -ForegroundColor Cyan
+            Add-Log ("self-heal: pushing {0} pending verdict commit(s)" -f $pending.Count)
+            $pushEx = Join-Path $repo 'push.ps1'
+            if (-not (Test-Path -LiteralPath $pushEx)) { $pushEx = Join-Path $PSScriptRoot 'push.ps1' }
+            $phOut = (& $pushEx -NoPrompt 'check: publish pending verdict' 2>&1 | Out-String)
+            if ($phOut.TrimEnd()) { Write-Host $phOut.TrimEnd() }
+            $phCode = $LASTEXITCODE
+            Add-Log "self-heal: push exit $phCode"
+            if ($phCode -eq 0) { Set-State @{ last_push = 'ok'; last_push_detail = 'self-heal' } }
+            else { Set-State @{ last_push = "push failed (exit $phCode)"; last_push_detail = 'self-heal' } }
+        }
+
         if ($hs.arena_state -ne 'awaiting_check' -or $hs.local_state -ne 'pending') {
             Add-Log ("idle (arena={0} local={1})" -f $hs.arena_state, $hs.local_state)
             Set-State @{ last_action = 'idle'; last_note = ("arena={0} local={1}" -f $hs.arena_state, $hs.local_state); last_round = [int]$hs.round }
@@ -852,7 +904,11 @@ function Invoke-PollRound {
         if ($resolved.cmdLine) { $cmdLine = $resolved.cmdLine }
         Add-Log "round ${round}: resolved check_cmd -> $cmdLine"
         $cmdExe = if ($env:ComSpec) { $env:ComSpec } else { 'cmd.exe' }
-        $redir = '"' + $cmdLine + ' > "' + $outFile + '" 2> "' + $errFile + '""'
+        # the exit code is ALSO written into a file by cmd itself: reading
+        # Process.ExitCode back can come out empty (the header "failed (exit )"
+        # in the field report), and the marker file cannot lie
+        $codeFile = [System.IO.Path]::GetTempFileName()
+        $redir = '"' + $cmdLine + ' > "' + $outFile + '" 2> "' + $errFile + '" & echo %ERRORLEVEL% > "' + $codeFile + '""'
         try {
             $p = Start-Process -FilePath $cmdExe -ArgumentList @('/d', '/c', $redir) -WorkingDirectory $repo -NoNewWindow -PassThru
             if (-not $p.WaitForExit($TimeoutMin * 60 * 1000)) {
@@ -861,13 +917,20 @@ function Invoke-PollRound {
                 $null = cmd /c ("taskkill /F /T /PID " + $p.Id + " 2>&1")
                 try { $null = $p.WaitForExit(10000) } catch { }
             }
-            $code = $p.ExitCode
+            $ec = $p.ExitCode
+            if ($null -eq $ec) { $ec = -1 }
+            $code = [int]$ec
         } catch {
             # last resort: run it in-process (no timeout, but a verdict is
             # better than a failed round)
             Add-Log "round ${round}: Start-Process failed ($($_.Exception.Message)) - running in-process"
             $null = cmd /d /c $redir
             $code = $LASTEXITCODE
+        }
+        if (Test-Path -LiteralPath $codeFile) {
+            $rawCode = ((Get-Content -LiteralPath $codeFile -Raw -ErrorAction SilentlyContinue) -replace '[^0-9-]', '')
+            if ($rawCode -match '^-?\d+$') { $code = [int]$rawCode }
+            Remove-Item -LiteralPath $codeFile -Force -ErrorAction SilentlyContinue
         }
         $secs = [int]((Get-Date) - $t0).TotalSeconds
         # PS 5.1 writes its output in the console code page, so read the

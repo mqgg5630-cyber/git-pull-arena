@@ -1,9 +1,9 @@
 {
-    "round":  12,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "v2.6.3 验收 round 12：2a=免点击推送（auth.ps1 -Verify exit 0，已成立）；2b=值守可见性分级（零闪或每次登录闪一次均通过）；本轮重点=值守能完整跑完一轮并把结论推回（前两轮分别卡在 \u0027poll crashed: Already on ...\u0027 与 check_cmd exit 193，均已修）。本机顺序：.\\sync.ps1 → .\\watch.ps1 -Unregister ; .\\watch.ps1 -Register → .\\watch.ps1 -Status（等 2 分钟看 last_push）",
-    "arena_updated":  "2026-09-16 00:22:52",
-    "local_updated":  "2026-09-16 08:26:56"
+  "round": 12,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "v2.6.3 验收 round 12：2a=免点击推送（auth.ps1 -Verify exit 0，已成立）；2b=值守可见性分级（零闪或每次登录闪一次均通过）；本轮重点=值守能完整跑完一轮并把结论推回（前两轮分别卡在 'poll crashed: Already on ...' 与 check_cmd exit 193，均已修）。本机顺序：.\\sync.ps1 → .\\watch.ps1 -Unregister ; .\\watch.ps1 -Register → .\\watch.ps1 -Status（等 2 分钟看 last_push）",
+  "arena_updated": "2026-09-16 00:22:52",
+  "local_updated": null
 }
