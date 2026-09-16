@@ -1,9 +1,9 @@
 {
-    "round":  32,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "verify round 32 on this machine: keep the previously generated deck (out\\DECK_local_20260916.pptx) untouched, then with the installed venv (E:\\0github\\git-sync\\ppt-master\\.venv) build the new umami deck DECK_umami_01a0aa00_v1.pptx: check the 12 authored pages (checker 0 blocking), export native pptx, verify structure+markers, open it read-only in the real PowerPoint, and push results/umami/ back (deck + quality report + page sources + receipt). Receipt must read environment=windows deck_slides=12 checker_blocking=0 markers=ok",
-    "arena_updated":  "2026-09-16 12:55:48",
-    "local_updated":  "2026-09-16 20:56:58"
+  "round": 32,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-16 12:57:29",
+  "local_updated": "2026-09-16 20:56:58"
 }
