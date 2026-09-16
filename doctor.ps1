@@ -205,6 +205,14 @@ if (Test-Path -LiteralPath $stateFile) {
 } else {
     Line 'heartbeat' '(none yet - the watcher has never completed a poll)' 'Yellow'
 }
+if ($cfg) {
+    $hf = $false; $ap = $false; $au = $false
+    try { if ($null -ne $cfg.hands_free) { $hf = [bool]$cfg.hands_free } } catch { }
+    try { if ($null -ne $cfg.auto_pull)  { $ap = [bool]$cfg.auto_pull } } catch { }
+    try { if ($null -ne $cfg.auto_push)  { $au = [bool]$cfg.auto_push } } catch { }
+    if ($hf) { $ap = $true; $au = $true }
+    Line 'hands-free' ("master=$hf auto_pull=$ap auto_push=$au")
+}
 $otherTasks = @()
 try { $otherTasks = @(Get-ScheduledTask -TaskName 'git-sync-watch-*' -ErrorAction SilentlyContinue) } catch { }
 $otherTasks = @($otherTasks | Where-Object { [string]$_.TaskName -ne $taskName })
@@ -270,6 +278,7 @@ Write-Host "   .\watch.ps1 -Status / -Test      is the auto-verification watcher
 Write-Host "   .\watch.ps1 -Register            run the local checks the agent asks for"
 Write-Host "   .\watch.ps1 -Focus               pause other conversations' watchers (this one stays)"
 Write-Host "   .\watch.ps1 -RestoreParked       resume the watchers -Focus paused"
+Write-Host "   .\watch.ps1 -Status              hands-free line: master/auto_pull/auto_push"
 
 # ---------------------------------------------------------------------- fix
 if ($Fix) {

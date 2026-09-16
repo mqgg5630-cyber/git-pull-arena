@@ -1,0 +1,25 @@
+{
+  "description": "v2.7.0 hands-free skill on arena/01a0a821-git-pull-arena: scripts + case study + version + helpers still in watch.ps1 (Focus from v2.6.9 kept).",
+  "require_files": [
+    "skills/git-sync/scripts/agent-handsfree.sh",
+    "skills/git-sync/scripts/agent-criteria.sh",
+    "skills/git-sync/scripts/watch.ps1",
+    "deliverable/HANDS_FREE_v2.7.0.md",
+    "skills/git-sync/VERSION"
+  ],
+  "require_contains": {
+    "skills/git-sync/VERSION": "2.7.0",
+    "skills/git-sync/sync.config.json": "\"hands_free\"",
+    "watch.ps1": "function Invoke-AutoPull",
+    "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus"
+  },
+  "require_regex": {
+    "watch.ps1": "function Invoke-AutoPush"
+  },
+  "min_bytes": {
+    "skills/git-sync/scripts/agent-handsfree.sh": 1000,
+    "skills/git-sync/scripts/agent-criteria.sh": 1000,
+    "deliverable/HANDS_FREE_v2.7.0.md": 800,
+    "watch.ps1": 20000
+  }
+}

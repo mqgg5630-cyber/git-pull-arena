@@ -1,5 +1,5 @@
-> 当前版本 **v2.6.9**（开发分支；新会话暂停其他值守 / `-Focus` 切回；v2.6.8 round 18 真机推送闭环已通过）；`main` 上是 **v2.6.7**。安装/升级：本机 `agent-install.sh` 或 `install.ps1`；
-> 用户侧升级三步：`.\sync.ps1` → `.\watch.ps1 -Unregister ; .\watch.ps1 -Register` → `.\watch.ps1 -Status`。切回本会话：`.\watch.ps1 -Focus`。
+> 当前版本 **v2.7.0**（解放双手：本机 auto_pull/auto_push + Agent `agent-handsfree.sh` 按 success_criteria 自动 accept）。开发自 v2.6.9；`main` 上仍是 v2.6.7。
+> 用户侧升级三步：`.\sync.ps1` → `.\watch.ps1 -Unregister ; .\watch.ps1 -Register` → `.\watch.ps1 -Status`（应看到 `hands-free: master=True`）。切回本会话：`.\watch.ps1 -Focus`。
 
 ---
 name: git-local-arena-sync
@@ -39,7 +39,7 @@ description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件
 | `doctor.ps1` | 体检：环境/分支/远端/落后领先/未提交/stash/LFS/大文件/**技能版本** + **值守/心跳/凭据**（watcher / heartbeat / auth 三行）；**`-Fix` 一键修复** | `.\doctor.ps1 -Fix` |
 | `bootstrap.ps1` | 首次准备：执行策略、git 身份、fetch、切分支、首拉；`-Auto` 追加"免点击凭据 + 注册值守" | `.\bootstrap.ps1 -Auto` |
 | `hardware.ps1` | **采集本机硬件与环境**（OS/CPU/内存/GPU 显存/磁盘/conda/mamba 环境列表，`-Deep` 探测每个环境的 torch+CUDA）写入 `hardware_dir` 并推送 | `.\hardware.ps1 -Deep` |
-| `watch.ps1` | **自动验证循环的本机侧**：`-Register` 注册计划任务跑**常驻循环**（`-Loop`；零窗口启动器优先，冒烟测试失败自动回退 `-Flash`=每次登录闪一次；keeper 每 30 分钟保活；**默认暂停其他会话值守**）；发现 agent 请求检查 → 自动 sync → 跑 `check_cmd`（硬超时）→ 日志落盘 → 静默推回 passed/failed；`-Status`、`-Test`、`-Pause`/`-Resume`/`-Unregister`、**`-Focus` / `-RestoreParked` / `-KeepOthers`** | `.\watch.ps1 -Register` |
+| `watch.ps1` | **自动验证循环的本机侧**：`-Register` 注册常驻循环；**v2.7.0 每轮 auto_pull + auto_push**（hands_free）；请求检查时 sync → `check_cmd` → 推回 passed/failed；`-Status`（含 hands-free 行）、`-Test`、`-Pause`/`-Resume`/`-Unregister`、**`-Focus` / `-RestoreParked` / `-KeepOthers`** | `.\watch.ps1 -Register` |
 | `pr.ps1` | 用 GitHub CLI 开 PR（工作分支 → main），`-Checks` 看 CI | `.\pr.ps1` |
 | `install.ps1` | 把整套技能装到另一个仓库（升级时**保留**对方已有配置） | `.\install.ps1 -Target C:\MyProject -Branch arena/xxx` |
 
@@ -54,6 +54,8 @@ description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件
 | `agent-recover.sh` | 沙箱 `.git` 被重置回基线提交后，保住工作区恢复历史 | `bash skills/git-sync/scripts/agent-recover.sh` |
 | `agent-pr.sh` | 助手侧开 PR / 看 CI（`--dry-run` 只打印） | `bash skills/git-sync/scripts/agent-pr.sh --checks` |
 | `agent-install.sh` | **把这套技能一条命令装进任何仓库**（新会话复用的入口） | 见第 7 节 |
+| `agent-criteria.sh` | **成功标准**：读 `success_criteria.json`（文件/子串/大小/正则/禁止项；`require_files` 支持 glob） | `bash skills/git-sync/scripts/agent-criteria.sh` |
+| `agent-handsfree.sh` | **解放双手闭环**：可选 sync → request → wait 值守 → criteria → 全过则 `--accept` | `bash skills/git-sync/scripts/agent-handsfree.sh --request "..."` |
 
 ### 模板与标识（`skills/git-sync/templates/` 等）
 
@@ -85,7 +87,11 @@ description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件
   "handshake": "results/status/handshake.json",
   "check_cmd": "powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1",
   "check_timeout_min": 30,
-  "lock_stale_min": 45
+  "lock_stale_min": 45,
+  "hands_free": true,
+  "auto_pull": true,
+  "auto_push": true,
+  "success_criteria": "results/status/success_criteria.json"
 }
 ```
 
@@ -240,3 +246,28 @@ bash skills/git-sync/scripts/agent-wait.sh --request "验证X" --auto-accept
   单轮检查有硬超时（`check_timeout_min`，默认 30 分钟），超时判 failed 并在日志头记 `TIMEOUT`；
 * 同一时刻只有一个轮询在跑（文件锁防重叠）；agent 没 `--request` 时值守完全静默；
 * `--accept` 之后值守继续静默待命，直到下一次 `--request`。
+
+## 9. Hands-Free（v2.7.0）—— 解放双手
+
+配置 `hands_free` / `auto_pull` / `auto_push`（见 `sync.config.json`）。值守每轮：
+
+1. `auto_pull` → `sync.ps1`（你不用再手动拉）
+2. `auto_push` → 工作区有非排除脏文件则 `push.ps1 -NoPrompt`（你不用再手动推）
+3. 若 handshake 为 `awaiting_check` → 照旧跑 `check_cmd` 并推回 verdict
+
+Agent 侧一条命令闭环：
+
+```bash
+bash skills/git-sync/scripts/agent-handsfree.sh \
+     --sync "feat: ..." \
+     --request "verify ..." \
+     --timeout 600
+```
+
+它会：sync → request → wait 本机值守 → `agent-criteria.sh` 读 `success_criteria` → 全过则 `--accept` 停下。
+
+成功标准文件默认 `results/status/success_criteria.json`。本机 `code/local_check.ps1` 也会跑同一份。
+案例与安全边界：`deliverable/HANDS_FREE_v2.7.0.md`。
+
+用户侧升级：`.\sync.ps1` → `.\watch.ps1 -Unregister ; .\watch.ps1 -Register` → `.\watch.ps1 -Status`
+（应显示 `hands-free: master=True auto_pull=True auto_push=True`）。

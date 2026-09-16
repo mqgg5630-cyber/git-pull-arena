@@ -64,3 +64,5 @@ cd E:\0github\git-sync\git-pull-arena-s2
 ```
 
 一次恢复所有被暂停的值守：`.\watch.ps1 -RestoreParked`
+
+v2.7.0 起 `bootstrap -Auto` / `-Register` 打开 **hands_free**（自动 pull + 自动 push）。Agent 用 `agent-handsfree.sh` 等本机检查并按 `success_criteria.json` 自动 accept。关掉：配置里 `"hands_free": false` 后重注册。

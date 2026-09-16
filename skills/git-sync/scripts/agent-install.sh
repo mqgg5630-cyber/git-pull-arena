@@ -161,6 +161,16 @@ cfg.setdefault('receipt_history', 'results/sync/history')
 cfg.setdefault('hardware_dir', 'results/hardware')
 cfg.setdefault('handshake', 'results/status/handshake.json')
 cfg.setdefault('check_cmd', 'powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1')
+cfg.setdefault('check_timeout_min', 30)
+cfg.setdefault('lock_stale_min', 45)
+cfg.setdefault('hands_free', True)
+cfg.setdefault('auto_pull', True)
+cfg.setdefault('auto_push', True)
+cfg.setdefault('auto_push_prefix', 'local: auto')
+cfg.setdefault('auto_push_exclude', [
+    '.env', '.env.*', '**/*.pem', '**/*.key',
+    '**/credentials*', '**/*secret*', '**/*token*'])
+cfg.setdefault('success_criteria', 'results/status/success_criteria.json')
 
 with open(cfg_path, 'w', encoding='utf-8') as f:
     json.dump(cfg, f, ensure_ascii=False, indent=2)

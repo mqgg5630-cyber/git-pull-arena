@@ -1,4 +1,4 @@
-> 当前版本 **v2.6.9**（开发分支：新会话暂停其他值守 / `-Focus` 切回；v2.6.8 收尾行 round 18 已通过，清单 `deliverable/CASE_STUDY_v2.6.7.md`）。`main` 上是 **v2.6.7**（PR #1；发行说明 `deliverable/RELEASE_v2.6.7.md`）。
+> 当前版本 **v2.7.0**（解放双手：auto_pull/auto_push + `agent-handsfree.sh`；含 v2.6.9 `-Focus`）。`main` 上是 **v2.6.7**。说明 `deliverable/HANDS_FREE_v2.7.0.md`。
 
 # 本地 ↔ Agent 同步 skill —— 使用说明
 
@@ -7,6 +7,8 @@
 > （新会话引导提示词在 `templates/new-session-prompt.md`，整段复制即用）。
 > 仓库根目录放着同款脚本（`sync.ps1 / push.ps1 / upload.ps1 / download.ps1 / doctor.ps1 / pack.ps1 / bootstrap.ps1 / pr.ps1 / hardware.ps1 / watch.ps1 / auth.ps1 / install.ps1`），
 > 这份 skill 是**通用版 + 说明书**；根目录副本必须与 `scripts\` 下的**逐字节相同**（`code/check_all.sh` 第 3 节会卡）。
+>
+> **v2.7.0（解放双手）**：值守每轮 `auto_pull`（`sync.ps1`）+ `auto_push`（静默 `push.ps1`，排除密钥与 handshake）；Agent 一条 `agent-handsfree.sh`：wait 本机检查 → `agent-criteria.sh` → 全过 `--accept`。配置键 `hands_free` / `success_criteria`。先例：`new`/`arena/01a0a90b-new` round 1 accepted。必须重注册值守。说明 `deliverable/HANDS_FREE_v2.7.0.md`。
 >
 > **v2.6.9（新会话暂停其他值守 / 切回本会话）**：`-Register` 默认把其他 `git-sync-watch-*` **暂停**（Stop + Disable + 杀掉循环 PID，**不 Unregister**）；台账 `%LOCALAPPDATA%\git-sync\parked.json`。新对话装完即只留这一份值守。继续原来的对话：在 HQ 克隆里 `.\watch.ps1 -Focus`（本克隆恢复、其他再暂停）。一次全恢复：`.\watch.ps1 -RestoreParked`。不想动别人：`-Register -KeepOthers`。`-Status` / `doctor.ps1` 列出 other tasks 与 parked 行。last-check 日志按 UTF-8 读（修中文乱码）。说明 `deliverable/FIX_v2.6.9.md`。
 >
@@ -100,7 +102,7 @@ bash skills/git-sync/scripts/agent-pr.sh --checks          # 看 PR 的 CI 状�
 | `scripts/pack.ps1` | 压缩包交付；输出到 `_export\`（已在 `.gitignore` 里，不会被推送） |
 | `scripts/doctor.ps1` | 体检报告 + 技能版本 + LFS/大文件检查 + **值守/心跳/凭据三行**（watcher / heartbeat / auth）；`-Fix` 一键修复；ahead/behind 对比的是 `origin/<分支>`（修复了老版本永远显示 0 的 bug） |
 | `scripts/hardware.ps1` | **本机硬件/环境上报**：OS、CPU、内存、GPU（nvidia-smi 优先，含显存/算力/CUDA 驱动）、磁盘、conda/mamba 环境列表与各环境 python，`-Deep` 再探测每个环境的 torch + CUDA；写入 `hardware_dir`（latest.md/latest.json + 历史快照）并推送 |
-| `scripts/watch.ps1` | **自动验证循环本机侧**：`-Register` 注册计划任务跑**常驻循环**（`-Loop`，一个进程内部轮询；零窗口启动器优先、冒烟测试失败自动回退 `-Flash`=每次登录一次闪窗；keeper 心跳每 30 分钟保活；**默认暂停其他会话的值守**），发现 agent 请求就 sync → 跑 `check_cmd`（硬超时）→ 日志落盘 → 静默推回 passed/failed；`-Status`（模式/心跳年龄/pid 存活/other tasks）、`-Test`、`-Pause/-Resume/-Unregister`、**`-Focus` / `-RestoreParked` / `-KeepOthers`** |
+| `scripts/watch.ps1` | **自动验证循环本机侧**：`-Register` 常驻循环；**v2.7.0 每轮 auto_pull + auto_push**；请求检查时 sync → `check_cmd` → 推回结论；`-Status`/`-Test`/`-Focus`/`-RestoreParked`/`-KeepOthers` |
 | `scripts/bootstrap.ps1` | 首次准备：执行策略、git 身份、fetch、切分支、首拉 |
 | `scripts/pr.ps1` | GitHub CLI 开 PR / 查 CI；`-Base` 换目标分支，`-Checks` 看检查状态 |
 | `scripts/auth.ps1` | **免点击推送**：`-Setup`（**先探测现有配置，能静默拿到凭据就什么都不改**；否则 gh CLI 优先，再退到 GCM，并逐个 store 找已有凭据）/ `-Verify`（prompts 关闭下实跑 `ls-remote` + `push --dry-run`）/ `-MigrateStore`（复制凭据到 dpapi，给 S4U/-Headless 用）/ `-Token`·`-TokenFile`·`-PromptToken`（无浏览器播种令牌，永不回显）/ `-Json`（给 doctor、gate、agent 读）/ `-Unset` |
