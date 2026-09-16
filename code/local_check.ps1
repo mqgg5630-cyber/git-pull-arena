@@ -346,40 +346,76 @@ if (Test-Path -LiteralPath $manRel) {
     Write-Output ('== deliverables: (no ' + $manRel + ' - package checks skipped)')
 }
 
-#    3h. OPTIONAL Office COM open test. Off by default: the watcher runs
-#        non-interactive, and Office automation there can hang until the round
-#        times out. Enable per machine with:  setx GIT_SYNC_OFFICE_COM 1
-if ([string]$env:GIT_SYNC_OFFICE_COM -eq '1') {
-    $comTargets = @(
-        @('Word.Application', 'deliverable\BRIDGE_REPORT_v2.7.4.docx'),
-        @('PowerPoint.Application', 'deliverable\BRIDGE_REPORT_v2.7.4.pptx')
-    )
-    foreach ($pair in $comTargets) {
-        $progId = [string]$pair[0]
-        $target = [string]$pair[1]
-        if (-not (Test-Path -LiteralPath $target)) { continue }
-        $app = $null
-        try {
-            $app = New-Object -ComObject $progId
-            $abs = (Resolve-Path -LiteralPath $target).Path
-            if ($progId -like 'Word*') {
-                $doc = $app.Documents.Open($abs, $false, $true)
-                Write-Output ('   OK   3h opened read-only in ' + $progId + ' : ' + $doc.Name)
-                $doc.Close($false)
-            } else {
-                $pres = $app.Presentations.Open($abs, $true, $false, $false)
-                Write-Output ('   OK   3h opened read-only in ' + $progId + ' : slides=' + $pres.Slides.Count)
-                $pres.Close()
-            }
-        } catch {
-            Write-Output ('   FAIL 3h ' + $progId + ' could not open ' + $target + ' : ' + $_.Exception.Message)
-            $fail = 1
-        } finally {
-            if ($app) { try { $app.Quit() } catch { } }
+#    3h. application-level open test, auto-detected and time-boxed.
+#        The registry is probed for a registered COM server (MS Word / PowerPoint,
+#        or WPS Writer / Presentation). Nothing is launched when no suite is
+#        installed, so an Office-less or WPS-only machine gets SKIP instead of a
+#        false FAIL. The launch runs in a job with a hard timeout, so a hung COM
+#        server can never burn the round (check_timeout_min). Force off:
+#            setx GIT_SYNC_OFFICE_COM 0
+$comTargets = @(
+    @('deliverable\BRIDGE_REPORT_v2.7.4.docx', @('Word.Application', 'KWPS.Application'), 'word'),
+    @('deliverable\BRIDGE_REPORT_v2.7.4.pptx', @('PowerPoint.Application', 'KWPP.Application'), 'deck')
+)
+foreach ($ct in $comTargets) {
+    $target = [string]$ct[0]
+    $kind = [string]$ct[2]
+    if (-not (Test-Path -LiteralPath $target)) { continue }
+    if ([string]$env:GIT_SYNC_OFFICE_COM -eq '0') {
+        Write-Output ('   SKIP 3h ' + $kind + ' open test disabled by GIT_SYNC_OFFICE_COM')
+        continue
+    }
+    $progId = ''
+    foreach ($cand in @($ct[1])) {
+        if (Test-Path -LiteralPath ('Registry::HKEY_CLASSES_ROOT\' + [string]$cand)) {
+            $progId = [string]$cand
+            break
         }
     }
-} else {
-    Write-Output '   SKIP 3h Office COM open test (set GIT_SYNC_OFFICE_COM=1 on this machine to enable)'
+    if (-not $progId) {
+        Write-Output ('   SKIP 3h no registered COM server for ' + $kind + ' (Word/WPS) - the structural checks above stand')
+        continue
+    }
+    $abs = (Resolve-Path -LiteralPath $target).Path
+    $job = $null
+    try {
+        # $PID is a PowerShell automatic variable, hence $srv for the prog id
+        $job = Start-Job -ArgumentList $progId, $abs, $kind -ScriptBlock {
+            param($srv, $path, $k)
+            $app = New-Object -ComObject $srv
+            try {
+                if ($k -eq 'word') {
+                    $doc = $app.Documents.Open($path, $false, $true)
+                    $name = [string]$doc.Name
+                    $doc.Close($false)
+                    return ('opened read-only, name=' + $name)
+                }
+                $pres = $app.Presentations.Open($path, $true, $false, $false)
+                $n = [int]$pres.Slides.Count
+                $pres.Close()
+                return ('opened read-only, slides=' + $n)
+            } finally {
+                try { $app.Quit() } catch { }
+            }
+        }
+        $done = Wait-Job $job -Timeout 120
+        if (-not $done) {
+            Write-Output ('   WARN 3h ' + $progId + ' did not answer in 120s - counted as SKIP, not as a failure')
+            Stop-Job $job -ErrorAction SilentlyContinue
+        } elseif ($job.State -eq 'Completed') {
+            $msg = ((Receive-Job $job | Out-String) -replace '\s+$', '')
+            Write-Output ('   OK   3h ' + $progId + ' ' + $msg + ' : ' + $target)
+        } else {
+            $err = ((Receive-Job $job 2>&1 | Out-String) -replace '\s+$', '')
+            Write-Output ('   FAIL 3h ' + $progId + ' refused to open ' + $target)
+            Write-Output ('        ' + $err)
+            $fail = 1
+        }
+    } catch {
+        Write-Output ('   WARN 3h open test could not run (' + $_.Exception.Message + ') - counted as SKIP')
+    } finally {
+        if ($job) { Remove-Job $job -Force -ErrorAction SilentlyContinue }
+    }
 }
 
 # 4. add your own checks here ...
