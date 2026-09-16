@@ -1,9 +1,9 @@
 {
-  "round": 14,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "v2.6.5 验收 round 14（收尾验证）：① 2a 免点击推送（已达成，复验）② 2b 值守可见性（已达成，复验；现在循环会自我脱离，登录时闪不足一秒）③ 本轮新增验证：退出码现在是真的（cmd /v:on + !ERRORLEVEL!）→ 期望 verdict=passed 且闸门全绿 ④ 新循环不再占用控制台。本机顺序：.\\sync.ps1 → .\\watch.ps1 -Unregister ; .\\watch.ps1 -Register → 等 2 分钟 → .\\watch.ps1 -Status（期望 last_verdict: passed / last_push: ok / loop process: pid ... (running)）",
-  "arena_updated": "2026-09-16 00:36:52",
-  "local_updated": null
+    "round":  14,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "v2.6.5 验收 round 14（收尾验证）：① 2a 免点击推送（已达成，复验）② 2b 值守可见性（已达成，复验；现在循环会自我脱离，登录时闪不足一秒）③ 本轮新增验证：退出码现在是真的（cmd /v:on + !ERRORLEVEL!）→ 期望 verdict=passed 且闸门全绿 ④ 新循环不再占用控制台。本机顺序：.\\sync.ps1 → .\\watch.ps1 -Unregister ; .\\watch.ps1 -Register → 等 2 分钟 → .\\watch.ps1 -Status（期望 last_verdict: passed / last_push: ok / loop process: pid ... (running)）",
+    "arena_updated":  "2026-09-16 00:36:52",
+    "local_updated":  "2026-09-16 08:38:14"
 }
