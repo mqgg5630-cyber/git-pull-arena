@@ -1,9 +1,9 @@
 {
-  "round": 15,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "v2.6.6 验收 round 15（收口验证）：① 2a 免点击推送（复验）② 2b 值守可见性（复验）③ 本轮重点：新循环启动时会清掉同仓库的旧循环（旧版本没有 pid 文件、-Unregister 停不掉它）→ 期望 -Status 里 'other loops' 为空、'loop process: pid ... (running)' 只有一个 ④ 期望同一轮不会再被重跑（v2.6.6 起 agent-sync 不再用过期握手覆盖本地已推回的结论）。本机顺序：.\\sync.ps1 → .\\watch.ps1 -Unregister ; .\\watch.ps1 -Register → .\\watch.ps1 -Status",
-  "arena_updated": "2026-09-16 00:48:09",
-  "local_updated": null
+    "round":  15,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "v2.6.6 验收 round 15（收口验证）：① 2a 免点击推送（复验）② 2b 值守可见性（复验）③ 本轮重点：新循环启动时会清掉同仓库的旧循环（旧版本没有 pid 文件、-Unregister 停不掉它）→ 期望 -Status 里 \u0027other loops\u0027 为空、\u0027loop process: pid ... (running)\u0027 只有一个 ④ 期望同一轮不会再被重跑（v2.6.6 起 agent-sync 不再用过期握手覆盖本地已推回的结论）。本机顺序：.\\sync.ps1 → .\\watch.ps1 -Unregister ; .\\watch.ps1 -Register → .\\watch.ps1 -Status",
+    "arena_updated":  "2026-09-16 00:48:09",
+    "local_updated":  "2026-09-16 08:48:54"
 }
