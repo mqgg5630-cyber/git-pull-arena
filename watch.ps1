@@ -1178,9 +1178,28 @@ if ($Loop) {
     }
     [System.IO.File]::WriteAllText($loopFile, "$PID", (New-Object System.Text.UTF8Encoding($false)))
     Add-Log "loop start (pid $PID, every ${Interval}m, skill v$skillVer, detach=$($env:GIT_SYNC_WATCH_DETACHED))"
+    # If this process ended up owning a visible console, say what is going on
+    # ONCE and then keep saying when the next poll is: the loop never returns to
+    # a prompt, so without this the window looks frozen on its last line
+    # (field question 2026-09-16: "why does it stay stuck on 'verdict pushed'?").
+    $attached = Test-VisibleConsole
+    if ($attached) {
+        Write-Host ""
+        Write-Host "== THIS WINDOW IS THE WATCHER (pid $PID)." -ForegroundColor Cyan
+        Write-Host "   It stays open on purpose: it polls every $Interval min and pushes the verdict" -ForegroundColor Gray
+        Write-Host "   by itself. No prompt will come back here." -ForegroundColor Gray
+        Write-Host "   * leave it open, or close it (the keeper tick restarts it within ${KeeperMin} min)" -ForegroundColor Gray
+        Write-Host "   * type commands in a NEW PowerShell window" -ForegroundColor Gray
+        Write-Host "   * Ctrl+C here stops this loop:  .\watch.ps1 -Pause  /  -Resume" -ForegroundColor Gray
+        Write-Host ""
+    }
     try {
         while ($true) {
             $null = Invoke-PollOnce
+            $next = (Get-Date).AddSeconds($Interval * 60)
+            $line = "== idle - next poll at {0} (Ctrl+C stops this loop)" -f $next.ToString('HH:mm:ss')
+            if ($attached) { Write-Host $line -ForegroundColor DarkGray }
+            Add-Log $line
             Start-Sleep -Seconds ($Interval * 60)
         }
     } finally {
