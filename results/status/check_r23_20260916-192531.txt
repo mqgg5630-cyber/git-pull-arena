@@ -1,0 +1,83 @@
+check round 23 on LAPTOP-R77M5D6M - passed (exit 0)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 21s
+
+OK: all .ps1 files are ASCII-only
+OK: sync.config.json branch=arena/01a0a98d-git-pull-arena
+OK: sync.config.json branch matches HEAD (arena/01a0a98d-git-pull-arena)
+OK: root scripts identical to skills/git-sync/scripts
+OK: no drive-style variable typos ($var:)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+OK: every .ps1 parses
+   (gate ran via E:\hermes\git\bin\bash.exe [git])
+== accept 2a: silent push PROVEN (ls-remote + push --dry-run, prompts disabled)
+== accept 2b (fallback): one LONG-LIVED loop process - one brief flash per logon,
+   not per poll. For zero flash: admin PowerShell -> .\watch.ps1 -Unregister ;
+   .\watch.ps1 -Register -Headless   (or fix the launcher, see watch-*.log)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+== check_loop_summary PASSED
+== accept 2c: watcher closing lines verified (every exit path has its summary)
+== deliverables: 2 Office file(s) declared in deliverable/OFFICE_HASHES.json
+   OK   3a sha256 + bytes match: deliverable/BRIDGE_REPORT_v2.7.4.docx (6575 B, docx)
+   OK   3b all 7 required parts present in deliverable/BRIDGE_REPORT_v2.7.4.docx
+   OK   3c every XML part parses in deliverable/BRIDGE_REPORT_v2.7.4.docx (7 parts)
+   OK   3d every relationship target resolves in deliverable/BRIDGE_REPORT_v2.7.4.docx
+   OK   3e content types cover every part of deliverable/BRIDGE_REPORT_v2.7.4.docx
+   OK   3f all 4 text markers present in deliverable/BRIDGE_REPORT_v2.7.4.docx
+   OK   3a sha256 + bytes match: deliverable/BRIDGE_REPORT_v2.7.4.pptx (20741 B, pptx)
+   OK   3b all 11 required parts present in deliverable/BRIDGE_REPORT_v2.7.4.pptx
+   OK   3c every XML part parses in deliverable/BRIDGE_REPORT_v2.7.4.pptx (31 parts)
+   OK   3d every relationship target resolves in deliverable/BRIDGE_REPORT_v2.7.4.pptx
+   OK   3e content types cover every part of deliverable/BRIDGE_REPORT_v2.7.4.pptx
+   OK   3f all 3 text markers present in deliverable/BRIDGE_REPORT_v2.7.4.pptx
+   OK   3g slides in deliverable/BRIDGE_REPORT_v2.7.4.pptx : 9 >= 9
+   OK   3h Word.Application opened read-only, name=BRIDGE_REPORT_v2.7.4.docx : deliverable\BRIDGE_REPORT_v2.7.4.docx
+   OK   3h PowerPoint.Application opened read-only, slides=9 : deliverable\BRIDGE_REPORT_v2.7.4.pptx
+== accept 2d: hands-free auto_pull/auto_push present in watch.ps1
+== success criteria: results/status/success_criteria.json
+   v2.8.1: 3h open test is data-driven (reads deliverable/OFFICE_HASHES.json instead of a hardcoded file list); the gate finds a WORKING python (python3 / python / py -3) so the local machine stops SKIPping its python checks; the GitHub Actions gate ships as a template (the agent token has no `workflows` scope, so the user commits it); sandbox toolchain unrestricted (pip/.venv allowed) - the only hard rule left is no fake local side.
+   OK   exists: 01a0a821.md (2016 B)
+   OK   exists: skills/git-sync/VERSION (6 B)
+   OK   exists: skills/git-sync/scripts/agent-install.sh (13404 B)
+   OK   exists: skills/git-sync/scripts/agent-handoff.sh (4603 B)
+   OK   exists: skills/git-sync/scripts/agent-handsfree.sh (3989 B)
+   OK   exists: skills/git-sync/scripts/agent-criteria.sh (5190 B)
+   OK   exists: skills/git-sync/scripts/watch.ps1 (84094 B)
+   OK   exists: skills/git-sync/templates/one-sentence.md (6524 B)
+   OK   exists: deliverable/CASE_STUDY_v2.8.0.md (7251 B)
+   OK   exists: deliverable/OFFICE_HASHES.json (2299 B)
+   OK   exists: code/local_check.ps1 (27347 B)
+   OK   exists: watch.ps1 (84094 B)
+   OK   exists: skills/git-sync/templates/gate.yml (1206 B)
+   OK   absent: local/inbox
+   OK   absent: local/status_receipts
+   OK   absent: skills/docx_skill.py
+   OK   absent: local_bridge_skill.py
+   OK   contains skills/git-sync/VERSION <- 2.8.1
+   OK   contains 01a0a821.md <- git clone --quiet --depth 1 -b arena/01a0a98d-git-pull-arena
+   OK   contains skills/git-sync/sync.config.json <- "hands_free"
+   OK   contains skills/git-sync/templates/one-sentence.md <- agent-handoff.sh
+   OK   contains skills/git-sync/scripts/agent-install.sh <- refusing to downgrade
+   OK   contains code/local_check.ps1 <- no Office deliverable declared
+   OK   contains watch.ps1 <- function Invoke-AutoPull
+   OK   contains skills/git-sync/scripts/watch.ps1 <- function Invoke-Focus
+   OK   contains code/check_all.sh <- py -3
+   OK   contains skills/git-sync/templates/gate.yml <- bash -c "$GATE"
+   OK   regex watch.ps1
+   OK   regex code/local_check.ps1
+   OK   regex deliverable/OFFICE_HASHES.json
+   OK   size skills/git-sync/scripts/agent-handoff.sh: 4603 >= 2000
+   OK   size skills/git-sync/scripts/agent-install.sh: 13404 >= 10000
+   OK   size code/local_check.ps1: 27347 >= 12000
+   OK   size deliverable/CASE_STUDY_v2.8.0.md: 7251 >= 3000
+   OK   size deliverable/OFFICE_HASHES.json: 2299 >= 500
+   OK   size watch.ps1: 84094 >= 20000
+   OK   size deliverable/BRIDGE_REPORT_v2.7.4.docx: 6575 <= 3000000
+   OK   size deliverable/BRIDGE_REPORT_v2.7.4.pptx: 20741 <= 3000000
+== local checks passed
