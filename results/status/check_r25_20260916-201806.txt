@@ -1,0 +1,169 @@
+check round 25 on LAPTOP-R77M5D6M - failed (exit 1)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 33s
+
+OK: all .ps1 files are ASCII-only
+OK: sync.config.json branch=arena/01a0aa00-git-pull-arena
+OK: sync.config.json branch matches HEAD (arena/01a0aa00-git-pull-arena)
+OK: root scripts identical to skills/git-sync/scripts
+OK: no drive-style variable typos ($var:)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+OK: every .ps1 parses
+   (gate ran via E:\hermes\git\bin\bash.exe [git])
+== accept 2a: silent push PROVEN (ls-remote + push --dry-run, prompts disabled)
+== accept 2b (fallback): one LONG-LIVED loop process - one brief flash per logon,
+   not per poll. For zero flash: admin PowerShell -> .\watch.ps1 -Unregister ;
+   .\watch.ps1 -Register -Headless   (or fix the launcher, see watch-*.log)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+== check_loop_summary PASSED
+== accept 2c: watcher closing lines verified (every exit path has its summary)
+== deliverables: 7 Office file(s) declared in deliverable/OFFICE_HASHES.json
+   OK   3a sha256 + bytes match: deliverable/BRIDGE_01a0aa00_v2.8.1.docx (40685 B, docx)
+   OK   3b all 6 required parts present in deliverable/BRIDGE_01a0aa00_v2.8.1.docx
+   OK   3c every XML part parses in deliverable/BRIDGE_01a0aa00_v2.8.1.docx (17 parts)
+   OK   3d every relationship target resolves in deliverable/BRIDGE_01a0aa00_v2.8.1.docx
+   OK   3e content types cover every part of deliverable/BRIDGE_01a0aa00_v2.8.1.docx
+   OK   3f all 5 text markers present in deliverable/BRIDGE_01a0aa00_v2.8.1.docx
+   OK   3a sha256 + bytes match: deliverable/BRIDGE_01a0aa00_v2.8.1.pptx (37466 B, pptx)
+   OK   3b all 9 required parts present in deliverable/BRIDGE_01a0aa00_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/BRIDGE_01a0aa00_v2.8.1.pptx (54 parts)
+   OK   3d every relationship target resolves in deliverable/BRIDGE_01a0aa00_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/BRIDGE_01a0aa00_v2.8.1.pptx
+   OK   3f all 5 text markers present in deliverable/BRIDGE_01a0aa00_v2.8.1.pptx
+   OK   3g slides in deliverable/BRIDGE_01a0aa00_v2.8.1.pptx : 9 >= 8
+   OK   3a sha256 + bytes match: deliverable/GUIDE_01a0aa00_v2.8.1.docx (40598 B, docx)
+   OK   3b all 6 required parts present in deliverable/GUIDE_01a0aa00_v2.8.1.docx
+   OK   3c every XML part parses in deliverable/GUIDE_01a0aa00_v2.8.1.docx (17 parts)
+   OK   3d every relationship target resolves in deliverable/GUIDE_01a0aa00_v2.8.1.docx
+   OK   3e content types cover every part of deliverable/GUIDE_01a0aa00_v2.8.1.docx
+   OK   3f all 9 text markers present in deliverable/GUIDE_01a0aa00_v2.8.1.docx
+   OK   3a sha256 + bytes match: deliverable/GUIDE_01a0aa00_v2.8.1.pptx (40308 B, pptx)
+   OK   3b all 9 required parts present in deliverable/GUIDE_01a0aa00_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/GUIDE_01a0aa00_v2.8.1.pptx (56 parts)
+   OK   3d every relationship target resolves in deliverable/GUIDE_01a0aa00_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/GUIDE_01a0aa00_v2.8.1.pptx
+   OK   3f all 9 text markers present in deliverable/GUIDE_01a0aa00_v2.8.1.pptx
+   OK   3g slides in deliverable/GUIDE_01a0aa00_v2.8.1.pptx : 10 >= 10
+   OK   3a sha256 + bytes match: deliverable/DELIVERY_01a0aa00_v2.8.1.docx (39546 B, docx)
+   OK   3b all 6 required parts present in deliverable/DELIVERY_01a0aa00_v2.8.1.docx
+   OK   3c every XML part parses in deliverable/DELIVERY_01a0aa00_v2.8.1.docx (17 parts)
+   OK   3d every relationship target resolves in deliverable/DELIVERY_01a0aa00_v2.8.1.docx
+   OK   3e content types cover every part of deliverable/DELIVERY_01a0aa00_v2.8.1.docx
+   OK   3f all 8 text markers present in deliverable/DELIVERY_01a0aa00_v2.8.1.docx
+   OK   3a sha256 + bytes match: deliverable/DELIVERY_01a0aa00_v2.8.1.pptx (35029 B, pptx)
+   OK   3b all 9 required parts present in deliverable/DELIVERY_01a0aa00_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/DELIVERY_01a0aa00_v2.8.1.pptx (50 parts)
+   OK   3d every relationship target resolves in deliverable/DELIVERY_01a0aa00_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/DELIVERY_01a0aa00_v2.8.1.pptx
+   OK   3f all 8 text markers present in deliverable/DELIVERY_01a0aa00_v2.8.1.pptx
+   OK   3g slides in deliverable/DELIVERY_01a0aa00_v2.8.1.pptx : 7 >= 6
+   OK   3a sha256 + bytes match: deliverable/DECK_01a0aa00_v2.8.1.pptx (46727 B, pptx)
+   OK   3b all 9 required parts present in deliverable/DECK_01a0aa00_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/DECK_01a0aa00_v2.8.1.pptx (40 parts)
+   OK   3d every relationship target resolves in deliverable/DECK_01a0aa00_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/DECK_01a0aa00_v2.8.1.pptx
+   OK   3f all 7 text markers present in deliverable/DECK_01a0aa00_v2.8.1.pptx
+   OK   3g slides in deliverable/DECK_01a0aa00_v2.8.1.pptx : 12 >= 12
+   OK   3h Word.Application opened read-only, name=BRIDGE_01a0aa00_v2.8.1.docx : deliverable\BRIDGE_01a0aa00_v2.8.1.docx
+   OK   3h PowerPoint.Application opened read-only, slides=9 : deliverable\BRIDGE_01a0aa00_v2.8.1.pptx
+   OK   3h Word.Application opened read-only, name=GUIDE_01a0aa00_v2.8.1.docx : deliverable\GUIDE_01a0aa00_v2.8.1.docx
+   OK   3h PowerPoint.Application opened read-only, slides=10 : deliverable\GUIDE_01a0aa00_v2.8.1.pptx
+   OK   3h Word.Application opened read-only, name=DELIVERY_01a0aa00_v2.8.1.docx : deliverable\DELIVERY_01a0aa00_v2.8.1.docx
+   OK   3h PowerPoint.Application opened read-only, slides=7 : deliverable\DELIVERY_01a0aa00_v2.8.1.pptx
+   OK   3h PowerPoint.Application opened read-only, slides=12 : deliverable\DECK_01a0aa00_v2.8.1.pptx
+== ppt-master: local install + local deck generation
+   FAIL 4a could not start pptmaster_local.ps1: 由于出现以下错误，无法运行此命令: %1 不是有效的 Win32 应用程序。。
+   OK   4b receipt: deck_slides=12
+   OK   4b receipt: checker_blocking=0
+   OK   4b receipt: markers=ok
+   WARN 4c PowerPoint COM unavailable - counted as SKIP (structural checks stand)
+== accept 2d: hands-free auto_pull/auto_push present in watch.ps1
+== success criteria: results/status/success_criteria.json
+   session 01a0aa00 on arena/01a0aa00-git-pull-arena (round 25): the user asked whether PPT Master can be installed on THEIR machine and for the self-loop to verify both the install and that the machine can produce a good pptx. Round 25 does exactly that: code/pptmaster_local.ps1 is executed by code/local_check.ps1 on the Windows machine (section 4 of every verification round) - it clones hugohe3/ppt-master into <parent>\ppt-master, creates a venv, pip-installs the dependencies, runs attribution_guard, authors the 12 deck pages from code/make_deck_pptmaster.py, passes svg_quality_checker with 0 blocking findings, exports a native DrawingML pptx, verifies that file structurally, runs ppt-master's own pptx_delivery_check and opens it read-only in the real PowerPoint. The machine writes results/status/pptmaster_local.json + .txt (env=windows, deck_slides=12, checker_blocking=0, markers=ok, powerpoint=yes) and the watcher pushes them back. Round 25's earlier work still stands: DECK_01a0aa00_v2.8.1.pptx is the delivered 12-page deck, every number on its slides is read from the repo, and the seven artifacts in deliverable/OFFICE_HASHES.json are judged 3a-3h by the same machine. 'Local' is always that scheduled task on the user's PC - never a sandbox folder, never a stand-in skill.
+   OK   exists: 01a0a821.md (3609 B)
+   OK   exists: results/status/handshake.json (620 B)
+   OK   exists: skills/git-sync/VERSION (6 B)
+   OK   exists: skills/git-sync/scripts/agent-install.sh (13404 B)
+   OK   exists: skills/git-sync/scripts/agent-handoff.sh (4603 B)
+   OK   exists: skills/git-sync/scripts/agent-check.sh (8390 B)
+   OK   exists: skills/git-sync/scripts/agent-wait.sh (5942 B)
+   OK   exists: skills/git-sync/scripts/agent-handsfree.sh (3989 B)
+   OK   exists: skills/git-sync/scripts/agent-criteria.sh (5190 B)
+   OK   exists: skills/git-sync/scripts/watch.ps1 (84094 B)
+   OK   exists: skills/git-sync/templates/one-sentence.md (6524 B)
+   OK   exists: skills/git-sync/templates/task-loop.md (2238 B)
+   OK   exists: skills/git-sync/templates/gate.yml (1166 B)
+   OK   exists: code/check_all.sh (9945 B)
+   OK   exists: code/local_check.ps1 (30993 B)
+   OK   exists: code/make_bridge_report.py (54400 B)
+   OK   exists: deliverable/OFFICE_HASHES.json (7461 B)
+   OK   exists: deliverable/BRIDGE_01a0aa00_v2.8.1.docx (40685 B)
+   OK   exists: deliverable/BRIDGE_01a0aa00_v2.8.1.pptx (37466 B)
+   OK   exists: watch.ps1 (84094 B)
+   OK   exists: deliverable/GUIDE_01a0aa00_v2.8.1.docx (40598 B)
+   OK   exists: deliverable/GUIDE_01a0aa00_v2.8.1.pptx (40308 B)
+   OK   exists: deliverable/DELIVERY_01a0aa00_v2.8.1.docx (39546 B)
+   OK   exists: deliverable/DELIVERY_01a0aa00_v2.8.1.pptx (35029 B)
+   OK   exists: code/make_deck_pptmaster.py (32504 B)
+   OK   exists: deliverable/DECK_01a0aa00_v2.8.1.pptx (46727 B)
+   OK   exists: results/status/deck_build.md (6665 B)
+   OK   exists: code/pptmaster_local.ps1 (19236 B)
+   OK   exists: code/pptmaster_pipeline.py (22496 B)
+   OK   exists: results/status/pptmaster_install.md (5702 B)
+   OK   exists: results/status/pptmaster_local.json (1270 B)
+   OK   exists: results/status/pptmaster_local.txt (218 B)
+   OK   absent: local/inbox
+   OK   absent: local/status_receipts
+   OK   absent: skills/docx_skill.py
+   OK   absent: local_bridge_skill.py
+   OK   contains skills/git-sync/VERSION <- 2.8.1
+   OK   contains skills/git-sync/sync.config.json <- arena/01a0aa00-git-pull-arena
+   OK   contains 01a0a821.md <- arena/01a0aa00-git-pull-arena
+   OK   contains skills/git-sync/templates/one-sentence.md <- agent-handoff.sh
+   OK   contains skills/git-sync/scripts/agent-install.sh <- refusing to downgrade
+   OK   contains code/check_all.sh <- py -3
+   OK   contains watch.ps1 <- function Invoke-AutoPull
+   OK   contains skills/git-sync/scripts/watch.ps1 <- function Invoke-Focus
+   OK   contains deliverable/OFFICE_HASHES.json <- arena/01a0aa00-git-pull-arena
+   OK   contains code/make_deck_pptmaster.py <- svg_to_pptx.py
+   OK   contains results/status/deck_build.md <- svg_quality_checker.py
+   OK   contains results/status/pptmaster_local.txt <- deck_slides=12
+   OK   contains code/pptmaster_local.ps1 <- attribution_guard
+   OK   contains code/pptmaster_pipeline.py <- svg_quality_checker.py
+   OK   contains results/status/pptmaster_install.md <- make-deck.cmd
+   OK   regex watch.ps1
+   OK   regex code/local_check.ps1
+   OK   regex deliverable/OFFICE_HASHES.json
+   OK   size skills/git-sync/scripts/agent-handoff.sh: 4603 >= 2000
+   OK   size skills/git-sync/scripts/agent-install.sh: 13404 >= 10000
+   OK   size skills/git-sync/scripts/agent-check.sh: 8390 >= 4000
+   OK   size code/check_all.sh: 9945 >= 8000
+   OK   size code/local_check.ps1: 30993 >= 12000
+   OK   size code/make_bridge_report.py: 54400 >= 8000
+   OK   size deliverable/OFFICE_HASHES.json: 7461 >= 500
+   OK   size deliverable/BRIDGE_01a0aa00_v2.8.1.docx: 40685 >= 5000
+   OK   size deliverable/BRIDGE_01a0aa00_v2.8.1.pptx: 37466 >= 15000
+   OK   size watch.ps1: 84094 >= 20000
+   OK   size deliverable/GUIDE_01a0aa00_v2.8.1.docx: 40598 >= 5000
+   OK   size deliverable/GUIDE_01a0aa00_v2.8.1.pptx: 40308 >= 15000
+   OK   size deliverable/DELIVERY_01a0aa00_v2.8.1.docx: 39546 >= 5000
+   OK   size deliverable/DELIVERY_01a0aa00_v2.8.1.pptx: 35029 >= 15000
+   OK   size deliverable/DECK_01a0aa00_v2.8.1.pptx: 46727 >= 20000
+   OK   size code/make_deck_pptmaster.py: 32504 >= 8000
+   OK   size code/pptmaster_local.ps1: 19236 >= 8000
+   OK   size code/pptmaster_pipeline.py: 22496 >= 8000
+   OK   size results/status/pptmaster_install.md: 5702 >= 2000
+   OK   size results/status/pptmaster_local.txt: 218 >= 100
+   OK   size deliverable/BRIDGE_01a0aa00_v2.8.1.docx: 40685 <= 3000000
+   OK   size deliverable/BRIDGE_01a0aa00_v2.8.1.pptx: 37466 <= 3000000
+   OK   size deliverable/GUIDE_01a0aa00_v2.8.1.docx: 40598 <= 3000000
+   OK   size deliverable/GUIDE_01a0aa00_v2.8.1.pptx: 40308 <= 3000000
+   OK   size deliverable/DELIVERY_01a0aa00_v2.8.1.docx: 39546 <= 3000000
+   OK   size deliverable/DELIVERY_01a0aa00_v2.8.1.pptx: 35029 <= 3000000
+   OK   size deliverable/DECK_01a0aa00_v2.8.1.pptx: 46727 <= 3000000
