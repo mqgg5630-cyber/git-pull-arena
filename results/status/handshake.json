@@ -1,9 +1,9 @@
 {
-  "round": 28,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "verify round 28: PPT Master install on this machine - venv + deps + author the 12 deck pages HERE + svg_quality_checker + svg_to_pptx + real PowerPoint open; receipt results/status/pptmaster_local.txt must read environment=windows, deck_slides=12, checker_blocking=0, markers=ok, powerpoint=yes",
-  "arena_updated": "2026-09-16 12:25:52",
-  "local_updated": null
+    "round":  28,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "verify round 28: PPT Master install on this machine - venv + deps + author the 12 deck pages HERE + svg_quality_checker + svg_to_pptx + real PowerPoint open; receipt results/status/pptmaster_local.txt must read environment=windows, deck_slides=12, checker_blocking=0, markers=ok, powerpoint=yes",
+    "arena_updated":  "2026-09-16 12:25:52",
+    "local_updated":  "2026-09-16 20:28:12"
 }
