@@ -162,6 +162,15 @@ with open(path, 'w', encoding='utf-8') as f:
 PY
   MSG="check: request round $NEW_ROUND (awaiting local check)"
 else
+  # The machine owns the files under results/ during a round: it writes the
+  # receipt, the evidence and the check log, then pushes them back. Our worktree
+  # can still hold the OLD copies (a sandbox run's receipt, an older evidence
+  # page), and `git add -A` below would re-commit those over the machine's own
+  # report - round 30: the machine's windows receipt arrived in e9365f6 and a
+  # sandbox copy replaced it in the very next commit. So take the remote's copy
+  # of that tree first; the handshake is re-seeded right after and is the only
+  # file this commit is meant to change.
+  git checkout "$ORIGIN" -- results 2>/dev/null || true
   # seed the file from the REMOTE handshake first: the worktree copy can be
   # stale (no sync since the request), and accepting on top of it would
   # clobber the watcher's verdict (local_state / host / local_updated)
