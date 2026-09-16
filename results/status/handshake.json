@@ -1,9 +1,9 @@
 {
-    "round":  21,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "verify round 21: four Office deliverables (BRIDGE + GUIDE, docx/pptx) judged on the real machine - 3a-3h incl. real Word/PowerPoint open, plus the gate and 2a-2d",
-    "arena_updated":  "2026-09-16 11:46:39",
-    "local_updated":  "2026-09-16 19:48:46"
+  "round": 21,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-16 11:49:01",
+  "local_updated": "2026-09-16 19:48:46"
 }
