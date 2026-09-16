@@ -179,6 +179,71 @@ if (-not (Test-Path -LiteralPath (Join-Path $Install 'skills\ppt-master\SKILL.md
 }
 
 # --------------------------------------------------------------- 2. python
+# The scheduled task does NOT inherit an activated conda shell, so a machine
+# whose python only exists inside a conda env has no working python on PATH
+# (round 26: "no python 3.10+ found" while E:\spider\python.exe was right
+# there). Look in every place that can name one, in order of confidence:
+#   explicit env var -> venv -> PATH -> conda base -> the repo's OWN hardware
+#   report -> the Windows registry -> the well-known install dirs -> py launcher
+$pyCands = New-Object System.Collections.ArrayList
+function Add-Cand($cand) {
+    if (-not $cand) { return }
+    $c = [string]$cand
+    if (-not $c) { return }
+    if (-not $pyCands.Contains($c)) { [void]$pyCands.Add($c) }
+}
+
+if ($env:GIT_SYNC_PPTMASTER_PYTHON) { Add-Cand $env:GIT_SYNC_PPTMASTER_PYTHON }
+foreach ($name in @('python', 'python.exe', 'python3', 'python3.exe')) {
+    $c = Get-Command $name -ErrorAction SilentlyContinue | Select-Object -First 1
+    if ($c -and $c.Source) { Add-Cand ([string]$c.Source) }
+}
+if ($env:CONDA_PREFIX) { Add-Cand (Join-Path $env:CONDA_PREFIX 'python.exe') }
+$condaCmd = Get-Command conda -ErrorAction SilentlyContinue | Select-Object -First 1
+if ($condaCmd -and $condaCmd.Source) {
+    $base = (Run-Native ([string]$condaCmd.Source) @('info', '--base')).out.Trim()
+    if ($base -and (Test-Path -LiteralPath $base)) { Add-Cand (Join-Path $base 'python.exe') }
+}
+$hwReport = Join-Path $Repo 'results\hardware\latest.json'
+if (Test-Path -LiteralPath $hwReport) {
+    try {
+        $hwj = Get-Content -LiteralPath $hwReport -Raw -Encoding UTF8 | ConvertFrom-Json
+        $globalPy = [string]$hwj.python.global_python
+        if ($globalPy -and $globalPy -match '\(([^)]+)\)') { Add-Cand $Matches[1] }
+        foreach ($e in @($hwj.python.envs)) {
+            if ($e.path) { Add-Cand (Join-Path ([string]$e.path) 'python.exe') }
+        }
+    } catch {
+        Say ('[WARN] could not read the hardware report for python paths: ' + $_.Exception.Message)
+    }
+}
+foreach ($root in @('HKLM:\SOFTWARE\Python\PythonCore', 'HKCU:\SOFTWARE\Python\PythonCore',
+                    'HKLM:\SOFTWARE\Python\ContinuumAnalytics')) {
+    try {
+        foreach ($key in @(Get-ChildItem -Path $root -ErrorAction SilentlyContinue)) {
+            $ip = Join-Path $key.PSPath 'InstallPath'
+            if (-not (Test-Path -LiteralPath $ip)) { continue }
+            $val = Get-ItemProperty -Path $ip -ErrorAction SilentlyContinue
+            if ($val.ExecutablePath) { Add-Cand ([string]$val.ExecutablePath) }
+            $def = $val.'(default)'
+            if ($def) { Add-Cand (Join-Path ([string]$def) 'python.exe') }
+        }
+    } catch { }
+}
+foreach ($dir in @($env:ProgramData, $env:LOCALAPPDATA, $env:USERPROFILE)) {
+    if (-not $dir) { continue }
+    foreach ($name in @('miniconda3', 'anaconda3', 'Programs\Python\Python313',
+                        'Programs\Python\Python312', 'Programs\Python\Python311',
+                        'Programs\Python\Python310')) {
+        Add-Cand (Join-Path (Join-Path $dir $name) 'python.exe')
+    }
+}
+foreach ($p in @('E:\spider\python.exe', 'E:\spyder\python.exe', 'C:\Python313\python.exe',
+                 'C:\Python312\python.exe', 'C:\Python311\python.exe', 'C:\Python310\python.exe')) {
+    Add-Cand $p
+}
+if ($env:ProgramFiles) { Add-Cand (Join-Path $env:ProgramFiles 'Python313\python.exe') }
+
 $basePy = ''
 $basePre = @()
 $baseVer = ''
@@ -186,33 +251,21 @@ if (Test-Path -LiteralPath $VenvPy) {
     $basePy = $VenvPy
     $baseVer = Test-Py -Exe $VenvPy -Pre @()
 } else {
-    $cands = New-Object System.Collections.ArrayList
-    if ($env:GIT_SYNC_PPTMASTER_PYTHON) { [void]$cands.Add([string]$env:GIT_SYNC_PPTMASTER_PYTHON) }
-    foreach ($name in @('python', 'python3')) {
-        $c = Get-Command $name -ErrorAction SilentlyContinue | Select-Object -First 1
-        if ($c -and $c.Source) { [void]$cands.Add([string]$c.Source) }
-    }
-    if ($env:CONDA_PREFIX) { [void]$cands.Add((Join-Path $env:CONDA_PREFIX 'python.exe')) }
-    if ($env:ProgramData) { [void]$cands.Add((Join-Path $env:ProgramData 'miniconda3\python.exe')) }
-    if ($env:USERPROFILE) {
-        [void]$cands.Add((Join-Path $env:USERPROFILE 'miniconda3\python.exe'))
-        [void]$cands.Add((Join-Path $env:USERPROFILE 'anaconda3\python.exe'))
-    }
-    [void]$cands.Add('E:\spyder\python.exe')
-    foreach ($c in $cands) {
+    foreach ($c in $pyCands) {
         $v = Test-Py -Exe $c -Pre @()
         if ($v) { $basePy = $c; $baseVer = $v; break }
     }
     if (-not $basePy) {
-        $pyCmd = Get-Command py -ErrorAction SilentlyContinue | Select-Object -First 1
-        if ($pyCmd) {
-            $v = Test-Py -Exe 'py' -Pre @('-3')
-            if ($v) { $basePy = 'py'; $basePre = @('-3'); $baseVer = $v }
+        foreach ($ver in @('-3', '-3.13', '-3.12', '-3.11', '-3.10')) {
+            $v = Test-Py -Exe 'py' -Pre @($ver)
+            if ($v) { $basePy = 'py'; $basePre = @($ver); $baseVer = $v; break }
         }
     }
 }
 if (-not $basePy -or -not $baseVer) {
-    Say '[FAIL] no python 3.10+ found (set GIT_SYNC_PPTMASTER_PYTHON to point at one)'
+    Say ('[FAIL] no python 3.10+ found; tried ' + $pyCands.Count + ' candidate(s):')
+    foreach ($c in $pyCands) { Say ('        - ' + $c) }
+    Say '        set GIT_SYNC_PPTMASTER_PYTHON to the python.exe to use'
     exit 1
 }
 Say ('python  : ' + $basePy + ' ' + $baseVer)
