@@ -1,9 +1,25 @@
-# 用户一句话 —— 助手必须自动跑完全套（装技能 + 打通本机 + 可选自循环）
+# 用户一句话 —— 助手必须自动跑完全套（先打通本机，再自循环）
 
 用户在**任何新 Arena 会话**里发下面这类话（有无 markdown 链接、有无后半段任务，都算同一套入口）。
 助手**不要再向用户要长提示词**。
 
-## 触发句（等价，命中任一条就开跑）
+## 铁律（违反 = 没打通，不许说完成）
+
+1. **「与本地打通」= 用户 Windows 上的 git 克隆 + `.\watch.ps1` 计划任务。**
+   不是沙箱里建 `local/inbox/`，不是 python `local_bridge`，不是 `copy_to_local()`，
+   不是自己写一套 `skills/docx_skill.py`。那些都是假本机。
+2. **必须安装的 skills** 只有这一份：
+   `https://github.com/mqgg5630-cyber/git-pull-arena` 分支 `arena/01a0a821-git-pull-arena`
+   里的 `skills/git-sync`（第 1 节那条 clone 命令）。
+   `https://arena.ai/agent/01a0a821-...` 也指向这一份，**禁止**用 python 复刻。
+3. **给用户的第一条可见回复必须是第 2 节填好的 PowerShell**（clone 新文件夹 + `bootstrap -Auto`）。
+   在用户还没拿到这段命令之前：不许生成 docx/pptx、不许自循环、不许写 LOOP_COMPLETED、
+   不许说「已返回本机」。
+4. 自循环只准走 `agent-handsfree.sh --timeout auto`（git 握手 + 本机值守回传）。
+   exit 3 = 本机值守没起来 → **停**，再贴一次 PowerShell，**不要**假装成功。
+5. 禁止覆盖文件夹：`git-pull-arena` / `git-pull-arena-v268` / `git-pull-arena-s2`。
+
+## 触发句（等价）
 
 ```text
 安装 arena/01a0a821-git-pull-arena skills, 与本地打通
@@ -14,36 +30,28 @@
 并实现自循环任务，将这个生成docx和pptx返回到本机，本机并把结果状态push到分支，一直自动循环知道你觉得结果没问题
 ```
 
-也算（关键词：`安装` + `skills` + `打通`；后半段任务可换）：
-
-- `安装 https://github.com/mqgg5630-cyber/git-pull-arena/tree/arena/01a0a821-git-pull-arena 的 skills，与本地打通`
-- `安装 [arena/01a0a821-git-pull-arena](...) skills, 与本地打通`
-- 任务不一定是 docx/pptx：改成「生成报告 / 跑脚本 / 改代码 / 画图」等，只要带 **自循环 / 一直循环直到没问题 / 自动验收**，就走第 3 节任务环
-
-`https://arena.ai/agent/01a0a821-...` = 本技能总部，来源分支永远是
-`arena/01a0a821-git-pull-arena`（仓库 `mqgg5630-cyber/git-pull-arena`）。
+关键词：`安装` + `skills` + `打通`。后半段任务可换（报告 / 脚本 / 改代码 / 画图），
+带 **自循环 / 一直循环直到没问题 / 自动验收** 就走第 3 节——但必须先做完第 1、2 节。
 
 ---
 
-## 0. 先回答「要不要先本地同步？」
+## 0. 要不要先去旧克隆 sync？
 
-**不用等上一个会话。** 新会话这句话本身就会：装技能 → 开始做任务 → 推到**本会话工作分支** → 等本机值守回传 → 标准过了就 accept。
+**不用。** 新会话装技能、做任务、都推到**本会话工作分支**。
 
-但 Windows 计划任务沙箱**按不了**，所以每个**新仓库 / 新会话克隆**本机要粘贴**一次**第 2 节的 PowerShell（`clone` 新文件夹 + `bootstrap -Auto`）。
+本机要对**这个新仓库**粘贴一次第 2 节（沙箱不能注册 Windows 计划任务）。
+跑完不用回「好了」，也不用再 `sync`/`push`。假的 `local/inbox` 不算。
 
 | 时机 | 你要不要动手 |
 |---|---|
-| 这句话发出去之后 | 助手立刻装技能、写标准、做任务、push。**不用**先去 HQ 目录 `.\sync.ps1` |
-| 这个新会话的本机克隆**还没有**值守 | 粘贴一次第 2 节。跑完**不用回「好了」**，也不用再 `sync`/`push` |
-| 值守已经在跑（同一文件夹重开对话） | 什么都不用粘，助手直接自循环 |
-| 任务简单，值守 1～2 分钟推回结论 | `agent-handsfree` **立刻结束**，不会空等到 600 秒 |
-| 任务难，检查要跑十几分钟 | 上限跟 `check_timeout_min`（默认 30 分钟 + 3 分钟余量），等到结束 |
-
-禁止覆盖：`git-pull-arena` / `git-pull-arena-v268` / `git-pull-arena-s2`。
+| 这句话发出去 | 助手先装 git-sync，**先把 PowerShell 发给你** |
+| 这个新会话还没有值守 | 粘贴一次第 2 节 |
+| 值守已在跑（同一文件夹重开） | 不用再粘，助手可以直接 `agent-handsfree` |
+| 简单任务 | 值守一回传，`agent-handsfree` 立刻停（不是死等 600 秒） |
 
 ---
 
-## 1. 助手必须执行（不要问、不要改命令）
+## 1. 助手必须先做（不要问、不要改命令）
 
 ```bash
 git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
@@ -58,15 +66,17 @@ bash skills/git-sync/scripts/agent-sync.sh "feat: install git-sync skill"
 ```bash
 git remote get-url origin
 git rev-parse --abbrev-ref HEAD
+test -f watch.ps1 && test -f skills/git-sync/VERSION && echo "git-sync OK"
 ```
 
 HEAD 若是 `main` / `master`：**停**，先切到本会话工作分支再装。
+若 `watch.ps1` 不存在：**没装上，不许进入第 3 节。**
 
 ---
 
-## 2. 助手必须回复的本机代码（填好，可直接粘）
+## 2. 助手必须立刻回复的本机代码（填好，可直接粘）——第一条回复就是这个
 
-新文件夹建议：`<仓库名>-<工作分支短号>`，例如 `image-to-editable-pptx-01a04caf`。
+新文件夹建议：`<仓库名>-<工作分支短号>`。
 
 ```powershell
 cd E:\0github\git-sync
@@ -91,13 +101,14 @@ cd E:\0github\git-sync\git-pull-arena-s2
 
 ---
 
-## 3. 若用户还说了具体任务 / 自循环 —— 助手接着做（不要等用户再发一句）
+## 3. 本机命令已经发出去之后，若用户还说了具体任务 / 自循环
 
-任务从提示词里抽（docx/pptx 只是例子）。然后：
+任务从提示词里抽（docx/pptx 只是例子）。交付物放 `deliverable/`，用 git 到用户机器，
+**禁止** `local/inbox`。
 
-1. 把交付物做到 `deliverable/`（或任务指定的路径），`agent-sync.sh` 推上**本会话分支**。
-2. 写 `results/status/success_criteria.json`（存在哪些文件、关键子串、最小字节）。本机 `local_check.ps1` 和助手 `agent-criteria.sh` 都读它。
-3. 自循环（失败就改、再请求，直到 accept；**不要**固定睡 600 秒）：
+1. 写 `results/status/success_criteria.json`。
+2. `agent-sync.sh` 推上**本会话分支**。
+3. 自循环：
 
 ```bash
 bash skills/git-sync/scripts/agent-handsfree.sh \
@@ -107,11 +118,8 @@ bash skills/git-sync/scripts/agent-handsfree.sh \
      --interval 15
 ```
 
-- exit 0：本机检查过 + 标准过 + 已 accept → **停**，告诉用户交付物在 `deliverable/`，本机值守会自动拉。
-- exit 2：看 `results/status/check_r*_*.txt` 和 `agent-criteria.sh` 输出 → 修 → 再跑同一条（round+1）。
-- exit 3：本机值守还没起来。再把第 2 节 PowerShell 贴一次（不要改命令），**不要**假装成功。
+- exit 0：本机检查过 + 标准过 + 已 accept → 停。
+- exit 2：看 `results/status/check_r*_*.txt` → 修 → 再跑（round+1）。
+- exit 3：本机没通。再贴第 2 节。**禁止**改口说「沙箱 local/ 已打通」。
 
-`--timeout auto` = `check_timeout_min * 60 + 180`（最短 240 秒，最长 7200 秒）。
-值守一推回 passed/failed，wait **马上返回**。
-
-细节清单：`templates/task-loop.md`。
+`--timeout auto`：结论一到就返回。细节：`templates/task-loop.md`。

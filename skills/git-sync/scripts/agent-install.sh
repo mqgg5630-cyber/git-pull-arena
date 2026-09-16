@@ -200,7 +200,7 @@ if git -C "$REPO" check-ignore -q "skills/git-sync/sync.config.json" 2>/dev/null
 fi
 
 # 4. the user-side scripts at the repo root
-for f in sync push upload download pack doctor bootstrap pr hardware watch auth; do
+for f in sync push upload download pack doctor bootstrap pr hardware watch auth install; do
   if [ -f "$REPO/skills/git-sync/scripts/$f.ps1" ]; then
     cp "$REPO/skills/git-sync/scripts/$f.ps1" "$REPO/$f.ps1"
   fi

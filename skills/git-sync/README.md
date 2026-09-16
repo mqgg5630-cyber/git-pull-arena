@@ -1,4 +1,4 @@
-> 当前版本 **v2.7.1**（解放双手：auto_pull/auto_push + `agent-handsfree.sh`；含 v2.6.9 `-Focus`）。`main` 上是 **v2.6.7**。说明 `deliverable/HANDS_FREE_v2.7.0.md`。
+> 当前版本 **v2.7.2**（解放双手：auto_pull/auto_push + `agent-handsfree.sh`；含 v2.6.9 `-Focus`）。`main` 上是 **v2.6.7**。说明 `deliverable/HANDS_FREE_v2.7.0.md`。
 
 # 本地 ↔ Agent 同步 skill —— 使用说明
 
@@ -7,6 +7,8 @@
 > （新会话引导提示词在 `templates/new-session-prompt.md`，整段复制即用）。
 > 仓库根目录放着同款脚本（`sync.ps1 / push.ps1 / upload.ps1 / download.ps1 / doctor.ps1 / pack.ps1 / bootstrap.ps1 / pr.ps1 / hardware.ps1 / watch.ps1 / auth.ps1 / install.ps1`），
 > 这份 skill 是**通用版 + 说明书**；根目录副本必须与 `scripts\` 下的**逐字节相同**（`code/check_all.sh` 第 3 节会卡）。
+>
+> **v2.7.2（先打通本机，禁止假 local/）**：给用户的第一条回复必须是 `git clone` + `.\bootstrap.ps1 -Auto`；沙箱 `local/inbox` / 自制 python skills **不算**打通；自循环只准 `agent-handsfree.sh`。`agent-install.sh` 补拷 `install.ps1`。
 >
 > **v2.7.1（一句话自循环 + 自适应超时）**：新会话 `安装 ... skills，与本地打通`（可带 arena.ai 链接和具体任务）即装技能并 `agent-handsfree.sh --timeout auto`——值守一回传就停，上限随 `check_timeout_min`，不再死等 600s。协议 `templates/one-sentence.md` / `templates/task-loop.md`。
 >

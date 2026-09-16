@@ -1,4 +1,4 @@
-> 当前版本 **v2.7.1**（一句话触发装技能+自循环；`--timeout auto` 值守一回传就停，上限随 `check_timeout_min`）。开发自 v2.7.0；`main` 上仍是 v2.6.7。
+> 当前版本 **v2.7.2**（一句话触发装技能+自循环；`--timeout auto` 值守一回传就停，上限随 `check_timeout_min`）。开发自 v2.7.0；`main` 上仍是 v2.6.7。
 > 用户侧升级三步：`.\sync.ps1` → `.\watch.ps1 -Unregister ; .\watch.ps1 -Register` → `.\watch.ps1 -Status`（应看到 `hands-free: master=True`）。切回本会话：`.\watch.ps1 -Focus`。
 
 ---
@@ -110,6 +110,7 @@ description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件
 3. **不要 `git init` 再推同一分支**（历史不一致会被拒），也不要在冲突时 `--force`。
 4. **推送前先 `pull --ff-only`**（两个方向的脚本都内建），避免 non-fast-forward。
 5. **大文件不进 git**。放 `build/` 之类被 ignore 的目录，或本地 `pack.ps1` 外发；`doctor.ps1` 会列出超过 50 MB 的被跟踪文件提醒上 Git LFS。
+6. **「与本地打通」不是沙箱 `local/` 目录。** 必须是用户 Windows 上的 `watch.ps1` 计划任务。禁止用 python 复刻 skills、禁止 `local_bridge` / `local/inbox` 冒充本机。给用户的第一条回复必须是填好的 `git clone` + `.\bootstrap.ps1 -Auto`。自循环只准 `agent-handsfree.sh`；exit 3 就是没打通。
 
 ## 4. 故障对照表
 

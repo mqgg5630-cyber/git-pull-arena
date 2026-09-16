@@ -1,5 +1,5 @@
 {
-  "description": "v2.7.1 one-sentence task loop + adaptive timeout; hands-free skill on arena/01a0a821-git-pull-arena.",
+  "description": "v2.7.2: real Windows watcher required; no fake local/inbox; one-sentence task loop.",
   "require_files": [
     "skills/git-sync/scripts/agent-handsfree.sh",
     "skills/git-sync/scripts/agent-criteria.sh",
@@ -8,7 +8,7 @@
     "skills/git-sync/VERSION"
   ],
   "require_contains": {
-    "skills/git-sync/VERSION": "2.7.1",
+    "skills/git-sync/VERSION": "2.7.2",
     "skills/git-sync/sync.config.json": "\"hands_free\"",
     "watch.ps1": "function Invoke-AutoPull",
     "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus"

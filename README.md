@@ -13,11 +13,11 @@
 并实现自循环任务，将这个生成docx和pptx返回到本机，本机并把结果状态push到分支，一直自动循环知道你觉得结果没问题
 ```
 
-助手看到就立刻：装 `skills/git-sync` → 推送 → 回复填好的本机 `git clone` + `.\bootstrap.ps1 -Auto`（**新文件夹**；禁止覆盖 `git-pull-arena` / `git-pull-arena-v268` / `git-pull-arena-s2`）→ 若有具体任务则马上做并 `agent-handsfree.sh --timeout auto`（值守一回传就停，不空等 600 秒）。**不必**先去旧克隆 `.\sync.ps1`。协议：[`one-sentence.md`](skills/git-sync/templates/one-sentence.md)、[`task-loop.md`](skills/git-sync/templates/task-loop.md)。
+助手看到就立刻：装 `skills/git-sync` → 推送 → 回复填好的本机 `git clone` + `.\bootstrap.ps1 -Auto`（**新文件夹**；禁止覆盖 `git-pull-arena` / `git-pull-arena-v268` / `git-pull-arena-s2`）→ 若有具体任务则马上做并 `agent-handsfree.sh --timeout auto`（值守一回传就停，不空等 600 秒）。**不必**先去旧克隆 `.\sync.ps1`。**禁止**用沙箱 `local/inbox` 冒充本机；第一条回复必须是填好的 PowerShell。协议：[`one-sentence.md`](skills/git-sync/templates/one-sentence.md)、[`task-loop.md`](skills/git-sync/templates/task-loop.md)。
 
 这个仓库验证一条完整链路：**Arena 会话分支（GitHub 远端）⇄ 你的 Windows 本机**。
 同步工具就是 [zhongqi 仓库 arena 分支](https://github.com/mqgg5630-cyber/zhongqi/tree/arena%2F01a09d79-zhongqi) 沉淀的 `skills/git-sync` 技能
-（本仓库 `main` 上是 **v2.6.7**（已发布）：零弹窗值守 + 免点击推送；开发分支上已有 **v2.7.1**（解放双手：值守自动 pull/push + Agent `agent-handsfree.sh` 按成功标准自动 accept；含 v2.6.9 `-Focus`）。v2.6.8 收尾行闸门 **round 18 真机推送闭环已通过**，证据见 [`deliverable/CASE_STUDY_v2.6.7.md`](deliverable/CASE_STUDY_v2.6.7.md)）。安装器 `agent-install.sh` 可以把它一条命令装进任何新仓库。发行说明见 [`deliverable/RELEASE_v2.6.7.md`](deliverable/RELEASE_v2.6.7.md)）。
+（本仓库 `main` 上是 **v2.6.7**（已发布）：零弹窗值守 + 免点击推送；开发分支上已有 **v2.7.2**（解放双手：值守自动 pull/push + Agent `agent-handsfree.sh` 按成功标准自动 accept；含 v2.6.9 `-Focus`）。v2.6.8 收尾行闸门 **round 18 真机推送闭环已通过**，证据见 [`deliverable/CASE_STUDY_v2.6.7.md`](deliverable/CASE_STUDY_v2.6.7.md)）。安装器 `agent-install.sh` 可以把它一条命令装进任何新仓库。发行说明见 [`deliverable/RELEASE_v2.6.7.md`](deliverable/RELEASE_v2.6.7.md)）。
 
 - **工作分支**：`arena/01a0a821-git-pull-arena`（所有脚本只拉/推这个分支；`push.ps1` 直接拒绝 main/master）。本机请克隆到**新文件夹** `git-pull-arena-s2`，不要覆盖 `git-pull-arena`（v2.6.7）和 `git-pull-arena-v268`（上一会话）
 - **两条硬要求（v2.5.0 起是默认行为；v2.6.7 真机验收通过）**：① 值守**零弹窗**（默认编译 GUI 子系统启动器，Task Scheduler 不再闪黑窗）；② 推送**免点击**（`auth.ps1` 一次配好，`push.ps1` 默认静默模式，拿不到凭据快速失败并告诉你怎么修）
