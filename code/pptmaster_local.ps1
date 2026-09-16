@@ -55,14 +55,27 @@ function Run-Native {
 }
 
 function Test-Py {
-    param([string]$Exe, [string[]]$Pre)
+    param([string]$Exe, [string[]]$Pre, [switch]$ShowFail)
     if (-not $Exe) { return '' }
     # a bare command name ("py", "python") resolves through PATH, so only check
     # Test-Path when we were handed an actual filesystem path
     if ($Exe -match '[\\/:]' -and -not (Test-Path -LiteralPath $Exe)) { return '' }
-    $probe = 'import sys; print("%d.%d.%d" % sys.version_info[:3]); sys.exit(0 if sys.version_info>=(3,10) else 1)'
-    $r = Run-Native $Exe (@($Pre) + @('-c', $probe))
+    # 1. --version carries no quotes and no semicolons, so no shell can mangle
+    #    it. Every python 3 answers "Python 3.11.9" on stdout.
+    $v = Run-Native $Exe (@($Pre) + @('--version'))
+    $txt = $v.out.Trim()
+    if ($v.code -eq 0 -and $txt -match 'Python\s+(\d+)\.(\d+)') {
+        $major = [int]$Matches[1]
+        $minor = [int]$Matches[2]
+        if ($major -gt 3 -or ($major -eq 3 -and $minor -ge 10)) { return ($major.ToString() + '.' + $minor.ToString()) }
+    }
+    # 2. probe file (also catches a python whose --version went to stderr)
+    $r = Run-Native $Exe (@($Pre) + @($probeFile))
     if ($r.code -eq 0) { return $r.out.Trim() }
+    if ($ShowFail) {
+        $detail = (($r.out + ' ' + $txt) -replace '\s+', ' ').Trim()
+        Say ('   probe ' + $Exe + ' -> exit ' + $r.code + ' : ' + $detail)
+    }
     return ''
 }
 
@@ -106,6 +119,22 @@ if (Test-Path -LiteralPath $recDir) {
     } catch {
         Say ('[WARN] could not write the preliminary receipt: ' + $_.Exception.Message)
     }
+}
+
+# The python probe runs from a FILE, not from a -c one-liner: Windows
+# PowerShell 5.1 mangles embedded double quotes when it hands an argument to a
+# native command, which made every python look broken in rounds 26 and 27.
+# Put it next to the install (an ASCII path on every machine we have seen),
+# not in %TEMP% - this user's profile path is not ASCII, and a python that
+# cannot find its own script would look exactly like a broken interpreter.
+$probeFile = Join-Path $Root '.git-sync-pptmaster-pyprobe.py'
+$probeBody = "import sys`nif sys.version_info < (3, 10):`n    print('python-is-too-old')`n    sys.exit(1)`nprint('%d.%d.%d' % sys.version_info[:3])`n"
+try {
+    [System.IO.File]::WriteAllText($probeFile, $probeBody, (New-Object System.Text.ASCIIEncoding))
+    Say ('probe   : ' + $probeFile)
+} catch {
+    Say ('[WARN] could not write the python probe file: ' + $_.Exception.Message)
+    $probeFile = Join-Path $Repo 'code\pptmaster_pyprobe.py'
 }
 
 Say ('repo    : ' + $Repo)
@@ -251,8 +280,16 @@ if (Test-Path -LiteralPath $VenvPy) {
     $basePy = $VenvPy
     $baseVer = Test-Py -Exe $VenvPy -Pre @()
 } else {
+    $shown = 0
     foreach ($c in $pyCands) {
-        $v = Test-Py -Exe $c -Pre @()
+        $exists = ($c -match '[\\/:]')
+        $v = ''
+        if ($exists -and $shown -lt 4) {
+            $v = Test-Py -Exe $c -Pre @() -ShowFail
+            if (-not $v) { $shown++ }
+        } else {
+            $v = Test-Py -Exe $c -Pre @()
+        }
         if ($v) { $basePy = $c; $baseVer = $v; break }
     }
     if (-not $basePy) {
@@ -300,6 +337,23 @@ $pyVer = Test-Py -Exe $pyExe -Pre $pyPre
 if (-not $pyVer) {
     Say ('[FAIL] ' + $pyExe + ' cannot run python 3.10+ code')
     exit 1
+}
+# a venv built by a conda python occasionally ships without pip; prove pip
+# works before trusting the venv, and fall back to the base interpreter if not
+if ($pyMode -eq 'venv') {
+    $pv = Run-Native $pyExe (@($pyPre) + @('-m', 'pip', '--version'))
+    if ($pv.code -ne 0) {
+        Say '[WARN] pip is missing inside the venv - running ensurepip'
+        $en = Run-Native $pyExe (@($pyPre) + @('-m', 'ensurepip', '--upgrade'))
+        $pv2 = Run-Native $pyExe (@($pyPre) + @('-m', 'pip', '--version'))
+        if ($pv2.code -ne 0) {
+            Say '[WARN] the venv has no usable pip - falling back to the base interpreter with --user'
+            $pyExe = $basePy
+            $pyPre = $basePre
+            $pyMode = 'user'
+        }
+    }
+    if ($pyMode -eq 'venv') { Say ('pip     : ' + $pv.out.Trim()) }
 }
 
 # ------------------------------------------------------------- 4. deps pip

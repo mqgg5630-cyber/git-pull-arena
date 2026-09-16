@@ -1,5 +1,4 @@
-pptmaster-FAIL environment=windows host=LAPTOP-R77M5D6M
-deck_slides=None checker_blocking=None markers=FAIL powerpoint=na
-python=n/a deps_core=n/a deps_full=n/a slides_svg=0 export=n/a
-install_dir=E:\0github\git-sync\ppt-master
-note=run started at 2026-09-16T12:24:29Z; a completed run rewrites this file
+pptmaster-ok environment=sandbox host=sandbox
+deck_slides=12 checker_blocking=0 markers=ok powerpoint=na
+python=venv deps_core=ok deps_full=partial slides_svg=12 export=passed-with-warnings
+install_dir=/tmp/ppt-master
