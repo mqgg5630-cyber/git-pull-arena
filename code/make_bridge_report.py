@@ -41,7 +41,7 @@ SOURCE_BRANCH = 'arena/01a0a9f0-git-pull-arena'
 SKILL_DEV_BRANCH = 'arena/01a0a98d-git-pull-arena'
 BRANCH_FALLBACK = 'arena/01a0aa00-git-pull-arena'
 FOLDER = 'git-pull-arena-01a0aa00'
-MARKERS = ['2.8.1', 'git-sync', 'local_check.ps1', 'round 1']
+MARKERS = ['2.8.1', 'git-sync', 'local_check.ps1']
 
 HANDOFF = """cd E:\\0github\\git-sync
 git clone -b %s https://github.com/mqgg5630-cyber/git-pull-arena.git %s
@@ -55,7 +55,15 @@ Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 
 # --------------------------------------------------------------------- facts
 def repo_facts():
-    facts = {'branch': BRANCH_FALLBACK, 'version': '2.8.1', 'host': '', 'lines': []}
+    # the round number is the handshake's own counter (the branch inherits the
+    # numbering of the commit it was forked from, so do not assume it starts at 1)
+    facts = {'branch': BRANCH_FALLBACK, 'version': '2.8.1', 'host': '', 'lines': [], 'round': 1}
+    hs = os.path.join(ROOT, 'results', 'status', 'handshake.json')
+    try:
+        with open(hs, encoding='utf-8-sig') as fh:
+            facts['round'] = int(json.load(fh).get('round') or 1)
+    except Exception:
+        pass
     cfg = os.path.join(ROOT, 'skills', 'git-sync', 'sync.config.json')
     try:
         with open(cfg, encoding='utf-8-sig') as fh:
@@ -156,8 +164,9 @@ def docx_body(facts):
         ('b', 'results/status/handshake.json —— round、arena_state（awaiting_check / accepted）、'
               'local_state（pending / passed / failed）、host、时间戳'),
         ('b', 'results/status/check_rN_<时间戳>.txt —— 本机推回的第 N 轮完整日志'),
-        ('b', '本轮（round 1）状态：awaiting_check / pending —— 等这台机器的值守回传。'
-              '在本机粘完第 2 节并跑完 bootstrap 之后，最多一个轮询间隔（默认 2 分钟）就会自动判定。'),
+        ('b', ('本轮（round %d）状态：awaiting_check / pending —— 等这台机器的值守回传。'
+               '在本机粘完第 2 节并跑完 bootstrap 之后，最多一个轮询间隔（默认 2 分钟）就会自动判定。')
+              % facts['round']),
 
         ('h1', '7. 不糊弄的边界'),
         ('b', '「本机」= 你 Windows 上那个计划任务值守（git-sync-watch-%s）；'
@@ -218,8 +227,8 @@ def build_docx(facts):
                 row[i].text = value
 
     doc.add_paragraph()
-    doc.add_paragraph('round 1 = 这一轮（awaiting_check / pending）  |  '
-                      'markers: ' + ' , '.join(MARKERS + [host, facts['branch']]))
+    doc.add_paragraph(('round %d = 这一轮（awaiting_check / pending）  |  markers: '
+                       % facts['round']) + ' , '.join(MARKERS + ['round %d' % facts['round'], host, facts['branch']]))
     doc.save(DOCX)
 
 
@@ -290,7 +299,7 @@ def build_pptx(facts):
     content('怎么读结论', [
         'results/status/handshake.json：round / arena_state / local_state / host',
         'results/status/check_rN_<时间戳>.txt：本机推回的第 N 轮完整日志',
-        '本轮 round 1：awaiting_check / pending —— 等值守回传（默认 2 分钟一轮询）',
+        '本轮 round %d：awaiting_check / pending —— 等值守回传（默认 2 分钟一轮询）' % facts['round'],
         'passed -> agent-check.sh --accept 关闭这一轮',
     ])
 
@@ -434,12 +443,12 @@ def main():
     for path, kind, required, main_part, markers, min_slides in [
         (DOCX, 'docx', ['[Content_Types].xml', '_rels/.rels', 'word/document.xml', 'word/styles.xml',
                         'word/_rels/document.xml.rels', 'docProps/core.xml'], 'word/document.xml',
-         MARKERS + [facts['host'], facts['branch']], None),
+         MARKERS + ['round %d' % facts['round'], facts['host'], facts['branch']], None),
         (PPTX, 'pptx', ['[Content_Types].xml', '_rels/.rels', 'ppt/presentation.xml',
                         'ppt/_rels/presentation.xml.rels', 'ppt/slides/slide1.xml',
                         'ppt/slideMasters/slideMaster1.xml', 'ppt/slideLayouts/slideLayout1.xml',
                         'ppt/theme/theme1.xml', 'docProps/core.xml'], 'ppt/presentation.xml',
-         MARKERS + [facts['host'], facts['branch']], 8),
+         MARKERS + ['round %d' % facts['round'], facts['host'], facts['branch']], 8),
     ]:
         rel = os.path.relpath(path, ROOT).replace(os.sep, '/')
         if verify_only and os.path.isfile(MANIFEST):
