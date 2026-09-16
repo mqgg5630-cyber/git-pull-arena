@@ -1,5 +1,5 @@
 {
-  "description": "v2.7.0 hands-free skill on arena/01a0a821-git-pull-arena: scripts + case study + version + helpers still in watch.ps1 (Focus from v2.6.9 kept).",
+  "description": "v2.7.1 one-sentence task loop + adaptive timeout; hands-free skill on arena/01a0a821-git-pull-arena.",
   "require_files": [
     "skills/git-sync/scripts/agent-handsfree.sh",
     "skills/git-sync/scripts/agent-criteria.sh",
@@ -8,7 +8,7 @@
     "skills/git-sync/VERSION"
   ],
   "require_contains": {
-    "skills/git-sync/VERSION": "2.7.0",
+    "skills/git-sync/VERSION": "2.7.1",
     "skills/git-sync/sync.config.json": "\"hands_free\"",
     "watch.ps1": "function Invoke-AutoPull",
     "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus"

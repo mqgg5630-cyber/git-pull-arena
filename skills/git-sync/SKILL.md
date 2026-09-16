@@ -1,4 +1,4 @@
-> 当前版本 **v2.7.0**（解放双手：本机 auto_pull/auto_push + Agent `agent-handsfree.sh` 按 success_criteria 自动 accept）。开发自 v2.6.9；`main` 上仍是 v2.6.7。
+> 当前版本 **v2.7.1**（一句话触发装技能+自循环；`--timeout auto` 值守一回传就停，上限随 `check_timeout_min`）。开发自 v2.7.0；`main` 上仍是 v2.6.7。
 > 用户侧升级三步：`.\sync.ps1` → `.\watch.ps1 -Unregister ; .\watch.ps1 -Register` → `.\watch.ps1 -Status`（应看到 `hands-free: master=True`）。切回本会话：`.\watch.ps1 -Focus`。
 
 ---
@@ -49,13 +49,13 @@ description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件
 |---|---|---|
 | `agent-sync.sh` | 分支守卫 → fetch → 发散自愈 → gate → **写同步回执并按日期归档** → commit + push | `bash skills/git-sync/scripts/agent-sync.sh "feat: ..."` |
 | `agent-check.sh` | **自动验证循环的助手侧**：`--request` 请求本机检查（round+1）/ `--read` 读结果（exit 0=过 2=败 3=等）/ `--accept` 通过收尾 | `bash skills/git-sync/scripts/agent-check.sh --request "verify X"` |
-| `agent-wait.sh` | **一条命令闭环**：`--request` 后原地轮询远端直到值守推回结果（默认 600s/30s 一次），**整个验证循环在一轮对话内完成**；`--auto-accept` 通过即自动收尾 | `bash skills/git-sync/scripts/agent-wait.sh --request "verify X" --auto-accept` |
+| `agent-wait.sh` | **一条命令闭环**：`--request` 后原地轮询直到值守推回（**一到就停**，默认 `--timeout auto` = 检查时限+3 分钟，不是死等 600s）；`--auto-accept` 通过即收尾 | `bash skills/git-sync/scripts/agent-wait.sh --request "verify X" --timeout auto` |
 | `agent-hardware.sh` | **读取本机硬件报告**（缺失或过期会提醒让用户跑 `hardware.ps1`） | `bash skills/git-sync/scripts/agent-hardware.sh` |
 | `agent-recover.sh` | 沙箱 `.git` 被重置回基线提交后，保住工作区恢复历史 | `bash skills/git-sync/scripts/agent-recover.sh` |
 | `agent-pr.sh` | 助手侧开 PR / 看 CI（`--dry-run` 只打印） | `bash skills/git-sync/scripts/agent-pr.sh --checks` |
 | `agent-install.sh` | **把这套技能一条命令装进任何仓库**（新会话复用的入口） | 见第 7 节 |
 | `agent-criteria.sh` | **成功标准**：读 `success_criteria.json`（文件/子串/大小/正则/禁止项；`require_files` 支持 glob） | `bash skills/git-sync/scripts/agent-criteria.sh` |
-| `agent-handsfree.sh` | **解放双手闭环**：可选 sync → request → wait 值守 → criteria → 全过则 `--accept` | `bash skills/git-sync/scripts/agent-handsfree.sh --request "..."` |
+| `agent-handsfree.sh` | **解放双手闭环**：sync → request → wait（`--timeout auto`）→ criteria → 全过 `--accept` | `bash skills/git-sync/scripts/agent-handsfree.sh --request "..." --timeout auto` |
 
 ### 模板与标识（`skills/git-sync/templates/` 等）
 
@@ -148,13 +148,20 @@ Set-ExecutionPolicy -Scope CurrentUser RemoteSigned      # 只做一次
 
 ## 7. 装进新仓库（用户只发一句话）
 
-用户在任何新 Arena 会话里只说：
+用户在任何新 Arena 会话里只说（带 Arena 链接、带「自循环 / 生成 docx」也算同一套）：
 
 ```text
 安装 arena/01a0a821-git-pull-arena skills, 与本地打通
 ```
 
-助手必须立刻按 `templates/one-sentence.md` 执行（clone 本分支 → `agent-install.sh` → `agent-sync.sh` → 回复填好的本机 PowerShell）。不要向用户要长提示词。协议与本机模板：`templates/one-sentence.md`、`templates/new-session-prompt.md`、`templates/connect-local.ps1`。
+或：
+
+```text
+安装https://arena.ai/agent/01a0a821-3f3c-7bbe-bf99-6e6793c45d81的skills。与本地打通
+并实现自循环任务，将这个生成docx和pptx返回到本机，本机并把结果状态push到分支，一直自动循环知道你觉得结果没问题
+```
+
+助手必须立刻按 `templates/one-sentence.md` 执行（装技能 → 回复本机 PowerShell → **若有任务则立刻做并 `agent-handsfree.sh --timeout auto` 直到 accept**）。不要向用户要长提示词，也不要让用户先去旧克隆 `.\sync.ps1`。协议：`templates/one-sentence.md`、`templates/task-loop.md`、`templates/new-session-prompt.md`、`templates/connect-local.ps1`。
 
 Agent 实际执行的命令（沙箱里 git clone 可用、raw.githubusercontent.com 可能被墙）：
 
@@ -261,7 +268,7 @@ Agent 侧一条命令闭环：
 bash skills/git-sync/scripts/agent-handsfree.sh \
      --sync "feat: ..." \
      --request "verify ..." \
-     --timeout 600
+     --timeout auto
 ```
 
 它会：sync → request → wait 本机值守 → `agent-criteria.sh` 读 `success_criteria` → 全过则 `--accept` 停下。

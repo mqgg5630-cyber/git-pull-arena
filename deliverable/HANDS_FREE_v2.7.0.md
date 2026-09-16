@@ -76,7 +76,7 @@ bash skills/git-sync/scripts/agent-criteria.sh          # exit 0 = 过
 bash skills/git-sync/scripts/agent-handsfree.sh \
      --sync "feat: ..." \
      --request "verify hands-free" \
-     --timeout 600
+     --timeout auto
 # exit 0 = 本机检查过 + 标准过 + 已 accept，本轮结束
 ```
 
@@ -100,3 +100,7 @@ bash skills/git-sync/scripts/agent-handsfree.sh \
 | **v2.7.0** | 值守每轮 auto_pull + auto_push；Agent 一条 `agent-handsfree.sh` 闭环到 accept |
 
 升级后**必须重注册值守**（计划任务写死启动命令，旧循环不会加载新代码）。
+
+## 七、v2.7.1 超时
+
+`agent-wait.sh` / `agent-handsfree.sh` 默认 `--timeout auto`：结论一到就返回（简单任务几十秒），上限 = `check_timeout_min`×60+180 秒。不要再写死 600。

@@ -5,7 +5,7 @@
 #   bash skills/git-sync/scripts/agent-handsfree.sh \
 #        --sync "feat: ..." \
 #        --request "verify deliverables + local roundtrip" \
-#        --timeout 600
+#        --timeout auto
 #
 # What it does:
 #   1) (optional) agent-sync.sh "$MSG"           # push agent work
@@ -19,8 +19,9 @@
 # Flags:
 #   --sync "msg"       run agent-sync.sh with this message first
 #   --request "note"   handshake note (default: "hands-free verify")
-#   --timeout N        seconds to wait for local watcher (default 600)
-#   --interval N       poll interval seconds (default 30)
+#   --timeout N|auto   max seconds to wait (default auto = check_timeout_min*60+180;
+#                       returns the moment the watcher pushes a verdict)
+#   --interval N       poll interval seconds (default 15)
 #   --no-request       skip --request (wait for an already-pending round)
 #   --no-criteria      skip success_criteria evaluation (accept on check alone)
 #   --dry-run          print the plan, do nothing
@@ -34,8 +35,8 @@ cd "$REPO_ROOT"
 
 SYNC_MSG=""
 NOTE="hands-free verify"
-TIMEOUT=600
-INTERVAL=30
+TIMEOUT=auto
+INTERVAL=15
 DO_REQUEST=1
 DO_CRITERIA=1
 DRY=0
@@ -59,7 +60,7 @@ echo "   repo     : $REPO_ROOT"
 echo "   sync     : ${SYNC_MSG:-'(skip)'}"
 echo "   request  : $([ "$DO_REQUEST" = 1 ] && echo "$NOTE" || echo '(skip)')"
 echo "   criteria : $([ "$DO_CRITERIA" = 1 ] && echo on || echo off)"
-echo "   wait     : timeout=${TIMEOUT}s interval=${INTERVAL}s"
+echo "   wait     : timeout=${TIMEOUT} interval=${INTERVAL}s"
 
 if [ "$DRY" = 1 ]; then
   echo "== dry-run: stop here"
