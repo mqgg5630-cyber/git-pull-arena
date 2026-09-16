@@ -1,9 +1,9 @@
 {
-    "round":  23,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "verify round 23 (new-task test): DECK_01a0aa00_v2.8.1.pptx built with PPT Master - 12 slides, native shapes, judged on the real machine with the other six artifacts (3a-3h incl. real Word/PowerPoint open + success criteria)",
-    "arena_updated":  "2026-09-16 12:01:56",
-    "local_updated":  "2026-09-16 20:02:47"
+  "round": 23,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-16 12:02:58",
+  "local_updated": "2026-09-16 20:02:47"
 }
