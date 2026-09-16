@@ -1,9 +1,9 @@
 {
-  "round": 20,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "verify round: git-sync v2.8.1 (source arena/01a0a98d) installed on arena/01a0a9f0-git-pull-arena + LINK_PROOF_v2.8.1 docx/pptx judged on the real machine (3a-3h)",
-  "arena_updated": "2026-09-16 11:30:58",
-  "local_updated": "2026-09-16 19:26:55"
+  "round": 21,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "verify round 21: regenerated LINK_PROOF_v2.8.1.docx/.pptx (with the round-20 receipt and a Chinese how-to) judged on the real machine (3a-3h)",
+  "arena_updated": "2026-09-16 11:31:44",
+  "local_updated": null
 }
