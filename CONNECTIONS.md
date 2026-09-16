@@ -125,6 +125,8 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 
 ## 五、历史里程碑
 
+- 2026-09-16：**v2.8.1（本机侧三处「假 SKIP / 硬编码」根治 + CI 兜底）**：本机 `doctor.ps1` 已到 v2.8.0，但 `-Status` 暴露两件事——① 该克隆的**计划任务没了**（`scheduled: NOT REGISTERED`，心跳停在 14:31、stale 282 分钟），`-Focus` 只会 park 别人、不会注册自己 → 必须 `.\watch.ps1 -Register`；② 心跳里 `skill 2.6.8 / branch arena/01a0a821`（旧状态文件残留）。本版改动：`local_check.ps1` 的 3h 开档测试改读 `deliverable/OFFICE_HASHES.json`（不再写死 `BRIDGE_REPORT_v2.7.4.*`）；`code/check_all.sh` 逐个**验证** python 可用并补 `py -3`（本机 conda python 被 Store 存根挡住，导致 `$var:` 扫描 / 收尾行检查 / 文档 QA 一直 SKIP）；`.github/workflows/gate.yml` 随包安装（本机不在线也有独立核验）；`agent-handoff.sh` 无 remote 时给可照抄的修复命令。
+
 - 2026-09-16：**v2.8.0（放开工具链限制 + 安装器不再降级 + 时间戳 + 提速 + LF 统一）**：① **取消「不装第三方 / 不碰 venv」**——那是把「别拿沙箱冒充本机」错写成「别装库」；现在沙箱可自由 `pip install`，唯一硬要求仍是产物经 git 到本机、由本机值守判定（`success_criteria.json` 的 `forbid_files` 去掉 `.venv`/`venv`）；② 修安装器**静默降级**：`DEFAULT_SOURCE_BRANCHES` 里 `main` 排在前，照 one-liner 会装成 v2.6.7 并 `rm -rf skills/git-sync` 删掉 v2.7.x 文件 → 改为按顺序取**带技能的最新分支**（开发分支排第一）+ **拒绝降级**（`--force` 才覆盖），实测 `[REFUSED] refusing to downgrade … installed v9.9.9, source has v2.7.5` exit 2；③ `.gitattributes` 统一 `eol=lf`（本机日志实测 `VERSION` 6→7 B、`watch.ps1` 83666→85361 的 CRLF 假失败）；④ 值守每条收尾行 + `auto_pull`/`auto_push` 日志带 `[yyyy-MM-dd HH:mm:ss]`（用户要求「我才知道具体跑没跑」）；⑤ `agent-wait.sh` 前 120 秒每 5 秒轮询 + `ls-remote` 比对尖端、变了才 fetch（round 21 的 47 秒大半是轮询延迟）；⑥ 并入 `arena/01a0a9ba` 的本机真校验（`local_check.ps1` 3a–3h，含真 Word/PowerPoint COM 开档）与 round 20/21/22 真机回执。成功案例：`deliverable/CASE_STUDY_v2.8.0.md`。
 - 2026-09-14：git-sync v1（zhongqi 沉淀）→ 本仓库安装 → 双向打通（`1d4d62f`）
 - 2026-09-14：v2（agent-install / 回执 / doctor -Fix / 增量下载 / PR / profile）

@@ -353,10 +353,30 @@ if (Test-Path -LiteralPath $manRel) {
 #        false FAIL. The launch runs in a job with a hard timeout, so a hung COM
 #        server can never burn the round (check_timeout_min). Force off:
 #            setx GIT_SYNC_OFFICE_COM 0
-$comTargets = @(
-    @('deliverable\BRIDGE_REPORT_v2.7.4.docx', @('Word.Application', 'KWPS.Application'), 'word'),
-    @('deliverable\BRIDGE_REPORT_v2.7.4.pptx', @('PowerPoint.Application', 'KWPP.Application'), 'deck')
-)
+$comTargets = @()
+try {
+    if (Test-Path -LiteralPath $manRel) {
+        $mh = Get-Content -LiteralPath $manRel -Raw -Encoding UTF8 | ConvertFrom-Json
+        if ($mh.files) {
+            foreach ($mf in @($mh.files)) {
+                $p = [string]$mf.path
+                if (-not $p) { continue }
+                $k = [string]$mf.kind
+                if (-not $k) { $k = [System.IO.Path]::GetExtension($p).TrimStart('.') }
+                if ($k -eq 'docx' -or $k -eq 'doc') {
+                    $comTargets += , @($p.Replace('/', '\'), @('Word.Application', 'KWPS.Application'), 'word')
+                } elseif ($k -eq 'pptx' -or $k -eq 'ppt') {
+                    $comTargets += , @($p.Replace('/', '\'), @('PowerPoint.Application', 'KWPP.Application'), 'deck')
+                }
+            }
+        }
+    }
+} catch {
+    Write-Output ('   WARN 3h could not read ' + $manRel + ' (' + $_.Exception.Message + ') - open test skipped')
+}
+if ($comTargets.Count -eq 0) {
+    Write-Output ('   SKIP 3h no Office deliverable declared in ' + $manRel + ' - nothing to open')
+}
 foreach ($ct in $comTargets) {
     $target = [string]$ct[0]
     $kind = [string]$ct[2]

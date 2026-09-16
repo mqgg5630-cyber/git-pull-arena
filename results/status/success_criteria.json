@@ -1,5 +1,5 @@
 {
-  "description": "v2.8.0: skill health + the round-21/22 style real-Office proof. Third-party packages and .venv are ALLOWED in the sandbox now - the only hard rule left is that 'local' means the user's own machine: no local/inbox, no hand-made stand-in skill, the receipt must come from the Windows watcher.",
+  "description": "v2.8.1: 3h open test is data-driven (reads deliverable/OFFICE_HASHES.json instead of a hardcoded file list); the gate finds a WORKING python (python3 / python / py -3) so the local machine stops SKIPping its python checks; the GitHub Actions gate ships as a template (the agent token has no `workflows` scope, so the user commits it); sandbox toolchain unrestricted (pip/.venv allowed) - the only hard rule left is no fake local side.",
   "require_files": [
     "01a0a821.md",
     "skills/git-sync/VERSION",
@@ -12,7 +12,8 @@
     "deliverable/CASE_STUDY_v2.8.0.md",
     "deliverable/OFFICE_HASHES.json",
     "code/local_check.ps1",
-    "watch.ps1"
+    "watch.ps1",
+    "skills/git-sync/templates/gate.yml"
   ],
   "forbid_files": [
     "local/inbox",
@@ -21,14 +22,16 @@
     "local_bridge_skill.py"
   ],
   "require_contains": {
-    "skills/git-sync/VERSION": "2.8.0",
+    "skills/git-sync/VERSION": "2.8.1",
     "01a0a821.md": "git clone --quiet --depth 1 -b arena/01a0a98d-git-pull-arena",
     "skills/git-sync/sync.config.json": "\"hands_free\"",
     "skills/git-sync/templates/one-sentence.md": "agent-handoff.sh",
     "skills/git-sync/scripts/agent-install.sh": "refusing to downgrade",
-    "code/local_check.ps1": "System.IO.Compression.ZipFile",
+    "code/local_check.ps1": "no Office deliverable declared",
     "watch.ps1": "function Invoke-AutoPull",
-    "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus"
+    "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus",
+    "code/check_all.sh": "py -3",
+    "skills/git-sync/templates/gate.yml": "bash -c \"$GATE\""
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",

@@ -57,7 +57,12 @@ fi
 [ -z "$BRANCH" ] && BRANCH="$HEAD_BRANCH"
 
 URL="$(git remote get-url "$REMOTE" 2>/dev/null)"
-[ -z "$URL" ] && { echo "[ERROR] remote '$REMOTE' has no URL" >&2; exit 1; }
+if [ -z "$URL" ]; then
+  echo "[ERROR] this clone has no remote '$REMOTE', so there is no URL to hand over." >&2
+  echo "        remotes present: $(git remote | tr '\n' ' ')" >&2
+  echo "        add one first:  git remote add $REMOTE https://github.com/<user>/<repo>.git" >&2
+  exit 1
+fi
 
 REPO_NAME="$(basename "$URL" .git)"
 SHORT="${BRANCH#arena/}"; SHORT="${SHORT%%-*}"

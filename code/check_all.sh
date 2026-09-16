@@ -22,11 +22,19 @@ set -u -o pipefail
 cd "$(dirname "$0")/.."
 fail=0
 
-# Windows/conda often ships "python" and not "python3" - resolve once
+# Resolve a WORKING python once. Windows machines routinely have a
+# "python"/"python3" that is only the Microsoft Store stub: it answers
+# `command -v` and then exits non-zero, which made the gate SKIP its python
+# checks on the local machine (field report: "python3 is not a working python"
+# on LAPTOP-R77M5D6M, which does have a conda python). So prove each candidate
+# before trusting it, and try the py launcher as well.
 PY=""
-if command -v python3 >/dev/null 2>&1; then PY="python3"
-elif command -v python >/dev/null 2>&1; then PY="python"
-fi
+for cand in python3 python "py -3"; do
+    if $cand -c 'import sys; sys.exit(0)' >/dev/null 2>&1; then
+        PY="$cand"
+        break
+    fi
+done
 
 # ---------------------------------------------------------------- 1. ps1
 while IFS= read -r -d '' f; do
