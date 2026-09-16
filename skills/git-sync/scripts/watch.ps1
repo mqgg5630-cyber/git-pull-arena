@@ -65,7 +65,7 @@ param(
     [switch]$Flash,
     [int]$CheckTimeoutMin = 0,
     [int]$SelfTestSec = 90,
-    [int]$KeeperMin = 30
+    [int]$KeeperMin = 10
 )
 
 $ErrorActionPreference = 'Continue'
@@ -241,6 +241,52 @@ class GitSyncWatchHost
     }
 }
 '@
+
+function Resolve-ToolPath {
+    # map the first token of check_cmd to something Start-Process can execute
+    param([string]$CmdLine)
+    $first = ''
+    $rest = ''
+    if ($CmdLine -match '^\s*"([^"]+)"\s*(.*)$') { $first = $Matches[1]; $rest = $Matches[2] }
+    elseif ($CmdLine -match '^\s*(\S+)\s*(.*)$') { $first = $Matches[1]; $rest = $Matches[2] }
+    if (-not $first) { return @{ cmdLine = '' } }
+    $path = ''
+    if (Test-Path -LiteralPath $first) { $path = $first }
+    if (-not $path) {
+        $c = Get-Command $first -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
+        if ($c) {
+            foreach ($cand in @($c.Source, $c.Path, $c.Definition)) {
+                if ($cand -and $cand -match '\.(exe|cmd|bat)$' -and (Test-Path -LiteralPath $cand)) { $path = $cand; break }
+            }
+        }
+    }
+    if (-not $path -and $first -match '^(powershell|pwsh)(\.exe)?$') {
+        $ps = Get-PowerShellExe
+        if (Test-Path -LiteralPath $ps) { $path = $ps }
+    }
+    if (-not $path -and $first -match '^(bash|sh)(\.exe)?$') {
+        # prefer the bash that ships with the git we use: a WSL/bash.exe on PATH
+        # cannot always read a Windows working directory
+        $g = Get-Command git -ErrorAction SilentlyContinue | Select-Object -First 1
+        if ($g -and $g.Source) {
+            $gitDir = Split-Path -Parent (Split-Path -Parent $g.Source)
+            foreach ($cand in @((Join-Path $gitDir 'bin\bash.exe'), (Join-Path $gitDir 'usr\bin\bash.exe'))) {
+                if (Test-Path -LiteralPath $cand) { $path = $cand; break }
+            }
+        }
+        if (-not $path) {
+            $c = Get-Command $first -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
+            if ($c) { $path = [string]$c.Source }
+        }
+        if (-not $path) {
+            $sys = Join-Path $env:WINDIR 'System32\bash.exe'
+            if (Test-Path -LiteralPath $sys) { $path = $sys }
+        }
+    }
+    if (-not $path) { return @{ cmdLine = '' } }
+    if ($rest) { return @{ cmdLine = ('"' + $path + '" ' + $rest) } }
+    return @{ cmdLine = ('"' + $path + '"') }
+}
 
 function Get-PowerShellExe {
     $cand = $null
@@ -689,6 +735,8 @@ if ($Register -or $Unregister) {
     } elseif ($mode -eq 'flash') {
         Write-Host "   the watcher runs as ONE process per logon: expect ONE brief flash" -ForegroundColor Gray
         Write-Host "   per logon - not per poll (that is 1 per logon instead of 720 per day)." -ForegroundColor Gray
+        Write-Host "   IMPORTANT: if a black window appears at logon, LEAVE IT ALONE - it is the" -ForegroundColor Yellow
+        Write-Host "   watcher; closing it stops polling until the next keeper tick (10 min)." -ForegroundColor Yellow
         Write-Host "   For ZERO flash, either:" -ForegroundColor Gray
         Write-Host "     * open an ADMIN PowerShell and run:" -ForegroundColor Gray
         Write-Host "         .\watch.ps1 -Unregister ; .\watch.ps1 -Register -Headless" -ForegroundColor Gray
@@ -791,35 +839,46 @@ function Invoke-PollRound {
         $errFile = [System.IO.Path]::GetTempFileName()
         $code = 1
         $timedOut = $false
+        $stdout = ''
+        $stderr = ''
         $t0 = Get-Date
+        # The command line from sync.config.json is interpreted by cmd.exe, and
+        # its first token is first resolved to an ABSOLUTE path: starting a bare
+        # name ("powershell") inside a scheduled task once failed with
+        # ERROR_BAD_EXE_FORMAT - "%1 is not a valid Win32 application" (exit
+        # 193) - so never hand an unresolved name to Start-Process.
+        $resolved = Resolve-ToolPath $CheckCmd
+        $cmdLine = $CheckCmd
+        if ($resolved.cmdLine) { $cmdLine = $resolved.cmdLine }
+        Add-Log "round ${round}: resolved check_cmd -> $cmdLine"
+        $cmdExe = if ($env:ComSpec) { $env:ComSpec } else { 'cmd.exe' }
+        $redir = '"' + $cmdLine + ' > "' + $outFile + '" 2> "' + $errFile + '""'
         try {
-            $parts = @([regex]::Matches($CheckCmd, '"([^"]*)"' + '|' + '(\S+)') | ForEach-Object {
-                if ($_.Groups[1].Success) { $_.Groups[1].Value } else { $_.Groups[2].Value } })
-            if ($parts.Count -eq 0) { throw 'empty check_cmd' }
-            $exe = $parts[0]
-            $exeArgs = @()
-            if ($parts.Count -gt 1) { $exeArgs = @($parts[1..($parts.Count - 1)]) }
-            $p = Start-Process -FilePath $exe -ArgumentList $exeArgs -WorkingDirectory $repo -NoNewWindow -PassThru `
-                    -RedirectStandardOutput $outFile -RedirectStandardError $errFile
+            $p = Start-Process -FilePath $cmdExe -ArgumentList @('/d', '/c', $redir) -WorkingDirectory $repo -NoNewWindow -PassThru
             if (-not $p.WaitForExit($TimeoutMin * 60 * 1000)) {
                 $timedOut = $true
-                try { $p.Kill() } catch { }
+                # kill the TREE: the shell alone would leave the real check running
+                $null = cmd /c ("taskkill /F /T /PID " + $p.Id + " 2>&1")
                 try { $null = $p.WaitForExit(10000) } catch { }
             }
             $code = $p.ExitCode
         } catch {
-            $stdout = "check_cmd could not be started: $($_.Exception.Message)"
-            $code = 1
+            # last resort: run it in-process (no timeout, but a verdict is
+            # better than a failed round)
+            Add-Log "round ${round}: Start-Process failed ($($_.Exception.Message)) - running in-process"
+            $null = cmd /d /c $redir
+            $code = $LASTEXITCODE
         }
         $secs = [int]((Get-Date) - $t0).TotalSeconds
-        if (-not $stdout) { $stdout = '' }
-        $stderr = ''
-        if ($outFile -and (Test-Path -LiteralPath $outFile)) {
-            $t = (Get-Content -LiteralPath $outFile -Raw -ErrorAction SilentlyContinue)
+        # PS 5.1 writes its output in the console code page, so read the
+        # captured files with the ANSI encoding - reading them as UTF-8 turned
+        # real error messages into mojibake in the field report
+        if (Test-Path -LiteralPath $outFile) {
+            $t = (Get-Content -LiteralPath $outFile -Raw -Encoding Default -ErrorAction SilentlyContinue)
             if ($t) { $stdout = $t }
         }
-        if ($errFile -and (Test-Path -LiteralPath $errFile)) {
-            $t = (Get-Content -LiteralPath $errFile -Raw -ErrorAction SilentlyContinue)
+        if (Test-Path -LiteralPath $errFile) {
+            $t = (Get-Content -LiteralPath $errFile -Raw -Encoding Default -ErrorAction SilentlyContinue)
             if ($t) { $stderr = $t }
         }
         Remove-Item -LiteralPath $outFile -Force -ErrorAction SilentlyContinue
@@ -916,6 +975,7 @@ function Invoke-PollOnce {
     } catch {
         Add-Log "poll crashed: $($_.Exception.Message)"
         Write-Host "[ERROR] poll crashed: $($_.Exception.Message)" -ForegroundColor Red
+        Set-State @{ last_action = 'error'; last_note = ("poll crashed: " + $_.Exception.Message) }
         $code = 1
     } finally {
         Remove-Item -LiteralPath $lockFile -Force -ErrorAction SilentlyContinue

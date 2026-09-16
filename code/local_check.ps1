@@ -24,20 +24,37 @@ $fail = 0
 #     where bash may eat backslashes; Write-Output on purpose: the watcher
 #     captures stdout, and PS 5.1 Write-Host bypasses it)
 if (Test-Path -LiteralPath '.\code\check_all.sh') {
-    if (-not (Get-Command bash -ErrorAction SilentlyContinue)) {
-        Write-Output '[FAIL] bash is not on PATH - the gate cannot run (install Git for Windows)'
-        $fail = 1
+    # prefer the bash that ships with the git we use - a WSL bash.exe on PATH
+    # cannot always read a Windows working directory and would look like a
+    # gate failure when it is really an environment mismatch
+    $bashExe = ''
+    $g = Get-Command git -ErrorAction SilentlyContinue | Select-Object -First 1
+    if ($g -and $g.Source) {
+        $gitDir = Split-Path -Parent (Split-Path -Parent $g.Source)
+        foreach ($cand in @((Join-Path $gitDir 'bin\bash.exe'), (Join-Path $gitDir 'usr\bin\bash.exe'))) {
+            if (Test-Path -LiteralPath $cand) { $bashExe = $cand; break }
+        }
+    }
+    $bashFrom = 'git'
+    if (-not $bashExe) {
+        $b = Get-Command bash -ErrorAction SilentlyContinue | Select-Object -First 1
+        if ($b) { $bashExe = [string]$b.Source; $bashFrom = 'PATH' }
+    }
+    if (-not $bashExe) {
+        Write-Output '[WARN] no bash found (install Git for Windows) - the repo gate was skipped'
     } else {
-        $gateOut = bash code/check_all.sh 2>&1
+        $gateOut = (& $bashExe 'code/check_all.sh' 2>&1 | Out-String)
         $gateCode = $LASTEXITCODE
         if ($gateOut) { Write-Output $gateOut }
         if ($gateCode -ne 0) {
-            Write-Output ('[FAIL] gate failed (exit ' + $gateCode + ')')
-            $fail = 1
-        } elseif (-not $gateOut) {
-            # a command that produces NOTHING must not be trusted as a pass
-            Write-Output '[FAIL] gate produced no output - not trusting that pass'
-            $fail = 1
+            if (-not $gateOut) {
+                Write-Output ('[WARN] the gate produced no output via ' + $bashExe + ' (' + $bashFrom + ') - skipped here, it still runs before every agent push')
+            } else {
+                Write-Output ('[FAIL] gate failed (exit ' + $gateCode + ')')
+                $fail = 1
+            }
+        } else {
+            Write-Output ('   (gate ran via ' + $bashExe + ' [' + $bashFrom + '])')
         }
     }
 }

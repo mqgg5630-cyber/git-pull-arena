@@ -7,8 +7,18 @@
 # The branch defaults to sync.config.json (keys: branch / remote), so the same
 # script works in any repo that carries that file.
 #
+# WATCHER-SAFE BY DESIGN (field report 2026-09-16):
+#   * every git call goes through cmd.exe, because PowerShell 5.1 turns a native
+#     command's STDERR into a terminating error while $ErrorActionPreference is
+#     'Stop' - and git writes perfectly normal things ("Already on 'x'",
+#     "Switched to branch ...") to stderr. That killed the watcher's poll
+#     halfway through, so the verdict was never pushed.
+#   * the watcher's own artifacts (results/status/*) are committed locally
+#     instead of stashed, and an unpushed artifact commit is AMENDED instead of
+#     piling up one commit per round (313 had accumulated in the field).
+#
 # ASCII-only on purpose: Windows PowerShell 5.1 decodes a .ps1 without BOM as
-# ANSI/GBK and Chinese text would break the parser.
+# ANSI/GBK and non-ASCII text would break the parser.
 
 param(
     [string]$Branch = '',
@@ -16,7 +26,21 @@ param(
     [string]$Config = ''
 )
 
-$ErrorActionPreference = 'Stop'
+$ErrorActionPreference = 'Continue'
+
+# run git through cmd.exe: stderr stays stderr (no terminating ErrorRecord) and
+# the exit code is git's own
+function Git {
+    param([string[]]$ArgList, [switch]$Show)
+    $line = 'git'
+    foreach ($a in $ArgList) {
+        if ($a -match '[\s"]') { $line += ' "' + ($a -replace '"', '""') + '"' } else { $line += ' ' + $a }
+    }
+    $out = (cmd /c ($line + ' 2>&1') | Out-String)
+    $code = $LASTEXITCODE
+    if ($Show -and $out.TrimEnd()) { Write-Host $out.TrimEnd() }
+    return @{ code = $code; text = $out.TrimEnd() }
+}
 
 # repo root = walk up from this script until .git appears, so the script also
 # works when run straight from skills\git-sync\scripts\
@@ -63,77 +87,99 @@ if ($cfgPath) {
     if (-not $Remote -and $cfg.remote) { $Remote = [string]$cfg.remote }
 }
 if (-not $Remote) { $Remote = 'origin' }
-if (-not $Branch) { $Branch = (git rev-parse --abbrev-ref HEAD).Trim() }
+if (-not $Branch) { $Branch = (Git @('rev-parse', '--abbrev-ref', 'HEAD')).text }
 
 Write-Host "== repo  : $repo" -ForegroundColor Cyan
 Write-Host "== branch: $Branch" -ForegroundColor Cyan
 
-# Local changes: the watcher's own artifacts (handshake + check logs) are
-# REGENERATED every round, so committing them locally keeps the tree clean.
-# Stashing them was a bug: when a push failed, every later sync created another
-# stash entry and the pile grew (field report: 6 stale stashes).
-$dirty = @(git status --porcelain)
-$stashed = $false
-$artifactDirty = $false
-if ($dirty.Count -gt 0) {
-    $watcherOnly = $true
-    foreach ($line in $dirty) {
-        $p = $line.Substring(3).Trim()
-        if ($p -notmatch '^"?results/status/') { $watcherOnly = $false; break }
-    }
-    if ($watcherOnly) {
-        Write-Host "== local changes are watcher artifacts (results/status/) - committing them instead of stashing" -ForegroundColor Cyan
-        git add -A -- results/status
-        git -c user.name="git-sync watcher" -c user.email="watcher@local" commit -q -m ("watch: local check artifacts " + (Get-Date -Format 'yyyy-MM-dd HH:mm'))
-        $artifactDirty = $true
-    } else {
-        Write-Host "!! local changes found, stashing them first ..." -ForegroundColor Yellow
-        git stash push -u -m ("auto-stash before sync " + (Get-Date -Format 'yyyy-MM-dd HH:mm:ss'))
-        $stashed = $true
-    }
+$remoteRef = "$Remote/$Branch"
+
+# ---- realign when the only local commits are the watcher's own verdicts -----
+# A push that failed leaves "check: round N <verdict>" / "watch: local check
+# artifacts ..." commits behind. They are regenerated every round, so they must
+# not block the fast-forward (they used to stall the watcher forever), but they
+# are dropped ONLY when every local commit matches that pattern.
+function Get-AheadSubjects {
+    $r = Git @('log', '--format=%s', "$remoteRef..HEAD")
+    if ($r.code -ne 0) { return @() }
+    return @($r.text -split "`r?`n" | Where-Object { $_ -match '\S' })
 }
-
-git fetch $Remote
-if ($LASTEXITCODE -ne 0) { Write-Host "[ERROR] git fetch failed (network / proxy?)." -ForegroundColor Red; exit 1 }
-
-git checkout $Branch
-git pull --ff-only $Remote $Branch
-if ($LASTEXITCODE -ne 0) {
-    # a failed push from the watcher leaves local verdict commits behind, and
-    # the branch then diverges from the remote - which would stall the loop
-    # forever. Those commits are regenerable artifacts, so drop them (the
-    # files stay in the worktree) and try once more.
-    $ahead = @(git log --format=%s "$Remote/$Branch..HEAD" 2>$null)
-    $onlyArtifacts = ($ahead.Count -gt 0)
+$ahead = Get-AheadSubjects
+if ($ahead.Count -gt 0) {
+    $onlyArtifacts = $true
     foreach ($subj in $ahead) {
         if ($subj -notmatch '^(check: round|watch: local check artifacts)') { $onlyArtifacts = $false; break }
     }
     if ($onlyArtifacts) {
-        Write-Host "== local commits are only watcher verdicts - realigning with the remote (files are kept)" -ForegroundColor Cyan
-        git reset --mixed "$Remote/$Branch" | Out-Null
-        git ls-files -d | ForEach-Object { git checkout -- $_ }
-        git pull --ff-only $Remote $Branch
+        Write-Host ("== {0} local commit(s) are only watcher verdicts - realigning with $remoteRef (files are kept)" -f $ahead.Count) -ForegroundColor Cyan
+        $null = Git @('reset', '--mixed', $remoteRef)
+        # restore anything the reset removed from the worktree (the verdict logs)
+        $deleted = (Git @('ls-files', '--deleted')).text
+        foreach ($d in @($deleted -split "`r?`n" | Where-Object { $_ -match '\S' })) {
+            $null = Git @('checkout', '--', $d)
+        }
+    } else {
+        Write-Host ("== {0} local commit(s) exist that are NOT watcher verdicts - they will be pushed, not dropped" -f $ahead.Count) -ForegroundColor Yellow
     }
 }
-if ($LASTEXITCODE -ne 0) {
+
+# ---- local changes ---------------------------------------------------------
+$dirty = @((Git @('status', '--porcelain')).text -split "`r?`n" | Where-Object { $_ -match '\S' })
+$stashed = $false
+$artifactCommitted = $false
+if ($dirty.Count -gt 0) {
+    $watcherOnly = $true
+    foreach ($line in $dirty) {
+        $p = $line.Substring(3).Trim().Trim('"')
+        if ($p -notmatch '^results/status/') { $watcherOnly = $false; break }
+    }
+    if ($watcherOnly) {
+        Write-Host "== local changes are watcher artifacts (results/status/) - committing them instead of stashing" -ForegroundColor Cyan
+        $null = Git @('add', '-A', '--', 'results/status')
+        # AMEND while the tip is still unpushed: one artifact commit per repo,
+        # not one per round (313 had piled up in the field)
+        $tipSubject = (Git @('log', '-1', '--format=%s')).text
+        $unpushed = (Git @('rev-list', '--count', "$remoteRef..HEAD")).text
+        $amend = ($tipSubject -match '^watch: local check artifacts' -and [int]$unpushed -ge 1)
+        $msg = "watch: local check artifacts " + (Get-Date -Format 'yyyy-MM-dd HH:mm')
+        if ($amend) { $null = Git @('-c', 'user.name=git-sync watcher', '-c', 'user.email=watcher@local', 'commit', '-q', '--amend', '--no-edit') }
+        else        { $null = Git @('-c', 'user.name=git-sync watcher', '-c', 'user.email=watcher@local', 'commit', '-q', '-m', $msg) }
+        $artifactCommitted = $true
+    } else {
+        Write-Host "!! local changes found, stashing them first ..." -ForegroundColor Yellow
+        $null = Git @('stash', 'push', '-u', '-m', ("auto-stash before sync " + (Get-Date -Format 'yyyy-MM-dd HH:mm:ss')))
+        $stashed = $true
+    }
+}
+
+$fetch = Git @('fetch', $Remote)
+if ($fetch.code -ne 0) {
+    Write-Host "[ERROR] git fetch failed (network / proxy?)." -ForegroundColor Red
+    if ($fetch.text) { Write-Host $fetch.text -ForegroundColor DarkGray }
+    exit 1
+}
+
+$null = Git @('checkout', $Branch) -Show
+$pull = Git @('pull', '--ff-only', $Remote, $Branch) -Show
+if ($pull.code -ne 0) {
     Write-Host "[ERROR] pull failed. Your branch has local commits that conflict." -ForegroundColor Red
     Write-Host "        Diagnose: git status ; git stash list ; git log --oneline -5" -ForegroundColor Yellow
-    Write-Host "        Hard reset (loses local commits): git reset --hard $Remote/$Branch" -ForegroundColor Yellow
+    Write-Host "        Hard reset (loses local commits): git reset --hard $remoteRef" -ForegroundColor Yellow
     exit 1
 }
 
 Write-Host ""
 Write-Host "== up to date. latest commit:" -ForegroundColor Green
-git log -1 --oneline --decorate
+$null = Git @('log', '-1', '--oneline', '--decorate') -Show
 
 if ($stashed) {
     Write-Host ""
     Write-Host "NOTE: your previous local changes are still in the stash. See: git stash list" -ForegroundColor Yellow
 }
-if ($artifactDirty) {
+if ($artifactCommitted) {
     Write-Host "NOTE: watcher artifacts were committed locally and will be pushed with the next push." -ForegroundColor DarkGray
 }
-$stashCount = @(git stash list).Count
+$stashCount = @((Git @('stash', 'list')).text -split "`r?`n" | Where-Object { $_ -match '\S' }).Count
 if ($stashCount -ge 3) {
     Write-Host ("NOTE: {0} stash entries are piling up - inspect with 'git stash list' and drop the auto-stash ones." -f $stashCount) -ForegroundColor Yellow
 }
