@@ -157,6 +157,42 @@ if [ -n "$RECEIPT" ] && { [ -n "$CHANGED" ] || [ -n "$USER_COMMITS" ]; }; then
   fi
 fi
 
+# ------------------------- 5b. never clobber a verdict the local side pushed
+# The agent's copy of results/status/handshake.json goes stale the moment the
+# watcher writes its verdict back. Committing that stale copy REVERTED
+# "local_state: passed" to "pending" (field incident 2026-09-16) - which made
+# the watcher run the same round a second time. Rule: if the remote handshake is
+# not behind ours (same round, and the local side already answered it), take the
+# remote file instead of our stale one.
+HANDSHAKE="results/status/handshake.json"
+if [ -f "$HANDSHAKE" ] && git cat-file -e "$ORIGIN:$HANDSHAKE" 2>/dev/null; then
+  PYH=""
+  if [ -z "$PYH" ]; then PYH="$(command -v python3 || command -v python || true)"; fi
+  if [ -n "$PYH" ] && $PYH -c 'import sys; sys.exit(0)' >/dev/null 2>&1; then
+    KEEP=$($PYH - "$HANDSHAKE" "$ORIGIN:$HANDSHAKE" "$PYH" <<'PYHS'
+import json, subprocess, sys
+loc, rev, py = sys.argv[1], sys.argv[2], sys.argv[3]
+def load(a, is_rev):
+    txt = subprocess.run(['git','show',a],capture_output=True,text=True).stdout if is_rev else open(a,encoding='utf-8').read()
+    try: return json.loads(txt)
+    except Exception: return {}
+L, R = load(loc, False), load(rev, True)
+try: lr, rr = int(L.get('round') or 0), int(R.get('round') or 0)
+except Exception: lr = rr = 0
+# the local side has answered (or will: remote_updated newer) -> prefer remote
+if R and (rr > lr or (rr == lr and R.get('local_updated') and (L.get('local_state') or 'pending') == 'pending')):
+    print('remote')
+else:
+    print('local')
+PYHS
+)
+    if [ "$KEEP" = "remote" ]; then
+      git checkout "$ORIGIN" -- "$HANDSHAKE" 2>/dev/null && \
+        echo "== handshake: took the remote copy (local side already answered - would have reverted it)"
+    fi
+  fi
+fi
+
 # --------------------------------------------------------- 6. commit + push
 git add -A
 if [ -z "$(git status --porcelain)" ]; then

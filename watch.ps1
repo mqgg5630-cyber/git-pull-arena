@@ -425,6 +425,46 @@ public static extern bool IsWindowVisible(System.IntPtr hWnd);
     } catch { return $true }
 }
 
+function Get-WatchLoops {
+    # every powershell process running THIS repo's watch.ps1 -Loop. Needed
+    # because a loop started by an older version carries no pid file, so it
+    # cannot be found by pid alone - and a leftover loop keeps polling (and, if
+    # it owns a console, keeps printing in it = "the console looks stuck",
+    # field report 2026-09-16).
+    $out = @()
+    try {
+        $mine = $PID
+        $needle = 'watch.ps1'
+        $q = Get-CimInstance Win32_Process -Filter "Name = 'powershell.exe' OR Name = 'pwsh.exe'" -ErrorAction Stop
+        foreach ($proc in $q) {
+            $cl = [string]$proc.CommandLine
+            if (-not $cl) { continue }
+            if ($cl -notmatch '\-Loop\b') { continue }
+            if ($cl -notmatch [regex]::Escape($needle)) { continue }
+            if ($cl -notmatch [regex]::Escape($repoName)) { continue }
+            if ($proc.ProcessId -eq $mine) { continue }
+            $out += [pscustomobject]@{ Pid = $proc.ProcessId; Command = $cl }
+        }
+    } catch { }
+    return $out
+}
+
+function Stop-StaleLoops {
+    # stop every other loop of this repo (any version) - called at loop start,
+    # and by -Pause / -Unregister
+    $killed = 0
+    foreach ($l in (Get-WatchLoops)) {
+        try {
+            Stop-Process -Id $l.Pid -Force -ErrorAction Stop
+            Add-Log ("stopped a stale loop (pid {0}) - older version or leftover" -f $l.Pid)
+            $killed++
+        } catch {
+            Add-Log ("could not stop stale loop pid {0}: {1}" -f $l.Pid, $_.Exception.Message)
+        }
+    }
+    return $killed
+}
+
 function Get-TaskInfo {
     $t = $null
     try { $t = Get-ScheduledTask -TaskName $taskName -ErrorAction Stop } catch { return $null }
@@ -507,6 +547,8 @@ if ($Pause) {
         Stop-Process -Id $lp -Force -ErrorAction SilentlyContinue
         Write-Host "   (stopped the running loop, pid $lp)"
     }
+    $n = Stop-StaleLoops
+    if ($n -gt 0) { Write-Host "   (stopped $n leftover loop process(es) from an older version)" }
     Remove-Item -LiteralPath $loopFile -Force -ErrorAction SilentlyContinue
     $null = Disable-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
     if ($?) { Write-Host "== paused : $taskName  (stopped + disabled until .\watch.ps1 -Resume)" -ForegroundColor Green }
@@ -552,6 +594,11 @@ if ($Status) {
         if ($st.pid) {
             if (Get-Process -Id ([int]$st.pid) -ErrorAction SilentlyContinue) { $alive = "yes (pid $($st.pid) is running)" }
             else { $alive = "no (pid $($st.pid) exited)" }
+        }
+        $stale = Get-WatchLoops
+        if ($stale.Count -gt 0) {
+            Write-Host ("   other loops : {0} leftover loop process(es) still polling: {1}" -f $stale.Count, (($stale | ForEach-Object { $_.Pid }) -join ', ')) -ForegroundColor Yellow
+            Write-Host "                 clean up with: .\watch.ps1 -Unregister ; .\watch.ps1 -Register" -ForegroundColor Yellow
         }
         $lpShown = Get-LoopPid
         if ($lpShown -gt 0) {
@@ -625,6 +672,8 @@ if ($Register -or $Unregister) {
             Stop-Process -Id $lp -Force -ErrorAction SilentlyContinue
             Write-Host "   (stopped the running loop, pid $lp)"
         }
+        $n = Stop-StaleLoops
+        if ($n -gt 0) { Write-Host "   (stopped $n leftover loop process(es) from an older version)" }
         Remove-Item -LiteralPath $loopFile -Force -ErrorAction SilentlyContinue
         Unregister-ScheduledTask -TaskName $taskName -Confirm:$false -ErrorAction SilentlyContinue
         if ($?) { Write-Host "== removed scheduled task: $taskName" -ForegroundColor Green }
@@ -1119,6 +1168,13 @@ if ($Loop) {
     if ($existing -gt 0 -and $existing -ne $PID -and (Get-Process -Id $existing -ErrorAction SilentlyContinue)) {
         Add-Log "loop: another loop is already running (pid $existing) - exiting this instance"
         exit 0
+    }
+    # no pid file => the running loop is from an OLDER version (it never wrote
+    # one): stop those before starting ours, otherwise two loops poll in parallel
+    $stale = Get-WatchLoops
+    if ($stale.Count -gt 0) {
+        Add-Log ("loop: found {0} loop(s) from an older version - stopping them: {1}" -f $stale.Count, (($stale | ForEach-Object { $_.Pid }) -join ', '))
+        $null = Stop-StaleLoops
     }
     [System.IO.File]::WriteAllText($loopFile, "$PID", (New-Object System.Text.UTF8Encoding($false)))
     Add-Log "loop start (pid $PID, every ${Interval}m, skill v$skillVer, detach=$($env:GIT_SYNC_WATCH_DETACHED))"
