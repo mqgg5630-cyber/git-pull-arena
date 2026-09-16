@@ -78,7 +78,7 @@ OK: every .ps1 parses        <- 真 PowerShell 解析器（沙箱只能 SKIP）
 
 | # | 改动 | 之前的真实事故 | 怎么验的 |
 |---|---|---|---|
-| 1 | **取消「不装第三方 / 不碰 venv」** | 上一轮因 PEP 668 装不了库，被迫手写 OOXML，自己背 schema 责任、修了 3 个会让 PowerPoint 报错的错 | 文档/铁律/SKILL description 全部改写；`success_criteria.json` 的 `forbid_files` 去掉 `.venv`/`venv`，只留 `local/inbox` 等「假本机」项 |
+| 1 | **取消「不装第三方 / 不碰 venv」** | 上一轮因 PEP 668 装不了库，被迫手写 OOXML，自己背 schema 责任、修了 3 个会让 PowerPoint 报错的错 | 文档/铁律/SKILL description 全部改写；`success_criteria.json` 的 `forbid_files` 去掉 `.venv`/`venv`，只留 `local/inbox` 等「假本机」项。**并且实测：PEP 668 只挡系统 python 的 `pip install --user`，`python3 -m venv /tmp/oa` + `pip install python-docx python-pptx` 在沙箱里 5 秒装好、`python-pptx 1.0.2` 可 import——那条限制从一开始就是多余的，手写 OOXML 属于自找的** |
 | 2 | **安装器取最新分支 + 拒绝降级** | `DEFAULT_SOURCE_BRANCHES` 里 `main` 排在前面 → 照文档 one-liner 会静默装成 v2.6.7，并 `rm -rf skills/git-sync` 删掉 v2.7.x 的 11 个文件 | 实测：干净仓库跑安装器 → 选中开发分支装 v2.7.5（0.64s）；把本地 VERSION 改成 9.9.9 再装 → `[REFUSED] refusing to downgrade … installed v9.9.9, source has v2.7.5`，exit 2；`--force` 才覆盖 |
 | 3 | **`.gitattributes` 统一 LF** | 本机日志显示文本文件到 Windows 都变大（`VERSION` 6→7 B、`watch.ps1` 83666→85361），CRLF 让按字节的验收假失败 | 新增 `* text=auto eol=lf` + `*.sh/*.py/*.json/*.md/*.tsv/*.yml/VERSION text eol=lf`；docx/pptx 仍 `binary`（所以它们字节数一直没变） |
 | 4 | **值守每行带时间戳** | 用户问「我才知道具体跑没跑」 | `Show-PollSummary` 给每条收尾行加 `[yyyy-MM-dd HH:mm:ss]`；`auto_pull` / `auto_push` 日志行也带时间；`-Status` 的心跳块本来就打印 `last_auto_pull_at` / `last_auto_push_at` |
