@@ -1,9 +1,9 @@
 {
-    "round":  37,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "verify round 37: the Windows machine is untouched by the Linux onboarding work - 4a/4b/4c all OK, checker_blocking=0, markers=ok, real PowerPoint opens the deck, both decks in out\\ intact",
-    "arena_updated":  "2026-09-17 01:26:11",
-    "local_updated":  "2026-09-17 09:27:50"
+  "round": 37,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-17 01:28:08",
+  "local_updated": "2026-09-17 09:27:50"
 }
