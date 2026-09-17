@@ -41,16 +41,29 @@ DEFAULT_SOURCE = PAYLOAD
 
 # the loop's files, relative to a repo root. code/local_check.ps1 is NOT copied:
 # the target keeps its own and gets the two sections inserted into it.
-LOOP_FILES = [
+# The task-agnostic half: same in every repo, never edited per task.
+CORE_FILES = [
+    'code/local_loop.py',            # plan / sandbox / local / gates
+    'code/gates.py', 'code/gates.json', 'code/loop.json',
+    'code/recipes/office-deck.json',  # the default test task, as a recipe
+    'code/local_check.sh',           # Linux/macOS machine check (3a-3h, 4a-4c)
+    'code/pptmaster_local.sh',       # Linux/macOS local plane
+    'code/watch-linux.sh',           # Linux/macOS watcher (systemd/cron)
+    'code/check_criteria_needles.py',
+    'code/pull_machine_evidence.sh',
+]
+# The default task's implementation (the office/deck recipe). A repo that runs a
+# different task can delete these after pointing code/loop.json elsewhere.
+TASK_FILES = [
     'code/deck_kit.py',
     'code/deck_layout_selftest.py',
     'code/make_deck_pptmaster.py',
     'code/make_deck_umami.py',
     'code/pptmaster_pipeline.py',
-    'code/pptmaster_local.ps1',
+    'code/pptmaster_local.ps1',      # Windows local plane (task implementation)
     'code/render_deck_preview.py',
-    'code/pull_machine_evidence.sh',
 ]
+LOOP_FILES = CORE_FILES + TASK_FILES
 
 OFFICE_SENTINEL = 'office-loop: office deliverables section'
 PPT_SENTINEL = 'office-loop: ppt-master section'
@@ -196,7 +209,7 @@ def insert_sections(target, refresh=False):
     return 'inserted (%s section(s))' % len(add), []
 
 
-def merge_criteria(target, profile):
+def merge_criteria(target, profile, os_name='linux'):
     """Merge this session's acceptance assertions for the installed deck."""
     cfg_rel = 'code/pptmaster_deck.json'
     cfg_path = os.path.join(target, cfg_rel)
@@ -237,10 +250,21 @@ def merge_criteria(target, profile):
             data['min_bytes'][rel] = n
             added.append('min_bytes: %s >= %d' % (rel, n))
 
-    for rel in LOOP_FILES + [cfg_rel, 'code/local_check.ps1']:
+    # the machine harness differs per OS: assert on the one THIS machine will run
+    harness = 'code/local_check.ps1' if os_name == 'windows' else 'code/local_check.sh'
+    stale = 'code/local_check.sh' if os_name == 'windows' else 'code/local_check.ps1'
+    for rel in LOOP_FILES + [cfg_rel, harness]:
         add_file(rel)
-    add_contains('code/local_check.ps1', 'pptmaster_local.ps1')
-    add_contains('code/local_check.ps1', 'OFFICE_HASHES.json')
+    if os_name == 'windows':
+        add_contains(harness, 'pptmaster_local.ps1')
+    else:
+        add_contains(harness, 'local_loop.py')
+        for rel in ('code/pptmaster_local.sh', 'code/watch-linux.sh', 'code/recipes/office-deck.json'):
+            add_file(rel)
+    add_contains(harness, 'OFFICE_HASHES.json')
+    # drop an earlier install's assertion about the OTHER OS's harness
+    if data['require_contains'].pop(stale, None) is not None:
+        added.append('removed stale contains for ' + stale)
     add_contains(cfg_rel, 'make_deck' if not generator else os.path.basename(generator))
     if deck_name:
         data['require_regex'] = data['require_regex'] if isinstance(data['require_regex'], dict) else {}
@@ -294,6 +318,8 @@ def main():
     ap.add_argument('--force', action='store_true',
                     help='replace loop files the target already has (they are backed up)')
     ap.add_argument('--check', action='store_true', help='verify only, change nothing')
+    ap.add_argument('--os', default='auto', choices=['auto', 'windows', 'linux', 'macos'],
+                    help='which machine this repo will be verified on (default: auto-detect)')
     ap.add_argument('--refresh-sections', action='store_true',
                     help='replace an existing office-loop section with the shipped one '
                          '(for upgrading an installed skill; backs the file up first)')
@@ -302,9 +328,13 @@ def main():
     source = os.path.abspath(args.source)
 
     print('== office-loop install')
+    os_name = args.os
+    if os_name == 'auto':
+        os_name = 'windows' if os.name == 'nt' else ('macos' if sys.platform == 'darwin' else 'linux')
     print('   skill  : %s' % SKILL)
     print('   source : %s' % source)
     print('   target : %s' % target)
+    print('   machine: %s (local plane adapters that will be used)' % os_name)
     if not os.path.isdir(os.path.join(target, '.git')):
         print('[WARN] %s is not a git checkout - the loop expects a repo the watcher polls' % target)
 
@@ -344,13 +374,18 @@ def main():
     for rel in backed:
         print('   WARN  ' + rel)
 
-    note, problems = insert_sections(target, refresh=args.refresh_sections)
-    if note:
-        print('   local_check.ps1 sections: ' + note)
+    if os_name == 'windows':
+        note, problems = insert_sections(target, refresh=args.refresh_sections)
+        if note:
+            print('   local_check.ps1 sections: ' + note)
+    else:
+        note = 'linux/macOS: code/local_check.sh is the machine harness (installed as a file)'
+        problems = []
+        print('   local_check.sh: ' + note)
     for p in problems:
         print('   FAIL ' + p)
 
-    note, problems2 = merge_criteria(target, args.profile)
+    note, problems2 = merge_criteria(target, args.profile, os_name)
     if note:
         print('   criteria: ' + note)
     problems += problems2

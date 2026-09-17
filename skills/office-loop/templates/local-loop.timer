@@ -1,0 +1,11 @@
+# local-loop.timer - every 2 minutes (OnBootSec so it runs after a reboot).
+[Unit]
+Description=git-sync local loop timer
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=2min
+Unit=local-loop.service
+
+[Install]
+WantedBy=timers.target

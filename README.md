@@ -197,6 +197,15 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
     skills/office-loop/     v1.0.0  — 本机生成 + 本机判定的 docx / pptx 自循环
 
 * `SKILL.md`：装什么、怎么装（3 条命令）、一轮循环发生什么、出问题看哪儿、不做什么
+* `ARCHITECTURE.md`：**任务无关的两平面架构** —— 配方/门禁/平面/统一回执四个概念、谁在哪里跑的判定矩阵、
+  三个可替换适配器、以及从 pre-commit / Taskfile / GitHub Actions / devcontainer / Dagger 借来的做法
+* `PORTING.md`：换任务（只动配方）、换系统（只动三个适配器，Windows ↔ Linux/macOS 对照表）、
+  换身份（别的助理 / CI / 人 / 多机）、CI-only 模式、新系统首跑检查清单
+* `code/recipes/*.json` + `code/loop.json`：任务即配置（默认测试任务 office-deck + 两个示例：
+  纯沙箱任务、必须本机安装的任务）；`code/local_loop.py plan|sandbox|local|gates` 是任务无关的 runner
+* `code/gates.json` + `code/gates.py`：门禁列表数据化（severity / plane），新增门禁＝加一条 JSON
+* Linux 适配器：`code/local_check.sh`、`code/pptmaster_local.sh`、`code/watch-linux.sh` +
+  `templates/local-loop.{service,timer,cron}` —— 编号与 Windows 版一致（3a–3h、4a–4c）
 * `CASE_STUDY.md`：本案全过程 —— 两轮对话提示词、真机证据、走通的链路、踩过的 6 个坑与修法
 * `agent-install.sh` + `tools/install.py`：幂等安装（复制代码、插入 `local_check.ps1` 的两段、
   合并验收标准、跑版面自检、写安装回执 `results/status/office_loop_install.json`）

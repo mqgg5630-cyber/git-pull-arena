@@ -52,7 +52,21 @@
     "skills/office-loop/payload/code/pptmaster_local.ps1",
     "code/check_criteria_needles.py",
     "code/pull_machine_evidence.sh",
-    "skills/office-loop/payload/code/pull_machine_evidence.sh"
+    "skills/office-loop/payload/code/pull_machine_evidence.sh",
+    "code/local_loop.py",
+    "code/gates.py",
+    "code/gates.json",
+    "code/loop.json",
+    "code/recipes/office-deck.json",
+    "code/local_check.sh",
+    "code/pptmaster_local.sh",
+    "code/watch-linux.sh",
+    "skills/office-loop/ARCHITECTURE.md",
+    "skills/office-loop/PORTING.md",
+    "skills/office-loop/CHANGELOG.md",
+    "skills/office-loop/templates/local-loop.service",
+    "skills/office-loop/templates/local-loop.timer",
+    "skills/office-loop/templates/local-loop.cron"
   ],
   "forbid_files": [
     "local/inbox",
@@ -80,11 +94,15 @@
     "code/make_deck_umami.py": "鲜味肽",
     "code/deck_kit.py": "bounds_overlaps",
     "results/umami/pptmaster_local.txt": "checker_blocking=0",
-    "skills/office-loop/VERSION": "1.0.0",
+    "skills/office-loop/VERSION": "2.0.0",
     "skills/office-loop/CASE_STUDY.md": "round-28",
     "skills/office-loop/prompts.md": "不要打开 arena.ai",
     "skills/office-loop/tools/install.py": "refresh-sections",
-    "skills/office-loop/SKILL.md": "office-loop"
+    "skills/office-loop/SKILL.md": "office-loop",
+    "code/recipes/office-deck.json": "local-loop.recipe.v1",
+    "code/gates.json": "criteria-needles",
+    "skills/office-loop/PORTING.md": "systemd",
+    "skills/office-loop/ARCHITECTURE.md": "pre-commit"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
@@ -120,7 +138,10 @@
     "skills/office-loop/CASE_STUDY.md": 3000,
     "skills/office-loop/tools/install.py": 8000,
     "code/check_criteria_needles.py": 2000,
-    "code/pull_machine_evidence.sh": 1500
+    "code/pull_machine_evidence.sh": 1500,
+    "code/local_loop.py": 8000,
+    "skills/office-loop/ARCHITECTURE.md": 3000,
+    "skills/office-loop/PORTING.md": 3000
   },
   "max_bytes": {
     "deliverable/BRIDGE_01a0aa00_v2.8.1.docx": 3000000,

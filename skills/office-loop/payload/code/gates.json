@@ -1,0 +1,53 @@
+{
+  "schema": "local-loop.gates.v1",
+  "note": "Every cheap question that must be answered YES before a push runs. Add a gate here instead of editing a script: code/gates.py runs this list and code/check_all.sh calls it after its own built-in invariant checks (ASCII .ps1, branch guard, script copies, loop summaries). severity=block stops the push, warn only prints. plane=local marks a gate only the user's machine can answer - listed so the plan stays complete, skipped by the sandbox runner. Gate list is data: add one entry to extend it. The task-agnostic runner (code/local_loop.py) reads code/recipes/<id>.json; this list is what it runs as the 'gates' step, so a repo's own checks live here too.",
+  "gates": [
+    {
+      "id": "deck-layout",
+      "run": [
+        "{python}",
+        "code/deck_layout_selftest.py"
+      ],
+      "severity": "block",
+      "plane": "sandbox",
+      "why": "the deck pages read their numbers out of the repo, so one input can build a page whose module boxes overlap - the machine's checker rejects that page and the whole round fails (round 28)"
+    },
+    {
+      "id": "criteria-needles",
+      "run": [
+        "{python}",
+        "code/check_criteria_needles.py"
+      ],
+      "severity": "block",
+      "plane": "sandbox",
+      "why": "an acceptance needle that no file in the worktree contains fails the round on the machine even when every local check passed (round 33)"
+    },
+    {
+      "id": "payload-drift",
+      "run": [
+        "{python}",
+        "skills/office-loop/tools/check_payload.py"
+      ],
+      "severity": "block",
+      "plane": "sandbox",
+      "why": "the installable skill carries the loop's code inside itself; if that copy drifts, another session installs an old loop"
+    },
+    {
+      "id": "recipes-valid",
+      "run": [
+        "{python}",
+        "code/local_loop.py",
+        "plan"
+      ],
+      "severity": "block",
+      "plane": "sandbox",
+      "why": "the task recipe is what tells the machine what to build and verify - a malformed recipe must fail here, not mid-round"
+    },
+    {
+      "id": "machine-task",
+      "severity": "block",
+      "plane": "local",
+      "why": "the local plane itself: the real install / real Office / real GUI check, run by the watcher on the user's machine as sections 3 and 4 of code/local_check.ps1 (or local_check.sh on Linux)"
+    }
+  ]
+}

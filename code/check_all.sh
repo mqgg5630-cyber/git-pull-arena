@@ -225,56 +225,19 @@ exit $bad'
     fi
 fi
 
-# ------------------- 5. is the deck layout safe for any numbers the repo has?
-# The deck pages read rounds / elapsed / counts out of the repo and those feed
-# the geometry, so one input can build a page whose module boxes overlap - the
-# machine's checker fails such a page (round 28: blocking=2 on 08_numbers.svg,
-# found only after a full remote round). This builds every page over a matrix
-# of inputs, including the exact round-28 machine state, and asserts the same
-# rules. Pure python, no dependencies, runs here and on the machine.
-if [ ! -f code/deck_layout_selftest.py ]; then
-    echo "SKIP: code/deck_layout_selftest.py not present in this repo"
+# ------------------------- 5. the repo's gate list (code/gates.json)
+# Everything that can be answered cheaply and must be YES before a push lives in
+# code/gates.json and runs here: deck layout under extreme inputs, criteria
+# needles, installable-skill payload drift, recipe validity. Adding a gate is one
+# JSON entry - no script edit, which is the whole point of the list.
+if [ ! -f code/gates.py ]; then
+    echo "SKIP: code/gates.py not present in this repo"
 elif [ -z "$PY" ]; then
-    echo "SKIP: no python on PATH - deck layout self-test skipped"
+    echo "SKIP: no python on PATH - gate list skipped"
 elif ! $PY -c 'import sys; sys.exit(0)' >/dev/null 2>&1; then
-    echo "SKIP: $PY is not a working python - deck layout self-test skipped here"
+    echo "SKIP: $PY is not a working python - gate list skipped here"
 else
-    if $PY code/deck_layout_selftest.py; then
-        :
-    else
-        fail=1
-    fi
-fi
-
-# --------------------- 6. does the installable skill carry the CURRENT loop?
-# skills/office-loop/payload/ is the copy another session installs from. If it
-# drifts from code/, that session silently gets an old loop.
-if [ ! -f skills/office-loop/tools/check_payload.py ]; then
-    echo "SKIP: skills/office-loop not present in this repo"
-elif [ -z "$PY" ]; then
-    echo "SKIP: no python on PATH - office-loop payload check skipped"
-elif ! $PY -c 'import sys; sys.exit(0)' >/dev/null 2>&1; then
-    echo "SKIP: $PY is not a working python - office-loop payload check skipped here"
-else
-    if $PY skills/office-loop/tools/check_payload.py; then
-        :
-    else
-        fail=1
-    fi
-fi
-
-# ------------- 7. would the machine's criteria check pass on THIS worktree?
-# A round is failed by an unsatisfiable needle just as hard as by a broken deck
-# (round 33: "'round 28' not in skills/office-loop/CASE_STUDY.md" after a green
-# 4a/4b/4c). Catch it here, where it costs a second instead of a round.
-if [ ! -f code/check_criteria_needles.py ]; then
-    echo "SKIP: code/check_criteria_needles.py not present in this repo"
-elif [ -z "$PY" ]; then
-    echo "SKIP: no python on PATH - criteria needle check skipped"
-elif ! $PY -c 'import sys; sys.exit(0)' >/dev/null 2>&1; then
-    echo "SKIP: $PY is not a working python - criteria needle check skipped here"
-else
-    if $PY code/check_criteria_needles.py; then
+    if $PY code/gates.py; then
         :
     else
         fail=1

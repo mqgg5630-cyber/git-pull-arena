@@ -364,7 +364,9 @@ def main():
     ap.add_argument('--repo', default=None, help='repo root (defaults to this script\'s repo)')
     ap.add_argument('--project', default=None,
                     help='ppt-master project dir name (default: the deck config)')
-    ap.add_argument('--environment', default='sandbox', choices=['sandbox', 'windows'])
+    ap.add_argument('--environment', default='sandbox',
+                    choices=['sandbox', 'windows', 'linux', 'macos'],
+                    help='which machine this run is proving (goes into the receipt)')
     ap.add_argument('--host', default='sandbox')
     ap.add_argument('--expect-slides', type=int, default=None)
     ap.add_argument('--generator', default=None,

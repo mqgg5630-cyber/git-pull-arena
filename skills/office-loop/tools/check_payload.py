@@ -12,6 +12,18 @@ import os
 import sys
 
 FILES = [
+    # task-agnostic half
+    'code/local_loop.py',
+    'code/gates.py',
+    'code/gates.json',
+    'code/loop.json',
+    'code/recipes/office-deck.json',
+    'code/local_check.sh',
+    'code/pptmaster_local.sh',
+    'code/watch-linux.sh',
+    'code/check_criteria_needles.py',
+    'code/pull_machine_evidence.sh',
+    # the default task's implementation
     'code/deck_kit.py',
     'code/deck_layout_selftest.py',
     'code/make_deck_pptmaster.py',
@@ -19,7 +31,6 @@ FILES = [
     'code/pptmaster_pipeline.py',
     'code/pptmaster_local.ps1',
     'code/render_deck_preview.py',
-    'code/pull_machine_evidence.sh',
 ]
 
 
