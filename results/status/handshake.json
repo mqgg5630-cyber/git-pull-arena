@@ -1,9 +1,9 @@
 {
-    "round":  36,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "verify round 36: the proven Windows loop must be unchanged - 4a/4b/4c all OK, checker_blocking=0, markers=ok, real PowerPoint open, both decks in out\\ intact - i.e. v2 changed the architecture around the task without disturbing the task that already works",
-    "arena_updated":  "2026-09-17 01:14:17",
-    "local_updated":  "2026-09-17 09:16:30"
+  "round": 36,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-17 01:16:55",
+  "local_updated": "2026-09-17 09:16:30"
 }
