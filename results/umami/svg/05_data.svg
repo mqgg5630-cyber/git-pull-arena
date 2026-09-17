@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" lang="zh-CN" font-family="Microsoft YaHei, Segoe UI, sans-serif" data-pptx-page-role="content">
+  <defs>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="#0B1220" id="bg" data-pptx-role="background"/>
+  <g id="page-title" data-pptx-bounds="70 44 1140 144">
+  <text x="74" y="78" font-size="16" fill="#22D3EE" font-family="Consolas, monospace" letter-spacing="3">//  DATA</text>
+  <text x="70" y="138" font-size="44" fill="#F1F5F9" font-weight="700">数据与标签从哪来</text>
+  <text x="72" y="176" font-size="20" fill="#94A3B8">正负样本怎么定义，比模型选什么更影响结果</text>
+  </g>
+  <text x="1208" y="78" font-size="16" fill="#64748B" id="page-number" data-pptx-role="page-number" font-family="Consolas, monospace" text-anchor="end">04 / 12</text>
+  <line x1="72" y1="622" x2="1208" y2="622" stroke="#17293F" stroke-width="1" id="frame-rule" data-pptx-role="decoration"/>
+  <text x="72" y="652" font-size="14" fill="#64748B" id="footer-left" data-pptx-role="footer" font-family="Consolas, monospace">umami peptides  ·  ppt-master deck  ·  session 01a0aa00</text>
+  <text x="1208" y="652" font-size="14" fill="#64748B" id="footer-right" data-pptx-role="footer" font-family="Consolas, monospace" text-anchor="end">LAPTOP-R77M5D6M</text>
+  <g id="data-row-1" data-pptx-bounds="70 212 1140 50">
+  <rect x="70" y="212" width="1140" height="50" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="10"/>
+  <text x="96" y="244" font-size="20" fill="#22D3EE" font-weight="700">BIOPEP-UWM</text>
+  <text x="410" y="244" font-size="18" fill="#94A3B8">呈味肽与生物活性肽记录，可导出序列</text>
+  </g>
+  <g id="data-row-2" data-pptx-bounds="70 268 1140 50">
+  <rect x="70" y="268" width="1140" height="50" fill="#0D1626" stroke="#1E3A5F" stroke-width="1" rx="10"/>
+  <text x="96" y="300" font-size="20" fill="#22D3EE" font-weight="700">TastePeptides-DB</text>
+  <text x="410" y="300" font-size="18" fill="#94A3B8">味觉肽分类（苦 / 鲜 / 甜等）</text>
+  </g>
+  <g id="data-row-3" data-pptx-bounds="70 324 1140 50">
+  <rect x="70" y="324" width="1140" height="50" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="10"/>
+  <text x="96" y="356" font-size="20" fill="#22D3EE" font-weight="700">Umami-MRNN 数据集</text>
+  <text x="410" y="356" font-size="18" fill="#94A3B8">公开的鲜味肽训练集与标注</text>
+  </g>
+  <g id="data-row-4" data-pptx-bounds="70 380 1140 50">
+  <rect x="70" y="380" width="1140" height="50" fill="#0D1626" stroke="#1E3A5F" stroke-width="1" rx="10"/>
+  <text x="96" y="412" font-size="20" fill="#60A5FA" font-weight="700">APD3 / UniProt</text>
+  <text x="410" y="412" font-size="18" fill="#94A3B8">补负样本与背景序列</text>
+  </g>
+  <g id="data-labels" data-pptx-bounds="70 448 552 118">
+  <rect x="70" y="448" width="552" height="118" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <rect x="70" y="448" width="4" height="118" fill="#FBBF24" rx="2"/>
+  <text x="102" y="496" font-size="22" fill="#F1F5F9" font-weight="700">标签从哪来</text>
+  <text x="102" y="538" font-size="16" fill="#94A3B8">感官阈值 / 电子舌响应 / 受体激活</text>
+  </g>
+  <g id="data-negatives" data-pptx-bounds="656 448 554 118">
+  <rect x="656" y="448" width="554" height="118" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <rect x="656" y="448" width="4" height="118" fill="#22D3EE" rx="2"/>
+  <text x="688" y="496" font-size="22" fill="#F1F5F9" font-weight="700">负样本要难一点</text>
+  <text x="688" y="538" font-size="16" fill="#94A3B8">随机肽太容易，模型会虚高</text>
+  </g>
+  <g id="demo-note" data-pptx-bounds="70 580 1140 40">
+  <text x="96" y="606" font-size="15" fill="#FBBF24">示例：样本量、比例、去冗余阈值（如相似度 90%）都要按自己的库重算。</text>
+  </g>
+</svg>

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" lang="zh-CN" font-family="Microsoft YaHei, Segoe UI, sans-serif" data-pptx-page-role="content">
+  <defs>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="#0B1220" id="bg" data-pptx-role="background"/>
+  <g id="page-title" data-pptx-bounds="70 44 1140 144">
+  <text x="74" y="78" font-size="16" fill="#22D3EE" font-family="Consolas, monospace" letter-spacing="3">//  PROBLEM</text>
+  <text x="70" y="138" font-size="44" fill="#F1F5F9" font-weight="700">为什么要用计算筛选</text>
+  <text x="72" y="176" font-size="20" fill="#94A3B8">湿实验只能验证极少数候选，先让模型把搜索空间砍掉</text>
+  </g>
+  <text x="1208" y="78" font-size="16" fill="#64748B" id="page-number" data-pptx-role="page-number" font-family="Consolas, monospace" text-anchor="end">03 / 12</text>
+  <line x1="72" y1="622" x2="1208" y2="622" stroke="#17293F" stroke-width="1" id="frame-rule" data-pptx-role="decoration"/>
+  <text x="72" y="652" font-size="14" fill="#64748B" id="footer-left" data-pptx-role="footer" font-family="Consolas, monospace">umami peptides  ·  ppt-master deck  ·  session 01a0aa00</text>
+  <text x="1208" y="652" font-size="14" fill="#64748B" id="footer-right" data-pptx-role="footer" font-family="Consolas, monospace" text-anchor="end">LAPTOP-R77M5D6M</text>
+  <g id="problem-space" data-pptx-bounds="70 216 350 300">
+  <rect x="70" y="216" width="350" height="300" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <rect x="70" y="216" width="4" height="300" fill="#FBBF24" rx="2"/>
+  <text x="102" y="264" font-size="24" fill="#F1F5F9" font-weight="700">空间巨大</text>
+  <text x="102" y="306" font-size="16" fill="#94A3B8" font-family="Consolas, monospace">20 种天然氨基酸，长度 2-8 的组合</text>
+  <text x="102" y="342" font-size="17" fill="#94A3B8">穷举酶解产物是天文数字</text>
+  <text x="102" y="378" font-size="17" fill="#94A3B8">只能挑一小批去合成</text>
+  </g>
+  <g id="problem-lab" data-pptx-bounds="448 216 350 300">
+  <rect x="448" y="216" width="350" height="300" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <rect x="448" y="216" width="4" height="300" fill="#22D3EE" rx="2"/>
+  <text x="480" y="264" font-size="24" fill="#F1F5F9" font-weight="700">实验瓶颈</text>
+  <text x="480" y="306" font-size="17" fill="#94A3B8">感官评价：周期长、成本高</text>
+  <text x="480" y="342" font-size="17" fill="#94A3B8">人工品评有主观差异</text>
+  <text x="480" y="378" font-size="17" fill="#94A3B8">电子舌 / 受体实验通量有限</text>
+  </g>
+  <g id="problem-known" data-pptx-bounds="826 216 382 300">
+  <rect x="826" y="216" width="382" height="300" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <rect x="826" y="216" width="4" height="300" fill="#A3E635" rx="2"/>
+  <text x="858" y="264" font-size="24" fill="#F1F5F9" font-weight="700">已知规律</text>
+  <text x="858" y="306" font-size="17" fill="#94A3B8">鲜味肽多为短肽（常见 2-8 aa）</text>
+  <text x="858" y="342" font-size="17" fill="#94A3B8">酸性残基 + 疏水残基富集</text>
+  <text x="858" y="378" font-size="17" fill="#94A3B8">作用于 T1R1-T1R3 异源二聚体</text>
+  </g>
+  <g id="problem-takeaway" data-pptx-bounds="70 540 1138 74">
+  <rect x="70" y="540" width="1138" height="74" fill="#0D1626" stroke="#1E3A5F" stroke-width="1" rx="12"/>
+  <text x="96" y="576" font-size="21" fill="#F1F5F9" font-weight="700">结论：用模型先排序，再用少量湿实验验证排序的头部——这是本 deck 的主线。</text>
+  <text x="96" y="602" font-size="14" fill="#FBBF24" font-family="Consolas, monospace">示例：本页不引用任何具体文献数值，只描述常见方法学做法。</text>
+  </g>
+</svg>

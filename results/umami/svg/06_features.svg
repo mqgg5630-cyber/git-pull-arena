@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" lang="zh-CN" font-family="Microsoft YaHei, Segoe UI, sans-serif" data-pptx-page-role="content">
+  <defs>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="#0B1220" id="bg" data-pptx-role="background"/>
+  <g id="page-title" data-pptx-bounds="70 44 1140 144">
+  <text x="74" y="78" font-size="16" fill="#22D3EE" font-family="Consolas, monospace" letter-spacing="3">//  FEATURES</text>
+  <text x="70" y="138" font-size="44" fill="#F1F5F9" font-weight="700">特征工程：先简单，后嵌入</text>
+  <text x="72" y="176" font-size="20" fill="#94A3B8">样本少的时候，可解释特征往往赢过复杂模型</text>
+  </g>
+  <text x="1208" y="78" font-size="16" fill="#64748B" id="page-number" data-pptx-role="page-number" font-family="Consolas, monospace" text-anchor="end">05 / 12</text>
+  <line x1="72" y1="622" x2="1208" y2="622" stroke="#17293F" stroke-width="1" id="frame-rule" data-pptx-role="decoration"/>
+  <text x="72" y="652" font-size="14" fill="#64748B" id="footer-left" data-pptx-role="footer" font-family="Consolas, monospace">umami peptides  ·  ppt-master deck  ·  session 01a0aa00</text>
+  <text x="1208" y="652" font-size="14" fill="#64748B" id="footer-right" data-pptx-role="footer" font-family="Consolas, monospace" text-anchor="end">LAPTOP-R77M5D6M</text>
+  <g id="feature-row-1" data-pptx-bounds="70 210 1140 56">
+  <rect x="70" y="210" width="1140" height="56" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="10"/>
+  <text x="96" y="246" font-size="20" fill="#22D3EE" font-weight="700">AAC</text>
+  <text x="238" y="246" font-size="19" fill="#F1F5F9">氨基酸组成</text>
+  <text x="584" y="246" font-size="18" fill="#7DD3FC" font-family="Consolas, monospace">20 维</text>
+  <text x="752" y="246" font-size="17" fill="#94A3B8">长度归一，最稳的基线</text>
+  </g>
+  <g id="feature-row-2" data-pptx-bounds="70 272 1140 56">
+  <rect x="70" y="272" width="1140" height="56" fill="#0D1626" stroke="#1E3A5F" stroke-width="1" rx="10"/>
+  <text x="96" y="308" font-size="20" fill="#22D3EE" font-weight="700">DPC</text>
+  <text x="238" y="308" font-size="19" fill="#F1F5F9">二肽组成</text>
+  <text x="584" y="308" font-size="18" fill="#7DD3FC" font-family="Consolas, monospace">400 维</text>
+  <text x="752" y="308" font-size="17" fill="#94A3B8">捕捉相邻残基偏好</text>
+  </g>
+  <g id="feature-row-3" data-pptx-bounds="70 334 1140 56">
+  <rect x="70" y="334" width="1140" height="56" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="10"/>
+  <text x="96" y="370" font-size="20" fill="#60A5FA" font-weight="700">CTD</text>
+  <text x="238" y="370" font-size="19" fill="#F1F5F9">组成 / 转换 / 分布</text>
+  <text x="584" y="370" font-size="18" fill="#7DD3FC" font-family="Consolas, monospace">21 维</text>
+  <text x="752" y="370" font-size="17" fill="#94A3B8">理化性质的分组统计</text>
+  </g>
+  <g id="feature-row-4" data-pptx-bounds="70 396 1140 56">
+  <rect x="70" y="396" width="1140" height="56" fill="#0D1626" stroke="#1E3A5F" stroke-width="1" rx="10"/>
+  <text x="96" y="432" font-size="20" fill="#60A5FA" font-weight="700">理化</text>
+  <text x="238" y="432" font-size="19" fill="#F1F5F9">疏水性 · 电荷 · pI · 体积</text>
+  <text x="584" y="432" font-size="18" fill="#7DD3FC" font-family="Consolas, monospace">8 维</text>
+  <text x="752" y="432" font-size="17" fill="#94A3B8">GRAVY 等经典描述符</text>
+  </g>
+  <g id="feature-row-5" data-pptx-bounds="70 458 1140 56">
+  <rect x="70" y="458" width="1140" height="56" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="10"/>
+  <text x="96" y="494" font-size="20" fill="#A3E635" font-weight="700">嵌入</text>
+  <text x="238" y="494" font-size="19" fill="#F1F5F9">蛋白语言模型向量</text>
+  <text x="584" y="494" font-size="18" fill="#7DD3FC" font-family="Consolas, monospace">320+ 维</text>
+  <text x="752" y="494" font-size="17" fill="#94A3B8">长肽 / 数据多时才划算</text>
+  </g>
+  <g id="feature-takeaway" data-pptx-bounds="70 548 1138 66">
+  <rect x="70" y="548" width="1138" height="66" fill="#0D1626" stroke="#1E3A5F" stroke-width="1" rx="12"/>
+  <text x="96" y="580" font-size="20" fill="#F1F5F9" font-weight="700">顺序：先 AAC + 理化做基线 → 再看 DPC / CTD 的增益 → 最后才上嵌入。</text>
+  <text x="96" y="604" font-size="14" fill="#FBBF24" font-family="Consolas, monospace">示例：维度数字是常见设置，按自己的实现替换。</text>
+  </g>
+</svg>

@@ -1,0 +1,135 @@
+check round 22 on LAPTOP-R77M5D6M - passed (exit 0)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 43s
+
+OK: all .ps1 files are ASCII-only
+OK: sync.config.json branch=arena/01a0aa00-git-pull-arena
+OK: sync.config.json branch matches HEAD (arena/01a0aa00-git-pull-arena)
+OK: root scripts identical to skills/git-sync/scripts
+OK: no drive-style variable typos ($var:)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+OK: every .ps1 parses
+   (gate ran via E:\hermes\git\bin\bash.exe [git])
+== accept 2a: silent push PROVEN (ls-remote + push --dry-run, prompts disabled)
+== accept 2b (fallback): one LONG-LIVED loop process - one brief flash per logon,
+   not per poll. For zero flash: admin PowerShell -> .\watch.ps1 -Unregister ;
+   .\watch.ps1 -Register -Headless   (or fix the launcher, see watch-*.log)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+== check_loop_summary PASSED
+== accept 2c: watcher closing lines verified (every exit path has its summary)
+== deliverables: 6 Office file(s) declared in deliverable/OFFICE_HASHES.json
+   OK   3a sha256 + bytes match: deliverable/BRIDGE_01a0aa00_v2.8.1.docx (40685 B, docx)
+   OK   3b all 6 required parts present in deliverable/BRIDGE_01a0aa00_v2.8.1.docx
+   OK   3c every XML part parses in deliverable/BRIDGE_01a0aa00_v2.8.1.docx (17 parts)
+   OK   3d every relationship target resolves in deliverable/BRIDGE_01a0aa00_v2.8.1.docx
+   OK   3e content types cover every part of deliverable/BRIDGE_01a0aa00_v2.8.1.docx
+   OK   3f all 5 text markers present in deliverable/BRIDGE_01a0aa00_v2.8.1.docx
+   OK   3a sha256 + bytes match: deliverable/BRIDGE_01a0aa00_v2.8.1.pptx (37466 B, pptx)
+   OK   3b all 9 required parts present in deliverable/BRIDGE_01a0aa00_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/BRIDGE_01a0aa00_v2.8.1.pptx (54 parts)
+   OK   3d every relationship target resolves in deliverable/BRIDGE_01a0aa00_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/BRIDGE_01a0aa00_v2.8.1.pptx
+   OK   3f all 5 text markers present in deliverable/BRIDGE_01a0aa00_v2.8.1.pptx
+   OK   3g slides in deliverable/BRIDGE_01a0aa00_v2.8.1.pptx : 9 >= 8
+   OK   3a sha256 + bytes match: deliverable/GUIDE_01a0aa00_v2.8.1.docx (40598 B, docx)
+   OK   3b all 6 required parts present in deliverable/GUIDE_01a0aa00_v2.8.1.docx
+   OK   3c every XML part parses in deliverable/GUIDE_01a0aa00_v2.8.1.docx (17 parts)
+   OK   3d every relationship target resolves in deliverable/GUIDE_01a0aa00_v2.8.1.docx
+   OK   3e content types cover every part of deliverable/GUIDE_01a0aa00_v2.8.1.docx
+   OK   3f all 9 text markers present in deliverable/GUIDE_01a0aa00_v2.8.1.docx
+   OK   3a sha256 + bytes match: deliverable/GUIDE_01a0aa00_v2.8.1.pptx (40308 B, pptx)
+   OK   3b all 9 required parts present in deliverable/GUIDE_01a0aa00_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/GUIDE_01a0aa00_v2.8.1.pptx (56 parts)
+   OK   3d every relationship target resolves in deliverable/GUIDE_01a0aa00_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/GUIDE_01a0aa00_v2.8.1.pptx
+   OK   3f all 9 text markers present in deliverable/GUIDE_01a0aa00_v2.8.1.pptx
+   OK   3g slides in deliverable/GUIDE_01a0aa00_v2.8.1.pptx : 10 >= 10
+   OK   3a sha256 + bytes match: deliverable/DELIVERY_01a0aa00_v2.8.1.docx (39251 B, docx)
+   OK   3b all 6 required parts present in deliverable/DELIVERY_01a0aa00_v2.8.1.docx
+   OK   3c every XML part parses in deliverable/DELIVERY_01a0aa00_v2.8.1.docx (17 parts)
+   OK   3d every relationship target resolves in deliverable/DELIVERY_01a0aa00_v2.8.1.docx
+   OK   3e content types cover every part of deliverable/DELIVERY_01a0aa00_v2.8.1.docx
+   OK   3f all 8 text markers present in deliverable/DELIVERY_01a0aa00_v2.8.1.docx
+   OK   3a sha256 + bytes match: deliverable/DELIVERY_01a0aa00_v2.8.1.pptx (35007 B, pptx)
+   OK   3b all 9 required parts present in deliverable/DELIVERY_01a0aa00_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/DELIVERY_01a0aa00_v2.8.1.pptx (50 parts)
+   OK   3d every relationship target resolves in deliverable/DELIVERY_01a0aa00_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/DELIVERY_01a0aa00_v2.8.1.pptx
+   OK   3f all 8 text markers present in deliverable/DELIVERY_01a0aa00_v2.8.1.pptx
+   OK   3g slides in deliverable/DELIVERY_01a0aa00_v2.8.1.pptx : 7 >= 6
+   OK   3h Word.Application opened read-only, name=BRIDGE_01a0aa00_v2.8.1.docx : deliverable\BRIDGE_01a0aa00_v2.8.1.docx
+   OK   3h PowerPoint.Application opened read-only, slides=9 : deliverable\BRIDGE_01a0aa00_v2.8.1.pptx
+   OK   3h Word.Application opened read-only, name=GUIDE_01a0aa00_v2.8.1.docx : deliverable\GUIDE_01a0aa00_v2.8.1.docx
+   OK   3h PowerPoint.Application opened read-only, slides=10 : deliverable\GUIDE_01a0aa00_v2.8.1.pptx
+   OK   3h Word.Application opened read-only, name=DELIVERY_01a0aa00_v2.8.1.docx : deliverable\DELIVERY_01a0aa00_v2.8.1.docx
+   OK   3h PowerPoint.Application opened read-only, slides=7 : deliverable\DELIVERY_01a0aa00_v2.8.1.pptx
+== accept 2d: hands-free auto_pull/auto_push present in watch.ps1
+== success criteria: results/status/success_criteria.json
+   session 01a0aa00 on arena/01a0aa00-git-pull-arena (round 22, self-loop close-out): the user asked to clear the other watchers, then loop docx+pptx production -> push -> real-machine check -> verdict back, until nothing is wrong. Delivered across the loop: BRIDGE_01a0aa00_v2.8.1.docx/.pptx (what was installed and how the link works), GUIDE_01a0aa00_v2.8.1.docx/.pptx (install / daily commands / watcher / troubleshooting / limits) and now DELIVERY_01a0aa00_v2.8.1.docx/.pptx (delivery list + the real machine's receipts for rounds 20-21). All six are declared in deliverable/OFFICE_HASHES.json and judged by the Windows watcher: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide counts and a real Word/PowerPoint open (3a-3h), plus the gate and 2a-2d (silent push, closing lines, hands-free auto pull/push). 'Local' is always that scheduled task on the user's PC - never a sandbox folder, never a stand-in skill. Skill v2.8.1, installer refuses to downgrade.
+   OK   exists: 01a0a821.md (3609 B)
+   OK   exists: results/status/handshake.json (347 B)
+   OK   exists: skills/git-sync/VERSION (6 B)
+   OK   exists: skills/git-sync/scripts/agent-install.sh (13404 B)
+   OK   exists: skills/git-sync/scripts/agent-handoff.sh (4603 B)
+   OK   exists: skills/git-sync/scripts/agent-check.sh (8390 B)
+   OK   exists: skills/git-sync/scripts/agent-wait.sh (5942 B)
+   OK   exists: skills/git-sync/scripts/agent-handsfree.sh (3989 B)
+   OK   exists: skills/git-sync/scripts/agent-criteria.sh (5190 B)
+   OK   exists: skills/git-sync/scripts/watch.ps1 (84094 B)
+   OK   exists: skills/git-sync/templates/one-sentence.md (6524 B)
+   OK   exists: skills/git-sync/templates/task-loop.md (2238 B)
+   OK   exists: skills/git-sync/templates/gate.yml (1166 B)
+   OK   exists: code/check_all.sh (9945 B)
+   OK   exists: code/local_check.ps1 (27347 B)
+   OK   exists: code/make_bridge_report.py (49246 B)
+   OK   exists: deliverable/OFFICE_HASHES.json (6514 B)
+   OK   exists: deliverable/BRIDGE_01a0aa00_v2.8.1.docx (40685 B)
+   OK   exists: deliverable/BRIDGE_01a0aa00_v2.8.1.pptx (37466 B)
+   OK   exists: watch.ps1 (84094 B)
+   OK   exists: deliverable/GUIDE_01a0aa00_v2.8.1.docx (40598 B)
+   OK   exists: deliverable/GUIDE_01a0aa00_v2.8.1.pptx (40308 B)
+   OK   exists: deliverable/DELIVERY_01a0aa00_v2.8.1.docx (39251 B)
+   OK   exists: deliverable/DELIVERY_01a0aa00_v2.8.1.pptx (35007 B)
+   OK   absent: local/inbox
+   OK   absent: local/status_receipts
+   OK   absent: skills/docx_skill.py
+   OK   absent: local_bridge_skill.py
+   OK   contains skills/git-sync/VERSION <- 2.8.1
+   OK   contains skills/git-sync/sync.config.json <- arena/01a0aa00-git-pull-arena
+   OK   contains 01a0a821.md <- arena/01a0aa00-git-pull-arena
+   OK   contains skills/git-sync/templates/one-sentence.md <- agent-handoff.sh
+   OK   contains skills/git-sync/scripts/agent-install.sh <- refusing to downgrade
+   OK   contains code/check_all.sh <- py -3
+   OK   contains watch.ps1 <- function Invoke-AutoPull
+   OK   contains skills/git-sync/scripts/watch.ps1 <- function Invoke-Focus
+   OK   contains deliverable/OFFICE_HASHES.json <- arena/01a0aa00-git-pull-arena
+   OK   regex watch.ps1
+   OK   regex code/local_check.ps1
+   OK   regex deliverable/OFFICE_HASHES.json
+   OK   size skills/git-sync/scripts/agent-handoff.sh: 4603 >= 2000
+   OK   size skills/git-sync/scripts/agent-install.sh: 13404 >= 10000
+   OK   size skills/git-sync/scripts/agent-check.sh: 8390 >= 4000
+   OK   size code/check_all.sh: 9945 >= 8000
+   OK   size code/local_check.ps1: 27347 >= 12000
+   OK   size code/make_bridge_report.py: 49246 >= 8000
+   OK   size deliverable/OFFICE_HASHES.json: 6514 >= 500
+   OK   size deliverable/BRIDGE_01a0aa00_v2.8.1.docx: 40685 >= 5000
+   OK   size deliverable/BRIDGE_01a0aa00_v2.8.1.pptx: 37466 >= 15000
+   OK   size watch.ps1: 84094 >= 20000
+   OK   size deliverable/GUIDE_01a0aa00_v2.8.1.docx: 40598 >= 5000
+   OK   size deliverable/GUIDE_01a0aa00_v2.8.1.pptx: 40308 >= 15000
+   OK   size deliverable/DELIVERY_01a0aa00_v2.8.1.docx: 39251 >= 5000
+   OK   size deliverable/DELIVERY_01a0aa00_v2.8.1.pptx: 35007 >= 15000
+   OK   size deliverable/BRIDGE_01a0aa00_v2.8.1.docx: 40685 <= 3000000
+   OK   size deliverable/BRIDGE_01a0aa00_v2.8.1.pptx: 37466 <= 3000000
+   OK   size deliverable/GUIDE_01a0aa00_v2.8.1.docx: 40598 <= 3000000
+   OK   size deliverable/GUIDE_01a0aa00_v2.8.1.pptx: 40308 <= 3000000
+   OK   size deliverable/DELIVERY_01a0aa00_v2.8.1.docx: 39251 <= 3000000
+   OK   size deliverable/DELIVERY_01a0aa00_v2.8.1.pptx: 35007 <= 3000000
+== local checks passed

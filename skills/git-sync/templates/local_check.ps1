@@ -121,12 +121,177 @@ try {
     $fail = 1
 }
 
+#    2c. every watcher poll exit must record a closing line, so a round can
+#        never end in silence (a silent exit looks like a hung window). This is
+#        the PowerShell twin of the gate check in code/check_all.sh (3c).
+$loopChk = '.\code\check_loop_summary.ps1'
+if (Test-Path -LiteralPath $loopChk) {
+    try {
+        $chkOut = (& $loopChk -WatchPath '.\watch.ps1' 2>&1 | Out-String)
+        $chkCode = $LASTEXITCODE
+        if ($chkOut.Trim()) { Write-Output $chkOut.TrimEnd() }
+        if ($chkCode -eq 0) {
+            Write-Output '== accept 2c: watcher closing lines verified (every exit path has its summary)'
+        } else {
+            Write-Output ('[FAIL] accept 2c: watcher closing-line check failed (exit ' + $chkCode + ')')
+            $fail = 1
+        }
+    } catch {
+        Write-Output ('[FAIL] accept 2c: check_loop_summary.ps1 threw: ' + $_.Exception.Message)
+        $fail = 1
+    }
+} else {
+    Write-Output '[WARN] accept 2c: code\check_loop_summary.ps1 is missing - skipped (upgrade the skill)'
+}
+
 # 3. example: the deliverable must exist and not be empty
 # if (-not (Test-Path '.\deliverable\final.pptx')) {
 #     Write-Host '[FAIL] deliverable\final.pptx missing' -ForegroundColor Red; $fail = 1
 # }
 
 # 4. add your own checks here ...
+
+
+#    2d. v2.7.0 hands-free helpers must be in watch.ps1 (on disk after sync;
+#        the running loop still needs a re-register to USE them).
+$watchSrc = '.\watch.ps1'
+if (Test-Path -LiteralPath $watchSrc) {
+    $wt = Get-Content -LiteralPath $watchSrc -Raw -Encoding UTF8 -ErrorAction SilentlyContinue
+    if ($wt -and $wt.Contains('function Invoke-AutoPull') -and $wt.Contains('function Invoke-AutoPush')) {
+        Write-Output '== accept 2d: hands-free auto_pull/auto_push present in watch.ps1'
+    } else {
+        Write-Output '[FAIL] accept 2d: watch.ps1 is missing Invoke-AutoPull / Invoke-AutoPush (upgrade the skill)'
+        $fail = 1
+    }
+} else {
+    Write-Output '[FAIL] accept 2d: watch.ps1 missing'
+    $fail = 1
+}
+
+# ------------------------------------------------------------------------
+# hands-free success criteria (v2.7.0)
+# If results/status/success_criteria.json (or config.success_criteria) exists,
+# require every listed file / substring / size / regex. Missing file = skip.
+$critRel = 'results/status/success_criteria.json'
+if (Test-Path -LiteralPath '.\skills\git-sync\sync.config.json') {
+    try {
+        $cfgObj = Get-Content -LiteralPath '.\skills\git-sync\sync.config.json' -Encoding UTF8 -Raw | ConvertFrom-Json
+        if ($cfgObj.success_criteria) { $critRel = [string]$cfgObj.success_criteria }
+    } catch { }
+}
+$critRel = $critRel -replace '\\', '/'
+$critAbs = Join-Path (Get-Location) ($critRel -replace '/', '\')
+if (Test-Path -LiteralPath $critAbs) {
+    Write-Output ('== success criteria: ' + $critRel)
+    try {
+        $crit = Get-Content -LiteralPath $critAbs -Encoding UTF8 -Raw | ConvertFrom-Json
+        if ($crit.description) { Write-Output ('   ' + $crit.description) }
+        foreach ($f in @($crit.require_files)) {
+            if (-not $f) { continue }
+            $fp = Join-Path (Get-Location) ($f -replace '/', '\')
+            if (Test-Path -LiteralPath $fp) {
+                $sz = (Get-Item -LiteralPath $fp).Length
+                Write-Output ('   OK   exists: ' + $f + ' (' + $sz + ' B)')
+            } else {
+                Write-Output ('   FAIL MISSING file: ' + $f)
+                $fail = 1
+            }
+        }
+        foreach ($f in @($crit.forbid_files)) {
+            if (-not $f) { continue }
+            $fp = Join-Path (Get-Location) ($f -replace '/', '\')
+            if (Test-Path -LiteralPath $fp) {
+                Write-Output ('   FAIL FORBIDDEN still present: ' + $f)
+                $fail = 1
+            } else {
+                Write-Output ('   OK   absent: ' + $f)
+            }
+        }
+        if ($crit.require_contains) {
+            foreach ($prop in $crit.require_contains.PSObject.Properties) {
+                $f = [string]$prop.Name
+                $sub = [string]$prop.Value
+                $fp = Join-Path (Get-Location) ($f -replace '/', '\')
+                if (-not (Test-Path -LiteralPath $fp)) {
+                    Write-Output ('   FAIL MISSING for contains: ' + $f)
+                    $fail = 1
+                    continue
+                }
+                $txt = Get-Content -LiteralPath $fp -Raw -Encoding UTF8 -ErrorAction SilentlyContinue
+                if ($null -eq $txt) { $txt = '' }
+                if ($txt.Contains($sub)) {
+                    Write-Output ('   OK   contains ' + $f + ' <- ' + $sub)
+                } else {
+                    Write-Output ('   FAIL DOES NOT contain in ' + $f + ': ' + $sub)
+                    $fail = 1
+                }
+            }
+        }
+        if ($crit.require_regex) {
+            foreach ($prop in $crit.require_regex.PSObject.Properties) {
+                $f = [string]$prop.Name
+                $rx = [string]$prop.Value
+                $fp = Join-Path (Get-Location) ($f -replace '/', '\')
+                if (-not (Test-Path -LiteralPath $fp)) {
+                    Write-Output ('   FAIL MISSING for regex: ' + $f)
+                    $fail = 1
+                    continue
+                }
+                $txt = Get-Content -LiteralPath $fp -Raw -Encoding UTF8 -ErrorAction SilentlyContinue
+                if ($null -eq $txt) { $txt = '' }
+                if ($txt -match $rx) {
+                    Write-Output ('   OK   regex ' + $f)
+                } else {
+                    Write-Output ('   FAIL regex in ' + $f + ': ' + $rx)
+                    $fail = 1
+                }
+            }
+        }
+        if ($crit.min_bytes) {
+            foreach ($prop in $crit.min_bytes.PSObject.Properties) {
+                $f = [string]$prop.Name
+                $need = [int64]$prop.Value
+                $fp = Join-Path (Get-Location) ($f -replace '/', '\')
+                if (-not (Test-Path -LiteralPath $fp)) {
+                    Write-Output ('   FAIL MISSING for min_bytes: ' + $f)
+                    $fail = 1
+                    continue
+                }
+                $sz = [int64](Get-Item -LiteralPath $fp).Length
+                if ($sz -ge $need) {
+                    Write-Output ('   OK   size ' + $f + ': ' + $sz + ' >= ' + $need)
+                } else {
+                    Write-Output ('   FAIL TOO SMALL ' + $f + ': ' + $sz + ' < ' + $need)
+                    $fail = 1
+                }
+            }
+        }
+        if ($crit.max_bytes) {
+            foreach ($prop in $crit.max_bytes.PSObject.Properties) {
+                $f = [string]$prop.Name
+                $need = [int64]$prop.Value
+                $fp = Join-Path (Get-Location) ($f -replace '/', '\')
+                if (-not (Test-Path -LiteralPath $fp)) {
+                    Write-Output ('   FAIL MISSING for max_bytes: ' + $f)
+                    $fail = 1
+                    continue
+                }
+                $sz = [int64](Get-Item -LiteralPath $fp).Length
+                if ($sz -le $need) {
+                    Write-Output ('   OK   size ' + $f + ': ' + $sz + ' <= ' + $need)
+                } else {
+                    Write-Output ('   FAIL TOO BIG ' + $f + ': ' + $sz + ' > ' + $need)
+                    $fail = 1
+                }
+            }
+        }
+    } catch {
+        Write-Output ('   FAIL criteria parse: ' + $_.Exception.Message)
+        $fail = 1
+    }
+} else {
+    Write-Output ('== success criteria: (none at ' + $critRel + ' - skipped)')
+}
 
 if ($fail -eq 0) { Write-Output '== local checks passed' }
 exit $fail

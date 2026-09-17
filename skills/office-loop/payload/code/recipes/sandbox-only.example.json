@@ -1,0 +1,36 @@
+{
+  "schema": "local-loop.recipe.v1",
+  "id": "sandbox-only",
+  "title": "Example: a task the sandbox can finish and prove by itself",
+  "version": 1,
+  "note": "Template for repos whose deliverable is source/tests/build output: CI (or the agent) can prove it, so there is no local plane to run. Copy this file, change the steps, point code/loop.json at it.",
+  "needs": [],
+  "sandbox": {
+    "steps": [
+      {
+        "id": "tests",
+        "why": "the task's own proof lives here",
+        "run": [
+          "{python}",
+          "-m",
+          "pytest",
+          "-q"
+        ],
+        "timeout": 1800
+      },
+      {
+        "id": "gates",
+        "why": "the repo's gate list still runs",
+        "run": [
+          "{python}",
+          "code/gates.py"
+        ],
+        "timeout": 1800
+      }
+    ]
+  },
+  "local": {
+    "skip": "nothing here needs the user's machine: the artifact is source + test output, and CI/the sandbox can prove it"
+  },
+  "evidence": []
+}

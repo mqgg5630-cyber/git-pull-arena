@@ -1,88 +1,29 @@
-# 新会话引导提示词（复制粘贴即用）
+# 新会话：用户一句话，助手自动装技能、打通本机、按需自循环
 
-> 用途：在一个**新的 Arena 会话**里，把 git-sync 技能装进它当前的工作分支，
-> 建立与本机的双向同步。
-> 本文件就在技能里（`skills\git-sync\templates\`），所以任何装好技能的仓库都随身带着它——
-> 换新会话时打开这个文件照抄即可，不用再问人要提示词。
-> 来源默认指向 git-pull-arena 的 arena 分支；该技能合并进 main 后，
-> 把下面的 `-b` 与分支说明换成 `main` 即可。
+> 用户**只发一句话**（可带 Arena 链接、可带具体任务）。完整动作清单在 `one-sentence.md`。
+> **不要打开 arena.ai**（登录墙）。映射见仓库根目录 `01a0a821.md`：clone GitHub `arena/01a0a821-git-pull-arena`。禁止向用户索要长提示词。
 
 ---
 
-## 一、粘贴给新会话的部分（从下一行开始复制）
+## 用户发的（短的）
 
 ```text
-请把 git-sync 技能安装到本仓库当前工作分支，作为你我双向同步的工具。
-技能来源：https://github.com/mqgg5630-cyber/git-pull-arena 的
-arena/01a0a4f5-git-pull-arena 分支（skills/git-sync）。
-
-1) 安装（在仓库根目录执行；不带 --branch 会自动装到你当前的工作分支）：
-
-git clone --quiet --depth 1 -b arena/01a0a4f5-git-pull-arena https://github.com/mqgg5630-cyber/git-pull-arena.git /tmp/git-sync-src && bash /tmp/git-sync-src/skills/git-sync/scripts/agent-install.sh
-
-2) 提交推送（自带分支守卫 + 提交前自检 + 同步回执）：
-
-bash skills/git-sync/scripts/agent-sync.sh "feat: install git-sync skill"
-
-3) 装完先读 skills/git-sync/README.md 和 SKILL.md 再开始干活；
-   以后每轮工作结束都用第 2 步的命令提交推送，我本机用 .\sync.ps1 拉取。
-   计算/训练类任务，先看 results/hardware/latest.md 了解我的本机硬件
-   （还没有就提醒我在本机跑一次 .\hardware.ps1 -Deep，或运行
-   bash skills/git-sync/scripts/agent-hardware.sh 查看报告与新旧）。
-   需要我在本机机器上验证的改动，推送后运行
-   bash skills/git-sync/scripts/agent-wait.sh --request "要验证什么"
-   ——它会发起请求并原地轮询（默认最多 10 分钟），我本机的值守任务会自动
-   同步、跑自检、把结果推回来；退出码 0=过 / 2=败 / 3=超时未响应。
-   一轮对话里就能完成"请求→等待→读结果→（修复→再来）→收尾"整个循环；
-   通过且满意就 agent-check.sh --accept 收尾。
-
-4) 执行完 1、2 两步后，回复我：
-   - 本仓库的 GitHub 地址（git remote get-url origin 的结果）
-   - 当前分支名（git rev-parse --abbrev-ref HEAD 的结果）
-   - 我本机该用的 git clone 命令
+安装 arena/01a0a821-git-pull-arena skills, 与本地打通
 ```
 
-（复制到上一行为止）
+## 用户发的（带自循环任务，docx/pptx 可换成别的）
 
-**成功的标志**：安装输出四行 `OK: ...`（技能 / 配置 / 根目录脚本 / gate）+ `== committed:` + `== done:`。
-
-## 二、你本机的部分（等它回复仓库和分支名后）
-
-```powershell
-cd E:\0github\git-sync
-git clone -b <它告诉你的分支> https://github.com/mqgg5630-cyber/<它告诉你的仓库>.git <新子文件夹名>
-cd <新子文件夹名>
-
-.\bootstrap.ps1 -Auto     # 身份 / 切分支 / 首拉 + 免点击凭据 + 注册零窗口值守
-# 或者分步来（-Auto 就是这三条）：
-#   .\bootstrap.ps1
-#   .\auth.ps1 -Setup -Verify     # 推送不再弹窗/等点击（配完当场实跑证明）
-#   .\watch.ps1 -Register         # 自动验证值守（默认零窗口，注册后自检真的会跑）
-.\doctor.ps1              # branch 应为那个分支，in step with the remote；
-                          # 末尾的 watcher / heartbeat / auth 三行都应是好消息
+```text
+安装https://arena.ai/agent/01a0a821-3f3c-7bbe-bf99-6e6793c45d81的skills。与本地打通
+并实现自循环任务，将这个生成docx和pptx返回到本机，本机并把结果状态push到分支，一直自动循环知道你觉得结果没问题
 ```
 
-**两条硬要求（用户的明确要求，别省）**：
+## 助手自动做的
 
-1. **无弹窗**：值守每 2 分钟轮询时不能出现任何窗口。默认的 `-Register`（零窗口启动器）就是为这个；
-   `.\watch.ps1 -Status` 的 `mode` 应显示 `zero-window (launcher exe)`，且 heartbeat 时间在推进。
-2. **免点击推送**：值守在后台推结果，没人能点"确认登录"。`.\auth.ps1 -Verify` 必须 exit 0；
-   它不是"配好了应该就行"，而是在**关闭所有交互提示**的情况下实跑 `ls-remote` + `push --dry-run`。
+1. 从 `arena/01a0a821-git-pull-arena` 把 `skills/git-sync` 装进**本仓库当前工作分支**。
+2. `agent-sync.sh` 提交推送。
+3. 回复一段**已经填好**的本机 PowerShell（新文件夹；禁止覆盖 `git-pull-arena` / `git-pull-arena-v268` / `git-pull-arena-s2`）。
+4. 若有具体任务 / 「自循环」：立刻做任务、写 `success_criteria.json`、`agent-handsfree.sh --timeout auto` 直到 accept。值守一回传就停，不空等 600 秒。
+5. **不要**让用户先去旧克隆 `.\sync.ps1`。新会话走自己的分支；本机只需对该新文件夹 `bootstrap -Auto` 一次。
 
-**先只做单会话闭环**（一会话一仓库）：agent 推送 → 本机 `.\sync.ps1` → agent
-`agent-wait.sh --request "..." --auto-accept` → 本机值守零窗口自动跑完 → 免点击推回 →
-一轮内拿到 exit 0。多会话并行/汇总会话（模式 B/C）暂时搁置，别自动展开。
-
-## 三、双向验收（两小步）
-
-1. **方向 1（agent → 本机）**：让它随便改一个文件并用 `agent-sync.sh` 推送
-   → 你本机 `.\sync.ps1` 看得到 = ✅
-2. **方向 2（本机 → agent）**：你随便改一个文件 → `.\push.ps1 "test: local -> arena"`
-   → 让它跑一次 `agent-sync.sh`，回执 `results\sync\last_sync.md` 里
-   「本轮纳入的**本机侧**提交」列出你的提交 = ✅
-
-## 四、给已经装过技能的仓库升级（配置不丢）
-
-在新会话里执行**同一条**第 1 步安装命令即可——`agent-install.sh` 检测到已有的
-`sync.config.json` 时只更新分支、补缺失的键，下载集合 / 归位规则 / gate 全部保留。
-可以用 `.\doctor.ps1`（会显示 skill 版本）确认升级到了新版本。
+命令与回复模板见 [`one-sentence.md`](one-sentence.md)，任务环见 [`task-loop.md`](task-loop.md)。

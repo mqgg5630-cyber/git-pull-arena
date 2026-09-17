@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" lang="zh-CN" font-family="Microsoft YaHei, Segoe UI, sans-serif" data-pptx-page-role="content">
+  <defs>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="#0B1220" id="bg" data-pptx-role="background"/>
+  <g id="page-title" data-pptx-bounds="70 44 1140 144">
+  <text x="74" y="78" font-size="16" fill="#22D3EE" font-family="Consolas, monospace" letter-spacing="3">//  SELF-LOOP</text>
+  <text x="70" y="138" font-size="44" fill="#F1F5F9" font-weight="700">自循环：五步一圈</text>
+  <text x="72" y="176" font-size="20" fill="#94A3B8">一轮 30–60 秒，值守一回传就结束</text>
+  </g>
+  <text x="1208" y="78" font-size="16" fill="#64748B" id="page-number" data-pptx-role="page-number" font-family="Consolas, monospace" text-anchor="end">05 / 12</text>
+  <line x1="72" y1="622" x2="1208" y2="622" stroke="#17293F" stroke-width="1" id="frame-rule" data-pptx-role="decoration"/>
+  <text x="72" y="652" font-size="14" fill="#64748B" id="footer-left" data-pptx-role="footer" font-family="Consolas, monospace">git-sync v2.8.1  ·  arena/01a0aa00-git-pull-arena  ·  ppt-master v6.4.0</text>
+  <text x="1208" y="652" font-size="14" fill="#64748B" id="footer-right" data-pptx-role="footer" font-family="Consolas, monospace" text-anchor="end">LAPTOP-R77M5D6M</text>
+  <g id="loop-step-1" data-pptx-bounds="72 246 200 214">
+  <rect x="72" y="246" width="200" height="214" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <circle cx="106" cy="288" r="18" fill="#22D3EE" opacity="0.16"/>
+  <text x="106" y="295" font-size="20" fill="#22D3EE" font-family="Consolas, monospace" font-weight="700" text-anchor="middle">1</text>
+  <text x="132" y="295" font-size="20" fill="#F1F5F9" font-weight="700">提交推送</text>
+  <text x="98" y="342" font-size="14" fill="#94A3B8" font-family="Consolas, monospace">agent-sync.sh</text>
+  <text x="98" y="370" font-size="14" fill="#94A3B8">过闸门后 push</text>
+  <text x="98" y="428" font-size="13" fill="#64748B" font-family="Consolas, monospace">P1</text>
+  </g>
+  <path d="M276 352H300" fill="none" id="loop-arrow-1" data-pptx-role="decoration" stroke="#2B4E75" stroke-width="3"/>
+  <path d="M300 344L312 352L300 360Z" fill="#2B4E75" id="loop-head-1" data-pptx-role="decoration"/>
+  <g id="loop-step-2" data-pptx-bounds="306 246 200 214">
+  <rect x="306" y="246" width="200" height="214" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <circle cx="340" cy="288" r="18" fill="#22D3EE" opacity="0.16"/>
+  <text x="340" y="295" font-size="20" fill="#22D3EE" font-family="Consolas, monospace" font-weight="700" text-anchor="middle">2</text>
+  <text x="366" y="295" font-size="20" fill="#F1F5F9" font-weight="700">请求检查</text>
+  <text x="332" y="342" font-size="14" fill="#94A3B8" font-family="Consolas, monospace">agent-check.sh</text>
+  <text x="332" y="370" font-size="14" fill="#94A3B8" font-family="Consolas, monospace">--request round + 1</text>
+  <text x="332" y="428" font-size="13" fill="#64748B" font-family="Consolas, monospace">P2</text>
+  </g>
+  <path d="M510 352H534" fill="none" id="loop-arrow-2" data-pptx-role="decoration" stroke="#2B4E75" stroke-width="3"/>
+  <path d="M534 344L546 352L534 360Z" fill="#2B4E75" id="loop-head-2" data-pptx-role="decoration"/>
+  <g id="loop-step-3" data-pptx-bounds="540 246 200 214">
+  <rect x="540" y="246" width="200" height="214" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <circle cx="574" cy="288" r="18" fill="#A3E635" opacity="0.16"/>
+  <text x="574" y="295" font-size="20" fill="#A3E635" font-family="Consolas, monospace" font-weight="700" text-anchor="middle">3</text>
+  <text x="600" y="295" font-size="20" fill="#F1F5F9" font-weight="700">本机执行</text>
+  <text x="566" y="342" font-size="14" fill="#94A3B8">值守 pull</text>
+  <text x="566" y="370" font-size="14" fill="#94A3B8" font-family="Consolas, monospace">跑 local_check.ps1</text>
+  <text x="566" y="428" font-size="13" fill="#64748B" font-family="Consolas, monospace">P3</text>
+  </g>
+  <path d="M744 352H768" fill="none" id="loop-arrow-3" data-pptx-role="decoration" stroke="#2B4E75" stroke-width="3"/>
+  <path d="M768 344L780 352L768 360Z" fill="#2B4E75" id="loop-head-3" data-pptx-role="decoration"/>
+  <g id="loop-step-4" data-pptx-bounds="774 246 200 214">
+  <rect x="774" y="246" width="200" height="214" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <circle cx="808" cy="288" r="18" fill="#A3E635" opacity="0.16"/>
+  <text x="808" y="295" font-size="20" fill="#A3E635" font-family="Consolas, monospace" font-weight="700" text-anchor="middle">4</text>
+  <text x="834" y="295" font-size="20" fill="#F1F5F9" font-weight="700">回传结论</text>
+  <text x="800" y="342" font-size="14" fill="#94A3B8" font-family="Consolas, monospace">passed / failed</text>
+  <text x="800" y="370" font-size="14" fill="#94A3B8">日志一起 push 回</text>
+  <text x="800" y="428" font-size="13" fill="#64748B" font-family="Consolas, monospace">P4</text>
+  </g>
+  <path d="M978 352H1002" fill="none" id="loop-arrow-4" data-pptx-role="decoration" stroke="#2B4E75" stroke-width="3"/>
+  <path d="M1002 344L1014 352L1002 360Z" fill="#2B4E75" id="loop-head-4" data-pptx-role="decoration"/>
+  <g id="loop-step-5" data-pptx-bounds="1008 246 200 214">
+  <rect x="1008" y="246" width="200" height="214" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <circle cx="1042" cy="288" r="18" fill="#FBBF24" opacity="0.16"/>
+  <text x="1042" y="295" font-size="20" fill="#FBBF24" font-family="Consolas, monospace" font-weight="700" text-anchor="middle">5</text>
+  <text x="1068" y="295" font-size="20" fill="#F1F5F9" font-weight="700">读结论收尾</text>
+  <text x="1034" y="342" font-size="14" fill="#94A3B8" font-family="Consolas, monospace">--read 0 / 2 / 3</text>
+  <text x="1034" y="370" font-size="14" fill="#94A3B8" font-family="Consolas, monospace">--accept 收尾</text>
+  <text x="1034" y="428" font-size="13" fill="#64748B" font-family="Consolas, monospace">P5</text>
+  </g>
+  <g id="loop-note" data-pptx-bounds="72 486 1136 110">
+  <rect x="72" y="486" width="1136" height="110" fill="#0D1626" stroke="#1E3A5F" stroke-width="1" rx="12"/>
+  <text x="100" y="528" font-size="20" fill="#7DD3FC" font-family="Consolas, monospace">一条命令跑完一圈：agent-handsfree.sh --timeout auto</text>
+  <text x="100" y="568" font-size="17" fill="#94A3B8">沙箱不自己宣布成功：成功标准写在 results/status/success_criteria.json，本机逐条验过才 --accept。</text>
+  </g>
+</svg>

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" lang="zh-CN" font-family="Microsoft YaHei, Segoe UI, sans-serif" data-pptx-page-role="toc">
+  <defs>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="#0B1220" id="bg" data-pptx-role="background"/>
+  <g id="page-title" data-pptx-bounds="70 44 1140 144">
+  <text x="74" y="78" font-size="16" fill="#22D3EE" font-family="Consolas, monospace" letter-spacing="3">//  INDEX</text>
+  <text x="70" y="138" font-size="44" fill="#F1F5F9" font-weight="700">这份 deck 讲什么</text>
+  <text x="72" y="176" font-size="20" fill="#94A3B8">六步：把肽库变成可验证的候选</text>
+  </g>
+  <text x="1208" y="78" font-size="16" fill="#64748B" id="page-number" data-pptx-role="page-number" font-family="Consolas, monospace" text-anchor="end">02 / 12</text>
+  <line x1="72" y1="622" x2="1208" y2="622" stroke="#17293F" stroke-width="1" id="frame-rule" data-pptx-role="decoration"/>
+  <text x="72" y="652" font-size="14" fill="#64748B" id="footer-left" data-pptx-role="footer" font-family="Consolas, monospace">umami peptides  ·  ppt-master deck  ·  session 01a0aa00</text>
+  <text x="1208" y="652" font-size="14" fill="#64748B" id="footer-right" data-pptx-role="footer" font-family="Consolas, monospace" text-anchor="end">LAPTOP-R77M5D6M</text>
+  <g id="toc-row-1" data-pptx-bounds="70 206 1140 54">
+  <text x="74" y="246" font-size="22" fill="#22D3EE" font-family="Consolas, monospace" letter-spacing="2">01</text>
+  <text x="154" y="246" font-size="26" fill="#F1F5F9" font-weight="700">问题与瓶颈</text>
+  <text x="430" y="246" font-size="19" fill="#94A3B8">序列空间巨大 · 感官评价贵 · 已知规律有限</text>
+  <line x1="72" y1="256" x2="1208" y2="256" stroke="#17293F" stroke-width="1"/>
+  </g>
+  <g id="toc-row-2" data-pptx-bounds="70 268 1140 54">
+  <text x="74" y="308" font-size="22" fill="#22D3EE" font-family="Consolas, monospace" letter-spacing="2">02</text>
+  <text x="154" y="308" font-size="26" fill="#F1F5F9" font-weight="700">数据与标签</text>
+  <text x="430" y="308" font-size="19" fill="#94A3B8">公开肽库 · 正负样本 · 去冗余</text>
+  <line x1="72" y1="318" x2="1208" y2="318" stroke="#17293F" stroke-width="1"/>
+  </g>
+  <g id="toc-row-3" data-pptx-bounds="70 330 1140 54">
+  <text x="74" y="370" font-size="22" fill="#22D3EE" font-family="Consolas, monospace" letter-spacing="2">03</text>
+  <text x="154" y="370" font-size="26" fill="#F1F5F9" font-weight="700">特征工程</text>
+  <text x="430" y="370" font-size="19" fill="#94A3B8">组成 / 理化 / 嵌入，怎么选</text>
+  <line x1="72" y1="380" x2="1208" y2="380" stroke="#17293F" stroke-width="1"/>
+  </g>
+  <g id="toc-row-4" data-pptx-bounds="70 392 1140 54">
+  <text x="74" y="432" font-size="22" fill="#22D3EE" font-family="Consolas, monospace" letter-spacing="2">04</text>
+  <text x="154" y="432" font-size="26" fill="#F1F5F9" font-weight="700">模型与评估</text>
+  <text x="430" y="432" font-size="19" fill="#94A3B8">模型家族、指标、泄漏陷阱</text>
+  <line x1="72" y1="442" x2="1208" y2="442" stroke="#17293F" stroke-width="1"/>
+  </g>
+  <g id="toc-row-5" data-pptx-bounds="70 454 1140 54">
+  <text x="74" y="494" font-size="22" fill="#22D3EE" font-family="Consolas, monospace" letter-spacing="2">05</text>
+  <text x="154" y="494" font-size="26" fill="#F1F5F9" font-weight="700">筛选漏斗</text>
+  <text x="430" y="494" font-size="19" fill="#94A3B8">百万级候选压到可合成数量</text>
+  <line x1="72" y1="504" x2="1208" y2="504" stroke="#17293F" stroke-width="1"/>
+  </g>
+  <g id="toc-row-6" data-pptx-bounds="70 516 1140 54">
+  <text x="74" y="556" font-size="22" fill="#22D3EE" font-family="Consolas, monospace" letter-spacing="2">06</text>
+  <text x="154" y="556" font-size="26" fill="#F1F5F9" font-weight="700">湿实验与复现</text>
+  <text x="430" y="556" font-size="19" fill="#94A3B8">传感器 · 受体 · 阈值 · 一条命令重建</text>
+  <line x1="72" y1="566" x2="1208" y2="566" stroke="#17293F" stroke-width="1"/>
+  </g>
+</svg>

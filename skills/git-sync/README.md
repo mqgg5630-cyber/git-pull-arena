@@ -1,12 +1,38 @@
-> 当前版本 **v2.6.7**（已发布到 `main`，PR #1；发行说明 `deliverable/RELEASE_v2.6.7.md`）。
+> 当前版本 **v2.8.1**（放开沙箱工具链限制：`pip`/`.venv`/python-docx 随便用，只禁「冒充本机」；安装器不再降级 + 取最新分支；值守每行带时间戳；轮询自适应提速；`.gitattributes` 统一 LF 修 CRLF 假失败）。成功案例 `deliverable/CASE_STUDY_v2.8.0.md`。`main` 上是 **v2.6.7**。
 
 # 本地 ↔ Agent 同步 skill —— 使用说明
 
 > 目标是：**取、传、下载、打包、排障各一个命令**，不需要 git 知识；
 > 一份配置（`sync.config.json`）驱动全部脚本，`agent-install.sh` 一条命令装进任何新仓库
 > （新会话引导提示词在 `templates/new-session-prompt.md`，整段复制即用）。
-> 仓库根目录放着同款脚本（`sync.ps1 / push.ps1 / upload.ps1 / download.ps1 / doctor.ps1 / pack.ps1 / bootstrap.ps1 / pr.ps1 / hardware.ps1 / watch.ps1 / auth.ps1`），
-> 这份 skill 是**通用版 + 说明书**。
+> 仓库根目录放着同款脚本（`sync.ps1 / push.ps1 / upload.ps1 / download.ps1 / doctor.ps1 / pack.ps1 / bootstrap.ps1 / pr.ps1 / hardware.ps1 / watch.ps1 / auth.ps1 / install.ps1`），
+> 这份 skill 是**通用版 + 说明书**；根目录副本必须与 `scripts\` 下的**逐字节相同**（`code/check_all.sh` 第 3 节会卡）。
+>
+> **v2.8.1（三处「本机侧假 SKIP / 硬编码」根治 + CI 兜底）**：① `local_check.ps1` 的 3h 开档测试不再写死文件名，改读 `deliverable/OFFICE_HASHES.json`（换交付物自动覆盖，没声明就 SKIP 并说明）② 闸门解析 python 时逐个**验证可用**并补 `py -3`（本机 conda python 被 Store 存根挡住 → 三项检查一直 SKIP）③ `.github/workflows/gate.yml` 随包安装：本机不在线也有独立核验 ④ `agent-handoff.sh` 在没有 remote 的克隆里给出可照抄的修复命令。
+>
+> **v2.7.5（交接块生成化 + 分支一致性闸门）**：三个真实事故（2026-09-16：`01a0a95e` 请求在 `pending` 挂 2 小时、`01a0a98d` 配置分支停在上个会话、把 `/home/user/...` 写进 Windows PowerShell 块）都源于**手打交接命令**。现在：① `scripts/agent-handoff.sh` 从 `git remote get-url` + 配置 branch 生成可粘的 PowerShell（`--json` 给真值），配置分支 ≠ HEAD 时 exit 3 拒绝；② `code/check_all.sh` 新增 2b 段「`sync.config.json` 的 branch 必须等于 HEAD」，不一致直接 exit 1（值守轮询的是配置分支，不一致 = 本机永远收不到请求）；③ `agent-check.sh --read` 报告本轮 pending 了多少分钟，≥10 分钟就提示重发交接块而不是继续轮询；④ `agent-install.sh` 本来就会用 HEAD 写 branch（v2.7.5 起由闸门兜底）。
+>
+> **v2.7.4（短句仍用 arena.ai，助手自己展开）**：用户不改提示词。`arena.ai/agent/01a0a821` → clone 本仓库；根目录 `01a0a821.md`。禁止向用户索要长命令。
+>
+> **v2.7.3（曾要求用户粘带 GitHub clone 的长提示词）**：沙箱打不开 arena.ai。v2.7.4 起改回：用户继续短句，助手自己 clone GitHub。（注意：`.venv` 不是本机，但装库本身从 v2.8.0 起不再禁止。）
+>
+> **v2.7.2（先打通本机，禁止假 local/）**：给用户的第一条回复必须是 `git clone` + `.\bootstrap.ps1 -Auto`；沙箱 `local/inbox` / 自制 python skills **不算**打通；自循环只准 `agent-handsfree.sh`。`agent-install.sh` 补拷 `install.ps1`。
+>
+> **v2.7.1（一句话自循环 + 自适应超时）**：新会话 `安装 ... skills，与本地打通`（可带 arena.ai 链接和具体任务）即装技能并 `agent-handsfree.sh --timeout auto`——值守一回传就停，上限随 `check_timeout_min`，不再死等 600s。协议 `templates/one-sentence.md` / `templates/task-loop.md`。
+>
+> **v2.7.0（解放双手）**：值守每轮 `auto_pull`（`sync.ps1`）+ `auto_push`（静默 `push.ps1`，排除密钥与 handshake）；Agent 一条 `agent-handsfree.sh`：wait 本机检查 → `agent-criteria.sh` → 全过 `--accept`。配置键 `hands_free` / `success_criteria`。先例：`new`/`arena/01a0a90b-new` round 1 accepted。必须重注册值守。说明 `deliverable/HANDS_FREE_v2.7.0.md`。
+>
+> **v2.6.9（新会话暂停其他值守 / 切回本会话）**：`-Register` 默认把其他 `git-sync-watch-*` **暂停**（Stop + Disable + 杀掉循环 PID，**不 Unregister**）；台账 `%LOCALAPPDATA%\git-sync\parked.json`。新对话装完即只留这一份值守。继续原来的对话：在 HQ 克隆里 `.\watch.ps1 -Focus`（本克隆恢复、其他再暂停）。一次全恢复：`.\watch.ps1 -RestoreParked`。不想动别人：`-Register -KeepOthers`。`-Status` / `doctor.ps1` 列出 other tasks 与 parked 行。last-check 日志按 UTF-8 读（修中文乱码）。说明 `deliverable/FIX_v2.6.9.md`。
+>
+> **v2.6.8（值守"每轮都要有收尾行"）**：`watch.ps1` 的 `Invoke-PollRound`（6 个出口）与
+> `Invoke-PollOnce`（锁被占 / 崩溃，2 个出口）现在**每个出口都设置 `$script:PollSummary`**，
+> 循环与手动单轮都把它打印出来（手动单轮再补一行 `== finished at ...`），所以窗口不会再停在
+> 上一轮的旧行上看着像卡死。这条规则由 `code/check_loop_summary.py`（闸门 §3c）与
+> `code/check_loop_summary.ps1`（本机检查项 2c）**静态盯住**：删掉任意一条赋值，闸门 exit 1。
+> 另外 `Get-PowerShellExe` 优先 64 位（32 位进程走 `SysNative`）；`-Status` 的 host log 尾部按
+> UTF-8 读（修中文乱码），并给计划任务结果码加人话注释（`0 / 267009 / 267011 / 267014 /
+> 2147946720=0x800710E0` 都是正常码，`doctor.ps1` 同步不再误报），代理提示改成可直接照抄的
+> `setx HTTPS_PROXY "..."`；安装/升级的两块照抄命令见 `templates/install-one-liner.md`。
 >
 > **v2.6.1（网络/代理）**：`auth.ps1` 自动读取 `git config http.proxy` 并套用给 gh
 > （实测常见病：git 走代理能通、gh 只认 `HTTPS_PROXY` 于是超时），新增 `-HttpProxy`；
@@ -88,7 +114,7 @@ bash skills/git-sync/scripts/agent-pr.sh --checks          # 看 PR 的 CI 状�
 | `scripts/pack.ps1` | 压缩包交付；输出到 `_export\`（已在 `.gitignore` 里，不会被推送） |
 | `scripts/doctor.ps1` | 体检报告 + 技能版本 + LFS/大文件检查 + **值守/心跳/凭据三行**（watcher / heartbeat / auth）；`-Fix` 一键修复；ahead/behind 对比的是 `origin/<分支>`（修复了老版本永远显示 0 的 bug） |
 | `scripts/hardware.ps1` | **本机硬件/环境上报**：OS、CPU、内存、GPU（nvidia-smi 优先，含显存/算力/CUDA 驱动）、磁盘、conda/mamba 环境列表与各环境 python，`-Deep` 再探测每个环境的 torch + CUDA；写入 `hardware_dir`（latest.md/latest.json + 历史快照）并推送 |
-| `scripts/watch.ps1` | **自动验证循环本机侧**：`-Register` 注册计划任务跑**常驻循环**（`-Loop`，一个进程内部轮询；零窗口启动器优先、冒烟测试失败自动回退 `-Flash`=每次登录一次闪窗；keeper 心跳每 30 分钟保活），发现 agent 请求就 sync → 跑 `check_cmd`（硬超时）→ 日志落盘 → 静默推回 passed/failed；`-Status`（模式/心跳年龄/pid 存活）、`-Test`、`-Pause/-Resume/-Unregister` |
+| `scripts/watch.ps1` | **自动验证循环本机侧**：`-Register` 常驻循环；**v2.7.0 每轮 auto_pull + auto_push**；请求检查时 sync → `check_cmd` → 推回结论；`-Status`/`-Test`/`-Focus`/`-RestoreParked`/`-KeepOthers` |
 | `scripts/bootstrap.ps1` | 首次准备：执行策略、git 身份、fetch、切分支、首拉 |
 | `scripts/pr.ps1` | GitHub CLI 开 PR / 查 CI；`-Base` 换目标分支，`-Checks` 看检查状态 |
 | `scripts/auth.ps1` | **免点击推送**：`-Setup`（**先探测现有配置，能静默拿到凭据就什么都不改**；否则 gh CLI 优先，再退到 GCM，并逐个 store 找已有凭据）/ `-Verify`（prompts 关闭下实跑 `ls-remote` + `push --dry-run`）/ `-MigrateStore`（复制凭据到 dpapi，给 S4U/-Headless 用）/ `-Token`·`-TokenFile`·`-PromptToken`（无浏览器播种令牌，永不回显）/ `-Json`（给 doctor、gate、agent 读）/ `-Unset` |
@@ -179,9 +205,10 @@ gate（`code/check_all.sh`）提交前自动扫描全部 `.ps1`，非 ASCII 直�
 | `git stash list` 越积越多 | v2.6.1 起值守产物改为本地提交；历史堆积用 `git stash list` 检查后 `git stash clear`（确认没有你要的改动） |
 | 要密码 / 认证失败 / 推送卡着等确认 | `.\auth.ps1 -Setup` → `.\auth.ps1 -Verify`（一次配好免点击；两者都支持 `-Json`）。**如果 `-Setup` 之后反而开始要登录**：`.\auth.ps1 -MigrateStore` 或 `.\auth.ps1 -Unset`（把 `credentialStore` 改回默认，原来的凭据立刻可见） |
 | 值守注册时直接抛 ParserError（脚本一行都没跑） | 检查有没有 `"$var:"` 这种写法：`$round:` 会被当成盘符变量，**整份脚本解析失败**。gate 的 `code/scan_ps_var_colon.py` 会替你先扫出来 |
-| 计划任务报 `Disabled` / 心跳文件不存在 | 任务被 `-Pause` 过或从未成功注册：`.\watch.ps1 -Unregister` → `.\watch.ps1 -Register`；`-Status` 的 heartbeat 才可信 |
+| 计划任务报 `Disabled` / 心跳文件不存在 | 任务被 `-Pause` / `-Focus` 过或从未成功注册：本克隆 `.\watch.ps1 -Focus` 或 `.\watch.ps1 -Resume`；一次全恢复 `.\watch.ps1 -RestoreParked`；真要重来才 `-Unregister` → `-Register` |
 | 值守推送一直不成功（agent 说"还在等"） | `.\watch.ps1 -Status` 看心跳与 `last_push`；`auth: no silent credential` 就是没配凭据，跑 `.\auth.ps1 -Setup` |
 | 值守好像没在跑（计划任务显示正常） | `.\watch.ps1 -Test`（立刻跑一次并等心跳）；`Get-ScheduledTaskInfo <任务名>` 的 LastTaskResult 不可信（v2.4.4 就是这么被骗的） |
+| 新会话装完，旧会话值守不跑了 | 这是 v2.6.9 的默认：`-Register` 暂停其他 `git-sync-watch-*`（任务还在）。回原会话：`cd <原克隆> ; .\watch.ps1 -Focus`。全恢复：`.\watch.ps1 -RestoreParked`。新会话不想动别人：`-Register -KeepOthers` |
 | 值守闪黑窗 | v2.6.0 起是常驻循环：`-Register` 首选零窗口启动器（0 闪），回退 `-Flash` 也只是**每次登录闪一次**。升级后务必重注册：`.\watch.ps1 -Unregister` → `.\watch.ps1 -Register` |
 | 启动器自检失败（`no heartbeat`） | 现在会直接打印任务结果 + `%LOCALAPPDATA%\git-sync\watch-*.log` 尾部；把这段发我即可定位。临时用 `-Register -Flash`（每次登录一次闪窗）或管理员 `-Register -Headless`（零窗口，但需要 gh 助手） |
 | 单轮检查被判 failed 且写了 `TIMEOUT` | 检查超过 `check_timeout_min`（默认 30 分钟）被强杀；长任务请调大它并把 `lock_stale_min` 一起调大 |
@@ -197,13 +224,12 @@ gate（`code/check_all.sh`）提交前自动扫描全部 `.ps1`，非 ASCII 直�
 
 ## 六、装到别的项目 / 给已装过的仓库升级
 
-**新 Arena 会话**：打开 `templates/new-session-prompt.md`，把第一节的提示词整段复制进对话即可
-（含安装命令、成功标志、本机步骤、双向验收）。
+**新 Arena 会话**：用户只用短句 `安装 arena.ai/agent/01a0a821 的skills，与本地打通`。助手自己按 `templates/one-sentence.md` / 根目录 `01a0a821.md` 装技能（不要打开 arena.ai，不要向用户要长命令）。
 
 **助手侧 / 手动（一条命令）**：
 
 ```bash
-git clone --quiet --depth 1 -b arena/01a0a4f5-git-pull-arena \
+git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
      https://github.com/mqgg5630-cyber/git-pull-arena.git /tmp/git-sync-src \
   && bash /tmp/git-sync-src/skills/git-sync/scripts/agent-install.sh --branch <工作分支>
 ```

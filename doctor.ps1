@@ -161,12 +161,36 @@ if ($t) {
     } catch { }
     $line = "$($t.State) | mode: $mode"
     $tn = Get-ScheduledTaskInfo -TaskName $taskName -ErrorAction SilentlyContinue
-    if ($tn) { $line += " | last run: $($tn.LastRunTime) | result: $($tn.LastTaskResult)" }
+    # Scheduled-task result codes that are NORMAL for a long-lived loop - only
+    # anything outside this list deserves a warning:
+    #   0            completed
+    #   267009       0x41301  the task is running right now (the loop never exits)
+    #   267011       0x41303  the task has never run yet (just registered)
+    #   267014       0x41306  terminated by the user (-Pause / -Unregister)
+    #   2147946720   0x800710E0 launch refused because an instance is already
+    #                running - exactly what the 10-min keeper trigger produces
+    $okResults = @(0, 267009, 267011, 267014, 2147946720)
+    $resCode = $null
+    $resNote = ''
+    if ($tn) {
+        try { $resCode = [int64]$tn.LastTaskResult } catch { $resCode = $null }
+        if ($null -ne $resCode) {
+            switch ($resCode) {
+                0          { $resNote = 'completed' }
+                267009     { $resNote = 'still running (0x41301) - normal for the long-lived loop' }
+                267011     { $resNote = 'has never run yet (0x41303)' }
+                267014     { $resNote = 'terminated by the user (0x41306)' }
+                2147946720 { $resNote = 'launch refused (0x800710E0) - an instance is already running; normal with the keeper trigger' }
+                default    { $resNote = '' }
+            }
+        }
+        $shown = "$($tn.LastTaskResult)"
+        if ($resNote) { $shown = $shown + ' = ' + $resNote }
+        $line += " | last run: $($tn.LastRunTime) | result: $shown"
+    }
     Line 'watcher' $line
-    # 267009 / 0x41301 = the task is RUNNING - which is exactly what the
-    # long-lived loop mode wants, so it must not look like a failure
-    if ($tn -and $tn.LastTaskResult -ne 0 -and $tn.LastTaskResult -ne 267009) {
-        Write-Host "               last run did not finish cleanly - check .\watch.ps1 -Status and $env:LOCALAPPDATA\git-sync\watch-$leaf.log" -ForegroundColor Yellow
+    if ($tn -and $null -ne $resCode -and ($okResults -notcontains $resCode)) {
+        Write-Host "               last run did not finish cleanly (result $resCode) - check .\watch.ps1 -Status and $env:LOCALAPPDATA\git-sync\watch-$leaf.log" -ForegroundColor Yellow
     }
 } else {
     Line 'watcher' 'not registered - run .\watch.ps1 -Register (auto-verification is OFF)' 'Yellow'
@@ -180,6 +204,32 @@ if (Test-Path -LiteralPath $stateFile) {
     } catch { Line 'heartbeat' '(unreadable)' 'Yellow' }
 } else {
     Line 'heartbeat' '(none yet - the watcher has never completed a poll)' 'Yellow'
+}
+if ($cfg) {
+    $hf = $false; $ap = $false; $au = $false
+    try { if ($null -ne $cfg.hands_free) { $hf = [bool]$cfg.hands_free } } catch { }
+    try { if ($null -ne $cfg.auto_pull)  { $ap = [bool]$cfg.auto_pull } } catch { }
+    try { if ($null -ne $cfg.auto_push)  { $au = [bool]$cfg.auto_push } } catch { }
+    if ($hf) { $ap = $true; $au = $true }
+    Line 'hands-free' ("master=$hf auto_pull=$ap auto_push=$au")
+}
+$otherTasks = @()
+try { $otherTasks = @(Get-ScheduledTask -TaskName 'git-sync-watch-*' -ErrorAction SilentlyContinue) } catch { }
+$otherTasks = @($otherTasks | Where-Object { [string]$_.TaskName -ne $taskName })
+if ($otherTasks.Count -gt 0) {
+    $bits = @($otherTasks | ForEach-Object { ('{0}[{1}]' -f $_.TaskName, $_.State) })
+    Line 'other tasks' (($bits -join '  ') + '  - .\\watch.ps1 -Focus parks them')
+}
+$parkFile = Join-Path $stateDir 'parked.json'
+if (Test-Path -LiteralPath $parkFile) {
+    try {
+        $pl = Get-Content -LiteralPath $parkFile -Raw -Encoding UTF8 | ConvertFrom-Json
+        $pc = 0
+        if ($pl.items) { $pc = @($pl.items).Count }
+        if ($pc -gt 0) {
+            Line 'parked' ("$pc task(s) by $($pl.last_focus) - restore: .\\watch.ps1 -RestoreParked") 'Yellow'
+        }
+    } catch { }
 }
 $authScript = Join-Path $repo 'auth.ps1'
 if (Test-Path -LiteralPath $authScript) {
@@ -226,6 +276,9 @@ Write-Host "   .\pr.ps1                         open a PR from the working branc
 Write-Host "   .\auth.ps1 (-Setup / -Verify)    make pushes silent: no popup, no click"
 Write-Host "   .\watch.ps1 -Status / -Test      is the auto-verification watcher alive?"
 Write-Host "   .\watch.ps1 -Register            run the local checks the agent asks for"
+Write-Host "   .\watch.ps1 -Focus               pause other conversations' watchers (this one stays)"
+Write-Host "   .\watch.ps1 -RestoreParked       resume the watchers -Focus paused"
+Write-Host "   .\watch.ps1 -Status              hands-free line: master/auto_pull/auto_push"
 
 # ---------------------------------------------------------------------- fix
 if ($Fix) {

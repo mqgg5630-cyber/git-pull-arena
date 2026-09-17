@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" lang="zh-CN" font-family="Microsoft YaHei, Segoe UI, sans-serif" data-pptx-page-role="content">
+  <defs>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="#0B1220" id="bg" data-pptx-role="background"/>
+  <g id="page-title" data-pptx-bounds="70 44 1140 144">
+  <text x="74" y="78" font-size="16" fill="#22D3EE" font-family="Consolas, monospace" letter-spacing="3">//  WHAT SHIPPED</text>
+  <text x="70" y="138" font-size="44" fill="#F1F5F9" font-weight="700">装了什么（git-sync v2.8.1）</text>
+  <text x="72" y="176" font-size="20" fill="#94A3B8">从你链接的会话 01a0a9f0 装来，技能本体出自开发分支 01a0a98d</text>
+  </g>
+  <text x="1208" y="78" font-size="16" fill="#64748B" id="page-number" data-pptx-role="page-number" font-family="Consolas, monospace" text-anchor="end">04 / 12</text>
+  <line x1="72" y1="622" x2="1208" y2="622" stroke="#17293F" stroke-width="1" id="frame-rule" data-pptx-role="decoration"/>
+  <text x="72" y="652" font-size="14" fill="#64748B" id="footer-left" data-pptx-role="footer" font-family="Consolas, monospace">git-sync v2.8.1  ·  arena/01a0aa00-git-pull-arena  ·  ppt-master v6.4.0</text>
+  <text x="1208" y="652" font-size="14" fill="#64748B" id="footer-right" data-pptx-role="footer" font-family="Consolas, monospace" text-anchor="end">LAPTOP-R77M5D6M</text>
+  <g id="installed-upgrade" data-pptx-bounds="72 230 544 178">
+  <rect x="72" y="230" width="544" height="178" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <rect x="72" y="230" width="4" height="178" fill="#22D3EE" rx="2"/>
+  <text x="104" y="278" font-size="24" fill="#F1F5F9" font-weight="700">安装器拒绝降级</text>
+  <text x="104" y="320" font-size="17" fill="#94A3B8">v2.7.4 → v2.8.1，一步装好</text>
+  <text x="104" y="356" font-size="17" fill="#94A3B8">不再被 main 上的旧版悄悄覆盖</text>
+  <text x="104" y="392" font-size="17" fill="#94A3B8">配置分支自动指向本会话分支</text>
+  </g>
+  <g id="installed-python" data-pptx-bounds="648 230 544 178">
+  <rect x="648" y="230" width="544" height="178" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <rect x="648" y="230" width="4" height="178" fill="#A3E635" rx="2"/>
+  <text x="680" y="278" font-size="24" fill="#F1F5F9" font-weight="700">闸门逐个验证 python</text>
+  <text x="680" y="320" font-size="17" fill="#94A3B8">python3 / python / py -3 依次实测</text>
+  <text x="680" y="356" font-size="17" fill="#94A3B8">Microsoft Store 假 python3 不再骗过它</text>
+  <text x="680" y="392" font-size="17" fill="#94A3B8">本机以前那几项 SKIP 消失了</text>
+  </g>
+  <g id="installed-office" data-pptx-bounds="72 422 544 178">
+  <rect x="72" y="422" width="544" height="178" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <rect x="72" y="422" width="4" height="178" fill="#FBBF24" rx="2"/>
+  <text x="104" y="470" font-size="24" fill="#F1F5F9" font-weight="700">开档测试读清单</text>
+  <text x="104" y="512" font-size="17" fill="#94A3B8">OFFICE_HASHES.json 决定打开哪些文件</text>
+  <text x="104" y="548" font-size="17" fill="#94A3B8">新增产物不用改脚本</text>
+  <text x="104" y="584" font-size="17" fill="#94A3B8">真 Word / 真 PowerPoint 只读开档</text>
+  </g>
+  <g id="installed-bytes" data-pptx-bounds="648 422 544 178">
+  <rect x="648" y="422" width="544" height="178" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <rect x="648" y="422" width="4" height="178" fill="#60A5FA" rx="2"/>
+  <text x="680" y="470" font-size="24" fill="#F1F5F9" font-weight="700">字节判定更稳</text>
+  <text x="680" y="512" font-size="17" fill="#94A3B8">文本统一 LF 入库，两边字节数一致</text>
+  <text x="680" y="548" font-size="17" fill="#94A3B8">值守日志带时间戳</text>
+  <text x="680" y="584" font-size="17" fill="#94A3B8">轮询自适应，结论一到就返回</text>
+  </g>
+</svg>

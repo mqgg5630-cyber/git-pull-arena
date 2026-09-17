@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" lang="zh-CN" font-family="Microsoft YaHei, Segoe UI, sans-serif" data-pptx-page-role="content">
+  <defs>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="#0B1220" id="bg" data-pptx-role="background"/>
+  <g id="page-title" data-pptx-bounds="70 44 1140 144">
+  <text x="74" y="78" font-size="16" fill="#22D3EE" font-family="Consolas, monospace" letter-spacing="3">//  MODELS</text>
+  <text x="70" y="138" font-size="44" fill="#F1F5F9" font-weight="700">模型家族与取舍</text>
+  <text x="72" y="176" font-size="20" fill="#94A3B8">四类做法，从可解释到端到端</text>
+  </g>
+  <text x="1208" y="78" font-size="16" fill="#64748B" id="page-number" data-pptx-role="page-number" font-family="Consolas, monospace" text-anchor="end">06 / 12</text>
+  <line x1="72" y1="622" x2="1208" y2="622" stroke="#17293F" stroke-width="1" id="frame-rule" data-pptx-role="decoration"/>
+  <text x="72" y="652" font-size="14" fill="#64748B" id="footer-left" data-pptx-role="footer" font-family="Consolas, monospace">umami peptides  ·  ppt-master deck  ·  session 01a0aa00</text>
+  <text x="1208" y="652" font-size="14" fill="#64748B" id="footer-right" data-pptx-role="footer" font-family="Consolas, monospace" text-anchor="end">LAPTOP-R77M5D6M</text>
+  <g id="model-classic" data-pptx-bounds="70 216 272 300">
+  <rect x="70" y="216" width="272" height="300" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <rect x="70" y="216" width="4" height="300" fill="#22D3EE" rx="2"/>
+  <text x="102" y="264" font-size="22" fill="#F1F5F9" font-weight="700">SVM / RF</text>
+  <text x="102" y="306" font-size="16" fill="#94A3B8">样本几百条就够用</text>
+  <text x="102" y="342" font-size="16" fill="#94A3B8">可看特征重要度</text>
+  <text x="102" y="378" font-size="16" fill="#94A3B8">调参成本低</text>
+  </g>
+  <g id="model-boost" data-pptx-bounds="358 216 272 300">
+  <rect x="358" y="216" width="272" height="300" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <rect x="358" y="216" width="4" height="300" fill="#A3E635" rx="2"/>
+  <text x="390" y="264" font-size="22" fill="#F1F5F9" font-weight="700">XGBoost</text>
+  <text x="390" y="306" font-size="16" fill="#94A3B8">表格特征上的强基线</text>
+  <text x="390" y="342" font-size="16" fill="#94A3B8">处理缺失值方便</text>
+  <text x="390" y="378" font-size="16" fill="#94A3B8">需要防过拟合</text>
+  </g>
+  <g id="model-deep" data-pptx-bounds="646 216 272 300">
+  <rect x="646" y="216" width="272" height="300" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <rect x="646" y="216" width="4" height="300" fill="#60A5FA" rx="2"/>
+  <text x="678" y="264" font-size="22" fill="#F1F5F9" font-weight="700">CNN / LSTM</text>
+  <text x="678" y="306" font-size="16" fill="#94A3B8">直接吃序列</text>
+  <text x="678" y="342" font-size="16" fill="#94A3B8">数据少容易过拟合</text>
+  <text x="678" y="378" font-size="16" fill="#94A3B8">要配增强与正则</text>
+  </g>
+  <g id="model-embed" data-pptx-bounds="934 216 274 300">
+  <rect x="934" y="216" width="274" height="300" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <rect x="934" y="216" width="4" height="300" fill="#FBBF24" rx="2"/>
+  <text x="966" y="264" font-size="22" fill="#F1F5F9" font-weight="700">预训练微调</text>
+  <text x="966" y="306" font-size="16" fill="#94A3B8">蛋白语言模型 + 头部</text>
+  <text x="966" y="342" font-size="16" fill="#94A3B8">算力 / 显存要求高</text>
+  <text x="966" y="378" font-size="16" fill="#94A3B8">小数据上未必更好</text>
+  </g>
+  <g id="models-imbalance" data-pptx-bounds="70 540 1138 74">
+  <rect x="70" y="540" width="1138" height="74" fill="#0D1626" stroke="#1E3A5F" stroke-width="1" rx="12"/>
+  <text x="96" y="574" font-size="20" fill="#F1F5F9" font-weight="700">类别不平衡：正样本通常远少于负样本 → 类别权重 / 重采样 / 阈值调优，不要只盯准确率。</text>
+  <text x="96" y="602" font-size="14" fill="#FBBF24" font-family="Consolas, monospace">示例：常见做法，不构成某篇论文的复现结论。</text>
+  </g>
+</svg>

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" lang="zh-CN" font-family="Microsoft YaHei, Segoe UI, sans-serif" data-pptx-page-role="content">
+  <defs>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="#0B1220" id="bg" data-pptx-role="background"/>
+  <g id="page-title" data-pptx-bounds="70 44 1140 144">
+  <text x="74" y="78" font-size="16" fill="#22D3EE" font-family="Consolas, monospace" letter-spacing="3">//  REBUILD</text>
+  <text x="70" y="138" font-size="44" fill="#F1F5F9" font-weight="700">怎么在这台机器上重建</text>
+  <text x="72" y="176" font-size="20" fill="#94A3B8">同一套 venv + PPT Master，换主题只改页源文件</text>
+  </g>
+  <text x="1208" y="78" font-size="16" fill="#64748B" id="page-number" data-pptx-role="page-number" font-family="Consolas, monospace" text-anchor="end">10 / 12</text>
+  <line x1="72" y1="622" x2="1208" y2="622" stroke="#17293F" stroke-width="1" id="frame-rule" data-pptx-role="decoration"/>
+  <text x="72" y="652" font-size="14" fill="#64748B" id="footer-left" data-pptx-role="footer" font-family="Consolas, monospace">umami peptides  ·  ppt-master deck  ·  session 01a0aa00</text>
+  <text x="1208" y="652" font-size="14" fill="#64748B" id="footer-right" data-pptx-role="footer" font-family="Consolas, monospace" text-anchor="end">LAPTOP-R77M5D6M</text>
+  <g id="repro-cmd" data-pptx-bounds="70 212 552 208">
+  <rect x="70" y="212" width="552" height="208" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <rect x="70" y="212" width="4" height="208" fill="#A3E635" rx="2"/>
+  <text x="102" y="260" font-size="22" fill="#F1F5F9" font-weight="700">一条命令</text>
+  <text x="102" y="302" font-size="16" fill="#94A3B8" font-family="Consolas, monospace">双击 make-deck.cmd</text>
+  <text x="102" y="338" font-size="16" fill="#94A3B8" font-family="Consolas, monospace">或 venv\python 跑 svg_to_pptx</text>
+  <text x="102" y="374" font-size="16" fill="#94A3B8" font-family="Consolas, monospace">改页：code/make_deck_umami.py</text>
+  </g>
+  <g id="repro-paths" data-pptx-bounds="656 212 554 208">
+  <rect x="656" y="212" width="554" height="208" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <rect x="656" y="212" width="4" height="208" fill="#22D3EE" rx="2"/>
+  <text x="688" y="260" font-size="22" fill="#F1F5F9" font-weight="700">文件在哪</text>
+  <text x="688" y="302" font-size="16" fill="#94A3B8" font-family="Consolas, monospace">ppt-master\out\DECK_umami_*.pptx</text>
+  <text x="688" y="338" font-size="16" fill="#94A3B8" font-family="Consolas, monospace">证据：results/umami/</text>
+  <text x="688" y="374" font-size="16" fill="#94A3B8" font-family="Consolas, monospace">页面源：results/umami/svg/</text>
+  </g>
+  <g id="repro-data" data-pptx-bounds="70 448 552 110">
+  <rect x="70" y="448" width="552" height="110" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <rect x="70" y="448" width="4" height="110" fill="#FBBF24" rx="2"/>
+  <text x="102" y="496" font-size="22" fill="#F1F5F9" font-weight="700">换数据前</text>
+  <text x="102" y="538" font-size="16" fill="#94A3B8">把示例数字换成自己的统计</text>
+  </g>
+  <g id="repro-model" data-pptx-bounds="656 448 554 110">
+  <rect x="656" y="448" width="554" height="110" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="14"/>
+  <rect x="656" y="448" width="4" height="110" fill="#60A5FA" rx="2"/>
+  <text x="688" y="496" font-size="22" fill="#F1F5F9" font-weight="700">换模型时</text>
+  <text x="688" y="538" font-size="16" fill="#94A3B8">保留同一划分与指标表，才可比较</text>
+  </g>
+  <g id="demo-note" data-pptx-bounds="70 580 1140 40">
+  <text x="96" y="606" font-size="15" fill="#FBBF24">示例：这句是给下一位读者的：每个数字都能追溯到库或实验记录。</text>
+  </g>
+</svg>

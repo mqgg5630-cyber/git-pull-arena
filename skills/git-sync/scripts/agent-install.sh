@@ -4,7 +4,7 @@
 #
 # One-liner for a brand-new Arena session (run inside the target repo; git
 # clone works in the sandboxes where raw.githubusercontent.com is blocked):
-#   git clone --quiet --depth 1 -b arena/01a0a4f5-git-pull-arena \
+#   git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 #        https://github.com/mqgg5630-cyber/git-pull-arena.git /tmp/git-sync-src \
 #     && bash /tmp/git-sync-src/skills/git-sync/scripts/agent-install.sh \
 #            --branch <working-branch>
@@ -31,9 +31,9 @@
 set -u -o pipefail
 
 DEFAULT_SOURCE_REPO="https://github.com/mqgg5630-cyber/git-pull-arena.git"
-DEFAULT_SOURCE_BRANCHES=("main" "arena/01a0a4f5-git-pull-arena")
+DEFAULT_SOURCE_BRANCHES=("arena/01a0a98d-git-pull-arena" "main")
 
-REPO=""; BRANCH=""; SOURCE=""; SOURCE_BRANCH=""; GHA=0
+REPO=""; BRANCH=""; SOURCE=""; SOURCE_BRANCH=""; GHA=0; FORCE=0
 while [ $# -gt 0 ]; do
   case "$1" in
     --repo)          REPO="$2"; shift 2 ;;
@@ -41,10 +41,20 @@ while [ $# -gt 0 ]; do
     --source)        SOURCE="$2"; shift 2 ;;
     --source-branch) SOURCE_BRANCH="$2"; shift 2 ;;
     --gha)           GHA=1; shift ;;
+    --force)         FORCE=1; shift ;;
     -h|--help)       sed -n '2,32p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
     *) echo "unknown option: $1" >&2; exit 1 ;;
   esac
 done
+
+# version compare: ver_ge A B  ->  true when A >= B (dotted numbers, "2.10" > "2.9")
+ver_ge() {
+  [ "$1" = "$2" ] && return 0
+  [ "$(printf '%s\n%s\n' "$1" "$2" | sort -V | head -1)" = "$2" ]
+}
+read_ver() {  # $1 = skill dir -> prints its VERSION (or 0)
+  if [ -f "$1/VERSION" ]; then tr -d '[:space:]' < "$1/VERSION"; else echo 0; fi
+}
 
 # ---------------------------------------------------------------- 1. target
 [ -z "$REPO" ] && REPO="$PWD"
@@ -69,15 +79,24 @@ echo "== target : $REPO"
 echo "== branch : $BRANCH  (remote: $REMOTE_NAME)"
 
 # ---------------------------------------------------------------- 2. source
-fetch_source() {  # $1 url  $2 branch -> prints the tmp dir, or empty on failure
-  local d
-  d="$(mktemp -d)"
-  if git clone --quiet --depth 1 --branch "$2" "$1" "$d" 2>/dev/null; then
-    echo "$d"
+# One scratch dir for the whole run: the first branch is a shallow clone, every
+# other candidate is a shallow FETCH into the same dir, so comparing versions
+# across branches costs one negotiation instead of one full clone each.
+WORKDIR="$(mktemp -d)"
+cleanup() {
+  if [ -n "${WORKDIR:-}" ] && [ -d "$WORKDIR" ]; then rm -rf "$WORKDIR"; fi
+}
+trap cleanup EXIT
+
+fetch_source() {  # $1 url  $2 branch -> prints the work dir with that branch checked out
+  local url="$1" br="$2"
+  if [ ! -d "$WORKDIR/.git" ]; then
+    git clone --quiet --depth 1 --single-branch --no-tags --branch "$br" "$url" "$WORKDIR" 2>/dev/null || return 1
   else
-    rm -rf "$d"
-    echo ""
+    git -C "$WORKDIR" fetch --quiet --depth 1 origin "+refs/heads/$br:refs/remotes/origin/$br" 2>/dev/null || return 1
+    git -C "$WORKDIR" checkout --quiet --force -B "probe-$br" "origin/$br" 2>/dev/null || return 1
   fi
+  echo "$WORKDIR"
 }
 
 SRC=""; LOCAL_SOURCE=0
@@ -96,25 +115,23 @@ if [ -n "$SOURCE" ]; then
     echo "== source: $SOURCE ($SOURCE_BRANCH)"
   fi
 else
+  # Try the branches in order (newest first) and take the FIRST one that carries
+  # the skill. The order matters: `main` used to win this loop and silently
+  # install an older release (v2.6.7) over a newer working branch, deleting the
+  # newer files with it. The downgrade guard below catches the rest.
   for B in "${DEFAULT_SOURCE_BRANCHES[@]}"; do
     TRY="$(fetch_source "$DEFAULT_SOURCE_REPO" "$B")"
     if [ -n "$TRY" ] && [ -d "$TRY/skills/git-sync" ]; then
-      SRC="$TRY"
-      echo "== source: $DEFAULT_SOURCE_REPO ($B)"
+      SRC="$TRY"; SRC_BRANCH_USED="$B"
+      echo "== source: $DEFAULT_SOURCE_REPO ($B) - skill v$(read_ver "$TRY/skills/git-sync")"
       break
     fi
-    [ -n "$TRY" ] && rm -rf "$TRY"
+    echo "== no skill on $B - trying the next candidate branch"
   done
 fi
+
 [ -n "$SRC" ] && [ -d "$SRC/skills/git-sync" ] || {
   echo "[ERROR] could not fetch the skill from any source (offline?)" >&2; exit 2; }
-
-cleanup() {
-  if [ "$LOCAL_SOURCE" = "0" ] && [ -n "${SRC:-}" ] && [ -d "$SRC" ]; then
-    rm -rf "$SRC"
-  fi
-}
-trap cleanup EXIT
 
 # ---------------------------------------------------------------- 3. install
 # keep the target's existing config across the upgrade
@@ -128,6 +145,21 @@ elif [ -f "$REPO/sync.config.json" ]; then
 fi
 
 mkdir -p "$REPO/skills"
+# ------------------------------------------------- never install an older skill
+# The old behaviour wiped skills/git-sync and copied whatever the source had,
+# so following the documented one-liner on a repo that already carried v2.7.x
+# silently downgraded it to the v2.6.7 on main and deleted the newer files.
+NEW_VER="$(read_ver "$SRC/skills/git-sync")"
+if [ -f "$REPO/skills/git-sync/VERSION" ]; then
+  OLD_VER="$(read_ver "$REPO/skills/git-sync")"
+  if [ "$FORCE" != "1" ] && ! ver_ge "$NEW_VER" "$OLD_VER"; then
+    echo "[REFUSED] refusing to downgrade skills/git-sync: installed v$OLD_VER, source has v$NEW_VER" >&2
+    echo "          the copy step deletes the skill folder, so a downgrade loses files." >&2
+    echo "          point --source/--source-branch at the newer skill, or pass --force." >&2
+    exit 2
+  fi
+  echo "== upgrade: v$OLD_VER -> v$NEW_VER"
+fi
 rm -rf "$REPO/skills/git-sync"
 cp -r "$SRC/skills/git-sync" "$REPO/skills/git-sync"
 VER=""
@@ -161,6 +193,16 @@ cfg.setdefault('receipt_history', 'results/sync/history')
 cfg.setdefault('hardware_dir', 'results/hardware')
 cfg.setdefault('handshake', 'results/status/handshake.json')
 cfg.setdefault('check_cmd', 'powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1')
+cfg.setdefault('check_timeout_min', 30)
+cfg.setdefault('lock_stale_min', 45)
+cfg.setdefault('hands_free', True)
+cfg.setdefault('auto_pull', True)
+cfg.setdefault('auto_push', True)
+cfg.setdefault('auto_push_prefix', 'local: auto')
+cfg.setdefault('auto_push_exclude', [
+    '.env', '.env.*', '**/*.pem', '**/*.key',
+    '**/credentials*', '**/*secret*', '**/*token*'])
+cfg.setdefault('success_criteria', 'results/status/success_criteria.json')
 
 with open(cfg_path, 'w', encoding='utf-8') as f:
     json.dump(cfg, f, ensure_ascii=False, indent=2)
@@ -190,7 +232,7 @@ if git -C "$REPO" check-ignore -q "skills/git-sync/sync.config.json" 2>/dev/null
 fi
 
 # 4. the user-side scripts at the repo root
-for f in sync push upload download pack doctor bootstrap pr hardware watch auth; do
+for f in sync push upload download pack doctor bootstrap pr hardware watch auth install; do
   if [ -f "$REPO/skills/git-sync/scripts/$f.ps1" ]; then
     cp "$REPO/skills/git-sync/scripts/$f.ps1" "$REPO/$f.ps1"
   fi
@@ -217,6 +259,18 @@ if [ ! -f "$REPO/code/local_check.ps1" ] && [ -f "$REPO/skills/git-sync/template
   mkdir -p "$REPO/code"
   cp "$REPO/skills/git-sync/templates/local_check.ps1" "$REPO/code/local_check.ps1"
   echo "OK: code/local_check.ps1 created (what watch.ps1 runs - edit it per repo)"
+fi
+
+# 5c. short-prompt mapping page (arena.ai/01a0a821 -> this GitHub clone)
+MAP_SRC=""
+if [ -f "$SRC/01a0a821.md" ]; then
+  MAP_SRC="$SRC/01a0a821.md"
+elif [ -f "$REPO/skills/git-sync/templates/01a0a821.md" ]; then
+  MAP_SRC="$REPO/skills/git-sync/templates/01a0a821.md"
+fi
+if [ -n "$MAP_SRC" ]; then
+  cp "$MAP_SRC" "$REPO/01a0a821.md"
+  echo "OK: 01a0a821.md (short prompt maps to GitHub clone; do not open arena.ai)"
 fi
 
 # 6. optional: the GitHub Actions workflow that runs the gate on push

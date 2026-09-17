@@ -75,6 +75,31 @@ if [ "$ACTION" = "read" ]; then
   ROUND="$(json_get "$HS" round)"; ASTATE="$(json_get "$HS" arena_state)"; LSTATE="$(json_get "$HS" local_state)"
   echo "== handshake (round $ROUND): arena=$ASTATE local=$LSTATE"
   printf '%s\n' "$HS" | python3 -c "import json,sys;print(json.dumps(json.loads(sys.stdin.buffer.read().decode('utf-8-sig')),indent=2,ensure_ascii=False))" 2>/dev/null || printf '%s\n' "$HS"
+  # A round that stays pending is not "the loop is running" - it is a machine
+  # that is not there. Say how long, and hand over the one command that fixes
+  # it, instead of polling again (field report 2026-09-16: round 19 waited
+  # 2 hours while the agent kept committing).
+  if [ "$ASTATE" = "awaiting_check" ] && [ "$LSTATE" = "pending" ]; then
+    ARENA_AT="$(json_get "$HS" arena_updated)"
+    AGE="$(python3 - "$ARENA_AT" <<'PY' 2>/dev/null
+import sys, datetime
+try:
+    t = datetime.datetime.strptime(sys.argv[1].strip(), '%Y-%m-%d %H:%M:%S')
+except Exception:
+    sys.exit(1)
+print(int((datetime.datetime.utcnow() - t).total_seconds() // 60))
+PY
+)"
+    if [ -n "$AGE" ]; then
+      echo "== pending for ${AGE} minute(s) - the local watcher has not answered."
+      if [ "$AGE" -ge 10 ]; then
+        echo "   It is offline, parked, or pointed at another branch. Stop polling and"
+        echo "   give the user the paste block again:"
+        echo "       bash skills/git-sync/scripts/agent-handoff.sh"
+        echo "   (on their machine: .\\sync.ps1 ; .\\watch.ps1 -Focus ; .\\doctor.ps1)"
+      fi
+    fi
+  fi
   LOG="$(ls -1 "$(dirname "$HS_NORM")"/check_r${ROUND}_*.txt 2>/dev/null | sort | tail -1)"
   if [ -n "$LOG" ] && [ -f "$LOG" ]; then
     echo ""
@@ -137,6 +162,28 @@ with open(path, 'w', encoding='utf-8') as f:
 PY
   MSG="check: request round $NEW_ROUND (awaiting local check)"
 else
+  # The machine owns the files under results/ during a round: it writes the
+  # receipt, the evidence and the check log, then pushes them back. Our worktree
+  # can still hold the OLD copies (a sandbox run's receipt, an older evidence
+  # page), and `git add -A` below would re-commit those over the machine's own
+  # report - round 30: the machine's windows receipt arrived in e9365f6 and a
+  # sandbox copy replaced it in the very next commit. So take the remote's copy
+  # of that tree first; the handshake is re-seeded right after and is the only
+  # file this commit is meant to change.
+  # ...but only the files the MACHINE writes: it owns its logs, receipts, the
+  # evidence and the decks. results/status/success_criteria.json and the agent's
+  # own docs are ours, and restoring those would silently throw away the
+  # acceptance criteria this commit exists to keep (round 34).
+  for pat in 'results/status/check_r*.txt' 'results/status/pptmaster_local*' \
+             'results/status/svg/*' 'results/*/pptmaster_local*' 'results/*/svg/*' \
+             'results/*/DECK_*.pptx'; do
+    for f in $pat; do
+      [ -f "$f" ] || continue
+      if git cat-file -e "$ORIGIN:$f" 2>/dev/null; then
+        git checkout "$ORIGIN" -- "$f" 2>/dev/null || true
+      fi
+    done
+  done
   # seed the file from the REMOTE handshake first: the worktree copy can be
   # stale (no sync since the request), and accepting on top of it would
   # clobber the watcher's verdict (local_state / host / local_updated)

@@ -16,9 +16,23 @@
 #     .\watch.ps1                        # one manual poll right now
 #     .\watch.ps1 -Loop                  # poll forever in this console (what the task runs)
 #     .\watch.ps1 -Pause / -Resume       # stop / restart polling (task stays)
+#     .\watch.ps1 -Focus                 # this clone only: pause other git-sync-watch-*
+#                                        # tasks + kill their loops (does NOT delete them)
+#     .\watch.ps1 -RestoreParked         # resume the tasks -Focus paused
+#     .\watch.ps1 -Register -KeepOthers  # register without pausing other conversations
 #     .\watch.ps1 -Unregister            # remove the scheduled task
 #     .\watch.ps1 -Register -Flash       # fallback launcher (brief flash per LOGON)
 #     .\watch.ps1 -Register -Headless    # zero window via S4U (session 0, ADMIN console!)
+#
+# HANDS-FREE (v2.7.0) - the user no longer types .\sync.ps1 / .\push.ps1:
+#   Config keys (skills/git-sync/sync.config.json):
+#     hands_free / auto_pull / auto_push  (hands_free=true forces both on:
+#       1) every idle poll runs sync.ps1  -> pull agent updates
+#       2) if the worktree is dirty (minus excluded secrets / handshake) ->
+#          silent push.ps1 -NoPrompt "local: auto <stamp>"
+#       3) if a check is requested -> run check_cmd and push the verdict)
+#   Agent side: agent-handsfree.sh waits for the watcher, evaluates
+#   success_criteria.json, and --accept when both pass.
 #
 # WINDOW BEHAVIOUR - why v2.6.0 went "one process per logon":
 #   A console app started by Task Scheduler ALWAYS gets a console window first;
@@ -63,6 +77,9 @@ param(
     [switch]$Loop,
     [switch]$Headless,
     [switch]$Flash,
+    [switch]$Focus,
+    [switch]$RestoreParked,
+    [switch]$KeepOthers,
     [int]$CheckTimeoutMin = 0,
     [int]$SelfTestSec = 90,
     [int]$KeeperMin = 10
@@ -108,6 +125,11 @@ $Handshake = 'results/status/handshake.json'
 $CheckCmd  = 'powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1'
 $TimeoutMin = 30
 $LockStaleMin = 45
+$HandsFree = $false
+$AutoPull = $false
+$AutoPush = $false
+$AutoPushPrefix = 'local: auto'
+$AutoPushExclude = @('.env', '.env.*', '**/*.pem', '**/*.key', '**/credentials*', '**/*secret*', '**/*token*')
 if ($cfgPath) {
     $cfg = Get-Content -LiteralPath $cfgPath -Encoding UTF8 -Raw | ConvertFrom-Json
     if ($cfg.branch) { $Branch = [string]$cfg.branch }
@@ -116,10 +138,20 @@ if ($cfgPath) {
     if ($cfg.check_cmd) { $CheckCmd = [string]$cfg.check_cmd }
     if ($cfg.check_timeout_min) { $TimeoutMin = [int]$cfg.check_timeout_min }
     if ($cfg.lock_stale_min) { $LockStaleMin = [int]$cfg.lock_stale_min }
+    if ($null -ne $cfg.hands_free) { $HandsFree = [bool]$cfg.hands_free }
+    if ($null -ne $cfg.auto_pull)  { $AutoPull  = [bool]$cfg.auto_pull }
+    if ($null -ne $cfg.auto_push)  { $AutoPush  = [bool]$cfg.auto_push }
+    if ($cfg.auto_push_prefix) { $AutoPushPrefix = [string]$cfg.auto_push_prefix }
+    if ($cfg.auto_push_exclude) {
+        $AutoPushExclude = @($cfg.auto_push_exclude | ForEach-Object { [string]$_ })
+    }
 }
 if (-not $Branch) { $Branch = (git rev-parse --abbrev-ref HEAD).Trim() }
 if ($CheckTimeoutMin -gt 0) { $TimeoutMin = $CheckTimeoutMin }
 if ($LockStaleMin -lt ($TimeoutMin + 15)) { $LockStaleMin = $TimeoutMin + 15 }
+
+# hands_free is the master switch: when true, force both auto_pull and auto_push
+if ($HandsFree) { $AutoPull = $true; $AutoPush = $true }
 
 $taskName = 'git-sync-watch-' + $repoName
 $skillVer = ''
@@ -146,6 +178,9 @@ if (-not $hostDir) { $hostDir = $stateDir }
 $hostExe   = Join-Path $hostDir ('watchhost-' + $repoName + '.exe')
 $lockFile  = Join-Path $env:TEMP ($taskName + '.lock')
 $loopFile  = Join-Path $stateDir ('watchloop-' + $repoName + '.pid')
+# one machine-wide ledger of watchers paused by -Focus (so -RestoreParked
+# can bring the previous conversation back without re-registering)
+$parkFile  = Join-Path $stateDir 'parked.json'
 
 # ------------------------------------------------------------- state helpers
 function Get-State {
@@ -170,7 +205,7 @@ function Add-Log {
         if (Test-Path -LiteralPath $hostLog) {
             $len = (Get-Item -LiteralPath $hostLog -ErrorAction SilentlyContinue).Length
             if ($len -gt 2MB) {
-                $keep = @(Get-Content -LiteralPath $hostLog -Tail 200 -ErrorAction SilentlyContinue)
+                $keep = @(Get-Content -LiteralPath $hostLog -Tail 200 -Encoding UTF8 -ErrorAction SilentlyContinue)
                 [System.IO.File]::WriteAllLines($hostLog, (@('(log rotated)') + $keep), (New-Object System.Text.UTF8Encoding($false)))
             }
         }
@@ -181,7 +216,10 @@ function Add-Log {
 function Get-LogTail {
     param([int]$Lines = 12)
     if (-not (Test-Path -LiteralPath $hostLog)) { return @() }
-    return @(Get-Content -LiteralPath $hostLog -Tail $Lines -ErrorAction SilentlyContinue)
+    # Add-Log writes UTF-8 without BOM. Reading it back with the default
+    # (ANSI/GBK on a Chinese Windows) turned a Chinese user name or note into
+    # mojibake in "-Status", so the tail must be read as UTF-8 explicitly.
+    return @(Get-Content -LiteralPath $hostLog -Tail $Lines -Encoding UTF8 -ErrorAction SilentlyContinue)
 }
 
 # ------------------------------------------------------- launcher (no window)
@@ -302,11 +340,29 @@ function Resolve-ToolPath {
 }
 
 function Get-PowerShellExe {
+    # Prefer a 64-bit PowerShell, in this order:
+    #   1. pwsh (PowerShell 7+) is respected exactly as it is - it is its own
+    #      product and never WOW64-redirected in a way we should second-guess
+    #   2. from a 32-BIT process, %WINDIR%\System32 is redirected by WOW64 to
+    #      SysWOW64, so the 64-bit powershell.exe is only reachable through
+    #      SysNative. A 32-bit watcher silently produced 32-bit children (and
+    #      32-bit git-bash could not see some paths) - hence the explicit hop.
+    #   3. System32 (already 64-bit when this process is 64-bit)
+    #   4. only then fall back to whatever this process itself is
     $cand = $null
     try { $cand = (Get-Process -Id $PID).Path } catch { }
-    if ($cand -and ($cand -match 'powershell\.exe$' -or $cand -match 'pwsh\.exe$')) { return $cand }
-    $sys = Join-Path $env:WINDIR 'System32\WindowsPowerShell\v1.0\powershell.exe'
-    if (Test-Path -LiteralPath $sys) { return $sys }
+    if ($cand -and $cand -match 'pwsh\.exe$') { return $cand }
+    $is32 = $false
+    try { $is32 = -not [Environment]::Is64BitProcess } catch { }
+    if ($is32 -and $env:WINDIR) {
+        $native = Join-Path $env:WINDIR 'SysNative\WindowsPowerShell\v1.0\powershell.exe'
+        if (Test-Path -LiteralPath $native) { return $native }
+    }
+    if ($env:WINDIR) {
+        $sys = Join-Path $env:WINDIR 'System32\WindowsPowerShell\v1.0\powershell.exe'
+        if (Test-Path -LiteralPath $sys) { return $sys }
+    }
+    if ($cand -and $cand -match 'powershell\.exe$') { return $cand }
     return 'powershell.exe'
 }
 
@@ -426,22 +482,25 @@ public static extern bool IsWindowVisible(System.IntPtr hWnd);
 }
 
 function Get-WatchLoops {
-    # every powershell process running THIS repo's watch.ps1 -Loop. Needed
+    # every powershell process running a clone's watch.ps1 -Loop. Needed
     # because a loop started by an older version carries no pid file, so it
     # cannot be found by pid alone - and a leftover loop keeps polling (and, if
     # it owns a console, keeps printing in it = "the console looks stuck",
-    # field report 2026-09-16).
+    # field report 2026-09-16). -Name defaults to THIS clone; -Focus uses it
+    # for every other clone too.
+    param([string]$Name = $repoName)
     $out = @()
+    if (-not $Name) { return $out }
     try {
         $mine = $PID
-        $needle = 'watch.ps1'
         $q = Get-CimInstance Win32_Process -Filter "Name = 'powershell.exe' OR Name = 'pwsh.exe'" -ErrorAction Stop
         foreach ($proc in $q) {
             $cl = [string]$proc.CommandLine
             if (-not $cl) { continue }
             if ($cl -notmatch '\-Loop\b') { continue }
-            if ($cl -notmatch [regex]::Escape($needle)) { continue }
-            if ($cl -notmatch [regex]::Escape($repoName)) { continue }
+            # match the clone folder as a path segment (...\Name\watch.ps1)
+            # so git-pull-arena does not also kill git-pull-arena-s2
+            if ($cl -notmatch ([regex]::Escape($Name) + '[\\/]watch\.ps1')) { continue }
             if ($proc.ProcessId -eq $mine) { continue }
             $out += [pscustomobject]@{ Pid = $proc.ProcessId; Command = $cl }
         }
@@ -518,20 +577,56 @@ function Wait-ForRun {
     return $null
 }
 
+# Scheduled-task result codes that are NORMAL for a long-lived loop. Anything
+# outside this list is worth a warning; anything inside it is not a failure.
+#   0            completed
+#   267009       0x41301  the task is running right now (the loop never exits)
+#   267011       0x41303  the task has never run yet (just registered)
+#   267014       0x41306  terminated by the user (-Pause / -Unregister)
+#   2147946720   0x800710E0 the operator or administrator has refused the
+#                request - i.e. an instance is already running, which is
+#                exactly what the keeper trigger produces every 10 min
+$script:NormalTaskResults = @(0, 267009, 267011, 267014, 2147946720)
+
+function Get-TaskResultNote {
+    param($Code)
+    $n = 0
+    try { $n = [int64]$Code } catch { return '' }
+    switch ($n) {
+        0          { return 'completed' }
+        267009     { return 'still RUNNING (0x41301) - normal, the loop never exits' }
+        267011     { return 'has never run yet (0x41303) - just registered' }
+        267014     { return 'terminated by the user (0x41306) - -Pause / -Unregister' }
+        2147946720 { return 'launch refused (0x800710E0) - an instance is already running; normal with the keeper trigger' }
+        default    { return '' }
+    }
+}
+
+function Test-TaskResultNormal {
+    param($Code)
+    $n = -1
+    try { $n = [int64]$Code } catch { return $false }
+    return ($script:NormalTaskResults -contains $n)
+}
+
 function Test-ProxyHint {
     $gp = ''
     try { $gp = ((git config --get http.proxy 2>$null | Out-String).Trim()) } catch { }
     if (-not $gp) { try { $gp = ((git config --get https.proxy 2>$null | Out-String).Trim()) } catch { } }
     if ($gp -and -not $env:HTTPS_PROXY) {
-        Write-Host ("   hint: git uses proxy $gp but HTTPS_PROXY is not set -") -ForegroundColor Yellow
-        Write-Host "         gh and other tools will NOT use it:  $env:HTTPS_PROXY = '$gp'" -ForegroundColor Yellow
+        Write-Host ("   hint: git uses proxy $gp but HTTPS_PROXY is not set - gh will NOT use it.") -ForegroundColor Yellow
+        Write-Host '         copy this line into a NEW cmd/PowerShell window, then reopen the window:' -ForegroundColor Yellow
+        Write-Host ('         setx HTTPS_PROXY "' + $gp + '"') -ForegroundColor Yellow
     }
 }
 
 function Show-TaskDiagnostics {
     $ti = Get-TaskInfo
     if ($ti -and $ti.info) {
-        Write-Host ("     task: last run {0} | result {1} | next {2}" -f $ti.info.LastRunTime, $ti.info.LastTaskResult, $ti.info.NextRunTime) -ForegroundColor DarkGray
+        $note = Get-TaskResultNote $ti.info.LastTaskResult
+        $shown = [string]$ti.info.LastTaskResult
+        if ($note) { $shown = $shown + ' (' + $note + ')' }
+        Write-Host ("     task: last run {0} | result {1} | next {2}" -f $ti.info.LastRunTime, $shown, $ti.info.NextRunTime) -ForegroundColor DarkGray
     }
     if (Test-Path -LiteralPath $hostLog) {
         Write-Host "     host log (tail):" -ForegroundColor DarkGray
@@ -539,7 +634,155 @@ function Show-TaskDiagnostics {
     }
 }
 
+function Get-AllWatchTasks {
+    $out = @()
+    try { $out = @(Get-ScheduledTask -TaskName 'git-sync-watch-*' -ErrorAction SilentlyContinue) } catch { }
+    if (-not $out) { return @() }
+    return @($out)
+}
+
+function Stop-RepoLoops {
+    # stop the long-lived loop of ANY clone (pid file + leftover processes)
+    param([string]$Name)
+    $killed = 0
+    if (-not $Name) { return 0 }
+    $pf = Join-Path $stateDir ('watchloop-' + $Name + '.pid')
+    if (Test-Path -LiteralPath $pf) {
+        $lp = 0
+        try {
+            $raw = (Get-Content -LiteralPath $pf -Raw -ErrorAction SilentlyContinue) -replace '[^0-9]', ''
+            if ($raw) { $lp = [int]$raw }
+        } catch { }
+        if ($lp -gt 0) {
+            try { Stop-Process -Id $lp -Force -ErrorAction Stop; $killed++ } catch { }
+        }
+        Remove-Item -LiteralPath $pf -Force -ErrorAction SilentlyContinue
+    }
+    foreach ($l in (Get-WatchLoops -Name $Name)) {
+        try { Stop-Process -Id $l.Pid -Force -ErrorAction Stop; $killed++ } catch { }
+    }
+    return $killed
+}
+
+function Get-ParkLedger {
+    if (-not (Test-Path -LiteralPath $parkFile)) {
+        return [pscustomobject]@{ updated = ''; last_focus = ''; items = @() }
+    }
+    try {
+        return (Get-Content -LiteralPath $parkFile -Raw -Encoding UTF8 | ConvertFrom-Json)
+    } catch {
+        return [pscustomobject]@{ updated = ''; last_focus = ''; items = @() }
+    }
+}
+
+function Save-ParkLedger {
+    param($Ledger)
+    try {
+        $json = ($Ledger | ConvertTo-Json -Depth 6)
+        [System.IO.File]::WriteAllText($parkFile, $json + "`r`n", (New-Object System.Text.UTF8Encoding($false)))
+    } catch { }
+}
+
+function Invoke-ParkOthers {
+    # pause every OTHER git-sync-watch-* task and kill its loop. Does NOT
+    # Unregister: the task stays so -RestoreParked / -Focus on that clone
+    # can bring it back. Already-Disabled tasks are left alone (frozen).
+    $now = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss')
+    $did = @()
+    foreach ($t in (Get-AllWatchTasks)) {
+        $tn = [string]$t.TaskName
+        if (-not $tn) { continue }
+        if ($tn -eq $taskName) { continue }
+        $st = ''
+        try { $st = [string]$t.State } catch { }
+        if ($st -eq 'Disabled') { continue }
+        $other = $tn
+        if ($tn.Length -gt 16 -and $tn.Substring(0, 16) -eq 'git-sync-watch-') {
+            $other = $tn.Substring(16)
+        }
+        try { Stop-ScheduledTask -TaskName $tn -ErrorAction SilentlyContinue } catch { }
+        $n = Stop-RepoLoops $other
+        try { Disable-ScheduledTask -TaskName $tn -ErrorAction SilentlyContinue } catch { }
+        $did += [pscustomobject]@{
+            task = $tn; repo = $other; state_before = $st
+            loops_stopped = $n; parked_at = $now; parked_by = $taskName
+        }
+        Add-Log ("parked other watcher: $tn (was $st, stopped $n loop(s))")
+    }
+    $ledger = Get-ParkLedger
+    $byName = @{}
+    if ($ledger.items) {
+        foreach ($it in @($ledger.items)) {
+            $k = [string]$it.task
+            if ($k -and $k -ne $taskName) { $byName[$k] = $it }
+        }
+    }
+    foreach ($it in $did) { $byName[$it.task] = $it }
+    $merged = @()
+    foreach ($k in $byName.Keys) { $merged += $byName[$k] }
+    Save-ParkLedger ([ordered]@{ updated = $now; last_focus = $taskName; items = $merged })
+    return $did
+}
+
+function Invoke-RestoreParked {
+    $ledger = Get-ParkLedger
+    $items = @()
+    if ($ledger.items) { $items = @($ledger.items) }
+    $n = 0
+    foreach ($it in $items) {
+        $tn = [string]$it.task
+        if (-not $tn) { continue }
+        try { Enable-ScheduledTask -TaskName $tn -ErrorAction SilentlyContinue } catch { }
+        try { Start-ScheduledTask -TaskName $tn -ErrorAction SilentlyContinue } catch { }
+        Add-Log ("restored parked watcher: $tn")
+        $n++
+    }
+    Save-ParkLedger ([ordered]@{
+        updated = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss')
+        last_focus = ''
+        items = @()
+    })
+    return $n
+}
+
+function Invoke-Focus {
+    # this clone is the active conversation: park every other watcher, then
+    # make sure THIS task is enabled and running
+    if (Get-TaskInfo) {
+        try { Enable-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue } catch { }
+        $null = Start-TaskNow
+    }
+    return (Invoke-ParkOthers)
+}
+
 # ----------------------------------------------------------- pause / resume
+if ($Focus) {
+    $parked = @(Invoke-Focus)
+    Write-Host ("== focus : {0}  (this conversation is the active watcher)" -f $taskName) -ForegroundColor Green
+    if (-not (Get-TaskInfo)) {
+        Write-Host "   [warn] this clone has no scheduled task yet - run .\\watch.ps1 -Register" -ForegroundColor Yellow
+    }
+    if ($parked.Count -eq 0) {
+        Write-Host "   no other git-sync-watch-* tasks were running"
+    } else {
+        Write-Host ("   parked {0} other conversation(s) (task kept, loop stopped):" -f $parked.Count)
+        foreach ($it in $parked) {
+            Write-Host ("     {0}  (was {1}, stopped {2} loop(s))" -f $it.task, $it.state_before, $it.loops_stopped)
+        }
+        Write-Host "   come back later with:  cd <that-clone> ; .\\watch.ps1 -Focus"
+        Write-Host "   or resume them all:    .\\watch.ps1 -RestoreParked"
+    }
+    exit 0
+}
+if ($RestoreParked) {
+    $n = Invoke-RestoreParked
+    if ($n -eq 0) {
+        Write-Host "== nothing parked (ledger empty) - no other watchers to restore"
+    } else {
+        Write-Host ("== restored {0} parked watcher(s) - they poll again" -f $n) -ForegroundColor Green
+    }
+    exit 0
+}
 if ($Pause) {
     $null = Stop-TaskNow
     $lp = Get-LoopPid
@@ -574,6 +817,7 @@ if ($Status) {
     Write-Host ("   branch      : {0} (remote {1})" -f $Branch, $Remote)
     Write-Host ("   task        : {0}" -f $taskName)
     Write-Host ("   skill       : {0}" -f $(if ($skillVer) { "v$skillVer" } else { '(unknown)' }))
+    Write-Host ("   hands-free  : master={0} auto_pull={1} auto_push={2}" -f $HandsFree, $AutoPull, $AutoPush)
     Write-Host ("   state dir   : {0}" -f $stateDir)
     if (-not $ti) {
         Write-Host "   scheduled   : NOT REGISTERED - run .\watch.ps1 -Register" -ForegroundColor Red
@@ -582,7 +826,14 @@ if ($Status) {
         try { $state = [string]$ti.task.State } catch { }
         Write-Host ("   scheduled   : {0} | mode: {1}" -f $state, (Get-TaskMode $ti.task))
         if ($ti.info) {
-            Write-Host ("   last run    : {0} | schedule result: {1}" -f $ti.info.LastRunTime, $ti.info.LastTaskResult)
+            $note = Get-TaskResultNote $ti.info.LastTaskResult
+            $shown = [string]$ti.info.LastTaskResult
+            if ($note) { $shown = $shown + ' = ' + $note }
+            Write-Host ("   last run    : {0} | schedule result: {1}" -f $ti.info.LastRunTime, $shown)
+            if (-not (Test-TaskResultNormal $ti.info.LastTaskResult)) {
+                Write-Host "                 ^ not one of the normal codes (0 / 267009 / 267011 / 267014 / 2147946720)" -ForegroundColor Yellow
+                Write-Host "                   read the host log tail below before re-registering" -ForegroundColor Yellow
+            }
             Write-Host ("   next keeper : {0}" -f $ti.info.NextRunTime)
         }
     }
@@ -623,7 +874,32 @@ if ($Status) {
     if ($logs.Count -gt 0) {
         Write-Host ""
         Write-Host ("   last check  : {0}" -f $logs[0].FullName) -ForegroundColor Cyan
-        Get-Content -LiteralPath $logs[0].FullName -Tail 8 | ForEach-Object { Write-Host ("     " + $_) }
+        Get-Content -LiteralPath $logs[0].FullName -Tail 8 -Encoding UTF8 | ForEach-Object { Write-Host ("     " + $_) }
+    }
+    $others = @()
+    foreach ($ot in (Get-AllWatchTasks)) {
+        if ([string]$ot.TaskName -eq $taskName) { continue }
+        $others += $ot
+    }
+    if ($others.Count -gt 0) {
+        Write-Host ""
+        Write-Host "   other tasks :" -ForegroundColor Cyan
+        foreach ($ot in $others) {
+            $ost = ''
+            try { $ost = [string]$ot.State } catch { }
+            Write-Host ("     {0}  [{1}]" -f $ot.TaskName, $ost)
+        }
+        Write-Host "                 switch: .\watch.ps1 -Focus    restore all: .\watch.ps1 -RestoreParked" -ForegroundColor DarkGray
+    }
+    if (Test-Path -LiteralPath $parkFile) {
+        try {
+            $pl = Get-ParkLedger
+            $pc = 0
+            if ($pl.items) { $pc = @($pl.items).Count }
+            if ($pc -gt 0) {
+                Write-Host ("   parked      : {0} task(s) by {1} at {2} - .\watch.ps1 -RestoreParked" -f $pc, $pl.last_focus, $pl.updated) -ForegroundColor Yellow
+            }
+        } catch { }
     }
     Write-Host ""
     Write-Host "   host log    : $hostLog (tail)" -ForegroundColor Cyan
@@ -879,8 +1155,27 @@ if ($Register -or $Unregister) {
     Write-Host "   verify it any time with: .\watch.ps1 -Status   /   .\watch.ps1 -Test"
     Write-Host "   remove any time with:    .\watch.ps1 -Unregister"
     Write-Host "   pause / resume:          .\watch.ps1 -Pause  /  .\watch.ps1 -Resume"
+    Write-Host "   this conversation only:  .\watch.ps1 -Focus          (pauses other clones)"
+    Write-Host "   restore other clones:    .\watch.ps1 -RestoreParked"
     Write-Host "   after upgrading the skill, re-register so the loop runs the new code"
+    Write-Host ("   hands-free: master={0} auto_pull={1} auto_push={2}  (config: hands_free)" -f $HandsFree, $AutoPull, $AutoPush)
     Write-Host "   if a push needs a login window, fix it once with .\auth.ps1 -Setup"
+    if (-not $KeepOthers) {
+        Write-Host ""
+        $parked = @(Invoke-ParkOthers)
+        if ($parked.Count -gt 0) {
+            Write-Host ("== parked {0} other conversation watcher(s) (kept the task, stopped the loop):" -f $parked.Count) -ForegroundColor Cyan
+            foreach ($it in $parked) {
+                Write-Host ("     {0}  (was {1})" -f $it.task, $it.state_before)
+            }
+            Write-Host "   go back later:  cd <that-clone> ; .\watch.ps1 -Focus"
+            Write-Host "   or resume all:  .\watch.ps1 -RestoreParked"
+        } else {
+            Write-Host "== no other git-sync-watch-* tasks were running"
+        }
+    } else {
+        Write-Host "== -KeepOthers: left other conversation watchers running"
+    }
     exit 0
 }
 
@@ -888,8 +1183,139 @@ if ($Register -or $Unregister) {
 # The poll body is a function on purpose: every exit path returns an exit code
 # and the lock is removed by the caller, so a "return" deep inside can never
 # leave a stale lock behind (which would stall the watcher until it expires).
+# ---------------------------------------------------------------- hands-free
+# Convert a gitignore-style glob to a regex. Handles **, *, ? without the
+# Escape-then-replace mess (v2.7.0 field port: **/*.pem must match a.pem
+# in any folder, and git-pull-arena must not match git-pull-arena-s2).
+function Convert-GlobToRegex {
+    param([string]$Glob)
+    $g = ($Glob -replace '\\', '/')
+    $sb = New-Object System.Text.StringBuilder
+    $i = 0
+    while ($i -lt $g.Length) {
+        $two = ''
+        if ($i + 1 -lt $g.Length) { $two = $g.Substring($i, 2) }
+        if ($two -eq '**') {
+            [void]$sb.Append('.*')
+            $i += 2
+            if ($i -lt $g.Length -and $g[$i] -eq '/') { $i += 1 }
+            continue
+        }
+        $ch = $g[$i]
+        if ($ch -eq '*') { [void]$sb.Append('[^/]*'); $i += 1; continue }
+        if ($ch -eq '?') { [void]$sb.Append('[^/]'); $i += 1; continue }
+        if (('\^$.|+()[]{}').IndexOf([string]$ch) -ge 0) { [void]$sb.Append('\') }
+        [void]$sb.Append($ch)
+        $i += 1
+    }
+    return $sb.ToString()
+}
+
+function Test-AutoPushExcluded {
+    param([string]$RelPath)
+    $p = ($RelPath -replace '\\', '/').TrimStart('/')
+    # verdict path owns these - never auto-commit them
+    if ($p -match '^results/status/handshake\.json$') { return $true }
+    if ($p -match '^results/status/check_r') { return $true }
+    foreach ($pat in $AutoPushExclude) {
+        $g = ($pat -replace '\\', '/').TrimStart('/')
+        if (-not $g) { continue }
+        $rx = Convert-GlobToRegex $g
+        if ($p -match ('^' + $rx + '$')) { return $true }
+        if ($g -notmatch '/') {
+            if ($p -match ('(^|/)' + $rx + '$')) { return $true }
+        }
+    }
+    return $false
+}
+
+function Get-DirtyPaths {
+    $out = @()
+    $prev = [Console]::OutputEncoding
+    try { [Console]::OutputEncoding = New-Object System.Text.UTF8Encoding($false) } catch { }
+    $raw = git status --porcelain -uall 2>$null
+    try { [Console]::OutputEncoding = $prev } catch { }
+    if (-not $raw) { return @() }
+    foreach ($line in @($raw)) {
+        if (-not $line -or $line.Length -lt 4) { continue }
+        $rest = $line.Substring(3)
+        if ($rest -match ' -> ') { $rest = ($rest -split ' -> ', 2)[1] }
+        $rest = $rest.Trim().Trim('"')
+        if (-not $rest) { continue }
+        if (Test-AutoPushExcluded $rest) { continue }
+        $out += $rest
+    }
+    return $out
+}
+
+function Invoke-AutoPull {
+    if (-not $AutoPull) { return 0 }
+    $sync = Join-Path $repo 'sync.ps1'
+    if (-not (Test-Path -LiteralPath $sync)) { $sync = Join-Path $PSScriptRoot 'sync.ps1' }
+    if (-not (Test-Path -LiteralPath $sync)) {
+        Add-Log 'auto_pull: sync.ps1 missing'
+        return 1
+    }
+    $global:LASTEXITCODE = 0
+    $out = (& $sync 2>&1 | Out-String)
+    $code = $LASTEXITCODE
+    if ($out -and ($out -match 'ERROR|diverg|conflict|FAIL')) { Write-Host $out.TrimEnd() }
+    if ($code -ne 0) {
+        Add-Log "auto_pull: sync FAILED (exit $code)"
+        Set-State @{ last_auto_pull = "fail exit $code" }
+        return $code
+    }
+    $nowAp = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss')
+    Add-Log ('auto_pull: ok at ' + $nowAp)
+    Set-State @{ last_auto_pull = 'ok'; last_auto_pull_at = $nowAp }
+    return 0
+}
+
+function Invoke-AutoPush {
+    if (-not $AutoPush) { return 0 }
+    $dirty = @(Get-DirtyPaths)
+    if ($dirty.Count -eq 0) {
+        Add-Log ('auto_push: clean at ' + (Get-Date).ToString('yyyy-MM-dd HH:mm:ss'))
+        Set-State @{ last_auto_push = 'clean'; last_auto_push_at = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss') }
+        return 0
+    }
+    $push = Join-Path $repo 'push.ps1'
+    if (-not (Test-Path -LiteralPath $push)) { $push = Join-Path $PSScriptRoot 'push.ps1' }
+    if (-not (Test-Path -LiteralPath $push)) {
+        Add-Log 'auto_push: push.ps1 missing'
+        return 1
+    }
+    $stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
+    $msg = ("{0} {1} ({2} file(s))" -f $AutoPushPrefix, $stamp, $dirty.Count)
+    Write-Host ("== hands-free auto_push: {0} file(s) -> {1}" -f $dirty.Count, $msg) -ForegroundColor Cyan
+    Add-Log ("auto_push: {0} file(s): {1}" -f $dirty.Count, (($dirty | Select-Object -First 8) -join ', '))
+    $global:LASTEXITCODE = 0
+    $out = (& $push -NoPrompt $msg 2>&1 | Out-String)
+    $code = $LASTEXITCODE
+    if ($out.TrimEnd()) { Write-Host $out.TrimEnd() }
+    if ($code -eq 0) {
+        Add-Log ("auto_push: ok at " + (Get-Date).ToString('yyyy-MM-dd HH:mm:ss') + " ($msg)")
+        Set-State @{ last_auto_push = 'ok'; last_auto_push_msg = $msg; last_auto_push_at = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss'); last_auto_push_files = $dirty.Count }
+        return 0
+    }
+    if ($code -eq 4) {
+        Add-Log 'auto_push: BLOCKED by auth - run .\\auth.ps1 -Setup'
+        Set-State @{ last_auto_push = 'auth blocked'; last_push = 'auth: no silent credential' }
+        Write-Host '[AUTH] auto_push could not run silently - run .\\auth.ps1 -Setup -Verify' -ForegroundColor Red
+        return 4
+    }
+    Add-Log "auto_push: FAILED (exit $code)"
+    Set-State @{ last_auto_push = "fail exit $code" }
+    return $code
+}
+
 function Invoke-PollRound {
     $pollStart = Get-Date
+    # Every exit of this function MUST leave a closing line in
+    # $script:PollSummary; the loop and the manual poll both print it, so a
+    # round can never end in silence (that silence is what made the console
+    # look frozen on its last line). code/check_loop_summary.* enforces this.
+    $script:PollSummary = ''
     try {
         Set-State @{ last_run = $pollStart.ToString('yyyy-MM-dd HH:mm:ss'); last_action = 'poll'; host = $env:COMPUTERNAME; pid = $PID }
         Add-Log "poll start (pid $PID)"
@@ -904,7 +1330,21 @@ function Invoke-PollRound {
         try { [Console]::OutputEncoding = New-Object System.Text.UTF8Encoding($false) } catch { }
         $raw = git show "$Remote/$Branch`:$hsGit" 2>$null
         try { [Console]::OutputEncoding = $prevEnc } catch { }
-        if (-not $raw) { Add-Log 'no handshake yet - idle'; Set-State @{ last_action = 'idle'; last_note = 'no handshake' }; return 0 }
+        if (-not $raw) {
+            $ap = 0; $au = 0
+            if ($AutoPull -or $AutoPush) {
+                $ap = Invoke-AutoPull
+                $au = Invoke-AutoPush
+                Add-Log ("hands_free no handshake pull=$ap push=$au")
+                Set-State @{ last_action = 'hands_free'; last_note = 'no handshake' }
+                $script:PollSummary = ("== hands-free pull={0} push={1} (no handshake yet on {2}/{3})" -f $ap, $au, $Remote, $Branch)
+            } else {
+                Add-Log 'no handshake yet - idle'
+                Set-State @{ last_action = 'idle'; last_note = 'no handshake' }
+                $script:PollSummary = ("== idle - no handshake file yet on {0}/{1}" -f $Remote, $Branch)
+            }
+            return 0
+        }
         $hs = (($raw -join "`n") | ConvertFrom-Json)
 
         # SELF-HEAL: if a verdict commit from an earlier round never made it to
@@ -926,8 +1366,19 @@ function Invoke-PollRound {
         }
 
         if ($hs.arena_state -ne 'awaiting_check' -or $hs.local_state -ne 'pending') {
-            Add-Log ("idle (arena={0} local={1})" -f $hs.arena_state, $hs.local_state)
-            Set-State @{ last_action = 'idle'; last_note = ("arena={0} local={1}" -f $hs.arena_state, $hs.local_state); last_round = [int]$hs.round }
+            $ap = 0; $au = 0
+            $note = ("arena={0} local={1}" -f $hs.arena_state, $hs.local_state)
+            if ($AutoPull -or $AutoPush) {
+                $ap = Invoke-AutoPull
+                $au = Invoke-AutoPush
+                Add-Log ("hands_free $note pull=$ap push=$au")
+                Set-State @{ last_action = 'hands_free'; last_note = $note; last_round = [int]$hs.round }
+                $script:PollSummary = ("== hands-free pull={0} push={1} (no check requested, {2})" -f $ap, $au, $note)
+            } else {
+                Add-Log ("idle ($note)")
+                Set-State @{ last_action = 'idle'; last_note = $note; last_round = [int]$hs.round }
+                $script:PollSummary = ("== idle - no check requested ({0})" -f $note)
+            }
             return 0
         }
 
@@ -941,11 +1392,13 @@ function Invoke-PollRound {
         $global:LASTEXITCODE = 0
         & $sync
         if ($LASTEXITCODE -ne 0) {
-            Write-Host "[ERROR] sync failed - retrying next poll" -ForegroundColor Red
             Add-Log "round ${round}: sync FAILED (exit $LASTEXITCODE)"
             Set-State @{ last_action = 'error'; last_note = 'sync failed' }
+            $script:PollSummary = ("== round {0}: sync FAILED - will retry next poll" -f $round)
             return 1
         }
+        # hands-free: flush local dirty files so this round's check sees them
+        $null = Invoke-AutoPush
 
         # 1b. re-read the handshake from the synced worktree (UTF-8, BOM-tolerant)
         $hsAbs = Join-Path $repo $hsGit
@@ -961,9 +1414,9 @@ function Invoke-PollRound {
             try {
                 $hsRemote = (($rawRemote -join "`n") | ConvertFrom-Json)
                 if ($hsRemote.round -eq $round -and $hsRemote.local_state -ne 'pending') {
-                    Write-Host ("== round {0} was already answered elsewhere ({1}) - nothing to do" -f $round, $hsRemote.local_state) -ForegroundColor Yellow
                     Add-Log "round ${round} already answered remotely ($($hsRemote.local_state)) - skipping"
                     Set-State @{ last_action = 'skipped'; last_note = 'round already answered elsewhere'; last_round = $round }
+                    $script:PollSummary = ("== round {0} was already answered elsewhere - nothing to do" -f $round)
                     return 0
                 }
             } catch { }
@@ -1100,13 +1553,18 @@ function Invoke-PollRound {
         }
         if ($pushed) {
             Set-State @{ last_action = 'push'; last_push = 'ok'; last_push_detail = ''; last_round = $round }
-            Write-Host "== verdict pushed back to $Remote/$Branch" -ForegroundColor Green
+            $script:PollSummary = ("== round {0} checked ({1}) - verdict pushed back to {2}/{3}" -f $round, $verdict, $Remote, $Branch)
             return 0
         }
         Set-State @{ last_action = 'push'; last_push = $pushNote; last_push_detail = $pushDetail; last_round = $round }
-        Write-Host "== [WARN] verdict NOT pushed ($pushNote) - the agent keeps waiting" -ForegroundColor Red
+        $script:PollSummary = ("== round {0} checked ({1}) but the verdict was NOT pushed ({2})" -f $round, $verdict, $pushNote)
         return 1
     } finally {
+        # safety net: an unexpected throw must still leave a closing line, so
+        # the caller never prints an empty summary
+        if (-not $script:PollSummary) {
+            $script:PollSummary = "== poll ended without a recorded outcome - see $hostLog"
+        }
         Add-Log ("poll took {0}s" -f [int]((Get-Date) - $pollStart).TotalSeconds)
     }
 }
@@ -1125,7 +1583,10 @@ function Invoke-PollOnce {
             } else { $skip = $true }
         } catch { $skip = $true }
     }
-    if ($skip) { return 0 }
+    if ($skip) {
+        $script:PollSummary = '== another poll is still running (lock held) - skipped this tick'
+        return 0
+    }
 
     Set-Content -LiteralPath $lockFile -Value (Get-Date).ToString('s')
     $code = 1
@@ -1133,13 +1594,27 @@ function Invoke-PollOnce {
         $code = Invoke-PollRound
     } catch {
         Add-Log "poll crashed: $($_.Exception.Message)"
-        Write-Host "[ERROR] poll crashed: $($_.Exception.Message)" -ForegroundColor Red
         Set-State @{ last_action = 'error'; last_note = ("poll crashed: " + $_.Exception.Message) }
+        $script:PollSummary = ("== poll CRASHED: {0} - the next tick retries" -f $_.Exception.Message)
         $code = 1
     } finally {
         Remove-Item -LiteralPath $lockFile -Force -ErrorAction SilentlyContinue
     }
     return $code
+}
+
+# Print + log the closing line the poll recorded. The loop and the manual poll
+# both go through here, so a round can never end in silence and the line is
+# never printed twice (the exits themselves only RECORD it).
+function Show-PollSummary {
+    param([bool]$ToHost = $true)
+    $sum = [string]$script:PollSummary
+    if (-not $sum.Trim()) { $sum = '== poll ended without a recorded outcome' }
+    # Timestamp every closing line: "did it actually run, and when?" must be
+    # answerable from the window/log alone (user request 2026-09-16).
+    $sum = ('[{0}] {1}' -f (Get-Date -Format 'yyyy-MM-dd HH:mm:ss'), $sum)
+    if ($ToHost) { Write-Host $sum }
+    Add-Log $sum
 }
 
 if ($Loop) {
@@ -1195,9 +1670,13 @@ if ($Loop) {
     }
     try {
         while ($true) {
+            $script:PollSummary = ''
             $null = Invoke-PollOnce
+            # 1) what this tick concluded, 2) when the next one is - always
+            #    both, to the console (when there is one) and to the host log
+            Show-PollSummary $attached
             $next = (Get-Date).AddSeconds($Interval * 60)
-            $line = "== idle - next poll at {0} (Ctrl+C stops this loop)" -f $next.ToString('HH:mm:ss')
+            $line = "== next poll at {0} (Ctrl+C stops this loop)" -f $next.ToString('HH:mm:ss')
             if ($attached) { Write-Host $line -ForegroundColor DarkGray }
             Add-Log $line
             Start-Sleep -Seconds ($Interval * 60)
@@ -1207,5 +1686,14 @@ if ($Loop) {
         Add-Log "loop exit (pid $PID)"
     }
 } else {
-    exit (Invoke-PollOnce)
+    # manual single poll (.\watch.ps1 with no -Loop): the same closing line the
+    # loop prints, then an explicit end marker - a bare return to the prompt
+    # looked like a crash / a hang
+    $script:PollSummary = ''
+    $code = Invoke-PollOnce
+    Show-PollSummary $true
+    $line = "== finished at {0} (manual poll; the scheduled loop keeps running)" -f (Get-Date).ToString('HH:mm:ss')
+    Write-Host $line
+    Add-Log $line
+    exit $code
 }

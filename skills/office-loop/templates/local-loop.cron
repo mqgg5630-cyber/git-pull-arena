@@ -1,0 +1,4 @@
+# local-loop.cron - the crontab alternative when systemd --user is unavailable.
+#   crontab -e    then paste (adjust the path):
+# every 2 minutes; output goes to the log so a failure is visible
+*/2 * * * * cd $HOME/REPO-PATH && /usr/bin/env bash code/watch-linux.sh --once >> $HOME/.local-loop.log 2>&1

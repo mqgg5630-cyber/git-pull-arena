@@ -1,10 +1,11 @@
-> 当前版本 **v2.6.7**（已发布到 `main`）。安装/升级：本机 `agent-install.sh` 或 `install.ps1`；
-> 用户侧升级三步：`.\sync.ps1` → `.\watch.ps1 -Unregister ; .\watch.ps1 -Register` → `.\watch.ps1 -Status`。
-
 ---
 name: git-local-arena-sync
-description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件同步技能：拉取、上传、下载交付物（含按日期增量与临时指定目录）、打包提交、体检与自动修复（doctor -Fix）、开 PR、本机硬件与 conda/mamba 环境自动上报（hardware.ps1 / agent-hardware.sh），以及助手侧的"提交+推送+同步回执（按日期归档）"与沙箱 .git 被重置后的历史恢复；自带新会话引导提示词模板，一条命令装进任何新仓库。Use when a user needs repeatable pull / upload / download / pack / fix helpers for a repo shared with an AI agent, when the agent must know the local hardware (GPU/CPU/RAM/conda envs) before compute-heavy work, when .ps1 files must stay ASCII-only (Windows PowerShell 5.1 GBK decoding), when a stray push to main must be blocked, when the skill must be installed into a brand-new repo or agent session with one command (agent-install.sh + templates/new-session-prompt.md), or when the sandbox repository silently resets to its baseline commit and the worktree must be kept, when pushes must never show a login popup / wait for a click (auth.ps1: gh helper or GCM with credentialStore=dpapi, verified with prompts disabled), or when the local watcher task must run with ZERO console flash (GUI-subsystem launcher, self-tested after -Register) and the user prefers ONE session per repo over multi-session collaboration.
+description: "TRIGGER: user says 安装https://arena.ai/agent/01a0a821 的skills 与本地打通 (or 安装 arena/01a0a821-git-pull-arena skills). Do NOT open arena.ai (login wall). Immediately: git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena https://github.com/mqgg5630-cyber/git-pull-arena.git /tmp/git-sync-src && bash /tmp/git-sync-src/skills/git-sync/scripts/agent-install.sh && bash skills/git-sync/scripts/agent-sync.sh. Root must have watch.ps1. First user-visible reply MUST be filled Windows PowerShell: git clone -b BRANCH URL NEW_FOLDER then .\bootstrap.ps1 -Auto. Forbidden: faking the local side (local/inbox, hand-made stand-in skill). Sandbox may pip install / use .venv freely (v2.8.0). Then do the user task (docx/pptx) and agent-handsfree.sh --timeout auto. Also Windows PowerShell <-> Arena git-sync (sync/push/watch/doctor/auth silent push, zero-window watcher)."
 ---
+
+> 当前版本 **v2.8.1**（沙箱可自由装库；安装器取最新分支且拒绝降级；值守日志带时间戳；轮询自适应；LF 统一）。一句话触发装技能+自循环；`--timeout auto` 值守一回传就停。`main` 上仍是 v2.6.7。
+> 用户侧升级三步：`.\sync.ps1` → `.\watch.ps1 -Unregister ; .\watch.ps1 -Register` → `.\watch.ps1 -Status`（应看到 `hands-free: master=True`）。切回本会话：`.\watch.ps1 -Focus`。
+
 
 # 本地 ↔ Agent 双向同步（skill）
 
@@ -39,7 +40,7 @@ description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件
 | `doctor.ps1` | 体检：环境/分支/远端/落后领先/未提交/stash/LFS/大文件/**技能版本** + **值守/心跳/凭据**（watcher / heartbeat / auth 三行）；**`-Fix` 一键修复** | `.\doctor.ps1 -Fix` |
 | `bootstrap.ps1` | 首次准备：执行策略、git 身份、fetch、切分支、首拉；`-Auto` 追加"免点击凭据 + 注册值守" | `.\bootstrap.ps1 -Auto` |
 | `hardware.ps1` | **采集本机硬件与环境**（OS/CPU/内存/GPU 显存/磁盘/conda/mamba 环境列表，`-Deep` 探测每个环境的 torch+CUDA）写入 `hardware_dir` 并推送 | `.\hardware.ps1 -Deep` |
-| `watch.ps1` | **自动验证循环的本机侧**：`-Register` 注册计划任务跑**常驻循环**（`-Loop`；零窗口启动器优先，冒烟测试失败自动回退 `-Flash`=每次登录闪一次；keeper 每 30 分钟保活）；发现 agent 请求检查 → 自动 sync → 跑 `check_cmd`（硬超时）→ 日志落盘 → 静默推回 passed/failed；`-Status`（模式/心跳年龄/pid）、`-Test`、`-Pause`/`-Resume`/`-Unregister` | `.\watch.ps1 -Register` |
+| `watch.ps1` | **自动验证循环的本机侧**：`-Register` 注册常驻循环；**v2.7.0 每轮 auto_pull + auto_push**（hands_free）；请求检查时 sync → `check_cmd` → 推回 passed/failed；`-Status`（含 hands-free 行）、`-Test`、`-Pause`/`-Resume`/`-Unregister`、**`-Focus` / `-RestoreParked` / `-KeepOthers`** | `.\watch.ps1 -Register` |
 | `pr.ps1` | 用 GitHub CLI 开 PR（工作分支 → main），`-Checks` 看 CI | `.\pr.ps1` |
 | `install.ps1` | 把整套技能装到另一个仓库（升级时**保留**对方已有配置） | `.\install.ps1 -Target C:\MyProject -Branch arena/xxx` |
 
@@ -49,11 +50,13 @@ description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件
 |---|---|---|
 | `agent-sync.sh` | 分支守卫 → fetch → 发散自愈 → gate → **写同步回执并按日期归档** → commit + push | `bash skills/git-sync/scripts/agent-sync.sh "feat: ..."` |
 | `agent-check.sh` | **自动验证循环的助手侧**：`--request` 请求本机检查（round+1）/ `--read` 读结果（exit 0=过 2=败 3=等）/ `--accept` 通过收尾 | `bash skills/git-sync/scripts/agent-check.sh --request "verify X"` |
-| `agent-wait.sh` | **一条命令闭环**：`--request` 后原地轮询远端直到值守推回结果（默认 600s/30s 一次），**整个验证循环在一轮对话内完成**；`--auto-accept` 通过即自动收尾 | `bash skills/git-sync/scripts/agent-wait.sh --request "verify X" --auto-accept` |
+| `agent-wait.sh` | **一条命令闭环**：`--request` 后原地轮询直到值守推回（**一到就停**，默认 `--timeout auto` = 检查时限+3 分钟，不是死等 600s）；`--auto-accept` 通过即收尾 | `bash skills/git-sync/scripts/agent-wait.sh --request "verify X" --timeout auto` |
 | `agent-hardware.sh` | **读取本机硬件报告**（缺失或过期会提醒让用户跑 `hardware.ps1`） | `bash skills/git-sync/scripts/agent-hardware.sh` |
 | `agent-recover.sh` | 沙箱 `.git` 被重置回基线提交后，保住工作区恢复历史 | `bash skills/git-sync/scripts/agent-recover.sh` |
 | `agent-pr.sh` | 助手侧开 PR / 看 CI（`--dry-run` 只打印） | `bash skills/git-sync/scripts/agent-pr.sh --checks` |
 | `agent-install.sh` | **把这套技能一条命令装进任何仓库**（新会话复用的入口） | 见第 7 节 |
+| `agent-criteria.sh` | **成功标准**：读 `success_criteria.json`（文件/子串/大小/正则/禁止项；`require_files` 支持 glob） | `bash skills/git-sync/scripts/agent-criteria.sh` |
+| `agent-handsfree.sh` | **解放双手闭环**：sync → request → wait（`--timeout auto`）→ criteria → 全过 `--accept` | `bash skills/git-sync/scripts/agent-handsfree.sh --request "..." --timeout auto` |
 
 ### 模板与标识（`skills/git-sync/templates/` 等）
 
@@ -73,7 +76,7 @@ description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件
 
 ```json
 {
-  "branch": "arena/01a0a4f5-git-pull-arena",
+  "branch": "arena/01a0a821-git-pull-arena",
   "remote": "origin",
   "download_dir": "",
   "download_sets": { "final": ["deliverable"], "all": ["deliverable", "code", "skills"] },
@@ -85,7 +88,11 @@ description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件
   "handshake": "results/status/handshake.json",
   "check_cmd": "powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1",
   "check_timeout_min": 30,
-  "lock_stale_min": 45
+  "lock_stale_min": 45,
+  "hands_free": true,
+  "auto_pull": true,
+  "auto_push": true,
+  "success_criteria": "results/status/success_criteria.json"
 }
 ```
 
@@ -104,6 +111,8 @@ description: 本机（Windows PowerShell）与远端 Agent 之间的双向文件
 3. **不要 `git init` 再推同一分支**（历史不一致会被拒），也不要在冲突时 `--force`。
 4. **推送前先 `pull --ff-only`**（两个方向的脚本都内建），避免 non-fast-forward。
 5. **大文件不进 git**。放 `build/` 之类被 ignore 的目录，或本地 `pack.ps1` 外发；`doctor.ps1` 会列出超过 50 MB 的被跟踪文件提醒上 Git LFS。
+6. **「与本地打通」不是沙箱 `local/` 目录。** 必须是用户 Windows 上的 `watch.ps1` 计划任务。禁止用 python 复刻 skills、禁止 `local_bridge` / `local/inbox` 冒充本机。给用户的第一条回复必须是填好的 `git clone` + `.\bootstrap.ps1 -Auto`。自循环只准 `agent-handsfree.sh`；exit 3 就是没打通。
+7. **用户只用短句。** `安装https://arena.ai/agent/01a0a821-...的skills。与本地打通` 就是完整入口。禁止打开 arena.ai（登录墙），禁止向用户索要 `USER_PROMPT.md`。映射：clone `https://github.com/mqgg5630-cyber/git-pull-arena.git` 分支 `arena/01a0a821-git-pull-arena`（根目录 `01a0a821.md`）。
 
 ## 4. 故障对照表
 
@@ -140,18 +149,27 @@ Set-ExecutionPolicy -Scope CurrentUser RemoteSigned      # 只做一次
 5. **单会话优先（2026-09-15 决定）**：只走"一会话一仓库"，把单会话闭环做扎实——agent 请求检查 → 本机值守**零窗口**跑完 → **免点击**推回 → `agent-wait --auto-accept` 一次拿到 exit 0。多会话并行/汇总会话（模式 B/C）**暂时搁置**（调度、合并、冲突仲裁成本高于收益），需要时按技能 README.md 第七节重启；
 6. 任何"不对劲"先 `.\doctor.ps1`（或 `-Fix`），把输出贴给 Agent。
 
-## 7. 装进新仓库（未来 Arena 会话一句话）
+## 7. 装进新仓库（用户只发一句话）
 
-**完整的复制粘贴版提示词在 `templates/new-session-prompt.md`**（含安装命令、成功标志、
-本机步骤、双向验收清单，装好技能的仓库都随身带着它）。最短一句话版：
+用户在任何新 Arena 会话里只说（带 Arena 链接、带「自循环 / 生成 docx」也算同一套）：
 
-> 参考 https://github.com/mqgg5630-cyber/git-pull-arena 的 skills/git-sync，
-> 用 agent-install.sh 把它装到本仓库的当前分支。
+```text
+安装 arena/01a0a821-git-pull-arena skills, 与本地打通
+```
+
+或：
+
+```text
+安装https://arena.ai/agent/01a0a821-3f3c-7bbe-bf99-6e6793c45d81的skills。与本地打通
+并实现自循环任务，将这个生成docx和pptx返回到本机，本机并把结果状态push到分支，一直自动循环知道你觉得结果没问题
+```
+
+助手必须立刻按 `templates/one-sentence.md` 执行（装技能 → 回复本机 PowerShell → **若有任务则立刻做并 `agent-handsfree.sh --timeout auto` 直到 accept**）。不要向用户要长提示词，也不要让用户先去旧克隆 `.\sync.ps1`。协议：`templates/one-sentence.md`、`templates/task-loop.md`、`templates/new-session-prompt.md`、`templates/connect-local.ps1`。
 
 Agent 实际执行的命令（沙箱里 git clone 可用、raw.githubusercontent.com 可能被墙）：
 
 ```bash
-git clone --quiet --depth 1 -b arena/01a0a4f5-git-pull-arena \
+git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
      https://github.com/mqgg5630-cyber/git-pull-arena.git /tmp/git-sync-src \
   && bash /tmp/git-sync-src/skills/git-sync/scripts/agent-install.sh \
          --branch <本会话工作分支>
@@ -197,8 +215,10 @@ bash skills/git-sync/scripts/agent-wait.sh --request "验证X" --auto-accept
 
 ```powershell
 .\auth.ps1 -Setup -Verify          # 1) 凭据：让推送不弹窗、不等点击（实跑证明）
-.\watch.ps1 -Register              # 2) 注册计划任务（默认 2 分钟；默认零窗口 + 注册后自检）
-.\watch.ps1 -Status                # 值守活着吗（模式 / 上次运行 / 心跳 / last_push）
+.\watch.ps1 -Register              # 2) 注册计划任务（默认 2 分钟；默认零窗口 + 注册后自检；暂停其他会话值守）
+.\watch.ps1 -Status                # 值守活着吗（模式 / 上次运行 / 心跳 / last_push / other tasks）
+.\watch.ps1 -Focus                 # 只留这一会话：暂停其他 git-sync-watch-*（不删任务）
+.\watch.ps1 -RestoreParked         # 把暂停的值守全部拉回来
 .\watch.ps1 -Test                  # 立刻跑一次任务，验证"真的会跑"
 .\watch.ps1                        # 手动跑一次轮询（立即处理当前请求）
 .\watch.ps1 -Unregister            # 不用了就摘掉
@@ -218,7 +238,12 @@ bash skills/git-sync/scripts/agent-wait.sh --request "验证X" --auto-accept
   `credential.interactive=false`）。**没有可静默使用的凭据就直接失败**（exit 4），并把 `auth: no silent credential`
   写进心跳，绝不挂在那里等点击——`auth.ps1 -Setup` 是修它的唯一命令。
 * 状态全在 `%LOCALAPPDATA%\git-sync\`：`watch-<仓库>.json`（心跳）、`watch-<仓库>.log`（每次轮询一行，
-  含每次 git 调用的结果），**不进 git**；`-Status` 与 `doctor.ps1` 都会读。
+  含每次 git 调用的结果）、`parked.json`（被 `-Focus`/`-Register` 暂停的其他会话值守），**不进 git**；
+  `-Status` 与 `doctor.ps1` 都会读。
+* **一会话一份值守（v2.6.9）**：新会话 `.\watch.ps1 -Register`（或 `bootstrap -Auto`）默认暂停其他
+  `git-sync-watch-*`（Stop+Disable+杀循环，**不删任务**）。继续原来的对话：在 HQ 克隆
+  `cd E:\0github\git-sync\git-pull-arena-s2 ; .\watch.ps1 -Focus`。一次全恢复：`.\watch.ps1 -RestoreParked`。
+  不想动别人：`-Register -KeepOthers`。
 
 要点：
 
@@ -231,3 +256,28 @@ bash skills/git-sync/scripts/agent-wait.sh --request "验证X" --auto-accept
   单轮检查有硬超时（`check_timeout_min`，默认 30 分钟），超时判 failed 并在日志头记 `TIMEOUT`；
 * 同一时刻只有一个轮询在跑（文件锁防重叠）；agent 没 `--request` 时值守完全静默；
 * `--accept` 之后值守继续静默待命，直到下一次 `--request`。
+
+## 9. Hands-Free（v2.7.0）—— 解放双手
+
+配置 `hands_free` / `auto_pull` / `auto_push`（见 `sync.config.json`）。值守每轮：
+
+1. `auto_pull` → `sync.ps1`（你不用再手动拉）
+2. `auto_push` → 工作区有非排除脏文件则 `push.ps1 -NoPrompt`（你不用再手动推）
+3. 若 handshake 为 `awaiting_check` → 照旧跑 `check_cmd` 并推回 verdict
+
+Agent 侧一条命令闭环：
+
+```bash
+bash skills/git-sync/scripts/agent-handsfree.sh \
+     --sync "feat: ..." \
+     --request "verify ..." \
+     --timeout auto
+```
+
+它会：sync → request → wait 本机值守 → `agent-criteria.sh` 读 `success_criteria` → 全过则 `--accept` 停下。
+
+成功标准文件默认 `results/status/success_criteria.json`。本机 `code/local_check.ps1` 也会跑同一份。
+案例与安全边界：`deliverable/HANDS_FREE_v2.7.0.md`。
+
+用户侧升级：`.\sync.ps1` → `.\watch.ps1 -Unregister ; .\watch.ps1 -Register` → `.\watch.ps1 -Status`
+（应显示 `hands-free: master=True auto_pull=True auto_push=True`）。

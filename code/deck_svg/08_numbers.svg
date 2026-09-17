@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" lang="zh-CN" font-family="Microsoft YaHei, Segoe UI, sans-serif" data-pptx-page-role="content">
+  <defs>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="7" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="#0B1220" id="bg" data-pptx-role="background" />
+  <g id="page-title" data-pptx-bounds="70 44 1140 144">
+  <text x="74" y="78" font-size="16" fill="#22D3EE" font-family="Consolas, monospace" letter-spacing="3">//  NUMBERS</text>
+  <text x="70" y="138" font-size="44" fill="#F1F5F9" font-weight="700">真机数据（4 轮全部 passed）</text>
+  <text x="72" y="176" font-size="20" fill="#94A3B8">耗时取自 results/status/check_r*.txt，不是估计值</text>
+  </g>
+  <text x="1208" y="78" font-size="16" fill="#64748B" id="page-number" data-pptx-role="page-number" font-family="Consolas, monospace" text-anchor="end">07 / 12</text>
+  <line x1="72" y1="622" x2="1208" y2="622" stroke="#17293F" stroke-width="1" id="frame-rule" data-pptx-role="decoration" />
+  <text x="72" y="652" font-size="14" fill="#64748B" id="footer-left" data-pptx-role="footer" font-family="Consolas, monospace">git-sync v2.8.1  ·  arena/01a0aa00-git-pull-arena  ·  ppt-master v6.4.0</text>
+  <text x="1208" y="652" font-size="14" fill="#64748B" id="footer-right" data-pptx-role="footer" font-family="Consolas, monospace" text-anchor="end">LAPTOP-R77M5D6M</text>
+  <g id="kpi-1" data-pptx-bounds="72 228 264 102">
+  <rect x="72" y="228" width="264" height="102" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="12" />
+  <text x="96" y="282" font-size="28" fill="#A3E635" font-weight="700">0</text>
+  <text x="96" y="314" font-size="15" fill="#94A3B8">失败 / 0 跳过</text>
+  </g>
+  <g id="kpi-2" data-pptx-bounds="360 228 264 102">
+  <rect x="360" y="228" width="264" height="102" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="12" />
+  <text x="384" y="282" font-size="28" fill="#22D3EE" font-weight="700">68</text>
+  <text x="384" y="314" font-size="15" fill="#94A3B8">条成功标准全过</text>
+  </g>
+  <g id="kpi-3" data-pptx-bounds="648 228 264 102">
+  <rect x="648" y="228" width="264" height="102" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="12" />
+  <text x="672" y="282" font-size="28" fill="#7DD3FC" font-weight="700">27–43s</text>
+  <text x="672" y="314" font-size="15" fill="#94A3B8">单轮耗时（真机）</text>
+  </g>
+  <g id="kpi-4" data-pptx-bounds="936 228 264 102">
+  <rect x="936" y="228" width="264" height="102" fill="#121C2E" stroke="#1E3A5F" stroke-width="1" rx="12" />
+  <text x="960" y="282" font-size="28" fill="#FBBF24" font-weight="700">7</text>
+  <text x="960" y="314" font-size="15" fill="#94A3B8">份交付物</text>
+  </g>
+  <g id="bar-1" data-pptx-bounds="152 403 152 197">
+  <rect x="180" y="439" width="96" height="121" fill="#A3E635" rx="6" opacity="0.9" />
+  <text x="228" y="425" font-size="22" fill="#F1F5F9" font-family="Consolas, monospace" font-weight="700" text-anchor="middle">27s</text>
+  <text x="228" y="590" font-size="18" fill="#94A3B8" text-anchor="middle">round 20</text>
+  </g>
+  <g id="bar-2" data-pptx-bounds="342 371 152 229">
+  <rect x="370" y="407" width="96" height="153" fill="#A3E635" rx="6" opacity="0.9" />
+  <text x="418" y="393" font-size="22" fill="#F1F5F9" font-family="Consolas, monospace" font-weight="700" text-anchor="middle">34s</text>
+  <text x="418" y="590" font-size="18" fill="#94A3B8" text-anchor="middle">round 21</text>
+  </g>
+  <g id="bar-3" data-pptx-bounds="532 331 152 269">
+  <rect x="560" y="367" width="96" height="193" fill="#A3E635" rx="6" opacity="0.9" />
+  <text x="608" y="353" font-size="22" fill="#F1F5F9" font-family="Consolas, monospace" font-weight="700" text-anchor="middle">43s</text>
+  <text x="608" y="590" font-size="18" fill="#94A3B8" text-anchor="middle">round 22</text>
+  </g>
+  <g id="bar-4" data-pptx-bounds="722 371 152 229">
+  <rect x="750" y="407" width="96" height="153" fill="#A3E635" rx="6" opacity="0.9" />
+  <text x="798" y="393" font-size="22" fill="#F1F5F9" font-family="Consolas, monospace" font-weight="700" text-anchor="middle">34s</text>
+  <text x="798" y="590" font-size="18" fill="#94A3B8" text-anchor="middle">round 23</text>
+  </g>
+  <line x1="150" y1="560" x2="900" y2="560" stroke="#1E3A5F" stroke-width="2" id="axis" data-pptx-role="decoration" />
+  <g id="numbers-host" data-pptx-bounds="900 360 308 112" text-anchor="end">
+  <text x="1208" y="398" font-size="20" fill="#F1F5F9" font-family="Consolas, monospace" font-weight="700">host LAPTOP-R77M5D6M</text>
+  <text x="1208" y="428" font-size="15" fill="#94A3B8">Windows 11 · conda base</text>
+  <text x="1208" y="452" font-size="15" fill="#94A3B8">python 3.11.9 · 真 Office 开档</text>
+  </g>
+</svg>

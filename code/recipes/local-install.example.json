@@ -1,0 +1,61 @@
+{
+  "schema": "local-loop.recipe.v1",
+  "id": "local-install",
+  "title": "Example: a tool must be installed on the machine, and the machine must prove it works",
+  "version": 1,
+  "note": "Copy this for 'install X on my PC and show me it works' tasks. The receipt keys are the proof the agent reads back: the machine writes them from what it actually did.",
+  "needs": [
+    "network-on-the-machine",
+    "licence-or-app"
+  ],
+  "install_dir": "{repo_parent}/my-tool",
+  "sandbox": {
+    "steps": [
+      {
+        "id": "gates",
+        "why": "cheap invariants only - the install cannot be judged here",
+        "run": [
+          "{python}",
+          "code/gates.py"
+        ],
+        "timeout": 900
+      }
+    ]
+  },
+  "local": {
+    "steps": {
+      "windows": [
+        {
+          "id": "install+smoke",
+          "why": "clone/install with the machine's own toolchain, then run its smoke test",
+          "run_powershell": "code/my_tool_local.ps1",
+          "timeout": 1200
+        }
+      ],
+      "linux": [
+        {
+          "id": "install+smoke",
+          "why": "same on Linux",
+          "run": [
+            "{bash}",
+            "code/my_tool_local.sh",
+            "--repo",
+            "{repo}"
+          ],
+          "timeout": 1200
+        }
+      ]
+    },
+    "receipt": {
+      "file": "results/status/my_tool_receipt.txt",
+      "keys": {
+        "installed": "yes",
+        "smoke": "ok",
+        "version": "1.2.3"
+      }
+    }
+  },
+  "evidence": [
+    "results/my-tool/*.log"
+  ]
+}

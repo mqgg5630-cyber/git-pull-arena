@@ -1,0 +1,15 @@
+{
+  "task": "umami-peptide-ml",
+  "title": "机器学习筛选鲜味肽",
+  "note": "Which deck the loop builds on this machine. code/pptmaster_pipeline.py reads this file (CLI flags still win), code/pptmaster_local.ps1 uses it to find the deck it opens in PowerPoint, and make-deck.cmd rebuilds exactly this deck. Switching the loop to another subject = edit these keys.",
+  "generator": "code/make_deck_umami.py",
+  "project": "umami-01a0aa00",
+  "deck_name": "DECK_umami_01a0aa00_v1.pptx",
+  "evidence_dir": "results/umami",
+  "expect_slides": 12,
+  "markers": ["鲜味肽", "umami", "T1R1", "make-deck.cmd"],
+  "carry_previous": {
+    "deck": "E:\\0github\\git-sync\\ppt-master\\out\\DECK_local_20260916.pptx",
+    "note": "the git-sync deck a previous round generated; the umami deck above is written under its own name and project directory, so this file is never overwritten"
+  }
+}

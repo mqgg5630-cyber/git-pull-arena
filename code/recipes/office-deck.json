@@ -1,0 +1,91 @@
+{
+  "schema": "local-loop.recipe.v1",
+  "id": "office-deck",
+  "title": "PPT Master deck authored here, built and opened on the machine",
+  "version": 1,
+  "note": "The default test task of this repo (docx/pptx + a native pptx deck). The task itself is NOT part of the runner: copy this file, change the steps, and the same loop drives a different repo's task. Which deck (generator/project/output) comes from code/pptmaster_deck.json.",
+  "needs": [
+    "python-3.10+",
+    "office-com-or-libreoffice"
+  ],
+  "install_dir": "{repo_parent}/ppt-master",
+  "sandbox": {
+    "steps": [
+      {
+        "id": "pages",
+        "why": "author the deck's pages from THIS repo's numbers - fast, no install, catches layout bugs before a round is spent",
+        "run": [
+          "{python}",
+          "code/make_deck_umami.py",
+          "--out",
+          "build/pages"
+        ],
+        "produces": [
+          "build/pages/*.svg"
+        ],
+        "timeout": 600
+      },
+      {
+        "id": "gates",
+        "why": "the repo's own gate list (code/gates.json) - the same questions check_all.sh asks",
+        "run": [
+          "{python}",
+          "code/gates.py"
+        ],
+        "timeout": 1800
+      }
+    ]
+  },
+  "local": {
+    "steps": {
+      "windows": [
+        {
+          "id": "install-and-build-deck",
+          "why": "the same job on Windows: code/pptmaster_local.ps1 resolves a REAL powershell.exe, finds a python 3.10+ (registry/PATH/conda/hardware report), clones + venvs ppt-master, builds the deck and then code/local_check.ps1 4c opens it in the real PowerPoint",
+          "run_powershell": "code/pptmaster_local.ps1",
+          "args": [
+            "-SkipCom"
+          ],
+          "timeout": 1200
+        }
+      ],
+      "linux": [
+        {
+          "id": "install-and-build-deck",
+          "why": "the whole local plane on Linux/macOS in one step: code/pptmaster_local.sh finds a python 3.10+, clones ppt-master if it is missing, builds the venv + core deps, runs the pipeline (pages authored here -> svg_quality_checker -> svg_to_pptx -> structural re-check -> pptx_delivery_check) and proves a real application can open the file with LibreOffice headless; the receipt it writes is what this runner then asserts",
+          "run": [
+            "{bash}",
+            "code/pptmaster_local.sh",
+            "--repo",
+            "{repo}",
+            "--root",
+            "{repo_parent}"
+          ],
+          "timeout": 1800
+        }
+      ]
+    },
+    "receipt": {
+      "file": "results/status/pptmaster_local.txt",
+      "keys": {
+        "deck_slides": "12",
+        "checker_blocking": "0",
+        "markers": "ok"
+      }
+    }
+  },
+  "evidence": [
+    "results/umami/DECK_*.pptx",
+    "results/umami/pptmaster_local_quality.json",
+    "results/umami/svg/*.svg"
+  ],
+  "sandbox_vs_local": {
+    "why_local": "the deck must be produced by the machine's own installed venv and opened by the machine's own Office - a sandbox build proves the pages compile, not that the toolchain works there",
+    "sandbox_ok_for": [
+      "authoring the pages",
+      "layout/XML validation",
+      "the gate list",
+      "structural pptx checks"
+    ]
+  }
+}
