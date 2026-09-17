@@ -90,6 +90,18 @@ bash code/check_all.sh && git add -A && git commit -m "install: office-loop v1.0
   这正是唯一一次真机翻车的原因，现在在沙箱里就报错。
 * 生成器自己也会在写页之后立刻做同样的断言（`deck_kit.run`），写坏页直接 exit 2。
 
+## 4b. 每次 push 的三道门禁（都在沙箱里跑，别让机器替你发现）
+
+```
+bash code/check_all.sh                       # ASCII / 分支 / 脚本一致 / 循环收尾 / 版面自检 /
+                                             # payload 漂移 / 验收标准里的字符串是否真的存在
+python3 code/deck_layout_selftest.py         # 单独跑：每套 deck × 机器 round-28 状态 + 极端输入
+python3 code/check_criteria_needles.py       # 单独跑：criteria 里的 needle 能不能在仓库里找到
+```
+
+`check_criteria_needles.py` 是 round 33 用一次真机失败换来的：那一轮 4a/4b/4c 全绿，
+却因为验收标准里写了 `'round 28'`、而文件里是 `round-28`，整轮被判 failed。
+
 ## 5. 出问题时看哪儿
 
 | 症状 | 先看 |

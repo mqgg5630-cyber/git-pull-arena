@@ -84,6 +84,15 @@ Arena 会话（沙箱）                  用户 Windows 机器
 4. 读 `results/status/check_r<N>_*.txt`：4a/4b/4c 全 OK 且验收标准过 → 收尾 `--accept`。
 5. 之后每轮只做第 3–4 步：改页源 → push → 真机判定 → 收尾。
 
+## 5b. 装好之后新加的门禁（round 33 之后）
+
+| 门禁 | 抓什么 | 为什么加 |
+|---|---|---|
+| `skills/office-loop/tools/check_payload.py` | 技能自带 payload 与仓库 `code/` 不再逐字节一致 | 技能装出去的会是旧循环 |
+| `code/check_criteria_needles.py` | `success_criteria.json` 里写了**文件里并不存在**的字符串 | round 33 真机 4a/4b/4c 全绿，却因为 `'round 28'`（文件里是 `round-28`）整轮 verdict=failed；这个门禁一秒内就能在沙箱里抓到 |
+| `code/deck_layout_selftest.py` | 换数据后 12 页出现模块框重叠 / XML 不良构 | round 28 唯一一次真机翻车 |
+| installer 的结构自检 | 插入 `local_check.ps1` 后花括号/圆括号不平衡 | PowerShell 是先整文件解析再执行，一处不平衡会让之后每一轮静默死掉 |
+
 ## 6. 优化清单（本次实现之后仍然值得做的）
 
 * 机器上多套 deck 并行：现在 `pptmaster_local.ps1` 每轮只跑 `code/pptmaster_deck.json` 指的那一套；

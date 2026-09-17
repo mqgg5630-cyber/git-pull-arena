@@ -263,4 +263,22 @@ else
     fi
 fi
 
+# ------------- 7. would the machine's criteria check pass on THIS worktree?
+# A round is failed by an unsatisfiable needle just as hard as by a broken deck
+# (round 33: "'round 28' not in skills/office-loop/CASE_STUDY.md" after a green
+# 4a/4b/4c). Catch it here, where it costs a second instead of a round.
+if [ ! -f code/check_criteria_needles.py ]; then
+    echo "SKIP: code/check_criteria_needles.py not present in this repo"
+elif [ -z "$PY" ]; then
+    echo "SKIP: no python on PATH - criteria needle check skipped"
+elif ! $PY -c 'import sys; sys.exit(0)' >/dev/null 2>&1; then
+    echo "SKIP: $PY is not a working python - criteria needle check skipped here"
+else
+    if $PY code/check_criteria_needles.py; then
+        :
+    else
+        fail=1
+    fi
+fi
+
 exit $fail
