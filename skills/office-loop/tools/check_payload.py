@@ -19,6 +19,7 @@ FILES = [
     'code/pptmaster_pipeline.py',
     'code/pptmaster_local.ps1',
     'code/render_deck_preview.py',
+    'code/pull_machine_evidence.sh',
 ]
 
 

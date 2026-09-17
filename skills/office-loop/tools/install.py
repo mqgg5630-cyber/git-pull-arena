@@ -49,6 +49,7 @@ LOOP_FILES = [
     'code/pptmaster_pipeline.py',
     'code/pptmaster_local.ps1',
     'code/render_deck_preview.py',
+    'code/pull_machine_evidence.sh',
 ]
 
 OFFICE_SENTINEL = 'office-loop: office deliverables section'
@@ -104,15 +105,61 @@ def sections_installed(text):
     return OFFICE_SENTINEL in text or '$manRel = ' in text
 
 
-def insert_sections(target):
+def find_region(lines):
+    """[start, end) of the installed office-loop sections, or None.
+
+    start = the first '# office-loop section:' header we wrote, end = the top of
+    the criteria block (the same anchor an insert uses, walked back over its
+    comments). Used both by the idempotency check and by --refresh-sections.
+    """
+    start = None
+    for i, line in enumerate(lines):
+        if line.startswith('# office-loop section:'):
+            start = i
+            break
+    if start is None:
+        return None
+    at = None
+    for i, line in enumerate(lines):
+        if ANCHOR.match(line):
+            at = i
+            break
+    if at is None:
+        return None
+    while at > 0 and (lines[at - 1].startswith('#') or lines[at - 1].strip() == ''):
+        at -= 1
+    if at <= start:
+        return None
+    return start, at
+
+
+def insert_sections(target, refresh=False):
     """Insert the two proven sections above the criteria block (idempotent)."""
     path = os.path.join(target, 'code', 'local_check.ps1')
     if not os.path.isfile(path):
         return None, ['code/local_check.ps1 is missing - install the git-sync skill first']
     text = read(path, encoding='utf-8')
     lines = text.split('\n')
-    if OFFICE_SENTINEL in text and PPT_SENTINEL in text:
+    if OFFICE_SENTINEL in text and PPT_SENTINEL in text and not refresh:
         return 'already installed (both sentinels present)', []
+    region = find_region(lines)
+    if refresh:
+        if region is None:
+            return None, ['--refresh-sections: no installed office-loop section found']
+        start, end = region
+        fresh = read(OFFICE_TEMPLATE).rstrip('\n') + '\n\n' + read(PPT_TEMPLATE).rstrip('\n')
+        out = '\n'.join(lines[:start]) + ('\n' if start else '') + fresh + '\n\n' + \
+            '\n'.join(lines[end:])
+        problems = []
+        for open_ch, close_ch in (('{', '}'), ('(', ')')):
+            if out.count(open_ch) != out.count(close_ch):
+                problems.append('refreshed %s is unbalanced on %r - file left untouched'
+                                % (path, open_ch))
+        if problems:
+            return None, problems
+        shutil.copyfile(path, path + '.bak-' + stamp())
+        write(path, out)
+        return 'refreshed from the shipped templates', []
     if sections_installed(text) and '$pptScript = Join-Path' in text:
         return 'already installed (the sections are present without sentinels)', []
     at = None
@@ -247,6 +294,9 @@ def main():
     ap.add_argument('--force', action='store_true',
                     help='replace loop files the target already has (they are backed up)')
     ap.add_argument('--check', action='store_true', help='verify only, change nothing')
+    ap.add_argument('--refresh-sections', action='store_true',
+                    help='replace an existing office-loop section with the shipped one '
+                         '(for upgrading an installed skill; backs the file up first)')
     args = ap.parse_args()
     target = os.path.abspath(args.target)
     source = os.path.abspath(args.source)
@@ -294,7 +344,7 @@ def main():
     for rel in backed:
         print('   WARN  ' + rel)
 
-    note, problems = insert_sections(target)
+    note, problems = insert_sections(target, refresh=args.refresh_sections)
     if note:
         print('   local_check.ps1 sections: ' + note)
     for p in problems:

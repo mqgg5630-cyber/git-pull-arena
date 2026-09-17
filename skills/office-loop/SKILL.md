@@ -102,6 +102,21 @@ python3 code/check_criteria_needles.py       # 单独跑：criteria 里的 needl
 `check_criteria_needles.py` 是 round 33 用一次真机失败换来的：那一轮 4a/4b/4c 全绿，
 却因为验收标准里写了 `'round 28'`、而文件里是 `round-28`，整轮被判 failed。
 
+## 4c. 每轮推送前后的两条命令（round 30 的教训）
+
+```bash
+bash code/pull_machine_evidence.sh    # 提交前：把 results/ 换回机器推回来的那份
+bash skills/git-sync/scripts/agent-handsfree.sh --sync "…" --request "…"
+```
+
+`results/` 归机器所有：它写日志、回执、质检报告、成品并 push 回来，而沙箱工作区里可能还留着
+**自己那次的旧副本**。round 30 就是这样把机器写的 `environment=windows` 回执覆盖掉的
+（`agent-check.sh --accept` 现在也会先还原 `results/`）。升级已装好的技能用：
+
+```bash
+bash skills/office-loop/agent-install.sh --refresh-sections   # 只替换两段，先自动备份
+```
+
 ## 5. 出问题时看哪儿
 
 | 症状 | 先看 |
