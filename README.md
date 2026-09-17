@@ -191,3 +191,17 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ```
 
 详细说明：`skills\git-sync\README.md`（使用手册）、`skills\git-sync\SKILL.md`（技能规范）。
+
+## 可安装的技能（把本案变成别的会话能直接装的东西）
+
+    skills/office-loop/     v1.0.0  — 本机生成 + 本机判定的 docx / pptx 自循环
+
+* `SKILL.md`：装什么、怎么装（3 条命令）、一轮循环发生什么、出问题看哪儿、不做什么
+* `CASE_STUDY.md`：本案全过程 —— 两轮对话提示词、真机证据、走通的链路、踩过的 6 个坑与修法
+* `agent-install.sh` + `tools/install.py`：幂等安装（复制代码、插入 `local_check.ps1` 的两段、
+  合并验收标准、跑版面自检、写安装回执 `results/status/office_loop_install.json`）
+* `payload/code/`：循环本体（与仓库根 `code/` **逐字节一致**，由 `tools/check_payload.py` 在每次 push 前把关）
+* `templates/`：`pptmaster_deck.json`（换主题只改这个）+ 机器侧两段 PowerShell（机器已验证过的原文）
+
+装完后的判定仍然只认**用户真机**推回来的 `results/status/check_r<N>_*.txt`（4a/4b/4c）
+与 `pptmaster_local.txt` 回执 —— 沙箱里的通过不算数。

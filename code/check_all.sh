@@ -246,4 +246,21 @@ else
     fi
 fi
 
+# --------------------- 6. does the installable skill carry the CURRENT loop?
+# skills/office-loop/payload/ is the copy another session installs from. If it
+# drifts from code/, that session silently gets an old loop.
+if [ ! -f skills/office-loop/tools/check_payload.py ]; then
+    echo "SKIP: skills/office-loop not present in this repo"
+elif [ -z "$PY" ]; then
+    echo "SKIP: no python on PATH - office-loop payload check skipped"
+elif ! $PY -c 'import sys; sys.exit(0)' >/dev/null 2>&1; then
+    echo "SKIP: $PY is not a working python - office-loop payload check skipped here"
+else
+    if $PY skills/office-loop/tools/check_payload.py; then
+        :
+    else
+        fail=1
+    fi
+fi
+
 exit $fail

@@ -1,0 +1,16 @@
+{
+  "task": "umami-peptide-ml",
+  "title": "机器学习筛选鲜味肽",
+  "note": "Which deck the loop builds on the machine. A NEW SESSION should edit these keys: generator (its own page source), project (own project dir name), deck_name (own output file - never reuse another task's name), evidence_dir, markers, expect_slides. Everything else reads this file: pptmaster_pipeline.py, pptmaster_local.ps1 and make-deck.cmd.",
+  "generator": "code/make_deck_umami.py",
+  "project": "umami-01a0aa00",
+  "deck_name": "DECK_umami_01a0aa00_v1.pptx",
+  "evidence_dir": "results/umami",
+  "expect_slides": 12,
+  "markers": [
+    "鲜味肽",
+    "umami",
+    "T1R1",
+    "make-deck.cmd"
+  ]
+}
