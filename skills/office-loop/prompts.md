@@ -71,13 +71,32 @@
 其余（门禁、回执格式、验收标准、一轮到底的循环命令）完全一样。
 
 ```
-提示词示例 D（换账号 / 第二台机器 —— 本机是 Linux 或 WSL）
-  仓库：https://github.com/<user>/<repo>   分支：arena/<本会话 id>-…
-  我的机器是 Linux（如果是 WSL 请你自己先确认），克隆目录不要覆盖已有的。
-  请把技能装到这台机器并与我打通：打印我该粘贴的 Bash 块（用 code/handoff_linux.sh 生成，
-  不要手写），我贴完你把请求推上去，等它的判定回来再报给我。
-  这台机器上没有 PowerPoint —— 请把"真应用打开"如实标成 soffice 或 na，不要凑。
+提示词示例 D（换账号 / 第二台机器 —— 本机是 Linux 或 WSL）—— 直接抄这段，别留占位符
+  从这个分支取技能（技能来源 ≠ 你的仓库）：
+    git fetch --depth 1 https://github.com/mqgg5630-cyber/git-pull-arena.git arena/01a0aa00-git-pull-arena
+    git checkout FETCH_HEAD -- skills/office-loop
+  然后装进**你自己的**仓库（本会话的分支）：bash skills/office-loop/agent-install.sh --os linux
+  提交推到你自己的分支，再用 bash code/handoff_linux.sh 生成我该粘贴的 Bash 块（不要手写），
+  我贴完你把请求推上去，等判定回来再报给我。
+  我的机器是 Windows 笔记本里的 WSL（提示符 (base) w24e@LAPTOP-R77M5D6M:~/projects$），
+  克隆目录放 ~/projects 下、不要覆盖已有目录；这台机器没有 PowerPoint，
+  "真应用打开"请如实标成 soffice 或 na，不要凑；任何"装好了/跑通了"必须由这台机器 push 回来当证据。
+
 ```
+
+**为什么新账号第一次进来一定会卡在这一步（现场记录 2026-09-17）**
+
+另一个账号的会话在自己的仓库 `test-auto-arena` 里找不到 `code/handoff_linux.sh`，
+于是**正确地停下来问**「素材在哪」——因为技能不在它的仓库里，而在**我这个分支**上。
+它没有编一个脚本出来，这一点做对了；错的是提示词少了上面那两行 `git fetch`。
+
+所以记住三个不要混的东西：
+
+| | 是什么 |
+|---|---|
+| 技能来源 | 已经验证过的那个分支（本案 = `mqgg5630-cyber/git-pull-arena` @ `arena/01a0aa00-…`），public，取它不需要权限 |
+| 目标仓库 | 新会话自己的仓库 + 自己的 `arena/<它的会话 id>-…` 分支（推开请求用的是它） |
+| 机器 | 克隆**目标仓库**（不是来源仓库），然后 `bash code/bootstrap-linux.sh` 注册值守 |
 
 **不要给助手 arena.ai 链接。** 别的账号/别的会话打不开它，也看不到本案的文件；
 能给的是**仓库地址 + 分支**，技能自己带着 `payload/`，克隆下来就能装。
