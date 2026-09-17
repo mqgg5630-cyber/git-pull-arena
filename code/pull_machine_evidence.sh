@@ -40,18 +40,25 @@ if ! git rev-parse --verify --quiet "$ORIGIN" >/dev/null; then
     exit 0
 fi
 
-# only paths the machine writes: its logs, receipts, evidence and decks
+# only the paths the MACHINE writes: its round logs, the two receipts, the
+# checker evidence, the page sources and the finished decks. Everything else
+# under results/ is the agent's (above all results/status/success_criteria.json,
+# which the agent edits and the machine only reads) and is left alone.
 restored=0
-while IFS= read -r f; do
-    [ -z "$f" ] && continue
-    if git cat-file -e "$ORIGIN:$f" 2>/dev/null; then
-        if [ "$(git hash-object "$f" 2>/dev/null)" != "$(git rev-parse "$ORIGIN:$f" 2>/dev/null)" ]; then
-            git checkout "$ORIGIN" -- "$f" 2>/dev/null && {
-                echo "   restored $f (machine's copy)"
-                restored=$((restored + 1))
-            }
+for pat in 'results/status/check_r*.txt' 'results/status/pptmaster_local*' \
+           'results/status/svg/*' 'results/*/pptmaster_local*' 'results/*/svg/*' \
+           'results/*/DECK_*.pptx'; do
+    for f in $pat; do
+        [ -f "$f" ] || continue
+        if git cat-file -e "$ORIGIN:$f" 2>/dev/null; then
+            if [ "$(git hash-object "$f" 2>/dev/null)" != "$(git rev-parse "$ORIGIN:$f" 2>/dev/null)" ]; then
+                git checkout "$ORIGIN" -- "$f" 2>/dev/null && {
+                    echo "   restored $f (machine's copy)"
+                    restored=$((restored + 1))
+                }
+            fi
         fi
-    fi
-done < <(git ls-tree -r --name-only "$ORIGIN" results/ 2>/dev/null)
+    done
+done
 
 echo "== machine evidence in place ($restored file(s) restored from $ORIGIN)"

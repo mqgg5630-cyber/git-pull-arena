@@ -170,7 +170,20 @@ else
   # sandbox copy replaced it in the very next commit. So take the remote's copy
   # of that tree first; the handshake is re-seeded right after and is the only
   # file this commit is meant to change.
-  git checkout "$ORIGIN" -- results 2>/dev/null || true
+  # ...but only the files the MACHINE writes: it owns its logs, receipts, the
+  # evidence and the decks. results/status/success_criteria.json and the agent's
+  # own docs are ours, and restoring those would silently throw away the
+  # acceptance criteria this commit exists to keep (round 34).
+  for pat in 'results/status/check_r*.txt' 'results/status/pptmaster_local*' \
+             'results/status/svg/*' 'results/*/pptmaster_local*' 'results/*/svg/*' \
+             'results/*/DECK_*.pptx'; do
+    for f in $pat; do
+      [ -f "$f" ] || continue
+      if git cat-file -e "$ORIGIN:$f" 2>/dev/null; then
+        git checkout "$ORIGIN" -- "$f" 2>/dev/null || true
+      fi
+    done
+  done
   # seed the file from the REMOTE handshake first: the worktree copy can be
   # stale (no sync since the request), and accepting on top of it would
   # clobber the watcher's verdict (local_state / host / local_updated)

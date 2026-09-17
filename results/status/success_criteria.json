@@ -50,7 +50,9 @@
     "skills/office-loop/templates/local_check_office.ps1",
     "skills/office-loop/templates/local_check_pptmaster.ps1",
     "skills/office-loop/payload/code/pptmaster_local.ps1",
-    "code/check_criteria_needles.py"
+    "code/check_criteria_needles.py",
+    "code/pull_machine_evidence.sh",
+    "skills/office-loop/payload/code/pull_machine_evidence.sh"
   ],
   "forbid_files": [
     "local/inbox",
@@ -81,7 +83,7 @@
     "skills/office-loop/VERSION": "1.0.0",
     "skills/office-loop/CASE_STUDY.md": "round-28",
     "skills/office-loop/prompts.md": "不要打开 arena.ai",
-    "skills/office-loop/tools/install.py": "OFFICE_SENTINEL",
+    "skills/office-loop/tools/install.py": "refresh-sections",
     "skills/office-loop/SKILL.md": "office-loop"
   },
   "require_regex": {
@@ -117,7 +119,8 @@
     "skills/office-loop/SKILL.md": 3000,
     "skills/office-loop/CASE_STUDY.md": 3000,
     "skills/office-loop/tools/install.py": 8000,
-    "code/check_criteria_needles.py": 2000
+    "code/check_criteria_needles.py": 2000,
+    "code/pull_machine_evidence.sh": 1500
   },
   "max_bytes": {
     "deliverable/BRIDGE_01a0aa00_v2.8.1.docx": 3000000,
