@@ -31,6 +31,8 @@ runner 会照常写一份 `ok=true` 的统一回执，`plan` 会打印这个理�
 | 本机检查 | `code/local_check.ps1`（3a–3h / 4a–4c） | `code/local_check.sh`（同编号） | 同 Linux（`--os macos`） |
 | 本机执行 | `code/pptmaster_local.ps1` | `code/pptmaster_local.sh` | 同 Linux |
 | 定时触发 | 计划任务（git-sync 桥的 `watch.ps1`） | `code/watch-linux.sh` + `templates/local-loop.timer`（systemd --user）或 `templates/local-loop.cron` | 同 Linux（launchd 或 cron） |
+| 机器侧一次装好 | `bootstrap.ps1 -Auto`（计划任务 + 身份 + 静默 push） | `code/bootstrap-linux.sh`（工具/权限自检 + 注册值守：systemd --user → cron → nohup 兜底） | 同 Linux |
+| 交给用户的粘贴块 | `agent-handoff.sh` 打印 PowerShell 块 | `code/handoff_linux.sh` 打印 Bash 块 | 同 Linux |
 | "真应用打开" | PowerPoint COM（只读） | LibreOffice headless 转 PDF | 同 Linux |
 | 换行/编码 | `.ps1` 必须 ASCII，CRLF 安全 | `.sh` 必须 `bash -n` 通过，LF | 同 Linux |
 
@@ -46,7 +48,37 @@ runner 会照常写一份 `ok=true` 的统一回执，`plan` 会打印这个理�
 **还没在真 Linux 上验证的**：systemd/cron 模板、LibreOffice 真实开档（沙箱无 LibreOffice）、
 非 ASCII 主机名、代理环境。第一次在真 Linux 上跑时按第 4 节逐项确认。
 
-## 3. 换身份（谁在驱动这个循环）
+## 3. 换成另一个账号 / 第二台机器（一台电脑跑两个循环）
+
+一次"打通"其实是**六环相扣**，任何一环没对上，请求就会躺在那里没人应答：
+
+```
+Arena 账号  →  GitHub 身份  →  仓库  →  分支  →  克隆目录  →  值守实例
+（谁在驱动）   （谁能推）      （放哪）  （哪条线） （机器上）    （谁来应答）
+```
+
+**换 Arena 账号**（例如从 `mqgg5630@gmail.com` 换成另一个 Google 号）：Arena 侧登录新号、
+在它的设置里连好 GitHub。之后那个会话会有**自己的分支**（`arena/<它的会话 id>-…`），
+和本案的分支互不干扰 —— 两个账号可以在同一个仓库上各跑各的循环。
+
+**GitHub 侧三条路，按新号能不能推到那个仓库选**：
+
+| 情况 | 做法 |
+|---|---|
+| 新号连的是同一个 GitHub 用户 | 什么都不用改：同一个仓库、不同分支，机器侧加一份克隆（见下） |
+| 新号是另一个 GitHub 用户 | 仓库 Settings → Collaborators 邀请它；或者 **fork 到新号名下**（机器侧把 remote 指向 fork，两边完全独立） |
+| 想干净地从零开始 | 在 GitHub 新建仓库 → 克隆仓库后 `git push` 过去 → 在新仓库里跑 `agent-install.sh` 与粘贴块 |
+
+**机器侧**：一个克隆目录 = 一条分支 = 一个值守实例。第二个循环就再开一个目录，
+`code/bootstrap-linux.sh` 会按目录名自动起名（`local-loop-<folder>`），Windows 侧对应
+`git-sync-watch-<folder>`，所以同机并存不会互相踩。已经有的克隆**永远不要覆盖**。
+
+**WSL 注意**：如果"Linux 机器"其实是 Windows 笔记本里的 WSL（`用户@LAPTOP-xxx:~/…$`），
+它能看到 CPU 和磁盘，但**够不到 Windows 版 PowerPoint** —— 3h/4c 会走 LibreOffice headless，
+没装 LibreOffice 就如实报 `opened=na`。这类机器上请把"真应用打开"当成可选证据写明，
+不要为了凑 `opened=yes` 去伪造。
+
+## 3.5 换身份（谁在驱动这个循环）
 
 技能不假设"你是一个 Arena 会话"。契约只有四条：
 
@@ -70,8 +102,8 @@ python3 code/local_loop.py plan                 # 1. 任务拓扑对不对（谁
 bash code/check_all.sh                          # 2. 沙箱门禁（新系统上注意 bash 版本）
 python3 code/local_loop.py local --os linux     # 3. 本机平面：装 + 出稿 + 回执
 bash code/local_check.sh                        # 4. 完整本机判定（含 3a–3h）
-bash code/watch-linux.sh --once                 # 5. 值守单次跑（对着真远端；没有待办就退出 0）
-systemctl --user enable --now local-loop.timer  # 6. 接管定时（或 cron）
+bash code/bootstrap-linux.sh                    # 5. 一键：工具/权限自检 + 注册值守（systemd/cron/nohup）
+bash code/bootstrap-linux.sh --status           # 6. 值守在跑、ahead/behind 0/0、上一轮判定是什么
 ```
 
 每一步失败都有明确归属（见 `ARCHITECTURE.md` 第 6 节），不需要猜。

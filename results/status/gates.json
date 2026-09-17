@@ -1,6 +1,6 @@
 {
   "schema": "local-loop.gates.v1",
-  "at": "2026-09-17 01:14:15",
+  "at": "2026-09-17 01:25:57",
   "os": "linux",
   "gates": [
     {
@@ -21,7 +21,7 @@
       "why": "an acceptance needle that no file in the worktree contains fails the round on the machine even when every local check passed (round 33)",
       "status": "ok",
       "exit": 0,
-      "detail": "OK: criteria needles all satisfiable here (32 checked, 0 not present yet)"
+      "detail": "OK: criteria needles all satisfiable here (34 checked, 0 not present yet)"
     },
     {
       "id": "payload-drift",
@@ -31,7 +31,7 @@
       "why": "the installable skill carries the loop's code inside itself; if that copy drifts, another session installs an old loop",
       "status": "ok",
       "exit": 0,
-      "detail": "OK: office-loop payload matches the repo code (17 file(s))"
+      "detail": "OK: office-loop payload matches the repo code (19 file(s))"
     },
     {
       "id": "recipes-valid",

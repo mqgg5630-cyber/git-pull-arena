@@ -66,7 +66,9 @@
     "skills/office-loop/CHANGELOG.md",
     "skills/office-loop/templates/local-loop.service",
     "skills/office-loop/templates/local-loop.timer",
-    "skills/office-loop/templates/local-loop.cron"
+    "skills/office-loop/templates/local-loop.cron",
+    "code/bootstrap-linux.sh",
+    "code/handoff_linux.sh"
   ],
   "forbid_files": [
     "local/inbox",
@@ -101,8 +103,10 @@
     "skills/office-loop/SKILL.md": "office-loop",
     "code/recipes/office-deck.json": "local-loop.recipe.v1",
     "code/gates.json": "criteria-needles",
-    "skills/office-loop/PORTING.md": "systemd",
-    "skills/office-loop/ARCHITECTURE.md": "pre-commit"
+    "skills/office-loop/PORTING.md": "WSL",
+    "skills/office-loop/ARCHITECTURE.md": "pre-commit",
+    "code/handoff_linux.sh": "code/bootstrap-linux.sh",
+    "code/bootstrap-linux.sh": "local-loop-"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
@@ -141,7 +145,9 @@
     "code/pull_machine_evidence.sh": 1500,
     "code/local_loop.py": 8000,
     "skills/office-loop/ARCHITECTURE.md": 3000,
-    "skills/office-loop/PORTING.md": 3000
+    "skills/office-loop/PORTING.md": 3000,
+    "code/bootstrap-linux.sh": 6000,
+    "code/handoff_linux.sh": 2500
   },
   "max_bytes": {
     "deliverable/BRIDGE_01a0aa00_v2.8.1.docx": 3000000,

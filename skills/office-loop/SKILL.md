@@ -30,6 +30,18 @@ Linux 版 LibreOffice 可选（没有就如实 WARN，不假装验过）。
 
 装完 `git push`，机器下一轮就会按配方干活。
 
+**机器侧还要装一次**（克隆不等于打通 —— 定时触发是每台机器自己的事）：
+
+```bash
+# Linux / macOS / WSL（Windows 用 skills/git-sync 的粘贴块：bootstrap.ps1 -Auto）
+git clone -b <分支> <仓库> <新目录> && cd <新目录>
+bash code/bootstrap-linux.sh          # 工具/权限自检 + 注册值守（systemd --user → cron → nohup 自动降级）
+bash code/bootstrap-linux.sh --status # 值守在跑 / ahead-behind 0/0 / 上一轮判定
+```
+
+交给用户的粘贴块由脚本生成，**不要手写**：Windows 用 `skills/git-sync/scripts/agent-handoff.sh`，
+Linux/macOS 用 `bash code/handoff_linux.sh`。
+
 ## 3. 一轮循环（两个平面）
 
 ```bash

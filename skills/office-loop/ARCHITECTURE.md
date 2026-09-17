@@ -57,8 +57,12 @@ v2 把任务抽成**配方（recipe）**，把「谁在哪里执行」抽成**�
 | **本机检查** `code/local_check.*` | `local_check.ps1` 四段（3a–3h、4a–4c） | `local_check.sh` 同编号：gates → 交付物 3a–3g → **3h LibreOffice headless** → 配方本机平面 4a → 统一回执 4b/4c |
 | **本机执行** | `pptmaster_local.ps1`（真实 powershell.exe、注册表/PATH/conda 找 python、venv、COM 开档） | `pptmaster_local.sh`（候选 python + `--version` 探测、clone、venv、`soffice --headless` 开档、`make-deck.sh`） |
 | **值守（定时触发）** | 计划任务 `git-sync-watch-<folder>`（git-sync 桥） | `watch-linux.sh` + **systemd --user timer** 或 **cron**（模板在 `templates/`） |
+| **机器侧装机** | `bootstrap.ps1 -Auto` | `bootstrap-linux.sh`（自检 + 注册值守，三种方式自动降级） |
 
-三者接口相同：**拉请求 → 跑 `code/local_check.*` → 把 verdict 与证据 push 回分支**。
+外加一个**给用户的粘贴块生成器**（Windows: `agent-handoff.sh`，Linux/macOS: `code/handoff_linux.sh`）：
+块是人和机器之间唯一的桥，所以由脚本生成，不靠手写（手写的错过三次：错的仓库、上个会话的分支、沙箱路径）。
+
+各层接口相同：**拉请求 → 跑 `code/local_check.*` → 把 verdict 与证据 push 回分支**。
 所以"本地是 Linux"要改的只是这三件，仓库里的配方、门禁、验收标准、循环命令都不变（见 `PORTING.md`）。
 
 ## 4. 从高 star 仓库借来的做法（这里怎么落地）

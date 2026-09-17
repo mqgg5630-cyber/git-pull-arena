@@ -49,6 +49,8 @@ CORE_FILES = [
     'code/local_check.sh',           # Linux/macOS machine check (3a-3h, 4a-4c)
     'code/pptmaster_local.sh',       # Linux/macOS local plane
     'code/watch-linux.sh',           # Linux/macOS watcher (systemd/cron)
+    'code/bootstrap-linux.sh',       # Linux/macOS machine setup + watcher registration
+    'code/handoff_linux.sh',         # prints the Bash paste-block for that machine
     'code/check_criteria_needles.py',
     'code/pull_machine_evidence.sh',
 ]
@@ -379,7 +381,8 @@ def main():
         if note:
             print('   local_check.ps1 sections: ' + note)
     else:
-        note = 'linux/macOS: code/local_check.sh is the machine harness (installed as a file)'
+        note = ('linux/macOS: code/local_check.sh is the machine harness (installed as a file); '
+                'register it on that machine with code/bootstrap-linux.sh')
         problems = []
         print('   local_check.sh: ' + note)
     for p in problems:
@@ -414,6 +417,8 @@ def main():
             'commit + push; the watcher pulls and runs code/local_check.ps1 on the machine',
             'the machine clones/creates <repo parent>\\ppt-master, its venv and deps by itself',
             'each round writes results/status/pptmaster_local.{json,txt} and pushes it back',
+            'Windows machine: the git-sync paste block (bootstrap.ps1 -Auto). Linux/macOS/WSL:',
+            '  bash code/bootstrap-linux.sh   (registers the watcher) and handoff via code/handoff_linux.sh',
         ],
     }
     rel_dir = os.path.join(target, 'results', 'status')
@@ -428,6 +433,9 @@ def main():
     if os.path.isfile(bridge):
         print('   machine bridge: bash skills/git-sync/scripts/agent-handoff.sh   '
               '(prints the paste block for the Windows machine)')
+    if os.path.isfile(os.path.join(target, 'code', 'handoff_linux.sh')):
+        print('   machine bridge: bash code/handoff_linux.sh                      '
+              '(prints the paste block for a Linux/macOS/WSL machine)')
     else:
         print('   WARN  the git-sync skill is not installed here - install it first, then re-run')
     if problems:

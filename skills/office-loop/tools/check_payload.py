@@ -21,6 +21,8 @@ FILES = [
     'code/local_check.sh',
     'code/pptmaster_local.sh',
     'code/watch-linux.sh',
+    'code/bootstrap-linux.sh',
+    'code/handoff_linux.sh',
     'code/check_criteria_needles.py',
     'code/pull_machine_evidence.sh',
     # the default task's implementation
