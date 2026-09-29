@@ -1,0 +1,1711 @@
+check round 24 on LAPTOP-R77M5D6M - passed (exit 0)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 863s
+
+OK: all .ps1 files are ASCII-only
+OK: sync.config.json branch=arena/01a0a9f0-git-pull-arena
+OK: sync.config.json branch matches HEAD (arena/01a0a9f0-git-pull-arena)
+OK: root scripts identical to skills/git-sync/scripts
+OK: no drive-style variable typos ($var:)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+OK: every .ps1 parses
+   (gate ran via E:\hermes\git\bin\bash.exe [git])
+== accept 2a: silent push PROVEN (ls-remote + push --dry-run, prompts disabled)
+== accept 2b (fallback): one LONG-LIVED loop process - one brief flash per logon,
+   not per poll. For zero flash: admin PowerShell -> .\watch.ps1 -Unregister ;
+   .\watch.ps1 -Register -Headless   (or fix the launcher, see watch-*.log)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+== check_loop_summary PASSED
+== accept 2c: watcher closing lines verified (every exit path has its summary)
+== deliverables: 2 Office file(s) declared in deliverable/OFFICE_HASHES.json
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.docx (39743 B, docx)
+   OK   3b all 6 required parts present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.docx (17 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B, pptx)
+   OK   3b all 9 required parts present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.pptx (52 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3g slides in deliverable/LINK_PROOF_v2.8.1.pptx : 8 >= 8
+   OK   3h Word.Application opened read-only, name=LINK_PROOF_v2.8.1.docx : deliverable\LINK_PROOF_v2.8.1.docx
+   OK   3h PowerPoint.Application opened read-only, slides=8 : deliverable\LINK_PROOF_v2.8.1.pptx
+== task r24: t3_edrive_scan3.ps1
+--- task t3 (scan 3): E: final remaining folders (READ-ONLY) ---
+known top-level names parsed from r22/r23 receipts: 0
+remaining top-level folders to measure: 285
+pass 3: measured 249 folders in 704s ; 36 NOT REACHED (cap)
+   not reached: E:\v2rayN-windows-64-desktop
+   not reached: E:\v2rayN-windows-64-SelfContained
+   not reached: E:\VirtualDisplayDriver
+   not reached: E:\VirtualStore
+   not reached: E:\vit-pytorch-main
+   not reached: E:\Vivaldi
+   not reached: E:\VM
+   not reached: E:\VMD2
+   not reached: E:\vscode
+   not reached: E:\vscode-cache
+   not reached: E:\VSCodeData
+   not reached: E:\WeGameApps
+   not reached: E:\Weka-3-8-7
+   not reached: E:\WindowsApps
+   not reached: E:\Wise Care 365
+   not reached: E:\WPSOffice
+   not reached: E:\WpSystem
+   not reached: E:\wsa???
+   not reached: E:\WSL
+   not reached: E:\WSL-backups
+   not reached: E:\WUDownloadCache
+   not reached: E:\xhktSoft
+   not reached: E:\XmpCache
+   not reached: E:\Xshell8
+   not reached: E:\xunlei
+--- pass-3 top-level folders on E: (by size, top 40) ---
+       32.56 GB       392 files  E:\Tencent Games
+       27.43 GB       222 files  E:\Docker
+       26.89 GB   1747918 files  E:\Users (PARTIAL - 25s budget hit)
+       10.10 GB      3150 files  E:\gmx2020.6_GPU
+        9.74 GB     58379 files  E:\Program Files
+        8.19 GB    121182 files  E:\spider (PARTIAL - 25s budget hit)
+        7.26 GB      2454 files  E:\1yzy
+        4.50 GB       370 files  E:\0wangyao
+        4.42 GB      3041 files  E:\Quark
+        4.07 GB       369 files  E:\BaiduNetdiskDownload
+        4.01 GB     15846 files  E:\Pr
+        3.94 GB     67026 files  E:\Antigravity
+        3.73 GB        22 files  E:\Downloads
+        3.73 GB      5730 files  E:\QQ
+        3.56 GB     14676 files  E:\Tencent Files
+        3.19 GB     39603 files  E:\R
+        3.14 GB    132645 files  E:\0mcp-agv
+        2.88 GB        47 files  E:\Schrodinger_Suites_2025-1_Windows-x64
+        2.37 GB     15021 files  E:\0writing
+        2.26 GB      5091 files  E:\1cuda11_4
+        2.24 GB     11293 files  E:\1fenzi
+        2.24 GB       194 files  E:\Compressed
+        2.23 GB     11133 files  E:\AMDock
+        2.08 GB     18218 files  E:\FlyingMouse
+        2.03 GB     33548 files  E:\npm
+        1.94 GB     26412 files  E:\cursor-chajian
+        1.92 GB      5780 files  E:\Adobe Illustrator 2020 ???
+        1.83 GB     13975 files  E:\QwenPaw
+        1.82 GB     26876 files  E:\1
+        1.80 GB     17504 files  E:\.codex
+        1.79 GB     54234 files  E:\0github
+        1.72 GB      1719 files  E:\EdgeProgram
+        1.57 GB      1053 files  E:\BaiduNetdisk
+        1.50 GB       385 files  E:\1md
+        1.47 GB       944 files  E:\npm-cache
+        1.38 GB     40403 files  E:\ChimeraX 1.9
+        1.38 GB      4335 files  E:\RStudio
+        1.34 GB     11844 files  E:\knime_5.12.0
+        1.33 GB     22232 files  E:\1AI
+        1.30 GB     25813 files  E:\.cache
+--- largest files in pass 3 (top 20) ---
+   (none)
+NOTE: read-only. Nothing was deleted.
+== task r24 t3_edrive_scan3.ps1 ok (706s)
+== task r24: t4_cleanup_dryrun.ps1
+--- task t4: cleanup dry-run (READ-ONLY, nothing is deleted) ---
+E: free BEFORE any cleanup: 234.0 GB
+--- conda clean --all --dry-run ---
+   conda dry-run lines: 9
+   Will remove 224 (797.1 MB) tarball(s).
+   E:\spider\Scripts\conda.exe : 
+       + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+       + FullyQualifiedErrorId : NativeCommandError
+   DryRunExit: Dry run. Exiting.
+   Will remove 2 index cache(s).
+   Will remove 21 (127.7 MB) package(s).
+   There are no tempfile(s) to remove.
+   There are no logfile(s) to remove.
+   E:\spider\pkgs on disk: 6.71 GB / 104910 files
+--- npm cache ---
+   npm at: E:\hermes\node\npm.ps1
+   npm cache dir: E:\mcp\npm-cache
+   E:\npm-cache on disk: 1.47 GB / 944 files
+--- uv cache ---
+   uv at: C:\Users\??\.local\bin\uv.exe
+   uv cache dir: E:\mcp\uv-cache
+   E:\mcp\uv-cache on disk: 1.58 GB / 61922 files (partial)
+--- E: recycle bin ---
+   E:\$RECYCLE.BIN: 0 B / 0 files
+--- WSL state (for the 145 GB ext4.vhdx decision) ---
+    ? ?N?A?M?E? ? ? ? ? ? ? ? ? ? ? ? ? ? ?S?T?A?T?E? ? ? ? ? ? ? ? ? ? ? ?V?E?R?S?I?O?N?
+   ?
+   ?*? ?U?b?u?n?t?u?-?2?6?.?0?4? ? ? ? ? ? ?S?t?o?p?p?e?d? ? ? ? ? ? ? ? ? ?2?
+   ?
+   ? ? ?d?o?c?k?e?r?-?d?e?s?k?t?o?p? ? ? ? ?S?t?o?p?p?e?d? ? ? ? ? ? ? ? ? ?2?
+   ?
+   ? ? ?U?b?u?n?t?u?-?2?4?.?0?4? ? ? ? ? ? ?S?t?o?p?p?e?d? ? ? ? ? ? ? ? ? ?2?
+   ?
+   ext4.vhdx: 145.14 GB (sparse compaction: wsl --manage Ubuntu-24.04 --set-sparse true)
+NOTE: dry-run only. Nothing was deleted.
+== task r24 t4_cleanup_dryrun.ps1 ok (123s)
+== accept 2d: hands-free auto_pull/auto_push present in watch.ps1
+== success criteria: results/status/success_criteria.json
+   v2.8.1 on arena/01a0a9f0-git-pull-arena: the newest skill (source branch arena/01a0a98d-git-pull-arena, installer refuses to downgrade) plus the repo gate (code/check_all.sh, which now proves each python candidate python3 / python / py -3) and the real-machine check (code/local_check.ps1, sections 3a-3h). The deliverables LINK_PROOF_v2.8.1.docx / .pptx travel through git and are judged by the Windows watcher: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide count and a real Word/PowerPoint open. 'Local' means that machine's scheduled watcher - never a sandbox folder, never a hand-made stand-in skill. From round 22 on the repo also ships code/tasks/*.ps1 (mapped per round in code/tasks/manifest.json) which run on the machine inside local_check.ps1 section 4 as child processes: round 22 = read-only diagnostics for the Antigravity login, the Java install state and E: cleanup candidates.
+   OK   exists: 01a0a821.md (2016 B)
+   OK   exists: skills/git-sync/VERSION (6 B)
+   OK   exists: skills/git-sync/scripts/agent-install.sh (13404 B)
+   OK   exists: skills/git-sync/scripts/agent-handoff.sh (4603 B)
+   OK   exists: skills/git-sync/scripts/agent-handsfree.sh (3989 B)
+   OK   exists: skills/git-sync/scripts/agent-criteria.sh (5190 B)
+   OK   exists: skills/git-sync/scripts/watch.ps1 (84094 B)
+   OK   exists: skills/git-sync/templates/one-sentence.md (6524 B)
+   OK   exists: skills/git-sync/templates/gate.yml (1166 B)
+   OK   exists: code/check_all.sh (9945 B)
+   OK   exists: code/local_check.ps1 (30124 B)
+   OK   exists: code/make_link_proof.py (22948 B)
+   OK   exists: deliverable/OFFICE_HASHES.json (2401 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.docx (39743 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B)
+   OK   exists: watch.ps1 (84094 B)
+   OK   exists: code/tasks/manifest.json (720 B)
+   OK   exists: code/tasks/t1_antigravity_diag.ps1 (14461 B)
+   OK   exists: code/tasks/t2_java_diag.ps1 (8626 B)
+   OK   exists: code/tasks/t3_edrive_scan.ps1 (9393 B)
+   OK   exists: code/tasks/t1_fix_antigravity.ps1 (10411 B)
+   OK   exists: code/tasks/t3_edrive_scan2.ps1 (9007 B)
+   OK   exists: code/tasks/t2_install_java.ps1 (14030 B)
+   OK   exists: code/tasks/t3_edrive_scan3.ps1 (7084 B)
+   OK   exists: code/tasks/t4_cleanup_dryrun.ps1 (5995 B)
+   OK   exists: code/tasks/t1_antigravity_verify.ps1 (3793 B)
+   OK   exists: code/tasks/t2_cleanup_exec.ps1 (10570 B)
+   OK   exists: results/status/round22_findings.md (3511 B)
+   OK   absent: local/inbox
+   OK   absent: local/status_receipts
+   OK   absent: skills/docx_skill.py
+   OK   absent: local_bridge_skill.py
+   OK   contains skills/git-sync/VERSION <- 2.8.1
+   OK   contains 01a0a821.md <- arena/01a0a98d-git-pull-arena
+   OK   contains skills/git-sync/sync.config.json <- arena/01a0a9f0-git-pull-arena
+   OK   contains skills/git-sync/templates/one-sentence.md <- agent-handoff.sh
+   OK   contains skills/git-sync/scripts/agent-install.sh <- refusing to downgrade
+   OK   contains code/check_all.sh <- py -3
+   OK   contains code/local_check.ps1 <- no Office deliverable declared
+   OK   contains deliverable/OFFICE_HASHES.json <- arena/01a0a9f0-git-pull-arena
+   OK   contains watch.ps1 <- function Invoke-AutoPull
+   OK   contains skills/git-sync/scripts/watch.ps1 <- function Invoke-Focus
+   OK   contains code/tasks/manifest.json <- t3_edrive_scan.ps1
+   OK   contains code/tasks/t1_fix_antigravity.ps1 <- http.proxy
+   OK   contains code/tasks/t2_install_java.ps1 <- E:\java
+   OK   regex watch.ps1
+   OK   regex code/local_check.ps1
+   OK   regex deliverable/OFFICE_HASHES.json
+   OK   size skills/git-sync/scripts/agent-handoff.sh: 4603 >= 2000
+   OK   size skills/git-sync/scripts/agent-install.sh: 13404 >= 10000
+   OK   size code/check_all.sh: 9945 >= 8000
+   OK   size code/local_check.ps1: 30124 >= 12000
+   OK   size code/make_link_proof.py: 22948 >= 8000
+   OK   size deliverable/OFFICE_HASHES.json: 2401 >= 500
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 >= 5000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 >= 15000
+   OK   size watch.ps1: 84094 >= 20000
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 <= 3000000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 <= 3000000
+== local checks passed
+--- stderr ---
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
+参数类型不匹配
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t3_edrive_scan3.ps1:144 字符: 20
++     foreach ($b in @($r.big)) { $bigFiles.Add($b) }
++                    ~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], ArgumentException
+    + FullyQualifiedErrorId : System.ArgumentException
