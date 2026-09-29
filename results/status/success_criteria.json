@@ -33,7 +33,8 @@
     "code/tasks/t7_ligplus_test.ps1",
     "code/tasks/t1_antigravity_tun2.ps1",
     "code/tasks/t6_docker_report.ps1",
-    "code/tasks/t8_uvcache_finish.ps1"
+    "code/tasks/t8_uvcache_finish.ps1",
+    "code/tasks/t9_ligplus_upgrade.ps1"
   ],
   "forbid_files": [
     "local/inbox",
