@@ -59,6 +59,10 @@
     "34": [
       "t17_uv_delete_bg.ps1",
       "t18_edrive_survey.ps1"
+    ],
+    "35": [
+      "t17b_uv_finish.ps1",
+      "t18_edrive_survey.ps1"
     ]
   }
 }
