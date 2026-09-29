@@ -18,6 +18,9 @@
     "25": [
       "t1_antigravity_verify.ps1",
       "t2_cleanup_exec.ps1"
+    ],
+    "26": [
+      "t5_cleanup_fix.ps1"
     ]
   }
 }

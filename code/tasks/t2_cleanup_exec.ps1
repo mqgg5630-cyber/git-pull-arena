@@ -62,10 +62,10 @@ function Send-FileToBin {
         try {
             $sz = [double](Get-Item -LiteralPath $p).Length
             [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteFile($p, $ui, $rb)
-            Write-Output ('   BIN  ' + (FmtB $sz) + '  ' + (San $p))
+            [Console]::WriteLine('   BIN  ' + (FmtB $sz) + '  ' + (San $p))
             return $sz
-        } catch { Write-Output ('   [WARN] file: ' + (San $_.Exception.Message)) }
-    } else { Write-Output ('   skip (absent): ' + (San $p)) }
+        } catch { [Console]::WriteLine('   [WARN] file: ' + (San $_.Exception.Message)) }
+    } else { [Console]::WriteLine('   skip (absent): ' + (San $p)) }
     return [double]0
 }
 
@@ -78,10 +78,10 @@ function Send-DirToBin {
                 try { $sz += [double]([System.IO.FileInfo]::new($f)).Length } catch { }
             }
             [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteDirectory($p, $ui, $rb)
-            Write-Output ('   BIN  ' + (FmtB $sz) + '  ' + (San $p) + ' (folder)')
+            [Console]::WriteLine('   BIN  ' + (FmtB $sz) + '  ' + (San $p) + ' (folder)')
             return $sz
-        } catch { Write-Output ('   [WARN] dir: ' + (San $_.Exception.Message)) }
-    } else { Write-Output ('   skip (absent): ' + (San $p)) }
+        } catch { [Console]::WriteLine('   [WARN] dir: ' + (San $_.Exception.Message)) }
+    } else { [Console]::WriteLine('   skip (absent): ' + (San $p)) }
     return [double]0
 }
 

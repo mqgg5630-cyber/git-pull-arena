@@ -28,7 +28,8 @@
     "code/tasks/t4_cleanup_dryrun.ps1",
     "code/tasks/t1_antigravity_verify.ps1",
     "code/tasks/t2_cleanup_exec.ps1",
-    "results/status/round22_findings.md"
+    "results/status/round22_findings.md",
+    "code/tasks/t5_cleanup_fix.ps1"
   ],
   "forbid_files": [
     "local/inbox",
