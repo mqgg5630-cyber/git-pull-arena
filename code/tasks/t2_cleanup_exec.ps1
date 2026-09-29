@@ -160,25 +160,52 @@ if (Test-Path -LiteralPath $condaExe) {
 $free3 = Get-FreeE
 Write-Output ('   E: free now: ' + $free3 + ' GB (this step freed ' + [math]::Round($free3 - $free2, 2) + ' GB)')
 
-# -------------------------------------------------------- 4. npm cache
-Write-Output '--- step 4: npm cache ---'
+# -------------------------------------------------------- 4. npm caches
+Write-Output '--- step 4: npm caches (configured one + the old E:\npm-cache) ---'
 $npmCmd = Get-Command npm -ErrorAction SilentlyContinue
-$npmDone = $false
 if ($npmCmd) {
     $job = Start-Job -ScriptBlock { & npm cache clean --force 2>&1 | Out-String }
     if (Wait-Job $job -Timeout 300) {
         $o = (Receive-Job $job | Out-String)
         foreach ($l in @($o -split "`r?`n" | Where-Object { $_ -match '\S' } | Select-Object -First 5)) { Write-Output ('   ' + (San ([string]$l))) }
-        $npmDone = $true
+        Write-Output '   OK: npm cache clean finished (configured cache dir)'
     } else { Write-Output '   [WARN] npm cache clean TIMEOUT' }
     Remove-Job $job -Force -ErrorAction SilentlyContinue
 }
-if (-not $npmDone) {
-    if (Test-Path -LiteralPath 'E:\npm-cache') {
-        try { Remove-Item -LiteralPath 'E:\npm-cache' -Recurse -Force -ErrorAction Stop; Write-Output '   OK: E:\npm-cache deleted directly (cache only)' }
-        catch { Write-Output ('   [WARN] direct delete: ' + (San $_.Exception.Message)) }
-    }
+if (Test-Path -LiteralPath 'E:\npm-cache') {
+    try { Remove-Item -LiteralPath 'E:\npm-cache' -Recurse -Force -ErrorAction Stop; Write-Output '   OK: old cache E:\npm-cache deleted (1.47 GB, cache only)' }
+    catch { Write-Output ('   [WARN] E:\npm-cache: ' + (San $_.Exception.Message)) }
 }
+
+# --------------------------------------------- 4b. E:\.cache (root cache)
+Write-Output '--- step 4b: E:\.cache contents (generic cache dir) ---'
+if (Test-Path -LiteralPath 'E:\.cache') {
+    try {
+        Get-ChildItem -LiteralPath 'E:\.cache' -Force -ErrorAction SilentlyContinue | ForEach-Object {
+            try { Remove-Item -LiteralPath $_.FullName -Recurse -Force -ErrorAction Stop } catch { Write-Output ('   [WARN] ' + (San ([string]$_.Name)) + ': ' + (San $_.Exception.Message)) }
+        }
+        Write-Output '   OK: E:\.cache emptied'
+    } catch { Write-Output ('   [WARN] E:\.cache: ' + (San $_.Exception.Message)) }
+} else { Write-Output '   (absent)' }
+
+# --------------------------------- 4c. installers in top-level E:\Downloads
+Write-Output '--- step 4c: big installers in E:\Downloads -> recycle bin ---'
+$dlSwept = [double]0
+if (Test-Path -LiteralPath 'E:\Downloads') {
+    try {
+        foreach ($f in [System.IO.Directory]::EnumerateFiles('E:\Downloads')) {
+            $ext = [System.IO.Path]::GetExtension($f).ToLower()
+            if ($ext -in @('.exe', '.msi', '.zip', '.7z', '.rar', '.iso')) {
+                try {
+                    $sz = [double]([System.IO.FileInfo]::new($f)).Length
+                    if ($sz -ge 200MB) { $r = Send-FileToBin $f; $dlSwept += $r; $binBytes += $r }
+                } catch { }
+            }
+        }
+    } catch { }
+    Write-Output ('   E:\Downloads installers >=200MB moved to bin: ' + (FmtB $dlSwept))
+} else { Write-Output '   (absent)' }
+
 $free4 = Get-FreeE
 Write-Output ('   E: free now: ' + $free4 + ' GB')
 
@@ -237,4 +264,8 @@ if (Test-Path -LiteralPath $vhdxPath) {
 
 $freeEnd = Get-FreeE
 Write-Output ('=== cleanup done. E: free ' + $free0 + ' GB -> ' + $freeEnd + ' GB (total freed on disk: ' + [math]::Round($freeEnd - $free0, 2) + ' GB; installers in the bin still count until emptied)')
+Write-Output '=== NOT touched (for the user to decide later) ==='
+Write-Output '   E:\Docker 27.4 GB - docker images/volumes; "docker system prune -a" frees most of it if you do not need the images'
+Write-Output '   E:\WSL\Ubuntu-24.04 - if you already moved to Ubuntu-26.04, "wsl --unregister Ubuntu-24.04" frees all 145 GB (DELETES that distro!)'
+Write-Output '   E:\Tencent Games\VALORANT 32.6 GB - uninstall via the game launcher if not played'
 exit 0
