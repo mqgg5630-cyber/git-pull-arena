@@ -1,9 +1,9 @@
 {
-  "round": 21,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "round 21 accepted - machine verified the regenerated docx/pptx (3a-3h)",
-  "arena_updated": "2026-09-29 02:46:47",
-  "local_updated": "2026-09-16 19:37:55"
+  "round": 22,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 22: run the 3 READ-ONLY diagnostic tasks (antigravity login diag, java install diag, E: cleanup scan) - nothing is modified or deleted on the machine",
+  "arena_updated": "2026-09-29 03:28:32",
+  "local_updated": null
 }
