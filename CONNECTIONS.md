@@ -170,3 +170,11 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - `t1_fix_antigravity.ps1`: patched `%APPDATA%\Antigravity IDE\User\settings.json` (+ legacy dir) with `http.proxy` / `http.proxySupport` / `http.noProxy` (backup written next to it). Root cause from r22: the IDE's language server dials Google APIs directly, bypassing the working system proxy (127.0.0.1:10808) - all direct TCP 443 to Google fail. User must reopen Antigravity; if the LS still dials direct, enable TUN mode in the proxy client.
 - `t3_edrive_scan2.ps1`: finishes the E: scan (r22 covered 289.7 of 481.1 GB; this pass covers the remaining top-level folders + recycle bin).
 - `t2_install_java.ps1`: portable Temurin JDK 21 zip -> `E:\java\<jdk>` (TUNA mirror first, then Huawei, Microsoft, Adoptium API; direct/proxy fallbacks; zip validated; JAVA_HOME + User PATH set with backup; `java -version` verified). No admin, no installer, no UAC.
+
+## Rounds 28-31 - LigPlus upgrade + wrap-up
+
+- All rounds ran through the watcher on LAPTOP-R77M5D6M; receipts in results/status/check_r2[2-9]_*.txt, check_r3[01]_*.txt.
+- LigPlot+ v2.3.2 now at E:\LigPlus\LigPlus (window title verified); old expired v2.2.9 copies removed to the recycle bin (WeChat copy left: chat history).
+- Java env proven end-to-end (javac + jar + Swing GUI window "JavaOK-E-drive").
+- Antigravity login fixed (settings.json http.proxy + user-level proxy env vars; user confirmed working).
+- E: freed ~10 GB on disk + ~6.1 GB in the recycle bin; uv cache 1.78 GB remains (locked by running MCP tools).
