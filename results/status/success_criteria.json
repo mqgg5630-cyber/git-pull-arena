@@ -24,6 +24,10 @@
     "code/tasks/t1_fix_antigravity.ps1",
     "code/tasks/t3_edrive_scan2.ps1",
     "code/tasks/t2_install_java.ps1",
+    "code/tasks/t3_edrive_scan3.ps1",
+    "code/tasks/t4_cleanup_dryrun.ps1",
+    "code/tasks/t1_antigravity_verify.ps1",
+    "code/tasks/t2_cleanup_exec.ps1",
     "results/status/round22_findings.md"
   ],
   "forbid_files": [

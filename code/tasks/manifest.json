@@ -10,6 +10,14 @@
       "t1_fix_antigravity.ps1",
       "t3_edrive_scan2.ps1",
       "t2_install_java.ps1"
+    ],
+    "24": [
+      "t3_edrive_scan3.ps1",
+      "t4_cleanup_dryrun.ps1"
+    ],
+    "25": [
+      "t1_antigravity_verify.ps1",
+      "t2_cleanup_exec.ps1"
     ]
   }
 }
