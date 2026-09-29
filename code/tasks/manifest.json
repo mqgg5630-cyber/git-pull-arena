@@ -52,6 +52,9 @@
       "t13_docker_autofigure.ps1",
       "t14_recyclebin_empty.ps1",
       "t15_uvcache_final.ps1"
+    ],
+    "33": [
+      "t16_uvcache_final2.ps1"
     ]
   }
 }
