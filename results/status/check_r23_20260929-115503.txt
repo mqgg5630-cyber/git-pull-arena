@@ -1,0 +1,911 @@
+check round 23 on LAPTOP-R77M5D6M - passed (exit 0)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 408s
+
+OK: all .ps1 files are ASCII-only
+OK: sync.config.json branch=arena/01a0a9f0-git-pull-arena
+OK: sync.config.json branch matches HEAD (arena/01a0a9f0-git-pull-arena)
+OK: root scripts identical to skills/git-sync/scripts
+OK: no drive-style variable typos ($var:)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+OK: every .ps1 parses
+   (gate ran via E:\hermes\git\bin\bash.exe [git])
+== accept 2a: silent push PROVEN (ls-remote + push --dry-run, prompts disabled)
+== accept 2b (fallback): one LONG-LIVED loop process - one brief flash per logon,
+   not per poll. For zero flash: admin PowerShell -> .\watch.ps1 -Unregister ;
+   .\watch.ps1 -Register -Headless   (or fix the launcher, see watch-*.log)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+== check_loop_summary PASSED
+== accept 2c: watcher closing lines verified (every exit path has its summary)
+== deliverables: 2 Office file(s) declared in deliverable/OFFICE_HASHES.json
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.docx (39743 B, docx)
+   OK   3b all 6 required parts present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.docx (17 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B, pptx)
+   OK   3b all 9 required parts present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.pptx (52 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3g slides in deliverable/LINK_PROOF_v2.8.1.pptx : 8 >= 8
+   OK   3h Word.Application opened read-only, name=LINK_PROOF_v2.8.1.docx : deliverable\LINK_PROOF_v2.8.1.docx
+   OK   3h PowerPoint.Application opened read-only, slides=8 : deliverable\LINK_PROOF_v2.8.1.pptx
+== task r23: t1_fix_antigravity.ps1
+--- task t1 (fix): Antigravity proxy patch ---
+proxy to use: http://127.0.0.1:10808 (WinINET first, env fallback)
+   env HTTP_PROXY User=(unset) Machine=(unset)
+   env HTTPS_PROXY User=(unset) Machine=(unset)
+   env ALL_PROXY User=(unset) Machine=(unset)
+proxy alive check (via http://127.0.0.1:10808 -> google generate_204): OK
+   settings: patching C:\Users\文少\AppData\Roaming\Antigravity IDE\User\settings.json
+   settings BEFORE (masked):
+      {
+          "editor.tokenColorCustomizations":  {
+              "textMateRules": [
+                  {
+                      "scope": "entity.name.type.residue.acidic.gro",
+                      "settings": {
+                          "foreground": "#FF6B6B"
+                      }
+                  },
+                  {
+                      "scope": "entity.name.type.residue.basic.gro",
+                      "settings": {
+                          "foreground": "#4ECDC4"
+                      }
+                  },
+                  {
+                      "scope": "entity.name.type.residue.polar.gro",
+                      "settings": {
+                          "foreground": "#45B7D1"
+                      }
+                  },
+                  {
+                      "scope": "entity.name.type.residue.nonpolar.gro",
+                      "settings": {
+                          "foreground": "#96CEB4"
+                      }
+                  },
+                  {
+                      "scope": "entity.name.type.residue.aromatic.gro",
+                      "settings": {
+                          "foreground": "#FFEAA7"
+                      }
+                  },
+                  {
+                      "scope": "entity.name.type.residue.special.gro",
+                      "settings": {
+                          "foreground": "#DDA0DD",
+                          "fontStyle": "bold"
+                      }
+                  },
+   backup: C:\Users\文少\AppData\Roaming\Antigravity IDE\User\settings.json.bak-20260929-115535
+   settings PATCHED (json)
+   settings AFTER (masked):
+      {
+          "editor.tokenColorCustomizations":  {
+                                                  "textMateRules":  [
+                                                                        {
+                                                                            "scope":  "entity.name.type.residue.acidic.gro",
+                                                                            "settings":  {
+                                                                                             "foreground":  "#FF6B6B"
+                                                                                         }
+                                                                        },
+                                                                        {
+                                                                            "scope":  "entity.name.type.residue.basic.gro",
+                                                                            "settings":  {
+                                                                                             "foreground":  "#4ECDC4"
+                                                                                         }
+                                                                        },
+                                                                        {
+                                                                            "scope":  "entity.name.type.residue.polar.gro",
+                                                                            "settings":  {
+                                                                                             "foreground":  "#45B7D1"
+                                                                                         }
+                                                                        },
+                                                                        {
+                                                                            "scope":  "entity.name.type.residue.nonpolar.gro",
+                                                                            "settings":  {
+                                                                                             "foreground":  "#96CEB4"
+                                                                                         }
+                                                                        },
+                                                                        {
+                                                                            "scope":  "entity.name.type.residue.aromatic.gro",
+                                                                            "settings":  {
+                                                                                             "foreground":  "#FFEAA7"
+                                                                                         }
+                                                                        },
+                                                                        {
+                                                                            "scope":  "entity.name.type.residue.special.gro",
+                                                                            "settings":  {
+                                                                                             "foreground":  "#DDA0DD",
+                                                                                             "fontStyle":  "bold"
+                                                                                         }
+                                                                        },
+   settings: absent - creating: C:\Users\文少\AppData\Roaming\Antigravity\User\settings.json
+   settings: CREATED with proxy entries
+patched at least one settings file: True
+--- auth.log from newest sessions (masked) ---
+log root: C:\Users\文少\AppData\Roaming\Antigravity IDE\logs
+   auth.log of session 20260929T102401:
+      2026-09-29 10:24:02.414 [info] [Auth] Auth state changed to: uninitialized
+      2026-09-29 10:24:03.224 [info] [Auth] Auth state changed to: validatingLogin
+      2026-09-29 10:24:03.225 [info] [Auth] Auth state changed to: validatingLogin
+      2026-09-29 10:25:18.935 [error] Error confirming user for service: request to https://oauth2.googleapis.com/token failed, reason: connect ETIMEDOUT 108.177.125.95:443
+      2026-09-29 10:25:18.938 [info] [Auth] Auth state changed to: loginError
+      2026-09-29 10:25:18.943 [error] [Auth] Error refreshing user status: request to https://oauth2.googleapis.com/token failed, reason: connect ETIMEDOUT 108.177.125.95:443
+      2026-09-29 10:25:18.944 [info] [Auth] Auth state changed to: loginError
+      2026-09-29 10:25:18.944 [info] [Auth] AntigravityAuthMainService initialized
+   region/eligibility error lines in this session: 0
+   auth.log of session 20260928T090238:
+      2026-09-28 09:02:38.907 [info] [Auth] Auth state changed to: uninitialized
+      2026-09-28 09:02:39.625 [info] [Auth] Auth state changed to: validatingLogin
+      2026-09-28 09:02:39.625 [info] [Auth] Auth state changed to: validatingLogin
+      2026-09-28 09:04:15.823 [error] Error confirming user for service: request to https://oauth2.googleapis.com/token failed, reason: connect ETIMEDOUT 108.177.125.95:443
+      2026-09-28 09:04:15.825 [info] [Auth] Auth state changed to: loginError
+      2026-09-28 09:04:15.832 [error] [Auth] Error refreshing user status: request to https://oauth2.googleapis.com/token failed, reason: connect ETIMEDOUT 108.177.125.95:443
+      2026-09-28 09:04:15.832 [info] [Auth] Auth state changed to: loginError
+      2026-09-28 09:04:15.833 [info] [Auth] AntigravityAuthMainService initialized
+      2026-09-28 09:04:20.871 [info] [Auth] Auth state changed to: failure
+      2026-09-28 09:04:20.871 [info] [Auth] Auth state changed to: signedOut
+      2026-09-28 09:04:22.119 [info] [Auth] Localhost server listening on port 62301
+      2026-09-28 09:04:22.148 [info] [Auth] Localhost server stopped
+      2026-09-28 09:04:22.150 [info] [Auth] Localhost server listening on port 62302
+      2026-09-28 09:04:22.306 [info] [Auth] Localhost server stopped
+      2026-09-28 09:04:22.307 [info] [Auth] Localhost server listening on port 49472
+      2026-09-28 09:04:22.734 [info] [Auth] Login URL:  https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcclog%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fexperimentsandconfigs&[REDACTED]&prompt=consent&response_type=code&[REDACTED].apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A62301%2Foauth-callback
+      2026-09-28 09:04:22.754 [info] [Auth] Login URL:  https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcclog%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fexperimentsandconfigs&[REDACTED]&prompt=consent&response_type=code&[REDACTED].apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A62302%2Foauth-callback
+      2026-09-28 09:04:22.774 [info] [Auth] Login URL:  https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcclog%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fexperimentsandconfigs&[REDACTED]&prompt=consent&response_type=code&[REDACTED].apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A49472%2Foauth-callback
+      2026-09-28 09:04:23.594 [info] [Auth] Localhost server stopped
+      2026-09-28 09:04:23.595 [info] [Auth] Localhost server listening on port 49486
+      2026-09-28 09:04:23.616 [info] [Auth] Login URL:  https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcclog%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fexperimentsandconfigs&[REDACTED]&prompt=consent&response_type=code&[REDACTED].apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A49486%2Foauth-callback
+      2026-09-28 09:04:23.891 [info] [Auth] Localhost server stopped
+      2026-09-28 09:04:23.892 [info] [Auth] Localhost server listening on port 49489
+      2026-09-28 09:04:23.956 [info] [Auth] Login URL:  https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcclog%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fexperimentsandconfigs&[REDACTED]&prompt=consent&response_type=code&[REDACTED].apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A49489%2Foauth-callback
+      2026-09-28 09:04:26.234 [info] [Auth] Localhost server stopped
+      2026-09-28 09:04:26.235 [info] [Auth] Localhost server listening on port 51133
+      2026-09-28 09:04:26.296 [info] [Auth] Login URL:  https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcclog%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fexperimentsandconfigs&[REDACTED]&prompt=consent&response_type=code&[REDACTED].apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A51133%2Foauth-callback
+      2026-09-28 09:04:26.432 [info] [Auth] Localhost server stopped
+      2026-09-28 09:04:26.433 [info] [Auth] Localhost server listening on port 52026
+      2026-09-28 09:04:26.453 [info] [Auth] Login URL:  https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcclog%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fexperimentsandconfigs&[REDACTED]&prompt=consent&response_type=code&[REDACTED].apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A52026%2Foauth-callback
+      2026-09-28 09:04:26.632 [info] [Auth] Localhost server stopped
+      2026-09-28 09:04:26.633 [info] [Auth] Localhost server listening on port 52034
+      2026-09-28 09:04:26.711 [info] [Auth] Localhost server stopped
+      2026-09-28 09:04:26.712 [info] [Auth] Localhost server listening on port 52036
+      2026-09-28 09:04:26.888 [info] [Auth] Login URL:  https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcclog%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fexperimentsandconfigs&[REDACTED]&prompt=consent&response_type=code&[REDACTED].apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A52034%2Foauth-callback
+      2026-09-28 09:04:26.984 [info] [Auth] Login URL:  https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcclog%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fexperimentsandconfigs&[REDACTED]&prompt=consent&response_type=code&[REDACTED].apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A52036%2Foauth-callback
+      2026-09-28 09:04:28.340 [info] [Auth] Localhost server stopped
+      2026-09-28 09:04:28.342 [info] [Auth] Localhost server listening on port 57796
+      2026-09-28 09:04:28.500 [info] [Auth] Login URL:  https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcclog%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fexperimentsandconfigs&[REDACTED]&prompt=consent&response_type=code&[REDACTED].apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A57796%2Foauth-callback
+   region/eligibility error lines in this session: 0
+   auth.log of session 20260924T150241:
+      2026-09-24 15:02:41.805 [info] [Auth] Auth state changed to: uninitialized
+      2026-09-24 15:02:42.544 [info] [Auth] Auth state changed to: validatingLogin
+      2026-09-24 15:02:42.544 [info] [Auth] Auth state changed to: validatingLogin
+      2026-09-24 15:03:46.842 [error] Error confirming user for service: request to https://oauth2.googleapis.com/token failed, reason: connect ETIMEDOUT 108.177.125.95:443
+      2026-09-24 15:03:46.844 [info] [Auth] Auth state changed to: loginError
+      2026-09-24 15:03:46.850 [error] [Auth] Error refreshing user status: request to https://oauth2.googleapis.com/token failed, reason: connect ETIMEDOUT 108.177.125.95:443
+      2026-09-24 15:03:46.850 [info] [Auth] Auth state changed to: loginError
+      2026-09-24 15:03:46.851 [info] [Auth] AntigravityAuthMainService initialized
+      2026-09-24 15:08:10.822 [error] [Auth] Error refreshing user status: request to https://oauth2.googleapis.com/token failed, reason: connect ETIMEDOUT 108.177.125.95:443
+   region/eligibility error lines in this session: 0
+log root: C:\Users\文少\AppData\Roaming\Antigravity\logs
+--- next steps for the user (manual) ---
+   1. close Antigravity completely (File -> Exit), reopen it, sign in with j***z@gmail.com
+   2. if it still fails: the language server ignores the proxy - enable TUN mode in the
+      proxy client (v2rayN: Settings -> Tun mode) so direct connections are proxied too,
+      then reopen Antigravity
+--- task t1 (fix) done - settings patched with backup, nothing else modified ---
+== task r23 t1_fix_antigravity.ps1 ok (30s)
+== task r23: t3_edrive_scan2.ps1
+--- task t3 (scan 2): E: remaining top-level folders (READ-ONLY) ---
+drive E: used 481.0 GB, free 234.3 GB (round 22 measured 289.7 GB of used space; this pass covers the rest)
+top-level folders to scan now: 253 ; skipped (already measured): 33
+   skip: spider
+   skip: ST
+   skip: Steam
+   skip: steam co
+   skip: Tabby
+   skip: tailscale
+   skip: Tencent
+   skip: Tencent Files
+   skip: Tencent Games
+   skip: Thunder
+   skip: ToDesk
+   skip: trae-chajian
+   skip: UniGetUI.x64
+   skip: Users
+   skip: v2rayN-windows-64-desktop
+   skip: v2rayN-windows-64-SelfContained
+   skip: vit-pytorch-main
+   skip: VM
+   skip: VMD2
+   skip: vscode
+   skip: vscode-cache
+   skip: VSCodeData
+   skip: Weka-3-8-7
+   skip: Wise Care 365
+   skip: WPSOffice
+   skip: WpSystem
+   skip: WSL
+   skip: xunlei
+   skip: xwechat_files
+   skip: Zotero
+   skip: zTasker_2.3.12_???_???C?
+   skip: ZTools-3.1.0-win-x64
+   skip: ??????OfficeBox
+walk 2: 485117 files, 64981 dirs, 54.05 GB scanned in 300s - TIME CAP HIT - PARTIAL RESULTS
+--- remaining top-level folders on E: (by size) ---
+        9.74 GB     58379 files  E:\Program Files
+        4.97 GB    225564 files  E:\mcp
+        4.42 GB      3041 files  E:\Quark
+        4.01 GB     15846 files  E:\Pr
+        3.73 GB      5730 files  E:\QQ
+        3.19 GB     14802 files  E:\??
+        3.19 GB     39603 files  E:\R
+        2.88 GB        47 files  E:\Schrodinger_Suites_2025-1_Windows-x64
+        2.03 GB     33548 files  E:\npm
+        1.83 GB     13975 files  E:\QwenPaw
+        1.47 GB       944 files  E:\npm-cache
+        1.38 GB      4335 files  E:\RStudio
+        1.34 GB      9912 files  E:\??
+        1.17 GB      1007 files  E:\ozotero
+       977.6 MB     20632 files  E:\perl
+       881.5 MB        32 files  E:\?????
+       850.4 MB       383 files  E:\opera
+       748.9 MB       371 files  E:\Program Files (x86)
+       522.7 MB         7 files  E:\??md
+       488.7 MB         1 files  E:\????
+       321.5 MB        94 files  E:\NsfocusVPN
+       297.4 MB         5 files  E:\Office2024???(64bit)
+       274.6 MB     11229 files  E:\pyrx
+       266.4 MB      2497 files  E:\opencodex
+       259.9 MB      1570 files  E:\obs-studio
+       232.2 MB        78 files  E:\Motrix
+       221.4 MB         4 files  E:\Pandoc
+       212.5 MB       340 files  E:\PotPlayer
+       187.5 MB      7969 files  E:\positron-chajian
+       177.4 MB       297 files  E:\prism10.1.2
+       171.8 MB      1186 files  E:\sobtop
+       169.8 MB      2017 files  E:\sci-HuB
+       138.6 MB        40 files  E:\MKunlock
+       135.3 MB       459 files  E:\QuickLook-3.7.3
+       135.2 MB       947 files  E:\Multiwfn-mirror-3.7
+       131.8 MB         4 files  E:\openlist-windows-amd64
+       100.6 MB      1982 files  E:\nodejs
+        94.3 MB        95 files  E:\OfficeAI
+        81.6 MB        82 files  E:\PixPin
+        79.1 MB      1527 files  E:\Modeller10.6
+--- cache / reclaim candidates in this pass (top 15) ---
+        2.03 GB     33521 files  E:\npm\node_modules
+        1.47 GB       944 files  E:\npm-cache
+       407.4 MB         8 files  E:\npm\node_modules\@openai\codex\node_modules
+       332.0 MB         4 files  E:\npm\node_modules\opencode-ai\node_modules
+       244.4 MB         4 files  E:\npm\node_modules\@anthropic-ai\claude-code\node_modules
+       244.4 MB         1 files  E:\npm\node_modules\@anthropic-ai\.claude-code-WgbhC347\node_modules
+       216.8 MB     23528 files  E:\npm\node_modules\openclaw\node_modules
+        58.4 MB        68 files  E:\RStudio\resources\app\bin\copilot-language-server-js\node_modules
+        24.8 MB        93 files  E:\positron-chajian\extensions\ms-toolsai.jupyter-2024.11.0\dist\node_modules
+        22.4 MB       331 files  E:\Pr\Adobe Premiere Pro 2025\CEP\extensions\com.adobe.frameio\node_modules
+        13.9 MB         1 files  E:\Quark\Temp
+        13.0 MB       576 files  E:\test\node_modules
+        12.5 MB        73 files  E:\npm\node_modules\@google\gemini-cli\node_modules
+        12.3 MB      1971 files  E:\nodejs\node_modules
+        12.3 MB      2299 files  E:\QwenPaw\binaries\node-runtime\node_modules
+--- largest files in this pass (top 15) ---
+       500.9 MB  E:\Program Files\Docker Desktop Installer.exe
+       488.7 MB  E:\????\WPSOffice_???????_2019_11.8.2.12344_x86_20260806.zip
+       411.7 MB  E:\?????\Weixin\4.1.13.65\RadiumWMPF.bin
+       410.1 MB  E:\??md\pymol.mp4
+       398.3 MB  E:\R\R_libs\org.Hs.eg.db\extdata\org.Hs.eg.sqlite
+       394.1 MB  E:\Program Files (x86)\WeGameInstaller\WeGameSetup6.3.0.1042_launcher_0_0.exe
+       342.6 MB  E:\npm\node_modules\@openai\codex\node_modules\@openai\codex-win32-x64\vendor\x86_64-pc-windows-msvc\bin\codex.exe
+       325.3 MB  E:\QwenPaw\binaries\qwenpaw-backend\_internal\codex_cli_bin\bin\codex.exe
+       304.2 MB  E:\QQ\versions\9.9.26-44725-9.9.35-52892.zip
+       297.3 MB  E:\Office2024???(64bit)\Setup.exe
+       291.7 MB  E:\mcp\uv-cache\archive-v0\_HscpE5983R0yv2MaimUf\Lib\site-packages\torch\lib\torch_cpu.dll
+       291.7 MB  E:\mcp\uv-cache\archive-v0\ZOItZvUM1Gk66bWs\Lib\site-packages\torch\lib\torch_cpu.dll
+       291.7 MB  E:\mcp\uv-cache\archive-v0\ZENbQvLheJb-cvJ-\Lib\site-packages\torch\lib\torch_cpu.dll
+       290.9 MB  E:\QwenPaw\binaries\qwenpaw-backend\_internal\torch\lib\torch_cpu.dll
+       290.6 MB  E:\Quark\6.9.8.899\quark.dll
+--- vm disks / crash dumps in this pass (top 10) ---
+   (none)
+NOTE: read-only again. Nothing was deleted. Cleanup happens only after user approval.
+== task r23 t3_edrive_scan2.ps1 ok (303s)
+== task r23: t2_install_java.ps1
+--- task t2 (install): portable JDK 21 -> E:\java (no admin needed) ---
+proxy: http://127.0.0.1:10808
+   trying tuna-mirror (direct): listing https://mirrors.tuna.tsinghua.edu.cn/Adoptium/21/jdk/x64/windows/
+      listing failed
+   trying tuna-mirror (proxy): listing https://mirrors.tuna.tsinghua.edu.cn/Adoptium/21/jdk/x64/windows/
+      listing failed
+   trying huawei-mirror (direct): listing https://mirrors.huaweicloud.com/adoptium/21/jdk/x64/windows/
+      no OpenJDK21 zip found in listing
+   trying huawei-mirror (proxy): listing https://mirrors.huaweicloud.com/adoptium/21/jdk/x64/windows/
+      no OpenJDK21 zip found in listing
+   trying microsoft (direct): https://aka.ms/download-jdk/microsoft-jdk-21-windows-x64.zip
+      ... 50.0 MB of 191.8 MB (2s)
+      ... 100.0 MB of 191.8 MB (3s)
+      ... 150.0 MB of 191.8 MB (5s)
+      download: OK 201096952 bytes in 6s (content-length 191.8 MB)
+downloaded via: microsoft
+zip size: 191.8 MB
+zip check: entries=573 topDir=jdk-21.0.12.1+1 uncompressed=327.0 MB bin/java.exe=True
+   extracting to E:\java (this takes 1-3 minutes) ...
+   extracted in 10s
+JDK home: E:\java\jdk-21.0.12.1+1
+old user PATH backed up to: E:\java\PATH-backup-20260929-120137.txt (1354 chars)
+JAVA_HOME (User) = E:\java\jdk-21.0.12.1+1
+user PATH: 1354 -> 1382 chars, appended E:\java\jdk-21.0.12.1+1\bin
+java -version: java.exe : openjdk version "21.0.12.1" 2026-08-18 LTS?????? ?:1 ??: 12??+  param($p) & $p -version 2>&1 | Out-String??+            ~~~~~~~~~~~~~~~~~~??    + CategoryInfo          : NotSpecified: (openjdk version... 2026-08-18 LTS:String) [], RemoteException??    + FullyQualifiedErrorId : NativeCommandError?? ??OpenJDK Runtime Environment Microsoft-14941484 (build 21.0.12.1+1-LTS)??OpenJDK 64-Bit Server VM Microsoft-14941484 (build 21.0.12.1+1-LTS, mixed mode, sharing)????
+javac -version: javac 21.0.12.1????
+where java (refreshed PATH): E:\java\jdk-21.0.12.1+1\bin\java.exe??
+== JDK INSTALLED OK (portable zip, no admin was needed)
+   open a NEW terminal (old ones keep the old PATH) and run: java -version
+== task r23 t2_install_java.ps1 ok (45s)
+== accept 2d: hands-free auto_pull/auto_push present in watch.ps1
+== success criteria: results/status/success_criteria.json
+   v2.8.1 on arena/01a0a9f0-git-pull-arena: the newest skill (source branch arena/01a0a98d-git-pull-arena, installer refuses to downgrade) plus the repo gate (code/check_all.sh, which now proves each python candidate python3 / python / py -3) and the real-machine check (code/local_check.ps1, sections 3a-3h). The deliverables LINK_PROOF_v2.8.1.docx / .pptx travel through git and are judged by the Windows watcher: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide count and a real Word/PowerPoint open. 'Local' means that machine's scheduled watcher - never a sandbox folder, never a hand-made stand-in skill. From round 22 on the repo also ships code/tasks/*.ps1 (mapped per round in code/tasks/manifest.json) which run on the machine inside local_check.ps1 section 4 as child processes: round 22 = read-only diagnostics for the Antigravity login, the Java install state and E: cleanup candidates.
+   OK   exists: 01a0a821.md (2016 B)
+   OK   exists: skills/git-sync/VERSION (6 B)
+   OK   exists: skills/git-sync/scripts/agent-install.sh (13404 B)
+   OK   exists: skills/git-sync/scripts/agent-handoff.sh (4603 B)
+   OK   exists: skills/git-sync/scripts/agent-handsfree.sh (3989 B)
+   OK   exists: skills/git-sync/scripts/agent-criteria.sh (5190 B)
+   OK   exists: skills/git-sync/scripts/watch.ps1 (84094 B)
+   OK   exists: skills/git-sync/templates/one-sentence.md (6524 B)
+   OK   exists: skills/git-sync/templates/gate.yml (1166 B)
+   OK   exists: code/check_all.sh (9945 B)
+   OK   exists: code/local_check.ps1 (30124 B)
+   OK   exists: code/make_link_proof.py (22948 B)
+   OK   exists: deliverable/OFFICE_HASHES.json (2401 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.docx (39743 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B)
+   OK   exists: watch.ps1 (84094 B)
+   OK   exists: code/tasks/manifest.json (560 B)
+   OK   exists: code/tasks/t1_antigravity_diag.ps1 (14461 B)
+   OK   exists: code/tasks/t2_java_diag.ps1 (8626 B)
+   OK   exists: code/tasks/t3_edrive_scan.ps1 (9393 B)
+   OK   exists: code/tasks/t1_fix_antigravity.ps1 (10411 B)
+   OK   exists: code/tasks/t3_edrive_scan2.ps1 (9007 B)
+   OK   exists: code/tasks/t2_install_java.ps1 (14030 B)
+   OK   exists: results/status/round22_findings.md (3511 B)
+   OK   absent: local/inbox
+   OK   absent: local/status_receipts
+   OK   absent: skills/docx_skill.py
+   OK   absent: local_bridge_skill.py
+   OK   contains skills/git-sync/VERSION <- 2.8.1
+   OK   contains 01a0a821.md <- arena/01a0a98d-git-pull-arena
+   OK   contains skills/git-sync/sync.config.json <- arena/01a0a9f0-git-pull-arena
+   OK   contains skills/git-sync/templates/one-sentence.md <- agent-handoff.sh
+   OK   contains skills/git-sync/scripts/agent-install.sh <- refusing to downgrade
+   OK   contains code/check_all.sh <- py -3
+   OK   contains code/local_check.ps1 <- no Office deliverable declared
+   OK   contains deliverable/OFFICE_HASHES.json <- arena/01a0a9f0-git-pull-arena
+   OK   contains watch.ps1 <- function Invoke-AutoPull
+   OK   contains skills/git-sync/scripts/watch.ps1 <- function Invoke-Focus
+   OK   contains code/tasks/manifest.json <- t3_edrive_scan.ps1
+   OK   contains code/tasks/t1_fix_antigravity.ps1 <- http.proxy
+   OK   contains code/tasks/t2_install_java.ps1 <- E:\java
+   OK   regex watch.ps1
+   OK   regex code/local_check.ps1
+   OK   regex deliverable/OFFICE_HASHES.json
+   OK   size skills/git-sync/scripts/agent-handoff.sh: 4603 >= 2000
+   OK   size skills/git-sync/scripts/agent-install.sh: 13404 >= 10000
+   OK   size code/check_all.sh: 9945 >= 8000
+   OK   size code/local_check.ps1: 30124 >= 12000
+   OK   size code/make_link_proof.py: 22948 >= 8000
+   OK   size deliverable/OFFICE_HASHES.json: 2401 >= 500
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 >= 5000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 >= 15000
+   OK   size watch.ps1: 84094 >= 20000
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 <= 3000000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 <= 3000000
+== local checks passed
+--- stderr ---
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+使用“2”个参数调用“Matches”时发生异常:“值不能为 null。
+参数名: input”
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t1_fix_antigravity.ps1:189 字符: 28
++ ... each ($m in [regex]::Matches($t, '(?i).{0,60}(location is not support ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
