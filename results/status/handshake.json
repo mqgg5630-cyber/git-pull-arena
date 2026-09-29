@@ -1,9 +1,9 @@
 {
-  "round": 28,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 28: t9 find+test newer LigPlus and remove the expired copy only if the new one runs; t8 retry uv cache (skips if uv is running)",
-  "arena_updated": "2026-09-29 09:20:24",
-  "local_updated": null
+    "round":  28,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 28: t9 find+test newer LigPlus and remove the expired copy only if the new one runs; t8 retry uv cache (skips if uv is running)",
+    "arena_updated":  "2026-09-29 09:20:24",
+    "local_updated":  "2026-09-29 17:29:07"
 }
