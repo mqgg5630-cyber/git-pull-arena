@@ -1,9 +1,9 @@
 {
-  "round": 22,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 22: run the 3 READ-ONLY diagnostic tasks (antigravity login diag, java install diag, E: cleanup scan) - nothing is modified or deleted on the machine",
-  "arena_updated": "2026-09-29 03:28:32",
-  "local_updated": null
+    "round":  22,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 22: run the 3 READ-ONLY diagnostic tasks (antigravity login diag, java install diag, E: cleanup scan) - nothing is modified or deleted on the machine",
+    "arena_updated":  "2026-09-29 03:28:32",
+    "local_updated":  "2026-09-29 11:42:25"
 }

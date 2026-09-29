@@ -1,0 +1,494 @@
+check round 22 on LAPTOP-R77M5D6M - passed (exit 0)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 723s
+
+OK: all .ps1 files are ASCII-only
+OK: sync.config.json branch=arena/01a0a9f0-git-pull-arena
+OK: sync.config.json branch matches HEAD (arena/01a0a9f0-git-pull-arena)
+OK: root scripts identical to skills/git-sync/scripts
+OK: no drive-style variable typos ($var:)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+OK: every .ps1 parses
+   (gate ran via E:\hermes\git\bin\bash.exe [git])
+== accept 2a: silent push PROVEN (ls-remote + push --dry-run, prompts disabled)
+== accept 2b (fallback): one LONG-LIVED loop process - one brief flash per logon,
+   not per poll. For zero flash: admin PowerShell -> .\watch.ps1 -Unregister ;
+   .\watch.ps1 -Register -Headless   (or fix the launcher, see watch-*.log)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+== check_loop_summary PASSED
+== accept 2c: watcher closing lines verified (every exit path has its summary)
+== deliverables: 2 Office file(s) declared in deliverable/OFFICE_HASHES.json
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.docx (39743 B, docx)
+   OK   3b all 6 required parts present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.docx (17 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B, pptx)
+   OK   3b all 9 required parts present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.pptx (52 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3g slides in deliverable/LINK_PROOF_v2.8.1.pptx : 8 >= 8
+   OK   3h Word.Application opened read-only, name=LINK_PROOF_v2.8.1.docx : deliverable\LINK_PROOF_v2.8.1.docx
+   OK   3h PowerPoint.Application opened read-only, slides=8 : deliverable\LINK_PROOF_v2.8.1.pptx
+== task r22: t1_antigravity_diag.ps1
+--- task t1: Antigravity login diagnosis (read-only) ---
+account (masked): j***z@gmail.com
+--- install locations ---
+   install: PRESENT C:\Users\文少\AppData\Local\Programs\Antigravity (package.json=, exe=2.15.1.0)
+   install: absent  C:\Users\文少\AppData\Local\Programs\Antigravity IDE
+   install: absent  C:\Program Files\Antigravity
+   install: absent  C:\Program Files\Google\Antigravity
+   install: absent  C:\Program Files\Antigravity IDE
+--- data locations (top-level entries, newest 25 each) ---
+   data dir PRESENT: C:\Users\文少\AppData\Roaming\Antigravity
+      dir            2026-08-28 09:48  bin
+      dir            2026-09-22 08:45  blob_storage
+      dir            2026-08-28 09:47  Cache
+      dir            2026-08-28 09:47  Code Cache
+      dir            2026-08-28 09:48  DawnGraphiteCache
+      dir            2026-08-28 09:48  DawnWebGPUCache
+      dir            2026-08-28 09:48  Dictionaries
+      dir            2026-08-28 09:48  GPUCache
+      dir            2026-08-28 09:47  Local Storage
+      dir            2026-08-28 09:48  logs
+      dir            2026-09-21 19:12  Network
+      dir            2026-09-22 08:45  Session Storage
+      dir            2026-08-28 09:48  Shared Dictionary
+      file 36B       2026-08-28 09:48  .updaterId
+      file 3321B     2026-09-15 13:09  app_storage.json
+      file 60B       2026-09-22 08:45  DevToolsActivePort
+      file 36864B    2026-09-22 08:44  DIPS
+      file 490B      2026-09-21 10:03  Local State
+      file 233B      2026-09-22 08:45  Preferences
+      file 4096B     2026-08-28 09:49  SharedStorage
+   data dir PRESENT: C:\Users\文少\AppData\Roaming\Antigravity IDE
+      dir            2026-09-21 09:32  Backups
+      dir            2026-09-29 10:24  blob_storage
+      dir            2026-08-20 09:43  Cache
+      dir            2026-08-27 09:19  CachedConfigurations
+      dir            2026-08-20 09:43  CachedData
+      dir            2026-09-21 09:33  CachedExtensionVSIXs
+      dir            2026-08-20 09:43  CachedProfilesData
+      dir            2026-08-20 09:43  Code Cache
+      dir            2026-08-20 10:01  Crashpad
+      dir            2026-08-20 09:43  DawnGraphiteCache
+      dir            2026-08-20 09:43  DawnWebGPUCache
+      dir            2026-08-20 09:43  Dictionaries
+      dir            2026-08-20 09:43  GPUCache
+      dir            2026-08-20 09:43  Local Storage
+      dir            2026-09-29 10:24  logs
+      dir            2026-09-29 10:26  Network
+      dir            2026-08-20 09:59  Service Worker
+      dir            2026-09-29 10:24  Session Storage
+      dir            2026-08-20 09:43  Shared Dictionary
+      dir            2026-09-28 09:03  User
+      dir            2026-09-10 16:58  WebStorage
+      file 36864B    2026-09-29 10:26  DIPS
+      file 14798B    2026-09-29 10:24  languagepacks.json
+      file 434B      2026-08-20 09:43  Local State
+      file 36B       2026-08-20 09:43  machineid
+   data dir absent: C:\Users\文少\.antigravity
+   data dir PRESENT: C:\Users\文少\.gemini\antigravity
+      dir            2026-09-14 09:50  annotations
+      dir            2026-08-28 09:54  bin
+      dir            2026-09-11 15:41  brain
+      dir            2026-03-05 15:03  browser_recordings
+      dir            2026-09-21 10:04  builtin
+      dir            2026-01-13 15:23  code_tracker
+      dir            2026-01-13 15:23  context_state
+      dir            2026-09-14 09:41  conversations
+      dir            2026-09-24 15:03  crashes
+      dir            2026-02-20 09:44  html_artifacts
+      dir            2026-03-05 15:25  implicit
+      dir            2026-01-15 15:34  knowledge
+      dir            2026-09-24 15:03  log
+      dir            2026-09-21 10:04  mcp
+      dir            2026-03-05 14:43  playground
+      dir            2026-09-21 10:04  plugin_data
+      dir            2026-08-28 09:54  scratch
+      file 2585B     2026-09-14 09:50  agyhub_summaries_proto.pb
+      file 833B      2026-09-11 09:20  antigravity_state.pbtxt
+      file 0B        2026-09-24 15:03  cli.log
+      file 28672B    2026-09-22 08:45  conversation_summaries.db
+      file 32768B    2026-09-24 15:03  conversation_summaries.db-shm
+      file 16512B    2026-09-24 15:03  conversation_summaries.db-wal
+      file 36B       2026-01-13 15:23  installation_id
+      file 475B      2026-08-25 19:24  mcp_config.json
+   data dir PRESENT: C:\Users\文少\.gemini\antigravity-ide
+      dir            2026-08-20 10:11  bin
+      dir            2026-09-14 09:50  brain
+      dir            2026-08-20 09:43  builtin
+      dir            2026-09-14 10:11  conversations
+      dir            2026-09-29 10:24  crashes
+      dir            2026-08-20 09:43  html_artifacts
+      dir            2026-09-11 20:23  implicit
+      dir            2026-08-20 09:43  knowledge
+      dir            2026-09-21 09:34  mcp
+      dir            2026-09-04 17:12  scratch
+      dir            2026-09-10 20:20  skills
+      file 36B       2026-08-20 09:43  installation_id
+      file 199B      2026-08-25 19:24  mcp_config.json
+processes: none running
+default browser (https ProgId): FirefoxURL-308046B0AF4A39CB
+chrome: absent  C:\Program Files\Google\Chrome\Application\chrome.exe
+chrome: absent  C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
+edge: PRESENT
+url handler antigravity:// : REGISTERED at HKCU:\Software\Classes\antigravity -> "C:\Users\??\AppData\Local\Programs\antigravity\Antigravity.exe" "%1"
+url handler antigravity:// : missing at HKLM:\SOFTWARE\Classes\antigravity
+WSA: not installed
+wsl.exe: present
+.wslconfig:
+   [wsl2]
+   memory=16GB
+   processors=6
+   swap=12GB
+   localhostForwarding=true
+--- proxy state ---
+   env HTTP_PROXY=http://127.0.0.1:10808
+   env HTTPS_PROXY=http://127.0.0.1:10808
+   env ALL_PROXY=http://127.0.0.1:10808
+   env http_proxy=http://127.0.0.1:10808
+   env https_proxy=http://127.0.0.1:10808
+   winhttp: | ?????WinHTTP ??????????? |  |     ??????(????????????? |  |
+   WinINET: ProxyEnable=1 ProxyServer=127.0.0.1:10808 AutoConfigURL=
+   git http.proxy: http://127.0.0.1:10808
+--- network: DNS + direct TCP 443 (4s timeout each) ---
+   github.com               dns=140.82.112.4                       tcp443=OK
+   www.google.com           dns=142.251.154.119,142.251.152.119    tcp443=FAIL
+   accounts.google.com      dns=64.233.187.84                      tcp443=FAIL
+   oauth2.googleapis.com    dns=108.177.125.95                     tcp443=FAIL
+   antigravity.google       dns=216.239.32.61                      tcp443=FAIL
+   www.baidu.com            dns=39.156.70.46,39.156.70.239         tcp443=OK
+--- HTTPS probe (direct vs system proxy) ---
+   direct       https://www.google.com/generate_204 -> FAIL ????
+   systemproxy  https://www.google.com/generate_204 -> HTTP 204 Date=Tue, 29 Sep 2026 03:31:41 GMT
+   direct       https://accounts.google.com/ -> FAIL ????
+   systemproxy  https://accounts.google.com/ -> HTTP 302 Date=Tue, 29 Sep 2026 03:31:50 GMT
+clock skew: 0 min (local minus server; Google OAuth rejects more than about 5 min)
+system locale: zh-CN / culture: zh-CN / timezone: China Standard Time
+--- Antigravity logs (newest 3 sessions, recursive) ---
+log root: C:\Users\文少\AppData\Roaming\Antigravity\logs
+   (no session folders)
+log root: C:\Users\文少\AppData\Roaming\Antigravity IDE\logs
+   session 20260929T102401 (last write 2026-09-29 10:24)
+      log renderer.log (2115449 B)
+      log ls-main.log (45076 B)
+      log exthost.log (15880 B)
+      log Codex.log (13733 B)
+      log Antigravity IDE.log (12234 B)
+      log Git.log (12230 B)
+      log cloudcode.log (7943 B)
+      log Google Cloud Data Agent Kit.log (6948 B)
+   session 20260928T090238 (last write 2026-09-28 09:02)
+      log ls-main.log (26392 B)
+      log exthost.log (12145 B)
+      log renderer.log (11040 B)
+      log auth.log (8682 B)
+      log cloudcode.log (5603 B)
+      log Git.log (4673 B)
+      log Codex.log (3833 B)
+      log 2-Antigravity.log (1465 B)
+   session 20260924T150241 (last write 2026-09-24 15:02)
+      log ls-main.log (74107 B)
+      log Antigravity IDE.log (53181 B)
+      log Git.log (37682 B)
+      log cloudcode.log (17777 B)
+      log exthost.log (14924 B)
+      log renderer.log (13172 B)
+      log Google Cloud Data Agent Kit.log (7090 B)
+      log Codex.log (4261 B)
+   matching lines (masked, deduped, newest 2 sessions):
+      [renderer.log] 2026-09-29 10:24:08.124 [error] Extension 'meta.pyrefly CANNOT USE these API proposals 'editorHoverVerbosityLevel'. You MUST start in extension development mode or use the --enable-proposed-api command line flag
+      [renderer.log] 2026-09-29 10:24:08.124 [error] Extension 'ms-python.python' appears in product.json but enables LESS API proposals than the extension wants.
+      [renderer.log] 2026-09-29 10:24:08.124 [error] Extension 'ms-python.vscode-python-envs CANNOT USE these API proposals 'terminalShellEnv, terminalDataWriteEvent'. You MUST start in extension development mode or use the --enable-proposed ...
+      [renderer.log] 2026-09-29 10:24:08.125 [error] Extension 'openai.chatgpt CANNOT USE these API proposals 'chatSessionsProvider, languageModelProxy'. You MUST start in extension development mode or use the --enable-proposed-api command l ...
+      [renderer.log] 2026-09-29 10:24:08.158 [error] [vscode.git]: property `title` is mandatory and must be of type `string` or `object`
+      [renderer.log] 2026-09-29 10:24:08.159 [error] [vscode.git]: property `title` is mandatory and must be of type `string` or `object`
+      [renderer.log] 2026-09-29 10:24:08.164 [error] [google.antigravity]: Menu item references a command `antigravity.importAntigravitySettings` which is not defined in the 'commands' section.
+      [renderer.log] 2026-09-29 10:24:08.164 [error] [google.antigravity]: Menu item references a command `antigravity.importAntigravityExtensions` which is not defined in the 'commands' section.
+      [renderer.log] 2026-09-29 10:24:08.164 [error] [google.antigravity]: Menu item references a command `antigravity.prioritized.chat.open` which is not defined in the 'commands' section.
+      [renderer.log] 2026-09-29 10:24:08.191 [error] [openai.chatgpt]: chatSessions/newSession is a proposed menu identifier. It requires 'package.json#enabledApiProposals: ["chatSessionsProvider"]' and is only available when running out of  ...
+      [renderer.log] 2026-09-29 10:24:11.083 [info] Invalidating Cache [{"type":1,"identifier":{"id":"tomoki1207.pdf","uuid":"6db08635-0c6a-45ba-9a4b-8c3e192c63c2"},"manifest":{"name":"pdf","displayName":"vscode-pdf","description":"Display p ...
+      [renderer.log] 2026-09-29 10:24:11.243 [error] [Norisix.n8n-mcp-vscode]: Expected 'label' to be a non-empty string.
+      [renderer.log] 2026-09-29 10:24:17.501 [info] Auto updating outdated extensions. muhammad-ahmad.xlsx-viewer, usernamehw.errorlens
+      [renderer.log] 2026-09-29 10:24:24.401 [error] [Extension Host] No LS client info found for local authority
+      [renderer.log] 2026-09-29 10:24:43.719 [error] [Extension Host] Failed to load message bundle for file e:\VSCodeData\Extensions\ms-edgedevtools.vscode-edge-devtools-2.1.10-universal\out\extension
+      [renderer.log] 2026-09-29 10:24:43.741 [error] [Extension Host] Failed to load message bundle for file e:\VSCodeData\Extensions\ms-edgedevtools.vscode-edge-devtools-2.1.10-universal\out\extension
+      [renderer.log] 2026-09-29 10:24:43.745 [error] [Extension Host] Failed to load message bundle for file e:\VSCodeData\Extensions\ms-edgedevtools.vscode-edge-devtools-2.1.10-universal\out\extension
+      [renderer.log] 2026-09-29 10:24:43.746 [error] [Extension Host] Failed to load message bundle for file e:\VSCodeData\Extensions\ms-edgedevtools.vscode-edge-devtools-2.1.10-universal\out\extension
+      [renderer.log] 2026-09-29 10:24:43.747 [error] [Extension Host] Failed to load message bundle for file e:\VSCodeData\Extensions\ms-edgedevtools.vscode-edge-devtools-2.1.10-universal\out\extension
+      [renderer.log] 2026-09-29 10:24:43.749 [error] [Extension Host] Failed to load message bundle for file e:\VSCodeData\Extensions\ms-edgedevtools.vscode-edge-devtools-2.1.10-universal\out\extension
+      [renderer.log] 2026-09-29 10:24:43.750 [error] [Extension Host] Failed to load message bundle for file e:\VSCodeData\Extensions\ms-edgedevtools.vscode-edge-devtools-2.1.10-universal\out\extension
+      [renderer.log] 2026-09-29 10:25:43.677 [error] [Extension Host] Could not load raw safevalues
+      [renderer.log] 2026-09-29 10:25:47.288 [error] [Extension Host] Failed to get status: l: Language server has not been started!
+      [renderer.log] 2026-09-29 10:25:47.289 [error] [Extension Host] [Auth] Error identifying user l: Language server has not been started!
+      [renderer.log] 2026-09-29 10:25:47.292 [error] [Extension Host] Initial auth session change failed l: Language server has not been started!
+      [renderer.log] 2026-09-29 10:26:32.247 [error] Error: Assertion Failed: Argument is `undefined` or `null`.
+      [ls-main.log] 2026-09-29 10:24:03.060 [info] [LS Main] Args: --csrf_token b1e23bcc-f4f5-4429-93e1-94f6c4b01011 --extension_server_port 58649 --extension_server_csrf_token 248b5ec1-92a3-4b60-9262-d078cba156ae --app_data_dir antigravity ...
+      [ls-main.log] 2026-09-29 10:24:03.997 [error] [LS Main stderr] ERROR: logging before google.Init: I0929 10:24:03.982372       1 server.go:1417] Starting language server process with pid 131756
+      [ls-main.log] 2026-09-29 10:24:04.002 [error] [LS Main stderr] ERROR: logging before google.Init: I0929 10:24:04.001137       1 server.go:395] Setting GOMAXPROCS to 4
+      [ls-main.log] 2026-09-29 10:24:04.015 [error] [LS Main stderr] ERROR: logging before google.Init: I0929 10:24:04.014814       1 server.go:1467] Language server version: 2.5.5
+      [ls-main.log] ERROR: logging before google.Init: I0929 10:24:04.014814       1 server.go:546] Language server will attempt to listen on host localhost
+      [ls-main.log] 2026-09-29 10:24:04.037 [error] [LS Main stderr] ERROR: logging before google.Init: I0929 10:24:04.037258       1 server.go:561] Language server listening on random port at 58662 for HTTPS (gRPC)
+      [ls-main.log] 2026-09-29 10:24:04.038 [error] [LS Main stderr] ERROR: logging before google.Init: I0929 10:24:04.037779       1 server.go:569] Language server listening on random port at 58663 for HTTP
+      [ls-main.log] 2026-09-29 10:24:04.478 [error] [LS Main stderr] ERROR: logging before google.Init: I0929 10:24:04.477557       1 server.go:539] Created extension server client at port 58649
+      [ls-main.log] 2026-09-29 10:24:04.531 [error] [LS Main stderr] ERROR: logging before google.Init: W0929 10:24:04.528519       1 defaults.go:741] failed to get cs path: cs path /usr/bin/cs invalid
+      [ls-main.log] ERROR: logging before google.Init: I0929 10:24:04.528519       1 manager.go:98] Creating trajectory store manager with proto store and SQLite store
+      [ls-main.log] 2026-09-29 10:24:04.536 [error] [LS Main stderr] ERROR: logging before google.Init: W0929 10:24:04.535329      64 cache.go:56] Cache(fetchBAICAdminControls): Singleflight refresh failed: admin controls not applicable
+      [ls-main.log] ERROR: logging before google.Init: E0929 10:24:04.535886      64 errorreport.go:223] admin controls not applicable
+      [ls-main.log] 2026-09-29 10:24:04.538 [error] [LS Main stderr] ERROR: logging before google.Init:
+      [ls-main.log] 2026-09-29 10:24:04.538 [error] [LS Main stderr] W0929 10:24:04.537927      64 cache.go:79] Failed to refresh cache in background: admin controls not applicable
+      [ls-main.log] 2026-09-29 10:24:04.582 [error] [LS Main stderr] ERROR: logging before google.Init: I0929 10:24:04.581537       1 server.go:2697] Auth succeeded, refreshing features and managers
+      [ls-main.log] 2026-09-29 10:24:06.396 [error] [LS Main stderr] ERROR: logging before google.Init: E0929 10:24:06.394736     114 browser_context.go:179] failed to install playwright: could not install driver: could not install driver:  ...
+      [ls-main.log] error: got non 200 status code: 404 (404 Not Found) from https://playwright-akamai.azureedge.net/builds/driver/playwright-1.57.0-win32_x64.zip
+      [ls-main.log] error: got non 200 status code: 404 (404 Not Found) from https://playwright-verizon.azureedge.net/builds/driver/playwright-1.57.0-win32_x64.zip
+      [ls-main.log] 2026-09-29 10:24:07.376 [error] No LS client info found for local authority
+      [ls-main.log] 2026-09-29 10:24:14.582 [error] [LS Main stderr] ERROR: logging before google.Init: E0929 10:24:14.582188       1 errorreport.go:223] Failed to poll ListExperiments: Post "https://cloudcode-pa.googleapis.com/v1internal:l ...
+      [ls-main.log] 2026-09-29 10:24:25.660 [error] [LS Main stderr] ERROR: logging before google.Init: E0929 10:24:25.660105      99 errorreport.go:223] Failed to poll ListExperiments: Post "https://cloudcode-pa.googleapis.com/v1internal:l ...
+      [ls-main.log] 2026-09-29 10:24:25.664 [error] [LS Main stderr] ERROR: logging before google.Init: W0929 10:24:25.580446     116 cache.go:56] Cache(loadCodeAssistResponse): Singleflight refresh failed: Post "https://cloudcode-pa.google ...
+      [ls-main.log] 2026-09-29 10:24:25.664 [error] [LS Main stderr] ERROR: logging before google.Init: W0929 10:24:25.580446      61 cache.go:56] Cache(peopleInfo): Singleflight refresh failed: Get "https://www.googleapis.com/oauth2/v2/use ...
+      [ls-main.log] ERROR: logging before google.Init: E0929 10:24:25.663994      61 errorreport.go:223] Get "https://www.googleapis.com/oauth2/v2/userinfo": Post "https://oauth2.googleapis.com/token": dial tcp 108.177.125.95:443: connectex ...
+      [ls-main.log] 2026-09-29 10:24:25.665 [error] [LS Main stderr] ERROR: logging before google.Init: W0929 10:24:25.663994      61 cache.go:79] Failed to refresh cache in background: Get "https://www.googleapis.com/oauth2/v2/userinfo": P ...
+      [ls-main.log] 2026-09-29 10:24:25.677 [error] [LS Main stderr] ERROR: logging before google.Init: E0929 10:24:25.676566     116 errorreport.go:223] Post "https://cloudcode-pa.googleapis.com/v1internal:loadCodeAssist": Post "https://oa ...
+      [ls-main.log] 2026-09-29 10:24:25.802 [error] [LS Main stderr] ERROR: logging before google.Init: W0929 10:24:25.800318      59 cache.go:56] Cache(userInfo): Singleflight refresh failed: failed to get load code assist response: Post " ...
+      [ls-main.log] ERROR: logging before google.Init: E0929 10:24:25.800318      59 errorreport.go:223] failed to get load code assist response: Post "https://cloudcode-pa.googleapis.com/v1internal:loadCodeAssist": Post "https://oauth2.goo ...
+      [ls-main.log] ERROR: logging before google.Init: W0929 10:24:25.800318      59 cache.go:79] Failed to refresh cache in background: failed to get load code assist response: Post "https://cloudcode-pa.googleapis.com/v1internal:loadCodeA ...
+      [ls-main.log] ERROR: logging before google.Init: W0929 10:24:25.800318      60 cache.go:56] Cache(availableModels): Singleflight refresh failed: failed to get load code assist response: Post "https://cloudcode-pa.googleapis.com/v1inte ...
+      [ls-main.log] ERROR: logging before google.Init: E0929 10:24:25.800318      60 errorreport.go:223] failed to get load code assist response: Post "https://cloudcode-pa.googleapis.com/v1internal:loadCodeAssist": Post "https://oauth2.goo ...
+      [ls-main.log] ERROR: logging before google.Init: W0929 10:24:25.800318      60 cache.go:79] Failed to refresh cache in background: failed to get load code assist response: Post "https://cloudcode-pa.googleapis.com/v1internal:loadCodeA ...
+      [ls-main.log] 2026-09-29 10:24:25.802 [error] [LS Main stderr] ERROR: logging before google.Init: E0929 10:24:25.801319      99 errorreport.go:223] Failed to poll FetchAvailableModels: failed to get load code assist response: Post "ht ...
+      [ls-main.log] 2026-09-29 10:24:25.814 [error] [LS Main stderr] ERROR: logging before google.Init: W0929 10:24:25.742788      62 cache.go:79] Failed to refresh cache in background: Post "https://cloudcode-pa.googleapis.com/v1internal:l ...
+   account lines found: 0 (lines above already masked)
+   tail of newest log main.log (last 25 lines, masked):
+      2026-09-29 10:24:02.415 [info] [BrowserOnboardingClientMainService] Starting browser onboarding server
+      2026-09-29 10:24:02.415 [info] [BrowserOnboardingClientServer] Browser onboarding server started on http://localhost:58650
+      2026-09-29 10:24:02.641 [info] update#setState idle
+      2026-09-29 10:24:04.816 [warning] updateWindowsJumpList#setJumpList unexpected result: customCategoryAccessDeniedError
+      2026-09-29 10:24:32.652 [info] update#setState checking for updates
+      2026-09-29 10:24:33.293 [info] update#setState idle
+      2026-09-29 10:26:34.431 [info] Extension host with pid 123976 exited with code: 0, signal: unknown.
+--- known Antigravity login blockers (for reference when reading this receipt) ---
+   1. region: Google blocks sign-in / API from unsupported locations (log: User location is not supported)
+   2. the OAuth callback uses Chrome (CDP); Chrome absent = silent fail for some users
+   3. stale auth state: clear %APPDATA%\Antigravity Session Storage + Local Storage after signing out
+   4. proxy/VPN: some VPN exit IPs are blocked; a crashing WSA has blocked the popup; clock drift > 5 min breaks OAuth
+--- task t1 done (read-only, nothing modified) ---
+== task r22 t1_antigravity_diag.ps1 ok (55s)
+== task r22: t2_java_diag.ps1
+--- task t2: Java diagnosis (read-only) ---
+arch: AMD64 / os: Windows_NT
+java -> (not on PATH)
+javaw -> (not on PATH)
+javac -> (not on PATH)
+where.exe java: where.exe : ??: ????????????? ; ???? E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t2_java_diag.ps1:27 ??: 11 ; +     $w = (& where.exe java 2>&1 | Out-String) ; +           ~~~~~~~~~~~~~~~~~~~~~ ;     + CategoryInfo          : NotSpecified: (??: ?????????????:String) [], RemoteException ;     + FullyQualifiedErrorId : NativeCommandError ;   ;
+JAVA_HOME (Process): (unset)
+JAVA_HOME (User): (unset)
+JAVA_HOME (Machine): (unset)
+PATH (User): no java/jdk/jre entries
+PATH (Machine): no java/jdk/jre entries
+--- installed Java-related products (registry) ---
+   (no Java/JDK entries in the uninstall registry)
+--- common install folders ---
+   E:\Java : 
+   E: top-level match: E:\java
+--- MsiInstaller events, last 60 days (java filter) ---
+   (MsiInstaller events unreadable: ???????????????????)
+--- installer logs in TEMP (last 60 days, java-ish names) ---
+   (none)
+--- winget list (java filter, 60s cap) ---
+   (no java-related packages in winget list)
+Windows Installer service (msiserver): Stopped / start type Manual
+this check runs elevated: False (MSI installs usually need admin; a zip install to E: does not)
+   disk C: free 48.2 GB of 100 GB (NTFS)
+   disk E: free 234.3 GB of 715.4 GB (NTFS)
+--- task t2 done (read-only, nothing installed or changed) ---
+== task r22 t2_java_diag.ps1 ok (27s)
+== task r22: t3_edrive_scan.ps1
+--- task t3: E: cleanup analysis (READ-ONLY, nothing is deleted) ---
+drive E: total 715.4 GB, used 481.1 GB, free 234.3 GB, FS=NTFS
+walk: 2150398 files, 75555 dirs, 289.71 GB scanned in 600s - TIME CAP HIT - PARTIAL RESULTS (remaining folders not scanned)
+--- top-level folders on E: (by size, top 40) ---
+      145.14 GB         2 files  E:\WSL
+       37.85 GB        23 files  E:\(root files)
+       32.56 GB       392 files  E:\Tencent Games
+       29.50 GB   1752245 files  E:\Users
+       13.44 GB    231562 files  E:\spider
+        5.31 GB     35404 files  E:\xwechat_files
+        3.56 GB     14671 files  E:\Tencent Files
+        3.19 GB     14802 files  E:\??
+        2.72 GB      7919 files  E:\xunlei
+        1.73 GB     27682 files  E:\VSCodeData
+        1.41 GB      3586 files  E:\WPSOffice
+        1.34 GB      9912 files  E:\??
+        1.04 GB      1613 files  E:\Thunder
+       984.0 MB     20085 files  E:\trae-chajian
+       956.7 MB       161 files  E:\ST
+       916.6 MB      6009 files  E:\Steam
+       881.5 MB        32 files  E:\?????
+       799.4 MB      5751 files  E:\Tencent
+       672.9 MB       227 files  E:\VM
+       643.7 MB         3 files  E:\vscode-cache
+       606.4 MB       110 files  E:\v2rayN-windows-64-desktop
+       522.7 MB         7 files  E:\??md
+       500.9 MB      2485 files  E:\Weka-3-8-7
+       488.7 MB         1 files  E:\????
+       442.3 MB       864 files  E:\WpSystem
+       409.6 MB      1859 files  E:\Tabby
+       362.1 MB        67 files  E:\v2rayN-windows-64-SelfContained
+       353.7 MB      1047 files  E:\vscode
+       316.3 MB       119 files  E:\ZTools-3.1.0-win-x64
+       234.8 MB       342 files  E:\ToDesk
+       227.4 MB        89 files  E:\Zotero
+       154.5 MB      6333 files  E:\vit-pytorch-main
+       135.9 MB      2144 files  E:\VMD2
+       120.2 MB       282 files  E:\Wise Care 365
+        97.5 MB        78 files  E:\UniGetUI.x64
+        70.2 MB         4 files  E:\tailscale
+        57.9 MB       325 files  E:\zTasker_2.3.12_???_???C?
+        48.9 MB        65 files  E:\steam co
+        44.6 MB        82 files  E:\????
+        37.9 MB       124 files  E:\??????OfficeBox
+--- cache / reclaim candidates (tracked during the walk, top 30) ---
+        6.71 GB    104910 files  E:\spider\pkgs
+        -> conda package cache - clean with: conda clean --all (keeps every env)
+       142.6 MB      6227 files  E:\vit-pytorch-main\.conda
+        -> inspect before deleting
+        97.8 MB     11083 files  E:\VSCodeData\User\User\globalStorage\ms-edgedevtools.vscode-edge-devtools\node_modules
+        -> node deps - delete only if you can re-run the package install for that project
+        59.2 MB       487 files  E:\Tabby\resources\app.asar.unpacked\node_modules
+        -> node deps - delete only if you can re-run the package install for that project
+        24.6 MB        93 files  E:\trae-chajian\extensions\ms-toolsai.jupyter-2025.2.0-universal\dist\node_modules
+        -> node deps - delete only if you can re-run the package install for that project
+        24.4 MB       100 files  E:\vscode\resources\app\extensions\node_modules
+        -> node deps - delete only if you can re-run the package install for that project
+        23.4 MB       621 files  E:\trae-chajian\extensions\bmewburn.vscode-intelephense-client-1.14.4\node_modules
+        -> node deps - delete only if you can re-run the package install for that project
+        20.0 MB        33 files  E:\trae-chajian\extensions\dsznajder.es7-react-js-snippets-4.4.3\node_modules
+        -> node deps - delete only if you can re-run the package install for that project
+        17.0 MB       279 files  E:\trae-chajian\extensions\franneck94.vscode-python-config-11.4.0-universal\.mypy_cache
+        -> python caches - safe to delete
+        16.2 MB       541 files  E:\trae-chajian\extensions\almenon.arepl-3.0.0\node_modules
+        -> node deps - delete only if you can re-run the package install for that project
+        13.0 MB       576 files  E:\test\node_modules
+        -> node deps - delete only if you can re-run the package install for that project
+        11.8 MB      2132 files  E:\VSCodeData\Extensions\martinortiz.codex-stats-1.0.4\node_modules
+        -> node deps - delete only if you can re-run the package install for that project
+        11.8 MB      1921 files  E:\spider\pkgs\nodejs-26.5.0-h80d1838_0\node_modules
+        -> node deps - delete only if you can re-run the package install for that project
+        11.0 MB       842 files  E:\vit-pytorch-main\.conda\Lib\site-packages\pip
+        -> pip cache - safe: pip cache purge
+--- largest files on E: (top 25) ---
+      145.14 GB  E:\WSL\Ubuntu-24.04\ext4.vhdx
+       36.00 GB  E:\pagefile.sys
+       18.27 GB  E:\Tencent Games\VALORANT\live\ShooterGame\Content\Paks\pakchunk10-WindowsClient.ucas
+        6.19 GB  E:\Tencent Games\VALORANT\live\ShooterGame\Content\Paks\pakchunk1-WindowsClient.ucas
+        2.50 GB  E:\Tencent Games\VALORANT\live\ShooterGame\Content\Paks\pakchunk0-WindowsClient.ucas
+        2.00 GB  E:\Tencent Games\VALORANT\live\ShooterGame\Content\Paks\pakchunk0-WindowsClient.pak
+       976.0 MB  E:\Users\??\Downloads\WSA_2407.40000.4.0_x64_Release-Nightly-GApps-13.0\WSA_2407.40000.4.0_x64\system.vhdx
+       625.7 MB  E:\xunlei\Origin2024\Setup\data2.cab
+       615.7 MB  E:\Users\??\Downloads\FlyingMouse-Format-Setup-0.5.0-x64.exe
+       573.4 MB  E:\Tencent Files\2845346805\nt_qq\nt_db\nt_msg.db
+       542.0 MB  E:\Users\??\Downloads\OmicOS-Setup.exe
+       541.2 MB  E:\Users\??\Downloads\AmberTools24.tar.bz2
+       537.8 MB  E:\Tencent Games\VALORANT\live\ShooterGame\Content\Paks\pakchunk2-WindowsClient.ucas
+       521.5 MB  E:\Tencent Games\VALORANT\live\ShooterGame\Content\Paks\pakchunk3-WindowsClient.ucas
+       491.9 MB  E:\Users\??\Downloads\BaiduNetdisk_8.5.10.112.exe
+       488.7 MB  E:\????\WPSOffice_???????_2019_11.8.2.12344_x86_20260806.zip
+       485.4 MB  E:\Users\??\Downloads\WorkBuddy-win32-x64-user-5.2.7.33844159-4f7f497e.exe
+       471.4 MB  E:\Users\??\Downloads\fuhewu.zip\fuhewu\fuhewu\COM_traj_0.xtc
+       455.3 MB  E:\Users\??\Downloads\BIOVIA_DS2025Client (1).exe
+       455.3 MB  E:\Users\??\Downloads\BIOVIA_DS2025Client.exe
+       449.5 MB  E:\Users\??\Downloads\WSA_2407.40000.4.0_x64_Release-Nightly-GApps-13.0\WSA_2407.40000.4.0_x64\Tools\initrd.img
+       431.6 MB  E:\Adobe Illustrator 2020 ???.zip
+       424.2 MB  E:\ST\ST\90-100.xtc
+       424.2 MB  E:\Users\??\Downloads\sh.zip\sh\sh\trj_90-100ns.xtc
+       417.7 MB  E:\bert.bin
+--- installers / archives >= 200 MB (top 20) ---
+       625.7 MB  E:\xunlei\Origin2024\Setup\data2.cab
+       615.7 MB  E:\Users\??\Downloads\FlyingMouse-Format-Setup-0.5.0-x64.exe
+       542.0 MB  E:\Users\??\Downloads\OmicOS-Setup.exe
+       491.9 MB  E:\Users\??\Downloads\BaiduNetdisk_8.5.10.112.exe
+       488.7 MB  E:\????\WPSOffice_???????_2019_11.8.2.12344_x86_20260806.zip
+       485.4 MB  E:\Users\??\Downloads\WorkBuddy-win32-x64-user-5.2.7.33844159-4f7f497e.exe
+       455.3 MB  E:\Users\??\Downloads\BIOVIA_DS2025Client (1).exe
+       455.3 MB  E:\Users\??\Downloads\BIOVIA_DS2025Client.exe
+       431.6 MB  E:\Adobe Illustrator 2020 ???.zip
+       321.2 MB  E:\Users\??\Downloads\RStudio-2026.05.1-225.exe
+       290.7 MB  E:\Users\??\Downloads\Sheas-Cealer-Scd-X64-Zip-1.1.4.zip
+       284.6 MB  E:\xunlei\VMware-Workstation-Lite-17.6.3-24583834-???????.exe
+       283.0 MB  E:\Users\??\Downloads\RStudio-2025.09.2-418.exe
+       279.9 MB  E:\Cherry-Studio-2.0.5-x64-portable.exe
+       277.0 MB  E:\VSCodeData\Extensions\openai.chatgpt-26.818.21641-win32-x64\bin\windows-x86_64\codex.exe
+       267.5 MB  E:\Users\??\Downloads\Positron-2025.03.0-116-UserSetup.exe
+       266.9 MB  E:\Users\??\Downloads\DiscoveryS_206427\DS45Client.exe
+       259.4 MB  E:\Users\??\Downloads\DiscoveryS_206427\DS45Client32bit.exe
+       247.4 MB  E:\Users\??\Downloads\ai_102060\products\ILST\AdobeIllustrator29-maskingAi.zip
+       243.8 MB  E:\Users\??\Downloads\Sheas-Cealer-Scd-X64-Zip-1.1.4\Sheas-Cealer.exe
+--- vm disks / crash dumps (any size, top 20) ---
+        33.0 MB  E:\Users\??\Downloads\WSA_2407.40000.4.0_x64_Release-Nightly-GApps-13.0\WSA_2407.40000.4.0_x64\userdata.vhdx
+        33.0 MB  E:\Users\??\Downloads\WSA_2407.40000.4.0_x64_Release-Nightly-GApps-13.0\WSA_2407.40000.4.0_x64\metadata.vhdx
+NOTE: this scan is READ-ONLY. Nothing was deleted or modified.
+      Cleanup happens only in a later round, after you approve the list.
+== task r22 t3_edrive_scan.ps1 ok (603s)
+== accept 2d: hands-free auto_pull/auto_push present in watch.ps1
+== success criteria: results/status/success_criteria.json
+   v2.8.1 on arena/01a0a9f0-git-pull-arena: the newest skill (source branch arena/01a0a98d-git-pull-arena, installer refuses to downgrade) plus the repo gate (code/check_all.sh, which now proves each python candidate python3 / python / py -3) and the real-machine check (code/local_check.ps1, sections 3a-3h). The deliverables LINK_PROOF_v2.8.1.docx / .pptx travel through git and are judged by the Windows watcher: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide count and a real Word/PowerPoint open. 'Local' means that machine's scheduled watcher - never a sandbox folder, never a hand-made stand-in skill. From round 22 on the repo also ships code/tasks/*.ps1 (mapped per round in code/tasks/manifest.json) which run on the machine inside local_check.ps1 section 4 as child processes: round 22 = read-only diagnostics for the Antigravity login, the Java install state and E: cleanup candidates.
+   OK   exists: 01a0a821.md (2016 B)
+   OK   exists: skills/git-sync/VERSION (6 B)
+   OK   exists: skills/git-sync/scripts/agent-install.sh (13404 B)
+   OK   exists: skills/git-sync/scripts/agent-handoff.sh (4603 B)
+   OK   exists: skills/git-sync/scripts/agent-handsfree.sh (3989 B)
+   OK   exists: skills/git-sync/scripts/agent-criteria.sh (5190 B)
+   OK   exists: skills/git-sync/scripts/watch.ps1 (84094 B)
+   OK   exists: skills/git-sync/templates/one-sentence.md (6524 B)
+   OK   exists: skills/git-sync/templates/gate.yml (1166 B)
+   OK   exists: code/check_all.sh (9945 B)
+   OK   exists: code/local_check.ps1 (30124 B)
+   OK   exists: code/make_link_proof.py (22948 B)
+   OK   exists: deliverable/OFFICE_HASHES.json (2401 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.docx (39743 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B)
+   OK   exists: watch.ps1 (84094 B)
+   OK   exists: code/tasks/manifest.json (452 B)
+   OK   exists: code/tasks/t1_antigravity_diag.ps1 (14461 B)
+   OK   exists: code/tasks/t2_java_diag.ps1 (8626 B)
+   OK   exists: code/tasks/t3_edrive_scan.ps1 (9393 B)
+   OK   absent: local/inbox
+   OK   absent: local/status_receipts
+   OK   absent: skills/docx_skill.py
+   OK   absent: local_bridge_skill.py
+   OK   contains skills/git-sync/VERSION <- 2.8.1
+   OK   contains 01a0a821.md <- arena/01a0a98d-git-pull-arena
+   OK   contains skills/git-sync/sync.config.json <- arena/01a0a9f0-git-pull-arena
+   OK   contains skills/git-sync/templates/one-sentence.md <- agent-handoff.sh
+   OK   contains skills/git-sync/scripts/agent-install.sh <- refusing to downgrade
+   OK   contains code/check_all.sh <- py -3
+   OK   contains code/local_check.ps1 <- no Office deliverable declared
+   OK   contains deliverable/OFFICE_HASHES.json <- arena/01a0a9f0-git-pull-arena
+   OK   contains watch.ps1 <- function Invoke-AutoPull
+   OK   contains skills/git-sync/scripts/watch.ps1 <- function Invoke-Focus
+   OK   contains code/tasks/manifest.json <- t3_edrive_scan.ps1
+   OK   regex watch.ps1
+   OK   regex code/local_check.ps1
+   OK   regex deliverable/OFFICE_HASHES.json
+   OK   size skills/git-sync/scripts/agent-handoff.sh: 4603 >= 2000
+   OK   size skills/git-sync/scripts/agent-install.sh: 13404 >= 10000
+   OK   size code/check_all.sh: 9945 >= 8000
+   OK   size code/local_check.ps1: 30124 >= 12000
+   OK   size code/make_link_proof.py: 22948 >= 8000
+   OK   size deliverable/OFFICE_HASHES.json: 2401 >= 500
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 >= 5000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 >= 15000
+   OK   size watch.ps1: 84094 >= 20000
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 <= 3000000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 <= 3000000
+== local checks passed
