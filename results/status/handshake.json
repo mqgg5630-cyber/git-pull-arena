@@ -1,9 +1,9 @@
 {
-    "round":  33,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 33: t16 uv cache final removal, fixed",
-    "arena_updated":  "2026-09-29 10:25:55",
-    "local_updated":  "2026-09-29 18:56:46"
+  "round": 34,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 34: t17 uv cache robocopy delete, t18 E: survey (read-only) - report lands in results/status/edrive_survey_r34.md",
+  "arena_updated": "2026-09-29 11:27:36",
+  "local_updated": null
 }
