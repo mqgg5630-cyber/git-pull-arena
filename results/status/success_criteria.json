@@ -37,7 +37,10 @@
     "code/tasks/t9_ligplus_upgrade.ps1",
     "code/tasks/t10_ligplus_final.ps1",
     "code/tasks/t11_javagui_fix.ps1",
-    "code/tasks/t12_ligplus_new.ps1"
+    "code/tasks/t12_ligplus_new.ps1",
+    "code/tasks/t13_docker_autofigure.ps1",
+    "code/tasks/t14_recyclebin_empty.ps1",
+    "code/tasks/t15_uvcache_final.ps1"
   ],
   "forbid_files": [
     "local/inbox",

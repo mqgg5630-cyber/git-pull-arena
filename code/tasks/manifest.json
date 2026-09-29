@@ -47,6 +47,11 @@
       "t11_javagui_fix.ps1",
       "t6_docker_report.ps1",
       "t8_uvcache_finish.ps1"
+    ],
+    "32": [
+      "t13_docker_autofigure.ps1",
+      "t14_recyclebin_empty.ps1",
+      "t15_uvcache_final.ps1"
     ]
   }
 }
