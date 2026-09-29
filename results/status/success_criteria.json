@@ -36,7 +36,8 @@
     "code/tasks/t8_uvcache_finish.ps1",
     "code/tasks/t9_ligplus_upgrade.ps1",
     "code/tasks/t10_ligplus_final.ps1",
-    "code/tasks/t11_javagui_fix.ps1"
+    "code/tasks/t11_javagui_fix.ps1",
+    "code/tasks/t12_ligplus_new.ps1"
   ],
   "forbid_files": [
     "local/inbox",
