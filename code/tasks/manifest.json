@@ -35,6 +35,9 @@
     "29": [
       "t10_ligplus_final.ps1",
       "t8_uvcache_finish.ps1"
+    ],
+    "30": [
+      "t11_javagui_fix.ps1"
     ]
   }
 }
