@@ -20,7 +20,11 @@
     "code/tasks/manifest.json",
     "code/tasks/t1_antigravity_diag.ps1",
     "code/tasks/t2_java_diag.ps1",
-    "code/tasks/t3_edrive_scan.ps1"
+    "code/tasks/t3_edrive_scan.ps1",
+    "code/tasks/t1_fix_antigravity.ps1",
+    "code/tasks/t3_edrive_scan2.ps1",
+    "code/tasks/t2_install_java.ps1",
+    "results/status/round22_findings.md"
   ],
   "forbid_files": [
     "local/inbox",
@@ -39,7 +43,9 @@
     "deliverable/OFFICE_HASHES.json": "arena/01a0a9f0-git-pull-arena",
     "watch.ps1": "function Invoke-AutoPull",
     "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus",
-    "code/tasks/manifest.json": "t3_edrive_scan.ps1"
+    "code/tasks/manifest.json": "t3_edrive_scan.ps1",
+    "code/tasks/t1_fix_antigravity.ps1": "http.proxy",
+    "code/tasks/t2_install_java.ps1": "E:\\java"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",

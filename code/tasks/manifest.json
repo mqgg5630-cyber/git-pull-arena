@@ -5,6 +5,11 @@
       "t1_antigravity_diag.ps1",
       "t2_java_diag.ps1",
       "t3_edrive_scan.ps1"
+    ],
+    "23": [
+      "t1_fix_antigravity.ps1",
+      "t3_edrive_scan2.ps1",
+      "t2_install_java.ps1"
     ]
   }
 }

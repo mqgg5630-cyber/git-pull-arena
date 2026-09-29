@@ -164,3 +164,9 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - `code/local_check.ps1` section 4 runs the CURRENT round's tasks on the local machine (child `powershell.exe`, stdout goes to the round receipt, non-zero exit fails the round).
 - Round 22 = three READ-ONLY diagnostics: `t1_antigravity_diag.ps1` (Antigravity login failure, account masked), `t2_java_diag.ps1` (why Java will not install), `t3_edrive_scan.ps1` (E: cleanup candidates, 600s capped walk, nothing deleted).
 - Cleanup / install actions only happen in later rounds, after the receipts are read and the user approves deletions.
+
+## Round 23 - fixes based on the round-22 receipts
+
+- `t1_fix_antigravity.ps1`: patched `%APPDATA%\Antigravity IDE\User\settings.json` (+ legacy dir) with `http.proxy` / `http.proxySupport` / `http.noProxy` (backup written next to it). Root cause from r22: the IDE's language server dials Google APIs directly, bypassing the working system proxy (127.0.0.1:10808) - all direct TCP 443 to Google fail. User must reopen Antigravity; if the LS still dials direct, enable TUN mode in the proxy client.
+- `t3_edrive_scan2.ps1`: finishes the E: scan (r22 covered 289.7 of 481.1 GB; this pass covers the remaining top-level folders + recycle bin).
+- `t2_install_java.ps1`: portable Temurin JDK 21 zip -> `E:\java\<jdk>` (TUNA mirror first, then Huawei, Microsoft, Adoptium API; direct/proxy fallbacks; zip validated; JAVA_HOME + User PATH set with backup; `java -version` verified). No admin, no installer, no UAC.
