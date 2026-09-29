@@ -1,9 +1,9 @@
 {
-    "round":  30,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 30: t11 java GUI self-test, fixed",
-    "arena_updated":  "2026-09-29 09:38:14",
-    "local_updated":  "2026-09-29 17:40:35"
+  "round": 31,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 31: t12 install+test the NEW LigPlus from Downloads and remove the old install, t11 java GUI self-test (fixed), t6 docker report, t8 uv retry",
+  "arena_updated": "2026-09-29 09:43:49",
+  "local_updated": null
 }
