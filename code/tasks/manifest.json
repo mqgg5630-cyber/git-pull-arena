@@ -1,0 +1,10 @@
+{
+  "note": "repo tasks: map a handshake round number to task scripts in code/tasks. They run on the local machine inside code/local_check.ps1 section 4 (child powershell.exe, stdout goes to the round receipt, non-zero exit fails the round). Older rounds' entries are kept for the audit trail but only the CURRENT round runs.",
+  "rounds": {
+    "22": [
+      "t1_antigravity_diag.ps1",
+      "t2_java_diag.ps1",
+      "t3_edrive_scan.ps1"
+    ]
+  }
+}

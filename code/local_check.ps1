@@ -438,7 +438,64 @@ foreach ($ct in $comTargets) {
     }
 }
 
-# 4. add your own checks here ...
+# 4. repo tasks - scripts in code\tasks\ that run ON THIS MACHINE when their
+#    round comes up. code\tasks\manifest.json maps round numbers to task
+#    scripts; only the CURRENT round's tasks run (the handshake file carries
+#    the round number). Each task runs as its own powershell.exe child so a
+#    crashing task cannot take this check down with it; the task's stdout
+#    lands in this round's receipt and a non-zero task exit fails the round.
+#    Task scripts follow the same rules as this file: ASCII-only, Write-Output.
+$taskRoot = '.\code\tasks'
+$taskManifest = Join-Path $taskRoot 'manifest.json'
+if (Test-Path -LiteralPath $taskManifest) {
+    $curRound = -1
+    try {
+        $hsTask = Get-Content -LiteralPath '.\results\status\handshake.json' -Raw -Encoding UTF8 | ConvertFrom-Json
+        $curRound = [int]$hsTask.round
+    } catch { $curRound = -1 }
+    try {
+        $tman = Get-Content -LiteralPath $taskManifest -Raw -Encoding UTF8 | ConvertFrom-Json
+        $ranAny = $false
+        foreach ($rProp in @($tman.rounds.PSObject.Properties)) {
+            $rNo = [int]$rProp.Name
+            if ($curRound -lt 0 -or $rNo -ne $curRound) { continue }
+            foreach ($tName in @($rProp.Value)) {
+                $ranAny = $true
+                $tPath = Join-Path $taskRoot ([string]$tName)
+                Write-Output ''
+                Write-Output ('== task r' + $rNo + ': ' + [string]$tName)
+                if (-not (Test-Path -LiteralPath $tPath)) {
+                    Write-Output ('   [FAIL] task script missing: ' + $tPath)
+                    $fail = 1
+                    continue
+                }
+                $tAbs = (Resolve-Path -LiteralPath $tPath).Path
+                $psExe = Join-Path $PSHOME 'powershell.exe'
+                $t0 = Get-Date
+                $tCode = 1
+                try {
+                    & $psExe -NoProfile -ExecutionPolicy Bypass -File $tAbs
+                    $tCode = $LASTEXITCODE
+                } catch {
+                    Write-Output ('   [FAIL] task launcher threw: ' + $_.Exception.Message)
+                    $tCode = 1
+                }
+                $tSec = [int]((Get-Date) - $t0).TotalSeconds
+                if ($tCode -eq 0) {
+                    Write-Output ('== task r' + $rNo + ' ' + [string]$tName + ' ok (' + $tSec + 's)')
+                } else {
+                    Write-Output ('   [FAIL] task exited ' + $tCode + ' (' + $tSec + 's)')
+                    $fail = 1
+                }
+            }
+        }
+        if (-not $ranAny) { Write-Output ('== tasks: none scheduled for round ' + $curRound) }
+    } catch {
+        Write-Output ('   [WARN] task manifest unreadable: ' + $_.Exception.Message)
+    }
+} else {
+    Write-Output '== tasks: no manifest at code\tasks\manifest.json - nothing to run'
+}
 
 
 #    2d. v2.7.0 hands-free helpers must be in watch.ps1 (on disk after sync;

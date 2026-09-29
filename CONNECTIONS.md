@@ -157,3 +157,10 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - 2026-09-15：**v2.5.1**（实测修复：`auth.ps1` 改为"先探测、只在必要时改"，并会 unset 误设的 `credentialStore`；新增 `-MigrateStore`；`watch.ps1` 的 `$var:` 盘符陷阱根治 + 注册环境预检（git/bash/powershell 路径入心跳）；`local_check.ps1` 禁止 gate 空转通过；gate 新增 `code/scan_ps_var_colon.py`）
 - 2026-09-15：**v2.5.0**（零弹窗值守 + 免点击推送：`auth.ps1`（gh/GCM-dpapi + 关闭提示的实跑验证）；`watch.ps1` 默认 GUI 子系统启动器（CreateNoWindow，无管理员、不碰 VBScript）+ 注册自检 + `-Status`/`-Test` + 心跳/日志落 `%LOCALAPPDATA%\git-sync\`+ 检查硬超时；`push.ps1` 默认静默、认证失败 exit 4；gate 增加"每个 .ps1 可解析"；多会话协作搁置）
 - 2026-09-15：v2.4.7（实测吸收：S4U 注册/切换需管理员控制台 0x80070005；检查日志加 `elapsed:` 行 + 空输出显式标记——w1 的 check_cmd 链空转、轮轮假通过的教训）；356/3d5 旧分支已由 3f1 清理
+
+## Round 22+ - repo tasks (code/tasks, run by the local machine)
+
+- `code/tasks/manifest.json` maps a handshake round number to task scripts in `code/tasks/`.
+- `code/local_check.ps1` section 4 runs the CURRENT round's tasks on the local machine (child `powershell.exe`, stdout goes to the round receipt, non-zero exit fails the round).
+- Round 22 = three READ-ONLY diagnostics: `t1_antigravity_diag.ps1` (Antigravity login failure, account masked), `t2_java_diag.ps1` (why Java will not install), `t3_edrive_scan.ps1` (E: cleanup candidates, 600s capped walk, nothing deleted).
+- Cleanup / install actions only happen in later rounds, after the receipts are read and the user approves deletions.
