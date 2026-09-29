@@ -1,9 +1,9 @@
 {
-  "round": 28,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-09-29 09:29:35",
-  "local_updated": "2026-09-29 17:29:07"
+  "round": 29,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 29: t10 LigPlus close-out (hashes, expiry proof, remove expired copy, HelloSwing self-test), t8 uv retry",
+  "arena_updated": "2026-09-29 09:33:03",
+  "local_updated": null
 }
