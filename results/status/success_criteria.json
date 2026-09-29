@@ -29,7 +29,11 @@
     "code/tasks/t1_antigravity_verify.ps1",
     "code/tasks/t2_cleanup_exec.ps1",
     "results/status/round22_findings.md",
-    "code/tasks/t5_cleanup_fix.ps1"
+    "code/tasks/t5_cleanup_fix.ps1",
+    "code/tasks/t7_ligplus_test.ps1",
+    "code/tasks/t1_antigravity_tun2.ps1",
+    "code/tasks/t6_docker_report.ps1",
+    "code/tasks/t8_uvcache_finish.ps1"
   ],
   "forbid_files": [
     "local/inbox",

@@ -21,6 +21,12 @@
     ],
     "26": [
       "t5_cleanup_fix.ps1"
+    ],
+    "27": [
+      "t7_ligplus_test.ps1",
+      "t1_antigravity_tun2.ps1",
+      "t6_docker_report.ps1",
+      "t8_uvcache_finish.ps1"
     ]
   }
 }
