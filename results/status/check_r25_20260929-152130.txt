@@ -1,0 +1,180 @@
+check round 25 on LAPTOP-R77M5D6M - failed (exit 1)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 1871s
+TIMEOUT: killed after 30 min
+
+OK: all .ps1 files are ASCII-only
+OK: sync.config.json branch=arena/01a0a9f0-git-pull-arena
+OK: sync.config.json branch matches HEAD (arena/01a0a9f0-git-pull-arena)
+OK: root scripts identical to skills/git-sync/scripts
+OK: no drive-style variable typos ($var:)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+OK: every .ps1 parses
+   (gate ran via E:\hermes\git\bin\bash.exe [git])
+== accept 2a: silent push PROVEN (ls-remote + push --dry-run, prompts disabled)
+== accept 2b (fallback): one LONG-LIVED loop process - one brief flash per logon,
+   not per poll. For zero flash: admin PowerShell -> .\watch.ps1 -Unregister ;
+   .\watch.ps1 -Register -Headless   (or fix the launcher, see watch-*.log)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+== check_loop_summary PASSED
+== accept 2c: watcher closing lines verified (every exit path has its summary)
+== deliverables: 2 Office file(s) declared in deliverable/OFFICE_HASHES.json
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.docx (39743 B, docx)
+   OK   3b all 6 required parts present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.docx (17 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B, pptx)
+   OK   3b all 9 required parts present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.pptx (52 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3g slides in deliverable/LINK_PROOF_v2.8.1.pptx : 8 >= 8
+   OK   3h Word.Application opened read-only, name=LINK_PROOF_v2.8.1.docx : deliverable\LINK_PROOF_v2.8.1.docx
+   OK   3h PowerPoint.Application opened read-only, slides=8 : deliverable\LINK_PROOF_v2.8.1.pptx
+== task r25: t1_antigravity_verify.ps1
+--- task t1 (verify): Antigravity state after the retry ---
+   C:\Users\文少\AppData\Roaming\Antigravity IDE\User\settings.json : http.proxy present = True
+   C:\Users\文少\AppData\Roaming\Antigravity\User\settings.json : http.proxy present = True
+--- connectivity now (direct vs proxy, 4s each) ---
+   direct tcp443 accounts.google.com      = FAIL (still blocked - Tun mode not on)
+   direct tcp443 oauth2.googleapis.com    = FAIL (still blocked - Tun mode not on)
+   direct tcp443 www.google.com           = FAIL (still blocked - Tun mode not on)
+   proxy client running: v2rayN(4852) xray(159944)
+--- auth.log, newest 3 sessions of Antigravity IDE ---
+   session 20260929T145434 (last write 2026-09-29 14:54)
+      2026-09-29 14:55:45.184 [info] [Auth] Localhost server stopped
+      2026-09-29 14:55:45.185 [info] [Auth] Localhost server listening on port 50844
+      2026-09-29 14:55:45.205 [info] [Auth] Login URL:  https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcclog%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fexperimentsandconfigs&[REDACTED]&prompt=consent&response_type=code&[REDACTED].apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A50844%2Foauth-callback
+      2026-09-29 14:55:46.833 [info] [Auth] Localhost server stopped
+      2026-09-29 14:55:46.834 [info] [Auth] Localhost server listening on port 50845
+      2026-09-29 14:55:46.860 [info] [Auth] Login URL:  https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcclog%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fexperimentsandconfigs&[REDACTED]&prompt=consent&response_type=code&[REDACTED].apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A50845%2Foauth-callback
+      2026-09-29 14:55:49.477 [info] [Auth] Localhost server stopped
+      2026-09-29 14:55:49.479 [info] [Auth] Localhost server listening on port 51920
+      2026-09-29 14:55:49.588 [info] [Auth] Localhost server stopped
+      2026-09-29 14:55:49.590 [info] [Auth] Localhost server listening on port 51921
+      2026-09-29 14:55:49.607 [info] [Auth] Login URL:  https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcclog%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fexperimentsandconfigs&[REDACTED]&prompt=consent&response_type=code&[REDACTED].apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A51920%2Foauth-callback
+      2026-09-29 14:55:49.624 [info] [Auth] Login URL:  https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcclog%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fexperimentsandconfigs&[REDACTED]&prompt=consent&response_type=code&[REDACTED].apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A51921%2Foauth-callback
+      2026-09-29 14:55:50.453 [info] [Auth] Localhost server stopped
+      2026-09-29 14:55:50.455 [info] [Auth] Localhost server listening on port 55706
+      2026-09-29 14:55:50.481 [info] [Auth] Login URL:  https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcclog%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fexperimentsandconfigs&[REDACTED]&prompt=consent&response_type=code&[REDACTED].apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A55706%2Foauth-callback
+      2026-09-29 14:55:50.828 [info] [Auth] Localhost server stopped
+      2026-09-29 14:55:50.830 [info] [Auth] Localhost server listening on port 58902
+      2026-09-29 14:55:51.434 [info] [Auth] Login URL:  https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcclog%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fexperimentsandconfigs&[REDACTED]&prompt=consent&response_type=code&[REDACTED].apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A58902%2Foauth-callback
+      2026-09-29 14:55:53.310 [info] [Auth] Localhost server stopped
+      2026-09-29 14:55:53.311 [info] [Auth] Localhost server listening on port 50462
+      2026-09-29 14:55:53.338 [info] [Auth] Login URL:  https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcclog%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fexperimentsandconfigs&[REDACTED]&prompt=consent&response_type=code&[REDACTED].apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A50462%2Foauth-callback
+      2026-09-29 14:55:53.505 [info] [Auth] Localhost server stopped
+      2026-09-29 14:55:53.506 [info] [Auth] Localhost server listening on port 50465
+      2026-09-29 14:55:53.611 [info] [Auth] Login URL:  https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcclog%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fexperimentsandconfigs&[REDACTED]&prompt=consent&response_type=code&[REDACTED].apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A50465%2Foauth-callback
+      2026-09-29 14:55:53.688 [info] [Auth] Localhost server stopped
+      2026-09-29 14:55:53.690 [info] [Auth] Localhost server listening on port 50466
+      2026-09-29 14:55:53.712 [info] [Auth] Login URL:  https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcclog%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fexperimentsandconfigs&[REDACTED]&prompt=consent&response_type=code&[REDACTED].apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A50466%2Foauth-callback
+      2026-09-29 14:55:53.795 [info] [Auth] Localhost server stopped
+      2026-09-29 14:55:53.796 [info] [Auth] Localhost server listening on port 50469
+      2026-09-29 14:55:53.818 [info] [Auth] Login URL:  https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcclog%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fexperimentsandconfigs&[REDACTED]&prompt=consent&response_type=code&[REDACTED].apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A50469%2Foauth-callback
+   session 20260929T145207 (last write 2026-09-29 14:52)
+      2026-09-29 14:52:07.995 [info] [Auth] Auth state changed to: uninitialized
+      2026-09-29 14:52:08.542 [info] [Auth] Auth state changed to: validatingLogin
+      2026-09-29 14:52:08.542 [info] [Auth] Auth state changed to: validatingLogin
+      2026-09-29 14:53:23.978 [error] Error confirming user for service: request to https://oauth2.googleapis.com/token failed, reason: connect ETIMEDOUT 108.177.125.95:443
+      2026-09-29 14:53:23.982 [info] [Auth] Auth state changed to: loginError
+      2026-09-29 14:53:23.987 [error] [Auth] Error refreshing user status: request to https://oauth2.googleapis.com/token failed, reason: connect ETIMEDOUT 108.177.125.95:443
+      2026-09-29 14:53:23.988 [info] [Auth] Auth state changed to: loginError
+      2026-09-29 14:53:23.988 [info] [Auth] AntigravityAuthMainService initialized
+   session 20260929T102401 (last write 2026-09-29 10:24)
+      2026-09-29 10:24:02.414 [info] [Auth] Auth state changed to: uninitialized
+      2026-09-29 10:24:03.224 [info] [Auth] Auth state changed to: validatingLogin
+      2026-09-29 10:24:03.225 [info] [Auth] Auth state changed to: validatingLogin
+      2026-09-29 10:25:18.935 [error] Error confirming user for service: request to https://oauth2.googleapis.com/token failed, reason: connect ETIMEDOUT 108.177.125.95:443
+      2026-09-29 10:25:18.938 [info] [Auth] Auth state changed to: loginError
+      2026-09-29 10:25:18.943 [error] [Auth] Error refreshing user status: request to https://oauth2.googleapis.com/token failed, reason: connect ETIMEDOUT 108.177.125.95:443
+      2026-09-29 10:25:18.944 [info] [Auth] Auth state changed to: loginError
+      2026-09-29 10:25:18.944 [info] [Auth] AntigravityAuthMainService initialized
+--- decision rule ---
+   if direct tcp443 to google = OK now: reopen Antigravity and sign in - it should work
+   if still FAIL: enable Tun mode in v2rayN (needs admin once), then reopen Antigravity
+== task r25 t1_antigravity_verify.ps1 ok (15s)
+== task r25: t2_cleanup_exec.ps1
+--- task t2 (cleanup): executing the approved cleanup ---
+E: free BEFORE: 233.98 GB
+--- step 1: empty the E: recycle bin ---
+   [WARN] Clear-RecycleBin: ???????????
+   E: free now: 233.98 GB (freed 0 GB)
+--- step 2: leftover installers -> RECYCLE BIN (recoverable) ---
+   total moved to recycle bin: 0 B (still on disk until you empty the bin)
+   E: free now: 233.98 GB
+--- step 3: conda clean --all -y ---
+   Will remove 224 (797.1 MB) tarball(s).
+   Will remove 2 index cache(s).
+   Will remove 21 (127.7 MB) package(s).
+   There are no tempfile(s) to remove.
+   There are no logfile(s) to remove.
+   OK: conda clean finished
+   E: free now: 235.53 GB (this step freed 1.55 GB)
+--- step 4: npm caches (configured one + the old E:\npm-cache) ---
+   node.exe : npm warn using --force Recommended protections disabled.
+   ???? E:\hermes\node\npm.ps1:30 ??: 3
+   +   & $NODE_EXE $NPM_CLI_JS $args
+   +   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       + CategoryInfo          : NotSpecified: (npm warn using ...tions disabled.:String) [], RemoteException
+   OK: npm cache clean finished (configured cache dir)
+   OK: old cache E:\npm-cache deleted (1.47 GB, cache only)
+--- step 4b: E:\.cache contents (generic cache dir) ---
+   OK: E:\.cache emptied
+--- step 4c: big installers in E:\Downloads -> recycle bin ---
+   E:\Downloads installers >=200MB moved to bin: 0 B
+   E: free now: 240.38 GB
+--- step 5: uv cache ---
+   [WARN] uv cache clean TIMEOUT
+--- stderr ---
+方法调用失败，因为 [System.Object[]] 不包含名为“op_Addition”的方法。
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t2_cleanup_exec.ps1:99 字符: 5
++     $binBytes += Send-FileToBin (Join-Path $d 'BIOVIA_DS2025Client (1 ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (op_Addition:String) []，RuntimeException
+    + FullyQualifiedErrorId : MethodNotFound
+方法调用失败，因为 [System.Object[]] 不包含名为“op_Addition”的方法。
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t2_cleanup_exec.ps1:100 字符: 5
++     $binBytes += Send-FileToBin (Join-Path $d 'RStudio-2025.09.2-418. ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (op_Addition:String) []，RuntimeException
+    + FullyQualifiedErrorId : MethodNotFound
+方法调用失败，因为 [System.Object[]] 不包含名为“op_Addition”的方法。
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t2_cleanup_exec.ps1:101 字符: 5
++     $binBytes += Send-DirToBin (Join-Path $d 'WSA_2407.40000.4.0_x64_ ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (op_Addition:String) []，RuntimeException
+    + FullyQualifiedErrorId : MethodNotFound
+方法调用失败，因为 [System.Object[]] 不包含名为“op_Addition”的方法。
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t2_cleanup_exec.ps1:103 字符: 1
++ $binBytes += Send-FileToBin 'E:\Program Files\Docker Desktop Installe ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (op_Addition:String) []，RuntimeException
+    + FullyQualifiedErrorId : MethodNotFound
+方法调用失败，因为 [System.Object[]] 不包含名为“op_Addition”的方法。
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t2_cleanup_exec.ps1:104 字符: 1
++ $binBytes += Send-FileToBin 'E:\QQ\versions\9.9.26-44725-9.9.35-52892 ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (op_Addition:String) []，RuntimeException
+    + FullyQualifiedErrorId : MethodNotFound
+方法调用失败，因为 [System.Object[]] 不包含名为“op_Addition”的方法。
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t2_cleanup_exec.ps1:105 字符: 1
++ $binBytes += Send-FileToBin 'E:\xunlei\Origin2024\Setup\data2.cab'
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (op_Addition:String) []，RuntimeException
+    + FullyQualifiedErrorId : MethodNotFound
+方法调用失败，因为 [System.Object[]] 不包含名为“op_Addition”的方法。
+所在位置 E:\0github\git-sync\git-pull-arena-01a0a9f0\code\tasks\t2_cleanup_exec.ps1:106 字符: 1
++ $binBytes += Send-DirToBin 'E:\Program Files (x86)\WeGameInstaller'
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (op_Addition:String) []，RuntimeException
+    + FullyQualifiedErrorId : MethodNotFound
