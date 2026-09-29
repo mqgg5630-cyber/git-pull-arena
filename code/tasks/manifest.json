@@ -31,6 +31,10 @@
     "28": [
       "t9_ligplus_upgrade.ps1",
       "t8_uvcache_finish.ps1"
+    ],
+    "29": [
+      "t10_ligplus_final.ps1",
+      "t8_uvcache_finish.ps1"
     ]
   }
 }
