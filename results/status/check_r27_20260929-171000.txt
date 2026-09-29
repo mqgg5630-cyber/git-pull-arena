@@ -1,0 +1,224 @@
+check round 27 on LAPTOP-R77M5D6M - passed (exit 0)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 199s
+
+OK: all .ps1 files are ASCII-only
+OK: sync.config.json branch=arena/01a0a9f0-git-pull-arena
+OK: sync.config.json branch matches HEAD (arena/01a0a9f0-git-pull-arena)
+OK: root scripts identical to skills/git-sync/scripts
+OK: no drive-style variable typos ($var:)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+OK: every .ps1 parses
+   (gate ran via E:\hermes\git\bin\bash.exe [git])
+== accept 2a: silent push PROVEN (ls-remote + push --dry-run, prompts disabled)
+== accept 2b (fallback): one LONG-LIVED loop process - one brief flash per logon,
+   not per poll. For zero flash: admin PowerShell -> .\watch.ps1 -Unregister ;
+   .\watch.ps1 -Register -Headless   (or fix the launcher, see watch-*.log)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+== check_loop_summary PASSED
+== accept 2c: watcher closing lines verified (every exit path has its summary)
+== deliverables: 2 Office file(s) declared in deliverable/OFFICE_HASHES.json
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.docx (39743 B, docx)
+   OK   3b all 6 required parts present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.docx (17 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B, pptx)
+   OK   3b all 9 required parts present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.pptx (52 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3g slides in deliverable/LINK_PROOF_v2.8.1.pptx : 8 >= 8
+   OK   3h Word.Application opened read-only, name=LINK_PROOF_v2.8.1.docx : deliverable\LINK_PROOF_v2.8.1.docx
+   OK   3h PowerPoint.Application opened read-only, slides=8 : deliverable\LINK_PROOF_v2.8.1.pptx
+== task r27: t7_ligplus_test.ps1
+--- task t7: LigPlus.jar launch test ---
+   jar: NOT found on any desktop (searched *.jar matching ligplus/ligplot, depth 3)
+   desktop roots searched:
+      D:\??
+      C:\Users\??\Desktop
+   jar: E:\1result\LigPlus.jar (1030898 B, 2025-04-09 14:26)
+   java: E:\java\jdk-21.0.12.1+1\bin\java.exe
+   launching: java -jar "E:\1result\LigPlus.jar" (cwd = jar folder) ...
+   [FAIL] process EXITED after ~6s (exit code )
+   java processes now: (none)
+   out: LigPlus version v.2.2.9    Date: 13 Sep 2024
+   out: Selected font: Times New Roman
+   out: 1. Found library directory at E:\1result\lib
+   out: ... Reading E:\1result\lib\params/os.txt
+   out: OS Windows 11
+   out: Platform null
+   out: Version 10.0
+   out: Arch amd64
+   out: In getExePath, with OS [Windows]
+   out: In is32Bit() with architecture = amd64
+== LigPlus.jar OPENS OK with E:\java\jdk-21.0.12.1+1\bin\java.exe
+== task r27 t7_ligplus_test.ps1 ok (11s)
+== task r27: t1_antigravity_tun2.ps1
+--- task t1 (tun2): Antigravity proxy env fix + Tun diagnosis ---
+--- Tun diagnosis ---
+   adapter: Teredo Tunneling Pseudo-Interface |  | status=Not Present | ifIndex=18
+   adapter: ???? 2 | TAP-Windows Adapter V9 | status=Disconnected | ifIndex=14
+   route 0.0.0.0/0 -> ifIndex 19 metric 0 (WLAN)
+   service: Intel(R) Capability Licensing Service TCP IP Interface = Stopped
+   direct tcp443 oauth2.googleapis.com NOW = FAIL (Tun is NOT routing, as suspected)
+--- set user-level proxy env vars (Node/auth services honour these) ---
+   proxy: http://127.0.0.1:10808
+   HTTP_PROXY (User) = http://127.0.0.1:10808
+   HTTPS_PROXY (User) = http://127.0.0.1:10808
+   ALL_PROXY (User) = http://127.0.0.1:10808
+   NO_PROXY (User) = localhost,127.0.0.1,::1
+   NOTE: applies to apps started AFTER now (new processes). Undo with:
+     [Environment]::SetEnvironmentVariable("HTTP_PROXY",$null,"User")   (repeat for the others)
+--- Antigravity relaunch with proxy env ---
+   launching: C:\Users\??\AppData\Local\Programs\Antigravity\Antigravity.exe
+   launched - waiting 90s for the auth flow to settle ...
+   processes now: Antigravity(164876) Antigravity(175044) Antigravity(175684)
+--- newest auth.log (after this round) ---
+   session 20260929T171207 (last write 2026-09-29 17:12)
+      2026-09-29 17:12:07.801 [info] [Auth] Auth state changed to: uninitialized
+      2026-09-29 17:12:08.133 [info] [Auth] Auth state changed to: validatingLogin
+      2026-09-29 17:12:08.134 [info] [Auth] Auth state changed to: validatingLogin
+      2026-09-29 17:12:32.265 [info] OAuth token changed, executing antigravity.handleAuthRefresh
+      2026-09-29 17:12:35.274 [info] [Auth] Auth state changed to: success
+      2026-09-29 17:12:35.275 [info] [Auth] Auth state changed to: signedIn
+      2026-09-29 17:12:35.276 [info] [Auth] Auth state changed to: signedIn
+      2026-09-29 17:12:35.276 [info] [Auth] AntigravityAuthMainService initialized
+      2026-09-29 17:12:35.295 [info] OAuth token changed, executing antigravity.handleAuthRefresh
+   session 20260929T165925 (last write 2026-09-29 16:59)
+      2026-09-29 16:59:25.697 [info] [Auth] Auth state changed to: uninitialized
+      2026-09-29 16:59:25.834 [info] [Auth] Auth state changed to: validatingLogin
+      2026-09-29 16:59:25.835 [info] [Auth] Auth state changed to: validatingLogin
+      2026-09-29 17:00:30.226 [error] Error confirming user for service: request to https://oauth2.googleapis.com/token failed, reason: connect ETIMEDOUT 108.177.97.95:443
+      2026-09-29 17:00:30.227 [info] [Auth] Auth state changed to: loginError
+      2026-09-29 17:00:30.233 [error] [Auth] Error refreshing user status: request to https://oauth2.googleapis.com/token failed, reason: connect ETIMEDOUT 108.177.97.95:443
+      2026-09-29 17:00:30.233 [info] [Auth] Auth state changed to: loginError
+      2026-09-29 17:00:30.234 [info] [Auth] AntigravityAuthMainService initialized
+--- verdict rule ---
+   SUCCESS = auth.log shows no ETIMEDOUT and state reaches signedIn/validatingLogin->ok
+   if ETIMEDOUT is still there, the machine must route via Tun properly (v2rayN service mode)
+== task r27 t1_antigravity_tun2.ps1 ok (132s)
+== task r27: t6_docker_report.ps1
+--- task t6: Docker report (READ-ONLY, nothing pruned) ---
+--- E:\Docker folder ---
+   dir        3.0 KB  Config
+   dir       3.30 GB  DockerDesktop
+   dir          18 B  TestData
+   dir           0 B  WindowsContainers
+   dir           0 B  WSL
+   dir      24.13 GB  WSLData
+   docker CLI: E:\Docker\DockerDesktop\resources\bin\docker.exe
+--- docker system df ---
+   E:\Docker\DockerDesktop\resources\bin\docker.exe : failed to connect to the docker API at npipe:////./pipe/dockerDeskto
+   pLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The sy
+   stem cannot find the file specified.
+       + CategoryInfo          : NotSpecified: (failed to conne...file specified.:String) [], RemoteException
+       + FullyQualifiedErrorId : NativeCommandError
+--- docker images (top 15) ---
+   E:\Docker\DockerDesktop\resources\bin\docker.exe : failed to connect to the docker API at npipe:////./pipe/dockerDeskto
+   pLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The sy
+   stem cannot find the file specified.
+       + CategoryInfo          : NotSpecified: (failed to conne...file specified.:String) [], RemoteException
+       + FullyQualifiedErrorId : NativeCommandError
+--- docker ps -a (top 10) ---
+   E:\Docker\DockerDesktop\resources\bin\docker.exe : failed to connect to the docker API at npipe:////./pipe/dockerDeskto
+   pLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The sy
+   stem cannot find the file specified.
+       + CategoryInfo          : NotSpecified: (failed to conne...file specified.:String) [], RemoteException
+       + FullyQualifiedErrorId : NativeCommandError
+--- docker volumes ---
+   volumes: 5
+   E:\Docker\DockerDesktop\resources\bin\docker.exe : failed to connect to the docker API at npipe:////./pipe/dockerDeskto
+   pLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The sy
+   stem cannot find the file specified.
+       + CategoryInfo          : NotSpecified: (failed to conne...file specified.:String) [], RemoteException
+       + FullyQualifiedErrorId : NativeCommandError
+--- what cleaning would do (for your decision) ---
+   docker system prune            : removes STOPPED containers + UNUSED images + build cache
+                                     (RUNNING containers and their images are kept; volumes are KEPT)
+   docker system prune -a         : ALSO removes every image not used by a RUNNING container
+                                     (your data in volumes survives, but images re-download on next use)
+   docker system prune --volumes  : ALSO removes UNUSED volumes = DATA LOSS - do not run blindly
+   nothing was pruned by this task
+== task r27 t6_docker_report.ps1 ok (22s)
+== task r27: t8_uvcache_finish.ps1
+--- task t8: uv cache finish ---
+   SKIP: uv processes are running (uv(153532) uv(166696) uv(167472) uv(172528) uv(173096) uv(174028)) - not deleting an in-use cache.
+   close your MCP tools and the agent will retry in a later round
+== task r27 t8_uvcache_finish.ps1 ok (2s)
+== accept 2d: hands-free auto_pull/auto_push present in watch.ps1
+== success criteria: results/status/success_criteria.json
+   v2.8.1 on arena/01a0a9f0-git-pull-arena: the newest skill (source branch arena/01a0a98d-git-pull-arena, installer refuses to downgrade) plus the repo gate (code/check_all.sh, which now proves each python candidate python3 / python / py -3) and the real-machine check (code/local_check.ps1, sections 3a-3h). The deliverables LINK_PROOF_v2.8.1.docx / .pptx travel through git and are judged by the Windows watcher: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide count and a real Word/PowerPoint open. 'Local' means that machine's scheduled watcher - never a sandbox folder, never a hand-made stand-in skill. From round 22 on the repo also ships code/tasks/*.ps1 (mapped per round in code/tasks/manifest.json) which run on the machine inside local_check.ps1 section 4 as child processes: round 22 = read-only diagnostics for the Antigravity login, the Java install state and E: cleanup candidates.
+   OK   exists: 01a0a821.md (2016 B)
+   OK   exists: skills/git-sync/VERSION (6 B)
+   OK   exists: skills/git-sync/scripts/agent-install.sh (13404 B)
+   OK   exists: skills/git-sync/scripts/agent-handoff.sh (4603 B)
+   OK   exists: skills/git-sync/scripts/agent-handsfree.sh (3989 B)
+   OK   exists: skills/git-sync/scripts/agent-criteria.sh (5190 B)
+   OK   exists: skills/git-sync/scripts/watch.ps1 (84094 B)
+   OK   exists: skills/git-sync/templates/one-sentence.md (6524 B)
+   OK   exists: skills/git-sync/templates/gate.yml (1166 B)
+   OK   exists: code/check_all.sh (9945 B)
+   OK   exists: code/local_check.ps1 (30124 B)
+   OK   exists: code/make_link_proof.py (22948 B)
+   OK   exists: deliverable/OFFICE_HASHES.json (2401 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.docx (39743 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B)
+   OK   exists: watch.ps1 (84094 B)
+   OK   exists: code/tasks/manifest.json (906 B)
+   OK   exists: code/tasks/t1_antigravity_diag.ps1 (14461 B)
+   OK   exists: code/tasks/t2_java_diag.ps1 (8626 B)
+   OK   exists: code/tasks/t3_edrive_scan.ps1 (9393 B)
+   OK   exists: code/tasks/t1_fix_antigravity.ps1 (10411 B)
+   OK   exists: code/tasks/t3_edrive_scan2.ps1 (9007 B)
+   OK   exists: code/tasks/t2_install_java.ps1 (14030 B)
+   OK   exists: code/tasks/t3_edrive_scan3.ps1 (7084 B)
+   OK   exists: code/tasks/t4_cleanup_dryrun.ps1 (5995 B)
+   OK   exists: code/tasks/t1_antigravity_verify.ps1 (3793 B)
+   OK   exists: code/tasks/t2_cleanup_exec.ps1 (12624 B)
+   OK   exists: results/status/round22_findings.md (3511 B)
+   OK   exists: code/tasks/t5_cleanup_fix.ps1 (7475 B)
+   OK   exists: code/tasks/t7_ligplus_test.ps1 (6214 B)
+   OK   exists: code/tasks/t1_antigravity_tun2.ps1 (7694 B)
+   OK   exists: code/tasks/t6_docker_report.ps1 (5648 B)
+   OK   exists: code/tasks/t8_uvcache_finish.ps1 (2719 B)
+   OK   absent: local/inbox
+   OK   absent: local/status_receipts
+   OK   absent: skills/docx_skill.py
+   OK   absent: local_bridge_skill.py
+   OK   contains skills/git-sync/VERSION <- 2.8.1
+   OK   contains 01a0a821.md <- arena/01a0a98d-git-pull-arena
+   OK   contains skills/git-sync/sync.config.json <- arena/01a0a9f0-git-pull-arena
+   OK   contains skills/git-sync/templates/one-sentence.md <- agent-handoff.sh
+   OK   contains skills/git-sync/scripts/agent-install.sh <- refusing to downgrade
+   OK   contains code/check_all.sh <- py -3
+   OK   contains code/local_check.ps1 <- no Office deliverable declared
+   OK   contains deliverable/OFFICE_HASHES.json <- arena/01a0a9f0-git-pull-arena
+   OK   contains watch.ps1 <- function Invoke-AutoPull
+   OK   contains skills/git-sync/scripts/watch.ps1 <- function Invoke-Focus
+   OK   contains code/tasks/manifest.json <- t3_edrive_scan.ps1
+   OK   contains code/tasks/t1_fix_antigravity.ps1 <- http.proxy
+   OK   contains code/tasks/t2_install_java.ps1 <- E:\java
+   OK   regex watch.ps1
+   OK   regex code/local_check.ps1
+   OK   regex deliverable/OFFICE_HASHES.json
+   OK   size skills/git-sync/scripts/agent-handoff.sh: 4603 >= 2000
+   OK   size skills/git-sync/scripts/agent-install.sh: 13404 >= 10000
+   OK   size code/check_all.sh: 9945 >= 8000
+   OK   size code/local_check.ps1: 30124 >= 12000
+   OK   size code/make_link_proof.py: 22948 >= 8000
+   OK   size deliverable/OFFICE_HASHES.json: 2401 >= 500
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 >= 5000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 >= 15000
+   OK   size watch.ps1: 84094 >= 20000
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 <= 3000000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 <= 3000000
+== local checks passed
