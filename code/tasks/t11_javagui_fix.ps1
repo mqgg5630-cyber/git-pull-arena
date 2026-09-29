@@ -28,16 +28,21 @@ if (-not (Test-Path -LiteralPath (Join-Path $selfDir 'HelloSwing.java'))) {
     exit 2
 }
 
-# rebuild class + jar with RELATIVE names (cwd = selfDir)
-$null = & $javacExe 'HelloSwing.java' 2>&1
-if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath (Join-Path $selfDir 'HelloSwing.class'))) { Write-Output '   [FAIL] javac'; exit 2 }
-Write-Output '   javac OK'
-$null = & $jarExe '--create' '--file' 'HelloSwing.jar' '-e' 'HelloSwing' 'HelloSwing.class' 2>&1
-if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath (Join-Path $selfDir 'HelloSwing.jar'))) { Write-Output '   [FAIL] jar'; exit 2 }
-Write-Output '   jar rebuilt with a relative entry name'
-# prove the entry name is right
-$listing = (& $jarExe '--list' '--file' 'HelloSwing.jar' 2>&1 | Out-String)
-foreach ($l in @($listing -split "`r?`n" | Where-Object { $_ -match '\S' })) { Write-Output ('   entry: ' + (San ([string]$l))) }
+# rebuild class + jar with RELATIVE names (cwd = selfDir; the task process
+# starts in the repo root, so switch location first)
+Push-Location $selfDir
+try {
+    $null = & $javacExe 'HelloSwing.java' 2>&1
+    if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath 'HelloSwing.class')) { Write-Output '   [FAIL] javac'; exit 2 }
+    Write-Output '   javac OK'
+    $null = & $jarExe '--create' '--file' 'HelloSwing.jar' '-e' 'HelloSwing' 'HelloSwing.class' 2>&1
+    if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath 'HelloSwing.jar')) { Write-Output '   [FAIL] jar'; exit 2 }
+    Write-Output '   jar rebuilt with a relative entry name'
+    $listing = (& $jarExe '--list' '--file' 'HelloSwing.jar' 2>&1 | Out-String)
+    foreach ($l in @($listing -split "`r?`n" | Where-Object { $_ -match '\S' })) { Write-Output ('   entry: ' + (San ([string]$l))) }
+} finally {
+    Pop-Location
+}
 
 # run with output capture
 $outF = [System.IO.Path]::GetTempFileName()
