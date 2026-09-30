@@ -208,6 +208,9 @@
     ],
     "80": [
       "t66_diag_rebuild.ps1"
+    ],
+    "81": [
+      "t67_probe_ai_state.ps1"
     ]
   }
 }

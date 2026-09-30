@@ -103,7 +103,8 @@
     "code/tasks/t63_final_rebuild.ps1",
     "code/tasks/t64_poll_rebuild.ps1",
     "code/tasks/t65_relaunch_worker.ps1",
-    "code/tasks/t66_diag_rebuild.ps1"
+    "code/tasks/t66_diag_rebuild.ps1",
+    "code/tasks/t67_probe_ai_state.ps1"
   ],
   "forbid_files": [
     "local/inbox",
