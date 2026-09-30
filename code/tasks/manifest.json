@@ -130,6 +130,9 @@
     ],
     "54": [
       "t44_r_final_check.ps1"
+    ],
+    "55": [
+      "t45_r_versions_cleanup.ps1"
     ]
   }
 }
