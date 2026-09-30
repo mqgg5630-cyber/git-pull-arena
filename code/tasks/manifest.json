@@ -217,6 +217,9 @@
     ],
     "83": [
       "t64_poll_rebuild.ps1"
+    ],
+    "84": [
+      "t64_poll_rebuild.ps1"
     ]
   }
 }

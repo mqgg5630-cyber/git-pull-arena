@@ -36,7 +36,7 @@ if (Test-Path -LiteralPath $doneMarker) {
     $outDir = Join-Path $repoRoot 'results\fig1_rebuild\out'
     New-Item -ItemType Directory -Force -Path $outDir | Out-Null
     $copied = @()
-    foreach ($n in @($job.Name + '.ai', $job.Name + '.png', $job.Name + '.svg', 'text-manifest.json')) {
+    foreach ($n in @(($job.Name + '.ai'), ($job.Name + '.png'), ($job.Name + '.svg'), 'text-manifest.json')) {
         $p = Join-Path $jobRoot $n
         if (Test-Path -LiteralPath $p) {
             Copy-Item -LiteralPath $p -Destination (Join-Path $outDir $n) -Force
