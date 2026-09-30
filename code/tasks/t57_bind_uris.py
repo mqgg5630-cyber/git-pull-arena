@@ -119,7 +119,6 @@ if bound < total:
 
 parts2 = dict(parts)
 parts2['word/document.xml'] = new_xml.encode('utf-8')
-buf = zipfile.ZipFile(str(TEMP_OUT) if False else None)  # placeholder
 import io
 bio = io.BytesIO()
 with zipfile.ZipFile(bio, 'w', compression=zipfile.ZIP_DEFLATED) as zout:
