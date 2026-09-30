@@ -1,9 +1,9 @@
 {
-  "round": 67,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 67: t55 rebuild v9 + copy push_to_zotero.py + COM-run Zotero.Refresh macro, capture recognition result",
-  "arena_updated": "2026-09-30 09:06:01",
-  "local_updated": null
+    "round":  67,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 67: t55 rebuild v9 + copy push_to_zotero.py + COM-run Zotero.Refresh macro, capture recognition result",
+    "arena_updated":  "2026-09-30 09:06:01",
+    "local_updated":  "2026-09-30 17:08:16"
 }
