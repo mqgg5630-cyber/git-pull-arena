@@ -1,9 +1,11 @@
 # 最近一轮同步回执（agent -> 分支）
 
-- 时间：2026-09-30 14:55 UTC
+- 时间：2026-09-30 14:58 UTC
 - 分支：`arena/01a0a9f0-git-pull-arena`
-- 本轮助手提交：chore: round 92 - diagnose shibielujing3 failure (cell-lct skill runner): dump lct stdout/stderr + worker log head
+- 本轮助手提交：fix: round 93 - insert missing Get-CsIllustratorExe helper into cell-lct runners (t71 port gap), FRESH relaunch -> redraw via cell-lct
 - 本轮改动文件：
    M code/tasks/manifest.json
+   M results/status/success_criteria.json
+  ?? code/tasks/t72_fix_getcs.ps1
 
 > 完整历史：`git log --oneline -10`；本机 `.\sync.ps1` 之后即可看到本文件。

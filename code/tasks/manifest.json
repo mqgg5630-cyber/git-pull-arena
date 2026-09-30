@@ -246,6 +246,9 @@
       "t66_diag_rebuild.ps1"
     ],
     "93": [
+      "t72_fix_getcs.ps1"
+    ],
+    "94": [
       "t64_poll_rebuild.ps1"
     ]
   }
