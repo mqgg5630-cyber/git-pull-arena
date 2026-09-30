@@ -1,9 +1,9 @@
 {
-  "round": 81,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-09-30 12:52:15",
-  "local_updated": "2026-09-30 20:51:59"
+  "round": 82,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 82: t68 patch Invoke-CsAiScript v2 both copies, clean stale temp, relaunch worker v3 detached in resume mode",
+  "arena_updated": "2026-09-30 12:56:53",
+  "local_updated": null
 }
