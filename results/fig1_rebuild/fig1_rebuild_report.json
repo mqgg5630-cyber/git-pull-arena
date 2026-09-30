@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "task": "fig1 graphical abstract rebuild (no paid path)",
+  "input": "results/reference/fig1_cleaned.png (cv2.inpaint, OCR 0 residual)",
+  "text_manifest": "results/reference/fig1_text_manifest.json (40 elements)",
+  "vectorizer": {
+    "tool": "vtracer 0.6.12 (pip)",
+    "mode": "color/stacked/spline",
+    "params": {
+      "filter_speckle": 8,
+      "color_precision": 7,
+      "layer_difference": 12,
+      "corner_threshold": 60,
+      "length_threshold": 4.0,
+      "path_precision": 2
+    }
+  },
+  "fig1_vector_raw.svg": {
+    "paths": 2123,
+    "sha256_16": "e7f614d5c44e6f55",
+    "size_kb": 1660
+  },
+  "fig1_merged.svg": {
+    "paths": 2123,
+    "text_elements": 40,
+    "sha256_16": "ca8af9cfbb22f098",
+    "size_kb": 1668
+  },
+  "official_validate_vector_svg": "PASS (0 errors, 0 warnings) for both SVGs",
+  "render_fidelity_vs_cleaned_png": {
+    "renderer": "resvg (sandbox)",
+    "mean_abs_diff": 6.43,
+    "pct_within_8": 82.76,
+    "pct_within_16": 88.75,
+    "pct_within_32": 93.62
+  },
+  "text_verification": {
+    "method": "resvg+DejaVu render + RapidOCR",
+    "direct_hits": "32/40",
+    "remaining_8": "verified present via targeted crops (beta/mu glyphs, rotated axis label, small ticks fragment OCR)",
+    "note": "sandbox lacks Arial; machine-side Illustrator uses real Arial via resolveTextFont"
+  },
+  "xiaomiao_paid_path": "bypassed by user decision (no charge); bridge draw via Illustrator 2020 file-bridge (run_cell_lct.ps1 Invoke-CsAiScript patch)"
+}

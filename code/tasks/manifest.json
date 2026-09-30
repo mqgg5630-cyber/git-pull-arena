@@ -193,6 +193,9 @@
     ],
     "75": [
       "t62_file_bridge.ps1"
+    ],
+    "76": [
+      "t63_final_rebuild.ps1"
     ]
   }
 }
