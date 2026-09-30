@@ -214,6 +214,9 @@
     ],
     "82": [
       "t68_bridge_v2_resume.ps1"
+    ],
+    "83": [
+      "t64_poll_rebuild.ps1"
     ]
   }
 }
