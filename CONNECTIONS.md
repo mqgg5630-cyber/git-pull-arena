@@ -214,3 +214,11 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - t38: QwenPaw Desktop 2.1.0 uninstalled silently (uninstall.exe /S); uninstaller removed dir+registry+shortcuts itself; E: free 295.20 -> 297.05 GB (+1.85). Note: user emptied recycle bin between r43 and r49 (287.7+7.5=295.2 matches).
 - t39: agent toolbox = 31/39 PATH tools (git 2.54@E:\hermes, gh 2.97, docker 29.6.1, wsl x2 distros, python 3.11.9@E:\spider, node 22@E:\hermes, go 1.26.5, rust, java 21, tailscale, ssh/scp, code, rg, winget, tar, robocopy, schtasks, reg, msiexec, conda, uv). Missing: py, pipx, ffmpeg, 7z, pwsh, choco, scoop, adb. winget available = hands-free install/uninstall possible.
 - Reports: D:\桌面\软件工具清单_2026-09-30.md (user's desktop, UTF-8 BOM) + results/status/software_paths_r49.md (46 apps with resolved local paths).
+
+## rounds 52-56 (2026-09-30, R hunt concluded + report fixes)
+- r52: desktop report n8n section corrected; WSL R probe via PS capture = mojibake (dead end).
+- r53: clean probe via code/tasks/r_probe.sh run INSIDE WSL (writes results/status/r_detail_wsl24.txt itself - no PS decoding). Ubuntu-24.04: NO R (no R/Rscript, no dirs, conda envs = camps-tf114/docking/py36 only). Ubuntu-26.04: 0.
+- r54: Windows conda E:\spider = base + 13 envs (1, blast, DIP, docking, gmx_copilot, gmx_mmpbsa, HeroMDanalysis, lark-f, mcp_pymol, meta-analysis, MMPBSA, ncbi_datasets, spyder-runtime) + D:\Pymol + NTxPred2/cnki-review/lark/lmab/orange3 + e:\kubernetes-master\.conda. NO r envs. FOUND: E:\R and E:\RStudio dirs (t40 regex missed bare 'R' name).
+- r55 FAILED (parse: semicolon inside cast parens) -> r56 PASSED after fix (+ quote-nesting fix in desktop patch).
+- r56: E:\R = R-4.6.0 ONLY (189.1 MB, single version - NOTHING to delete) + data files (GSE11121/GSE42872 .Rdata, TCGA gdc_download folder+tar.gz, R_libs, R_Temp, rna_seq tsv). E:\RStudio = single Electron install. Desktop report R section updated. E: free 292.8 GB.
+- User questions answered: task scenarios (report sec 1-2), MCP usable via stdio JSON-RPC, n8n needs Docker engine on, alternatives via winget (report sec 7).
