@@ -44,7 +44,9 @@
     "code/tasks/t16_uvcache_final2.ps1",
     "code/tasks/t17_uv_delete_bg.ps1",
     "code/tasks/t18_edrive_survey.ps1",
-    "code/tasks/t17b_uv_finish.ps1"
+    "code/tasks/t17b_uv_finish.ps1",
+    "code/tasks/t19_cleanup_approved.ps1",
+    "code/tasks/t20_docker_pagefile.ps1"
   ],
   "forbid_files": [
     "local/inbox",

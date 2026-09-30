@@ -66,6 +66,10 @@
     ],
     "36": [
       "t18_edrive_survey.ps1"
+    ],
+    "37": [
+      "t19_cleanup_approved.ps1",
+      "t20_docker_pagefile.ps1"
     ]
   }
 }
