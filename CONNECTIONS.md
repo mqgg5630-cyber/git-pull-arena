@@ -199,3 +199,8 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - SMB fails because no shares/credentials on desktop, not a network issue (net view exit 0, empty list).
 - HPC chain: netmap shows 10.10.5.210/32 APPROVED+active (user approved in console); laptop VPN up (ping+tcp22 to HPC OK). Desktop test command: ssh 25wenshaohua@10.10.5.210 (Windows accepts subnet routes by default; laptop SNATs).
 - Laptop net profiles: Tailscale=Private, WLAN=Public.
+
+## round 47 confirmation (user-tested, 2026-09-30)
+- USER CONFIRMED: from home desktop `ssh 25wenshaohua@10.10.5.210` SUCCESS (full HPC bridge works) + RDP to desktop SUCCESS (cert warning clicked through).
+- \\100.84.137.117 shows "folder is empty" (no shares configured, expected).
+- Next: use built-in admin shares \\ip\C$ D$ E$ with desktop credentials; if denied, set LocalAccountTokenFilterPolicy=1 on desktop (UAC remote restriction). Optional later: ssh key laptop->desktop for agent-managed desktop control.
