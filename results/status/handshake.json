@@ -1,9 +1,9 @@
 {
-    "round":  46,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 46: t34 advertise HPC /32 route via tailscale set (UAC may pop - click Yes); prints next-step instructions",
-    "arena_updated":  "2026-09-30 02:26:47",
-    "local_updated":  "2026-09-30 10:27:25"
+  "round": 46,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-30 02:27:39",
+  "local_updated": "2026-09-30 10:27:25"
 }
