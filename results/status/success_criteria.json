@@ -53,7 +53,10 @@
     "code/tasks/t24_oldsync_cleanup.ps1",
     "code/tasks/t25_oldtask_uac.ps1",
     "code/tasks/t26_pagefile_fix_uac.ps1",
-    "code/tasks/t27_pagefile_registry.ps1"
+    "code/tasks/t27_pagefile_registry.ps1",
+    "code/tasks/t28_reboot_verify.ps1",
+    "code/tasks/t29_ddrive_survey.ps1",
+    "code/tasks/t30_tailscale_prep.ps1"
   ],
   "forbid_files": [
     "local/inbox",

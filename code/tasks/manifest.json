@@ -87,6 +87,11 @@
     ],
     "42": [
       "t27_pagefile_registry.ps1"
+    ],
+    "43": [
+      "t28_reboot_verify.ps1",
+      "t29_ddrive_survey.ps1",
+      "t30_tailscale_prep.ps1"
     ]
   }
 }
