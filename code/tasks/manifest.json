@@ -92,6 +92,10 @@
       "t28_reboot_verify.ps1",
       "t29_ddrive_survey.ps1",
       "t30_tailscale_prep.ps1"
+    ],
+    "44": [
+      "t31_enable_rdp_ssh.ps1",
+      "t32_wsl26_survey.ps1"
     ]
   }
 }
