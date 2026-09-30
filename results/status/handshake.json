@@ -1,9 +1,9 @@
 {
-    "round":  92,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 92: t66 diagnostics: rebuild.log head (which skill in use), all lct_run/lct_err logs for shibielujing3 attempts, playback state, artifacts",
-    "arena_updated":  "2026-09-30 14:55:07",
-    "local_updated":  "2026-09-30 22:57:04"
+  "round": 92,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-30 14:57:25",
+  "local_updated": "2026-09-30 22:57:04"
 }
