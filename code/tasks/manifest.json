@@ -205,6 +205,9 @@
     ],
     "79": [
       "t64_poll_rebuild.ps1"
+    ],
+    "80": [
+      "t66_diag_rebuild.ps1"
     ]
   }
 }
