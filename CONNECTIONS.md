@@ -232,3 +232,13 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - r65 REAL-WORD COM TEST: opened read-only hidden, 63 fields (62 ZOTERO_ITEM + 1 ZOTERO_BIBL), field1 result "[1]", clean close, no repair prompt.
 - Deliverables on machine: English.docx (SAME path, zotero-linked, 7200.2 KB), English_backup_pre-zotero.docx (original), English_Zotero_library.json (36 items importable CSL-JSON). Tools in repo: code/tasks/t46-t53 + results/reference/pgreview/ (pipeline sources).
 - Usage: open in Word -> Zotero tab -> Refresh. Optional: import English_Zotero_library.json into Zotero for library binding. Undo: copy backup over.
+
+## rounds 66-70 (2026-09-30 evening, English.docx zotero-link v2 - FULLY BOUND)
+- User reported failure: citations "not linked", library import failed, asked to verify refs are real. Root causes found+fixed:
+  1. refs were NOT in the Zotero library (0/36 matched) -> imported all 36 via Connector saveItems API (127.0.0.1:23119, same mechanism as push_to_zotero.py; Zotero internal item format, NOT CSL - that is why the manual .json import failed). 3 batches x 201 SAVED, landed in selected collection Collagen_Stability_MD_Docking_Hybrid_Review (libraryID 1).
+  2. prefs said zoteroVersion 7.0.0 but machine runs Zotero 9.0.6 -> rebuilt with 9.0.0 (r67).
+  3. citation uris were empty [] (orphan fields) -> r69/r70: matched 36/36 refs to Zotero items by DOI (sqlite snapshot copy +wal), rewrote all 91 citation items' uris to http://zotero.org/users/0/items/<KEY>. Doc is now natively bound: Add/EditCitation opens the library item, Refresh re-renders from library.
+- Crossref verification: ALL 36 DOIs resolve; 34/36 title-similarity >= 0.75 (ref8 0.46 / ref12 0.51 are Crossref HTML-tag artifacts); NONE fake. Report: results/status/ref_verify_r66.md.
+- A/B test (r68): Zotero.Refresh via COM throws E_FAIL on the SUCCESS-CASE docx too -> E_FAIL is an automation-context artifact, NOT a document defect.
+- FINAL STATE: English.docx (same path) = 62 ZOTERO_ITEM fields (91 citation items, all uris bound + full itemData embedded) + ZOTERO_BIBL (refs 1-36) + AMA en-US prefs v9 + storeReferences; format unchanged; English_backup_pre-zotero.docx = original; English_Zotero_library.json = CSL export (for reference only - import already done via API).
+- Word plugin Zotero.dotm present in %APPDATA%\Microsoft\Word\STARTUP. Usage: open English.docx in Word -> Zotero tab -> Refresh (citations keep [n] look in AMA; switch styles via Document Preferences).
