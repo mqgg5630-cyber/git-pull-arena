@@ -1,9 +1,9 @@
 {
-  "round": 62,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 62: t51 verify output (bib inner must be exactly 36 ref paras, 0 unlinked citations); if bad restore backup and rebuild with consecutive-ref selection + split-run citation handling",
-  "arena_updated": "2026-09-30 08:36:14",
-  "local_updated": null
+    "round":  62,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 62: t51 verify output (bib inner must be exactly 36 ref paras, 0 unlinked citations); if bad restore backup and rebuild with consecutive-ref selection + split-run citation handling",
+    "arena_updated":  "2026-09-30 08:36:14",
+    "local_updated":  "2026-09-30 16:37:07"
 }
