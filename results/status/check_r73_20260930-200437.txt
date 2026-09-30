@@ -1,0 +1,203 @@
+check round 73 on LAPTOP-R77M5D6M - passed (exit 0)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 62s
+
+OK: all .ps1 files are ASCII-only
+OK: sync.config.json branch=arena/01a0a9f0-git-pull-arena
+OK: sync.config.json branch matches HEAD (arena/01a0a9f0-git-pull-arena)
+OK: root scripts identical to skills/git-sync/scripts
+OK: no drive-style variable typos ($var:)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+OK: every .ps1 parses
+   (gate ran via E:\hermes\git\bin\bash.exe [git])
+== accept 2a: silent push PROVEN (ls-remote + push --dry-run, prompts disabled)
+== accept 2b (fallback): one LONG-LIVED loop process - one brief flash per logon,
+   not per poll. For zero flash: admin PowerShell -> .\watch.ps1 -Unregister ;
+   .\watch.ps1 -Register -Headless   (or fix the launcher, see watch-*.log)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+== check_loop_summary PASSED
+== accept 2c: watcher closing lines verified (every exit path has its summary)
+== deliverables: 2 Office file(s) declared in deliverable/OFFICE_HASHES.json
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.docx (39743 B, docx)
+   OK   3b all 6 required parts present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.docx (17 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B, pptx)
+   OK   3b all 9 required parts present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.pptx (52 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3g slides in deliverable/LINK_PROOF_v2.8.1.pptx : 8 >= 8
+   OK   3h Word.Application opened read-only, name=LINK_PROOF_v2.8.1.docx : deliverable\LINK_PROOF_v2.8.1.docx
+   OK   3h PowerPoint.Application opened read-only, slides=8 : deliverable\LINK_PROOF_v2.8.1.pptx
+== task r73: t60_rot_bridge.ps1
+--- task t60: ROT bridge + manual COM registration for AI 2020 ---
+--- 1. py launcher check ---
+   FOUND: C:\Users\文少\AppData\Local\Programs\Python\Launcher\py.exe
+   FOUND: C:\Users\文少\AppData\Local\Programs\Python\Python312\python.exe
+   py -> C:\Users\文少\AppData\Local\Programs\Python\Launcher\py.exe
+   py -3 -> 3.12.10
+--- 2. ROT enumeration (Illustrator) ---
+   launched Illustrator, waiting 35s ...
+   ROT total monikers: 13
+   ROT: !{BE4E2FF2-8234-4FEC-A646-2256A1A09AC2}
+   ROT: !{000209FF-0000-4B30-A977-D214852036FE}
+   ROT: !{000209FF-0000-0000-C000-000000000046}
+   ROT: !{91493441-5A91-11CF-8700-00AA0060263B}
+   ROT: !{74356B35-AF38-4EA4-A0B8-36A163E4BEE6}
+   ROT: !{000209FF-0000-4B30-A977-D214852036FF}
+   ROT: !{44720441-94BF-4940-926D-4F38FECF2A47}
+   ROT: !{44720441-94BF-4940-926D-4F38FECF2A48}
+   ROT: !{000209FE-0000-0000-C000-000000000046}
+   bind fail: !{BE4E2FF2-8234-4FEC-A646-2256A1A09AC2} : ???1???????BindToMoniker??????:?????? (???? HRESULT:0x800401E4 (MK_E_SYNTAX))?
+   bind fail: !{000209FF-0000-4B30-A977-D214852036FE} : ???1???????BindToMoniker??????:?????? (???? HRESULT:0x800401E4 (MK_E_SYNTAX))?
+   bind fail: !{000209FF-0000-0000-C000-000000000046} : ???1???????BindToMoniker??????:?????? (???? HRESULT:0x800401E4 (MK_E_SYNTAX))?
+   bind fail: !{91493441-5A91-11CF-8700-00AA0060263B} : ???1???????BindToMoniker??????:?????? (???? HRESULT:0x800401E4 (MK_E_SYNTAX))?
+   bind fail: !{74356B35-AF38-4EA4-A0B8-36A163E4BEE6} : ???1???????BindToMoniker??????:?????? (???? HRESULT:0x800401E4 (MK_E_SYNTAX))?
+   bind fail: !{000209FF-0000-4B30-A977-D214852036FF} : ???1???????BindToMoniker??????:?????? (???? HRESULT:0x800401E4 (MK_E_SYNTAX))?
+   bind fail: !{44720441-94BF-4940-926D-4F38FECF2A47} : ???1???????BindToMoniker??????:?????? (???? HRESULT:0x800401E4 (MK_E_SYNTAX))?
+   bind fail: !{44720441-94BF-4940-926D-4F38FECF2A48} : ???1???????BindToMoniker??????:?????? (???? HRESULT:0x800401E4 (MK_E_SYNTAX))?
+   bind fail: !{000209FE-0000-0000-C000-000000000046} : ???1???????BindToMoniker??????:?????? (???? HRESULT:0x800401E4 (MK_E_SYNTAX))?
+   [FAIL] no Illustrator object found in ROT
+   (Illustrator stopped)
+== task r73 t60_rot_bridge.ps1 ok (37s)
+== accept 2d: hands-free auto_pull/auto_push present in watch.ps1
+== success criteria: results/status/success_criteria.json
+   v2.8.1 on arena/01a0a9f0-git-pull-arena: the newest skill (source branch arena/01a0a98d-git-pull-arena, installer refuses to downgrade) plus the repo gate (code/check_all.sh, which now proves each python candidate python3 / python / py -3) and the real-machine check (code/local_check.ps1, sections 3a-3h). The deliverables LINK_PROOF_v2.8.1.docx / .pptx travel through git and are judged by the Windows watcher: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide count and a real Word/PowerPoint open. 'Local' means that machine's scheduled watcher - never a sandbox folder, never a hand-made stand-in skill. From round 22 on the repo also ships code/tasks/*.ps1 (mapped per round in code/tasks/manifest.json) which run on the machine inside local_check.ps1 section 4 as child processes: round 22 = read-only diagnostics for the Antigravity login, the Java install state and E: cleanup candidates.
+   OK   exists: 01a0a821.md (2016 B)
+   OK   exists: skills/git-sync/VERSION (6 B)
+   OK   exists: skills/git-sync/scripts/agent-install.sh (13404 B)
+   OK   exists: skills/git-sync/scripts/agent-handoff.sh (4603 B)
+   OK   exists: skills/git-sync/scripts/agent-handsfree.sh (3989 B)
+   OK   exists: skills/git-sync/scripts/agent-criteria.sh (5190 B)
+   OK   exists: skills/git-sync/scripts/watch.ps1 (84094 B)
+   OK   exists: skills/git-sync/templates/one-sentence.md (6524 B)
+   OK   exists: skills/git-sync/templates/gate.yml (1166 B)
+   OK   exists: code/check_all.sh (9945 B)
+   OK   exists: code/local_check.ps1 (30124 B)
+   OK   exists: code/make_link_proof.py (22948 B)
+   OK   exists: deliverable/OFFICE_HASHES.json (2401 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.docx (39743 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B)
+   OK   exists: watch.ps1 (84094 B)
+   OK   exists: code/tasks/manifest.json (3795 B)
+   OK   exists: code/tasks/t1_antigravity_diag.ps1 (14461 B)
+   OK   exists: code/tasks/t2_java_diag.ps1 (8626 B)
+   OK   exists: code/tasks/t3_edrive_scan.ps1 (9393 B)
+   OK   exists: code/tasks/t1_fix_antigravity.ps1 (10411 B)
+   OK   exists: code/tasks/t3_edrive_scan2.ps1 (9007 B)
+   OK   exists: code/tasks/t2_install_java.ps1 (14030 B)
+   OK   exists: code/tasks/t3_edrive_scan3.ps1 (7084 B)
+   OK   exists: code/tasks/t4_cleanup_dryrun.ps1 (5995 B)
+   OK   exists: code/tasks/t1_antigravity_verify.ps1 (3793 B)
+   OK   exists: code/tasks/t2_cleanup_exec.ps1 (12624 B)
+   OK   exists: results/status/round22_findings.md (3511 B)
+   OK   exists: code/tasks/t5_cleanup_fix.ps1 (7475 B)
+   OK   exists: code/tasks/t7_ligplus_test.ps1 (6214 B)
+   OK   exists: code/tasks/t1_antigravity_tun2.ps1 (7694 B)
+   OK   exists: code/tasks/t6_docker_report.ps1 (5648 B)
+   OK   exists: code/tasks/t8_uvcache_finish.ps1 (2719 B)
+   OK   exists: code/tasks/t9_ligplus_upgrade.ps1 (8739 B)
+   OK   exists: code/tasks/t10_ligplus_final.ps1 (9282 B)
+   OK   exists: code/tasks/t11_javagui_fix.ps1 (3986 B)
+   OK   exists: code/tasks/t12_ligplus_new.ps1 (7178 B)
+   OK   exists: code/tasks/t13_docker_autofigure.ps1 (2917 B)
+   OK   exists: code/tasks/t14_recyclebin_empty.ps1 (2689 B)
+   OK   exists: code/tasks/t15_uvcache_final.ps1 (4126 B)
+   OK   exists: code/tasks/t16_uvcache_final2.ps1 (3987 B)
+   OK   exists: code/tasks/t17_uv_delete_bg.ps1 (4570 B)
+   OK   exists: code/tasks/t18_edrive_survey.ps1 (15793 B)
+   OK   exists: code/tasks/t17b_uv_finish.ps1 (3803 B)
+   OK   exists: code/tasks/t19_cleanup_approved.ps1 (9331 B)
+   OK   exists: code/tasks/t20_docker_pagefile.ps1 (5765 B)
+   OK   exists: code/tasks/t21_optimize_review.ps1 (7881 B)
+   OK   exists: code/tasks/t22_pagefile_uac.ps1 (2571 B)
+   OK   exists: code/tasks/t23_tailscale_verify.ps1 (2476 B)
+   OK   exists: code/tasks/t24_oldsync_cleanup.ps1 (2537 B)
+   OK   exists: code/tasks/t25_oldtask_uac.ps1 (4503 B)
+   OK   exists: code/tasks/t26_pagefile_fix_uac.ps1 (4880 B)
+   OK   exists: code/tasks/t27_pagefile_registry.ps1 (4513 B)
+   OK   exists: code/tasks/t28_reboot_verify.ps1 (2764 B)
+   OK   exists: code/tasks/t29_ddrive_survey.ps1 (9818 B)
+   OK   exists: code/tasks/t30_tailscale_prep.ps1 (5189 B)
+   OK   exists: code/tasks/t31_enable_rdp_ssh.ps1 (4127 B)
+   OK   exists: code/tasks/t32_wsl26_survey.ps1 (4565 B)
+   OK   exists: code/tasks/t33_hpc_probe.ps1 (5024 B)
+   OK   exists: code/tasks/t34_hpc_bridge.ps1 (4027 B)
+   OK   exists: code/tasks/t35_desktop_access_probe.ps1 (4368 B)
+   OK   exists: code/tasks/t36_autostart_vpn_tailscale.ps1 (6281 B)
+   OK   exists: code/tasks/t37_software_inventory.ps1 (6288 B)
+   OK   exists: code/tasks/t38_uninstall_qwenpaw.ps1 (6601 B)
+   OK   exists: code/tasks/t39_toolbox_and_paths.ps1 (6919 B)
+   OK   exists: code/tasks/t40_mcp_n8n_r_survey.ps1 (12366 B)
+   OK   exists: code/tasks/t41_bigdocs_report.ps1 (8722 B)
+   OK   exists: code/tasks/t42_fix_desktop_and_rdetail.ps1 (3650 B)
+   OK   exists: code/tasks/t43_wsl_r_probe2.ps1 (1800 B)
+   OK   exists: code/tasks/t44_r_final_check.ps1 (1752 B)
+   OK   exists: code/tasks/t45_r_versions_cleanup.ps1 (6361 B)
+   OK   exists: code/tasks/t46_zotero_recon.ps1 (11043 B)
+   OK   exists: code/tasks/t47_pipeline_fetch.ps1 (6956 B)
+   OK   exists: code/tasks/t48_run.ps1 (2765 B)
+   OK   exists: code/tasks/t48_english_citations.py (3044 B)
+   OK   exists: code/tasks/t48_zotero_match.py (2228 B)
+   OK   exists: code/tasks/t49_run.ps1 (912 B)
+   OK   exists: code/tasks/t49_dump_refs.py (3503 B)
+   OK   exists: code/tasks/t50_run.ps1 (1969 B)
+   OK   exists: code/tasks/t50_zotero_link.py (14995 B)
+   OK   exists: code/tasks/t51_run.ps1 (1053 B)
+   OK   exists: code/tasks/t51_verify_fix.py (16798 B)
+   OK   exists: code/tasks/t52_run.ps1 (1041 B)
+   OK   exists: code/tasks/t52_build_final.py (17034 B)
+   OK   exists: code/tasks/t53_word_check.ps1 (1876 B)
+   OK   exists: code/tasks/t54_recon2.ps1 (6934 B)
+   OK   exists: code/tasks/t54_crossref_verify.py (3308 B)
+   OK   exists: code/tasks/t55_run.ps1 (4739 B)
+   OK   exists: code/tasks/t55_rebuild9.py (17034 B)
+   OK   exists: code/tasks/t56_abtest.ps1 (5636 B)
+   OK   exists: code/tasks/t56_import_zotero.py (2992 B)
+   OK   exists: code/tasks/t57_run.ps1 (981 B)
+   OK   exists: code/tasks/t57_bind_uris.py (5318 B)
+   OK   exists: code/tasks/t58_recon_install.ps1 (6846 B)
+   OK   exists: code/tasks/t59_install_bridge.ps1 (10039 B)
+   OK   exists: code/tasks/t60_rot_bridge.ps1 (7846 B)
+   OK   absent: local/inbox
+   OK   absent: local/status_receipts
+   OK   absent: skills/docx_skill.py
+   OK   absent: local_bridge_skill.py
+   OK   contains skills/git-sync/VERSION <- 2.8.1
+   OK   contains 01a0a821.md <- arena/01a0a98d-git-pull-arena
+   OK   contains skills/git-sync/sync.config.json <- arena/01a0a9f0-git-pull-arena
+   OK   contains skills/git-sync/templates/one-sentence.md <- agent-handoff.sh
+   OK   contains skills/git-sync/scripts/agent-install.sh <- refusing to downgrade
+   OK   contains code/check_all.sh <- py -3
+   OK   contains code/local_check.ps1 <- no Office deliverable declared
+   OK   contains deliverable/OFFICE_HASHES.json <- arena/01a0a9f0-git-pull-arena
+   OK   contains watch.ps1 <- function Invoke-AutoPull
+   OK   contains skills/git-sync/scripts/watch.ps1 <- function Invoke-Focus
+   OK   contains code/tasks/manifest.json <- t3_edrive_scan.ps1
+   OK   contains code/tasks/t1_fix_antigravity.ps1 <- http.proxy
+   OK   contains code/tasks/t2_install_java.ps1 <- E:\java
+   OK   regex watch.ps1
+   OK   regex code/local_check.ps1
+   OK   regex deliverable/OFFICE_HASHES.json
+   OK   size skills/git-sync/scripts/agent-handoff.sh: 4603 >= 2000
+   OK   size skills/git-sync/scripts/agent-install.sh: 13404 >= 10000
+   OK   size code/check_all.sh: 9945 >= 8000
+   OK   size code/local_check.ps1: 30124 >= 12000
+   OK   size code/make_link_proof.py: 22948 >= 8000
+   OK   size deliverable/OFFICE_HASHES.json: 2401 >= 500
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 >= 5000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 >= 15000
+   OK   size watch.ps1: 84094 >= 20000
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 <= 3000000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 <= 3000000
+== local checks passed
