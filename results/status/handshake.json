@@ -1,9 +1,9 @@
 {
-  "round": 40,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 40: t25 UAC popup to remove git-sync-watch-git-pull-arena (old) and verify pagefile 8-16GB - watch the screen for UAC",
-  "arena_updated": "2026-09-30 01:34:40",
-  "local_updated": null
+    "round":  40,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 40: t25 UAC popup to remove git-sync-watch-git-pull-arena (old) and verify pagefile 8-16GB - watch the screen for UAC",
+    "arena_updated":  "2026-09-30 01:34:40",
+    "local_updated":  "2026-09-30 09:37:20"
 }
