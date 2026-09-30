@@ -220,6 +220,9 @@
     ],
     "84": [
       "t64_poll_rebuild.ps1"
+    ],
+    "85": [
+      "t69_tfprobe.ps1"
     ]
   }
 }
