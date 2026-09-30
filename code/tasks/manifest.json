@@ -202,6 +202,9 @@
     ],
     "78": [
       "t65_relaunch_worker.ps1"
+    ],
+    "79": [
+      "t64_poll_rebuild.ps1"
     ]
   }
 }
