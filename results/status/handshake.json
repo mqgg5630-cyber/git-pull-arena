@@ -1,9 +1,9 @@
 {
-    "round":  98,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 98: t64 poll E:\\fig1_rebuild: DONE -\u003e copy latest job .ai/.png/.svg + text-manifest.json + rebuild.log into repo results/fig1_rebuild/out; if FAILED -\u003e dump logs",
-    "arena_updated":  "2026-09-30 15:24:09",
-    "local_updated":  "2026-09-30 23:25:34"
+  "round": 98,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-30 15:25:49",
+  "local_updated": "2026-09-30 23:25:34"
 }
