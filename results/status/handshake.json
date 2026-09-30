@@ -1,9 +1,9 @@
 {
-  "round": 58,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-09-30 08:18:20",
-  "local_updated": "2026-09-30 16:18:09"
+  "round": 59,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 59: t48 run python helpers: english_citations.json + zotero_match_r59.md + styles list + verify_english_review_docx.py head + file lock check",
+  "arena_updated": "2026-09-30 08:21:25",
+  "local_updated": null
 }
