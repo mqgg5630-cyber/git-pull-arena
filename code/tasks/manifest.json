@@ -136,6 +136,9 @@
     ],
     "56": [
       "t45_r_versions_cleanup.ps1"
+    ],
+    "57": [
+      "t46_zotero_recon.ps1"
     ]
   }
 }
