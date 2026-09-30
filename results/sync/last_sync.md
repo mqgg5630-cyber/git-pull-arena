@@ -1,13 +1,11 @@
 # 最近一轮同步回执（agent -> 分支）
 
-- 时间：2026-09-30 12:28 UTC
+- 时间：2026-09-30 12:30 UTC
 - 分支：`arena/01a0a9f0-git-pull-arena`
-- 本轮助手提交：feat: round 76 - sandbox vector rebuild (vtracer, no paid path): fig1_vector_raw.svg 2123 paths + fig1_merged.svg +40 live text, both official-validate PASS, render fidelity 93.6pct within 32; stage + launch detached Illustrator bridge draw worker
+- 本轮助手提交：chore: round 77 - poll detached fig1 rebuild worker, copy artifacts to repo when DONE
 - 本轮改动文件：
    M code/tasks/manifest.json
    M results/status/success_criteria.json
-  ?? code/tasks/fig1_rebuild_worker.ps1
-  ?? code/tasks/t63_final_rebuild.ps1
-  ?? results/fig1_rebuild/
+  ?? code/tasks/t64_poll_rebuild.ps1
 
 > 完整历史：`git log --oneline -10`；本机 `.\sync.ps1` 之后即可看到本文件。

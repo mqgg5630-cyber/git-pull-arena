@@ -196,6 +196,9 @@
     ],
     "76": [
       "t63_final_rebuild.ps1"
+    ],
+    "77": [
+      "t64_poll_rebuild.ps1"
     ]
   }
 }

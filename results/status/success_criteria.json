@@ -100,7 +100,8 @@
     "code/tasks/t61_rot_fallback.ps1",
     "code/tasks/t62_file_bridge.ps1",
     "code/tasks/fig1_rebuild_worker.ps1",
-    "code/tasks/t63_final_rebuild.ps1"
+    "code/tasks/t63_final_rebuild.ps1",
+    "code/tasks/t64_poll_rebuild.ps1"
   ],
   "forbid_files": [
     "local/inbox",
