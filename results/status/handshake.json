@@ -1,9 +1,9 @@
 {
-    "round":  74,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 74: t61 patch ROT fallback into run_cell_lct.ps1 (E:\\cell_su7 + installed skill) and smoke-test the bridge: bind, 1+1, add doc, close, quit",
-    "arena_updated":  "2026-09-30 12:06:58",
-    "local_updated":  "2026-09-30 20:08:59"
+  "round": 75,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 75: t62 exe-arg JSX proof (cold + warm delegate) then bridge-patch run_cell_lct.ps1 both copies + smoke (version/docs/activeDoc/1+1)",
+  "arena_updated": "2026-09-30 12:14:49",
+  "local_updated": null
 }
