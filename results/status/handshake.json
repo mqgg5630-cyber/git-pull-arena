@@ -1,9 +1,9 @@
 {
-  "round": 43,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 43: t28 reboot verification, t29 D: survey (read-only, report to results/status/ddrive_survey_r43.md), t30 tailscale + network info for the HPC bridge",
-  "arena_updated": "2026-09-30 01:50:58",
-  "local_updated": null
+    "round":  43,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 43: t28 reboot verification, t29 D: survey (read-only, report to results/status/ddrive_survey_r43.md), t30 tailscale + network info for the HPC bridge",
+    "arena_updated":  "2026-09-30 01:50:58",
+    "local_updated":  "2026-09-30 09:52:18"
 }

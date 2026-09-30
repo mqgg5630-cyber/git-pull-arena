@@ -1,0 +1,194 @@
+check round 43 on LAPTOP-R77M5D6M - passed (exit 0)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 73s
+
+OK: all .ps1 files are ASCII-only
+OK: sync.config.json branch=arena/01a0a9f0-git-pull-arena
+OK: sync.config.json branch matches HEAD (arena/01a0a9f0-git-pull-arena)
+OK: root scripts identical to skills/git-sync/scripts
+OK: no drive-style variable typos ($var:)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+OK: every .ps1 parses
+   (gate ran via E:\hermes\git\bin\bash.exe [git])
+== accept 2a: silent push PROVEN (ls-remote + push --dry-run, prompts disabled)
+== accept 2b (fallback): one LONG-LIVED loop process - one brief flash per logon,
+   not per poll. For zero flash: admin PowerShell -> .\watch.ps1 -Unregister ;
+   .\watch.ps1 -Register -Headless   (or fix the launcher, see watch-*.log)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+== check_loop_summary PASSED
+== accept 2c: watcher closing lines verified (every exit path has its summary)
+== deliverables: 2 Office file(s) declared in deliverable/OFFICE_HASHES.json
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.docx (39743 B, docx)
+   OK   3b all 6 required parts present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.docx (17 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B, pptx)
+   OK   3b all 9 required parts present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.pptx (52 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3g slides in deliverable/LINK_PROOF_v2.8.1.pptx : 8 >= 8
+   OK   3h Word.Application opened read-only, name=LINK_PROOF_v2.8.1.docx : deliverable\LINK_PROOF_v2.8.1.docx
+   OK   3h PowerPoint.Application opened read-only, slides=8 : deliverable\LINK_PROOF_v2.8.1.pptx
+== task r43: t28_reboot_verify.ps1
+--- task t28: post-reboot verification ---
+   uptime: 4 min (2026-09-30 09:48)  <- FRESHLY REBOOTED
+   ACTIVE pagefile: E:\pagefile.sys 8192 MB (peak 0 MB)
+   E:\pagefile.sys: not found on disk (no reboot yet, or the new small file is in use)
+   C:\pagefile.sys: absent (correct)
+   E: free now: 287.7 GB (pre-reboot 254.5; +~26 GB expected after reboot)
+   C: free now: 48.2 GB
+   memory free now: 3.7 GB of 15.9 GB
+   watcher: this receipt being pushed proves the scheduled task auto-resumed after the reboot.
+== task r43 t28_reboot_verify.ps1 ok (3s)
+== task r43: t29_ddrive_survey.ps1
+--- task t29: D: survey (READ-ONLY) ---
+   D: total 137.2 GB, used 106.5 GB, free 30.7 GB
+   walk: 32 top-level entries, 0 files >=50MB, 19s
+--- duplicates (>= 50MB) ---
+   duplicate groups: 0 ; reclaimable: 0 B
+--- long-unused folders (180d) ---
+   stale: 19 totaling 893.0 MB
+   STALE    396.3 MB  2025-07-14  D:\VSCODE
+   STALE    261.6 MB  2025-03-25  D:\Drivers
+   STALE     63.7 MB  2025-03-28  D:\Pymol
+   STALE     41.0 MB  2025-03-09  D:\quark-cloud-drive
+   STALE     36.1 MB  2022-09-15  D:\LenovoQMDownload
+   STALE     29.8 MB  2025-03-11  D:\Program Files (x86)
+   STALE     29.3 MB  2025-03-23  D:\Autodock
+   STALE     11.2 MB  2024-11-08  D:\vina
+   STALE      6.2 MB  2025-03-20  D:\new
+   STALE      5.0 MB  2025-05-26  D:\nginx-1.27.5
+   STALE      4.7 MB  2025-03-11  D:\Program Files
+   STALE      3.5 MB  2025-03-13  D:\ADT
+   STALE      2.2 MB  2025-08-14  D:\13V03
+   STALE      2.0 MB  2025-02-10  D:\Lib
+   STALE    342.2 KB  2025-05-29  D:\log
+--- big files (>=100MB) untouched 180d ---
+--- software installed on D:: 0 ---
+   report written: results/status/ddrive_survey_r43.md (2805 chars)
+== task r43 t29_ddrive_survey.ps1 ok (23s)
+== task r43: t30_tailscale_prep.ps1
+--- task t30: Tailscape prep / HPC bridge info (READ-ONLY) ---
+--- inbound access INTO this laptop (what the desktop / other devices can use) ---
+   RDP host: disabled (enable: Settings > System > Remote Desktop)
+   OpenSSH server: check failed
+   file sharing (SMB): no inbound SMB rule (shared folders still reachable if you share one)
+--- tailscale state ---
+   this node: LAPTOP-R77M5D6M 100.71.123.19 online=True
+   tailnet: shaohuawen03@gmail.com magic-suffix: tail42d047.ts.net
+   peers:
+   [WARN] status json: ??? Null ???????
+   advertise-routes: "AdvertiseRoutes": null,
+   serve status: No serve config
+--- network (for the HPC bridge plan) ---
+   adapter: WLAN  ip=192.168.110.172  gw=192.168.110.1  dns=192.168.110.1
+   public IPv4 (egress): 192.3.134.177
+--- HPC bridge - what to tell the agent next ---
+   1. the HPC login address (e.g. hpc.xxx.edu.cn or 10.x.y.z) and whether it needs the campus network or a VPN
+   2. ssh port if not 22
+   with that, the options are:
+     a. if the HPC is reachable from THIS laptop: keep an ssh session / use ssh -J via this laptop from anywhere in the tailnet
+     b. make a campus machine a subnet router (tailscale up --advertise-routes=<HPC subnet>) so every tailnet device reaches the HPC directly
+     c. if the HPC allows only web/https portals: tailscale serve/funnel can publish them
+== task r43 t30_tailscale_prep.ps1 ok (13s)
+== accept 2d: hands-free auto_pull/auto_push present in watch.ps1
+== success criteria: results/status/success_criteria.json
+   v2.8.1 on arena/01a0a9f0-git-pull-arena: the newest skill (source branch arena/01a0a98d-git-pull-arena, installer refuses to downgrade) plus the repo gate (code/check_all.sh, which now proves each python candidate python3 / python / py -3) and the real-machine check (code/local_check.ps1, sections 3a-3h). The deliverables LINK_PROOF_v2.8.1.docx / .pptx travel through git and are judged by the Windows watcher: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide count and a real Word/PowerPoint open. 'Local' means that machine's scheduled watcher - never a sandbox folder, never a hand-made stand-in skill. From round 22 on the repo also ships code/tasks/*.ps1 (mapped per round in code/tasks/manifest.json) which run on the machine inside local_check.ps1 section 4 as child processes: round 22 = read-only diagnostics for the Antigravity login, the Java install state and E: cleanup candidates.
+   OK   exists: 01a0a821.md (2016 B)
+   OK   exists: skills/git-sync/VERSION (6 B)
+   OK   exists: skills/git-sync/scripts/agent-install.sh (13404 B)
+   OK   exists: skills/git-sync/scripts/agent-handoff.sh (4603 B)
+   OK   exists: skills/git-sync/scripts/agent-handsfree.sh (3989 B)
+   OK   exists: skills/git-sync/scripts/agent-criteria.sh (5190 B)
+   OK   exists: skills/git-sync/scripts/watch.ps1 (84094 B)
+   OK   exists: skills/git-sync/templates/one-sentence.md (6524 B)
+   OK   exists: skills/git-sync/templates/gate.yml (1166 B)
+   OK   exists: code/check_all.sh (9945 B)
+   OK   exists: code/local_check.ps1 (30124 B)
+   OK   exists: code/make_link_proof.py (22948 B)
+   OK   exists: deliverable/OFFICE_HASHES.json (2401 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.docx (39743 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B)
+   OK   exists: watch.ps1 (84094 B)
+   OK   exists: code/tasks/manifest.json (2229 B)
+   OK   exists: code/tasks/t1_antigravity_diag.ps1 (14461 B)
+   OK   exists: code/tasks/t2_java_diag.ps1 (8626 B)
+   OK   exists: code/tasks/t3_edrive_scan.ps1 (9393 B)
+   OK   exists: code/tasks/t1_fix_antigravity.ps1 (10411 B)
+   OK   exists: code/tasks/t3_edrive_scan2.ps1 (9007 B)
+   OK   exists: code/tasks/t2_install_java.ps1 (14030 B)
+   OK   exists: code/tasks/t3_edrive_scan3.ps1 (7084 B)
+   OK   exists: code/tasks/t4_cleanup_dryrun.ps1 (5995 B)
+   OK   exists: code/tasks/t1_antigravity_verify.ps1 (3793 B)
+   OK   exists: code/tasks/t2_cleanup_exec.ps1 (12624 B)
+   OK   exists: results/status/round22_findings.md (3511 B)
+   OK   exists: code/tasks/t5_cleanup_fix.ps1 (7475 B)
+   OK   exists: code/tasks/t7_ligplus_test.ps1 (6214 B)
+   OK   exists: code/tasks/t1_antigravity_tun2.ps1 (7694 B)
+   OK   exists: code/tasks/t6_docker_report.ps1 (5648 B)
+   OK   exists: code/tasks/t8_uvcache_finish.ps1 (2719 B)
+   OK   exists: code/tasks/t9_ligplus_upgrade.ps1 (8739 B)
+   OK   exists: code/tasks/t10_ligplus_final.ps1 (9282 B)
+   OK   exists: code/tasks/t11_javagui_fix.ps1 (3986 B)
+   OK   exists: code/tasks/t12_ligplus_new.ps1 (7178 B)
+   OK   exists: code/tasks/t13_docker_autofigure.ps1 (2917 B)
+   OK   exists: code/tasks/t14_recyclebin_empty.ps1 (2689 B)
+   OK   exists: code/tasks/t15_uvcache_final.ps1 (4126 B)
+   OK   exists: code/tasks/t16_uvcache_final2.ps1 (3987 B)
+   OK   exists: code/tasks/t17_uv_delete_bg.ps1 (4570 B)
+   OK   exists: code/tasks/t18_edrive_survey.ps1 (15793 B)
+   OK   exists: code/tasks/t17b_uv_finish.ps1 (3803 B)
+   OK   exists: code/tasks/t19_cleanup_approved.ps1 (9331 B)
+   OK   exists: code/tasks/t20_docker_pagefile.ps1 (5765 B)
+   OK   exists: code/tasks/t21_optimize_review.ps1 (7881 B)
+   OK   exists: code/tasks/t22_pagefile_uac.ps1 (2571 B)
+   OK   exists: code/tasks/t23_tailscale_verify.ps1 (2476 B)
+   OK   exists: code/tasks/t24_oldsync_cleanup.ps1 (2537 B)
+   OK   exists: code/tasks/t25_oldtask_uac.ps1 (4503 B)
+   OK   exists: code/tasks/t26_pagefile_fix_uac.ps1 (4880 B)
+   OK   exists: code/tasks/t27_pagefile_registry.ps1 (4513 B)
+   OK   exists: code/tasks/t28_reboot_verify.ps1 (2764 B)
+   OK   exists: code/tasks/t29_ddrive_survey.ps1 (9818 B)
+   OK   exists: code/tasks/t30_tailscale_prep.ps1 (5189 B)
+   OK   absent: local/inbox
+   OK   absent: local/status_receipts
+   OK   absent: skills/docx_skill.py
+   OK   absent: local_bridge_skill.py
+   OK   contains skills/git-sync/VERSION <- 2.8.1
+   OK   contains 01a0a821.md <- arena/01a0a98d-git-pull-arena
+   OK   contains skills/git-sync/sync.config.json <- arena/01a0a9f0-git-pull-arena
+   OK   contains skills/git-sync/templates/one-sentence.md <- agent-handoff.sh
+   OK   contains skills/git-sync/scripts/agent-install.sh <- refusing to downgrade
+   OK   contains code/check_all.sh <- py -3
+   OK   contains code/local_check.ps1 <- no Office deliverable declared
+   OK   contains deliverable/OFFICE_HASHES.json <- arena/01a0a9f0-git-pull-arena
+   OK   contains watch.ps1 <- function Invoke-AutoPull
+   OK   contains skills/git-sync/scripts/watch.ps1 <- function Invoke-Focus
+   OK   contains code/tasks/manifest.json <- t3_edrive_scan.ps1
+   OK   contains code/tasks/t1_fix_antigravity.ps1 <- http.proxy
+   OK   contains code/tasks/t2_install_java.ps1 <- E:\java
+   OK   regex watch.ps1
+   OK   regex code/local_check.ps1
+   OK   regex deliverable/OFFICE_HASHES.json
+   OK   size skills/git-sync/scripts/agent-handoff.sh: 4603 >= 2000
+   OK   size skills/git-sync/scripts/agent-install.sh: 13404 >= 10000
+   OK   size code/check_all.sh: 9945 >= 8000
+   OK   size code/local_check.ps1: 30124 >= 12000
+   OK   size code/make_link_proof.py: 22948 >= 8000
+   OK   size deliverable/OFFICE_HASHES.json: 2401 >= 500
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 >= 5000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 >= 15000
+   OK   size watch.ps1: 84094 >= 20000
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 <= 3000000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 <= 3000000
+== local checks passed
