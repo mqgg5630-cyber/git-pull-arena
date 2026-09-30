@@ -1,9 +1,9 @@
 {
-    "round":  89,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 89: t71 install yrui-cmd/cell-lct (SkipApiKey) + TryLoveMe/cell-lct-free (-Force), pip vtracer+fontTools, port bridge v2 + rotation patch to free edition scripts (source + installed), report inventory",
-    "arena_updated":  "2026-09-30 14:45:05",
-    "local_updated":  "2026-09-30 22:46:27"
+  "round": 89,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-30 14:46:36",
+  "local_updated": "2026-09-30 22:46:27"
 }
