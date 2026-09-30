@@ -106,7 +106,8 @@
     "code/tasks/t66_diag_rebuild.ps1",
     "code/tasks/t67_probe_ai_state.ps1",
     "code/tasks/t68_bridge_v2_resume.ps1",
-    "code/tasks/t69_tfprobe.ps1"
+    "code/tasks/t69_tfprobe.ps1",
+    "code/tasks/t70_v2_rebuild.ps1"
   ],
   "forbid_files": [
     "local/inbox",
