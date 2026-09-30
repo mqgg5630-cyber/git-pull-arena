@@ -78,7 +78,9 @@
     "code/tasks/t48_english_citations.py",
     "code/tasks/t48_zotero_match.py",
     "code/tasks/t49_run.ps1",
-    "code/tasks/t49_dump_refs.py"
+    "code/tasks/t49_dump_refs.py",
+    "code/tasks/t50_run.ps1",
+    "code/tasks/t50_zotero_link.py"
   ],
   "forbid_files": [
     "local/inbox",
