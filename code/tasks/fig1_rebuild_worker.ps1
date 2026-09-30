@@ -14,6 +14,25 @@ function San([string]$s) { if ($null -eq $s) { return '' }; try { $s = $s -repla
 try { Start-Transcript -Path (Join-Path $root 'rebuild.log') -Force | Out-Null } catch { }
 try {
     L 'WORKER START'
+    # ------------------------------------------------ 0. refresh PATH + python deps
+    try {
+        $env:Path = [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [Environment]::GetEnvironmentVariable('Path', 'User')
+    } catch { L 'WARN: PATH refresh failed' }
+    $pyOk = $false
+    try {
+        & py -3 -c "import fontTools, shapely" 2>$null
+        if ($LASTEXITCODE -eq 0) { $pyOk = $true; L 'py -3 deps: already OK' }
+    } catch { }
+    if (-not $pyOk) {
+        L 'py -3 missing deps - installing requirements.lock into py -3 ...'
+        $lock = 'E:\cell_su7\requirements.lock'
+        if (-not (Test-Path -LiteralPath $lock)) { throw ('requirements.lock missing: ' + $lock) }
+        & py -3 -m pip install --quiet --disable-pip-version-check -r $lock 2>&1 | ForEach-Object { L ('   pip| ' + (San ([string]$_))) }
+        & py -3 -c "import fontTools, shapely" 2>$null
+        if ($LASTEXITCODE -ne 0) { throw 'py -3 deps install failed (fontTools/shapely still missing)' }
+        L 'py -3 deps installed OK'
+    }
+
     # ------------------------------------------------ 1. locate Illustrator.exe
     $aiExe = $null
     foreach ($d in @(Get-ChildItem -Path 'E:\' -Directory -ErrorAction SilentlyContinue | Where-Object { $_.Name -match 'Illustrator' })) {
