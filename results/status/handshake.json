@@ -1,9 +1,9 @@
 {
-  "round": 67,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-09-30 09:08:34",
-  "local_updated": "2026-09-30 17:08:16"
+  "round": 68,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 68: t56 import refs to Zotero (Connector API) + A/B refresh test on temp copies + dump first-field XML of both docs + zotero item count",
+  "arena_updated": "2026-09-30 09:10:50",
+  "local_updated": null
 }
