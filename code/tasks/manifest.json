@@ -113,6 +113,10 @@
     "49": [
       "t38_uninstall_qwenpaw.ps1",
       "t39_toolbox_and_paths.ps1"
+    ],
+    "50": [
+      "t40_mcp_n8n_r_survey.ps1",
+      "t41_bigdocs_report.ps1"
     ]
   }
 }

@@ -65,7 +65,9 @@
     "code/tasks/t36_autostart_vpn_tailscale.ps1",
     "code/tasks/t37_software_inventory.ps1",
     "code/tasks/t38_uninstall_qwenpaw.ps1",
-    "code/tasks/t39_toolbox_and_paths.ps1"
+    "code/tasks/t39_toolbox_and_paths.ps1",
+    "code/tasks/t40_mcp_n8n_r_survey.ps1",
+    "code/tasks/t41_bigdocs_report.ps1"
   ],
   "forbid_files": [
     "local/inbox",
