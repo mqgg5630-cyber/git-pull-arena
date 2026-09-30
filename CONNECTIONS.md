@@ -178,3 +178,11 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - Java env proven end-to-end (javac + jar + Swing GUI window "JavaOK-E-drive").
 - Antigravity login fixed (settings.json http.proxy + user-level proxy env vars; user confirmed working).
 - E: freed ~10 GB on disk + ~6.1 GB in the recycle bin; uv cache 1.78 GB remains (locked by running MCP tools).
+
+## Round 37 - approved cleanup executed
+
+- 7.49 GB to the recycle bin: old installers (BIOVIA/AmberTools/Positron/Cytoscape/TencentMeeting/jdk23+24/Sheas-Cealer/DiscoveryS/fuhewu+sh data/VMware/AI-mp4/AI-zip), bert.bin, study folder, vit-pytorch-main, Vivaldi, thunder-download folder, wsa toolbox, the WeChat LigPlus.jar (old build, hash-checked).
+- Desktop: old LigPlus.jar.lnk replaced by LigPlot+.lnk -> E:\java JDK javaw + E:\LigPlus\LigPlus\LigPlus.jar (verified).
+- Docker builder prune: engine was OFF - retry when Docker Desktop runs.
+- Pagefile: 42 GB auto-managed, peak 8.8 GB -> E:\pagefile_shrink_admin.ps1 written (run as admin + reboot -> 8-16 GB fixed).
+- uv cache: left alone (actively used by MCP tools; it regrows while they run).
