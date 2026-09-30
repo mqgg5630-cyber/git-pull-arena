@@ -1,9 +1,9 @@
 {
-    "round":  78,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 78: t65 stop stale worker, restage fixed worker (PATH refresh + py deps preflight), relaunch detached, report 40s log",
-    "arena_updated":  "2026-09-30 12:34:21",
-    "local_updated":  "2026-09-30 20:35:45"
+  "round": 78,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-30 12:35:57",
+  "local_updated": "2026-09-30 20:35:45"
 }
