@@ -1,9 +1,9 @@
 {
-  "round": 86,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 86: t70 patch cell_lct_cached_runtime.jsx rotation-around-anchor (both copies), stage v2 svg + corrected manifest, FRESH.marker, relaunch worker detached",
-  "arena_updated": "2026-09-30 13:14:32",
-  "local_updated": null
+    "round":  86,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 86: t70 patch cell_lct_cached_runtime.jsx rotation-around-anchor (both copies), stage v2 svg + corrected manifest, FRESH.marker, relaunch worker detached",
+    "arena_updated":  "2026-09-30 13:14:32",
+    "local_updated":  "2026-09-30 21:16:41"
 }
