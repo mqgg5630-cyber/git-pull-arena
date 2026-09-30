@@ -262,6 +262,9 @@
     ],
     "98": [
       "t64_poll_rebuild.ps1"
+    ],
+    "99": [
+      "t74_hpc_watch.ps1"
     ]
   }
 }
