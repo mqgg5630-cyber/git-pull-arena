@@ -1,9 +1,9 @@
 {
-  "round": 41,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-09-30 01:40:34",
-  "local_updated": "2026-09-30 09:40:16"
+  "round": 42,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 42: t27 pagefile registry check + direct write via UAC - watch the screen for the UAC prompt",
+  "arena_updated": "2026-09-30 01:41:39",
+  "local_updated": null
 }
