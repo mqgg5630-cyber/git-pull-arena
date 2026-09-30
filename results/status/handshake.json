@@ -1,9 +1,9 @@
 {
-  "round": 84,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-09-30 13:04:44",
-  "local_updated": "2026-09-30 21:04:32"
+  "round": 85,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 85: t69 reopen shibielujing1.ai, dump all textFrame positions/bounds/hidden/parent + artboard rect, close, copy tfprobe.result into repo",
+  "arena_updated": "2026-09-30 13:08:37",
+  "local_updated": null
 }
