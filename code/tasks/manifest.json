@@ -238,6 +238,12 @@
     ],
     "90": [
       "t64_poll_rebuild.ps1"
+    ],
+    "91": [
+      "t70_v2_rebuild.ps1"
+    ],
+    "92": [
+      "t64_poll_rebuild.ps1"
     ]
   }
 }
