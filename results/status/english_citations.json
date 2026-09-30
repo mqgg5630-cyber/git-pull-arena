@@ -1,0 +1,382 @@
+{
+ "para_count": 668,
+ "cite_runs": [
+  {
+   "para": 5,
+   "text": "[1]",
+   "sup": false
+  },
+  {
+   "para": 5,
+   "text": "[2]",
+   "sup": false
+  },
+  {
+   "para": 6,
+   "text": "[3]",
+   "sup": false
+  },
+  {
+   "para": 6,
+   "text": "[4]",
+   "sup": false
+  },
+  {
+   "para": 6,
+   "text": "[5]",
+   "sup": false
+  },
+  {
+   "para": 6,
+   "text": "[19]",
+   "sup": false
+  },
+  {
+   "para": 7,
+   "text": "[6]",
+   "sup": false
+  },
+  {
+   "para": 7,
+   "text": "[7]",
+   "sup": false
+  },
+  {
+   "para": 7,
+   "text": "[10]",
+   "sup": false
+  },
+  {
+   "para": 7,
+   "text": "[11]",
+   "sup": false
+  },
+  {
+   "para": 7,
+   "text": "[14]",
+   "sup": false
+  },
+  {
+   "para": 8,
+   "text": "[8–9]",
+   "sup": false
+  },
+  {
+   "para": 8,
+   "text": "[12]",
+   "sup": false
+  },
+  {
+   "para": 8,
+   "text": "[13]",
+   "sup": false
+  },
+  {
+   "para": 9,
+   "text": "[15–16]",
+   "sup": false
+  },
+  {
+   "para": 9,
+   "text": "[31]",
+   "sup": false
+  },
+  {
+   "para": 9,
+   "text": "[23]",
+   "sup": false
+  },
+  {
+   "para": 10,
+   "text": "[17]",
+   "sup": false
+  },
+  {
+   "para": 10,
+   "text": "[18]",
+   "sup": false
+  },
+  {
+   "para": 10,
+   "text": "[20]",
+   "sup": false
+  },
+  {
+   "para": 10,
+   "text": "[36]",
+   "sup": false
+  },
+  {
+   "para": 16,
+   "text": "[7]",
+   "sup": false
+  },
+  {
+   "para": 18,
+   "text": "[23,31]",
+   "sup": false
+  },
+  {
+   "para": 18,
+   "text": "[35]",
+   "sup": false
+  },
+  {
+   "para": 20,
+   "text": "[21,32]",
+   "sup": false
+  },
+  {
+   "para": 20,
+   "text": "[22]",
+   "sup": false
+  },
+  {
+   "para": 20,
+   "text": "[33–34]",
+   "sup": false
+  },
+  {
+   "para": 22,
+   "text": "[24]",
+   "sup": false
+  },
+  {
+   "para": 24,
+   "text": "[25]",
+   "sup": false
+  },
+  {
+   "para": 26,
+   "text": "[26]",
+   "sup": false
+  },
+  {
+   "para": 30,
+   "text": "[20]",
+   "sup": false
+  },
+  {
+   "para": 30,
+   "text": "[27–28]",
+   "sup": false
+  },
+  {
+   "para": 32,
+   "text": "[29–30]",
+   "sup": false
+  },
+  {
+   "para": 33,
+   "text": "[18]",
+   "sup": false
+  },
+  {
+   "para": 612,
+   "text": "[4,18]",
+   "sup": false
+  },
+  {
+   "para": 615,
+   "text": "[23–26]",
+   "sup": false
+  },
+  {
+   "para": 615,
+   "text": "[31]",
+   "sup": false
+  },
+  {
+   "para": 615,
+   "text": "[21–22,32–34]",
+   "sup": false
+  },
+  {
+   "para": 615,
+   "text": "[7,15–16]",
+   "sup": false
+  },
+  {
+   "para": 617,
+   "text": "[2–3]",
+   "sup": false
+  },
+  {
+   "para": 617,
+   "text": "[4]",
+   "sup": false
+  },
+  {
+   "para": 617,
+   "text": "[5]",
+   "sup": false
+  },
+  {
+   "para": 617,
+   "text": "[19]",
+   "sup": false
+  },
+  {
+   "para": 617,
+   "text": "[17]",
+   "sup": false
+  },
+  {
+   "para": 617,
+   "text": "[18]",
+   "sup": false
+  },
+  {
+   "para": 617,
+   "text": "[6,12–13]",
+   "sup": false
+  },
+  {
+   "para": 619,
+   "text": "[20,36]",
+   "sup": false
+  },
+  {
+   "para": 619,
+   "text": "[27–28]",
+   "sup": false
+  },
+  {
+   "para": 623,
+   "text": "[3,20]",
+   "sup": false
+  },
+  {
+   "para": 625,
+   "text": "[4–5]",
+   "sup": false
+  },
+  {
+   "para": 625,
+   "text": "[4]",
+   "sup": false
+  },
+  {
+   "para": 627,
+   "text": "[8–9]",
+   "sup": false
+  },
+  {
+   "para": 627,
+   "text": "[6]",
+   "sup": false
+  },
+  {
+   "para": 627,
+   "text": "[12,35]",
+   "sup": false
+  },
+  {
+   "para": 627,
+   "text": "[10]",
+   "sup": false
+  },
+  {
+   "para": 627,
+   "text": "[11]",
+   "sup": false
+  },
+  {
+   "para": 627,
+   "text": "[14]",
+   "sup": false
+  },
+  {
+   "para": 628,
+   "text": "[15,31]",
+   "sup": false
+  },
+  {
+   "para": 628,
+   "text": "[4,18]",
+   "sup": false
+  },
+  {
+   "para": 628,
+   "text": "[12–13]",
+   "sup": false
+  },
+  {
+   "para": 630,
+   "text": "[2]",
+   "sup": false
+  },
+  {
+   "para": 630,
+   "text": "[3]",
+   "sup": false
+  }
+ ],
+ "inline_bracket_mentions": [
+  "[1]",
+  "[2]",
+  "[3]",
+  "[4]",
+  "[5]",
+  "[19]",
+  "[6]",
+  "[7]",
+  "[10]",
+  "[11]",
+  "[14]",
+  "[8–9]",
+  "[12]",
+  "[13]",
+  "[15–16]",
+  "[31]",
+  "[23]",
+  "[17]",
+  "[18]",
+  "[20]",
+  "[36]",
+  "[7]",
+  "[23,31]",
+  "[35]",
+  "[21,32]",
+  "[22]",
+  "[33–34]",
+  "[24]",
+  "[25]",
+  "[26]",
+  "[0, 1]",
+  "[20]",
+  "[27–28]",
+  "[29–30]",
+  "[18]",
+  "[4,18]",
+  "[23–26]",
+  "[31]",
+  "[21–22,32–34]",
+  "[7,15–16]",
+  "[2–3]",
+  "[4]",
+  "[5]",
+  "[19]",
+  "[17]",
+  "[18]",
+  "[6,12–13]",
+  "[20,36]",
+  "[27–28]",
+  "[3,20]",
+  "[4–5]",
+  "[4]",
+  "[8–9]",
+  "[6]",
+  "[12,35]",
+  "[10]",
+  "[11]",
+  "[14]",
+  "[15,31]",
+  "[4,18]",
+  "[12–13]",
+  "[2]",
+  "[3]"
+ ],
+ "refs_start_para": 631,
+ "refs": []
+}
