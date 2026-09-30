@@ -84,6 +84,9 @@
     ],
     "41": [
       "t26_pagefile_fix_uac.ps1"
+    ],
+    "42": [
+      "t27_pagefile_registry.ps1"
     ]
   }
 }
