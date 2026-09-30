@@ -1,9 +1,9 @@
 {
-    "round":  72,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 72: t59 registry dig + Illustrator launch test (COM ProgIDs, ROT) + winget Python 3.12 + patch run_cell_lct ProgID fallback v24 + run E:\\cell_su7 setup.ps1",
-    "arena_updated":  "2026-09-30 11:58:03",
-    "local_updated":  "2026-09-30 20:02:25"
+  "round": 72,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-30 12:02:40",
+  "local_updated": "2026-09-30 20:02:25"
 }
