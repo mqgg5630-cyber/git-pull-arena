@@ -181,6 +181,9 @@
     ],
     "71": [
       "t58_recon_install.ps1"
+    ],
+    "72": [
+      "t59_install_bridge.ps1"
     ]
   }
 }

@@ -94,7 +94,8 @@
     "code/tasks/t56_import_zotero.py",
     "code/tasks/t57_run.ps1",
     "code/tasks/t57_bind_uris.py",
-    "code/tasks/t58_recon_install.ps1"
+    "code/tasks/t58_recon_install.ps1",
+    "code/tasks/t59_install_bridge.ps1"
   ],
   "forbid_files": [
     "local/inbox",
