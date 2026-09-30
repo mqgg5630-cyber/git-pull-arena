@@ -38,7 +38,10 @@ if ($vers.Count -eq 0) { Write-Output '   no R-x.y.z version dirs inside E:\R' }
 $szOf = @{}
 foreach ($v in $vers) {
     $s = [double]0
-    try { $s = [double](($entries | Where-Object { $_.FullName -eq $v.FullName } | Out-Null); (Get-ChildItem -LiteralPath $v.FullName -Recurse -Force -ErrorAction SilentlyContinue | Measure-Object Length -Sum).Sum) } catch { }
+    try {
+        $m = Get-ChildItem -LiteralPath $v.FullName -Recurse -Force -ErrorAction SilentlyContinue | Measure-Object Length -Sum
+        $s = [double]$m.Sum
+    } catch { }
     $szOf[$v.FullName] = $s
     Write-Output ('   R VER  ' + (FmtB $s).PadLeft(10) + '  ' + $v.Name)
 }
@@ -103,9 +106,13 @@ if (Test-Path -LiteralPath $deskFile) {
         $m1 = $raw.IndexOf('- R inside WSL is reported only')
         if ($m0 -ge 0 -and $m1 -gt $m0) {
             $newR = '- Windows R: FOUND at E:\R (' + $vers.Count + ' version dirs) + E:\RStudio (IDE).'
-            if ($deleted.Count -gt 0) { $newR += "`r`n- DELETED old versions (recycle bin): ' + ($deleted -join ', ') }" }
-            else { $newR += "`r`n- Old versions: none deleted (single version only)." }
-            $newR += "`r`n" + '- WSL: no R in Ubuntu-24.04 (clean probe) or 26.04.'
+            if ($deleted.Count -gt 0) {
+                $del = ($deleted -join ', ')
+                $newR = $newR + "`r`n" + '- DELETED old versions (recycle bin): ' + $del
+            } else {
+                $newR = $newR + "`r`n" + '- Old versions: none deleted (single version only).'
+            }
+            $newR = $newR + "`r`n" + '- WSL: no R in Ubuntu-24.04 (clean probe) or 26.04.'
             $new = $raw.Substring(0, $m0) + $newR + $raw.Substring($m1)
             [System.IO.File]::WriteAllText($deskFile, $new, (New-Object System.Text.UTF8Encoding($true)))
             Write-Output '   desktop report: R section updated'

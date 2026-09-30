@@ -133,6 +133,9 @@
     ],
     "55": [
       "t45_r_versions_cleanup.ps1"
+    ],
+    "56": [
+      "t45_r_versions_cleanup.ps1"
     ]
   }
 }
