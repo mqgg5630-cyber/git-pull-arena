@@ -76,7 +76,9 @@
     "code/tasks/t47_pipeline_fetch.ps1",
     "code/tasks/t48_run.ps1",
     "code/tasks/t48_english_citations.py",
-    "code/tasks/t48_zotero_match.py"
+    "code/tasks/t48_zotero_match.py",
+    "code/tasks/t49_run.ps1",
+    "code/tasks/t49_dump_refs.py"
   ],
   "forbid_files": [
     "local/inbox",
