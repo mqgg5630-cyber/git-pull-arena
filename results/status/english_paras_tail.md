@@ -1,0 +1,50 @@
+# r60: paragraphs 620..end of English.docx
+
+- 620 | Reference | 2. A surface-bound enzyme–peptide complex.
+- 621 | BodyText |    Over 100 ns the enzyme remains globular (RMSD 0.16–0.19 nm, Rg 2.30–2.31 nm, helix ~33% / sheet ~17%; Figures 5–7). FLLHTTR and YLSLLQR complexes become more compact than apo in late RMSD (0.1640 a
+- 622 | Reference | 3. Restricted acetylcholine access.
+- 623 | BodyText |    The PAS sits at the mouth of the 20-Å gorge that feeds the catalytic triad [3,20]. Physical occupancy of Asp74/Tyr72/Trp286/Tyr341 can hinder substrate entry even while the catalytic core remains f
+- 624 | Reference | 4. Pathological chaperone activity.
+- 625 | BodyText |    Because the PAS is a documented pro-fibrillar site [4–5], a heterologous peptide that remains there can lower the nucleation barrier for endogenous Aβ. FLLHTTR supplies a persistent polar net on th
+- 626 | Heading3 | From the oral cavity to cortical AChE
+- 627 | BodyText | Chronic periodontitis can move P. gingivalis products into blood through a disrupted epithelium, gingipains and outer-membrane vesicles [8–9]. Systemic cytokines and proteases increase BBB leakiness [
+- 628 | BodyText | The calculation therefore connects three literatures that are usually kept apart: oral smORF peptide space [15,31], the PAS chaperone activity of AChE [4,18], and the periodontitis–AD exposure context
+- 629 | Heading2 | Conclusions
+- 630 | BodyText | Twelve 7–9-aa peptides from a periodontitis-labelled oral smORF library dock to human AChE. FLLHTTR, YLSLLQR and ALLLHRC remain on the surface for 100 ns without unfolding the enzyme. FLLHTTR forms th
+- 631 | Heading2 | References
+- 632 | Reference | 1. Scheltens P, De Strooper B, Kivipelto M, et al. Alzheimer’s disease. Lancet. 2021;397(10284):1577–1590. doi:10.1016/S0140-6736(20)32205-4.
+- 633 | Reference | 2. Selkoe DJ, Hardy J. The amyloid hypothesis of Alzheimer’s disease at 25 years. EMBO Mol Med. 2016;8(6):595–608. doi:10.15252/emmm.201606210.
+- 634 | Reference | 3. Hampel H, Mesulam MM, Cuello AC, et al. The cholinergic system in the pathophysiology and treatment of Alzheimer’s disease. Brain. 2018;141(7):1917–1933. doi:10.1093/brain/awy132.
+- 635 | Reference | 4. Inestrosa NC, Alvarez A, Pérez CA, et al. Acetylcholinesterase accelerates assembly of amyloid-β-peptides into Alzheimer’s fibrils. Neuron. 1996;16(4):881–891. doi:10.1016/s0896-6273(00)80108-7.
+- 636 | Reference | 5. De Ferrari GV, Canales MA, Shin I, et al. A structural motif of acetylcholinesterase that promotes amyloid β-peptide fibril formation. Biochemistry. 2001;40(35):10447–10457. doi:10.1021/bi0101392.
+- 637 | Reference | 6. Chalmers JC, Hernandez-Kapila YL. The role of the oral microbiome, host response, and periodontal disease treatment in Alzheimer’s disease: a primer. Periodontol 2000. 2025;98(1):220–227. doi:10.11
+- 638 | Reference | 7. Belstrøm D, Constancias F, Drautz-Moses DI, et al. Periodontitis associates with species-specific gene expression of the oral microbiota. npj Biofilms Microbiomes. 2021;7:76. doi:10.1038/s41522-021
+- 639 | Reference | 8. Guo Y, Nguyen KA, Potempa J. Dichotomy of gingipains action as virulence factors. Periodontol 2000. 2010;54(1):15–44. doi:10.1111/j.1600-0757.2010.00377.x.
+- 640 | Reference | 9. Ho MH, Chen CH, Goodwin JS, et al. Functional advantages of Porphyromonas gingivalis vesicles. PLoS One. 2015;10(4):e0123448. doi:10.1371/journal.pone.0123448.
+- 641 | Reference | 10. Larvin H, Gao C, Kang J, et al. The impact of study factors in the association of periodontal disease and cognitive disorders. Age Ageing. 2023;52(2):afad015. doi:10.1093/ageing/afad015.
+- 642 | Reference | 11. Ide M, Harris M, Stevens A, et al. Periodontitis and cognitive decline in Alzheimer’s disease. PLoS One. 2016;11(3):e0151081. doi:10.1371/journal.pone.0151081.
+- 643 | Reference | 12. Dominy SS, Lynch C, Ermini F, et al. Porphyromonas gingivalis in Alzheimer’s disease brains. Sci Adv. 2019;5(1):eaau3333. doi:10.1126/sciadv.aau3333.
+- 644 | Reference | 13. Ilievski V, Zuchowska PK, Green SJ, et al. Chronic oral application of a periodontal pathogen results in brain inflammation, neurodegeneration and amyloid beta production in wild type mice. PLoS O
+- 645 | Reference | 14. Hu C, Li H, Huang L, et al. Periodontal disease and risk of Alzheimer’s disease: a two-sample Mendelian randomization. Brain Behav. 2024;14(4):e3486. doi:10.1002/brb3.3486.
+- 646 | Reference | 15. Sberro H, Fremin BJ, Zlitni S, et al. Large-scale analyses of human microbiomes reveal thousands of small, novel genes. Cell. 2019;178(5):1245–1259.e14. doi:10.1016/j.cell.2019.07.016.
+- 647 | Reference | 16. Durrant MG, Bhatt AS. Automated prediction and annotation of small open reading frames in microbial genomes. Cell Host Microbe. 2021;29(1):121–131.e4. doi:10.1016/j.chom.2020.11.002.
+- 648 | Reference | 17. Lushchekina SV, Kots ED, Novichkova DA, Petrov KA, Masson P. Role of acetylcholinesterase in β-amyloid aggregation studied by accelerated molecular dynamics. BioNanoScience. 2017;7(2):396–402. doi
+- 649 | Reference | 18. Atanasova M, Dimitrov I, Ivanov S. Molecular dynamics simulations of acetylcholinesterase–beta-amyloid peptide complex. Cybern Inf Technol. 2020;20(6):140–154. doi:10.2478/cait-2020-0068.
+- 650 | Reference | 19. Bartolini M, Bertucci C, Cavrini V, Andrisano V. β-Amyloid aggregation induced by human acetylcholinesterase: inhibition studies. Biochem Pharmacol. 2003;65(3):407–416. doi:10.1016/s0006-2952(02)0
+- 651 | Reference | 20. Cheung J, Rudolph MJ, Burshteyn F, et al. Structures of human acetylcholinesterase in complex with pharmacologically important ligands. J Med Chem. 2012;55(23):10282–10286. doi:10.1021/jm300871x.
+- 652 | Reference | 21. Chen T, Yu WH, Izard J, et al. The Human Oral Microbiome Database: a web accessible resource for investigating oral microbe taxonomic and genomic information. Database (Oxford). 2010;2010:baq013. 
+- 653 | Reference | 22. Belstrøm D, Jersie-Christensen RR, Lyon D, et al. Metaproteomics of saliva identifies human protein markers specific for individuals with periodontitis and dental caries compared to orally healthy
+- 654 | Reference | 23. Du Z, Ding X, Xu Y, Li Y. UniDL4BioPep: a universal deep learning architecture for binary classification in peptide bioactivity. Brief Bioinform. 2023;24(3):bbad135. doi:10.1093/bib/bbad135.
+- 655 | Reference | 24. Rathore AS, Jain S, Choudhury S, Raghava GPS. A large language model for predicting neurotoxic peptides and neurotoxins. Protein Sci. 2025;34(8):e70200. doi:10.1002/pro.70200.
+- 656 | Reference | 25. Aptekmann AA, Buongiorno J, Giovannelli D, et al. mebipred: identifying metal-binding potential in protein sequence. Bioinformatics. 2022;38(14):3532–3540. doi:10.1093/bioinformatics/btac358.
+- 657 | Reference | 26. Olsen TH, Yesiltas B, Marin FI, et al. AnOxPePred: using deep learning for the prediction of antioxidative properties of peptides. Sci Rep. 2020;10:21471. doi:10.1038/s41598-020-78319-w.
+- 658 | Reference | 27. Trott O, Olson AJ. AutoDock Vina: improving the speed and accuracy of docking with a new scoring function. J Comput Chem. 2010;31(2):455–461. doi:10.1002/jcc.21334.
+- 659 | Reference | 28. Eberhardt J, Santos-Martins D, Tillack AF, Forli S. AutoDock Vina 1.2.0: new docking methods, expanded force field, and Python bindings. J Chem Inf Model. 2021;61(8):3891–3898. doi:10.1021/acs.jci
+- 660 | Reference | 29. Abraham MJ, Murtola T, Schulz R, et al. GROMACS: high performance molecular simulations through multi-level parallelism from laptops to supercomputers. SoftwareX. 2015;1–2:19–25. doi:10.1016/j.sof
+- 661 | Reference | 30. Lindorff-Larsen K, Piana S, Palmo K, et al. Improved side-chain torsion potentials for the Amber ff99SB protein force field. Proteins. 2010;78(8):1950–1958. doi:10.1002/prot.22711.
+- 662 | Reference | 31. Torres MDT, Brooks EF, Cesaro A, et al. Mining human microbiomes reveals an untapped source of peptide antibiotics. Cell. 2024;187(19):5453–5467.e15. doi:10.1016/j.cell.2024.07.027.
+- 663 | Reference | 32. Escapa IF, Chen T, Huang Y, et al. New insights into human nostril microbiome from the expanded Human Oral Microbiome Database (eHOMD). mSystems. 2018;3(3):e00187-18. doi:10.1128/mSystems.00187-18
+- 664 | Reference | 33. Jiang X, Zhang Y, Wang H, et al. In-depth metaproteomics analysis of oral microbiome for lung cancer. Research (Wash D C). 2022;2022:9781578. doi:10.34133/2022/9781578.
+- 665 | Reference | 34. Yuan J, Cao Q, Chen M, et al. OSaMPle workflow for salivary metaproteomics analysis reveals dysbiosis in inflammatory bowel disease patients. npj Biofilms Microbiomes. 2025;11:63. doi:10.1038/s415
+- 666 | Reference | 35. Gu Y, Chen P, Wang B, et al. Prediction of blood-brain barrier penetrating peptides based on data augmentation with Augur. BMC Biol. 2024;22:86. doi:10.1186/s12915-024-01883-4.
+- 667 | Reference | 36. Kryger G, Silman I, Sussman JL. Structure of acetylcholinesterase complexed with E2020 (Aricept): implications for drug design. Structure. 1999;7(3):297–307. doi:10.1016/s0969-2126(99)80040-9.

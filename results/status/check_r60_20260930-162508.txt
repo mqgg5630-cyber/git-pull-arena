@@ -1,0 +1,224 @@
+check round 60 on LAPTOP-R77M5D6M - passed (exit 0)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 26s
+
+OK: all .ps1 files are ASCII-only
+OK: sync.config.json branch=arena/01a0a9f0-git-pull-arena
+OK: sync.config.json branch matches HEAD (arena/01a0a9f0-git-pull-arena)
+OK: root scripts identical to skills/git-sync/scripts
+OK: no drive-style variable typos ($var:)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+OK: every .ps1 parses
+   (gate ran via E:\hermes\git\bin\bash.exe [git])
+== accept 2a: silent push PROVEN (ls-remote + push --dry-run, prompts disabled)
+== accept 2b (fallback): one LONG-LIVED loop process - one brief flash per logon,
+   not per poll. For zero flash: admin PowerShell -> .\watch.ps1 -Unregister ;
+   .\watch.ps1 -Register -Headless   (or fix the launcher, see watch-*.log)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+== check_loop_summary PASSED
+== accept 2c: watcher closing lines verified (every exit path has its summary)
+== deliverables: 2 Office file(s) declared in deliverable/OFFICE_HASHES.json
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.docx (39743 B, docx)
+   OK   3b all 6 required parts present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.docx (17 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B, pptx)
+   OK   3b all 9 required parts present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.pptx (52 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3g slides in deliverable/LINK_PROOF_v2.8.1.pptx : 8 >= 8
+   OK   3h Word.Application opened read-only, name=LINK_PROOF_v2.8.1.docx : deliverable\LINK_PROOF_v2.8.1.docx
+   OK   3h PowerPoint.Application opened read-only, slides=8 : deliverable\LINK_PROOF_v2.8.1.pptx
+== task r60: t49_run.ps1
+--- task t49: refs format dump + reverse zotero match (READ-ONLY) ---
+   --- paragraphs 620..end (idx | style | text) ---
+   P 620 | Reference | 2. A surface-bound enzyme?peptide complex.
+   P 621 | BodyText |    Over 100 ns the enzyme remains globular (RMSD 0.16?0.19 nm, Rg 2.30?2.31 nm, helix ~33% / sheet ~17%; Figures 5?7). FLLHTTR and YLSLLQR complexes become more compact than apo in late RMSD (0.1640 a
+   P 622 | Reference | 3. Restricted acetylcholine access.
+   P 623 | BodyText |    The PAS sits at the mouth of the 20-? gorge that feeds the catalytic triad [3,20]. Physical occupancy of Asp74/Tyr72/Trp286/Tyr341 can hinder substrate entry even while the catalytic core remains f
+   P 624 | Reference | 4. Pathological chaperone activity.
+   P 625 | BodyText |    Because the PAS is a documented pro-fibrillar site [4?5], a heterologous peptide that remains there can lower the nucleation barrier for endogenous A?. FLLHTTR supplies a persistent polar net on th
+   P 626 | Heading3 | From the oral cavity to cortical AChE
+   P 627 | BodyText | Chronic periodontitis can move P. gingivalis products into blood through a disrupted epithelium, gingipains and outer-membrane vesicles [8?9]. Systemic cytokines and proteases increase BBB leakiness [
+   P 628 | BodyText | The calculation therefore connects three literatures that are usually kept apart: oral smORF peptide space [15,31], the PAS chaperone activity of AChE [4,18], and the periodontitis?AD exposure context
+   P 629 | Heading2 | Conclusions
+   P 630 | BodyText | Twelve 7?9-aa peptides from a periodontitis-labelled oral smORF library dock to human AChE. FLLHTTR, YLSLLQR and ALLLHRC remain on the surface for 100 ns without unfolding the enzyme. FLLHTTR forms th
+   P 631 | Heading2 | References
+   P 632 | Reference | 1. Scheltens P, De Strooper B, Kivipelto M, et al. Alzheimer?s disease. Lancet. 2021;397(10284):1577?1590. doi:10.1016/S0140-6736(20)32205-4.
+   P 633 | Reference | 2. Selkoe DJ, Hardy J. The amyloid hypothesis of Alzheimer?s disease at 25 years. EMBO Mol Med. 2016;8(6):595?608. doi:10.15252/emmm.201606210.
+   P 634 | Reference | 3. Hampel H, Mesulam MM, Cuello AC, et al. The cholinergic system in the pathophysiology and treatment of Alzheimer?s disease. Brain. 2018;141(7):1917?1933. doi:10.1093/brain/awy132.
+   P 635 | Reference | 4. Inestrosa NC, Alvarez A, P?rez CA, et al. Acetylcholinesterase accelerates assembly of amyloid-?-peptides into Alzheimer?s fibrils. Neuron. 1996;16(4):881?891. doi:10.1016/s0896-6273(00)80108-7.
+   P 636 | Reference | 5. De Ferrari GV, Canales MA, Shin I, et al. A structural motif of acetylcholinesterase that promotes amyloid ?-peptide fibril formation. Biochemistry. 2001;40(35):10447?10457. doi:10.1021/bi0101392.
+   P 637 | Reference | 6. Chalmers JC, Hernandez-Kapila YL. The role of the oral microbiome, host response, and periodontal disease treatment in Alzheimer?s disease: a primer. Periodontol 2000. 2025;98(1):220?227. doi:10.11
+   P 638 | Reference | 7. Belstr?m D, Constancias F, Drautz-Moses DI, et al. Periodontitis associates with species-specific gene expression of the oral microbiota. npj Biofilms Microbiomes. 2021;7:76. doi:10.1038/s41522-021
+   P 639 | Reference | 8. Guo Y, Nguyen KA, Potempa J. Dichotomy of gingipains action as virulence factors. Periodontol 2000. 2010;54(1):15?44. doi:10.1111/j.1600-0757.2010.00377.x.
+   P 640 | Reference | 9. Ho MH, Chen CH, Goodwin JS, et al. Functional advantages of Porphyromonas gingivalis vesicles. PLoS One. 2015;10(4):e0123448. doi:10.1371/journal.pone.0123448.
+   P 641 | Reference | 10. Larvin H, Gao C, Kang J, et al. The impact of study factors in the association of periodontal disease and cognitive disorders. Age Ageing. 2023;52(2):afad015. doi:10.1093/ageing/afad015.
+   P 642 | Reference | 11. Ide M, Harris M, Stevens A, et al. Periodontitis and cognitive decline in Alzheimer?s disease. PLoS One. 2016;11(3):e0151081. doi:10.1371/journal.pone.0151081.
+   P 643 | Reference | 12. Dominy SS, Lynch C, Ermini F, et al. Porphyromonas gingivalis in Alzheimer?s disease brains. Sci Adv. 2019;5(1):eaau3333. doi:10.1126/sciadv.aau3333.
+   P 644 | Reference | 13. Ilievski V, Zuchowska PK, Green SJ, et al. Chronic oral application of a periodontal pathogen results in brain inflammation, neurodegeneration and amyloid beta production in wild type mice. PLoS O
+   P 645 | Reference | 14. Hu C, Li H, Huang L, et al. Periodontal disease and risk of Alzheimer?s disease: a two-sample Mendelian randomization. Brain Behav. 2024;14(4):e3486. doi:10.1002/brb3.3486.
+   P 646 | Reference | 15. Sberro H, Fremin BJ, Zlitni S, et al. Large-scale analyses of human microbiomes reveal thousands of small, novel genes. Cell. 2019;178(5):1245?1259.e14. doi:10.1016/j.cell.2019.07.016.
+   P 647 | Reference | 16. Durrant MG, Bhatt AS. Automated prediction and annotation of small open reading frames in microbial genomes. Cell Host Microbe. 2021;29(1):121?131.e4. doi:10.1016/j.chom.2020.11.002.
+   P 648 | Reference | 17. Lushchekina SV, Kots ED, Novichkova DA, Petrov KA, Masson P. Role of acetylcholinesterase in ?-amyloid aggregation studied by accelerated molecular dynamics. BioNanoScience. 2017;7(2):396?402. doi
+   P 649 | Reference | 18. Atanasova M, Dimitrov I, Ivanov S. Molecular dynamics simulations of acetylcholinesterase?beta-amyloid peptide complex. Cybern Inf Technol. 2020;20(6):140?154. doi:10.2478/cait-2020-0068.
+   P 650 | Reference | 19. Bartolini M, Bertucci C, Cavrini V, Andrisano V. ?-Amyloid aggregation induced by human acetylcholinesterase: inhibition studies. Biochem Pharmacol. 2003;65(3):407?416. doi:10.1016/s0006-2952(02)0
+   P 651 | Reference | 20. Cheung J, Rudolph MJ, Burshteyn F, et al. Structures of human acetylcholinesterase in complex with pharmacologically important ligands. J Med Chem. 2012;55(23):10282?10286. doi:10.1021/jm300871x.
+   P 652 | Reference | 21. Chen T, Yu WH, Izard J, et al. The Human Oral Microbiome Database: a web accessible resource for investigating oral microbe taxonomic and genomic information. Database (Oxford). 2010;2010:baq013. 
+   P 653 | Reference | 22. Belstr?m D, Jersie-Christensen RR, Lyon D, et al. Metaproteomics of saliva identifies human protein markers specific for individuals with periodontitis and dental caries compared to orally healthy
+   P 654 | Reference | 23. Du Z, Ding X, Xu Y, Li Y. UniDL4BioPep: a universal deep learning architecture for binary classification in peptide bioactivity. Brief Bioinform. 2023;24(3):bbad135. doi:10.1093/bib/bbad135.
+   P 655 | Reference | 24. Rathore AS, Jain S, Choudhury S, Raghava GPS. A large language model for predicting neurotoxic peptides and neurotoxins. Protein Sci. 2025;34(8):e70200. doi:10.1002/pro.70200.
+   P 656 | Reference | 25. Aptekmann AA, Buongiorno J, Giovannelli D, et al. mebipred: identifying metal-binding potential in protein sequence. Bioinformatics. 2022;38(14):3532?3540. doi:10.1093/bioinformatics/btac358.
+   P 657 | Reference | 26. Olsen TH, Yesiltas B, Marin FI, et al. AnOxPePred: using deep learning for the prediction of antioxidative properties of peptides. Sci Rep. 2020;10:21471. doi:10.1038/s41598-020-78319-w.
+   P 658 | Reference | 27. Trott O, Olson AJ. AutoDock Vina: improving the speed and accuracy of docking with a new scoring function. J Comput Chem. 2010;31(2):455?461. doi:10.1002/jcc.21334.
+   P 659 | Reference | 28. Eberhardt J, Santos-Martins D, Tillack AF, Forli S. AutoDock Vina 1.2.0: new docking methods, expanded force field, and Python bindings. J Chem Inf Model. 2021;61(8):3891?3898. doi:10.1021/acs.jci
+   P 660 | Reference | 29. Abraham MJ, Murtola T, Schulz R, et al. GROMACS: high performance molecular simulations through multi-level parallelism from laptops to supercomputers. SoftwareX. 2015;1?2:19?25. doi:10.1016/j.sof
+   P 661 | Reference | 30. Lindorff-Larsen K, Piana S, Palmo K, et al. Improved side-chain torsion potentials for the Amber ff99SB protein force field. Proteins. 2010;78(8):1950?1958. doi:10.1002/prot.22711.
+   P 662 | Reference | 31. Torres MDT, Brooks EF, Cesaro A, et al. Mining human microbiomes reveals an untapped source of peptide antibiotics. Cell. 2024;187(19):5453?5467.e15. doi:10.1016/j.cell.2024.07.027.
+   P 663 | Reference | 32. Escapa IF, Chen T, Huang Y, et al. New insights into human nostril microbiome from the expanded Human Oral Microbiome Database (eHOMD). mSystems. 2018;3(3):e00187-18. doi:10.1128/mSystems.00187-18
+   P 664 | Reference | 33. Jiang X, Zhang Y, Wang H, et al. In-depth metaproteomics analysis of oral microbiome for lung cancer. Research (Wash D C). 2022;2022:9781578. doi:10.34133/2022/9781578.
+   P 665 | Reference | 34. Yuan J, Cao Q, Chen M, et al. OSaMPle workflow for salivary metaproteomics analysis reveals dysbiosis in inflammatory bowel disease patients. npj Biofilms Microbiomes. 2025;11:63. doi:10.1038/s415
+   P 666 | Reference | 35. Gu Y, Chen P, Wang B, et al. Prediction of blood-brain barrier penetrating peptides based on data augmentation with Augur. BMC Biol. 2024;22:86. doi:10.1186/s12915-024-01883-4.
+   P 667 | Reference | 36. Kryger G, Silman I, Sussman JL. Structure of acetylcholinesterase complexed with E2020 (Aricept): implications for drug design. Structure. 1999;7(3):297?307. doi:10.1016/s0969-2126(99)80040-9.
+   refs heading at para 631 ; detected entries: 36
+   E 1 Scheltens P, De Strooper B, Kivipelto M, et al. Alzheimer?s disease. Lancet. 2021;397(1028
+   E 2 Selkoe DJ, Hardy J. The amyloid hypothesis of Alzheimer?s disease at 25 years. EMBO Mol Me
+   E 3 Hampel H, Mesulam MM, Cuello AC, et al. The cholinergic system in the pathophysiology and 
+   E 4 Inestrosa NC, Alvarez A, P?rez CA, et al. Acetylcholinesterase accelerates assembly of amy
+   E 5 De Ferrari GV, Canales MA, Shin I, et al. A structural motif of acetylcholinesterase that 
+   E 6 Chalmers JC, Hernandez-Kapila YL. The role of the oral microbiome, host response, and peri
+   zotero titles: 357 ; matched: 0 / 36
+   MISS 1 Scheltens P, De Strooper B, Kivipelto M, et al. Alzheimer?s disease. Lancet. 202
+   MISS 2 Selkoe DJ, Hardy J. The amyloid hypothesis of Alzheimer?s disease at 25 years. E
+   MISS 3 Hampel H, Mesulam MM, Cuello AC, et al. The cholinergic system in the pathophysi
+   MISS 4 Inestrosa NC, Alvarez A, P?rez CA, et al. Acetylcholinesterase accelerates assem
+   MISS 5 De Ferrari GV, Canales MA, Shin I, et al. A structural motif of acetylcholineste
+   MISS 6 Chalmers JC, Hernandez-Kapila YL. The role of the oral microbiome, host response
+   MISS 7 Belstr?m D, Constancias F, Drautz-Moses DI, et al. Periodontitis associates with
+   MISS 8 Guo Y, Nguyen KA, Potempa J. Dichotomy of gingipains action as virulence factors
+   MISS 9 Ho MH, Chen CH, Goodwin JS, et al. Functional advantages of Porphyromonas gingiv
+   MISS 10 Larvin H, Gao C, Kang J, et al. The impact of study factors in the association o
+== task r60 t49_run.ps1 ok (4s)
+== accept 2d: hands-free auto_pull/auto_push present in watch.ps1
+== success criteria: results/status/success_criteria.json
+   v2.8.1 on arena/01a0a9f0-git-pull-arena: the newest skill (source branch arena/01a0a98d-git-pull-arena, installer refuses to downgrade) plus the repo gate (code/check_all.sh, which now proves each python candidate python3 / python / py -3) and the real-machine check (code/local_check.ps1, sections 3a-3h). The deliverables LINK_PROOF_v2.8.1.docx / .pptx travel through git and are judged by the Windows watcher: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide count and a real Word/PowerPoint open. 'Local' means that machine's scheduled watcher - never a sandbox folder, never a hand-made stand-in skill. From round 22 on the repo also ships code/tasks/*.ps1 (mapped per round in code/tasks/manifest.json) which run on the machine inside local_check.ps1 section 4 as child processes: round 22 = read-only diagnostics for the Antigravity login, the Java install state and E: cleanup candidates.
+   OK   exists: 01a0a821.md (2016 B)
+   OK   exists: skills/git-sync/VERSION (6 B)
+   OK   exists: skills/git-sync/scripts/agent-install.sh (13404 B)
+   OK   exists: skills/git-sync/scripts/agent-handoff.sh (4603 B)
+   OK   exists: skills/git-sync/scripts/agent-handsfree.sh (3989 B)
+   OK   exists: skills/git-sync/scripts/agent-criteria.sh (5190 B)
+   OK   exists: skills/git-sync/scripts/watch.ps1 (84094 B)
+   OK   exists: skills/git-sync/templates/one-sentence.md (6524 B)
+   OK   exists: skills/git-sync/templates/gate.yml (1166 B)
+   OK   exists: code/check_all.sh (9945 B)
+   OK   exists: code/local_check.ps1 (30124 B)
+   OK   exists: code/make_link_proof.py (22948 B)
+   OK   exists: deliverable/OFFICE_HASHES.json (2401 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.docx (39743 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B)
+   OK   exists: watch.ps1 (84094 B)
+   OK   exists: code/tasks/manifest.json (3247 B)
+   OK   exists: code/tasks/t1_antigravity_diag.ps1 (14461 B)
+   OK   exists: code/tasks/t2_java_diag.ps1 (8626 B)
+   OK   exists: code/tasks/t3_edrive_scan.ps1 (9393 B)
+   OK   exists: code/tasks/t1_fix_antigravity.ps1 (10411 B)
+   OK   exists: code/tasks/t3_edrive_scan2.ps1 (9007 B)
+   OK   exists: code/tasks/t2_install_java.ps1 (14030 B)
+   OK   exists: code/tasks/t3_edrive_scan3.ps1 (7084 B)
+   OK   exists: code/tasks/t4_cleanup_dryrun.ps1 (5995 B)
+   OK   exists: code/tasks/t1_antigravity_verify.ps1 (3793 B)
+   OK   exists: code/tasks/t2_cleanup_exec.ps1 (12624 B)
+   OK   exists: results/status/round22_findings.md (3511 B)
+   OK   exists: code/tasks/t5_cleanup_fix.ps1 (7475 B)
+   OK   exists: code/tasks/t7_ligplus_test.ps1 (6214 B)
+   OK   exists: code/tasks/t1_antigravity_tun2.ps1 (7694 B)
+   OK   exists: code/tasks/t6_docker_report.ps1 (5648 B)
+   OK   exists: code/tasks/t8_uvcache_finish.ps1 (2719 B)
+   OK   exists: code/tasks/t9_ligplus_upgrade.ps1 (8739 B)
+   OK   exists: code/tasks/t10_ligplus_final.ps1 (9282 B)
+   OK   exists: code/tasks/t11_javagui_fix.ps1 (3986 B)
+   OK   exists: code/tasks/t12_ligplus_new.ps1 (7178 B)
+   OK   exists: code/tasks/t13_docker_autofigure.ps1 (2917 B)
+   OK   exists: code/tasks/t14_recyclebin_empty.ps1 (2689 B)
+   OK   exists: code/tasks/t15_uvcache_final.ps1 (4126 B)
+   OK   exists: code/tasks/t16_uvcache_final2.ps1 (3987 B)
+   OK   exists: code/tasks/t17_uv_delete_bg.ps1 (4570 B)
+   OK   exists: code/tasks/t18_edrive_survey.ps1 (15793 B)
+   OK   exists: code/tasks/t17b_uv_finish.ps1 (3803 B)
+   OK   exists: code/tasks/t19_cleanup_approved.ps1 (9331 B)
+   OK   exists: code/tasks/t20_docker_pagefile.ps1 (5765 B)
+   OK   exists: code/tasks/t21_optimize_review.ps1 (7881 B)
+   OK   exists: code/tasks/t22_pagefile_uac.ps1 (2571 B)
+   OK   exists: code/tasks/t23_tailscale_verify.ps1 (2476 B)
+   OK   exists: code/tasks/t24_oldsync_cleanup.ps1 (2537 B)
+   OK   exists: code/tasks/t25_oldtask_uac.ps1 (4503 B)
+   OK   exists: code/tasks/t26_pagefile_fix_uac.ps1 (4880 B)
+   OK   exists: code/tasks/t27_pagefile_registry.ps1 (4513 B)
+   OK   exists: code/tasks/t28_reboot_verify.ps1 (2764 B)
+   OK   exists: code/tasks/t29_ddrive_survey.ps1 (9818 B)
+   OK   exists: code/tasks/t30_tailscale_prep.ps1 (5189 B)
+   OK   exists: code/tasks/t31_enable_rdp_ssh.ps1 (4127 B)
+   OK   exists: code/tasks/t32_wsl26_survey.ps1 (4565 B)
+   OK   exists: code/tasks/t33_hpc_probe.ps1 (5024 B)
+   OK   exists: code/tasks/t34_hpc_bridge.ps1 (4027 B)
+   OK   exists: code/tasks/t35_desktop_access_probe.ps1 (4368 B)
+   OK   exists: code/tasks/t36_autostart_vpn_tailscale.ps1 (6281 B)
+   OK   exists: code/tasks/t37_software_inventory.ps1 (6288 B)
+   OK   exists: code/tasks/t38_uninstall_qwenpaw.ps1 (6601 B)
+   OK   exists: code/tasks/t39_toolbox_and_paths.ps1 (6919 B)
+   OK   exists: code/tasks/t40_mcp_n8n_r_survey.ps1 (12366 B)
+   OK   exists: code/tasks/t41_bigdocs_report.ps1 (8722 B)
+   OK   exists: code/tasks/t42_fix_desktop_and_rdetail.ps1 (3650 B)
+   OK   exists: code/tasks/t43_wsl_r_probe2.ps1 (1800 B)
+   OK   exists: code/tasks/t44_r_final_check.ps1 (1752 B)
+   OK   exists: code/tasks/t45_r_versions_cleanup.ps1 (6361 B)
+   OK   exists: code/tasks/t46_zotero_recon.ps1 (11043 B)
+   OK   exists: code/tasks/t47_pipeline_fetch.ps1 (6956 B)
+   OK   exists: code/tasks/t48_run.ps1 (2765 B)
+   OK   exists: code/tasks/t48_english_citations.py (3044 B)
+   OK   exists: code/tasks/t48_zotero_match.py (2228 B)
+   OK   exists: code/tasks/t49_run.ps1 (912 B)
+   OK   exists: code/tasks/t49_dump_refs.py (3503 B)
+   OK   absent: local/inbox
+   OK   absent: local/status_receipts
+   OK   absent: skills/docx_skill.py
+   OK   absent: local_bridge_skill.py
+   OK   contains skills/git-sync/VERSION <- 2.8.1
+   OK   contains 01a0a821.md <- arena/01a0a98d-git-pull-arena
+   OK   contains skills/git-sync/sync.config.json <- arena/01a0a9f0-git-pull-arena
+   OK   contains skills/git-sync/templates/one-sentence.md <- agent-handoff.sh
+   OK   contains skills/git-sync/scripts/agent-install.sh <- refusing to downgrade
+   OK   contains code/check_all.sh <- py -3
+   OK   contains code/local_check.ps1 <- no Office deliverable declared
+   OK   contains deliverable/OFFICE_HASHES.json <- arena/01a0a9f0-git-pull-arena
+   OK   contains watch.ps1 <- function Invoke-AutoPull
+   OK   contains skills/git-sync/scripts/watch.ps1 <- function Invoke-Focus
+   OK   contains code/tasks/manifest.json <- t3_edrive_scan.ps1
+   OK   contains code/tasks/t1_fix_antigravity.ps1 <- http.proxy
+   OK   contains code/tasks/t2_install_java.ps1 <- E:\java
+   OK   regex watch.ps1
+   OK   regex code/local_check.ps1
+   OK   regex deliverable/OFFICE_HASHES.json
+   OK   size skills/git-sync/scripts/agent-handoff.sh: 4603 >= 2000
+   OK   size skills/git-sync/scripts/agent-install.sh: 13404 >= 10000
+   OK   size code/check_all.sh: 9945 >= 8000
+   OK   size code/local_check.ps1: 30124 >= 12000
+   OK   size code/make_link_proof.py: 22948 >= 8000
+   OK   size deliverable/OFFICE_HASHES.json: 2401 >= 500
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 >= 5000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 >= 15000
+   OK   size watch.ps1: 84094 >= 20000
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 <= 3000000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 <= 3000000
+== local checks passed
