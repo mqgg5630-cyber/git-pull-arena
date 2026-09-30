@@ -1,9 +1,9 @@
 {
-  "round": 75,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 75: t62 exe-arg JSX proof (cold + warm delegate) then bridge-patch run_cell_lct.ps1 both copies + smoke (version/docs/activeDoc/1+1)",
-  "arena_updated": "2026-09-30 12:14:49",
-  "local_updated": null
+    "round":  75,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 75: t62 exe-arg JSX proof (cold + warm delegate) then bridge-patch run_cell_lct.ps1 both copies + smoke (version/docs/activeDoc/1+1)",
+    "arena_updated":  "2026-09-30 12:14:49",
+    "local_updated":  "2026-09-30 20:16:09"
 }
