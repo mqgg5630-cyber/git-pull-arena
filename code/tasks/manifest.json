@@ -81,6 +81,9 @@
     ],
     "40": [
       "t25_oldtask_uac.ps1"
+    ],
+    "41": [
+      "t26_pagefile_fix_uac.ps1"
     ]
   }
 }
