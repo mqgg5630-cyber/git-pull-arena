@@ -243,6 +243,9 @@
       "t70_v2_rebuild.ps1"
     ],
     "92": [
+      "t66_diag_rebuild.ps1"
+    ],
+    "93": [
       "t64_poll_rebuild.ps1"
     ]
   }
