@@ -1,9 +1,9 @@
 {
-    "round":  71,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 71: t58 recon (fig1 into results/reference/, Illustrator registry+COM, py launcher, ~/.codex + key existence, clone github.com/yrui-cmd/cell_su7 to E:\\cell_su7)",
-    "arena_updated":  "2026-09-30 11:44:35",
-    "local_updated":  "2026-09-30 19:47:05"
+  "round": 71,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-30 11:49:14",
+  "local_updated": "2026-09-30 19:47:05"
 }
