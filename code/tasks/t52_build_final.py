@@ -369,15 +369,22 @@ if 'fldSimple' in vx:
     errs.append('fldSimple present')
 if CUSTOM_PROPS_PART not in names:
     errs.append('custom.xml missing')
-# bib begin/end paragraph identity
+# bib begin/end paragraph identity (enclosing paragraph of each marker)
+def enclosing_para_text(vx, pos):
+    best = None
+    for m in re.finditer(r'<w:p\b', vx[:pos]):
+        best = m
+    e = vx.find('</w:p>', pos)
+    if best is None or e < 0:
+        return ''
+    pxml = vx[best.start():e]
+    return ''.join(m.group(1) for m in re.finditer(r'<w:t(?: [^>]*)?>([^<]*)</w:t>', pxml))
+
+
 b0 = vx.find('ADDIN ZOTERO_BIBL')
-p_before = paras_of(vx[:b0])
-begin_para = p_before[-1] if p_before else None
+bt = enclosing_para_text(vx, b0).strip()
 endp = vx.find(END_RUN, vx.find('fldCharType="separate"', b0))
-p_around = paras_of(vx[:endp])
-end_para = p_around[-1] if p_around else None
-bt = (begin_para['text'].strip() if begin_para else '')
-et = (end_para['text'].strip() if end_para else '')
+et = enclosing_para_text(vx, endp).strip()
 print('bib begin para:', bt[:60].encode('ascii', 'replace').decode())
 print('bib end para  :', et[:60].encode('ascii', 'replace').decode())
 if not bt.startswith('1. '):
