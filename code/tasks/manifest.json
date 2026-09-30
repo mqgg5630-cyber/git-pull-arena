@@ -184,6 +184,9 @@
     ],
     "72": [
       "t59_install_bridge.ps1"
+    ],
+    "73": [
+      "t60_rot_bridge.ps1"
     ]
   }
 }
