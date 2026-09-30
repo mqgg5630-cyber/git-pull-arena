@@ -46,7 +46,9 @@
     "code/tasks/t18_edrive_survey.ps1",
     "code/tasks/t17b_uv_finish.ps1",
     "code/tasks/t19_cleanup_approved.ps1",
-    "code/tasks/t20_docker_pagefile.ps1"
+    "code/tasks/t20_docker_pagefile.ps1",
+    "code/tasks/t21_optimize_review.ps1",
+    "code/tasks/t22_pagefile_uac.ps1"
   ],
   "forbid_files": [
     "local/inbox",

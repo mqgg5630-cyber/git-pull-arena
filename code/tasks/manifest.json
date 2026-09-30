@@ -70,6 +70,10 @@
     "37": [
       "t19_cleanup_approved.ps1",
       "t20_docker_pagefile.ps1"
+    ],
+    "38": [
+      "t21_optimize_review.ps1",
+      "t22_pagefile_uac.ps1"
     ]
   }
 }
