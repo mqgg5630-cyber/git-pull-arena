@@ -211,6 +211,9 @@
     ],
     "81": [
       "t67_probe_ai_state.ps1"
+    ],
+    "82": [
+      "t68_bridge_v2_resume.ps1"
     ]
   }
 }
