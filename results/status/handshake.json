@@ -1,9 +1,9 @@
 {
-  "round": 59,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-09-30 08:23:08",
-  "local_updated": "2026-09-30 16:22:55"
+  "round": 60,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 60: t49 dump refs paragraphs + detect entry format + reverse zotero title match -> english_refs_list.json + english_paras_tail.md",
+  "arena_updated": "2026-09-30 08:24:43",
+  "local_updated": null
 }
