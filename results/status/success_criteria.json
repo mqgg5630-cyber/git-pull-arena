@@ -91,7 +91,9 @@
     "code/tasks/t55_run.ps1",
     "code/tasks/t55_rebuild9.py",
     "code/tasks/t56_abtest.ps1",
-    "code/tasks/t56_import_zotero.py"
+    "code/tasks/t56_import_zotero.py",
+    "code/tasks/t57_run.ps1",
+    "code/tasks/t57_bind_uris.py"
   ],
   "forbid_files": [
     "local/inbox",
