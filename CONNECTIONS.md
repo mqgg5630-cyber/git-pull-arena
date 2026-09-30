@@ -209,3 +209,8 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - t36: Tailscale service already Automatic; tray GUI (E:\Tailscale\tailscale-ipn.exe) added to HKCU Run. NSFOCUS VPN (E:\NsfocusVPN\NsfocusVPN.exe) added to HKCU Run. Undo: Remove-ItemProperty HKCU:\...\Run -Name NsfocusVPN / Tailscale. Auto-CONNECT not guaranteed (depends on client saved creds) - check after next reboot.
 - t37: 47 desktop apps + 74 appx inventoried -> results/status/software_inventory_r48.md. zTasker 2.3.12 (portable, E:\zTasker_2.3.12_绿色版_不要放C盘\zTasker.exe) found RUNNING; GUI-first automation tool, task storage not yet inspected.
 - Notable: Antigravity installed TWICE (IDE (User) 2.5.5 @ E:\Antigravity + "Antigravity 2.15.1" no location, 534MB) - verify which is active before any removal. FlyingMouse Format 2.08GB + KeyMouse Studio 341MB biggest non-essential candidates. AweSun kept per r38 binding decision.
+
+## round 49 (2026-09-30, QwenPaw uninstalled + toolbox)
+- t38: QwenPaw Desktop 2.1.0 uninstalled silently (uninstall.exe /S); uninstaller removed dir+registry+shortcuts itself; E: free 295.20 -> 297.05 GB (+1.85). Note: user emptied recycle bin between r43 and r49 (287.7+7.5=295.2 matches).
+- t39: agent toolbox = 31/39 PATH tools (git 2.54@E:\hermes, gh 2.97, docker 29.6.1, wsl x2 distros, python 3.11.9@E:\spider, node 22@E:\hermes, go 1.26.5, rust, java 21, tailscale, ssh/scp, code, rg, winget, tar, robocopy, schtasks, reg, msiexec, conda, uv). Missing: py, pipx, ffmpeg, 7z, pwsh, choco, scoop, adb. winget available = hands-free install/uninstall possible.
+- Reports: D:\桌面\软件工具清单_2026-09-30.md (user's desktop, UTF-8 BOM) + results/status/software_paths_r49.md (46 apps with resolved local paths).
