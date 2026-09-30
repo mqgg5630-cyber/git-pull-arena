@@ -1,9 +1,9 @@
 {
-    "round":  50,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 50: t40 survey 0mcp-agv MCPs + n8n + R (bin old Windows R versions if multiple), t41 big-docs scan (docs\u003e=10MB, archives\u003e=50MB) + build report -\u003e Desktop + results/status/task_scenarios_r50.md",
-    "arena_updated":  "2026-09-30 07:16:07",
-    "local_updated":  "2026-09-30 15:25:38"
+  "round": 51,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 51: t40 MCP/n8n/R survey (fixed parse error), t41 big-docs scan + combined report -> Desktop + results/status/task_scenarios_r50.md (overwrite)",
+  "arena_updated": "2026-09-30 07:29:17",
+  "local_updated": null
 }
