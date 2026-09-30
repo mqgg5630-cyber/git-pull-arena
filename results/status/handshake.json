@@ -1,9 +1,9 @@
 {
-  "round": 77,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 77: t64 poll E:\\fig1_rebuild worker: DONE->copy .ai/.png/.svg+manifest into repo results/fig1_rebuild/out, FAILED->dump logs, running->progress report",
-  "arena_updated": "2026-09-30 12:30:44",
-  "local_updated": null
+    "round":  77,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 77: t64 poll E:\\fig1_rebuild worker: DONE-\u003ecopy .ai/.png/.svg+manifest into repo results/fig1_rebuild/out, FAILED-\u003edump logs, running-\u003eprogress report",
+    "arena_updated":  "2026-09-30 12:30:44",
+    "local_updated":  "2026-09-30 20:32:26"
 }
