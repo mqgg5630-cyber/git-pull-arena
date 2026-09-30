@@ -1,9 +1,9 @@
 {
-    "round":  44,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 44: t31 UAC to enable RDP + sshd (watch the screen), t32 WSL-26.04 inside survey (read-only, du/find big files)",
-    "arena_updated":  "2026-09-30 02:00:54",
-    "local_updated":  "2026-09-30 10:09:12"
+  "round": 44,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-30 02:09:36",
+  "local_updated": "2026-09-30 10:09:12"
 }
