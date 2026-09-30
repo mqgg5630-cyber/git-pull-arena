@@ -1,9 +1,9 @@
 {
-    "round":  61,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 61: t50 run t50_zotero_link.py - parse 36 refs to CSL, inject ZOTERO_ITEM/ZOTERO_BIBL fields keeping format, verify, backup English_backup_pre-zotero.docx, overwrite same path, export English_Zotero_library.json",
-    "arena_updated":  "2026-09-30 08:30:39",
-    "local_updated":  "2026-09-30 16:32:25"
+  "round": 61,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-30 08:32:39",
+  "local_updated": "2026-09-30 16:32:25"
 }
