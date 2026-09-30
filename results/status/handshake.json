@@ -1,9 +1,9 @@
 {
-    "round":  96,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 96: t64 poll E:\\fig1_rebuild: DONE -\u003e copy latest job .ai/.png/.svg + text-manifest.json + rebuild.log into repo results/fig1_rebuild/out; if FAILED -\u003e dump logs + lct_err",
-    "arena_updated":  "2026-09-30 15:12:51",
-    "local_updated":  "2026-09-30 23:15:19"
+  "round": 97,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 97: t73 (worker v5.1 with PostMessageW bool fix verified) kill AI, FRESH.marker, relaunch detached, 50s log",
+  "arena_updated": "2026-09-30 15:16:06",
+  "local_updated": null
 }
