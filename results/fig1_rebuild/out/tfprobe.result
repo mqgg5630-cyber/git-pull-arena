@@ -1,0 +1,41 @@
+count=40
+0|Time (μs)|pos=1132,60|gb=1132,60,1240,36|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+1|1.0|pos=1306,84|gb=1306,84,1340,61|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+2|0.8|pos=1252,84|gb=1252,84,1288,60|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+3|0.6|pos=1198,84|gb=1198,84,1234,60|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+4|0.4|pos=1144,84|gb=1144,84,1180,60|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+5|0.2|pos=1092,84|gb=1092,84,1128,60|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+6|0.0|pos=1038,84|gb=1038,84,1074,60|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+7|0.0|pos=1021,102|gb=1021,102,1055,79|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+8|0.1|pos=1020,130|gb=1020,130,1054,107|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+9|0.2|pos=1019,158|gb=1019,158,1055,134|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+10|0.3|pos=1020,185|gb=1020,185,1054,162|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+11|0.4|pos=1022,214|gb=1022,214,1060,187|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+12|RMSD (nm)|pos=1066,183|gb=1066,183,1096,33|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+13|1 μs|pos=898,158|gb=898,158,987,113|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+14|GEO|pos=79,167|gb=79,167,139,138|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+15|MD simulation|pos=938,243|gb=938,243,1124,215|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+16|GEO|pos=209,245|gb=209,245,271,215|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+17|1 microsecond|pos=936,265|gb=936,265,1106,241|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+18|molecular docking|pos=560,265|gb=560,265,873,228|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+19|transcriptomics|pos=155,268|gb=155,268,363,240|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+20|residues 344-361|pos=1207,386|gb=1207,386,1459,355|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+21|surface patch|pos=1221,410|gb=1221,410,1401,382|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+22|OMVs|pos=386,519|gb=386,519,465,490|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+23|Aβ peptide|pos=1493,590|gb=1493,590,1669,555|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+24|Kgp|pos=457,583|gb=457,583,507,556|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+25|RgpB|pos=390,582|gb=390,582,454,556|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+26|RgpA|pos=328,583|gb=328,583,395,556|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+27|PAS|pos=1241,600|gb=1241,600,1288,574|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+28|AChE-Aβ nucleation|pos=1307,635|gb=1307,635,1651,598|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+29|gingipains|pos=370,678|gb=370,678,522,647|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+30|fragments|pos=1472,732|gb=1472,732,1589,708|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+31|gingipains/OMVs|pos=330,734|gb=330,734,593,700|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+32|tau|pos=1501,755|gb=1501,755,1544,727|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+33|brain|pos=1046,852|gb=1046,852,1130,817|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+34|BBB|pos=790,856|gb=790,856,869,817|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+35|bloodstream|pos=610,851|gb=610,851,802,818|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+36|plaques|pos=1486,874|gb=1486,874,1576,850|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+37|amyloid-β|pos=1476,899|gb=1476,899,1602,871|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+38|neuron|pos=1386,919|gb=1386,919,1477,891|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
+39|P. gingivalis|pos=62,949|gb=62,949,306,904|hid=false|op=100|parent=CELL_LCT_CACHE_shibielujing1_0047
