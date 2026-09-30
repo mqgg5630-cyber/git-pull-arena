@@ -1,9 +1,9 @@
 {
-    "round":  79,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 79: t64 poll E:\\fig1_rebuild worker (reuse): DONE-\u003ecopy artifacts to repo, FAILED-\u003elogs, running-\u003eprogress",
-    "arena_updated":  "2026-09-30 12:40:12",
-    "local_updated":  "2026-09-30 20:42:34"
+  "round": 79,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-30 12:42:49",
+  "local_updated": "2026-09-30 20:42:34"
 }
