@@ -187,6 +187,9 @@
     ],
     "73": [
       "t60_rot_bridge.ps1"
+    ],
+    "74": [
+      "t61_rot_fallback.ps1"
     ]
   }
 }

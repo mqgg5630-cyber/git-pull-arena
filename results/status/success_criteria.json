@@ -96,7 +96,8 @@
     "code/tasks/t57_bind_uris.py",
     "code/tasks/t58_recon_install.ps1",
     "code/tasks/t59_install_bridge.ps1",
-    "code/tasks/t60_rot_bridge.ps1"
+    "code/tasks/t60_rot_bridge.ps1",
+    "code/tasks/t61_rot_fallback.ps1"
   ],
   "forbid_files": [
     "local/inbox",
