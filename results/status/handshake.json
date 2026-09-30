@@ -1,9 +1,9 @@
 {
-  "round": 95,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 95: t73 stage worker v5 (mkdoc self-heal verified), kill stuck Illustrator, FRESH.marker, relaunch detached, 50s log",
-  "arena_updated": "2026-09-30 15:06:33",
-  "local_updated": null
+    "round":  95,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 95: t73 stage worker v5 (mkdoc self-heal verified), kill stuck Illustrator, FRESH.marker, relaunch detached, 50s log",
+    "arena_updated":  "2026-09-30 15:06:33",
+    "local_updated":  "2026-09-30 23:08:32"
 }
