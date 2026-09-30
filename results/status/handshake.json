@@ -1,9 +1,9 @@
 {
-    "round":  63,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 63: t52 rebuild from backup with fixed verification and split-run windows; report any uncovered bracket mention",
-    "arena_updated":  "2026-09-30 08:40:38",
-    "local_updated":  "2026-09-30 16:41:50"
+  "round": 63,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-30 08:41:59",
+  "local_updated": "2026-09-30 16:41:50"
 }
