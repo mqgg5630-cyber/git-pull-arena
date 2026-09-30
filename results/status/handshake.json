@@ -1,9 +1,9 @@
 {
-  "round": 98,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-09-30 15:25:49",
-  "local_updated": "2026-09-30 23:25:34"
+  "round": 99,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 99: t74 reach 10.10.5.210:22, BatchMode ssh test (generate ed25519 + print pubkey if no key), then run watch.sh --status --focus --register --status in /mnt/hpc/home/25menglei/25wenshaohua/0amp-src and report all output",
+  "arena_updated": "2026-09-30 15:28:52",
+  "local_updated": null
 }
