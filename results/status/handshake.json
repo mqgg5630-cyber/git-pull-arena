@@ -1,9 +1,9 @@
 {
-  "round": 80,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-09-30 12:47:24",
-  "local_updated": "2026-09-30 20:47:15"
+  "round": 81,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 81: t67 probe Illustrator windows + dismiss modal dialog if any + 60s bridge probes docs/activeDoc/rootGroups",
+  "arena_updated": "2026-09-30 12:49:23",
+  "local_updated": null
 }
