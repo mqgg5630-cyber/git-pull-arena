@@ -1,9 +1,9 @@
 {
-    "round":  39,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 39: t23 tailscale ping desktop+muse, t24 unregister stale git-sync watcher tasks (keep git-pull-arena-01a0a9f0)",
-    "arena_updated":  "2026-09-30 01:16:30",
-    "local_updated":  "2026-09-30 09:19:28"
+  "round": 39,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-30 01:19:54",
+  "local_updated": "2026-09-30 09:19:28"
 }
