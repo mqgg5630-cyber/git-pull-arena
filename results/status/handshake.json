@@ -1,9 +1,9 @@
 {
-  "round": 66,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 66: t54 recon2 (import mechanism + dotm check + zotero launch + API ping) + crossref verification of 36 DOIs -> ref_verify_r66.md",
-  "arena_updated": "2026-09-30 08:59:35",
-  "local_updated": null
+    "round":  66,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 66: t54 recon2 (import mechanism + dotm check + zotero launch + API ping) + crossref verification of 36 DOIs -\u003e ref_verify_r66.md",
+    "arena_updated":  "2026-09-30 08:59:35",
+    "local_updated":  "2026-09-30 17:03:24"
 }
