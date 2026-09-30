@@ -1,9 +1,9 @@
 {
-  "round": 38,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 38: t21 optimization review + tailscale state (read-only), t22 pagefile shrink - a UAC dialog will pop on the screen, the user clicks Yes",
-  "arena_updated": "2026-09-30 01:11:41",
-  "local_updated": null
+    "round":  38,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 38: t21 optimization review + tailscale state (read-only), t22 pagefile shrink - a UAC dialog will pop on the screen, the user clicks Yes",
+    "arena_updated":  "2026-09-30 01:11:41",
+    "local_updated":  "2026-09-30 09:13:25"
 }

@@ -1,0 +1,243 @@
+check round 38 on LAPTOP-R77M5D6M - passed (exit 0)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 63s
+
+OK: all .ps1 files are ASCII-only
+OK: sync.config.json branch=arena/01a0a9f0-git-pull-arena
+OK: sync.config.json branch matches HEAD (arena/01a0a9f0-git-pull-arena)
+OK: root scripts identical to skills/git-sync/scripts
+OK: no drive-style variable typos ($var:)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+OK: every .ps1 parses
+   (gate ran via E:\hermes\git\bin\bash.exe [git])
+== accept 2a: silent push PROVEN (ls-remote + push --dry-run, prompts disabled)
+== accept 2b (fallback): one LONG-LIVED loop process - one brief flash per logon,
+   not per poll. For zero flash: admin PowerShell -> .\watch.ps1 -Unregister ;
+   .\watch.ps1 -Register -Headless   (or fix the launcher, see watch-*.log)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+== check_loop_summary PASSED
+== accept 2c: watcher closing lines verified (every exit path has its summary)
+== deliverables: 2 Office file(s) declared in deliverable/OFFICE_HASHES.json
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.docx (39743 B, docx)
+   OK   3b all 6 required parts present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.docx (17 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B, pptx)
+   OK   3b all 9 required parts present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.pptx (52 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3g slides in deliverable/LINK_PROOF_v2.8.1.pptx : 8 >= 8
+   OK   3h Word.Application opened read-only, name=LINK_PROOF_v2.8.1.docx : deliverable\LINK_PROOF_v2.8.1.docx
+   OK   3h PowerPoint.Application opened read-only, slides=8 : deliverable\LINK_PROOF_v2.8.1.pptx
+== task r38: t21_optimize_review.ps1
+--- task t21: optimization review (READ-ONLY) ---
+--- startup programs ---
+   entries: 10
+   Mozilla-Firefox-308046B0AF4A | "C:\Program Files\Mozilla Firefox\firefox.exe" -os-autostart
+   NeatDM | E:\Program Files (x86)\Neat Download Manager\NeatDM.exe -autostart
+   zTasker | "E:\zTasker_2.3.12_???_???C?\zTasker.exe" -m -autorun
+   MicrosoftEdgeAutoLaunch_F49C | "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --no-startup-window --win-session-start
+   GoogleUpdaterTaskUser156.0.8 | "C:\Users\??\AppData\Local\Google\GoogleUpdater\156.0.8067.0\updater.exe" --wake
+   RustDesk Tray | E:\RustDesk\rustdesk.exe --tray
+   Tailscale | E:\tailscale\tailscale-ipn.exe 
+   SecurityHealth | %windir%\system32\SecurityHealthSystray.exe
+   RtkAudUService | "C:\WINDOWS\System32\RtkAudUService64.exe" -background
+   AweSun | "C:\Program Files\Oray\AweSun\AweSun.exe" --cmd=autorun
+--- non-Microsoft services (running or auto) ---
+   entries: 12
+   Running  Auto       AweSunService              "C:\Program Files\Oray\AweSun\AweSun.exe" --mod=service
+   Running  Auto       esifsvc                    "C:\WINDOWS\System32\DriverStore\FileRepository\dptf_cpu.inf_amd64_c2c...
+   Running  Auto       MDCoreSvc                  "C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.26080.4-0\MpD...
+   Running  Auto       PCManager Service Store    "C:\Program Files\WindowsApps\Microsoft.MicrosoftPCManager_3.22.1.0_x6...
+   Running  Auto       RtkAudioUniversalService   "C:\WINDOWS\System32\RtkAudUService64.exe"
+   Running  Auto       Tailscale                  E:\Tailscale\tailscaled.exe
+   Running  Manual     WdNisSvc                   "C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.26080.4-0\Nis...
+   Running  Auto       WinDefend                  "C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.26080.4-0\MsM...
+   Running  Auto       WiseBootAssistant          E:\Wise Care 365\BootTime.exe
+   Running  Auto       WSLService                 "C:\Program Files\WSL\wslservice.exe"
+   Stopped  Auto       edgeupdate                 "C:\Program Files (x86)\Microsoft\EdgeUpdate\MicrosoftEdgeUpdate.exe" ...
+   Stopped  Disabled   WMPNetworkSvc              "C:\Program Files\Windows Media Player\wmpnetwk.exe"
+--- non-Microsoft scheduled tasks ---
+   entries: 23
+   Disabled \\git-sync-watch-arena-01a0c336-light-skills-01a0c6b7  ->  C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
+   Running  \\git-sync-watch-git-pull-arena  ->  C:\Windows\SysWOW64\WindowsPowerShell\v1.0\powershell.exe
+   Running  \\git-sync-watch-git-pull-arena-01a0a9f0  ->  C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
+   Disabled \\git-sync-watch-git-pull-arena-01a0b94f  ->  C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
+   Disabled \\git-sync-watch-Light-skills  ->  C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
+   Disabled \\git-sync-watch-Light-skills-arena-01a0c336  ->  C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
+   Disabled \\git-sync-watch-new-01a0aeb9  ->  C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
+   Disabled \\git-sync-watch-new-01a0af01  ->  C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
+   Disabled \\git-sync-watch-new-sync  ->  C:\WINDOWS\System32\wscript.exe
+   Disabled \\git-sync-watch-zhongqi  ->  C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
+   Ready    \\v2rayNAutoRun_024cbbbdb1dde08c1d431823c3cda926  ->  "E:\v2rayN-windows-64-desktop\v2rayN-windows-64\v2rayN.exe"
+   Running  \\Wise Care 365.job  ->  E:\Wise Care 365\WiseTray.exe
+   Ready    \\Wise Turbo Checker.job  ->  E:\Wise Care 365\WiseTurbo.exe
+   Ready    \\WpsUpdateTask_??  ->  E:\WPSOffice\11.8.2.12344\wtoolex\wpsupdate.exe
+   Ready    \GoogleUser\GoogleUpdater\GoogleUpdaterTaskUser156.0.8067.0{E3C9F4D9-C872-47E8-9F0C-805B4C5E7873}  ->  "C:\Users\??\AppData\Local\Google\GoogleUpdater\156.0.8067.0\updater.exe"
+   Ready    \GoogleUserPEH\RunPlatformExperienceHelper_Daily  ->  "C:\Users\??\AppData\Local\Google\Chrome\User Data\PlatformExperienceHelper\platform_experience_helper.exe"
+   Ready    \GoogleUserPEH\RunPlatformExperienceHelper_FirstRun  ->  "C:\Users\??\AppData\Local\Google\Chrome\User Data\PlatformExperienceHelper\platform_experience_helper.exe"
+   Ready    \Mozilla\Firefox Background Update S-1-5-21-2081821339-301707966-4042885555-1003 308046B0AF4A39CB  ->  C:\Program Files\Mozilla Firefox\firefox.exe
+   Ready    \Mozilla\Firefox Default Browser Agent 308046B0AF4A39CB  ->  C:\Program Files\Mozilla Firefox\default-browser-agent.exe
+   Ready    \SoftLanding\S-1-5-21-2081821339-301707966-4042885555-1003\SoftLandingCreativeManagementTask  ->  
+   Ready    \SoftLanding\S-1-5-21-2081821339-301707966-4042885555-1026\SoftLandingCreativeManagementTask  ->  
+   Ready    \SoftLanding\S-1-5-21-2081821339-301707966-4042885555-1026\SoftLandingDeferralTask-{74d766e8-ff4c-4afa-8b82-6577d047d1dc}  ->  
+   Disabled \SoftLanding\S-1-5-21-2081821339-301707966-4042885555-1026\SoftLandingTriggerTask-128000000001615609-render-{5eceaf13-651c-4852-b667-af5e38f0b4fe}  ->  
+--- power plan ---
+   ???? GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c (???)
+--- Storage Sense ---
+   01(enabled)=1  2048(cadence)=0  04(temp)=1  08(recyclebin)=
+--- physical disks ---
+   BIWINTECH WookongM.2 1TB             SSD        953.9 GB  health=Healthy
+   C: free 47.9 of 100 GB
+   E: free 254.5 of 715.4 GB
+--- memory ---
+   total 15.9 GB, free 0.7 GB
+     1577 MB  firefox(24860)
+      965 MB  firefox(59040)
+      634 MB  firefox(4656)
+      599 MB  firefox(13716)
+      534 MB  msedge(127540)
+      375 MB  firefox(13172)
+      360 MB  firefox(16988)
+      339 MB  Memory Compression(3540)
+      298 MB  MsMpEng(4540)
+      189 MB  msedge(13892)
+      187 MB  firefox(133156)
+      172 MB  powershell(279056)
+--- WSL config + distros ---
+   cfg: [wsl2]
+   cfg: memory=16GB
+   cfg: processors=6
+   cfg: swap=12GB
+   cfg: localhostForwarding=true
+   NOTE: memory=16GB on a 15.9 GB RAM machine caps WSL at ALL physical RAM -
+         if Windows feels slow while WSL/Docker runs, cap it at 8 GB instead.
+    ? ?N?A?M?E? ? ? ? ? ? ? ? ? ? ? ? ? ? ?S?T?A?T?E? ? ? ? ? ? ? ? ? ? ? ?V?E?R?S?I?O?N?
+   ?
+   ?*? ?U?b?u?n?t?u?-?2?6?.?0?4? ? ? ? ? ? ?S?t?o?p?p?e?d? ? ? ? ? ? ? ? ? ?2?
+   ?
+   ? ? ?d?o?c?k?e?r?-?d?e?s?k?t?o?p? ? ? ? ?S?t?o?p?p?e?d? ? ? ? ? ? ? ? ? ?2?
+   ?
+   ? ? ?U?b?u?n?t?u?-?2?4?.?0?4? ? ? ? ? ? ?S?t?o?p?p?e?d? ? ? ? ? ? ? ? ? ?2?
+   ?
+--- Tailscale ---
+   service: Running / start type Automatic
+   CLI: E:\Tailscale\tailscale.exe
+   version: 1.102.2 tailscale commit: 6cac918179d4d673bfebe2fc74f81183ddd73fea long version: 1.102.2-t6cac91817-g6ff0ddc72 other commit: 6ff0ddc7264e38276f40986706ae4607dbab57d8 go version: go1.26.5 (tailscale/go 63ae404c82)
+   status lines: 5
+      100.71.123.19   laptop-r77m5d6m-1  shaohuawen03@  windows  -                            
+      100.84.137.117  desktop-ieudgs5    shaohuawen03@  windows  -                            
+      100.99.113.111  laptop-r77m5d6m    shaohuawen03@  windows  offline, last seen 107d ago  
+      100.109.207.34  muse               shaohuawen03@           -                            
+      100.83.148.67   xiaomi-23049rad8c  shaohuawen03@  android  offline, last seen 252d ago  
+   this node IPv4: 100.71.123.19
+      net: 2026/09/30 09:13:07 portmap: monitor: gateway and self IP changed: gw=192.168.110.1 self=192.168.110.172
+      net: ?* UDP: true
+      net: ?* IPv4: yes, 202.194.62.210:56258
+      net: ?* IPv6: no, but OS has support
+      net: ?* PortMapping: 
+      net: ?* Nearest DERP: Hong Kong
+      net: ?* DERP latency:
+--- task t21 done (READ-ONLY) ---
+== task r38 t21_optimize_review.ps1 ok (15s)
+== task r38: t22_pagefile_uac.ps1
+--- task t22: pagefile shrink via UAC prompt ---
+   automatic managed now: True
+   popping the UAC dialog - CLICK YES on the screen (waits up to 120s) ...
+   elevated process started (pid 274888)
+   automatic managed now: False
+   E: pagefile setting not visible yet (the elevated window may still be open - press Enter in it)
+== task r38 t22_pagefile_uac.ps1 ok (13s)
+== accept 2d: hands-free auto_pull/auto_push present in watch.ps1
+== success criteria: results/status/success_criteria.json
+   v2.8.1 on arena/01a0a9f0-git-pull-arena: the newest skill (source branch arena/01a0a98d-git-pull-arena, installer refuses to downgrade) plus the repo gate (code/check_all.sh, which now proves each python candidate python3 / python / py -3) and the real-machine check (code/local_check.ps1, sections 3a-3h). The deliverables LINK_PROOF_v2.8.1.docx / .pptx travel through git and are judged by the Windows watcher: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide count and a real Word/PowerPoint open. 'Local' means that machine's scheduled watcher - never a sandbox folder, never a hand-made stand-in skill. From round 22 on the repo also ships code/tasks/*.ps1 (mapped per round in code/tasks/manifest.json) which run on the machine inside local_check.ps1 section 4 as child processes: round 22 = read-only diagnostics for the Antigravity login, the Java install state and E: cleanup candidates.
+   OK   exists: 01a0a821.md (2016 B)
+   OK   exists: skills/git-sync/VERSION (6 B)
+   OK   exists: skills/git-sync/scripts/agent-install.sh (13404 B)
+   OK   exists: skills/git-sync/scripts/agent-handoff.sh (4603 B)
+   OK   exists: skills/git-sync/scripts/agent-handsfree.sh (3989 B)
+   OK   exists: skills/git-sync/scripts/agent-criteria.sh (5190 B)
+   OK   exists: skills/git-sync/scripts/watch.ps1 (84094 B)
+   OK   exists: skills/git-sync/templates/one-sentence.md (6524 B)
+   OK   exists: skills/git-sync/templates/gate.yml (1166 B)
+   OK   exists: code/check_all.sh (9945 B)
+   OK   exists: code/local_check.ps1 (30124 B)
+   OK   exists: code/make_link_proof.py (22948 B)
+   OK   exists: deliverable/OFFICE_HASHES.json (2401 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.docx (39743 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B)
+   OK   exists: watch.ps1 (84094 B)
+   OK   exists: code/tasks/manifest.json (1880 B)
+   OK   exists: code/tasks/t1_antigravity_diag.ps1 (14461 B)
+   OK   exists: code/tasks/t2_java_diag.ps1 (8626 B)
+   OK   exists: code/tasks/t3_edrive_scan.ps1 (9393 B)
+   OK   exists: code/tasks/t1_fix_antigravity.ps1 (10411 B)
+   OK   exists: code/tasks/t3_edrive_scan2.ps1 (9007 B)
+   OK   exists: code/tasks/t2_install_java.ps1 (14030 B)
+   OK   exists: code/tasks/t3_edrive_scan3.ps1 (7084 B)
+   OK   exists: code/tasks/t4_cleanup_dryrun.ps1 (5995 B)
+   OK   exists: code/tasks/t1_antigravity_verify.ps1 (3793 B)
+   OK   exists: code/tasks/t2_cleanup_exec.ps1 (12624 B)
+   OK   exists: results/status/round22_findings.md (3511 B)
+   OK   exists: code/tasks/t5_cleanup_fix.ps1 (7475 B)
+   OK   exists: code/tasks/t7_ligplus_test.ps1 (6214 B)
+   OK   exists: code/tasks/t1_antigravity_tun2.ps1 (7694 B)
+   OK   exists: code/tasks/t6_docker_report.ps1 (5648 B)
+   OK   exists: code/tasks/t8_uvcache_finish.ps1 (2719 B)
+   OK   exists: code/tasks/t9_ligplus_upgrade.ps1 (8739 B)
+   OK   exists: code/tasks/t10_ligplus_final.ps1 (9282 B)
+   OK   exists: code/tasks/t11_javagui_fix.ps1 (3986 B)
+   OK   exists: code/tasks/t12_ligplus_new.ps1 (7178 B)
+   OK   exists: code/tasks/t13_docker_autofigure.ps1 (2917 B)
+   OK   exists: code/tasks/t14_recyclebin_empty.ps1 (2689 B)
+   OK   exists: code/tasks/t15_uvcache_final.ps1 (4126 B)
+   OK   exists: code/tasks/t16_uvcache_final2.ps1 (3987 B)
+   OK   exists: code/tasks/t17_uv_delete_bg.ps1 (4570 B)
+   OK   exists: code/tasks/t18_edrive_survey.ps1 (15793 B)
+   OK   exists: code/tasks/t17b_uv_finish.ps1 (3803 B)
+   OK   exists: code/tasks/t19_cleanup_approved.ps1 (9331 B)
+   OK   exists: code/tasks/t20_docker_pagefile.ps1 (5765 B)
+   OK   exists: code/tasks/t21_optimize_review.ps1 (7881 B)
+   OK   exists: code/tasks/t22_pagefile_uac.ps1 (2571 B)
+   OK   absent: local/inbox
+   OK   absent: local/status_receipts
+   OK   absent: skills/docx_skill.py
+   OK   absent: local_bridge_skill.py
+   OK   contains skills/git-sync/VERSION <- 2.8.1
+   OK   contains 01a0a821.md <- arena/01a0a98d-git-pull-arena
+   OK   contains skills/git-sync/sync.config.json <- arena/01a0a9f0-git-pull-arena
+   OK   contains skills/git-sync/templates/one-sentence.md <- agent-handoff.sh
+   OK   contains skills/git-sync/scripts/agent-install.sh <- refusing to downgrade
+   OK   contains code/check_all.sh <- py -3
+   OK   contains code/local_check.ps1 <- no Office deliverable declared
+   OK   contains deliverable/OFFICE_HASHES.json <- arena/01a0a9f0-git-pull-arena
+   OK   contains watch.ps1 <- function Invoke-AutoPull
+   OK   contains skills/git-sync/scripts/watch.ps1 <- function Invoke-Focus
+   OK   contains code/tasks/manifest.json <- t3_edrive_scan.ps1
+   OK   contains code/tasks/t1_fix_antigravity.ps1 <- http.proxy
+   OK   contains code/tasks/t2_install_java.ps1 <- E:\java
+   OK   regex watch.ps1
+   OK   regex code/local_check.ps1
+   OK   regex deliverable/OFFICE_HASHES.json
+   OK   size skills/git-sync/scripts/agent-handoff.sh: 4603 >= 2000
+   OK   size skills/git-sync/scripts/agent-install.sh: 13404 >= 10000
+   OK   size code/check_all.sh: 9945 >= 8000
+   OK   size code/local_check.ps1: 30124 >= 12000
+   OK   size code/make_link_proof.py: 22948 >= 8000
+   OK   size deliverable/OFFICE_HASHES.json: 2401 >= 500
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 >= 5000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 >= 15000
+   OK   size watch.ps1: 84094 >= 20000
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 <= 3000000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 <= 3000000
+== local checks passed
