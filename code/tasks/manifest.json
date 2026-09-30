@@ -99,6 +99,9 @@
     ],
     "45": [
       "t33_hpc_probe.ps1"
+    ],
+    "46": [
+      "t34_hpc_bridge.ps1"
     ]
   }
 }
