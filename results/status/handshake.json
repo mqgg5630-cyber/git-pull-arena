@@ -1,9 +1,9 @@
 {
-    "round":  35,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 35: t17b uv cache finish (quiet), t18 E: survey (large/duplicate/long-unused + md report)",
-    "arena_updated":  "2026-09-29 12:00:08",
-    "local_updated":  "2026-09-29 20:36:12"
+  "round": 36,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 36: t18 E: survey ONLY (large files, duplicates, 180-day-unused, E:-installed software) - full 30 min budget, report to results/status/edrive_survey_r34.md",
+  "arena_updated": "2026-09-30 00:28:13",
+  "local_updated": null
 }
