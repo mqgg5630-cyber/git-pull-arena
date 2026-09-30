@@ -1,9 +1,9 @@
 {
-  "round": 93,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-09-30 15:00:37",
-  "local_updated": "2026-09-30 23:00:24"
+  "round": 94,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 94: t64 poll E:\\fig1_rebuild: DONE -> copy latest job .ai/.png/.svg + text-manifest.json + rebuild.log into repo results/fig1_rebuild/out, report png size; if FAILED -> dump logs",
+  "arena_updated": "2026-09-30 15:04:11",
+  "local_updated": null
 }
