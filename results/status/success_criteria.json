@@ -73,7 +73,10 @@
     "code/tasks/t44_r_final_check.ps1",
     "code/tasks/t45_r_versions_cleanup.ps1",
     "code/tasks/t46_zotero_recon.ps1",
-    "code/tasks/t47_pipeline_fetch.ps1"
+    "code/tasks/t47_pipeline_fetch.ps1",
+    "code/tasks/t48_run.ps1",
+    "code/tasks/t48_english_citations.py",
+    "code/tasks/t48_zotero_match.py"
   ],
   "forbid_files": [
     "local/inbox",
