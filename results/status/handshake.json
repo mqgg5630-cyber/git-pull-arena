@@ -1,9 +1,9 @@
 {
-  "round": 55,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 55: t45 R versions cleanup (bin old R-x.y.z dirs, keep newest, verify R runs, patch Desktop report R section)",
-  "arena_updated": "2026-09-30 07:55:31",
-  "local_updated": null
+    "round":  55,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 55: t45 R versions cleanup (bin old R-x.y.z dirs, keep newest, verify R runs, patch Desktop report R section)",
+    "arena_updated":  "2026-09-30 07:55:31",
+    "local_updated":  "2026-09-30 15:56:23"
 }
