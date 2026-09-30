@@ -108,7 +108,7 @@ $n8nLines = @()
 $engOn = $false
 $info = ''
 try {
-    $j = Start-Job -ScriptBlock { docker ps --format '{{.Names}}|{{.Image}}|{{.Ports}}|{{.Status}} 2>&1 | Out-String }
+    $j = Start-Job -ScriptBlock { docker ps --format '{{.Names}}|{{.Image}}|{{.Ports}}|{{.Status}}' 2>&1 | Out-String }
     if (Wait-Job $j -Timeout 25) { $info = (Receive-Job $j | Out-String) } else { $info = '__TIMEOUT__' }
     Remove-Job $j -Force -ErrorAction SilentlyContinue
     if ($info -match '__TIMEOUT__' -or $info -match 'error during connect') { $engOn = $false }

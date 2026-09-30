@@ -41,7 +41,7 @@ $eSkip = @('WSL', 'Docker', 'DockerDesktop', 'hermes', 'vscode', 'Antigravity', 
 $roots += 'E:\'
 
 $sw = [System.Diagnostics.Stopwatch]::StartNew()
-$cap = 330
+$cap = 660
 $scanned = [long]0
 foreach ($root in $roots) {
     $stack = New-Object System.Collections.Stack

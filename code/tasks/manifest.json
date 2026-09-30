@@ -117,6 +117,10 @@
     "50": [
       "t40_mcp_n8n_r_survey.ps1",
       "t41_bigdocs_report.ps1"
+    ],
+    "51": [
+      "t40_mcp_n8n_r_survey.ps1",
+      "t41_bigdocs_report.ps1"
     ]
   }
 }
