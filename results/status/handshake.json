@@ -1,9 +1,9 @@
 {
-  "round": 72,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-09-30 12:02:40",
-  "local_updated": "2026-09-30 20:02:25"
+  "round": 73,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 73: t60 ROT probe + moniker bind + JS smoke + HKCU ProgID registration + fresh COM test; verify py.exe on disk (install python 3.12 silently if missing)",
+  "arena_updated": "2026-09-30 12:03:53",
+  "local_updated": null
 }
