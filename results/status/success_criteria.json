@@ -69,7 +69,8 @@
     "code/tasks/t40_mcp_n8n_r_survey.ps1",
     "code/tasks/t41_bigdocs_report.ps1",
     "code/tasks/t42_fix_desktop_and_rdetail.ps1",
-    "code/tasks/t43_wsl_r_probe2.ps1"
+    "code/tasks/t43_wsl_r_probe2.ps1",
+    "code/tasks/t44_r_final_check.ps1"
   ],
   "forbid_files": [
     "local/inbox",

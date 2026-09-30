@@ -127,6 +127,9 @@
     ],
     "53": [
       "t43_wsl_r_probe2.ps1"
+    ],
+    "54": [
+      "t44_r_final_check.ps1"
     ]
   }
 }
