@@ -8,6 +8,38 @@ $ErrorActionPreference = 'Continue'
 $root = 'E:\fig1_rebuild'
 $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
 
+$winEnumSrc = @'
+using System;
+using System.Text;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+public static class CsWinEnum2 {
+    public delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
+    [DllImport("user32.dll")] public static extern bool EnumWindows(EnumWindowsProc cb, IntPtr lParam);
+    [DllImport("user32.dll")] public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint pid);
+    [DllImport("user32.dll")] public static extern int GetWindowTextW(IntPtr hWnd, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder text, int count);
+    [DllImport("user32.dll")] public static extern int GetClassNameW(IntPtr hWnd, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder text, int count);
+    [DllImport("user32.dll")] public static extern bool IsWindowVisible(IntPtr hWnd);
+    [DllImport("user32.dll")] public static extern IntPtr PostMessageW(IntPtr hWnd, uint msg, IntPtr wp, IntPtr lp);
+    public static List<string> WindowsOf(uint targetPid) {
+        List<string> lines = new List<string>();
+        EnumWindows(delegate(IntPtr h, IntPtr l) {
+            uint pid; GetWindowThreadProcessId(h, out pid);
+            if (pid == targetPid && IsWindowVisible(h)) {
+                StringBuilder t = new StringBuilder(256); GetWindowTextW(h, t, 256);
+                StringBuilder c = new StringBuilder(256); GetClassNameW(h, c, 256);
+                if (t.Length > 0 || c.Length > 0) lines.Add(h.ToInt64() + "|" + c.ToString() + "|" + t.ToString());
+            }
+            return true;
+        }, IntPtr.Zero);
+        return lines;
+    }
+    public static bool CloseWindowByHandle(long handle) {
+        return PostMessageW(new IntPtr(handle), 0x0010, IntPtr.Zero, IntPtr.Zero);
+    }
+}
+'@
+
 function L([string]$m) { Write-Output $m }
 function San([string]$s) { if ($null -eq $s) { return '' }; try { $s = $s -replace '[^\x20-\x7E]', '?' } catch { }; return $s }
 
@@ -143,19 +175,42 @@ try {
         try { Stop-Process -Name Illustrator -Force -ErrorAction SilentlyContinue } catch { }
         Start-Sleep -Seconds 3
 
-        # ------------------------------------------------ 5. cold launch + 1619x971 doc
+        # ------------------------------------------------ 5. cold launch + 1619x971 doc (with dialog self-heal)
         $mkdocResult = Join-Path $root 'mkdoc.result'
-        Remove-Item -LiteralPath $mkdocResult -Force -ErrorAction SilentlyContinue
-        $mkjsx = '(function(){try{app.documents.add(DocumentColorSpace.RGB,1619,971);var f=new File("E:/fig1_rebuild/mkdoc.result");f.encoding="UTF-8";f.open("w");f.write("OK|docs="+app.documents.length+"|name="+app.activeDocument.name);f.close();}catch(e){var g=new File("E:/fig1_rebuild/mkdoc.result");g.encoding="UTF-8";g.open("w");g.write("ERR|"+e.message);g.close();}})();'
-        [IO.File]::WriteAllText((Join-Path $root 'mkdoc.jsx'), $mkjsx, $utf8NoBom)
-        Start-Process -FilePath $aiExe -ArgumentList @(('"' + (Join-Path $root 'mkdoc.jsx') + '"'))
-        $deadline = [DateTime]::UtcNow.AddSeconds(150)
-        $docInfo = $null
-        while ([DateTime]::UtcNow -lt $deadline) {
-            Start-Sleep -Milliseconds 700
-            if (Test-Path -LiteralPath $mkdocResult) { $docInfo = [IO.File]::ReadAllText($mkdocResult); break }
+        function Invoke-Mkdoc([int]$waitSec) {
+            Remove-Item -LiteralPath $mkdocResult -Force -ErrorAction SilentlyContinue
+            Start-Process -FilePath $aiExe -ArgumentList @(('"' + (Join-Path $root 'mkdoc.jsx') + '"'))
+            $deadline = [DateTime]::UtcNow.AddSeconds($waitSec)
+            while ([DateTime]::UtcNow -lt $deadline) {
+                Start-Sleep -Milliseconds 700
+                if (Test-Path -LiteralPath $mkdocResult) { return [IO.File]::ReadAllText($mkdocResult) }
+            }
+            return $null
         }
-        if (-not $docInfo) { throw 'mkdoc jsx never ran (150s)' }
+        $docInfo = Invoke-Mkdoc 150
+        if (-not $docInfo) {
+            L 'mkdoc timed out - killing AI, clean relaunch, dismissing modal dialogs, retrying'
+            try { Stop-Process -Name Illustrator -Force -ErrorAction SilentlyContinue } catch { }
+            Start-Sleep -Seconds 3
+            Start-Process -FilePath $aiExe
+            Start-Sleep -Seconds 35
+            try {
+                if (-not ('CsWinEnum2' -as [type])) { Add-Type -TypeDefinition $winEnumSrc }
+                $procs = @(Get-Process -Name Illustrator -ErrorAction SilentlyContinue)
+                if ($procs.Count -gt 0) {
+                    $wins = [CsWinEnum2]::WindowsOf([uint32]$procs[0].Id)
+                    $closedDlgs = 0
+                    foreach ($w in $wins) {
+                        $parts = $w -split '\|', 3
+                        if ($parts.Count -eq 3 -and $parts[1] -match '^#32770') { [void][CsWinEnum2]::CloseWindowByHandle([long]$parts[0]); $closedDlgs++ }
+                    }
+                    L ('   dialogs dismissed: ' + $closedDlgs)
+                }
+            } catch { L ('   WARN dialog dismiss: ' + (San $_.Exception.Message)) }
+            Start-Sleep -Seconds 3
+            $docInfo = Invoke-Mkdoc 150
+        }
+        if (-not $docInfo) { throw 'mkdoc jsx never ran (two tries with dialog self-heal)' }
         L ('mkdoc: ' + (San $docInfo))
         if ($docInfo -notmatch 'OK\|docs=1') { throw ('document creation failed: ' + (San $docInfo)) }
 

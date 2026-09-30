@@ -109,7 +109,8 @@
     "code/tasks/t69_tfprobe.ps1",
     "code/tasks/t70_v2_rebuild.ps1",
     "code/tasks/t71_install_celllct.ps1",
-    "code/tasks/t72_fix_getcs.ps1"
+    "code/tasks/t72_fix_getcs.ps1",
+    "code/tasks/t73_v5_relaunch.ps1"
   ],
   "forbid_files": [
     "local/inbox",

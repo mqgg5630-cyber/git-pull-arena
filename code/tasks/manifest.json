@@ -250,6 +250,12 @@
     ],
     "94": [
       "t64_poll_rebuild.ps1"
+    ],
+    "95": [
+      "t73_v5_relaunch.ps1"
+    ],
+    "96": [
+      "t64_poll_rebuild.ps1"
     ]
   }
 }
