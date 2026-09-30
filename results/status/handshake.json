@@ -1,9 +1,9 @@
 {
-    "round":  52,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 52: t42 fix the Desktop report n8n lines + probe R detail inside WSL Ubuntu-24.04 (which R, versions, conda envs) -\u003e results/status/r51_r_detail.md",
-    "arena_updated":  "2026-09-30 07:46:09",
-    "local_updated":  "2026-09-30 15:48:02"
+  "round": 52,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-30 07:48:27",
+  "local_updated": "2026-09-30 15:48:02"
 }
