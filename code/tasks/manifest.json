@@ -232,6 +232,12 @@
     ],
     "88": [
       "t70_v2_rebuild.ps1"
+    ],
+    "89": [
+      "t71_install_celllct.ps1"
+    ],
+    "90": [
+      "t64_poll_rebuild.ps1"
     ]
   }
 }
