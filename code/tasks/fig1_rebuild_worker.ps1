@@ -106,6 +106,12 @@ try {
         } catch { L ('resume check parse failed: ' + (San $_.Exception.Message)) }
     }
 
+    # FRESH.marker forces a fresh rebuild (font-size fix v2 requires full redraw)
+    if (Test-Path -LiteralPath (Join-Path $root 'FRESH.marker')) {
+        Remove-Item -LiteralPath (Join-Path $root 'FRESH.marker') -Force -ErrorAction SilentlyContinue
+        if ($resume) { L 'FRESH.marker present - forcing a fresh rebuild'; $resume = $false; $base = $null; $jobRoot = $null }
+    }
+
     if ($resume) {
         # ensure Illustrator running with the job document open
         $aiRunning = @(Get-Process -Name Illustrator -ErrorAction SilentlyContinue).Count -gt 0
