@@ -109,6 +109,10 @@
     "48": [
       "t36_autostart_vpn_tailscale.ps1",
       "t37_software_inventory.ps1"
+    ],
+    "49": [
+      "t38_uninstall_qwenpaw.ps1",
+      "t39_toolbox_and_paths.ps1"
     ]
   }
 }

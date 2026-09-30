@@ -63,7 +63,9 @@
     "code/tasks/t34_hpc_bridge.ps1",
     "code/tasks/t35_desktop_access_probe.ps1",
     "code/tasks/t36_autostart_vpn_tailscale.ps1",
-    "code/tasks/t37_software_inventory.ps1"
+    "code/tasks/t37_software_inventory.ps1",
+    "code/tasks/t38_uninstall_qwenpaw.ps1",
+    "code/tasks/t39_toolbox_and_paths.ps1"
   ],
   "forbid_files": [
     "local/inbox",
