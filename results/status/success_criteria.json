@@ -89,7 +89,9 @@
     "code/tasks/t54_recon2.ps1",
     "code/tasks/t54_crossref_verify.py",
     "code/tasks/t55_run.ps1",
-    "code/tasks/t55_rebuild9.py"
+    "code/tasks/t55_rebuild9.py",
+    "code/tasks/t56_abtest.ps1",
+    "code/tasks/t56_import_zotero.py"
   ],
   "forbid_files": [
     "local/inbox",
