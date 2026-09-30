@@ -1,9 +1,9 @@
 {
-  "round": 64,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 64: t52 final build with fixed bib begin/end detection (enclosing paragraph must be ref 1 and ref 36)",
-  "arena_updated": "2026-09-30 08:42:57",
-  "local_updated": null
+    "round":  64,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 64: t52 final build with fixed bib begin/end detection (enclosing paragraph must be ref 1 and ref 36)",
+    "arena_updated":  "2026-09-30 08:42:57",
+    "local_updated":  "2026-09-30 16:44:27"
 }
