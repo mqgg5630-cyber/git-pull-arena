@@ -72,7 +72,8 @@
     "code/tasks/t43_wsl_r_probe2.ps1",
     "code/tasks/t44_r_final_check.ps1",
     "code/tasks/t45_r_versions_cleanup.ps1",
-    "code/tasks/t46_zotero_recon.ps1"
+    "code/tasks/t46_zotero_recon.ps1",
+    "code/tasks/t47_pipeline_fetch.ps1"
   ],
   "forbid_files": [
     "local/inbox",

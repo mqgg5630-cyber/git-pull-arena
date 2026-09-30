@@ -139,6 +139,9 @@
     ],
     "57": [
       "t46_zotero_recon.ps1"
+    ],
+    "58": [
+      "t47_pipeline_fetch.ps1"
     ]
   }
 }
