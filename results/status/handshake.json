@@ -1,9 +1,9 @@
 {
-    "round":  37,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 37: t19 approved deletions + new desktop shortcut, t20 docker builder prune + pagefile shrink",
-    "arena_updated":  "2026-09-30 00:50:48",
-    "local_updated":  "2026-09-30 08:55:28"
+  "round": 37,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-30 00:55:45",
+  "local_updated": "2026-09-30 08:55:28"
 }
