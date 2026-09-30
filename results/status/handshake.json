@@ -1,9 +1,9 @@
 {
-  "round": 73,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-09-30 12:05:50",
-  "local_updated": "2026-09-30 20:05:39"
+  "round": 74,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 74: t61 patch ROT fallback into run_cell_lct.ps1 (E:\\cell_su7 + installed skill) and smoke-test the bridge: bind, 1+1, add doc, close, quit",
+  "arena_updated": "2026-09-30 12:06:58",
+  "local_updated": null
 }
