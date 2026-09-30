@@ -85,7 +85,9 @@
     "code/tasks/t51_verify_fix.py",
     "code/tasks/t52_run.ps1",
     "code/tasks/t52_build_final.py",
-    "code/tasks/t53_word_check.ps1"
+    "code/tasks/t53_word_check.ps1",
+    "code/tasks/t54_recon2.ps1",
+    "code/tasks/t54_crossref_verify.py"
   ],
   "forbid_files": [
     "local/inbox",
