@@ -1,9 +1,9 @@
 {
-  "round": 83,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-09-30 13:02:19",
-  "local_updated": "2026-09-30 21:01:59"
+  "round": 84,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 84: t64 (fixed) DONE.marker -> copy shibielujing1 .ai/.png/.svg + text-manifest.json + rebuild.log into repo results/fig1_rebuild/out",
+  "arena_updated": "2026-09-30 13:02:52",
+  "local_updated": null
 }
