@@ -1,44 +1,57 @@
 {
-  "schema_version": "1.0",
-  "task": "fig1 graphical abstract rebuild (no paid path)",
+  "schema_version": "1.1",
+  "task": "fig1 graphical abstract rebuild - clean edition (cell-lct, no paid path)",
   "input": "results/reference/fig1_cleaned.png (cv2.inpaint, OCR 0 residual)",
-  "text_manifest": "results/reference/fig1_text_manifest.json (40 elements)",
+  "text_manifest": "results/reference/fig1_text_manifest.json (40 elements, font sizes corrected via measured-Arial-width feedback from the v1 draw)",
   "vectorizer": {
-    "tool": "vtracer 0.6.12 (pip)",
-    "mode": "color/stacked/spline",
-    "params": {
-      "filter_speckle": 8,
-      "color_precision": 7,
-      "layer_difference": 12,
-      "corner_threshold": 60,
-      "length_threshold": 4.0,
-      "path_precision": 2
+    "tool": "vtracer 0.6.12 (local, free)",
+    "pipeline": "GaussianBlur(0.5) -> quantize(28 colors, MEDIANCUT, no dither) -> vtracer(color/stacked/spline, speckle=20, precision=5, layer=20, length=5.0) -> cull paths < 12 px2",
+    "result": "346 paths (v1 was 2123; -84%), 0 speckle paths (<50px2)"
+  },
+  "svg_artifacts": {
+    "fig1_vector_raw.svg": {
+      "paths": 346,
+      "sha256_16": "7e3263d440b8b4eb"
+    },
+    "fig1_merged.svg": {
+      "paths": 346,
+      "texts": 40,
+      "sha256_16": "9a81711a977643bc"
     }
   },
-  "fig1_vector_raw.svg": {
-    "paths": 2123,
-    "sha256_16": "e7f614d5c44e6f55",
-    "size_kb": 1660
-  },
-  "fig1_merged.svg": {
-    "paths": 2123,
-    "text_elements": 40,
-    "sha256_16": "ca8af9cfbb22f098",
-    "size_kb": 1668
-  },
-  "official_validate_vector_svg": "PASS (0 errors, 0 warnings) for both SVGs",
+  "official_validation": "validate_vector_svg.py PASS (0 errors, 0 warnings) both SVGs (cell-lct-free edition copy)",
   "render_fidelity_vs_cleaned_png": {
-    "renderer": "resvg (sandbox)",
-    "mean_abs_diff": 6.43,
-    "pct_within_8": 82.76,
-    "pct_within_16": 88.75,
-    "pct_within_32": 93.62
+    "renderer": "resvg",
+    "mean_abs_diff": 9.07,
+    "pct_within_16": 80.48,
+    "pct_within_32": 88.61
   },
-  "text_verification": {
-    "method": "resvg+DejaVu render + RapidOCR",
-    "direct_hits": "32/40",
-    "remaining_8": "verified present via targeted crops (beta/mu glyphs, rotated axis label, small ticks fragment OCR)",
-    "note": "sandbox lacks Arial; machine-side Illustrator uses real Arial via resolveTextFont"
+  "draw": {
+    "engine": "cell-lct free edition (TryLoveMe/cell-lct-free) + yrui-cmd/cell-lct installed at E:\\",
+    "bridge": "Illustrator 2020 24.0.2 via exe-argument JSX file bridge (Invoke-CsAiScript v2: 400ms spacing, 3x240s redelivery, dup-guard lock)",
+    "patches": [
+      "ProgID COM connect -> file bridge",
+      "3 DoJavaScript call sites -> bridge",
+      "runtime rotation -> rotate-around-anchor (BOTTOMLEFT + translate correction)",
+      "Get-CsIllustratorExe helper",
+      "worker mkdoc dialog self-heal (#32770 dismiss + retry)"
+    ],
+    "job": "shibielujing4 (cell-lct skill) = pixel-identical to shibielujing2 (cell_su7 skill): 100.00% identical pixels",
+    "outputs": {
+      "ai": "results/fig1_rebuild/out/shibielujing4.ai (814 KB, PDF-embedded Illustrator native)",
+      "png": "results/fig1_rebuild/out/shibielujing4.png (272 KB, 1619x971, exported by Illustrator)",
+      "svg": "results/fig1_rebuild/out/shibielujing4.svg (765 KB)",
+      "text_manifest": "results/fig1_rebuild/out/text-manifest.json"
+    }
   },
-  "xiaomiao_paid_path": "bypassed by user decision (no charge); bridge draw via Illustrator 2020 file-bridge (run_cell_lct.ps1 Invoke-CsAiScript patch)"
+  "final_verification": {
+    "ocr_direct_hits": "38/40 (misses are the known vertical-axis 'RMSD (nm)' + '1 us' OCR traps; ink present and length-matched)",
+    "rotated_label": "RMSD (nm) now drawn at the manifest anchor with 83px length matching the original bbox",
+    "exported_png_vs_original": {
+      "mean_abs_diff": 12.43,
+      "pct_within_32": 86.3
+    },
+    "note": "v1 (2123 paths) retained as shibielujing1 for reference"
+  },
+  "xiaomiao_paid_path": "bypassed entirely (user decision, zero cost)"
 }
