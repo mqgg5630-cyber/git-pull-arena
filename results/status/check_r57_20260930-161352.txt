@@ -1,0 +1,319 @@
+check round 57 on LAPTOP-R77M5D6M - passed (exit 0)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 94s
+
+OK: all .ps1 files are ASCII-only
+OK: sync.config.json branch=arena/01a0a9f0-git-pull-arena
+OK: sync.config.json branch matches HEAD (arena/01a0a9f0-git-pull-arena)
+OK: root scripts identical to skills/git-sync/scripts
+OK: no drive-style variable typos ($var:)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+OK: every .ps1 parses
+   (gate ran via E:\hermes\git\bin\bash.exe [git])
+== accept 2a: silent push PROVEN (ls-remote + push --dry-run, prompts disabled)
+== accept 2b (fallback): one LONG-LIVED loop process - one brief flash per logon,
+   not per poll. For zero flash: admin PowerShell -> .\watch.ps1 -Unregister ;
+   .\watch.ps1 -Register -Headless   (or fix the launcher, see watch-*.log)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+== check_loop_summary PASSED
+== accept 2c: watcher closing lines verified (every exit path has its summary)
+== deliverables: 2 Office file(s) declared in deliverable/OFFICE_HASHES.json
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.docx (39743 B, docx)
+   OK   3b all 6 required parts present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.docx (17 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B, pptx)
+   OK   3b all 9 required parts present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.pptx (52 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3g slides in deliverable/LINK_PROOF_v2.8.1.pptx : 8 >= 8
+   OK   3h Word.Application opened read-only, name=LINK_PROOF_v2.8.1.docx : deliverable\LINK_PROOF_v2.8.1.docx
+   OK   3h PowerPoint.Application opened read-only, slides=8 : deliverable\LINK_PROOF_v2.8.1.pptx
+== task r57: t46_zotero_recon.ps1
+--- task t46: Zotero-link recon (READ-ONLY) ---
+--- A. E:\0writing tree ---
+   DIR E:\0writing
+   - [D] 2026-09-11 20:48  edge_debug_profile
+   -      9.9 KB  2026-09-04 08:27  ???????.docx
+   -       592 B  2026-09-01 09:10  debug.log
+   -     11.8 MB  2026-09-01 09:05  ChromeSetup.exe
+   - [D] 2026-08-31 10:36  cnki-skills
+   - [D] 2026-08-30 14:38  Lark-Formatter
+   - [D] 2026-08-23 17:39  scientific-figure-shapes
+   - [D] 2026-08-20 20:36  AutoFigure-Edit
+   - [D] 2026-08-20 12:44  test_????
+   -     45.8 KB  2026-08-20 12:44  test_new.docx
+   -     44.1 KB  2026-08-20 12:43  test.docx
+   - [D] 2026-08-20 10:13  diagram-design
+   - [D] 2026-08-14 15:24  Light-skills-restore-v3.1.0
+   - [D] 2026-08-12 10:58  1yzy
+   - [D] 2026-08-12 09:18  Light-skills
+   - [D] 2026-08-12 09:14  Auto-Empirical-Research-Skills
+   DIR E:\0writing\Light-skills
+   - [D] 2026-09-30 15:42  projects
+   - [D] 2026-08-12 09:18  skills
+   - [D] 2026-08-12 09:18  scripts
+   - [D] 2026-08-12 09:18  examples
+   - [D] 2026-08-12 09:18  docs
+   - [D] 2026-08-12 09:18  assets
+   - [D] 2026-08-12 09:18  _shared
+   -      3.3 KB  2026-08-12 09:18  SECURITY.md
+   -     15.5 KB  2026-08-12 09:18  README.en.md
+   -     14.3 KB  2026-08-12 09:18  README.md
+   -      1.1 KB  2026-08-12 09:18  LICENSE
+   -      6.1 KB  2026-08-12 09:18  CONTRIBUTING.md
+   -      3.4 KB  2026-08-12 09:18  CHANGELOG.md
+   -      2.0 KB  2026-08-12 09:18  AGENTS.md
+   -       639 B  2026-08-12 09:18  .gitignore
+   DIR E:\0writing\Light-skills\projects
+   -      7.0 MB  2026-09-28 16:31  English.docx
+   - [D] 2026-09-28 16:31  porphyromonas-ad-mechanism-manuscript
+   - [D] 2026-08-14 16:20  1
+   - [D] 2026-08-12 09:18  photocatalytic-dye-kinetics-study
+--- B. English.docx analysis ---
+   file: 7.0 MB  2026-09-28 16:31
+   paragraphs: 653 ; zotero-item fields: 0 ; zotero-bib: 0 ; CSL: 0 ; ADDIN: 0
+   citation-ish: [n] pattern x51 ; AuthorYear x2
+   first paragraphs (see findings file for full):
+   P: Periodontitis oral smORFs yield micropeptides that occupy the AChE peripheral site: 22-task UniDL4BioPep scori
+   P: Abstract
+   P: Periodontitis has been tied to Alzheimer?s disease (AD) in clinical and experimental work, yet a peptide-level
+   P: Keywords: Alzheimer?s disease; Porphyromonas gingivalis; periodontitis; smORF; micropeptide; acetylcholinester
+   P: Introduction
+   P: Alzheimer?s disease (AD) combines amyloid deposition, tau pathology, synaptic failure, immune activation and v
+--- C. other docx in Light-skills (find the zotero-linked case) ---
+   - English.docx : 7.0 MB ; ZOTERO_ITEM=0 CSL=0 ZOTERO_BIB=0 ; paras=653 ; [n]x51 AYx2 ; 2026-09-28 16:31 ; E:\0writing\Light-skills\projects\porphyromonas-ad-mechanism-manuscript\manuscript\sci_submission\English.docx
+   - English.docx : 7.0 MB ; ZOTERO_ITEM=0 CSL=0 ZOTERO_BIB=0 ; paras=653 ; [n]x51 AYx2 ; 2026-09-28 16:31 ; E:\0writing\Light-skills\projects\English.docx
+   - Chinese.docx : 7.0 MB ; ZOTERO_ITEM=0 CSL=0 ZOTERO_BIB=0 ; paras=653 ; [n]x51 AYx2 ; 2026-09-28 16:31 ; E:\0writing\Light-skills\projects\porphyromonas-ad-mechanism-manuscript\manuscript\sci_submission\Chinese.docx
+   - English.docx : 9.2 MB ; ZOTERO_ITEM=0 CSL=0 ZOTERO_BIB=0 ; paras=542 ; [n]x37 AYx2 ; 2026-09-28 15:20 ; E:\0writing\Light-skills\projects\porphyromonas-ad-mechanism-manuscript\manuscript\sci_combined\English.docx
+   - Chinese.docx : 9.2 MB ; ZOTERO_ITEM=0 CSL=0 ZOTERO_BIB=0 ; paras=542 ; [n]x37 AYx2 ; 2026-09-28 15:20 ; E:\0writing\Light-skills\projects\porphyromonas-ad-mechanism-manuscript\manuscript\sci_combined\Chinese.docx
+   - ???.docx : 5.2 KB ; ZOTERO_ITEM=0 CSL=0 ZOTERO_BIB=0 ; paras=7 ; [n]x0 AYx0 ; 2026-09-20 08:17 ; E:\0writing\Light-skills\projects\porphyromonas-ad-mechanism-manuscript\manuscript\sci_combined\???.docx
+   - Limitations.docx : 5.1 KB ; ZOTERO_ITEM=0 CSL=0 ZOTERO_BIB=0 ; paras=7 ; [n]x0 AYx0 ; 2026-09-20 08:17 ; E:\0writing\Light-skills\projects\porphyromonas-ad-mechanism-manuscript\manuscript\sci_combined\Limitations.docx
+   - English.docx : 9.2 MB ; ZOTERO_ITEM=0 CSL=0 ZOTERO_BIB=0 ; paras=171 ; [n]x0 AYx0 ; 2026-09-20 08:14 ; E:\0writing\Light-skills\projects\porphyromonas-ad-mechanism-manuscript\manuscript\md_alllhrc\concise\English.docx
+   - Chinese.docx : 9.2 MB ; ZOTERO_ITEM=0 CSL=0 ZOTERO_BIB=0 ; paras=171 ; [n]x0 AYx0 ; 2026-08-31 19:14 ; E:\0writing\Light-skills\projects\porphyromonas-ad-mechanism-manuscript\manuscript\md_alllhrc\concise\Chinese.docx
+   - English.docx : 9.2 MB ; ZOTERO_ITEM=0 CSL=0 ZOTERO_BIB=0 ; paras=201 ; [n]x0 AYx7 ; 2026-08-27 15:07 ; E:\0writing\Light-skills\projects\porphyromonas-ad-mechanism-manuscript\manuscript\md_alllhrc\intermediate\English.docx
+   - Chinese.docx : 9.2 MB ; ZOTERO_ITEM=0 CSL=0 ZOTERO_BIB=0 ; paras=201 ; [n]x0 AYx7 ; 2026-08-27 15:07 ; E:\0writing\Light-skills\projects\porphyromonas-ad-mechanism-manuscript\manuscript\md_alllhrc\intermediate\Chinese.docx
+   - English.docx : 9.2 MB ; ZOTERO_ITEM=0 CSL=0 ZOTERO_BIB=0 ; paras=342 ; [n]x0 AYx10 ; 2026-08-27 14:45 ; E:\0writing\Light-skills\projects\porphyromonas-ad-mechanism-manuscript\manuscript\md_alllhrc\full\English.docx
+--- D. zotero-related files (rg) ---
+   RG E:\0writing\cnki-skills\VERSION_HISTORY.md
+   RG E:\0writing\cnki-skills\skills\cnki-search\SKILL.md
+   RG E:\0writing\Auto-Empirical-Research-Skills\tools\tools.json
+   RG E:\0writing\Auto-Empirical-Research-Skills\tools\README.md
+   RG E:\0writing\Auto-Empirical-Research-Skills\tools\CATALOG.md
+   RG E:\0writing\cnki-skills\skills\cnki-export\SKILL.md
+   RG E:\0writing\cnki-skills\skills\cnki-export\scripts\push_to_zotero.py
+   RG E:\0writing\cnki-skills\README_GENERATOR.md
+   RG E:\0writing\cnki-skills\README_APP.md
+   RG E:\0writing\cnki-skills\README.md
+   RG E:\0writing\cnki-skills\periodontitis-ad-pg-review\tools\zotero_word_fields.py
+   RG E:\0writing\cnki-skills\periodontitis-ad-pg-review\tools\bib2csljson.py
+   RG E:\0writing\cnki-skills\periodontitis-ad-pg-review\tests\test_zotero_refresh.py
+   RG E:\0writing\cnki-skills\periodontitis-ad-pg-review\README_Zotero_and_Template.md
+   RG E:\0writing\cnki-skills\periodontitis-ad-pg-review\build.py
+   RG E:\0writing\cnki-skills\cnki_to_zotero.py
+   RG E:\0writing\cnki-skills\cnki_review_generator\gui_app.py
+   RG E:\0writing\cnki-skills\cnki_review_generator\core\zotero_exporter.py
+   RG E:\0writing\cnki-skills\cnki_review_generator\core\thesis_builder.py
+   RG E:\0writing\cnki-skills\cnki_review_generator\core\latex_builder.py
+   RG E:\0writing\cnki-skills\cnki_review_generator\core\docx_builder.py
+   RG E:\0writing\cnki-skills\cnki_review_generator\app.py
+   RG E:\0writing\cnki-skills\cnki-citation-review\tools\zotero_word_fields.py
+   RG E:\0writing\cnki-skills\cnki-citation-review\tools\bib2csljson.py
+   RG E:\0writing\cnki-skills\cnki-citation-review\README.md
+   RG E:\0writing\cnki-skills\cnki-citation-review\CNKI_Citation_Zotero_library.json
+   RG E:\0writing\cnki-skills\cnki-citation-review\build.py
+   RG E:\0writing\cnki-skills\CHANGELOG.md
+   RG E:\0writing\cnki-skills\browser-extension-firefox\README.md
+   RG E:\0writing\cnki-skills\browser-extension-firefox\popup\popup.js
+   RG E:\0writing\cnki-skills\browser-extension\README.md
+   RG E:\0writing\cnki-skills\browser-extension\popup\popup_bundle.js
+   RG E:\0writing\cnki-skills\browser-extension\popup\popup.js
+   RG E:\0writing\cnki-skills\browser-extension\background\service_worker.js
+   RG E:\0writing\cnki-skills\agents\cnki-researcher.md
+   RG E:\0mcp-agv\scripts\verify_english_review_docx.py
+   RG E:\0mcp-agv\scripts\test_sections_architecture.py
+   RG E:\0mcp-agv\scripts\test_section4_fix.py
+   RG E:\0mcp-agv\scripts\lark_thesis_cli.py
+   RG E:\0mcp-agv\scripts\inspect_template_sections.py
+--- E. key script heads ---
+   HEAD E:\0writing\cnki-skills\VERSION_HISTORY.md
+     # CNKI Review & Thesis Generator ??????????????(VERSION HISTORY)
+     ??????????????????????????????????????????????????????????????????????????????????????????????????
+     ---
+     ## ?? ??????????????(Version Summary Table)
+     | ?????(Tag) | ?????? | ?????? | ?????????????? | ??????????????| Zotero Refresh ????| ????????? |
+     | :--- | :---: | :---: | :--- | :---: | :---: | :--- |
+     | **`v2.0.0`** *(?????)* | 2026-08-31 | **?????????** | **?????Zotero ?????? + PDF ?????????**???????????ookie + DOM????????????????????????????????PDF ?????????????????? Zotero??E:\ozotero`??????????**?????C ?????*???????????? E ??????? Skill `cnki-zotero-auto-ingest` ?????| **100% ???????????* | **????????? PDF ??????** | `cnki_to_zotero.py`<br>`browser-extension/`<br>`downloads/`<br>`cnki-scholar-assistant-chrome-edge-v1.0.0.zip` |
+     | **`v1.3.0`** | 2026-08-19 | ?????? | **???????????100% ????????*????????????????? ?????????????????????????????????????PDF?? ???????????? DOI?????8 ???????????16 ??????????| **100% ???????????* | **?????? 16 ?????????** | `periodontitis-ad-pg-review.docx`<br>`??????????????????_????????docx`<br>`Periodontitis_AD_Zotero_library.json`<br>`Periodontitis_AD_Zotero_library.ris`<br>`periodontitis-ad-pg-review.tex` |
+   HEAD E:\0writing\cnki-skills\skills\cnki-search\SKILL.md
+     ---
+     name: cnki-search
+     description: Search CNKI (??????) for papers by keyword. Use when the user wants to find academic papers on a topic.
+     argument-hint: "[search keywords]"
+     ---
+     # CNKI Basic Search
+     Search CNKI for papers using keyword(s). Returns result count and structured result list (titles, URLs, authors, journal, date) in a single call.
+     ## Arguments
+   HEAD E:\0writing\Auto-Empirical-Research-Skills\tools\tools.json
+     {
+       "tools": [
+         {
+           "automation_level": "dataset",
+           "category": "benchmark-dataset",
+           "description": "R packages with the data-generating processes and simulated datasets (with known ground-truth effects) from the 2016/2017 Atlantic Causal Inference Conference competitions.",
+           "homepage": null,
+           "id": "acic-competition-data-aciccomp",
+           "languages": [
+             "r"
+           ],
+           "last_activity": "2020-07",
+   HEAD E:\0writing\Auto-Empirical-Research-Skills\tools\README.md
+     # Tools ?????????????& ???????????
+     > A curated, license- and maintenance-aware index of **software tools** for automated
+     > empirical research and causal inference.
+     ??? AERS ??*?????ools?????*??? [`../skills/`](../skills/)?????agent ????????/ agent skills???????????????
+     - **Skill** = ??? agent ???"???????????????????????
+     - **Tool** = agent????????????**???????????/ ???**????????????????????????????CP ?????????????????
+     ???????????????????????? `skills/` ?????? catalog ??????????????repo ??????????????? JSON ?????+ ???????????+ ??? `make validate`????
+   HEAD E:\0writing\Auto-Empirical-Research-Skills\tools\CATALOG.md
+     # Tools Catalog ??Automated Empirical Research & Causal Inference
+     <!-- GENERATED by scripts/build-tools-catalog.py from tools/tools.json ??do not edit by hand. -->
+     Curated, license- and maintenance-aware index of **software tools** for automated empirical research and causal inference ??distinct from the agent **skills** under [`../skills/`](../skills/). Source of truth: [`tools.json`](tools.json). Rebuild with `python3 scripts/build-tools-catalog.py`.
+     ## Summary
+     **334 tools** across 6 categories.
+     | Category | Count |
+     |---|---:|
+   HEAD E:\0writing\cnki-skills\skills\cnki-export\SKILL.md
+     ---
+     name: cnki-export
+     description: Export paper from CNKI and push to Zotero, or save as RIS file. Use when user wants to save a paper to Zotero or export citation data.
+     argument-hint: "[zotero|ris|gb] [paper URL or blank if on detail page]"
+     ---
+     # CNKI Export & Zotero Integration
+     Export paper citation data from CNKI and push directly to Zotero, or save as RIS file.
+     ## Arguments
+--- F. Zotero runtime ---
+   zotero.exe process: not running
+   dir E:\Zotero: 36 entries
+   local API /items: no response (Zotero closed or API off)
+   connector ping: no response
+   better-bibtex probe: no response
+   findings: results/status/r57_zotero_recon.md
+== task r57 t46_zotero_recon.ps1 ok (70s)
+== accept 2d: hands-free auto_pull/auto_push present in watch.ps1
+== success criteria: results/status/success_criteria.json
+   v2.8.1 on arena/01a0a9f0-git-pull-arena: the newest skill (source branch arena/01a0a98d-git-pull-arena, installer refuses to downgrade) plus the repo gate (code/check_all.sh, which now proves each python candidate python3 / python / py -3) and the real-machine check (code/local_check.ps1, sections 3a-3h). The deliverables LINK_PROOF_v2.8.1.docx / .pptx travel through git and are judged by the Windows watcher: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide count and a real Word/PowerPoint open. 'Local' means that machine's scheduled watcher - never a sandbox folder, never a hand-made stand-in skill. From round 22 on the repo also ships code/tasks/*.ps1 (mapped per round in code/tasks/manifest.json) which run on the machine inside local_check.ps1 section 4 as child processes: round 22 = read-only diagnostics for the Antigravity login, the Java install state and E: cleanup candidates.
+   OK   exists: 01a0a821.md (2016 B)
+   OK   exists: skills/git-sync/VERSION (6 B)
+   OK   exists: skills/git-sync/scripts/agent-install.sh (13404 B)
+   OK   exists: skills/git-sync/scripts/agent-handoff.sh (4603 B)
+   OK   exists: skills/git-sync/scripts/agent-handsfree.sh (3989 B)
+   OK   exists: skills/git-sync/scripts/agent-criteria.sh (5190 B)
+   OK   exists: skills/git-sync/scripts/watch.ps1 (84094 B)
+   OK   exists: skills/git-sync/templates/one-sentence.md (6524 B)
+   OK   exists: skills/git-sync/templates/gate.yml (1166 B)
+   OK   exists: code/check_all.sh (9945 B)
+   OK   exists: code/local_check.ps1 (30124 B)
+   OK   exists: code/make_link_proof.py (22948 B)
+   OK   exists: deliverable/OFFICE_HASHES.json (2401 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.docx (39743 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B)
+   OK   exists: watch.ps1 (84094 B)
+   OK   exists: code/tasks/manifest.json (3119 B)
+   OK   exists: code/tasks/t1_antigravity_diag.ps1 (14461 B)
+   OK   exists: code/tasks/t2_java_diag.ps1 (8626 B)
+   OK   exists: code/tasks/t3_edrive_scan.ps1 (9393 B)
+   OK   exists: code/tasks/t1_fix_antigravity.ps1 (10411 B)
+   OK   exists: code/tasks/t3_edrive_scan2.ps1 (9007 B)
+   OK   exists: code/tasks/t2_install_java.ps1 (14030 B)
+   OK   exists: code/tasks/t3_edrive_scan3.ps1 (7084 B)
+   OK   exists: code/tasks/t4_cleanup_dryrun.ps1 (5995 B)
+   OK   exists: code/tasks/t1_antigravity_verify.ps1 (3793 B)
+   OK   exists: code/tasks/t2_cleanup_exec.ps1 (12624 B)
+   OK   exists: results/status/round22_findings.md (3511 B)
+   OK   exists: code/tasks/t5_cleanup_fix.ps1 (7475 B)
+   OK   exists: code/tasks/t7_ligplus_test.ps1 (6214 B)
+   OK   exists: code/tasks/t1_antigravity_tun2.ps1 (7694 B)
+   OK   exists: code/tasks/t6_docker_report.ps1 (5648 B)
+   OK   exists: code/tasks/t8_uvcache_finish.ps1 (2719 B)
+   OK   exists: code/tasks/t9_ligplus_upgrade.ps1 (8739 B)
+   OK   exists: code/tasks/t10_ligplus_final.ps1 (9282 B)
+   OK   exists: code/tasks/t11_javagui_fix.ps1 (3986 B)
+   OK   exists: code/tasks/t12_ligplus_new.ps1 (7178 B)
+   OK   exists: code/tasks/t13_docker_autofigure.ps1 (2917 B)
+   OK   exists: code/tasks/t14_recyclebin_empty.ps1 (2689 B)
+   OK   exists: code/tasks/t15_uvcache_final.ps1 (4126 B)
+   OK   exists: code/tasks/t16_uvcache_final2.ps1 (3987 B)
+   OK   exists: code/tasks/t17_uv_delete_bg.ps1 (4570 B)
+   OK   exists: code/tasks/t18_edrive_survey.ps1 (15793 B)
+   OK   exists: code/tasks/t17b_uv_finish.ps1 (3803 B)
+   OK   exists: code/tasks/t19_cleanup_approved.ps1 (9331 B)
+   OK   exists: code/tasks/t20_docker_pagefile.ps1 (5765 B)
+   OK   exists: code/tasks/t21_optimize_review.ps1 (7881 B)
+   OK   exists: code/tasks/t22_pagefile_uac.ps1 (2571 B)
+   OK   exists: code/tasks/t23_tailscale_verify.ps1 (2476 B)
+   OK   exists: code/tasks/t24_oldsync_cleanup.ps1 (2537 B)
+   OK   exists: code/tasks/t25_oldtask_uac.ps1 (4503 B)
+   OK   exists: code/tasks/t26_pagefile_fix_uac.ps1 (4880 B)
+   OK   exists: code/tasks/t27_pagefile_registry.ps1 (4513 B)
+   OK   exists: code/tasks/t28_reboot_verify.ps1 (2764 B)
+   OK   exists: code/tasks/t29_ddrive_survey.ps1 (9818 B)
+   OK   exists: code/tasks/t30_tailscale_prep.ps1 (5189 B)
+   OK   exists: code/tasks/t31_enable_rdp_ssh.ps1 (4127 B)
+   OK   exists: code/tasks/t32_wsl26_survey.ps1 (4565 B)
+   OK   exists: code/tasks/t33_hpc_probe.ps1 (5024 B)
+   OK   exists: code/tasks/t34_hpc_bridge.ps1 (4027 B)
+   OK   exists: code/tasks/t35_desktop_access_probe.ps1 (4368 B)
+   OK   exists: code/tasks/t36_autostart_vpn_tailscale.ps1 (6281 B)
+   OK   exists: code/tasks/t37_software_inventory.ps1 (6288 B)
+   OK   exists: code/tasks/t38_uninstall_qwenpaw.ps1 (6601 B)
+   OK   exists: code/tasks/t39_toolbox_and_paths.ps1 (6919 B)
+   OK   exists: code/tasks/t40_mcp_n8n_r_survey.ps1 (12366 B)
+   OK   exists: code/tasks/t41_bigdocs_report.ps1 (8722 B)
+   OK   exists: code/tasks/t42_fix_desktop_and_rdetail.ps1 (3650 B)
+   OK   exists: code/tasks/t43_wsl_r_probe2.ps1 (1800 B)
+   OK   exists: code/tasks/t44_r_final_check.ps1 (1752 B)
+   OK   exists: code/tasks/t45_r_versions_cleanup.ps1 (6361 B)
+   OK   exists: code/tasks/t46_zotero_recon.ps1 (11043 B)
+   OK   absent: local/inbox
+   OK   absent: local/status_receipts
+   OK   absent: skills/docx_skill.py
+   OK   absent: local_bridge_skill.py
+   OK   contains skills/git-sync/VERSION <- 2.8.1
+   OK   contains 01a0a821.md <- arena/01a0a98d-git-pull-arena
+   OK   contains skills/git-sync/sync.config.json <- arena/01a0a9f0-git-pull-arena
+   OK   contains skills/git-sync/templates/one-sentence.md <- agent-handoff.sh
+   OK   contains skills/git-sync/scripts/agent-install.sh <- refusing to downgrade
+   OK   contains code/check_all.sh <- py -3
+   OK   contains code/local_check.ps1 <- no Office deliverable declared
+   OK   contains deliverable/OFFICE_HASHES.json <- arena/01a0a9f0-git-pull-arena
+   OK   contains watch.ps1 <- function Invoke-AutoPull
+   OK   contains skills/git-sync/scripts/watch.ps1 <- function Invoke-Focus
+   OK   contains code/tasks/manifest.json <- t3_edrive_scan.ps1
+   OK   contains code/tasks/t1_fix_antigravity.ps1 <- http.proxy
+   OK   contains code/tasks/t2_install_java.ps1 <- E:\java
+   OK   regex watch.ps1
+   OK   regex code/local_check.ps1
+   OK   regex deliverable/OFFICE_HASHES.json
+   OK   size skills/git-sync/scripts/agent-handoff.sh: 4603 >= 2000
+   OK   size skills/git-sync/scripts/agent-install.sh: 13404 >= 10000
+   OK   size code/check_all.sh: 9945 >= 8000
+   OK   size code/local_check.ps1: 30124 >= 12000
+   OK   size code/make_link_proof.py: 22948 >= 8000
+   OK   size deliverable/OFFICE_HASHES.json: 2401 >= 500
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 >= 5000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 >= 15000
+   OK   size watch.ps1: 84094 >= 20000
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 <= 3000000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 <= 3000000
+== local checks passed
