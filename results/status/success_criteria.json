@@ -82,7 +82,9 @@
     "code/tasks/t50_run.ps1",
     "code/tasks/t50_zotero_link.py",
     "code/tasks/t51_run.ps1",
-    "code/tasks/t51_verify_fix.py"
+    "code/tasks/t51_verify_fix.py",
+    "code/tasks/t52_run.ps1",
+    "code/tasks/t52_build_final.py"
   ],
   "forbid_files": [
     "local/inbox",
