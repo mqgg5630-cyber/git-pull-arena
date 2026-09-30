@@ -124,6 +124,9 @@
     ],
     "52": [
       "t42_fix_desktop_and_rdetail.ps1"
+    ],
+    "53": [
+      "t43_wsl_r_probe2.ps1"
     ]
   }
 }
