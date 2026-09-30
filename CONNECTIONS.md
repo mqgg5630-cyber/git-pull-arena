@@ -192,3 +192,10 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - r44: laptop RDP ENABLED + OpenSSH server installed & running (0.0.0.0:22, auto). WSL-26.04 inside survey: 50G used inside (miniconda3 28G incl py36+torch, CUDA 12.9 7.3G, Proteomics_Projects 6.1G, /var/log 816M). USER RETRACTED cleanup: "上一个点错了，不要随意清理" — do NOT clean WSL-26.04 without explicit new approval.
 - r45: HPC probe — 10.10.5.210 ping+tcp22 OPEN (NSFOCUS VPN connected: 5 procs, tunnel 10.0.0.15, /32 route present); 2 active user ssh sessions to HPC spotted. Tailscale: no exit node, no routes.
 - r46: `tailscale set --advertise-routes=10.10.5.210/32` DONE on laptop (no elevation needed). PENDING: user must approve route at login.tailscale.com/admin/machines, then desktop tests `ssh 25wenshaohua@10.10.5.210`. Undo: tailscale set --advertise-routes= (empty).
+
+## round 47 (2026-09-30, desktop access + HPC chain verified)
+- Probe from laptop: desktop 100.84.137.117 = 4ms direct; ports 3389 RDP OPEN, 445 SMB OPEN, 22 SSH OPEN (desktop has sshd!).
+- RDP "cert error" = benign self-signed warning; user clicks Yes.
+- SMB fails because no shares/credentials on desktop, not a network issue (net view exit 0, empty list).
+- HPC chain: netmap shows 10.10.5.210/32 APPROVED+active (user approved in console); laptop VPN up (ping+tcp22 to HPC OK). Desktop test command: ssh 25wenshaohua@10.10.5.210 (Windows accepts subnet routes by default; laptop SNATs).
+- Laptop net profiles: Tailscale=Private, WLAN=Public.
