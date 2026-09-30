@@ -1,9 +1,9 @@
 {
-    "round":  51,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 51: t40 MCP/n8n/R survey (fixed parse error), t41 big-docs scan + combined report -\u003e Desktop + results/status/task_scenarios_r50.md (overwrite)",
-    "arena_updated":  "2026-09-30 07:29:17",
-    "local_updated":  "2026-09-30 15:41:00"
+  "round": 51,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-30 07:41:22",
+  "local_updated": "2026-09-30 15:41:00"
 }

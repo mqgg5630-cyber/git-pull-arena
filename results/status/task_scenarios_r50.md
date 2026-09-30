@@ -28,78 +28,16 @@
 | 远程协作 | 双向 RDP、跨网访问 HPC、内网穿透 | Tailscale（已配好） |
 
 ## 三、MCP 资源（E:\0mcp-agv）
-MCP location: E:\0mcp-agv (48 subfolders)
 
-- .agent : ? 
-- .agents : ? 
-- .playwright-mcp : ? 
-- academic_hub_gui : binary Start_Academic_Hub.bat
-- agents : ? 
-- ARTA_Agent_Output : ? 
-- banana-slides : node banana-slides [start: docker compose up -d]
-- cep-extension : node illustrator-mcp-panel [node_modules]
-- complexes_best_vina : ? 
-- CyberPPT : ? 
-- cyber_svg_icons : ? 
-- cyber_svg_icons_png : ? 
-- dashi-ppt-skill : ? 
-- docs : ? 
-- extracted_icons_15slides : ? 
-- fig1_assets : ? 
-- gas-sheet-project : ? 
-- guizang-ppt-skill : ? 
-- icon_cache : ? 
-- icon_cache_flagship : ? 
-- illustrator-scripts : ? 
-- illustrator_mcp : python antigravity.py
-- illustrator_mcp.egg-info : ? 
-- living test : ? 
-- mcp_servers : python lark_thesis_mcp_server.py
-- nature-skills : ? 
-- output_dashi_umami : ? 
-- ppt-master : ? 
-- PPTist : node pptist (bin: pptist-mcp) [node_modules]
-- renders_ad_exact_15slides : ? 
-- renders_ad_flagship_15slides : ? 
-- renders_ad_stage_amp : ? 
-- renders_amp_15slides : ? 
-- renders_dashi_final : ? 
-- renders_dashi_theme07 : ? 
-- renders_original_15slides : ? 
-- renders_original_dashi_umami : ? 
-- renders_zonghe : ? 
-- renders_zonghe_opt : ? 
-- scipilot-figure-skill : python scipilot-figure-skill
-- sci_docking_studio : binary run_cli.bat
-- scratch : python inspect_zotero.py
-- scripts : binary hybrid-academic.bat
-- smart-illustrator : ? 
-- tests : python conftest.py
-- tests_jsx : ? 
-- uxp-plugin : ? 
-- 机器学习筛选鲜味肽_综述成果 : ? 
-
-Usability: node/python type MCP servers can be invoked by the watcher loop via stdio JSON-RPC (npx/node/python all on PATH). Pilot candidates: fetch / filesystem / pandas style servers.
 
 ## 四、n8n 工作流
 
-- Docker engine RUNNING. Containers:
-  - docker : failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct
-  -  and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.
-  -     + CategoryInfo          : NotSpecified: (failed to conne...file specified.:String) [], RemoteException
-  -     + FullyQualifiedErrorId : NativeCommandError
-- No n8n container currently running.
 
 ## 五、R 语言环境
 
-- Windows R version dirs: 0
-  - WSL Ubuntu-24.04: 8 hits
-  - WSL Ubuntu-26.04: 0 hits
-- Action: no Windows R installation dirs found (registry entries: 0)
-- R inside WSL is reported only, never deleted (WSL stays untouched by agreement).
 
 ## 六、大文档清单（供取舍）
-### 文档类 >= 10 MB, 共 428 个, 前 80
+### 文档类 >= 10 MB, 共 219 个, 前 80
 
 | 大小 | 修改日期 | 文件 |
 |---|---|---|
@@ -112,8 +50,6 @@ Usability: node/python type MCP servers can be invoked by the watcher loop via s
 | 63.8 MB | 2026-07-27 | E:\微信\xwechat_files\wxid_n7lel2eo7ouj22_8412\msg\file\2026-07\02 政治理论与常识判断（解析）.pdf.pdf |
 | 63.5 MB | 2026-04-14 | D:\桌面\AD\figures\Clustering_scatterplots.pdf |
 | 63.5 MB | 2026-04-14 | D:\桌面\AD\figures\Clustering_scatterplots.pdf |
-| 63.5 MB | 2026-06-08 | E:\1yzy\Sequence_Feature_Analysis_20260608_112057\CTDC\CTDC_All.csv |
-| 63.2 MB | 2026-07-24 | E:\.codex\skills\practical-ml\Ch07-Analyzing-Movie-Reviews-Sentiment\movie_reviews.csv |
 | 55.3 MB | 2025-01-16 | D:\桌面\1\2月\1月\AI\1pdf.pdf |
 | 55.3 MB | 2025-01-16 | D:\桌面\1\2月\1月\AI\1pdf.pdf |
 | 54.9 MB | 2025-01-16 | D:\桌面\1\2月\1月\AI\3.pdf |
@@ -121,77 +57,76 @@ Usability: node/python type MCP servers can be invoked by the watcher loop via s
 | 54.9 MB | 2025-01-17 | D:\桌面\1\2月\1月\JIUDONG.pdf |
 | 54.9 MB | 2025-01-17 | D:\桌面\1\2月\1月\JIUDONG.pdf |
 | 52.7 MB | 2026-06-11 | D:\桌面\AI\gong\考公学习资料-江西省考\江西公务员考试真题pdf版\江西公务员考试真题——行测06-22PDF版\答案及解析\2022年江西省公务员录用考试《行测》题（网友回忆版）答案与解析.pdf |
+| 52.7 MB | 2026-06-11 | D:\桌面\AI\gong\考公学习资料-江西省考\江西公务员考试真题pdf版(1)\江西公务员考试真题——行测06-22PDF版\答案及解析\2022年江西省公务员录用考试《行测》题（网友回忆版）答案与解析.pdf |
 | 52.7 MB | 2026-06-11 | D:\桌面\AI\gong\考公学习资料-江西省考\江西公务员考试真题pdf版\江西公务员考试真题——行测06-22PDF版\答案及解析\2022年江西省公务员录用考试《行测》题（网友回忆版）答案与解析.pdf |
 | 52.7 MB | 2026-06-11 | D:\桌面\AI\gong\考公学习资料-江西省考\江西公务员考试真题pdf版(1)\江西公务员考试真题——行测06-22PDF版\答案及解析\2022年江西省公务员录用考试《行测》题（网友回忆版）答案与解析.pdf |
-| 52.7 MB | 2026-06-11 | D:\桌面\AI\gong\考公学习资料-江西省考\江西公务员考试真题pdf版(1)\江西公务员考试真题——行测06-22PDF版\答案及解析\2022年江西省公务员录用考试《行测》题（网友回忆版）答案与解析.pdf |
 | 51.8 MB | 2025-01-16 | D:\桌面\1\2月\1月\AI\2.pdf |
 | 51.8 MB | 2025-01-16 | D:\桌面\1\2月\1月\AI\2.pdf |
-| 51.4 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Periodontitis_Specific\perio_batch_8_Predictions.csv |
-| 50.3 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Healthy_Specific\healthy_batch_4_Predictions.csv |
-| 50.3 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Periodontitis_Specific\perio_batch_21_Predictions.csv |
-| 50.2 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Periodontitis_Specific\perio_batch_19_Predictions.csv |
-| 49.7 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Healthy_Specific\healthy_batch_12_Predictions.csv |
 | 48.2 MB | 2025-06-23 | E:\xwechat_files\wxid_n7lel2eo7ouj22_8412\msg\file\2025-06\世界鸟类分类与分布名录(第2版) (郑光美) (Z-Library).pdf |
 | 48.2 MB | 2025-06-23 | E:\微信\WeChat Files\wxid_n7lel2eo7ouj22\FileStorage\File\2025-06\世界鸟类分类与分布名录(第2版) (郑光美) (Z-Library).pdf |
 | 45.9 MB | 2026-03-20 | E:\xwechat_files\wxid_n7lel2eo7ouj22_8412\msg\file\2026-03\多肽提取、鉴定及虚拟筛选.pptx |
-| 45.2 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Periodontitis_Specific\perio_batch_20_Predictions.csv |
-| 44.9 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Periodontitis_Specific\perio_batch_2_Predictions.csv |
-| 44.7 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Healthy_Specific\healthy_batch_22_Predictions.csv |
-| 44.1 MB | 2026-07-24 | E:\.codex\skills\practical-ml\Ch10-Analyzing-Music-Trends-and-Recommendations\user_playcount_df.csv |
 | 43.4 MB | 2025-11-03 | D:\桌面\学位论文开题用表\抗菌肽\1\2\AMP_filtered.tsv |
 | 43.4 MB | 2025-11-03 | D:\桌面\学位论文开题用表\抗菌肽\1\2\AMP_filtered.tsv |
-| 41.9 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Healthy_Specific\healthy_batch_10_Predictions.csv |
-| 41.7 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Healthy_Specific\healthy_batch_24_Predictions.csv |
-| 41.4 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Healthy_Specific\healthy_batch_6_Predictions.csv |
-| 41.4 MB | 2026-09-10 | E:\ozotero\storage\XW8NX7B5\Jyler_Menard_2025_Towards_best_practices_in_low-dimensiona.pdf |
-| 41.0 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Periodontitis_Specific\perio_batch_13_Predictions.csv |
-| 38.9 MB | 2026-06-11 | D:\桌面\AI\gong\考公学习资料-江西省考\江西公务员考试真题pdf版\江西公务员考试真题——行测06-22PDF版\题目\2022年江西省公务员录用考试《行测》题（网友回忆版）.pdf |
-| 38.9 MB | 2026-06-11 | D:\桌面\AI\gong\考公学习资料-江西省考\江西公务员考试真题pdf版(1)\江西公务员考试真题——行测06-22PDF版\题目\2022年江西省公务员录用考试《行测》题（网友回忆版）.pdf |
 | 38.9 MB | 2026-06-11 | D:\桌面\AI\gong\考公学习资料-江西省考\江西公务员考试真题pdf版(1)\江西公务员考试真题——行测06-22PDF版\题目\2022年江西省公务员录用考试《行测》题（网友回忆版）.pdf |
 | 38.9 MB | 2026-06-11 | D:\桌面\AI\gong\考公学习资料-江西省考\江西公务员考试真题pdf版\江西公务员考试真题——行测06-22PDF版\题目\2022年江西省公务员录用考试《行测》题（网友回忆版）.pdf |
-| 38.9 MB | 2017-10-09 | E:\Users\文少\Downloads\ailearning-2.0\ailearning-2.0\books\机器学习实战-中文版-带目录版.pdf |
-| 38.4 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Healthy_Specific\healthy_batch_5_Predictions.csv |
+| 38.9 MB | 2026-06-11 | D:\桌面\AI\gong\考公学习资料-江西省考\江西公务员考试真题pdf版\江西公务员考试真题——行测06-22PDF版\题目\2022年江西省公务员录用考试《行测》题（网友回忆版）.pdf |
+| 38.9 MB | 2026-06-11 | D:\桌面\AI\gong\考公学习资料-江西省考\江西公务员考试真题pdf版(1)\江西公务员考试真题——行测06-22PDF版\题目\2022年江西省公务员录用考试《行测》题（网友回忆版）.pdf |
 | 38.2 MB | 2026-01-24 | E:\Users\文少\Downloads\20210604142009_134.pdf |
-| 37.8 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Periodontitis_Specific\perio_batch_23_Predictions.csv |
 | 37.8 MB | 2026-08-24 | E:\Users\文少\Downloads\东华大学-卢婷婷-答辩通用PPT模板.pptx |
 | 37.0 MB | 2026-09-23 | E:\Users\文少\Downloads\宿舍用电常见情况处理(6).doc |
-| 37.0 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Periodontitis_Specific\perio_batch_16_Predictions.csv |
 | 36.8 MB | 2023-02-06 | D:\MobileFile\pdf-1.pdf |
-| 36.1 MB | 2010-06-29 | E:\G09W\gvref\gv5ref.pdf |
 | 35.4 MB | 2024-11-03 | D:\桌面\1\2月\1月\天然产物与多糖对接\阿魏酸.pdf |
 | 35.4 MB | 2024-11-03 | D:\桌面\1\2月\1月\天然产物与多糖对接\阿魏酸.pdf |
 | 35.2 MB | 2022-11-12 | D:\MobileFile\科二四组遗传学第五章.pptx |
 | 35.0 MB | 2026-01-08 | D:\桌面\学位论文开题用表\肠道抗菌肽区域异质性及其调控机制研究.pdf |
 | 35.0 MB | 2026-01-08 | D:\桌面\学位论文开题用表\肠道抗菌肽区域异质性及其调控机制研究.pdf |
-| 35.0 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Periodontitis_Specific\perio_batch_15_Predictions.csv |
-| 34.9 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Periodontitis_Specific\perio_batch_14_Predictions.csv |
 | 34.5 MB | 2025-03-11 | D:\桌面\论文\Interaction study of Components of Black Pepper wi.docx |
 | 34.5 MB | 2025-03-11 | D:\桌面\论文\Interaction study of Components of Black Pepper wi.docx |
-| 33.9 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Healthy_Specific\healthy_batch_18_Predictions.csv |
-| 33.4 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Healthy_Specific\healthy_batch_3_Predictions.csv |
-| 32.4 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Healthy_Specific\healthy_batch_7_Predictions.csv |
-| 31.4 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Periodontitis_Specific\perio_batch_9_Predictions.csv |
-| 31.4 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Periodontitis_Specific\perio_batch_18_Predictions.csv |
-| 31.2 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Periodontitis_Specific\perio_batch_11_Predictions.csv |
-| 31.2 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Periodontitis_Specific\perio_batch_17_Predictions.csv |
-| 31.1 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Healthy_Specific\healthy_batch_17_Predictions.csv |
-| 30.9 MB | 2026-06-08 | E:\1yzy\Sequence_Feature_Analysis_20260608_112057\PAAC\PAAC_All.csv |
-| 30.6 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Healthy_Specific\healthy_batch_9_Predictions.csv |
-| 30.1 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Healthy_Specific\healthy_batch_1_Predictions.csv |
-| 30.0 MB | 2020-08-21 | E:\Multiwfn-mirror-3.7\Multiwfn-mirror-3.7\Multiwfn_3.7.pdf |
-| 29.6 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Healthy_Specific\healthy_batch_14_Predictions.csv |
 | 29.4 MB | 2025-01-14 | D:\桌面\1\2月\1月\ZONG.pptx |
 | 29.4 MB | 2025-01-14 | D:\桌面\1\2月\1月\ZONG.pptx |
-| 28.6 MB | 2026-06-03 | E:\1yzy\Predictions_Results\Predictions_Results\Healthy_Specific\healthy_batch_11_Predictions.csv |
+| 27.4 MB | 2025-01-16 | D:\桌面\1\2月\1月\演示文稿4.pptx |
+| 27.4 MB | 2025-01-16 | D:\桌面\1\2月\1月\演示文稿4.pptx |
+| 25.4 MB | 2025-01-14 | D:\桌面\1\2月\1月\文字文稿2.docx |
+| 25.4 MB | 2025-01-14 | D:\桌面\1\2月\1月\文字文稿2.docx |
+| 22.8 MB | 2026-06-16 | E:\Users\文少\Downloads\007cb874-6efa-4bb4-a541-965092b7831d(1).pdf |
+| 22.8 MB | 2024-03-06 | D:\桌面\machine_learning-main\machine_learning-main\机器学习实战14-超导体的实战应用\train.csv |
+| 22.8 MB | 2024-03-06 | D:\桌面\machine_learning-main\machine_learning-main\机器学习实战14-超导体的实战应用\train.csv |
+| 22.6 MB | 2026-01-11 | E:\Users\文少\Downloads\2. 降脂肽方法.docx |
+| 22.5 MB | 2026-01-14 | D:\桌面\降脂肽\1\2. 材料与方法 (Materials and Methods).docx |
+| 22.5 MB | 2026-01-14 | D:\桌面\降脂肽\1\2. 材料与方法 (Materials and Methods).docx |
+| 22.5 MB | 2026-01-14 | D:\桌面\降脂肽\1\2.7 体外生物活性实验验证 (In Vitro Bioactivity Validation).docx |
+| 22.5 MB | 2026-01-14 | D:\桌面\降脂肽\1\2.7 体外生物活性实验验证 (In Vitro Bioactivity Validation).docx |
+| 20.7 MB | 2026-02-24 | D:\桌面\Latex\hujiaojian\MYOSIN-讨论结果分.docx |
+| 20.7 MB | 2026-02-24 | D:\桌面\Latex\hujiaojian\MYOSIN-讨论结果分.docx |
+| 20.4 MB | 2026-02-22 | D:\桌面\Latex\hujiaojian\Myosin 蛋白SCI论文撰写指导.docx |
+| 20.4 MB | 2026-02-22 | D:\桌面\Latex\hujiaojian\Myosin 蛋白SCI论文撰写指导.docx |
+| 19.8 MB | 2026-02-27 | D:\桌面\Latex\hujiaojian\ACTIN-讨论结果分.docx |
+| 19.8 MB | 2026-02-27 | D:\桌面\Latex\hujiaojian\ACTIN-讨论结果分.docx |
+| 19.1 MB | 2026-08-16 | E:\微信\xwechat_files\wxid_n7lel2eo7ouj22_8412\msg\file\2026-08\Deep Learning with Python-Francois_Chollet-中文-Python深度学习-2018.pdf |
+| 18.5 MB | 2026-03-30 | E:\xwechat_files\wxid_n7lel2eo7ouj22_8412\msg\file\2026-03\ph-0025-0020.pdf |
+| 18.5 MB | 2025-11-10 | D:\桌面\学位论文开题用表\Explainable-deep-learning-and-virtual-evolution-identifies-antimicrobial-peptides-with-activity.pdf |
+| 18.5 MB | 2025-11-10 | D:\桌面\学位论文开题用表\Explainable-deep-learning-and-virtual-evolution-identifies-antimicrobial-peptides-with-activity.pdf |
+| 18.3 MB | 2026-04-20 | D:\桌面\AI\yzy\Oral_Metatranscriptome_MetaAnalysis-main\Oral_Metatranscriptome_MetaAnalysis-main\Data_handling.ipynb |
+| 18.3 MB | 2026-04-20 | D:\桌面\AI\yzy\Oral_Metatranscriptome_MetaAnalysis-main\Oral_Metatranscriptome_MetaAnalysis-main\Data_handling.ipynb |
+| 18.0 MB | 2026-02-22 | D:\桌面\Latex\hujiaojian\Actin蛋白SCI论文撰写指导.docx |
+| 18.0 MB | 2026-02-22 | D:\桌面\Latex\hujiaojian\Actin蛋白SCI论文撰写指导.docx |
+| 17.6 MB | 2026-01-09 | E:\Users\文少\Downloads\AI_Mapping_Gut_Peptides_in_Alzheimer_s.pdf |
+| 17.5 MB | 2026-06-05 | E:\xwechat_files\wxid_n7lel2eo7ouj22_8412\msg\file\2026-06\ChemistrySelect - 2022 - Heravi - Construction and Aromatization of Hantzsch 1 4‐Dihydropyridines under Microwave.pdf |
+| 17.4 MB | 2022-03-10 | D:\桌面\machine_learning-main\Coursera-ML-AndrewNg-Notes-master\Coursera-ML-AndrewNg-Notes-master\docx\机器学习个人笔记完整版v5.52.docx |
+| 17.4 MB | 2022-03-10 | D:\桌面\machine_learning-main\Coursera-ML-AndrewNg-Notes-master\Coursera-ML-AndrewNg-Notes-master\docx\机器学习个人笔记完整版v5.52.docx |
+| 17.2 MB | 2025-10-27 | E:\xwechat_files\wxid_n7lel2eo7ouj22_8412\msg\file\2025-10\PIIS0092867425011262.pdf |
+| 16.8 MB | 2024-09-11 | D:\桌面\回收站\功能糖\之前文档\功能糖的总结.docx |
+| 16.8 MB | 2024-09-11 | D:\桌面\回收站\功能糖\之前文档\功能糖的总结.docx |
+| 16.6 MB | 2025-03-27 | D:\桌面\研一下学期\1\微生物及应用\文献.pdf |
+| 16.6 MB | 2025-03-27 | D:\桌面\研一下学期\1\微生物及应用\文献.pdf |
+| 16.4 MB | 2025-12-24 | D:\桌面\学位论文开题用表\抗菌肽\Explainable deep learning and virtual evolution identifies antimicrobial peptides with activity against multidrug-resistant human pathogens.pdf |
+| 16.4 MB | 2025-12-24 | D:\桌面\学位论文开题用表\抗菌肽\Explainable deep learning and virtual evolution identifies antimicrobial peptides with activity against multidrug-resistant human pathogens.pdf |
 
-### 压缩包/数据集 >= 50 MB, 共 105 个, 前 40
+### 压缩包/数据集 >= 50 MB, 共 62 个, 前 40
 
 | 大小 | 修改日期 | 文件 |
 |---|---|---|
 | 488.7 MB | 2026-08-11 | E:\迅雷云盘\WPSOffice_雨糖科技特别版_2019_11.8.2.12344_x86_20260806.zip |
-| 362.5 MB | 2026-06-04 | E:\1yzy\Predictions_Results.zip |
-| 254.6 MB | 2026-06-04 | E:\1yzy\csv_batches.zip |
-| 247.4 MB | 2025-10-01 | E:\Users\文少\Downloads\ai_102060\products\ILST\AdobeIllustrator29-maskingAi.zip |
 | 235.5 MB | 2026-06-02 | E:\Users\文少\Downloads\GROMACS-2026.2_May17_GPU_Windows-AMD64-AVX2_CUDA1320_msvc.zip |
 | 234.9 MB | 2026-07-21 | E:\Users\文少\Downloads\Gromacs.2026.2.Prebuild.Windows.X64.CUDA13.0.AVX512.zip |
 | 234.5 MB | 2026-07-21 | E:\gromacs.zip |
@@ -208,13 +143,8 @@ Usability: node/python type MCP servers can be invoked by the watcher loop via s
 | 161.2 MB | 2025-08-17 | E:\Users\文少\Downloads\v2rayN-windows-64-SelfContained-With-Core.zip |
 | 157.5 MB | 2026-03-26 | D:\桌面\AI\fanqiang\FirefoxFQ.7z |
 | 157.5 MB | 2026-03-26 | D:\桌面\AI\fanqiang\FirefoxFQ.7z |
-| 146.2 MB | 2025-10-27 | E:\BaiduNetdiskDownload\永久会员6.0.1激活.zip |
-| 137.5 MB | 2026-07-05 | E:\0docking\SailVina\SailVina_exe.zip |
-| 137.5 MB | 2026-07-05 | E:\BaiduNetdiskDownload\SailVina_exe.zip |
 | 130.9 MB | 2025-08-26 | E:\v2rayN-windows-64-SelfContained.zip |
 | 128.3 MB | 2026-07-03 | E:\Users\文少\Downloads\ACDLabs202525_ChemSketch_FInstall.zip |
-| 127.1 MB | 2020-09-03 | E:\0wangyao\wangyao\raw\1\GSE157827\RAW\GSM4775576_NC12_matrix.mtx.gz |
-| 127.1 MB | 2026-07-04 | E:\0wangyao\wangyao\raw\1\GSE157827\GSM4775576_NC12\matrix.mtx.gz |
 | 126.3 MB | 2026-08-20 | E:\Users\文少\Downloads\v2rayN-windows-64-desktop.zip |
 | 125.2 MB | 2026-08-15 | E:\Users\文少\Downloads\ZTools-3.1.0-win-x64.zip |
 | 124.8 MB | 2025-07-10 | E:\Users\文少\Downloads\mgltools_x86_64Linux2_1.5.7p1.tar.gz |
@@ -224,35 +154,43 @@ Usability: node/python type MCP servers can be invoked by the watcher loop via s
 | 118.9 MB | 2025-02-25 | E:\xunlei\EndNote21.5(64bit).zip |
 | 118.0 MB | 2025-07-05 | E:\Users\文少\Downloads\14eeb709-b9ce-4637-8bed-d14fea0067d3-B.rar |
 | 117.7 MB | 2025-03-29 | E:\Users\文少\Downloads\DirectX_Repair增强版_v4.3.7z |
-| 115.4 MB | 2020-09-03 | E:\0wangyao\wangyao\raw\1\GSE157827\RAW\GSM4775568_AD10_matrix.mtx.gz |
-| 115.4 MB | 2026-07-04 | E:\0wangyao\wangyao\raw\1\GSE157827\GSM4775568_AD10\matrix.mtx.gz |
-| 115.3 MB | 2020-09-03 | E:\0wangyao\wangyao\raw\1\GSE157827\RAW\GSM4775562_AD2_matrix.mtx.gz |
-| 115.3 MB | 2026-07-04 | E:\0wangyao\wangyao\raw\1\GSE157827\GSM4775562_AD2\matrix.mtx.gz |
+| 110.8 MB | 2026-04-04 | D:\桌面\AI\复刻论文图\AutoFigure-Edit-main.zip |
+| 110.8 MB | 2026-04-04 | D:\桌面\AI\复刻论文图\AutoFigure-Edit-main.zip |
+| 110.5 MB | 2025-11-11 | E:\Users\文少\Downloads\Xndaiuwtd.zip |
+| 109.4 MB | 2025-03-27 | E:\Users\文少\Downloads\smartgit_24.1.1_portable.7z |
+| 105.4 MB | 2025-07-02 | E:\Users\文少\Downloads\ailearning-2.0.zip |
+| 104.1 MB | 2025-02-20 | E:\VM\windows.iso |
+| 104.0 MB | 2025-07-19 | E:\Users\文少\Downloads\fpocket-4.2.2.zip |
+| 94.5 MB | 2026-04-14 | E:\Users\文少\Downloads\sratoolkit.2.11.0-centos_linux64.tar.gz |
+| 90.5 MB | 2026-07-21 | E:\Users\文少\Downloads\AMDock-win-master.zip |
+| 87.9 MB | 2025-01-03 | E:\Users\文少\Downloads\gmx2020.6_AVX2_CUDA_win64.rar |
+| 86.2 MB | 2026-08-14 | E:\Users\文少\Downloads\copytranslator-12.1.0-win.zip |
+| 81.0 MB | 2026-06-23 | E:\xwechat_files\wxid_n7lel2eo7ouj22_8412\msg\file\2026-06\win版绿盟vpn客户端使用说明.rar |
 
-### 其他大文件 >= 200 MB, 共 69 个, 前 20
+### 其他大文件 >= 200 MB, 共 22 个, 前 20
 
 | 大小 | 修改日期 | 文件 |
 |---|---|---|
-| 18.27 GB | 2026-09-19 | E:\Tencent Games\VALORANT\live\ShooterGame\Content\Paks\pakchunk10-WindowsClient.ucas |
-| 6.19 GB | 2026-09-19 | E:\Tencent Games\VALORANT\live\ShooterGame\Content\Paks\pakchunk1-WindowsClient.ucas |
-| 2.50 GB | 2026-09-19 | E:\Tencent Games\VALORANT\live\ShooterGame\Content\Paks\pakchunk0-WindowsClient.ucas |
-| 2.00 GB | 2026-09-19 | E:\Tencent Games\VALORANT\live\ShooterGame\Content\Paks\pakchunk0-WindowsClient.pak |
-| 863.4 MB | 2025-08-10 | E:\BaiduNetdiskDownload\MolAICal\current\MolAICal-win64-v1.3.zip.baiduyun.p.downloading |
-| 718.1 MB | 2026-07-04 | E:\0wangyao\wangyao\processed\seurat_list_clean.rds |
 | 649.8 MB | 2022-03-08 | D:\桌面\Win版 PDF 2023【必须win10、11】\Data1.CAB |
 | 649.8 MB | 2022-03-08 | D:\桌面\Win版 PDF 2023【必须win10、11】\Data1.CAB |
 | 625.7 MB | 2024-05-21 | D:\桌面\origin\Setup\data2.cab |
 | 625.7 MB | 2024-05-21 | D:\桌面\origin\Setup\data2.cab |
-| 573.4 MB | 2026-09-30 | E:\Tencent Files\2845346805\nt_qq\nt_db\nt_msg.db |
-| 537.8 MB | 2026-09-19 | E:\Tencent Games\VALORANT\live\ShooterGame\Content\Paks\pakchunk2-WindowsClient.ucas |
-| 521.5 MB | 2026-09-19 | E:\Tencent Games\VALORANT\live\ShooterGame\Content\Paks\pakchunk3-WindowsClient.ucas |
-| 494.3 MB | 2026-09-29 | E:\google\GoogleUpdater\crx_cache\11b1217f1a4cddf2df3e88a560eeae873c98e8611c038bc02b000725116ae45b |
-| 490.5 MB | 2025-04-24 | E:\gmx2020.6_GPU\bin\-7.8_jiodng\trj_10-20ns.xtc |
-| 490.5 MB | 2025-04-24 | E:\gmx2020.6_GPU\a\肌动蛋白处理\Chavicine_1HLU1-7.6\trj_10-20ns.xtc |
-| 490.4 MB | 2025-04-24 | E:\gmx2020.6_GPU\a\肌动蛋白处理\piperettine_1HLU2-7.7\trj_10-20ns.xtc |
-| 449.5 MB | 2024-12-10 | E:\Compressed\WSA_2407.40000.4.0_x64_Release-Nightly-GApps-13.0-NoAmazon\WSA_2407.40000.4.0_x64\Tools\initrd.img |
-| 440.5 MB | 2026-06-20 | E:\0md\1\test1c\md_fit.xtc |
-| 424.2 MB | 2025-08-07 | E:\ST\ST\90-100.xtc |
+| 417.7 MB | 2025-12-19 | E:\Users\文少\Downloads\c_AMPs-prediction-master\c_AMPs-prediction-master\Models\bert.bin |
+| 416.4 MB | 2025-01-22 | D:\桌面\DataEase-win32-x64\resources\app.asar |
+| 416.4 MB | 2025-01-22 | D:\桌面\DataEase-win32-x64\resources\app.asar |
+| 416.1 MB | 2026-05-08 | D:\桌面\AI\ai\healthy_specific.fasta |
+| 416.1 MB | 2026-05-08 | D:\桌面\AI\ai\healthy_specific.fasta |
+| 411.7 MB | 2026-09-16 | E:\新建文件夹\Weixin\4.1.13.65\RadiumWMPF.bin |
+| 410.1 MB | 2026-07-20 | E:\视频md\pymol.mp4 |
+| 399.0 MB | 2026-05-08 | D:\桌面\AI\ai\periodontitis_specific.fasta |
+| 399.0 MB | 2026-05-08 | D:\桌面\AI\ai\periodontitis_specific.fasta |
+| 341.4 MB | 2023-06-02 | D:\LenovoQMDownload\SoftMgr\XYAZ-Setup-lenovo-8.1.5-hab629b4fe.exe.part |
+| 313.7 MB | 2017-05-11 | D:\new\MEGA11\cef_sandbox.lib |
+| 265.1 MB | 2026-04-04 | E:\Users\文少\Downloads\bybit.apk |
+| 261.4 MB | 2026-05-18 | D:\桌面\AI\yijian\duijie.tif |
+| 261.4 MB | 2026-05-18 | D:\桌面\AI\yijian\duijie.tif |
+| 241.8 MB | 2026-08-20 | E:\VSCodeData\Extensions\openai.chatgpt-26.818.21641-win32-x64\bin\linux-x86_64\codex |
+| 224.3 MB | 2026-09-08 | E:\WpSystem\S-1-5-21-2081821339-301707966-4042885555-1003\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Roaming\Codex\web\Codex\windows-msix-updater\OpenAI.Codex_2p2nqsd0c76g0\ChatGPT-x64.msix.download |
 
 
 ## 七、其他软件使用方式 / 按需安装（winget 一条命令）
