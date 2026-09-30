@@ -1,9 +1,9 @@
 {
-    "round":  93,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 93: t72 add Get-CsIllustratorExe to both cell-lct run_cell_lct.ps1 copies (idempotent, parse check), rewrite FRESH.marker, relaunch worker detached, 45s log",
-    "arena_updated":  "2026-09-30 14:58:37",
-    "local_updated":  "2026-09-30 23:00:24"
+  "round": 93,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-30 15:00:37",
+  "local_updated": "2026-09-30 23:00:24"
 }
