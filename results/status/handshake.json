@@ -1,9 +1,9 @@
 {
-  "round": 76,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 76: t63 stage fig1_rebuild inputs to E:\\fig1_rebuild and launch detached worker (Illustrator 2020 bridge draw via patched run_cell_lct)",
-  "arena_updated": "2026-09-30 12:28:17",
-  "local_updated": null
+    "round":  76,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 76: t63 stage fig1_rebuild inputs to E:\\fig1_rebuild and launch detached worker (Illustrator 2020 bridge draw via patched run_cell_lct)",
+    "arena_updated":  "2026-09-30 12:28:17",
+    "local_updated":  "2026-09-30 20:29:41"
 }
