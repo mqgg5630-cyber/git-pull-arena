@@ -1,9 +1,9 @@
 {
-  "round": 97,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 97: t73 (worker v5.1 with PostMessageW bool fix verified) kill AI, FRESH.marker, relaunch detached, 50s log",
-  "arena_updated": "2026-09-30 15:16:06",
-  "local_updated": null
+    "round":  97,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 97: t73 (worker v5.1 with PostMessageW bool fix verified) kill AI, FRESH.marker, relaunch detached, 50s log",
+    "arena_updated":  "2026-09-30 15:16:06",
+    "local_updated":  "2026-09-30 23:18:47"
 }
