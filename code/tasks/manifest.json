@@ -121,6 +121,9 @@
     "51": [
       "t40_mcp_n8n_r_survey.ps1",
       "t41_bigdocs_report.ps1"
+    ],
+    "52": [
+      "t42_fix_desktop_and_rdetail.ps1"
     ]
   }
 }
