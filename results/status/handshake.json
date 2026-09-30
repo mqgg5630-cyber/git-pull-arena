@@ -1,9 +1,9 @@
 {
-  "round": 48,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-09-30 03:08:42",
-  "local_updated": "2026-09-30 11:08:24"
+  "round": 49,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 49: t38 uninstall QwenPaw silently + bin shortcuts/leftovers, t39 toolbox scan + local-path app list -> Desktop file + results/status/software_paths_r49.md",
+  "arena_updated": "2026-09-30 03:19:51",
+  "local_updated": null
 }
