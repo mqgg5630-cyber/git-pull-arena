@@ -1,9 +1,9 @@
 {
-  "round": 80,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 80: t66 read-only diagnostics: worker status, all lct_run/lct_err logs, playback state, artifact presence",
-  "arena_updated": "2026-09-30 12:44:48",
-  "local_updated": null
+    "round":  80,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 80: t66 read-only diagnostics: worker status, all lct_run/lct_err logs, playback state, artifact presence",
+    "arena_updated":  "2026-09-30 12:44:48",
+    "local_updated":  "2026-09-30 20:47:15"
 }
