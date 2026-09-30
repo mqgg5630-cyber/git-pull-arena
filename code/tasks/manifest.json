@@ -74,6 +74,10 @@
     "38": [
       "t21_optimize_review.ps1",
       "t22_pagefile_uac.ps1"
+    ],
+    "39": [
+      "t23_tailscale_verify.ps1",
+      "t24_oldsync_cleanup.ps1"
     ]
   }
 }

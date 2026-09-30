@@ -48,7 +48,9 @@
     "code/tasks/t19_cleanup_approved.ps1",
     "code/tasks/t20_docker_pagefile.ps1",
     "code/tasks/t21_optimize_review.ps1",
-    "code/tasks/t22_pagefile_uac.ps1"
+    "code/tasks/t22_pagefile_uac.ps1",
+    "code/tasks/t23_tailscale_verify.ps1",
+    "code/tasks/t24_oldsync_cleanup.ps1"
   ],
   "forbid_files": [
     "local/inbox",
