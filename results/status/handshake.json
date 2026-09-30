@@ -1,9 +1,9 @@
 {
-  "round": 51,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 51: t40 MCP/n8n/R survey (fixed parse error), t41 big-docs scan + combined report -> Desktop + results/status/task_scenarios_r50.md (overwrite)",
-  "arena_updated": "2026-09-30 07:29:17",
-  "local_updated": null
+    "round":  51,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 51: t40 MCP/n8n/R survey (fixed parse error), t41 big-docs scan + combined report -\u003e Desktop + results/status/task_scenarios_r50.md (overwrite)",
+    "arena_updated":  "2026-09-30 07:29:17",
+    "local_updated":  "2026-09-30 15:41:00"
 }
