@@ -1,9 +1,9 @@
 {
-    "round":  47,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 47: t35 desktop access + HPC chain probe (READ-ONLY: tailscale ping, ports 3389/445/22, net view, netmap route approval check, HPC reachability)",
-    "arena_updated":  "2026-09-30 02:42:03",
-    "local_updated":  "2026-09-30 10:42:48"
+  "round": 47,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-30 02:43:06",
+  "local_updated": "2026-09-30 10:42:48"
 }
