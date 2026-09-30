@@ -60,7 +60,8 @@
     "code/tasks/t31_enable_rdp_ssh.ps1",
     "code/tasks/t32_wsl26_survey.ps1",
     "code/tasks/t33_hpc_probe.ps1",
-    "code/tasks/t34_hpc_bridge.ps1"
+    "code/tasks/t34_hpc_bridge.ps1",
+    "code/tasks/t35_desktop_access_probe.ps1"
   ],
   "forbid_files": [
     "local/inbox",

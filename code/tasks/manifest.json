@@ -102,6 +102,9 @@
     ],
     "46": [
       "t34_hpc_bridge.ps1"
+    ],
+    "47": [
+      "t35_desktop_access_probe.ps1"
     ]
   }
 }
