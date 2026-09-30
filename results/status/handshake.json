@@ -1,9 +1,9 @@
 {
-    "round":  70,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 70: t57 bind uris to real Zotero items, verify, overwrite in place",
-    "arena_updated":  "2026-09-30 09:16:30",
-    "local_updated":  "2026-09-30 17:18:32"
+  "round": 70,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-30 09:18:53",
+  "local_updated": "2026-09-30 17:18:32"
 }
