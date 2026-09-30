@@ -1,9 +1,9 @@
 {
-    "round":  53,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 53: t43 run code/tasks/r_probe.sh inside WSL Ubuntu-24.04, output -\u003e results/status/r_detail_wsl24.txt",
-    "arena_updated":  "2026-09-30 07:49:37",
-    "local_updated":  "2026-09-30 15:50:47"
+  "round": 53,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-30 07:51:07",
+  "local_updated": "2026-09-30 15:50:47"
 }
