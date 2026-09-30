@@ -204,3 +204,8 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - USER CONFIRMED: from home desktop `ssh 25wenshaohua@10.10.5.210` SUCCESS (full HPC bridge works) + RDP to desktop SUCCESS (cert warning clicked through).
 - \\100.84.137.117 shows "folder is empty" (no shares configured, expected).
 - Next: use built-in admin shares \\ip\C$ D$ E$ with desktop credentials; if denied, set LocalAccountTokenFilterPolicy=1 on desktop (UAC remote restriction). Optional later: ssh key laptop->desktop for agent-managed desktop control.
+
+## round 48 (2026-09-30, autostart + software inventory)
+- t36: Tailscale service already Automatic; tray GUI (E:\Tailscale\tailscale-ipn.exe) added to HKCU Run. NSFOCUS VPN (E:\NsfocusVPN\NsfocusVPN.exe) added to HKCU Run. Undo: Remove-ItemProperty HKCU:\...\Run -Name NsfocusVPN / Tailscale. Auto-CONNECT not guaranteed (depends on client saved creds) - check after next reboot.
+- t37: 47 desktop apps + 74 appx inventoried -> results/status/software_inventory_r48.md. zTasker 2.3.12 (portable, E:\zTasker_2.3.12_绿色版_不要放C盘\zTasker.exe) found RUNNING; GUI-first automation tool, task storage not yet inspected.
+- Notable: Antigravity installed TWICE (IDE (User) 2.5.5 @ E:\Antigravity + "Antigravity 2.15.1" no location, 534MB) - verify which is active before any removal. FlyingMouse Format 2.08GB + KeyMouse Studio 341MB biggest non-essential candidates. AweSun kept per r38 binding decision.
