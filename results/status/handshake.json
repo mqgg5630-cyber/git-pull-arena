@@ -1,9 +1,9 @@
 {
-  "round": 45,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 45: t33 HPC bridge probe (READ-ONLY: sshd check + ping/tcp 10.10.5.210 + NSFOCUS VPN detect + tailscale prefs)",
-  "arena_updated": "2026-09-30 02:23:20",
-  "local_updated": null
+    "round":  45,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 45: t33 HPC bridge probe (READ-ONLY: sshd check + ping/tcp 10.10.5.210 + NSFOCUS VPN detect + tailscale prefs)",
+    "arena_updated":  "2026-09-30 02:23:20",
+    "local_updated":  "2026-09-30 10:24:47"
 }
