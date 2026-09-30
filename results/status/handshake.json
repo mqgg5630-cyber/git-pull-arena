@@ -1,9 +1,9 @@
 {
-  "round": 36,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 36: t18 E: survey ONLY (large files, duplicates, 180-day-unused, E:-installed software) - full 30 min budget, report to results/status/edrive_survey_r34.md",
-  "arena_updated": "2026-09-30 00:28:13",
-  "local_updated": null
+    "round":  36,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 36: t18 E: survey ONLY (large files, duplicates, 180-day-unused, E:-installed software) - full 30 min budget, report to results/status/edrive_survey_r34.md",
+    "arena_updated":  "2026-09-30 00:28:13",
+    "local_updated":  "2026-09-30 08:40:08"
 }
