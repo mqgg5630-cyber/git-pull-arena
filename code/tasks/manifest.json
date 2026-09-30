@@ -105,6 +105,10 @@
     ],
     "47": [
       "t35_desktop_access_probe.ps1"
+    ],
+    "48": [
+      "t36_autostart_vpn_tailscale.ps1",
+      "t37_software_inventory.ps1"
     ]
   }
 }
