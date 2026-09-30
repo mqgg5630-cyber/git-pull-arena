@@ -222,3 +222,13 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - r55 FAILED (parse: semicolon inside cast parens) -> r56 PASSED after fix (+ quote-nesting fix in desktop patch).
 - r56: E:\R = R-4.6.0 ONLY (189.1 MB, single version - NOTHING to delete) + data files (GSE11121/GSE42872 .Rdata, TCGA gdc_download folder+tar.gz, R_libs, R_Temp, rna_seq tsv). E:\RStudio = single Electron install. Desktop report R section updated. E: free 292.8 GB.
 - User questions answered: task scenarios (report sec 1-2), MCP usable via stdio JSON-RPC, n8n needs Docker engine on, alternatives via winget (report sec 7).
+
+## rounds 57-65 (2026-09-30, DELIVERABLE: English.docx Zotero-linked version)
+- Task: make E:\0writing\Light-skills\projects\English.docx Zotero-linked, same format, SAME output path. Success case = E:\0writing\cnki-skills\periodontitis-ad-pg-review (zotero_word_fields.py pipeline, verified docx ZOTERO_ITEM=34+BIBL=1).
+- Recon: 653 paras; 62 citation runs ALL PLAIN (not superscript), numbers 1-36 incl ranges [8-9]/combos [23,31]; refs = 36 AMA entries ("N. Authors. Title. Journal. Year;V(I):P. doi:...") at paras 632-667, style Reference; Zotero data E:\ozotero\zotero.sqlite (409 items, the 36 refs NOT in it); AMA style installed; python-docx 1.2.0.
+- Mechanism (from success case): ADDIN ZOTERO_ITEM CSL_CITATION complex fields w/ embedded itemData + uris [] + storeReferences, ZOTERO_BIBL wrap, docProps/custom.xml ZOTERO_PREF_n (255-char slices), storeReferences=true. No .tex needed - keys derived from bracket numbers (ref1..ref36), CSL items parsed from the AMA ref text (all 36 have DOIs).
+- r61 first build: bib selection bug (40 paras incl textbox-regex fragments -> ZOTERO_BIBL wrapped 0 paras, would corrupt on Refresh). r62 verify caught it, restored backup; r62 verifier itself had 2 false-negative bugs (display-run unlinked check off-by-string; bib extent counted via truncated fragments).
+- r63: solved 63rd bracket = "[0, 1]" AnOxPePred probability array (NOT a citation) -> 62/62 real citations linked. r64 FINAL BUILD PASSED (enclosing-paragraph bib verification: begin=ref1 Scheltens, end=ref36 Kryger; 0 unlinked; displays preserved; AMA en-US prefs).
+- r65 REAL-WORD COM TEST: opened read-only hidden, 63 fields (62 ZOTERO_ITEM + 1 ZOTERO_BIBL), field1 result "[1]", clean close, no repair prompt.
+- Deliverables on machine: English.docx (SAME path, zotero-linked, 7200.2 KB), English_backup_pre-zotero.docx (original), English_Zotero_library.json (36 items importable CSL-JSON). Tools in repo: code/tasks/t46-t53 + results/reference/pgreview/ (pipeline sources).
+- Usage: open in Word -> Zotero tab -> Refresh. Optional: import English_Zotero_library.json into Zotero for library binding. Undo: copy backup over.
