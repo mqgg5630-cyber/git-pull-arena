@@ -96,6 +96,9 @@
     "44": [
       "t31_enable_rdp_ssh.ps1",
       "t32_wsl26_survey.ps1"
+    ],
+    "45": [
+      "t33_hpc_probe.ps1"
     ]
   }
 }
