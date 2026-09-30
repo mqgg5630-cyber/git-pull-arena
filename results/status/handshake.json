@@ -1,9 +1,9 @@
 {
-    "round":  57,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 57: t46 zotero recon (READ-ONLY, findings -\u003e results/status/r57_zotero_recon.md): Light-skills tree, English.docx patterns, which docx is zotero-linked, rg zotero in 0mcp-agv, zotero process/api",
-    "arena_updated":  "2026-09-30 08:12:00",
-    "local_updated":  "2026-09-30 16:15:27"
+  "round": 57,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-09-30 08:15:36",
+  "local_updated": "2026-09-30 16:15:27"
 }
