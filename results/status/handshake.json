@@ -1,9 +1,9 @@
 {
-  "round": 57,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-09-30 08:15:36",
-  "local_updated": "2026-09-30 16:15:27"
+  "round": 58,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 58: t47 copy periodontitis-ad-pg-review pipeline into results/reference/pgreview + english_refs.txt + docx ZOTERO counts + python-docx availability",
+  "arena_updated": "2026-09-30 08:17:11",
+  "local_updated": null
 }
