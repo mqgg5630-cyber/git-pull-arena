@@ -1,0 +1,22 @@
+==WHICH==
+==VER==
+==DIRS==
+==CONDA==
+/home/w24e/miniconda3/envs:
+camps-tf114
+docking
+py36
+
+# conda environments:
+#
+# * -> active
+# + -> frozen
+base                     /home/w24e/miniconda3
+camps-tf114              /home/w24e/miniconda3/envs/camps-tf114
+docking                  /home/w24e/miniconda3/envs/docking
+py36                     /home/w24e/miniconda3/envs/py36
+
+==DPKG==
+==SIZES==
+==R_LIBS_USER==
+==DONE==
