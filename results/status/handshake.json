@@ -1,9 +1,9 @@
 {
-  "round": 65,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 65: t53 open English.docx in Word via COM read-only hidden; expect ~63 fields (62 ZOTERO_ITEM + 1 ZOTERO_BIBL), clean close",
-  "arena_updated": "2026-09-30 08:45:21",
-  "local_updated": null
+    "round":  65,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 65: t53 open English.docx in Word via COM read-only hidden; expect ~63 fields (62 ZOTERO_ITEM + 1 ZOTERO_BIBL), clean close",
+    "arena_updated":  "2026-09-30 08:45:21",
+    "local_updated":  "2026-09-30 16:47:04"
 }
