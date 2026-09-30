@@ -78,6 +78,9 @@
     "39": [
       "t23_tailscale_verify.ps1",
       "t24_oldsync_cleanup.ps1"
+    ],
+    "40": [
+      "t25_oldtask_uac.ps1"
     ]
   }
 }
