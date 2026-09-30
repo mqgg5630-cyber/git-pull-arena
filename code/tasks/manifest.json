@@ -226,6 +226,12 @@
     ],
     "86": [
       "t70_v2_rebuild.ps1"
+    ],
+    "87": [
+      "t71_install_celllct.ps1"
+    ],
+    "88": [
+      "t70_v2_rebuild.ps1"
     ]
   }
 }
