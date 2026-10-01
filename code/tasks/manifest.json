@@ -403,6 +403,15 @@
     ],
     "145": [
       "t109_cancel_desktop_status.ps1"
+    ],
+    "146": [
+      "t110_desk_wpsdl_fix.ps1"
+    ],
+    "147": [
+      "t111_desk_wps_go.ps1"
+    ],
+    "148": [
+      "t112_desk_deck_collect.ps1"
     ]
   }
 }

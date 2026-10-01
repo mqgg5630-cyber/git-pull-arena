@@ -464,6 +464,26 @@ def _fill_calc(doc, project: Dict[str, Any]) -> None:
                 pass
 
 
+def _impress_pos(val, total, default):
+    """坐标换算：0-1 浮点=幻灯片分数，"Ncm"=厘米，其它数值=磅。"""
+    try:
+        if val is None:
+            return default
+        if isinstance(val, (int, float)):
+            f = float(val)
+            if 0 <= f <= 1:
+                return int(total * f)
+            return int(f)
+        s = str(val).strip().lower()
+        if s.endswith("cm"):
+            return int(float(s[:-2]) * 28.3465)
+        if s.endswith("pt"):
+            return int(float(s[:-2]))
+        return int(float(s))
+    except Exception:
+        return default
+
+
 def _fill_impress(doc, project: Dict[str, Any]) -> None:
     """将内容填充到 WPS Impress 演示文稿。"""
     slides = project.get("slides", [])
@@ -481,20 +501,63 @@ def _fill_impress(doc, project: Dict[str, Any]) -> None:
         else:
             slide = doc.Slides.Add(si + 1, 2)  # ppLayoutText = 2
 
-        # 设置标题和内容（通过占位符）
+        # 设置标题和内容（通过占位符，title 不再被 content 覆盖）
         title = slide_data.get("title", "")
         content = slide_data.get("content", "")
 
+        title_done = False
+        body_done = False
         for shape in slide.Shapes:
             try:
-                if shape.Type == 14 and title:  # msoPlaceholder = 14
-                    if "Title" in str(shape.PlaceholderFormat.Type):
+                if shape.Type == 14 and title and not title_done:  # msoPlaceholder
+                    ptype = str(shape.PlaceholderFormat.Type)
+                    if "Title" in ptype or ptype.strip() in ("1", "13", "14"):
                         shape.TextFrame.TextRange.Text = title
+                        title_done = True
+                        continue
             except Exception:
                 pass
             try:
-                if shape.HasTextFrame and content:
+                if content and not body_done and shape.HasTextFrame:
                     shape.TextFrame.TextRange.Text = content
+                    body_done = True
+            except Exception:
+                pass
+        # 占位符缺失时的兜底：首个文本框塞 title+content
+        if title and not title_done and not body_done and content:
+            try:
+                slide.Shapes(1).TextFrame.TextRange.Text = title + "\r" + content
+                title_done = True
+                body_done = True
+            except Exception:
+                pass
+
+        # 渲染 text_box 元素（支持分数坐标 0-1 或 "Ncm" 字符串）
+        try:
+            slide_w = slide.Width
+            slide_h = slide.Height
+        except Exception:
+            slide_w, slide_h = 960, 540
+        for elem in slide_data.get("elements", []):
+            try:
+                if elem.get("type") != "text_box":
+                    continue
+                x = _impress_pos(elem.get("x"), slide_w, int(slide_w * 0.06))
+                y = _impress_pos(elem.get("y"), slide_h, int(slide_h * 0.5))
+                w = _impress_pos(elem.get("width"), slide_w, int(slide_w * 0.85))
+                h = _impress_pos(elem.get("height"), slide_h, int(slide_h * 0.3))
+                tb = slide.Shapes.AddTextbox(1, x, y, w, h)
+                tb.TextFrame.TextRange.Text = elem.get("text", "")
+                if elem.get("size"):
+                    try:
+                        tb.TextFrame.TextRange.Font.Size = elem["size"]
+                    except Exception:
+                        pass
+                if elem.get("bold"):
+                    try:
+                        tb.TextFrame.TextRange.Font.Bold = True
+                    except Exception:
+                        pass
             except Exception:
                 pass
 

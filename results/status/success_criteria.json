@@ -164,7 +164,11 @@
     "code/tasks/patch_harness.py",
     "code/tasks/wpsdl.cmd",
     "code/tasks/t109_laptop_impress_retry.ps1",
-    "code/tasks/t109_cancel_desktop_status.ps1"
+    "code/tasks/t109_cancel_desktop_status.ps1",
+    "code/tasks/t110_desk_wpsdl_fix.ps1",
+    "code/tasks/t111_desk_wps_go.ps1",
+    "code/tasks/t112_desk_deck_collect.ps1",
+    "code/tasks/desk_harness_deck.py"
   ],
   "forbid_files": [
     "local/inbox",
