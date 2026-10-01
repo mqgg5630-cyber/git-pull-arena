@@ -1,9 +1,9 @@
 {
-    "round":  121,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 121: t88 v2 probe remote shell type, stage depcheck.py via F$, pip install offline, run depcheck.py, where py, reg query user PATH, Get-ChildItem F: Illustrator dir, worker present",
-    "arena_updated":  "2026-10-01 09:03:48",
-    "local_updated":  "2026-10-01 17:05:07"
+  "round": 121,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-01 09:05:18",
+  "local_updated": "2026-10-01 17:05:07"
 }
