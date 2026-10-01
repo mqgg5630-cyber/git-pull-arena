@@ -154,7 +154,8 @@
     "code/tasks/t103_desk_sync_survey.ps1",
     "code/tasks/desk_survey_sync.ps1",
     "code/tasks/t104_desk_ide_sync.ps1",
-    "code/tasks/desk_sync_ide.ps1"
+    "code/tasks/desk_sync_ide.ps1",
+    "code/tasks/t105_laptop_wps_harness.ps1"
   ],
   "forbid_files": [
     "local/inbox",

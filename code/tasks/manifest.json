@@ -388,6 +388,9 @@
     ],
     "140": [
       "t104_desk_ide_sync.ps1"
+    ],
+    "141": [
+      "t105_laptop_wps_harness.ps1"
     ]
   }
 }
