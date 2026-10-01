@@ -28,8 +28,16 @@ try {
     $pyOk = $false
     try { & py -3 -c "import fontTools, shapely" 2>$null; if ($LASTEXITCODE -eq 0) { $pyOk = $true } } catch { }
     if (-not $pyOk) {
-        L 'installing py deps (fontTools, shapely) ...'
-        & py -3 -m pip install --quiet --disable-pip-version-check fonttools shapely 2>&1 | ForEach-Object { L ('   pip| ' + (San ([string]$_))) }
+        L 'installing py deps (fontTools, shapely, 300s cap) ...'
+        $job = Start-Job -ScriptBlock { & py -3 -m pip install --quiet --disable-pip-version-check --timeout 20 --retries 1 fonttools shapely 2>&1 | Out-String }
+        if (Wait-Job $job -Timeout 300) {
+            $out = (Receive-Job $job | Out-String).Trim()
+            foreach ($ln in ($out -split "`r?`n")) { $x = San $ln; if ($x.Trim()) { L ('   pip| ' + $x) } }
+            Remove-Job $job -Force -ErrorAction SilentlyContinue
+        } else {
+            Stop-Job $job -Force -ErrorAction SilentlyContinue; Remove-Job $job -Force -ErrorAction SilentlyContinue
+            throw 'pip install timed out on the desktop (network/proxy?)'
+        }
         & py -3 -c "import fontTools, shapely" 2>$null
         if ($LASTEXITCODE -ne 0) { throw 'py -3 deps unavailable on desktop' }
     }
