@@ -1,9 +1,9 @@
 {
-    "round":  105,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 105: t77 set SKILLPREF.marker=cell-lct + FRESH.marker, kill AI, relaunch worker detached (full fig1 rebuild through the cell-lct skill), 50s log",
-    "arena_updated":  "2026-10-01 03:15:16",
-    "local_updated":  "2026-10-01 11:18:09"
+  "round": 105,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-01 03:18:24",
+  "local_updated": "2026-10-01 11:18:09"
 }
