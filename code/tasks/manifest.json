@@ -391,6 +391,9 @@
     ],
     "141": [
       "t105_laptop_wps_harness.ps1"
+    ],
+    "142": [
+      "t106_laptop_impress_patch.ps1"
     ]
   }
 }

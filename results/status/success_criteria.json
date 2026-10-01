@@ -155,7 +155,10 @@
     "code/tasks/desk_survey_sync.ps1",
     "code/tasks/t104_desk_ide_sync.ps1",
     "code/tasks/desk_sync_ide.ps1",
-    "code/tasks/t105_laptop_wps_harness.ps1"
+    "code/tasks/t105_laptop_wps_harness.ps1",
+    "code/tasks/t106_laptop_impress_patch.ps1",
+    "code/tasks/desk_wps_install.ps1",
+    "code/tasks/verify_pptx.py"
   ],
   "forbid_files": [
     "local/inbox",
