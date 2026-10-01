@@ -116,7 +116,8 @@
     "code/tasks/t76_test_cellsu7.ps1",
     "code/tasks/t77_demo_celllct.ps1",
     "code/tasks/t78_demo_cellsu7.ps1",
-    "code/tasks/t79_desktop_ssh_and_paths.ps1"
+    "code/tasks/t79_desktop_ssh_and_paths.ps1",
+    "code/tasks/t80_desktop_ssh_stability.ps1"
   ],
   "forbid_files": [
     "local/inbox",

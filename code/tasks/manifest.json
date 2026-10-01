@@ -295,6 +295,9 @@
     ],
     "109": [
       "t79_desktop_ssh_and_paths.ps1"
+    ],
+    "110": [
+      "t80_desktop_ssh_stability.ps1"
     ]
   }
 }
