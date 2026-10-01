@@ -420,6 +420,9 @@
       "t114_desk_wps_launch.ps1"
     ],
     "151": [
+      "t115_desk_wps_register.ps1"
+    ],
+    "152": [
       "t112_desk_deck_collect.ps1"
     ]
   }

@@ -173,7 +173,9 @@
     "code/tasks/t113_desk_wps_silent.ps1",
     "code/tasks/desk_wps_install2.ps1",
     "code/tasks/t114_desk_wps_launch.ps1",
-    "code/tasks/desk_wps_launch.ps1"
+    "code/tasks/desk_wps_launch.ps1",
+    "code/tasks/t115_desk_wps_register.ps1",
+    "code/tasks/desk_wps_register.ps1"
   ],
   "forbid_files": [
     "local/inbox",
