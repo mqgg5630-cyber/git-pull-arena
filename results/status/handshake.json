@@ -1,9 +1,9 @@
 {
-  "round": 127,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-10-01 09:30:32",
-  "local_updated": "2026-10-01 17:30:22"
+  "round": 128,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 128: t92 copy via F$: test-cell-lct + test-cell_su7 .ai/.png, jobs shibielujing* .ai/.png/.svg/manifest, rebuild.log, probe.result -> repo results/fig1_rebuild/desktop/",
+  "arena_updated": "2026-10-01 09:30:55",
+  "local_updated": null
 }
