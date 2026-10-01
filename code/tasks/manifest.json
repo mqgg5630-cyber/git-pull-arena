@@ -292,6 +292,9 @@
     ],
     "108": [
       "t64_poll_rebuild.ps1"
+    ],
+    "109": [
+      "t79_desktop_ssh_and_paths.ps1"
     ]
   }
 }
