@@ -97,10 +97,10 @@ $w.Add('echo %DATE% %TIME% agy_proxy wrapper invoked >> F:\fig1_rebuild\agy_laun
 $w.Add('set HTTP_PROXY=http://127.0.0.1:10808')
 $w.Add('set HTTPS_PROXY=http://127.0.0.1:10808')
 $w.Add('set ALL_PROXY=http://127.0.0.1:10808')
-$w.Add('set NO_PROXY=localhost,127.0.0.1')
+$w.Add('set NO_PROXY=localhost,127.0.0.1,::1')
 $w.Add('set http_proxy=http://127.0.0.1:10808')
 $w.Add('set https_proxy=http://127.0.0.1:10808')
-$w.Add('set no_proxy=localhost,127.0.0.1')
+$w.Add('set no_proxy=localhost,127.0.0.1,::1')
 $w.Add('set | findstr /i "proxy" > F:\fig1_rebuild\agy_env_snapshot.txt')
 $w.Add(('start "" "{0}"' -f $agExe))
 try {
@@ -127,7 +127,7 @@ foreach ($app in @('Antigravity', 'Antigravity IDE')) {
         }
         $h['http.proxy'] = $proxy
         $h['http.proxySupport'] = 'on'
-        $h['http.noProxy'] = 'localhost,127.0.0.1'
+        $h['http.noProxy'] = @('localhost', '127.0.0.1')
         [IO.File]::WriteAllText($sf, ($h | ConvertTo-Json -Depth 6), (New-Object System.Text.UTF8Encoding($false)))
         $null = Get-Content -LiteralPath $sf -Raw | ConvertFrom-Json
         L ('   B: ' + $app + ' settings.json written + JSON valid')
@@ -137,7 +137,7 @@ foreach ($app in @('Antigravity', 'Antigravity IDE')) {
 try {
     & setx HTTP_PROXY $proxy | Out-Null
     & setx HTTPS_PROXY $proxy | Out-Null
-    & setx NO_PROXY 'localhost,127.0.0.1' | Out-Null
+    & setx NO_PROXY 'localhost,127.0.0.1,::1' | Out-Null
     $rk2 = Get-ItemProperty -Path 'HKCU:\Environment'
     L ('   B: setx user env verified (registry): HTTP_PROXY=' + (San ([string]$rk2.HTTP_PROXY)) + ' HTTPS_PROXY=' + (San ([string]$rk2.HTTPS_PROXY)))
 } catch { L ('   B: setx user env failed: ' + (San $_.Exception.Message)) }
@@ -146,7 +146,7 @@ if ($elev) {
     try {
         & setx HTTP_PROXY $proxy /M | Out-Null
         & setx HTTPS_PROXY $proxy /M | Out-Null
-        & setx NO_PROXY 'localhost,127.0.0.1' /M | Out-Null
+        & setx NO_PROXY 'localhost,127.0.0.1,::1' /M | Out-Null
         L '   B: machine-level env set (setx /M)'
     } catch { L ('   B: setx /M failed: ' + (San $_.Exception.Message)) }
 } else { L '   B: not elevated - skipped setx /M' }
@@ -258,7 +258,7 @@ if ($bootAt) {
     L ('   C: ls.log fresh (2nd): lines=' + $fresh2.Count + ' dial-tcp=' + $fd2.Count + ' http-status/auth=' + $fh2.Count)
     if ($init2) { L ('      init: ' + (San ([string]$init2).Trim())) }
     if ($fresh2.Count -gt 0 -and $fd2.Count -eq 0) { L '   C: VERDICT: dial-tcp=0 after verified-wrapper relaunch - proxy chain OK' }
-    elseif ($fd2.Count -gt 0) { L ('   C: VERDICT: still direct-dialing (' + $fd2.Count + ' lines) - env not reaching the language server' }
+    elseif ($fd2.Count -gt 0) { L ('   C: VERDICT: still direct-dialing (' + $fd2.Count + ' lines) - env not reaching the language server') }
     else { L '   C: VERDICT: no fresh LS lines yet - inconclusive, recheck later' }
 } else { L '   C: VERDICT: relaunch failed - no processes' }
 L '--- desktop fix v4 done ---'
