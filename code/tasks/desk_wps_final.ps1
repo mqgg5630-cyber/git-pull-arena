@@ -28,8 +28,14 @@ $vendor = $haDir + '\vendor_wheels'
 # ---------------- 1. force-reinstall patched harness ----------------
 $o = Invoke-Expression ($pyexe + ' -m pip install --force-reinstall --no-deps --no-index --no-build-isolation --find-links ' + $vendor + ' ' + $haDir + ' 2>&1')
 foreach ($ln in @($o | Select-Object -Last 2)) { L ('   ' + (San ([string]$ln))) }
-$chk = Invoke-Expression ($pyexe + ' -c "import cli_anything.wps.utils.wps_backend as b; import inspect; src=inspect.getsource(b.save_as); print(\'SaveAs-fallback\' if \'doc.SaveAs(abs_path\' in src else \'PATCH-MISSING\')" 2>&1')
-L ('   installed save_as: ' + (San ([string](@($chk) -join ' '))))
+$chk = Invoke-Expression ($pyexe + ' -c "import cli_anything.wps.utils.wps_backend as b; print(b.__file__)" 2>&1')
+$bfile = ([string](@($chk) -join ' ')).Trim()
+$patched = $false
+if ($bfile -and (Test-Path -LiteralPath $bfile)) {
+    $bsrc = [IO.File]::ReadAllText($bfile)
+    if ($bsrc -match 'doc\.SaveAs\(abs_path') { $patched = $true }
+}
+L ('   installed save_as patch: ' + $(if ($patched) { 'PRESENT' } else { 'MISSING (' + $bfile + ')' }))
 
 # ---------------- 2. writer smoke ----------------
 $w = @()
