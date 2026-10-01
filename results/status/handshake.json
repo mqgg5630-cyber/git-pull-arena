@@ -1,9 +1,9 @@
 {
-  "round": 153,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 153: t117 - stage desk_wps_automation.ps1, ssh run: remove stale HKCU entries, register KWPS/KET/KWPP under HKLM with /Automation LocalServer32 (ksolaunch /prometheus /X /Automation if present), headless COM verify, if OK run harness pipeline inline (pip + deck builder), else interactive wpstest rerun with 9-min log poll, else start wpsdl32 background download of WPS_Setup_25225.exe; collect artifacts",
-  "arena_updated": "2026-10-01 16:29:13",
-  "local_updated": null
+    "round":  153,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 153: t117 - stage desk_wps_automation.ps1, ssh run: remove stale HKCU entries, register KWPS/KET/KWPP under HKLM with /Automation LocalServer32 (ksolaunch /prometheus /X /Automation if present), headless COM verify, if OK run harness pipeline inline (pip + deck builder), else interactive wpstest rerun with 9-min log poll, else start wpsdl32 background download of WPS_Setup_25225.exe; collect artifacts",
+    "arena_updated":  "2026-10-01 16:29:13",
+    "local_updated":  "2026-10-02 00:31:43"
 }
