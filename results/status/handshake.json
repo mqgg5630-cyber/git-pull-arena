@@ -1,9 +1,9 @@
 {
-    "round":  112,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 112: t82 ssh BNI@100.84.137.117 3x spaced probes; if stable -\u003e whoami/hostname/ver/git/python; if flaky -\u003e ssh -v auth diagnostics",
-    "arena_updated":  "2026-10-01 07:24:01",
-    "local_updated":  "2026-10-01 15:25:42"
+  "round": 112,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-01 07:25:51",
+  "local_updated": "2026-10-01 15:25:42"
 }
