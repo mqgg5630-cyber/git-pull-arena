@@ -301,6 +301,9 @@
     ],
     "111": [
       "t81_smb_key_install.ps1"
+    ],
+    "112": [
+      "t82_bni_ssh_test.ps1"
     ]
   }
 }

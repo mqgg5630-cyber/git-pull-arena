@@ -118,7 +118,8 @@
     "code/tasks/t78_demo_cellsu7.ps1",
     "code/tasks/t79_desktop_ssh_and_paths.ps1",
     "code/tasks/t80_desktop_ssh_stability.ps1",
-    "code/tasks/t81_smb_key_install.ps1"
+    "code/tasks/t81_smb_key_install.ps1",
+    "code/tasks/t82_bni_ssh_test.ps1"
   ],
   "forbid_files": [
     "local/inbox",
