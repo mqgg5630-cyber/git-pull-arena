@@ -198,7 +198,9 @@
     "code/tasks/amp_deck_v2_build.py",
     "code/tasks/t124_cpe_setup.ps1",
     "code/tasks/desk_cpe_setup.ps1",
-    "code/tasks/t125_cpe_setup2.ps1"
+    "code/tasks/t125_cpe_setup2.ps1",
+    "code/tasks/t126_cpe_test.ps1",
+    "code/tasks/desk_cpe_test.ps1"
   ],
   "forbid_files": [
     "local/inbox",
