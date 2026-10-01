@@ -1,9 +1,9 @@
 {
-  "round": 119,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-10-01 08:59:04",
-  "local_updated": "2026-10-01 16:58:50"
+  "round": 120,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 120: t88 offline pip install via Python312\\python.exe, import check, py launcher candidates, reg query user PATH, dir AI exe",
+  "arena_updated": "2026-10-01 09:00:18",
+  "local_updated": null
 }
