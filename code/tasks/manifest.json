@@ -331,6 +331,9 @@
     ],
     "121": [
       "t88_deskdeps.ps1"
+    ],
+    "122": [
+      "t89_desk_fixture.ps1"
     ]
   }
 }
