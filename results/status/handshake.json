@@ -1,9 +1,9 @@
 {
-    "round":  157,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 157: t119 - stage final-v2, ssh run: kill WPS + reinstall, DECK build first (12 slides, fresh state), kill+cooldown, impress smoke + verify_pptx, kill+cooldown, writer smoke, FINAL verdict, collect artifacts into results/harness_wps/desktop/",
-    "arena_updated":  "2026-10-01 16:42:06",
-    "local_updated":  "2026-10-02 00:44:16"
+  "round": 158,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 158: t120 - stage desk_wpp_warm.ps1, ssh run: kill+reinstall, interactive wpplaunch task keeps wpp.exe alive, attach probe (no Quit), 12-slide deck via warm attach, impress smoke (relaunch warm if needed), writer fallback, FINAL verdict, collect artifacts into results/harness_wps/desktop/",
+  "arena_updated": "2026-10-01 16:46:22",
+  "local_updated": null
 }
