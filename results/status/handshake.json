@@ -1,9 +1,9 @@
 {
-  "round": 133,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 133: t97 stage desk_antigravity_fix3.ps1 via F$ and run: write F:\\fig1_rebuild\\agy_proxy.cmd (HTTP(S)_PROXY/NO_PROXY + start Antigravity), taskkill, repoint agyrelaunch task to wrapper, relaunch, wait 75s, count record-with-version-15 and dial-tcp in recent logs, dump ProxyOverride",
-  "arena_updated": "2026-10-01 10:57:39",
-  "local_updated": null
+    "round":  133,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 133: t97 stage desk_antigravity_fix3.ps1 via F$ and run: write F:\\fig1_rebuild\\agy_proxy.cmd (HTTP(S)_PROXY/NO_PROXY + start Antigravity), taskkill, repoint agyrelaunch task to wrapper, relaunch, wait 75s, count record-with-version-15 and dial-tcp in recent logs, dump ProxyOverride",
+    "arena_updated":  "2026-10-01 10:57:39",
+    "local_updated":  "2026-10-01 19:00:03"
 }
