@@ -1,9 +1,9 @@
 {
-    "round":  119,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 119: t87 ensure python installer on laptop (proxy download), pip download wheels, copy via F$, silent install on desktop (480s cap), offline pip install (300s cap), verify py -3 3.12 + fontTools/shapely import",
-    "arena_updated":  "2026-10-01 08:55:57",
-    "local_updated":  "2026-10-01 16:58:50"
+  "round": 119,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-01 08:59:04",
+  "local_updated": "2026-10-01 16:58:50"
 }
