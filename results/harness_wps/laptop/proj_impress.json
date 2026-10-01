@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "author": "",
+    "created": "2026-10-01T20:32:52.208526",
+    "description": "",
+    "modified": "2026-10-01T20:32:52.592151",
+    "software": "cli-anything-wps 1.0.0",
+    "subject": "",
+    "title": "harness pptx"
+  },
+  "name": "harness pptx",
+  "settings": {},
+  "slides": [
+    {
+      "content": "Editable body via WPS COM",
+      "elements": [
+        {
+          "height": "5cm",
+          "text": "Hello editable pptx",
+          "type": "text_box",
+          "width": "10cm",
+          "x": "2cm",
+          "y": "2cm"
+        }
+      ],
+      "title": "Harness PPTX Test"
+    }
+  ],
+  "styles": {},
+  "type": "impress",
+  "version": "1.0"
+}

@@ -1,9 +1,9 @@
 {
-  "round": 141,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 141: t105 laptop-local - A: dump KWPP+KET CLSID registry, inventory office6 exes, warm-start + /regserver + alternate ProgIDs for KWPP; B: pip install harness from vendor wheels (--no-index), verify cli + pywin32; C: writer flow -> test_writer.docx + COM reopen verify; D: if KWPP OK -> impress flow -> test_impress.pptx + reopen slides/shapes verify; E: WPS installer cache search",
-  "arena_updated": "2026-10-01 12:29:53",
-  "local_updated": null
+    "round":  141,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 141: t105 laptop-local - A: dump KWPP+KET CLSID registry, inventory office6 exes, warm-start + /regserver + alternate ProgIDs for KWPP; B: pip install harness from vendor wheels (--no-index), verify cli + pywin32; C: writer flow -\u003e test_writer.docx + COM reopen verify; D: if KWPP OK -\u003e impress flow -\u003e test_impress.pptx + reopen slides/shapes verify; E: WPS installer cache search",
+    "arena_updated":  "2026-10-01 12:29:53",
+    "local_updated":  "2026-10-01 20:32:53"
 }
