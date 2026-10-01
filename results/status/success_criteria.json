@@ -125,7 +125,8 @@
     "code/tasks/desktop_worker.ps1",
     "code/tasks/install_desktop.ps1",
     "code/tasks/t85_syncfix.ps1",
-    "code/tasks/t86_deskinstall.ps1"
+    "code/tasks/t86_deskinstall.ps1",
+    "code/tasks/t87_deskpython.ps1"
   ],
   "forbid_files": [
     "local/inbox",
