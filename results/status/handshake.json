@@ -1,9 +1,9 @@
 {
-  "round": 156,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 156: t118 - robocopy patched harness (probe retry x3 + 5s cooldown), ssh run desk_wps_final.ps1: reinstall, writer smoke, 8s cooldown, impress smoke + verify, 8s cooldown, 12-slide deck + reopen verify, cleanup, collect artifacts",
-  "arena_updated": "2026-10-01 16:39:02",
-  "local_updated": null
+    "round":  156,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 156: t118 - robocopy patched harness (probe retry x3 + 5s cooldown), ssh run desk_wps_final.ps1: reinstall, writer smoke, 8s cooldown, impress smoke + verify, 8s cooldown, 12-slide deck + reopen verify, cleanup, collect artifacts",
+    "arena_updated":  "2026-10-01 16:39:02",
+    "local_updated":  "2026-10-02 00:40:39"
 }
