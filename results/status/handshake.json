@@ -1,9 +1,9 @@
 {
-  "round": 129,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 129: t93 stage desk_antigravity_diag.ps1 via F$ and run over ssh: install dirs, data dirs, processes, browser+url handler, proxy state + listening ports, direct TCP443 to Google, laptop proxy 100.71.123.19:10808 probe + curl through it, masked auth log tails",
-  "arena_updated": "2026-10-01 10:40:17",
-  "local_updated": null
+    "round":  129,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 129: t93 stage desk_antigravity_diag.ps1 via F$ and run over ssh: install dirs, data dirs, processes, browser+url handler, proxy state + listening ports, direct TCP443 to Google, laptop proxy 100.71.123.19:10808 probe + curl through it, masked auth log tails",
+    "arena_updated":  "2026-10-01 10:40:17",
+    "local_updated":  "2026-10-01 18:42:29"
 }
