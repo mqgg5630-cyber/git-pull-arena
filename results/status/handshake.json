@@ -1,9 +1,9 @@
 {
-    "round":  118,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 117: t86 v2 launch install_desktop.ps1 detached on desktop, poll install_out.txt to sentinel (15 min cap), dump log, verify py/deps/fig1desk task/skills/AI exe",
-    "arena_updated":  "2026-10-01 08:35:45",
-    "local_updated":  "2026-10-01 16:52:42"
+  "round": 118,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-01 08:53:07",
+  "local_updated": "2026-10-01 16:52:42"
 }
