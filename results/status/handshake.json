@@ -1,9 +1,9 @@
 {
-  "round": 146,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 146: t110 - desktop: report stalled wpsdl state, deploy wpsdl.cmd v2 (proxy env cleared + curl --noproxy), delete partial, restart task, wait 240s, report growth; also re-robocopy patched harness-anything + stage desk_wps_install.ps1 + verify_pptx.py + desk_harness_deck.py on F$",
-  "arena_updated": "2026-10-01 14:01:58",
-  "local_updated": null
+    "round":  146,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 146: t110 - desktop: report stalled wpsdl state, deploy wpsdl.cmd v2 (proxy env cleared + curl --noproxy), delete partial, restart task, wait 240s, report growth; also re-robocopy patched harness-anything + stage desk_wps_install.ps1 + verify_pptx.py + desk_harness_deck.py on F$",
+    "arena_updated":  "2026-10-01 14:01:58",
+    "local_updated":  "2026-10-01 22:03:47"
 }
