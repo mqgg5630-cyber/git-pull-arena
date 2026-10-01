@@ -313,6 +313,9 @@
     ],
     "115": [
       "t85_syncfix.ps1"
+    ],
+    "116": [
+      "t86_deskinstall.ps1"
     ]
   }
 }
