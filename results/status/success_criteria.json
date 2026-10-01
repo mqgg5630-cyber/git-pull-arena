@@ -200,7 +200,9 @@
     "code/tasks/desk_cpe_setup.ps1",
     "code/tasks/t125_cpe_setup2.ps1",
     "code/tasks/t126_cpe_test.ps1",
-    "code/tasks/desk_cpe_test.ps1"
+    "code/tasks/desk_cpe_test.ps1",
+    "code/tasks/t127_cpe_test2.ps1",
+    "code/tasks/desk_cpe_test2.ps1"
   ],
   "forbid_files": [
     "local/inbox",
