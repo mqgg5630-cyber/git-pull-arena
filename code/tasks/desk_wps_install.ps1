@@ -99,8 +99,8 @@ if (-not (Test-Path -LiteralPath ($haDir + '\setup.py'))) { L '   [FAIL] harness
 $cmd = $pyexe + ' -m pip install --no-index --no-build-isolation --find-links ' + $haDir + '\vendor_wheels ' + $haDir + ' 2>&1'
 $out = Invoke-Expression $cmd
 foreach ($ln in @($out | Select-Object -Last 4)) { L ('   ' + (San ([string]$ln))) }
-$hc = Invoke-Expression ($pyexe + ' -c "import win32com.client; print(\'pywin32 OK\')" 2>&1')
-L ('   ' + (San ([string](@($hc) -join ' '))))
+$hc = Invoke-Expression ($pyexe + ' -c "import win32com.client" 2>&1')
+L ('   pywin32 import: ' + $(if ($LASTEXITCODE -eq 0) { 'OK' } else { (San ([string](@($hc) -join ' '))) }))
 
 New-Item -ItemType Directory -Force -Path $results | Out-Null
 
@@ -111,10 +111,10 @@ $testCmd = {
     $o = @()
     $o += ('w-new: ' + ((Invoke-Expression ($py + ' -m cli_anything.wps document new --type writer --name harnesssmoke -o proj_writer.json 2>&1') | Out-String).Trim() -replace "`r?`n", ' | '))
     $o += ('w-head: ' + ((Invoke-Expression ($py + ' -m cli_anything.wps --project proj_writer.json writer add-heading -t HarnessSmokeTest -l 1 2>&1') | Out-String).Trim() -replace "`r?`n", ' | '))
-    $o += ('w-para: ' + ((Invoke-Expression ($py + ' -m cli_anything.wps --project proj_writer.json writer add-paragraph -t Editable paragraph via WPS COM on desktop. 2>&1') | Out-String).Trim() -replace "`r?`n", ' | '))
+    $o += ('w-para: ' + ((Invoke-Expression ($py + ' -m cli_anything.wps --project proj_writer.json writer add-paragraph -t EditableParagraphViaWpsComOnDesktop. 2>&1') | Out-String).Trim() -replace "`r?`n", ' | '))
     $o += ('w-exp: ' + ((Invoke-Expression ($py + ' -m cli_anything.wps --project proj_writer.json export render test_writer.docx -p docx 2>&1') | Out-String).Trim() -replace "`r?`n", ' | '))
     $o += ('i-new: ' + ((Invoke-Expression ($py + ' -m cli_anything.wps document new --type impress --name harnesspptx -o proj_impress.json 2>&1') | Out-String).Trim() -replace "`r?`n", ' | '))
-    $o += ('i-slide: ' + ((Invoke-Expression ($py + ' -m cli_anything.wps --project proj_impress.json impress add-slide -t HarnessPPTXTest -c Editable body via WPS COM 2>&1') | Out-String).Trim() -replace "`r?`n", ' | '))
+    $o += ('i-slide: ' + ((Invoke-Expression ($py + ' -m cli_anything.wps --project proj_impress.json impress add-slide -t HarnessPPTXTest -c EditableBodyViaWpsCom 2>&1') | Out-String).Trim() -replace "`r?`n", ' | '))
     $o += ('i-elem: ' + ((Invoke-Expression ($py + ' -m cli_anything.wps --project proj_impress.json impress add-element 0 --type text_box --text HelloEditablePptx 2>&1') | Out-String).Trim() -replace "`r?`n", ' | '))
     $o += ('i-exp: ' + ((Invoke-Expression ($py + ' -m cli_anything.wps --project proj_impress.json export render test_impress.pptx -p pptx 2>&1') | Out-String).Trim() -replace "`r?`n", ' | '))
     $o

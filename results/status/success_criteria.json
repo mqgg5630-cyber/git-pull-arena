@@ -168,7 +168,8 @@
     "code/tasks/t110_desk_wpsdl_fix.ps1",
     "code/tasks/t111_desk_wps_go.ps1",
     "code/tasks/t112_desk_deck_collect.ps1",
-    "code/tasks/desk_harness_deck.py"
+    "code/tasks/desk_harness_deck.py",
+    "code/tasks/t111b_desk_wps_go2.ps1"
   ],
   "forbid_files": [
     "local/inbox",
