@@ -1,9 +1,9 @@
 {
-  "round": 115,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-10-01 07:59:59",
-  "local_updated": "2026-10-01 15:59:49"
+  "round": 116,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 116: t86 ssh BNI@desktop run F:\\fig1_rebuild\\stage\\install_desktop.ps1, then verify py -3 version + fontTools/shapely + schtasks fig1desk + skills dir",
+  "arena_updated": "2026-10-01 08:00:37",
+  "local_updated": null
 }
