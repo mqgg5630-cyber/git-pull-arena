@@ -1,9 +1,9 @@
 {
-  "round": 133,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-10-01 11:00:26",
-  "local_updated": "2026-10-01 19:00:03"
+  "round": 134,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 134: t98 wait 180s, stage desk_antigravity_verify2.ps1 via F$, run over ssh: parse language_server.log envelope timestamps vs process start, count post-relaunch dial-tcp + tls-garbage, dump sample lines + main.log last-3min errors",
+  "arena_updated": "2026-10-01 11:01:18",
+  "local_updated": null
 }
