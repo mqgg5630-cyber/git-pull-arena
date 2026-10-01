@@ -1,9 +1,9 @@
 {
-  "round": 169,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 169: t127 - ssh run desk_cpe_test2.ps1: retry the live integration.py acceptance up to 3 times (fresh out dir, POWERPNT kill + schtasks /end before each attempt, 280s cap each). Judge: attempt with py exit 0 and PASS 27/27 -> FINAL: PASS; acceptance.json written only on full completion. Collect integration_log.txt + integ_a*.txt + integration_out/* into results/cell_ppt_edited/",
-  "arena_updated": "2026-10-01 18:13:22",
-  "local_updated": null
+    "round":  169,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 169: t127 - ssh run desk_cpe_test2.ps1: retry the live integration.py acceptance up to 3 times (fresh out dir, POWERPNT kill + schtasks /end before each attempt, 280s cap each). Judge: attempt with py exit 0 and PASS 27/27 -\u003e FINAL: PASS; acceptance.json written only on full completion. Collect integration_log.txt + integ_a*.txt + integration_out/* into results/cell_ppt_edited/",
+    "arena_updated":  "2026-10-01 18:13:22",
+    "local_updated":  "2026-10-02 02:15:02"
 }

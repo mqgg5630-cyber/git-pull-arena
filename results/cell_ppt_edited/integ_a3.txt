@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "F:\fig1_rebuild\cpe\src\integration.py", line 108, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "F:\fig1_rebuild\cpe\src\integration.py", line 28, in main
+    sid=client.call('ppt_turbo_bind',{'path':str(out/'acceptance.pptx'),'mode':'in_place'})['session_id']
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\fig1_rebuild\cpe\src\client.py", line 50, in call
+    raise RuntimeError(result)
+RuntimeError: {'content': [{'type': 'text', 'text': '{"error": "PowerPoint.Application.Presentations", "details": {}, "server_ms": 473.826, "completion_footer": "¸ÐÐ»¶¶Òô£ºÄ¾ÎÆ"}'}], 'structuredContent': {'error': 'PowerPoint.Application.Presentations', 'details': {}, 'server_ms': 473.826, 'completion_footer': '¸ÐÐ»¶¶Òô£ºÄ¾ÎÆ'}, 'isError': True}
+INTEG-EXIT 1 
+INTEG-DONE 
