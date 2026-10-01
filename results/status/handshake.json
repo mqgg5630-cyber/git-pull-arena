@@ -1,9 +1,9 @@
 {
-  "round": 154,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 154: t118 - robocopy patched harness to F$, stage desk_wps_final.ps1, ssh run: force-reinstall harness, verify SaveAs-fallback present, writer smoke -> test_writer.docx, impress smoke -> test_impress.pptx + verify_pptx reopen, 12-slide deck build -> arena_report.pptx + reopen verify, cleanup, then collect all artifacts into results/harness_wps/desktop/",
-  "arena_updated": "2026-10-01 16:33:24",
-  "local_updated": null
+    "round":  154,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 154: t118 - robocopy patched harness to F$, stage desk_wps_final.ps1, ssh run: force-reinstall harness, verify SaveAs-fallback present, writer smoke -\u003e test_writer.docx, impress smoke -\u003e test_impress.pptx + verify_pptx reopen, 12-slide deck build -\u003e arena_report.pptx + reopen verify, cleanup, then collect all artifacts into results/harness_wps/desktop/",
+    "arena_updated":  "2026-10-01 16:33:24",
+    "local_updated":  "2026-10-02 00:34:23"
 }
