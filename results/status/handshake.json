@@ -1,9 +1,9 @@
 {
-    "round":  137,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 137: t101 - laptop pre-validates desk_antigravity_fix4.ps1 with ParseFile, then stages via F$ and runs over ssh: phase A dump, phase B literal wrapper + read-back + settings merge (noProxy array) + setx, phase C kill + wrapper-task relaunch + TCP to-proxy probe + fresh ls.log dial-tcp must be 0; then laptop reference already captured - skip re-dump",
-    "arena_updated":  "2026-10-01 11:33:11",
-    "local_updated":  "2026-10-01 19:36:33"
+  "round": 137,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-01 11:36:58",
+  "local_updated": "2026-10-01 19:36:33"
 }
