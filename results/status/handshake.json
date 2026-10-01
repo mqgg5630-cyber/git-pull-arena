@@ -1,9 +1,9 @@
 {
-    "round":  117,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 116: t86 v2 launch install_desktop.ps1 detached on desktop, poll install_out.txt to sentinel (15 min cap), dump log, verify py/deps/fig1desk task/skills/AI exe",
-    "arena_updated":  "2026-10-01 08:33:21",
-    "local_updated":  "2026-10-01 16:34:39"
+  "round": 118,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 117: t86 v2 launch install_desktop.ps1 detached on desktop, poll install_out.txt to sentinel (15 min cap), dump log, verify py/deps/fig1desk task/skills/AI exe",
+  "arena_updated": "2026-10-01 08:35:45",
+  "local_updated": null
 }
