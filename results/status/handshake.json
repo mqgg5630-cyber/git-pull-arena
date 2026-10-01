@@ -1,9 +1,9 @@
 {
-    "round":  145,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 145: t109 laptop-local - A: python patch_harness.py (now scans sys.path for site-packages cli_anything, patches installed copy); B: rerun impress flow -\u003e test_impress.pptx + verify_pptx.py reopen; C: get WPS 12 install root via working KET COM app.Path + wpp.exe presence, check desktop wpsdl download log + partial size",
-    "arena_updated":  "2026-10-01 13:09:51",
-    "local_updated":  "2026-10-01 21:12:16"
+  "round": 146,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 146: t110 - desktop: report stalled wpsdl state, deploy wpsdl.cmd v2 (proxy env cleared + curl --noproxy), delete partial, restart task, wait 240s, report growth; also re-robocopy patched harness-anything + stage desk_wps_install.ps1 + verify_pptx.py + desk_harness_deck.py on F$",
+  "arena_updated": "2026-10-01 14:01:58",
+  "local_updated": null
 }
