@@ -1,9 +1,9 @@
 {
-    "round":  167,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 167: t125 - run desk_cpe_setup.ps1 on desktop: download zip+SHA256SUMS via proxy with --ssl-no-revoke, verify sha256, extract to F:\\fig1_rebuild\\cpe\\pkg, cell-ppt-edited.exe --self-test + --doctor, Install.ps1 -CheckOnly (PowerPoint 2016 confirmed; Codex absent - engine-only path)",
-    "arena_updated":  "2026-10-01 18:02:44",
-    "local_updated":  "2026-10-02 02:03:48"
+  "round": 167,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-01 18:04:03",
+  "local_updated": "2026-10-02 02:03:48"
 }
