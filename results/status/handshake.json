@@ -1,9 +1,9 @@
 {
-  "round": 135,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 135: t99, no soak - stage desk_antigravity_verify3.ps1 via F$, run over ssh: group post-relaunch dial-tcp by URL host, count bare Failed-to-get-OAuth lines, probe live TCP of language server processes for proxy vs direct-443, dump agyrelaunch task + wrapper; then grep LAPTOP-LOCAL language_server.log for same signatures (laptop login works - control group)",
-  "arena_updated": "2026-10-01 11:12:28",
-  "local_updated": null
+    "round":  135,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 135: t99, no soak - stage desk_antigravity_verify3.ps1 via F$, run over ssh: group post-relaunch dial-tcp by URL host, count bare Failed-to-get-OAuth lines, probe live TCP of language server processes for proxy vs direct-443, dump agyrelaunch task + wrapper; then grep LAPTOP-LOCAL language_server.log for same signatures (laptop login works - control group)",
+    "arena_updated":  "2026-10-01 11:12:28",
+    "local_updated":  "2026-10-01 19:14:51"
 }
