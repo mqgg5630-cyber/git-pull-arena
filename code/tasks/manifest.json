@@ -310,6 +310,9 @@
     ],
     "114": [
       "t84_deskstage_sync.ps1"
+    ],
+    "115": [
+      "t85_syncfix.ps1"
     ]
   }
 }
