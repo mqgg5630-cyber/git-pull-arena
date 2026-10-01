@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <path id="t-bg" d="M0 0 H400 V300 H0 Z" fill="#FFFFFF"/>
+  <path id="t-rect" d="M40 40 H180 V120 H40 Z" fill="#2E86AB"/>
+  <circle id="t-circle" cx="280" cy="80" r="45" fill="#E63946"/>
+  <path id="t-curve" d="M60 220 C120 160 240 260 340 200" fill="none" stroke="#1D3557" stroke-width="6"/>
+  <text id="t-title" x="200" y="170" font-family="Arial" font-size="28" text-anchor="middle" fill="#111111">Cell Test</text>
+  <text id="t-vert" x="380" y="200" font-family="Arial" font-size="20" fill="#333333" transform="rotate(-90 380 200)">ROTATE OK</text>
+</svg>

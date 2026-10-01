@@ -274,6 +274,24 @@
     ],
     "102": [
       "t74_hpc_watch.ps1"
+    ],
+    "103": [
+      "t75_test_celllct.ps1"
+    ],
+    "104": [
+      "t76_test_cellsu7.ps1"
+    ],
+    "105": [
+      "t77_demo_celllct.ps1"
+    ],
+    "106": [
+      "t64_poll_rebuild.ps1"
+    ],
+    "107": [
+      "t78_demo_cellsu7.ps1"
+    ],
+    "108": [
+      "t64_poll_rebuild.ps1"
     ]
   }
 }

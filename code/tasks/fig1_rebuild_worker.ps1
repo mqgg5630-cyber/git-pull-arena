@@ -74,12 +74,18 @@ try {
     if (-not $aiExe) { throw 'Illustrator.exe not found under E:\' }
     L ('Illustrator.exe: ' + (San $aiExe))
 
-    # ------------------------------------------------ 2. skill + patched runner (prefer cell-lct free edition)
+    # ------------------------------------------------ 2. skill + patched runner (SKILLPREF.marker selects)
     $home_ = [Environment]::GetFolderPath('UserProfile')
     $cellLctScripts = Join-Path $home_ '.codex\skills\cell-lct\scripts'
     $cellSu7Scripts = Join-Path $home_ '.codex\skills\cell_su7\scripts'
-    $skillScripts = if (Test-Path -LiteralPath (Join-Path $cellLctScripts 'run_cell_lct.ps1')) { $cellLctScripts } else { $cellSu7Scripts }
-    L ('skill in use: ' + (San $skillScripts))
+    $skillPref = 'cell-lct'
+    $prefPath = Join-Path $root 'SKILLPREF.marker'
+    if (Test-Path -LiteralPath $prefPath) { $skillPref = ([string]([IO.File]::ReadAllText($prefPath))).Trim() }
+    if ($skillPref -eq 'cell_su7') { $skillScripts = $cellSu7Scripts } else { $skillScripts = $cellLctScripts }
+    if (-not (Test-Path -LiteralPath (Join-Path $skillScripts 'run_cell_lct.ps1'))) {
+        $skillScripts = if (Test-Path -LiteralPath (Join-Path $cellLctScripts 'run_cell_lct.ps1')) { $cellLctScripts } else { $cellSu7Scripts }
+    }
+    L ('skill preference: ' + (San $skillPref) + ' -> ' + (San $skillScripts))
     $lct = Join-Path $skillScripts 'run_cell_lct.ps1'
     $alloc = Join-Path $skillScripts 'allocate_shibielujing_name.py'
     $valid = Join-Path $skillScripts 'validate_vector_svg.py'

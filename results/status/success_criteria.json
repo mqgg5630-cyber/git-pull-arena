@@ -111,7 +111,11 @@
     "code/tasks/t71_install_celllct.ps1",
     "code/tasks/t72_fix_getcs.ps1",
     "code/tasks/t73_v5_relaunch.ps1",
-    "code/tasks/t74_hpc_watch.ps1"
+    "code/tasks/t74_hpc_watch.ps1",
+    "code/tasks/t75_test_celllct.ps1",
+    "code/tasks/t76_test_cellsu7.ps1",
+    "code/tasks/t77_demo_celllct.ps1",
+    "code/tasks/t78_demo_cellsu7.ps1"
   ],
   "forbid_files": [
     "local/inbox",
