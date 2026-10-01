@@ -1,9 +1,9 @@
 {
-    "round":  143,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 143: t107 laptop-local - A: patch app.Visible=False into try/except (guard = look for existing try-wrapper, not generic except); B: rerun impress flow -\u003e test_impress.pptx + verify_pptx.py reopen; C: probe wpscdn (fix regex ^HTTP/\\S+\\s+(\\d{3})), download chosen setup, stage wps_setup.exe + harness-anything + scripts on desktop F$",
-    "arena_updated":  "2026-10-01 12:40:34",
-    "local_updated":  "2026-10-01 20:54:35"
+  "round": 144,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 144: t108 laptop-local - A: python patch_harness.py (installed copy; repo already patched via git b11c91c); B: rerun impress flow -> test_impress.pptx + verify_pptx.py reopen; C: 5MB CDN speed probe both setup URLs; D: re-stage patched harness + wpsdl.cmd on F$, remove stale 67MB partial, schtasks create+run wpsdl (detached resume-loop download of WPS_Setup_X64_22525.exe on desktop), report partial size after 20s",
+  "arena_updated": "2026-10-01 13:01:29",
+  "local_updated": null
 }
