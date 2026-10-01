@@ -1,9 +1,9 @@
 {
-    "round":  130,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 130: t94 stage desk_antigravity_fix.ps1 via F$ and run over ssh: pick working proxy (127.0.0.1:10808 local else 100.71.123.19:10808 laptop), backup+patch User\\settings.json http.proxy/proxySupport/noProxy, taskkill + relaunch Antigravity via agyrelaunch interactive task, wait 50s, dump fresh log tails",
-    "arena_updated":  "2026-10-01 10:44:19",
-    "local_updated":  "2026-10-01 18:46:09"
+  "round": 130,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-01 10:46:19",
+  "local_updated": "2026-10-01 18:46:09"
 }
