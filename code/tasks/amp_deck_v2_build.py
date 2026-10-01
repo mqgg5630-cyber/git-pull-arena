@@ -482,7 +482,7 @@ SLIDES_V2 = [
      0.48
     ],
     "sz": 12,
-    "header": true
+    "header": True
    },
    {
     "t": "sh",
@@ -646,7 +646,7 @@ SLIDES_V2 = [
      0.32
     ],
     "sz": 12,
-    "header": true
+    "header": True
    }
   ]
  },
@@ -1031,7 +1031,7 @@ SLIDES_V2 = [
      0.33
     ],
     "sz": 12,
-    "header": true
+    "header": True
    },
    {
     "t": "sh",
