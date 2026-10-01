@@ -1,0 +1,335 @@
+check round 137 on LAPTOP-R77M5D6M - passed (exit 0)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 125s
+
+OK: all .ps1 files are ASCII-only
+OK: sync.config.json branch=arena/01a0a9f0-git-pull-arena
+OK: sync.config.json branch matches HEAD (arena/01a0a9f0-git-pull-arena)
+OK: root scripts identical to skills/git-sync/scripts
+OK: no drive-style variable typos ($var:)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+OK: every .ps1 parses
+   (gate ran via E:\hermes\git\bin\bash.exe [git])
+== accept 2a: silent push PROVEN (ls-remote + push --dry-run, prompts disabled)
+== accept 2b (fallback): one LONG-LIVED loop process - one brief flash per logon,
+   not per poll. For zero flash: admin PowerShell -> .\watch.ps1 -Unregister ;
+   .\watch.ps1 -Register -Headless   (or fix the launcher, see watch-*.log)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+== check_loop_summary PASSED
+== accept 2c: watcher closing lines verified (every exit path has its summary)
+== deliverables: 2 Office file(s) declared in deliverable/OFFICE_HASHES.json
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.docx (39743 B, docx)
+   OK   3b all 6 required parts present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.docx (17 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B, pptx)
+   OK   3b all 9 required parts present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.pptx (52 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3g slides in deliverable/LINK_PROOF_v2.8.1.pptx : 8 >= 8
+   OK   3h Word.Application opened read-only, name=LINK_PROOF_v2.8.1.docx : deliverable\LINK_PROOF_v2.8.1.docx
+   OK   3h PowerPoint.Application opened read-only, slides=8 : deliverable\LINK_PROOF_v2.8.1.pptx
+== task r137: t101_desk_agy_fix4.ps1
+--- task t101: desktop fix v4 (retry) + laptop reference ---
+   fix4 parse check: OK
+   deskfix4.ps1 staged
+   --- desktop Antigravity fix v4 (deterministic env delivery) ---
+      A: elevated session: True
+      A: current processes: 5
+         pid=46396 ppid=28424 start=18:58:49 Antigravity.exe
+            cmd: "C:\Users\BNI\AppData\Local\Programs\Antigravity\Antigravity.exe" 
+         pid=17484 ppid=46396 start=18:58:49 Antigravity.exe
+            cmd: "C:\Users\BNI\AppData\Local\Programs\Antigravity\Antigravity.exe" --type=gpu-process --user-data-dir="C:\Users\BNI\AppData\Roaming\Antigravity" [REDACTED] --field-trial-handle=2068,i,13698683774853432717,11351428257908881468,262144 [REDACTED],PdfUseShowSaveFilePicker [REDACTED],LocalNetworkAccessChe...
+         pid=38928 ppid=46396 start=18:58:49 Antigravity.exe
+            cmd: "C:\Users\BNI\AppData\Local\Programs\Antigravity\Antigravity.exe" --type=utility --utility-sub-type=network.mojom.NetworkService --lang=zh-CN --service-sandbox-type=none --user-data-dir="C:\Users\BNI\AppData\Roaming\Antigravity" --standard-schemes=plugin --secure-schemes=plugin --cors-schemes=plugin...
+         pid=46356 ppid=46396 start=18:58:49 language_server.exe
+            cmd: C:\Users\BNI\AppData\Local\Programs\Antigravity\resources\bin\language_server.exe --standalone --override_ide_name antigravity --subclient_type hub --override_ide_version 2.12.2 --override_user_agent_name antigravity --https_server_port 0 --csrf_token a32f1917-fc20-4898-9847-d3c14efcf8e8 --app_data_...
+         pid=38256 ppid=46396 start=18:59:20 Antigravity.exe
+            cmd: "C:\Users\BNI\AppData\Local\Programs\Antigravity\Antigravity.exe" --type=renderer --user-data-dir="C:\Users\BNI\AppData\Roaming\Antigravity" --standard-schemes=plugin --secure-schemes=plugin --cors-schemes=plugin --fetch-schemes=plugin --service-worker-schemes=plugin --code-cache-schemes=plugin --ap...
+      A: exe version: 2.12.2.0
+      A: HKCU env: HTTP_PROXY=http://127.0.0.1:10808 HTTPS_PROXY=http://127.0.0.1:10808 NO_PROXY=localhost,127.0.0.1
+      A: Antigravity settings.json: valid http.proxy=http://127.0.0.1:10808 http.proxySupport=on http.noProxy=localhost,127.0.0.1
+      A: Antigravity IDE settings.json: valid http.proxy=http://127.0.0.1:10808 http.proxySupport=on http.noProxy=localhost,127.0.0.1
+      A: main.log proxy mentions (tail400): 0
+      A: curl via proxy -> daily-cloudcode-pa: HTTP 404
+      B: setx user env verified (registry): HTTP_PROXY=http://127.0.0.1:10808 HTTPS_PROXY=http://127.0.0.1:10808
+      B: machine-level env set (setx /M)
+      C: kill rounds=1 remaining: Antigravity=0 language_server=0
+      C: agyrelaunch task started
+      C: task LastRunTime=19:35:35  first process start=19:35:19
+      C: wrapper env snapshot (at launch):
+         ALL_PROXY=http://127.0.0.1:10808
+         HTTPS_PROXY=http://127.0.0.1:10808
+         HTTP_PROXY=http://127.0.0.1:10808
+         NO_PROXY=localhost,127.0.0.1,::1
+      C: wrapper invoke log (tail 3):
+         2026/10/01 ?? 19:35:19.32 agy_proxy wrapper invoked 
+      C: language_server pid=24960 start=19:35:20
+         cmd: C:\Users\BNI\AppData\Local\Programs\Antigravity\resources\bin\language_server.exe --standalone --override_ide_name antigravity --subclient_type hub --override_ide_version 2.12.2 --override_user_agent_name antigravity --https_server_port 0 --csrf_token 63f90c44-c830-48c8-9b2f-ed29c485079b --app_data_...
+      C: ls.log fresh (1st): lines=1 dial-tcp=0 tls-garbage=0 http-status/auth=1
+         init: System.Object[]
+         ERROR: logging before google.Init: I1001 19:35:20.220547       1 server.go:1487] Starting language server process with pid 24960
+         ERROR: logging before google.Init: I1001 19:35:20.229953       1 server.go:433] Setting GOMAXPROCS to 4
+         ERROR: logging before google.Init: I1001 19:35:20.230666       1 server.go:1540] Language server version: 2.12.2
+         ERROR: logging before google.Init: I1001 19:35:20.230666       1 server.go:584] Language server will attempt to listen on host localhost
+         ERROR: logging before google.Init: I1001 19:35:20.253247       1 server.go:599] Language server listening on random port at 54846 for HTTPS (gRPC)
+         ERROR: logging before google.Init: I1001 19:35:20.253850       1 server.go:607] Language server listening on random port at 54847 for HTTP
+         ERROR: logging before google.Init: I1001 19:35:20.876009       1 auth_provider.go:1107] [AuthProvider] SetEnableBusinessLogin called with enable: true
+         ERROR: logging before google.Init: I1001 19:35:20.876009       1 auth_provider.go:1039] [AuthProvider] SetProjectID called with projectID: ""
+         ERROR: logging before google.Init: I1001 19:35:20.876009       1 auth_provider.go:1047] [AuthProvider] SetLocation called with location: ""
+         ERROR: logging before google.Init: I1001 19:35:20.876009       1 auth_provider.go:1055] [AuthProvider] SetUserTier called with userTier: "", tierDisplayName: ""
+         ERROR: logging before google.Init: I1001 19:35:22.527408     153 http_helpers.go:246] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xb87f600058fb20e4
+         ERROR: logging before google.Init: I1001 19:35:22.533242       1 http_helpers.go:246] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xb1dc228a9b9d0b84
+         ERROR: logging before google.Init: I1001 19:35:23.178459     158 http_helpers.go:246] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x21b2addbb321fe2f
+         ERROR: logging before google.Init: W1001 19:35:23.413546       1 launchmanager.go:69] Entering local chrome mode! This is WRONG unless you are running tests or in eval mode on Linux.
+         ERROR: logging before google.Init: W1001 19:35:23.414716       1 defaults.go:771] failed to get cs path: cs path /usr/bin/cs invalid
+         ERROR: logging before google.Init: I1001 19:35:23.414716       1 manager.go:98] Creating trajectory store manager with proto store and SQLite store
+         ERROR: logging before google.Init: I1001 19:35:23.416399       1 sidecar_sdk.go:29] Using bundled agy-node
+         ERROR: logging before google.Init: I1001 19:35:23.418262     215 manager.go:88] Migration [MIGRATION_ID_SIDECAR_USER_CONFIG_BYPASS] is disabled, skipping entirely
+         ERROR: logging before google.Init: I1001 19:35:23.418262     215 manager.go:91] Migration [MIGRATION_ID_SANITY_CHECK_PROJECT_URIS] is enabled
+         ERROR: logging before google.Init: I1001 19:35:23.418262     215 manager.go:100] Migration [MIGRATION_ID_SANITY_CHECK_PROJECT_URIS] already has status MIGRATION_STATUS_COMPLETED, skipping
+         ERROR: logging before google.Init: I1001 19:35:23.418262     215 manager.go:91] Migration [MIGRATION_ID_PLUGIN_ENABLEMENT] is enabled
+         ERROR: logging before google.Init: I1001 19:35:23.418262     215 manager.go:100] Migration [MIGRATION_ID_PLUGIN_ENABLEMENT] already has status MIGRATION_STATUS_COMPLETED, skipping
+         ERROR: logging before google.Init: I1001 19:35:23.418262     215 manager.go:91] Migration [[REDACTED]] is enabled
+         ERROR: logging before google.Init: I1001 19:35:23.418262     215 manager.go:100] Migration [[REDACTED]] already has status MIGRATION_STATUS_COMPLETED, skipping
+         ERROR: logging before google.Init: I1001 19:35:23.418262     215 manager.go:88] Migration [MIGRATION_ID_LIN_BUILTIN_TO_MARKETPLACE] is disabled, skipping entirely
+         ERROR: logging before google.Init: I1001 19:35:23.418262     215 manager.go:88] Migration [MIGRATION_ID_PERMISSION_GRANTS_V2] is disabled, skipping entirely
+         ERROR: logging before google.Init: I1001 19:35:23.431943       1 server.go:1303] Serving UI bundle from embedded assets
+         ERROR: logging before google.Init: I1001 19:35:23.436039       1 server.go:1303] Serving UI bundle from embedded assets
+         ERROR: logging before google.Init: I1001 19:35:23.436039       1 server.go:2854] Auth succeeded, refreshing features and managers
+         ERROR: logging before google.Init: I1001 19:35:23.874411       1 server.go:2860] State refresh took 438ms
+         ERROR: logging before google.Init: I1001 19:35:23.874411       1 server.go:2874] [RemoteControl] Subscription callback triggered.
+         ERROR: logging before google.Init: I1001 19:35:23.874411       1 server.go:2876] [RemoteControl] RemoteControlEnabled value: true
+         ERROR: logging before google.Init: I1001 19:35:23.874969       1 server.go:3187] [RemoteControl] Resolved proxyServerURL: "jetski-webchannel.googleapis.com:443"
+         ERROR: logging before google.Init: I1001 19:35:23.875003       1 server.go:3255] Remote control enabled, starting connection
+         ERROR: logging before google.Init: I1001 19:35:23.875003       1 server.go:2901] Retroactive projects migration enabled: true
+         ERROR: logging before google.Init: I1001 19:35:23.875003     142 remote_control_v2.go:1595] [[REDACTED]] Starting V2 remote control connection to: https://jetski-webchannel.googleapis.com:443
+         ERROR: logging before google.Init: I1001 19:35:23.875003     142 remote_control_v2.go:1626] [[REDACTED]] WebRTC P2P mesh disabled by flag; using WebChannel transport only
+         ERROR: logging before google.Init: I1001 19:35:23.875003       1 projects_migration.go:551] Projects migration already started or completed, skipping
+         ERROR: logging before google.Init: I1001 19:35:23.875551       1 profiler.go:231] Continuous pprof profiling is disabled.
+         ERROR: logging before google.Init: I1001 19:35:23.875551     145 manager.go:88] Migration [MIGRATION_ID_SIDECAR_USER_CONFIG_BYPASS] is disabled, skipping entirely
+         ERROR: logging before google.Init: I1001 19:35:23.875551     145 manager.go:91] Migration [MIGRATION_ID_SANITY_CHECK_PROJECT_URIS] is enabled
+         ERROR: logging before google.Init: I1001 19:35:23.875551     145 manager.go:100] Migration [MIGRATION_ID_SANITY_CHECK_PROJECT_URIS] already has status MIGRATION_STATUS_COMPLETED, skipping
+         ERROR: logging before google.Init: I1001 19:35:23.875551     145 manager.go:91] Migration [MIGRATION_ID_PLUGIN_ENABLEMENT] is enabled
+         ERROR: logging before google.Init: I1001 19:35:23.875551     145 manager.go:100] Migration [MIGRATION_ID_PLUGIN_ENABLEMENT] already has status MIGRATION_STATUS_COMPLETED, skipping
+         ERROR: logging before google.Init: I1001 19:35:23.875551     145 manager.go:91] Migration [[REDACTED]] is enabled
+         ERROR: logging before google.Init: I1001 19:35:23.875551     145 manager.go:100] Migration [[REDACTED]] already has status MIGRATION_STATUS_COMPLETED, skipping
+         ERROR: logging before google.Init: I1001 19:35:23.875551     145 manager.go:88] Migration [MIGRATION_ID_LIN_BUILTIN_TO_MARKETPLACE] is disabled, skipping entirely
+         ERROR: logging before google.Init: I1001 19:35:23.875551     145 manager.go:88] Migration [MIGRATION_ID_PERMISSION_GRANTS_V2] is disabled, skipping entirely
+         ERROR: logging before google.Init: I1001 19:35:23.875551     144 reconcile_summaries.go:90] [Summaries] reconcile checked 3 conversations, restored 0, cached 3, skipped 0, dropped 0, cancelled false in 0ms
+         ERROR: logging before google.Init: I1001 19:35:23.876224       1 server.go:2382] initialized server successfully in 3.6470156s
+         ERROR: logging before google.Init: I1001 19:35:24.305610     142 remote_control_v2.go:1671] [[REDACTED]] Connection status: Connected
+         ERROR: logging before google.Init: E1001 19:35:25.114907     526 projects.go:204] projects store: [REDACTED]: GetProject: failed to read standalone project file: open C:/Users/BNI/.[REDACTED].json: The system cannot find the file specified.
+         ERROR: logging before google.Init: E1001 19:35:25.114935     526 errorreport.go:223] GetProject: failed to read standalone project file: open C:/Users/BNI/.[REDACTED].json: The system cannot find the file specified.
+         ERROR: logging before google.Init: I1001 19:35:25.443873     644 encoder_embed.go:126] [CDP Discovery] Successfully discovered Electron WS URL: ws://127.0.0.1:[REDACTED]
+         ERROR: logging before google.Init: I1001 19:35:25.444873     644 encoder_embed.go:126] [CDP Discovery] Successfully discovered Electron WS URL: ws://127.0.0.1:[REDACTED]
+         ERROR: logging before google.Init: I1001 19:35:25.636227     742 encoder_embed.go:126] [CDP Discovery] Successfully discovered Electron WS URL: ws://127.0.0.1:[REDACTED]
+         ERROR: logging before google.Init: I1001 19:35:25.641230     742 encoder_embed.go:126] [CDP Discovery] Successfully discovered Electron WS URL: ws://127.0.0.1:[REDACTED]
+         ERROR: logging before google.Init: E1001 19:35:26.837992     186 browser_context.go:179] failed to install playwright: could not install driver: could not install driver: error: got non 200 status code: 404 (404 Not Found) from https://playwright.azureedge.net/builds/driver/playwright-1.57.0-win32_x64.zip
+      C: waiting 45s for second sample...
+      C: ls.log fresh (2nd): lines=1 dial-tcp=0 http-status/auth=1
+         init: System.Object[]
+      C: VERDICT: dial-tcp=0 after verified-wrapper relaunch - proxy chain OK
+   --- desktop fix v4 done ---
+--- laptop reference settings.json (login works here) ---
+   {
+     "http.proxy": "http://127.0.0.1:10808",
+     "http.proxySupport": "on",
+     "http.noProxy": ["localhost", "127.0.0.1"]
+   }
+   laptop HKCU env: HTTP_PROXY=http://127.0.0.1:10808 HTTPS_PROXY=http://127.0.0.1:10808 NO_PROXY=localhost,127.0.0.1,::1
+--- task t101 done ---
+== task r137 t101_desk_agy_fix4.ps1 ok (91s)
+== accept 2d: hands-free auto_pull/auto_push present in watch.ps1
+== success criteria: results/status/success_criteria.json
+   v2.8.1 on arena/01a0a9f0-git-pull-arena: the newest skill (source branch arena/01a0a98d-git-pull-arena, installer refuses to downgrade) plus the repo gate (code/check_all.sh, which now proves each python candidate python3 / python / py -3) and the real-machine check (code/local_check.ps1, sections 3a-3h). The deliverables LINK_PROOF_v2.8.1.docx / .pptx travel through git and are judged by the Windows watcher: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide count and a real Word/PowerPoint open. 'Local' means that machine's scheduled watcher - never a sandbox folder, never a hand-made stand-in skill. From round 22 on the repo also ships code/tasks/*.ps1 (mapped per round in code/tasks/manifest.json) which run on the machine inside local_check.ps1 section 4 as child processes: round 22 = read-only diagnostics for the Antigravity login, the Java install state and E: cleanup candidates.
+   OK   exists: 01a0a821.md (2016 B)
+   OK   exists: skills/git-sync/VERSION (6 B)
+   OK   exists: skills/git-sync/scripts/agent-install.sh (13404 B)
+   OK   exists: skills/git-sync/scripts/agent-handoff.sh (4603 B)
+   OK   exists: skills/git-sync/scripts/agent-handsfree.sh (3989 B)
+   OK   exists: skills/git-sync/scripts/agent-criteria.sh (5190 B)
+   OK   exists: skills/git-sync/scripts/watch.ps1 (84094 B)
+   OK   exists: skills/git-sync/templates/one-sentence.md (6524 B)
+   OK   exists: skills/git-sync/templates/gate.yml (1166 B)
+   OK   exists: code/check_all.sh (9945 B)
+   OK   exists: code/local_check.ps1 (30124 B)
+   OK   exists: code/make_link_proof.py (22948 B)
+   OK   exists: deliverable/OFFICE_HASHES.json (2401 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.docx (39743 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B)
+   OK   exists: watch.ps1 (84094 B)
+   OK   exists: code/tasks/manifest.json (6904 B)
+   OK   exists: code/tasks/t1_antigravity_diag.ps1 (14461 B)
+   OK   exists: code/tasks/t2_java_diag.ps1 (8626 B)
+   OK   exists: code/tasks/t3_edrive_scan.ps1 (9393 B)
+   OK   exists: code/tasks/t1_fix_antigravity.ps1 (10411 B)
+   OK   exists: code/tasks/t3_edrive_scan2.ps1 (9007 B)
+   OK   exists: code/tasks/t2_install_java.ps1 (14030 B)
+   OK   exists: code/tasks/t3_edrive_scan3.ps1 (7084 B)
+   OK   exists: code/tasks/t4_cleanup_dryrun.ps1 (5995 B)
+   OK   exists: code/tasks/t1_antigravity_verify.ps1 (3793 B)
+   OK   exists: code/tasks/t2_cleanup_exec.ps1 (12624 B)
+   OK   exists: results/status/round22_findings.md (3511 B)
+   OK   exists: code/tasks/t5_cleanup_fix.ps1 (7475 B)
+   OK   exists: code/tasks/t7_ligplus_test.ps1 (6214 B)
+   OK   exists: code/tasks/t1_antigravity_tun2.ps1 (7694 B)
+   OK   exists: code/tasks/t6_docker_report.ps1 (5648 B)
+   OK   exists: code/tasks/t8_uvcache_finish.ps1 (2719 B)
+   OK   exists: code/tasks/t9_ligplus_upgrade.ps1 (8739 B)
+   OK   exists: code/tasks/t10_ligplus_final.ps1 (9282 B)
+   OK   exists: code/tasks/t11_javagui_fix.ps1 (3986 B)
+   OK   exists: code/tasks/t12_ligplus_new.ps1 (7178 B)
+   OK   exists: code/tasks/t13_docker_autofigure.ps1 (2917 B)
+   OK   exists: code/tasks/t14_recyclebin_empty.ps1 (2689 B)
+   OK   exists: code/tasks/t15_uvcache_final.ps1 (4126 B)
+   OK   exists: code/tasks/t16_uvcache_final2.ps1 (3987 B)
+   OK   exists: code/tasks/t17_uv_delete_bg.ps1 (4570 B)
+   OK   exists: code/tasks/t18_edrive_survey.ps1 (15793 B)
+   OK   exists: code/tasks/t17b_uv_finish.ps1 (3803 B)
+   OK   exists: code/tasks/t19_cleanup_approved.ps1 (9331 B)
+   OK   exists: code/tasks/t20_docker_pagefile.ps1 (5765 B)
+   OK   exists: code/tasks/t21_optimize_review.ps1 (7881 B)
+   OK   exists: code/tasks/t22_pagefile_uac.ps1 (2571 B)
+   OK   exists: code/tasks/t23_tailscale_verify.ps1 (2476 B)
+   OK   exists: code/tasks/t24_oldsync_cleanup.ps1 (2537 B)
+   OK   exists: code/tasks/t25_oldtask_uac.ps1 (4503 B)
+   OK   exists: code/tasks/t26_pagefile_fix_uac.ps1 (4880 B)
+   OK   exists: code/tasks/t27_pagefile_registry.ps1 (4513 B)
+   OK   exists: code/tasks/t28_reboot_verify.ps1 (2764 B)
+   OK   exists: code/tasks/t29_ddrive_survey.ps1 (9818 B)
+   OK   exists: code/tasks/t30_tailscale_prep.ps1 (5189 B)
+   OK   exists: code/tasks/t31_enable_rdp_ssh.ps1 (4127 B)
+   OK   exists: code/tasks/t32_wsl26_survey.ps1 (4565 B)
+   OK   exists: code/tasks/t33_hpc_probe.ps1 (5024 B)
+   OK   exists: code/tasks/t34_hpc_bridge.ps1 (4027 B)
+   OK   exists: code/tasks/t35_desktop_access_probe.ps1 (4368 B)
+   OK   exists: code/tasks/t36_autostart_vpn_tailscale.ps1 (6281 B)
+   OK   exists: code/tasks/t37_software_inventory.ps1 (6288 B)
+   OK   exists: code/tasks/t38_uninstall_qwenpaw.ps1 (6601 B)
+   OK   exists: code/tasks/t39_toolbox_and_paths.ps1 (6919 B)
+   OK   exists: code/tasks/t40_mcp_n8n_r_survey.ps1 (12366 B)
+   OK   exists: code/tasks/t41_bigdocs_report.ps1 (8722 B)
+   OK   exists: code/tasks/t42_fix_desktop_and_rdetail.ps1 (3650 B)
+   OK   exists: code/tasks/t43_wsl_r_probe2.ps1 (1800 B)
+   OK   exists: code/tasks/t44_r_final_check.ps1 (1752 B)
+   OK   exists: code/tasks/t45_r_versions_cleanup.ps1 (6361 B)
+   OK   exists: code/tasks/t46_zotero_recon.ps1 (11043 B)
+   OK   exists: code/tasks/t47_pipeline_fetch.ps1 (6956 B)
+   OK   exists: code/tasks/t48_run.ps1 (2765 B)
+   OK   exists: code/tasks/t48_english_citations.py (3044 B)
+   OK   exists: code/tasks/t48_zotero_match.py (2228 B)
+   OK   exists: code/tasks/t49_run.ps1 (912 B)
+   OK   exists: code/tasks/t49_dump_refs.py (3503 B)
+   OK   exists: code/tasks/t50_run.ps1 (1969 B)
+   OK   exists: code/tasks/t50_zotero_link.py (14995 B)
+   OK   exists: code/tasks/t51_run.ps1 (1053 B)
+   OK   exists: code/tasks/t51_verify_fix.py (16798 B)
+   OK   exists: code/tasks/t52_run.ps1 (1041 B)
+   OK   exists: code/tasks/t52_build_final.py (17034 B)
+   OK   exists: code/tasks/t53_word_check.ps1 (1876 B)
+   OK   exists: code/tasks/t54_recon2.ps1 (6934 B)
+   OK   exists: code/tasks/t54_crossref_verify.py (3308 B)
+   OK   exists: code/tasks/t55_run.ps1 (4739 B)
+   OK   exists: code/tasks/t55_rebuild9.py (17034 B)
+   OK   exists: code/tasks/t56_abtest.ps1 (5636 B)
+   OK   exists: code/tasks/t56_import_zotero.py (2992 B)
+   OK   exists: code/tasks/t57_run.ps1 (981 B)
+   OK   exists: code/tasks/t57_bind_uris.py (5318 B)
+   OK   exists: code/tasks/t58_recon_install.ps1 (6846 B)
+   OK   exists: code/tasks/t59_install_bridge.ps1 (10039 B)
+   OK   exists: code/tasks/t60_rot_bridge.ps1 (7846 B)
+   OK   exists: code/tasks/t61_rot_fallback.ps1 (6145 B)
+   OK   exists: code/tasks/t62_file_bridge.ps1 (12790 B)
+   OK   exists: code/tasks/fig1_rebuild_worker.ps1 (17400 B)
+   OK   exists: code/tasks/t63_final_rebuild.ps1 (3259 B)
+   OK   exists: code/tasks/t64_poll_rebuild.ps1 (4877 B)
+   OK   exists: code/tasks/t65_relaunch_worker.ps1 (3077 B)
+   OK   exists: code/tasks/t66_diag_rebuild.ps1 (3307 B)
+   OK   exists: code/tasks/t67_probe_ai_state.ps1 (6861 B)
+   OK   exists: code/tasks/t68_bridge_v2_resume.ps1 (7061 B)
+   OK   exists: code/tasks/t69_tfprobe.ps1 (5639 B)
+   OK   exists: code/tasks/t70_v2_rebuild.ps1 (5637 B)
+   OK   exists: code/tasks/t71_install_celllct.ps1 (11998 B)
+   OK   exists: code/tasks/t72_fix_getcs.ps1 (3975 B)
+   OK   exists: code/tasks/t73_v5_relaunch.ps1 (2813 B)
+   OK   exists: code/tasks/t74_hpc_watch.ps1 (4333 B)
+   OK   exists: code/tasks/t75_test_celllct.ps1 (8744 B)
+   OK   exists: code/tasks/t76_test_cellsu7.ps1 (8729 B)
+   OK   exists: code/tasks/t77_demo_celllct.ps1 (3053 B)
+   OK   exists: code/tasks/t78_demo_cellsu7.ps1 (3053 B)
+   OK   exists: code/tasks/t79_desktop_ssh_and_paths.ps1 (8292 B)
+   OK   exists: code/tasks/t80_desktop_ssh_stability.ps1 (3135 B)
+   OK   exists: code/tasks/t81_smb_key_install.ps1 (6256 B)
+   OK   exists: code/tasks/t82_bni_ssh_test.ps1 (2170 B)
+   OK   exists: code/tasks/t83_deskprobe.ps1 (3312 B)
+   OK   exists: code/tasks/t84_deskstage_sync.ps1 (5216 B)
+   OK   exists: code/tasks/desktop_worker.ps1 (11147 B)
+   OK   exists: code/tasks/install_desktop.ps1 (7594 B)
+   OK   exists: code/tasks/t85_syncfix.ps1 (3014 B)
+   OK   exists: code/tasks/t86_deskinstall.ps1 (3447 B)
+   OK   exists: code/tasks/t87_deskpython.ps1 (5575 B)
+   OK   exists: code/tasks/t88_deskdeps.ps1 (3839 B)
+   OK   exists: code/tasks/t89_desk_fixture.ps1 (3801 B)
+   OK   exists: code/tasks/t90_desk_fig1.ps1 (3772 B)
+   OK   exists: code/tasks/t91_desk_fig1b.ps1 (3773 B)
+   OK   exists: code/tasks/t92_desk_collect.ps1 (3232 B)
+   OK   exists: code/tasks/t93_desk_antigravity.ps1 (2326 B)
+   OK   exists: code/tasks/desk_antigravity_diag.ps1 (6657 B)
+   OK   exists: code/tasks/t94_desk_agy_fix.ps1 (2146 B)
+   OK   exists: code/tasks/desk_antigravity_fix.ps1 (5081 B)
+   OK   exists: code/tasks/t95_desk_agy_fix2.ps1 (2152 B)
+   OK   exists: code/tasks/desk_antigravity_fix2.ps1 (5225 B)
+   OK   exists: code/tasks/t96_desk_agy_verify.ps1 (2060 B)
+   OK   exists: code/tasks/desk_antigravity_verify.ps1 (2657 B)
+   OK   exists: code/tasks/t97_desk_agy_fix3.ps1 (2000 B)
+   OK   exists: code/tasks/desk_antigravity_fix3.ps1 (4558 B)
+   OK   exists: code/tasks/t98_desk_agy_verify2.ps1 (2079 B)
+   OK   exists: code/tasks/desk_antigravity_verify2.ps1 (3475 B)
+   OK   exists: code/tasks/t99_desk_agy_verify3.ps1 (3333 B)
+   OK   exists: code/tasks/desk_antigravity_verify3.ps1 (6500 B)
+   OK   exists: code/tasks/t100_desk_agy_fix4.ps1 (2698 B)
+   OK   exists: code/tasks/desk_antigravity_fix4.ps1 (13273 B)
+   OK   exists: code/tasks/t101_desk_agy_fix4.ps1 (3191 B)
+   OK   absent: local/inbox
+   OK   absent: local/status_receipts
+   OK   absent: skills/docx_skill.py
+   OK   absent: local_bridge_skill.py
+   OK   contains skills/git-sync/VERSION <- 2.8.1
+   OK   contains 01a0a821.md <- arena/01a0a98d-git-pull-arena
+   OK   contains skills/git-sync/sync.config.json <- arena/01a0a9f0-git-pull-arena
+   OK   contains skills/git-sync/templates/one-sentence.md <- agent-handoff.sh
+   OK   contains skills/git-sync/scripts/agent-install.sh <- refusing to downgrade
+   OK   contains code/check_all.sh <- py -3
+   OK   contains code/local_check.ps1 <- no Office deliverable declared
+   OK   contains deliverable/OFFICE_HASHES.json <- arena/01a0a9f0-git-pull-arena
+   OK   contains watch.ps1 <- function Invoke-AutoPull
+   OK   contains skills/git-sync/scripts/watch.ps1 <- function Invoke-Focus
+   OK   contains code/tasks/manifest.json <- t3_edrive_scan.ps1
+   OK   contains code/tasks/t1_fix_antigravity.ps1 <- http.proxy
+   OK   contains code/tasks/t2_install_java.ps1 <- E:\java
+   OK   regex watch.ps1
+   OK   regex code/local_check.ps1
+   OK   regex deliverable/OFFICE_HASHES.json
+   OK   size skills/git-sync/scripts/agent-handoff.sh: 4603 >= 2000
+   OK   size skills/git-sync/scripts/agent-install.sh: 13404 >= 10000
+   OK   size code/check_all.sh: 9945 >= 8000
+   OK   size code/local_check.ps1: 30124 >= 12000
+   OK   size code/make_link_proof.py: 22948 >= 8000
+   OK   size deliverable/OFFICE_HASHES.json: 2401 >= 500
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 >= 5000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 >= 15000
+   OK   size watch.ps1: 84094 >= 20000
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 <= 3000000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 <= 3000000
+== local checks passed
