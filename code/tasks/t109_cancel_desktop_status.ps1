@@ -1,5 +1,5 @@
 # t109_cancel_desktop_status.ps1 - round 145 REPLACEMENT task: the user
-# cancelled all laptop-side testing ("笔记本的不要测试了"). The original
+# cancelled ALL laptop-side testing (user request 2026-10-01). The original
 # t109 laptop impress retry must NOT run. This replacement does exactly one
 # read-only thing: report the desktop's background WPS download progress.
 # No laptop-local probes, no WPS automation anywhere. ASCII-only.
