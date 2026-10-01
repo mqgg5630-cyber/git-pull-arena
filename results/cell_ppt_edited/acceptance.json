@@ -1,0 +1,167 @@
+{
+  "passed": 28,
+  "checks": [
+    "11 MCP tools and capability contracts",
+    "batch create five native objects",
+    "legacy basic edits share the advanced session",
+    "completion footer returned verbatim",
+    "both legacy tool sets use same document",
+    "group is editable native group",
+    "inspect grouped child by path",
+    "ungroup preserves object IDs and geometry",
+    "delete and idempotent replay",
+    "whole-batch preflight prevents preceding create",
+    "linear native multi-stop gradient",
+    "radial native multi-stop gradient",
+    "corner native multi-stop gradient",
+    "native cubic path with control handles",
+    "move Bezier handle",
+    "stale path hash rejected",
+    "insert native path node",
+    "delete native path node",
+    "set native node editing mode",
+    "line converted to cubic segment",
+    "Unicode rich replacement after emoji",
+    "subscript and untouched prefix preserved",
+    "mixed paragraphs and bullet formatting",
+    "hyperlink retained as native text formatting",
+    "zero-length append range",
+    "checkpoint and save",
+    "untargeted sentinel unchanged",
+    "saved OOXML keeps gradients curves and text native"
+  ],
+  "timings": [
+    {
+      "actions": [
+        "create",
+        "create",
+        "create",
+        "create",
+        "create"
+      ],
+      "roundtrip_ms": 526.713,
+      "server_ms": 526.095
+    },
+    {
+      "actions": [
+        "group"
+      ],
+      "roundtrip_ms": 66.553,
+      "server_ms": 66.053
+    },
+    {
+      "actions": [
+        "ungroup"
+      ],
+      "roundtrip_ms": 102.492,
+      "server_ms": 102.074
+    },
+    {
+      "actions": [
+        "gradient"
+      ],
+      "roundtrip_ms": 168.545,
+      "server_ms": 168.123
+    },
+    {
+      "actions": [
+        "gradient"
+      ],
+      "roundtrip_ms": 150.0,
+      "server_ms": 149.536
+    },
+    {
+      "actions": [
+        "gradient"
+      ],
+      "roundtrip_ms": 142.434,
+      "server_ms": 141.974
+    },
+    {
+      "actions": [
+        "create"
+      ],
+      "roundtrip_ms": 70.091,
+      "server_ms": 69.608
+    },
+    {
+      "actions": [
+        "nodes"
+      ],
+      "roundtrip_ms": 108.522,
+      "server_ms": 107.948
+    },
+    {
+      "actions": [
+        "nodes"
+      ],
+      "roundtrip_ms": 98.047,
+      "server_ms": 97.482
+    },
+    {
+      "actions": [
+        "nodes"
+      ],
+      "roundtrip_ms": 94.107,
+      "server_ms": 93.62
+    },
+    {
+      "actions": [
+        "nodes"
+      ],
+      "roundtrip_ms": 77.561,
+      "server_ms": 77.044
+    },
+    {
+      "actions": [
+        "create"
+      ],
+      "roundtrip_ms": 64.941,
+      "server_ms": 64.504
+    },
+    {
+      "actions": [
+        "nodes"
+      ],
+      "roundtrip_ms": 68.337,
+      "server_ms": 67.837
+    },
+    {
+      "actions": [
+        "create"
+      ],
+      "roundtrip_ms": 562.325,
+      "server_ms": 561.82
+    },
+    {
+      "actions": [
+        "rich_text"
+      ],
+      "roundtrip_ms": 288.026,
+      "server_ms": 287.366
+    },
+    {
+      "actions": [
+        "rich_text"
+      ],
+      "roundtrip_ms": 437.463,
+      "server_ms": 436.693
+    },
+    {
+      "actions": [
+        "rich_text"
+      ],
+      "roundtrip_ms": 263.238,
+      "server_ms": 262.519
+    },
+    {
+      "actions": [
+        "create",
+        "delete"
+      ],
+      "roundtrip_ms": 1050.92,
+      "server_ms": 1050.362
+    }
+  ],
+  "artifact": "F:\\fig1_rebuild\\cpe\\iout_a1\\acceptance.pptx"
+}

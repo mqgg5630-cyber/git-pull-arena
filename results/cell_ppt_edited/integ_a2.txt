@@ -1,12 +1,19 @@
+PREP[a2] start prewarm=0
+PREP: resiliency + first-run state cleared
+PREP: powerpnt running=1
+PREP: active object ok, presentations=0
+PREP: graceful quit issued
+PREP: still running, force kill + clean crash state
+PREP[a2] done
 Traceback (most recent call last):
   File "F:\fig1_rebuild\cpe\src\integration.py", line 108, in <module>
     if __name__=='__main__':main()
                             ^^^^^^
-  File "F:\fig1_rebuild\cpe\src\integration.py", line 17, in main
-    slide=doc.Slides.Add(1,12)
-          ^^^^^^^^^^^^^^
-  File "C:\Users\BNI\AppData\Local\Programs\Python\Python312\Lib\site-packages\win32com\client\dynamic.py", line 631, in __getattr__
-    raise AttributeError(f"{self._username_}.{attr}")
-AttributeError: <unknown>.Add
+  File "F:\fig1_rebuild\cpe\src\integration.py", line 18, in main
+    sentinel=slide.Shapes.AddShape(1,850,470,60,30);sentinel.Name="untouched";sentinel.Fill.ForeColor.RGB=0x332211
+                                                    ^^^^^^^^^^^^^
+  File "C:\Users\BNI\AppData\Local\Programs\Python\Python312\Lib\site-packages\win32com\client\dynamic.py", line 699, in __setattr__
+    raise AttributeError(f"Property '{self._username_}.{attr}' can not be set.")
+AttributeError: Property 'AddShape.Name' can not be set.
 INTEG-EXIT 1 
 INTEG-DONE 

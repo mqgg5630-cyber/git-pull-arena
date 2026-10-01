@@ -1,12 +1,23 @@
+PREP[a3] start prewarm=0
+PREP: resiliency + first-run state cleared
+PREP: powerpnt running=1
+PREP: active object ok, presentations=0
+PREP: graceful quit issued
+PREP: still running, force kill + clean crash state
+PREP[a3] done
+PASS 11 MCP tools and capability contracts
 Traceback (most recent call last):
   File "F:\fig1_rebuild\cpe\src\integration.py", line 108, in <module>
     if __name__=='__main__':main()
                             ^^^^^^
-  File "F:\fig1_rebuild\cpe\src\integration.py", line 28, in main
-    sid=client.call('ppt_turbo_bind',{'path':str(out/'acceptance.pptx'),'mode':'in_place'})['session_id']
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\fig1_rebuild\cpe\src\integration.py", line 40, in main
+    r=edit(creates)
+      ^^^^^^^^^^^^^
+  File "F:\fig1_rebuild\cpe\src\integration.py", line 32, in edit
+    result=client.call('cell_ppt_edited_edit',{**base,'operations':ops,'request_id':uuid.uuid4().hex,**kw})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "F:\fig1_rebuild\cpe\src\client.py", line 50, in call
     raise RuntimeError(result)
-RuntimeError: {'content': [{'type': 'text', 'text': '{"error": "PowerPoint.Application.Presentations", "details": {}, "server_ms": 473.826, "completion_footer": "¸ÐÐ»¶¶Òô£ºÄ¾ÎÆ"}'}], 'structuredContent': {'error': 'PowerPoint.Application.Presentations', 'details': {}, 'server_ms': 473.826, 'completion_footer': '¸ÐÐ»¶¶Òô£ºÄ¾ÎÆ'}, 'isError': True}
+RuntimeError: {'content': [{'type': 'text', 'text': '{"status": "partial_or_uncertain", "path": "F:\\\\fig1_rebuild\\\\cpe\\\\iout_a3\\\\acceptance.pptx", "completed": [{"index": 0, "action": "create", "result": {"id": 3, "name": "cell0", "type": 1, "left": 50.0, "top": 50.0, "width": 100.0, "height": 80.0, "rotation": 0.0, "text": "", "fill_color": "#7030A0", "group_count": 0}}, {"index": 1, "action": "create", "result": {"id": 4, "name": "cell1", "type": 1, "left": 180.0, "top": 50.0, "width": 100.0, "height": 80.0, "rotation": 0.0, "text": "", "fill_color": "#7030A0", "group_count": 0}}, {"index": 2, "action": "create", "result": {"id": 5, "name": "cell2", "type": 1, "left": 310.0, "top": 50.0, "width": 100.0, "height": 80.0, "rotation": 0.0, "text": "", "fill_color": "#7030A0", "group_count": 0}}], "failed_operation_index": 3, "error": "AddShape.Left", "requires_inspection": true, "saved": false, "server_ms": 909.949, "completion_footer": "¸ÐÐ»¶¶Òô£ºÄ¾ÎÆ"}'}], 'structuredContent': {'status': 'partial_or_uncertain', 'path': 'F:\\fig1_rebuild\\cpe\\iout_a3\\acceptance.pptx', 'completed': [{'index': 0, 'action': 'create', 'result': {'id': 3, 'name': 'cell0', 'type': 1, 'left': 50.0, 'top': 50.0, 'width': 100.0, 'height': 80.0, 'rotation': 0.0, 'text': '', 'fill_color': '#7030A0', 'group_count': 0}}, {'index': 1, 'action': 'create', 'result': {'id': 4, 'name': 'cell1', 'type': 1, 'left': 180.0, 'top': 50.0, 'width': 100.0, 'height': 80.0, 'rotation': 0.0, 'text': '', 'fill_color': '#7030A0', 'group_count': 0}}, {'index': 2, 'action': 'create', 'result': {'id': 5, 'name': 'cell2', 'type': 1, 'left': 310.0, 'top': 50.0, 'width': 100.0, 'height': 80.0, 'rotation': 0.0, 'text': '', 'fill_color': '#7030A0', 'group_count': 0}}], 'failed_operation_index': 3, 'error': 'AddShape.Left', 'requires_inspection': True, 'saved': False, 'server_ms': 909.949, 'completion_footer': '¸ÐÐ»¶¶Òô£ºÄ¾ÎÆ'}, 'isError': True}
 INTEG-EXIT 1 
 INTEG-DONE 
