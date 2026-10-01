@@ -37,18 +37,18 @@ try {
 }
 finally { & net use $fshare /delete 2>&1 | Out-Null }
 
-$null = & ssh @sshBase ($duser + '@' $desktop) 'schtasks /end /tn wpsdl 2>nul & taskkill /f /im curl.exe 2>nul & schtasks /delete /tn wpsdl /f 2>nul' 2>&1
+$null = & ssh @sshBase ($duser + '@' + $desktop) 'schtasks /end /tn wpsdl 2>nul & taskkill /f /im curl.exe 2>nul & schtasks /delete /tn wpsdl /f 2>nul' 2>&1
 Start-Sleep -Seconds 3
-$mk = & ssh @sshBase ($duser + '@' $desktop) 'schtasks /create /tn wpsdl /tr F:\fig1_rebuild\wpsdl.cmd /sc once /st 23:59 /f' 2>&1
+$mk = & ssh @sshBase ($duser + '@' + $desktop) 'schtasks /create /tn wpsdl /tr F:\fig1_rebuild\wpsdl.cmd /sc once /st 23:59 /f' 2>&1
 L ('   schtasks create: ' + (San ((($mk | Out-String).Trim()) -replace "`r?`n", ' | ')))
-$rn = & ssh @sshBase ($duser + '@' $desktop) 'schtasks /run /tn wpsdl' 2>&1
+$rn = & ssh @sshBase ($duser + '@' + $desktop) 'schtasks /run /tn wpsdl' 2>&1
 L ('   schtasks run: ' + (San ((($rn | Out-String).Trim()) -replace "`r?`n", ' | ')))
 
 # ---------------- C. wait + report growth ----------------
 Start-Sleep -Seconds 240
-$sz = & ssh @sshBase ($duser + '@' $desktop) 'dir F:\fig1_rebuild\wps_setup.partial 2>nul | findstr partial' 2>&1
+$sz = & ssh @sshBase ($duser + '@' + $desktop) 'dir F:\fig1_rebuild\wps_setup.partial 2>nul | findstr partial' 2>&1
 foreach ($ln in @($sz)) { L ('   after 240s: ' + (San ([string]$ln))) }
-$dl2 = & ssh @sshBase ($duser + '@' $desktop) 'type F:\fig1_rebuild\wps_download.log 2>nul' 2>&1
+$dl2 = & ssh @sshBase ($duser + '@' + $desktop) 'type F:\fig1_rebuild\wps_download.log 2>nul' 2>&1
 foreach ($ln in @($dl2 | Select-Object -Last 3)) { if ($ln) { L ('   log: ' + (San ([string]$ln))) } }
 L '--- task t110 done ---'
 exit 0

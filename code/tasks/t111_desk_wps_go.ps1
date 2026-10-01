@@ -38,7 +38,7 @@ while ($size -lt 200MB -and $waited -lt 900) {
 L ('   setup size: ' + [math]::Round($size/1MB) + 'MB (waited ' + $waited + 's)')
 if ($size -lt 200MB) {
     L '   [FAIL] download still incomplete - install deferred to next round'
-    $dl = & ssh @sshBase ($duser + '@' $desktop) 'type F:\fig1_rebuild\wps_download.log 2>nul' 2>&1
+    $dl = & ssh @sshBase ($duser + '@' + $desktop) 'type F:\fig1_rebuild\wps_download.log 2>nul' 2>&1
     foreach ($ln in @($dl | Select-Object -Last 4)) { if ($ln) { L ('   wpsdl log: ' + (San ([string]$ln))) } }
     exit 2
 }
