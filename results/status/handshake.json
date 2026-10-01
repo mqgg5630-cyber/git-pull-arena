@@ -1,9 +1,9 @@
 {
-    "round":  136,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 136: t100 - stage desk_antigravity_fix4.ps1 via F$, run over ssh: phase A dump state (cmdlines, HKCU env, settings validity, curl to daily-cloudcode-pa), phase B rewrite wrapper with literal lines + byte-exact read-back + settings merge + setx, phase C kill + relaunch via wrapper task + prove chain (LastRunTime vs process start, LS cmdline, TCP to-proxy probe, fresh ls.log dial-tcp must be 0); then dump laptop reference settings.json + HKCU env",
-    "arena_updated":  "2026-10-01 11:28:08",
-    "local_updated":  "2026-10-01 19:30:09"
+  "round": 137,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 137: t101 - laptop pre-validates desk_antigravity_fix4.ps1 with ParseFile, then stages via F$ and runs over ssh: phase A dump, phase B literal wrapper + read-back + settings merge (noProxy array) + setx, phase C kill + wrapper-task relaunch + TCP to-proxy probe + fresh ls.log dial-tcp must be 0; then laptop reference already captured - skip re-dump",
+  "arena_updated": "2026-10-01 11:33:11",
+  "local_updated": null
 }
