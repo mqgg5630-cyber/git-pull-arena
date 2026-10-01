@@ -1,9 +1,9 @@
 {
-    "round":  165,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 165: t125 - retry phase 1 with --ssl-no-revoke on proxy curl: download zip+sums, verify sha256, extract, self-test + doctor, CheckOnly (PowerPoint 2016 confirmed present; Codex absent - engine-only test path)",
-    "arena_updated":  "2026-10-01 17:56:07",
-    "local_updated":  "2026-10-02 01:58:05"
+  "round": 166,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 166: t125 - phase 1: download zip+sums via proxy with --ssl-no-revoke, verify sha256, extract, cell-ppt-edited.exe --self-test + --doctor, Install.ps1 -CheckOnly (PowerPoint 2016 present, Codex absent)",
+  "arena_updated": "2026-10-01 17:59:25",
+  "local_updated": null
 }
