@@ -1,9 +1,9 @@
 {
-  "round": 113,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 113: t83 read-only probe: laptop AI dir size/files, desktop drives+free space via ssh, quser login state, F$ admin share test from laptop",
-  "arena_updated": "2026-10-01 07:41:55",
-  "local_updated": null
+    "round":  113,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 113: t83 read-only probe: laptop AI dir size/files, desktop drives+free space via ssh, quser login state, F$ admin share test from laptop",
+    "arena_updated":  "2026-10-01 07:41:55",
+    "local_updated":  "2026-10-01 15:42:50"
 }
