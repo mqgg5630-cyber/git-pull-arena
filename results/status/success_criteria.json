@@ -192,7 +192,10 @@
     "code/tasks/deck_warm_build.py",
     "code/tasks/t122_amp_deck.ps1",
     "code/tasks/desk_amp_deck.ps1",
-    "code/tasks/amp_deck_build.py"
+    "code/tasks/amp_deck_build.py",
+    "code/tasks/t123_amp_deck2.ps1",
+    "code/tasks/desk_amp_deck2.ps1",
+    "code/tasks/amp_deck_v2_build.py"
   ],
   "forbid_files": [
     "local/inbox",
