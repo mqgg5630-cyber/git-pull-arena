@@ -1,9 +1,9 @@
 {
-    "round":  147,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 146: t110 retry - desktop: report stalled wpsdl state, deploy wpsdl.cmd v2 (proxy env cleared + curl --noproxy), delete partial, restart task, wait 240s, report growth; re-robocopy patched harness-anything + stage desk_wps_install.ps1 + verify_pptx.py + desk_harness_deck.py on F$",
-    "arena_updated":  "2026-10-01 14:05:31",
-    "local_updated":  "2026-10-01 22:06:33"
+  "round": 148,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 148: t111b - stage fixed desk_wps_install.ps1 + verify_pptx.py + deck_harness_deck.py + patched harness tree on F$, exact-size check wps_setup.exe (>=200MB), then ssh run: silent WPS install /S with ProgID polls, COM verify KWPS/KET/KWPP, offline harness pip install, writer->docx + impress->pptx smoke tests with reopen verification",
+  "arena_updated": "2026-10-01 14:09:30",
+  "local_updated": null
 }
