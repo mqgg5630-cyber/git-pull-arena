@@ -48,7 +48,7 @@ New-Item -ItemType Directory -Force -Path $dir | Out-Null
 $zip = Join-Path $dir 'cell_ppt_edited-1.1.0-windows-x64.zip'
 if (-not (Test-Path -LiteralPath $zip) -or ((Get-Item -LiteralPath $zip -ErrorAction SilentlyContinue).Length -lt 1MB)) {
     $u = 'https://github.com/yrui-cmd/cell_ppt_edited/releases/download/v1.1.0/cell_ppt_edited-1.1.0-windows-x64.zip'
-    & curl.exe -x http://127.0.0.1:10808 -L -sS -o $zip --max-time 300 --connect-timeout 20 $u 2>&1 | ForEach-Object { L ('   curl: ' + (San ([string]$_))) }
+    & curl.exe -x http://127.0.0.1:10808 --ssl-no-revoke -L -sS -o $zip --max-time 300 --connect-timeout 20 $u 2>&1 | ForEach-Object { L ('   curl: ' + (San ([string]$_))) }
 }
 if (-not (Test-Path -LiteralPath $zip)) { L '   [FAIL] download produced nothing'; exit 2 }
 L ('   zip: ' + [math]::Round((Get-Item -LiteralPath $zip).Length/1MB) + 'MB')
@@ -56,7 +56,7 @@ if ((Get-Item -LiteralPath $zip).Length -lt 10MB) { L '   [FAIL] zip too small';
 
 $sums = Join-Path $dir 'SHA256SUMS.txt'
 if (-not (Test-Path -LiteralPath $sums)) {
-    & curl.exe -x http://127.0.0.1:10808 -L -sS -o $sums --max-time 60 'https://github.com/yrui-cmd/cell_ppt_edited/releases/download/v1.1.0/SHA256SUMS.txt' 2>&1 | Out-Null
+    & curl.exe -x http://127.0.0.1:10808 --ssl-no-revoke -L -sS -o $sums --max-time 60 'https://github.com/yrui-cmd/cell_ppt_edited/releases/download/v1.1.0/SHA256SUMS.txt' 2>&1 | Out-Null
 }
 $expected = ''
 if (Test-Path -LiteralPath $sums) {
