@@ -1,9 +1,9 @@
 {
-  "round": 160,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 160: t121 retry - same as r159 with impress_mod.add_slide_element fix: warm wpp, phase1 single-process deck build, phase2 interactive fallback, writer smoke, FINAL verdict, collect artifacts",
-  "arena_updated": "2026-10-01 17:02:11",
-  "local_updated": null
+    "round":  160,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 160: t121 retry - same as r159 with impress_mod.add_slide_element fix: warm wpp, phase1 single-process deck build, phase2 interactive fallback, writer smoke, FINAL verdict, collect artifacts",
+    "arena_updated":  "2026-10-01 17:02:11",
+    "local_updated":  "2026-10-02 01:04:51"
 }
