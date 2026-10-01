@@ -58,6 +58,7 @@ elseif (-not (Test-Path -LiteralPath $setup)) {
 }
 else {
     L ('   setup: ' + [math]::Round((Get-Item -LiteralPath $setup).Length/1MB) + 'MB')
+    if ((Get-Item -LiteralPath $setup).Length -lt 200MB) { L '   [FAIL] setup too small - download incomplete, rerun wpsdl task'; exit 2 }
     foreach ($n in @('wps', 'et', 'wpp', 'wpscloudlaunch', 'wpscenter')) { try { & taskkill /f /im ($n + '.exe') 2>&1 | Out-Null } catch { } }
     try {
         $p = Start-Process -FilePath $setup -ArgumentList '/S' -PassThru -ErrorAction Stop

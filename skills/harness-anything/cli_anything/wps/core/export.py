@@ -474,7 +474,10 @@ def _fill_impress(doc, project: Dict[str, Any]) -> None:
 
     for si, slide_data in enumerate(slides):
         if si == 0:
-            slide = doc.Slides(1)
+            try:
+                slide = doc.Slides(1)
+            except Exception:
+                slide = doc.Slides.Add(1, 2)  # ppLayoutText
         else:
             slide = doc.Slides.Add(si + 1, 2)  # ppLayoutText = 2
 

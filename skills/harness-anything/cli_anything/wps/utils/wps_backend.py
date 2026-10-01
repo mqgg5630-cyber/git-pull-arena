@@ -168,6 +168,46 @@ def find_wps(app_type: str = "writer"):
         import pythoncom
         pythoncom.CoInitialize()
         app = win32com.client.Dispatch(progid)
+        if app_type.lower() in ("impress", "wpp"):
+            ok = False
+            try:
+                p = app.Presentations.Add()
+                try:
+                    if p.Slides.Count == 0:
+                        p.Slides.Add(1, 2)
+                    _ = p.Slides(1)
+                    ok = True
+                finally:
+                    try:
+                        p.Close()
+                    except Exception:
+                        pass
+            except Exception:
+                ok = False
+            if ok:
+                return app
+            try:
+                app.Quit()
+            except Exception:
+                pass
+            for alt in ("wpp.Application", "{44720441-94BF-4940-926D-4F38FECF2A48}"):
+                try:
+                    app = win32com.client.Dispatch(alt)
+                    p = app.Presentations.Add()
+                    if p.Slides.Count == 0:
+                        p.Slides.Add(1, 2)
+                    _ = p.Slides(1)
+                    try:
+                        p.Close()
+                    except Exception:
+                        pass
+                    return app
+                except Exception:
+                    try:
+                        app.Quit()
+                    except Exception:
+                        pass
+            raise RuntimeError("no healthy WPP COM engine found (tried KWPP, wpp.Application, CLSID)")
         return app
     except ImportError:
         raise RuntimeError(
