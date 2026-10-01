@@ -1,9 +1,9 @@
 {
-  "round": 157,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 157: t119 - stage final-v2, ssh run: kill WPS + reinstall, DECK build first (12 slides, fresh state), kill+cooldown, impress smoke + verify_pptx, kill+cooldown, writer smoke, FINAL verdict, collect artifacts into results/harness_wps/desktop/",
-  "arena_updated": "2026-10-01 16:42:06",
-  "local_updated": null
+    "round":  157,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 157: t119 - stage final-v2, ssh run: kill WPS + reinstall, DECK build first (12 slides, fresh state), kill+cooldown, impress smoke + verify_pptx, kill+cooldown, writer smoke, FINAL verdict, collect artifacts into results/harness_wps/desktop/",
+    "arena_updated":  "2026-10-01 16:42:06",
+    "local_updated":  "2026-10-02 00:44:16"
 }
