@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.2",
+  "schema_version": "1.3",
   "task": "fig1 graphical abstract rebuild - clean edition (cell-lct, no paid path)",
   "input": "results/reference/fig1_cleaned.png (cv2.inpaint, OCR 0 residual)",
   "text_manifest": "results/reference/fig1_text_manifest.json (40 elements, font sizes corrected via measured-Arial-width feedback from the v1 draw)",
@@ -68,5 +68,27 @@
       "reproducibility": "each demo is also 100.00% pixel-identical to its earlier run (shibielujing4 / shibielujing2) - fully deterministic",
       "both_vs_original": "mean abs diff 12.43, 86.30% pixels within 32"
     }
+  },
+  "desktop_replication": {
+    "machine": "DESKTOP-IEUDGS5 (BNI), Illustrator 2020 synced to F:\\ via robocopy (1.923 GB), Python 3.12.10 offline-installed (laptop kit + SMB), skills installed from patched zips",
+    "cell_lct": {
+      "test": "PASS (tf=2|pi=4, rotated text OK)",
+      "full_demo": "PASS (jobs\\shibielujing2, 12/12 batches, .ai 814KB + .png 272KB)"
+    },
+    "cell_su7": {
+      "test": "PASS (tf=2|pi=4)",
+      "full_demo": "PASS (jobs\\shibielujing1, 12/12 batches, .ai 813KB + .png 272KB)"
+    },
+    "verification": {
+      "ocr": "38/40 both (same known OCR traps as laptop)",
+      "rotated_label_ink": "RMSD (nm) present (79 dark px)",
+      "cross_machine_determinism": "desktop vs laptop outputs are 100.00% pixel-identical for BOTH skills (and fixtures too)",
+      "both_vs_original": "mean 12.43, 86.30% within 32"
+    },
+    "desktop_paths": {
+      "fixtures": "F:\\fig1_rebuild\\test-cell-lct\\ , F:\\fig1_rebuild\\test-cell_su7\\",
+      "fig1_demos": "F:\\fig1_rebuild\\jobs\\shibielujing2 (cell-lct) , F:\\fig1_rebuild\\jobs\\shibielujing1 (cell_su7)"
+    },
+    "repo_copies": "results/fig1_rebuild/desktop/ (18 files: fixtures + demos + manifests + logs)"
   }
 }
