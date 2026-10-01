@@ -204,7 +204,10 @@ def export(
     doc = None
     try:
         app = find_wps(doc_type)
-        app.Visible = False  # 后台运行
+        try:
+            app.Visible = False
+        except Exception:
+            pass
 
         doc = create_document(app, doc_type)
         _fill_document(doc, project, doc_type)
