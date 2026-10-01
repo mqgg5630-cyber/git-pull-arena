@@ -128,7 +128,9 @@
     "code/tasks/t86_deskinstall.ps1",
     "code/tasks/t87_deskpython.ps1",
     "code/tasks/t88_deskdeps.ps1",
-    "code/tasks/t89_desk_fixture.ps1"
+    "code/tasks/t89_desk_fixture.ps1",
+    "code/tasks/t90_desk_fig1.ps1",
+    "code/tasks/t91_desk_fig1b.ps1"
   ],
   "forbid_files": [
     "local/inbox",
