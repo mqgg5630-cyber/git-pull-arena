@@ -1,9 +1,9 @@
 {
-  "round": 115,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 115: t85 dump robocopy.log, reconnect F$, pre-create destination dir, run robocopy inline (MIR/MT:16), report exit code + tail, verify remote Illustrator.exe",
-  "arena_updated": "2026-10-01 07:49:11",
-  "local_updated": null
+    "round":  115,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 115: t85 dump robocopy.log, reconnect F$, pre-create destination dir, run robocopy inline (MIR/MT:16), report exit code + tail, verify remote Illustrator.exe",
+    "arena_updated":  "2026-10-01 07:49:11",
+    "local_updated":  "2026-10-01 15:59:49"
 }
