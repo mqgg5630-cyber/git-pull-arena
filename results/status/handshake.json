@@ -1,9 +1,9 @@
 {
-  "round": 163,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 163: t123 retry - same as r162 with the true->True fix: warm wpp, single-process v2 build (design system + 83 graphic ops), collect amp_ml_prediction_v2.pptx into results/amp_deck/",
-  "arena_updated": "2026-10-01 17:39:10",
-  "local_updated": null
+    "round":  163,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 163: t123 retry - same as r162 with the true-\u003eTrue fix: warm wpp, single-process v2 build (design system + 83 graphic ops), collect amp_ml_prediction_v2.pptx into results/amp_deck/",
+    "arena_updated":  "2026-10-01 17:39:10",
+    "local_updated":  "2026-10-02 01:42:01"
 }

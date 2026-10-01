@@ -1,0 +1,85 @@
+{
+ "name": "amp-ml-prediction-v2",
+ "version": "2.0",
+ "type": "impress",
+ "settings": {},
+ "metadata": {
+  "title": "机器学习预测抗菌肽",
+  "author": "arena-agent",
+  "description": "ML prediction of AMPs - designed edition",
+  "subject": ""
+ },
+ "styles": [],
+ "slides": [
+  {
+   "title": "机器学习预测抗菌肽",
+   "content": "从序列特征工程到蛋白质语言模型",
+   "elements": []
+  },
+  {
+   "title": "背景：为什么需要新的抗菌武器",
+   "content": "抗生素耐药（AMR）威胁持续升级\n传统抗生素发现管线趋于枯竭",
+   "elements": []
+  },
+  {
+   "title": "抗菌肽是什么",
+   "content": "通常 10–50 aa · 带正电荷 · 两亲性\n静电吸附细菌负电膜 → 插膜 → 破膜",
+   "elements": []
+  },
+  {
+   "title": "数据库与数据集",
+   "content": "正样本：实验验证 AMP；负样本：非抗菌肽片段 / 打乱序列",
+   "elements": []
+  },
+  {
+   "title": "特征工程：序列描述符",
+   "content": "数十维手工特征 → 重要性筛选（mRMR / RF importance）",
+   "elements": []
+  },
+  {
+   "title": "经典机器学习模型",
+   "content": "小样本友好 · 可解释 · 上限取决于人工特征",
+   "elements": []
+  },
+  {
+   "title": "深度学习方法",
+   "content": "端到端学习，无需手工特征（Deep-AmPEP30：短肽 CNN 标杆）",
+   "elements": []
+  },
+  {
+   "title": "蛋白质语言模型时代",
+   "content": "预训练表征正在取代人工特征",
+   "elements": []
+  },
+  {
+   "title": "评估体系：怎么才算好模型",
+   "content": "交叉验证（5/10 折）+ 独立测试集 + 跨库泛化",
+   "elements": []
+  },
+  {
+   "title": "挑战与陷阱",
+   "content": "从预测到成药还有很长的路",
+   "elements": []
+  },
+  {
+   "title": "从预测到从头设计",
+   "content": "HYDRA（Nat. Biomed. Eng. 2023）：生成式设计 + ML 过滤批量获得有效 AMP",
+   "elements": []
+  },
+  {
+   "title": "应用场景",
+   "content": "一个模型 → 多个落地出口",
+   "elements": []
+  },
+  {
+   "title": "工程化复现路线图",
+   "content": "可落地的五步闭环",
+   "elements": []
+  },
+  {
+   "title": "总结与展望",
+   "content": "",
+   "elements": []
+  }
+ ]
+}
