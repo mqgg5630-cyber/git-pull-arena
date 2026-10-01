@@ -1,9 +1,9 @@
 {
-  "round": 162,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 162: t123 - stage amp_deck_v2_build.py + desk_amp_deck2.ps1, ssh run: warm wpp, single-process v2 build (design system + stat cards + membrane diagram + tables + pipeline + confusion matrix + loop + chevrons, all native editable shapes), collect amp_ml_prediction_v2.pptx into results/amp_deck/",
-  "arena_updated": "2026-10-01 17:28:23",
-  "local_updated": null
+    "round":  162,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 162: t123 - stage amp_deck_v2_build.py + desk_amp_deck2.ps1, ssh run: warm wpp, single-process v2 build (design system + stat cards + membrane diagram + tables + pipeline + confusion matrix + loop + chevrons, all native editable shapes), collect amp_ml_prediction_v2.pptx into results/amp_deck/",
+    "arena_updated":  "2026-10-01 17:28:23",
+    "local_updated":  "2026-10-02 01:38:27"
 }
