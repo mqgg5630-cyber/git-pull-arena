@@ -1,9 +1,9 @@
 {
-  "round": 138,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 138: t102 - final acceptance: ls.log since 19:35:19 relaunch must show 0 dial-tcp and 0 tls-garbage (whole window + last 5 min), auth markers, live to-proxy TCP > 0, HKLM env persisted, main.log clean, final PASS/FAIL",
-  "arena_updated": "2026-10-01 11:51:58",
-  "local_updated": null
+    "round":  138,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 138: t102 - final acceptance: ls.log since 19:35:19 relaunch must show 0 dial-tcp and 0 tls-garbage (whole window + last 5 min), auth markers, live to-proxy TCP \u003e 0, HKLM env persisted, main.log clean, final PASS/FAIL",
+    "arena_updated":  "2026-10-01 11:51:58",
+    "local_updated":  "2026-10-01 19:53:59"
 }
