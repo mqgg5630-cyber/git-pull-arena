@@ -28,7 +28,7 @@ try {
         $srcDir = Join-Path $deskRoot $t
         $dstDir = Join-Path $dest $t
         New-Item -ItemType Directory -Force -Path $dstDir | Out-Null
-        foreach ($n in @('test_' + ($t -replace 'test-', '') + '.ai', 'test_' + ($t -replace 'test-', '') + '.png')) {
+        foreach ($n in @(('test_' + ($t -replace 'test-', '') + '.ai'), ('test_' + ($t -replace 'test-', '') + '.png'))) {
             $p = Join-Path $srcDir $n
             if (Test-Path -LiteralPath $p) { Copy-Item -LiteralPath $p -Destination (Join-Path $dstDir $n) -Force; $copied++; L ('   copied: ' + $t + '\' + $n + ' (' + [int]((Get-Item -LiteralPath $p).Length / 1024) + ' KB)') }
             else { L ('   [WARN] missing: ' + $t + '\' + $n) }
@@ -39,7 +39,7 @@ try {
     foreach ($jd in @(Get-ChildItem -LiteralPath $jobsDir -Directory -ErrorAction SilentlyContinue | Where-Object { $_.Name -match '^shibielujing\d+$' })) {
         $dstDir = Join-Path $dest $jd.Name
         New-Item -ItemType Directory -Force -Path $dstDir | Out-Null
-        foreach ($n in @($jd.Name + '.ai', $jd.Name + '.png', $jd.Name + '.svg', 'text-manifest.json')) {
+        foreach ($n in @(($jd.Name + '.ai'), ($jd.Name + '.png'), ($jd.Name + '.svg'), 'text-manifest.json')) {
             $p = Join-Path $jd.FullName $n
             if (Test-Path -LiteralPath $p) { Copy-Item -LiteralPath $p -Destination (Join-Path $dstDir $n) -Force; $copied++; L ('   copied: jobs\' + $jd.Name + '\' + $n + ' (' + [int]((Get-Item -LiteralPath $p).Length / 1024) + ' KB)') }
             else { L ('   [WARN] missing: jobs\' + $jd.Name + '\' + $n) }
