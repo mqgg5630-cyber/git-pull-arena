@@ -1,9 +1,9 @@
 {
-    "round":  148,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 148: t111b - stage fixed desk_wps_install.ps1 + verify_pptx.py + deck_harness_deck.py + patched harness tree on F$, exact-size check wps_setup.exe (\u003e=200MB), then ssh run: silent WPS install /S with ProgID polls, COM verify KWPS/KET/KWPP, offline harness pip install, writer-\u003edocx + impress-\u003epptx smoke tests with reopen verification",
-    "arena_updated":  "2026-10-01 14:09:30",
-    "local_updated":  "2026-10-01 22:28:20"
+  "round": 149,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 149: t113 - parse-check, stage desk_wps_install2.ps1, ssh run: wps_setup.exe /s -agreelicense (fallback /S -agreelicense), ProgID polls, COM verify, temp log diagnostics on failure, pip setuptools-first then harness install, writer docx + impress pptx smoke + verify_pptx reopen",
+  "arena_updated": "2026-10-01 14:31:03",
+  "local_updated": null
 }
