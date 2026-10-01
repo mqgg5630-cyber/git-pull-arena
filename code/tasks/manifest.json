@@ -325,6 +325,9 @@
     ],
     "119": [
       "t87_deskpython.ps1"
+    ],
+    "120": [
+      "t88_deskdeps.ps1"
     ]
   }
 }
