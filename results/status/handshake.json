@@ -1,9 +1,9 @@
 {
-  "round": 142,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 142: t106 laptop-local - A: patch app.Visible=False into try/except in repo + installed export.py; B: rerun impress flow -> test_impress.pptx + verify_pptx.py reopen (slides/shapes/text); C: probe wpscdn URLs (X64_22525 then 25225), download on laptop, stage wps_setup.exe + harness-anything dir + verify_pptx.py + desk_wps_install.ps1 on desktop F$",
-  "arena_updated": "2026-10-01 12:38:50",
-  "local_updated": null
+    "round":  142,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 142: t106 laptop-local - A: patch app.Visible=False into try/except in repo + installed export.py; B: rerun impress flow -\u003e test_impress.pptx + verify_pptx.py reopen (slides/shapes/text); C: probe wpscdn URLs (X64_22525 then 25225), download on laptop, stage wps_setup.exe + harness-anything dir + verify_pptx.py + desk_wps_install.ps1 on desktop F$",
+    "arena_updated":  "2026-10-01 12:38:50",
+    "local_updated":  "2026-10-01 20:39:47"
 }
