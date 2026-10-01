@@ -1,9 +1,9 @@
 {
-    "round":  132,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 132: t96 wait 180s, stage desk_antigravity_verify.ps1 via F$, run over ssh: count dial-tcp and ERR_TIMED_OUT (loopback) in current logs, positive signals (signed in/userInfo/availableModels), curl oauth2 + cloudcode-pa via local proxy, process count",
-    "arena_updated":  "2026-10-01 10:51:46",
-    "local_updated":  "2026-10-01 18:56:00"
+  "round": 132,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-01 10:56:14",
+  "local_updated": "2026-10-01 18:56:00"
 }
