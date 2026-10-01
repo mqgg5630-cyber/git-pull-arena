@@ -1,9 +1,9 @@
 {
-  "round": 150,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 150: t114 - stage desk_wps_launch.ps1, ssh run: inventory LOCALAPPDATA Kingsoft WPS Office dir, launch wps.exe via interactive schtask wpslaunch, poll ProgIDs 180s, COM verify KWPS/KET/KWPP, if healthy: pip setuptools-first + harness install + writer/impress smoke + verify_pptx reopen, cleanup WPS processes",
-  "arena_updated": "2026-10-01 14:48:32",
-  "local_updated": null
+    "round":  150,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 150: t114 - stage desk_wps_launch.ps1, ssh run: inventory LOCALAPPDATA Kingsoft WPS Office dir, launch wps.exe via interactive schtask wpslaunch, poll ProgIDs 180s, COM verify KWPS/KET/KWPP, if healthy: pip setuptools-first + harness install + writer/impress smoke + verify_pptx reopen, cleanup WPS processes",
+    "arena_updated":  "2026-10-01 14:48:32",
+    "local_updated":  "2026-10-01 22:52:28"
 }
