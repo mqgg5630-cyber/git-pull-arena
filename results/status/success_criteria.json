@@ -202,7 +202,11 @@
     "code/tasks/t126_cpe_test.ps1",
     "code/tasks/desk_cpe_test.ps1",
     "code/tasks/t127_cpe_test2.ps1",
-    "code/tasks/desk_cpe_test2.ps1"
+    "code/tasks/desk_cpe_test2.ps1",
+    "code/tasks/t128_cpe_test3.ps1",
+    "code/tasks/desk_cpe_test3.ps1",
+    "code/tasks/watcher.ps1",
+    "code/tasks/prepcpe.ps1"
   ],
   "forbid_files": [
     "local/inbox",
