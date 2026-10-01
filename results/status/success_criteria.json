@@ -171,7 +171,9 @@
     "code/tasks/desk_harness_deck.py",
     "code/tasks/t111b_desk_wps_go2.ps1",
     "code/tasks/t113_desk_wps_silent.ps1",
-    "code/tasks/desk_wps_install2.ps1"
+    "code/tasks/desk_wps_install2.ps1",
+    "code/tasks/t114_desk_wps_launch.ps1",
+    "code/tasks/desk_wps_launch.ps1"
   ],
   "forbid_files": [
     "local/inbox",

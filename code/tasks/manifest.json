@@ -417,6 +417,9 @@
       "t113_desk_wps_silent.ps1"
     ],
     "150": [
+      "t114_desk_wps_launch.ps1"
+    ],
+    "151": [
       "t112_desk_deck_collect.ps1"
     ]
   }
