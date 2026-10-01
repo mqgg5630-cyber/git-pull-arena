@@ -13,7 +13,7 @@ copy. Idempotent (skips if markers already present). ASCII-only output.
 """
 
 import os
-import subprocess
+import site
 import sys
 
 BACKEND_ANCHOR = (

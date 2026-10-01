@@ -162,7 +162,8 @@
     "code/tasks/t107_laptop_impress_patch2.ps1",
     "code/tasks/t108_laptop_harness_patch2.ps1",
     "code/tasks/patch_harness.py",
-    "code/tasks/wpsdl.cmd"
+    "code/tasks/wpsdl.cmd",
+    "code/tasks/t109_laptop_impress_retry.ps1"
   ],
   "forbid_files": [
     "local/inbox",
