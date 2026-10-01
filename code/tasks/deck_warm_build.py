@@ -1,0 +1,222 @@
+"""deck_warm_build.py - runs ON THE DESKTOP. Single-process WPS COM deck
+builder: the WPS 12 KWPP engine accepts only the FIRST COM client after a
+warm launch (second process attaches die at Presentations.Add with RPC
+unavailable). So this script does EVERYTHING in one process:
+  1. author the 12-slide project through the harness's own impress module
+  2. attach to the warm KWPP instance (first and only client)
+  3. render every slide (placeholders + text_box elements, fractional
+     coordinates) exactly like the harness _fill_impress v2 renderer
+  4. SaveAs (WPS 12 has no SaveAs2) -> arena_report.pptx
+  5. also build test_impress.pptx (smoke) in the same app session
+  6. reopen-verify slides/shapes/texts, then quit
+Prints WARM2-RESULT and WARM2-DONE markers. ASCII-only."""
+
+import json
+import os
+import sys
+import time
+
+import win32com.client
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from desk_harness_deck import SLIDES, META_TITLE  # noqa: E402
+
+RESULTS = os.path.dirname(os.path.abspath(__file__))
+os.chdir(RESULTS)
+
+
+def get_app():
+    last = None
+    for _attempt in range(3):
+        for pg in ("KWPP.Application", "wpp.Application"):
+            try:
+                app = win32com.client.Dispatch(pg)
+                _ = app.Name
+                return app
+            except Exception as e:  # noqa: BLE001
+                last = e
+        time.sleep(3)
+    raise RuntimeError("no engine: %r" % last)
+
+
+def pos(val, total, default):
+    try:
+        if val is None:
+            return default
+        if isinstance(val, (int, float)):
+            f = float(val)
+            return int(total * f) if 0 <= f <= 1 else int(f)
+        s = str(val).strip().lower()
+        if s.endswith("cm"):
+            return int(float(s[:-2]) * 28.3465)
+        if s.endswith("pt"):
+            return int(float(s[:-2]))
+        return int(float(s))
+    except Exception:  # noqa: BLE001
+        return default
+
+
+def render_slide(slide, slide_data):
+    title = slide_data.get("title", "")
+    content = slide_data.get("content", "")
+    title_done = False
+    body_done = False
+    for shape in slide.Shapes:
+        try:
+            if shape.Type == 14 and title and not title_done:
+                pt = str(shape.PlaceholderFormat.Type)
+                if "Title" in pt or pt.strip() in ("1", "13", "14"):
+                    shape.TextFrame.TextRange.Text = title
+                    title_done = True
+                    continue
+        except Exception:  # noqa: BLE001
+            pass
+        try:
+            if content and not body_done and shape.HasTextFrame:
+                shape.TextFrame.TextRange.Text = content
+                body_done = True
+        except Exception:  # noqa: BLE001
+            pass
+    if title and not title_done and not body_done and content:
+        try:
+            slide.Shapes(1).TextFrame.TextRange.Text = title + "\r" + content
+        except Exception:  # noqa: BLE001
+            pass
+    try:
+        sw, sh = slide.Width, slide.Height
+    except Exception:  # noqa: BLE001
+        sw, sh = 960, 540
+    for elem in slide_data.get("elements", []):
+        try:
+            if elem.get("type") != "text_box":
+                continue
+            x = pos(elem.get("x"), sw, int(sw * 0.06))
+            y = pos(elem.get("y"), sh, int(sh * 0.5))
+            w = pos(elem.get("width"), sw, int(sw * 0.85))
+            h = pos(elem.get("height"), sh, int(sh * 0.3))
+            tb = slide.Shapes.AddTextbox(1, x, y, w, h)
+            tb.TextFrame.TextRange.Text = elem.get("text", "")
+            if elem.get("size"):
+                try:
+                    tb.TextFrame.TextRange.Font.Size = elem["size"]
+                except Exception:  # noqa: BLE001
+                    pass
+            if elem.get("bold"):
+                try:
+                    tb.TextFrame.TextRange.Font.Bold = True
+                except Exception:  # noqa: BLE001
+                    pass
+        except Exception:  # noqa: BLE001
+            pass
+
+
+def save_pptx(pres, path):
+    p = os.path.abspath(path)
+    for fmt in (1, 24, None):
+        try:
+            if fmt is None:
+                pres.SaveAs(p)
+            else:
+                pres.SaveAs(p, fmt)
+            with open(p, "rb") as f:
+                head = f.read(2)
+            if head == b"PK" and os.path.getsize(p) > 10000:
+                return p
+        except Exception:  # noqa: BLE001
+            continue
+    raise RuntimeError("SaveAs failed for %s" % path)
+
+
+def main():
+    # 1. author through the harness's impress module
+    from cli_anything.wps.core import impress as impress_mod
+    project = {
+        "name": "arena-report",
+        "version": "1.0",
+        "type": "impress",
+        "settings": {},
+        "metadata": {"title": META_TITLE, "author": "arena-agent",
+                     "description": "generated by cli-anything-wps", "subject": ""},
+        "styles": [],
+        "slides": [],
+    }
+    for sd in SLIDES:
+        impress_mod.add_slide(project, sd.get("title", ""), sd.get("content", ""))
+        idx = len(project["slides"]) - 1
+        for el in sd.get("elements", []):
+            impress_mod.add_element(project, idx, el.get("type", "text_box"),
+                                    el.get("text", ""), el.get("x"), el.get("y"),
+                                    el.get("width"), el.get("height"))
+    print("AUTHORED slides=%d elements=%d" % (
+        len(project["slides"]),
+        sum(len(s.get("elements", [])) for s in project["slides"])))
+    with open("proj_deck.json", "w", encoding="utf-8") as f:
+        json.dump(project, f, ensure_ascii=False, indent=1)
+
+    # 2-4. attach (first and only client) + render + save
+    app = get_app()
+    print("ENGINE attached")
+    try:
+        app.Visible = False
+    except Exception:  # noqa: BLE001
+        pass
+
+    pres = app.Presentations.Add()
+    print("PRESENTATION added")
+    for si, sd in enumerate(project["slides"]):
+        if si == 0:
+            try:
+                slide = pres.Slides(1)
+            except Exception:  # noqa: BLE001
+                slide = pres.Slides.Add(1, 2)
+        else:
+            slide = pres.Slides.Add(si + 1, 2)
+        render_slide(slide, sd)
+    print("RENDERED slides=%d" % len(project["slides"]))
+    out = save_pptx(pres, "arena_report.pptx")
+    print("SAVED %s %dKB" % (out, os.path.getsize(out) // 1024))
+    pres.Close()
+
+    # 5. smoke pptx in the same session
+    pres2 = app.Presentations.Add()
+    try:
+        s1 = pres2.Slides(1)
+    except Exception:  # noqa: BLE001
+        s1 = pres2.Slides.Add(1, 2)
+    render_slide(s1, {"title": "HarnessPPTXTest", "content": "EditableBodyViaWpsCom",
+                      "elements": [{"type": "text_box", "text": "HelloEditablePptx",
+                                    "x": "2cm", "y": "2cm", "width": "10cm", "height": "5cm"}]})
+    out2 = save_pptx(pres2, "test_impress.pptx")
+    print("SMOKE SAVED %s %dKB" % (out2, os.path.getsize(out2) // 1024))
+    pres2.Close()
+
+    # 6. reopen verify
+    v = app.Presentations.Open(os.path.abspath("arena_report.pptx"), True, False, False)
+    n = v.Slides.Count
+    shapes = 0
+    texts = []
+    for i in range(1, n + 1):
+        sl = v.Slides.Item(i)
+        shapes += sl.Shapes.Count
+        for j in range(1, sl.Shapes.Count + 1):
+            try:
+                t = sl.Shapes.Item(j).TextFrame.TextRange.Text
+                if t and t.strip():
+                    texts.append(t.strip())
+            except Exception:  # noqa: BLE001
+                pass
+    v.Close()
+    print("VERIFY slides=%d shapes=%d text_shapes=%d" % (n, shapes, len(texts)))
+    for t in texts[:6]:
+        print("  text:", t[:60])
+    try:
+        app.Quit()
+    except Exception:  # noqa: BLE001
+        pass
+    ok = n == len(SLIDES) and shapes >= len(SLIDES)
+    print("WARM2-RESULT: %s" % ("PASS" if ok else "CHECK"))
+    print("WARM2-DONE")
+
+
+if __name__ == "__main__":
+    main()

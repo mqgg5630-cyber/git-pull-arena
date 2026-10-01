@@ -186,7 +186,10 @@
     "code/tasks/t119_desk_final2.ps1",
     "code/tasks/desk_wps_final2.ps1",
     "code/tasks/t120_desk_warm.ps1",
-    "code/tasks/desk_wpp_warm.ps1"
+    "code/tasks/desk_wpp_warm.ps1",
+    "code/tasks/t121_desk_warm2.ps1",
+    "code/tasks/desk_warm2.ps1",
+    "code/tasks/deck_warm_build.py"
   ],
   "forbid_files": [
     "local/inbox",
