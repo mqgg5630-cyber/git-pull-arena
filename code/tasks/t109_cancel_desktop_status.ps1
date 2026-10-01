@@ -15,11 +15,11 @@ $desktop = '100.84.137.117'
 $duser = 'BNI'
 $sshBase = @('-o', 'BatchMode=yes', '-o', 'ConnectTimeout=12', '-o', 'StrictHostKeyChecking=accept-new')
 
-$dl = & ssh @sshBase ($duser + '@' $desktop) 'type F:\fig1_rebuild\wps_download.log 2>nul' 2>&1
+$dl = & ssh @sshBase ($duser + '@' + $desktop) 'type F:\fig1_rebuild\wps_download.log 2>nul' 2>&1
 foreach ($ln in @($dl | Select-Object -Last 5)) { if ($ln) { L ('   wpsdl: ' + (San ([string]$ln))) } }
-$st = & ssh @sshBase ($duser + '@' $desktop) 'dir F:\fig1_rebuild\wps_setup.* 2>nul | findstr wps_setup' 2>&1
+$st = & ssh @sshBase ($duser + '@' + $desktop) 'dir F:\fig1_rebuild\wps_setup.* 2>nul | findstr wps_setup' 2>&1
 foreach ($ln in @($st)) { if ($ln) { L ('   files: ' + (San ([string]$ln))) } }
-$tk = & ssh @sshBase ($duser + '@' $desktop) 'schtasks /query /tn wpsdl /fo list 2>nul | findstr /i "status"' 2>&1
+$tk = & ssh @sshBase ($duser + '@' + $desktop) 'schtasks /query /tn wpsdl /fo list 2>nul | findstr /i "status"' 2>&1
 foreach ($ln in @($tk)) { if ($ln) { L ('   task:  ' + (San ([string]$ln))) } }
 L '--- task t109 replacement done (no laptop testing, per user) ---'
 exit 0
