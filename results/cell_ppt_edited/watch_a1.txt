@@ -1,0 +1,5 @@
+02:24:13 watcher start pid=32536 max=300s
+02:24:47 window: [PPTFrameClass] acceptance.pptx - PowerPoint(产品激活失败)
+02:24:47 window: [MSO_BORDEREFFECT_WINDOW_CLASS] 
+02:24:48 window: [NUIDialog] Microsoft Office 激活向导
+02:25:10 window: [PPTFrameClass] 演示文稿1 - PowerPoint(产品激活失败)
