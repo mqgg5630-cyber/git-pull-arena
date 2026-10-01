@@ -144,7 +144,7 @@ def main():
         impress_mod.add_slide(project, sd.get("title", ""), sd.get("content", ""))
         idx = len(project["slides"]) - 1
         for el in sd.get("elements", []):
-            impress_mod.add_element(project, idx, el.get("type", "text_box"),
+            impress_mod.add_slide_element(project, idx, el.get("type", "text_box"),
                                     el.get("text", ""), el.get("x"), el.get("y"),
                                     el.get("width"), el.get("height"))
     print("AUTHORED slides=%d elements=%d" % (
