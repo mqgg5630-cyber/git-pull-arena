@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "task": "fig1 graphical abstract rebuild - clean edition (cell-lct, no paid path)",
   "input": "results/reference/fig1_cleaned.png (cv2.inpaint, OCR 0 residual)",
   "text_manifest": "results/reference/fig1_text_manifest.json (40 elements, font sizes corrected via measured-Arial-width feedback from the v1 draw)",
@@ -53,5 +53,20 @@
     },
     "note": "v1 (2123 paths) retained as shibielujing1 for reference"
   },
-  "xiaomiao_paid_path": "bypassed entirely (user decision, zero cost)"
+  "xiaomiao_paid_path": "bypassed entirely (user decision, zero cost)",
+  "skill_test_and_demo_matrix": {
+    "cell_lct": {
+      "test": "PASS r103 (t75): fixture 6 objects drawn via bridge (probe tf=2|pi=4, texts 'Cell Test' + rotated 'ROTATE OK'), test_cell-lct.ai 212KB + test_cell-lct.png exported; repo results/fig1_rebuild/test/cell-lct/",
+      "full_demo": "PASS r105-r106 (t77): shibielujing5, 12/12 batches, .ai 814KB + .png 272KB, OCR 38/40, RMSD ink present, results/fig1_rebuild/out/shibielujing5.*"
+    },
+    "cell_su7": {
+      "test": "PASS r104 (t76): same fixture, probe tf=2|pi=4, texts OK, test_cell_su7.ai 212KB; repo results/fig1_rebuild/test/cell_su7/",
+      "full_demo": "PASS r107-r108 (t78): shibielujing6, 12/12 batches, .ai 813KB + .png 272KB, OCR 38/40, RMSD ink present, results/fig1_rebuild/out/shibielujing6.*"
+    },
+    "cross_verification": {
+      "demo_celllct_vs_demo_cellsu7": "100.00% identical pixels (both skills drive the same geometry through the same AI 2020 bridge)",
+      "reproducibility": "each demo is also 100.00% pixel-identical to its earlier run (shibielujing4 / shibielujing2) - fully deterministic",
+      "both_vs_original": "mean abs diff 12.43, 86.30% pixels within 32"
+    }
+  }
 }
