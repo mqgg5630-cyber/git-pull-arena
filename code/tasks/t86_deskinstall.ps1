@@ -27,16 +27,16 @@ $found = $false
 $deadline = [DateTime]::UtcNow.AddMinutes(15)
 while ([DateTime]::UtcNow -lt $deadline) {
     Start-Sleep -Seconds 20
-    $o = (& ssh @opts ($duser + '@' $desktop) 'type F:\fig1_rebuild\install_out.txt 2>nul' 2>&1 | Out-String).Trim()
+    $o = (& ssh @opts ($duser + '@' + $desktop) 'type F:\fig1_rebuild\install_out.txt 2>nul' 2>&1 | Out-String).Trim()
     if ($o -match [regex]::Escape($sentinel)) { $found = $true; break }
     if ($o -match 'FATAL|FAIL') { L '   failure detected in install log:'; break }
 }
 if ($found) { L '   install finished (sentinel seen)' } else { L '   [WARN] install sentinel not seen within 15 min (dumping partial log)' }
 
 # ------------------------------------------------ 3. dump install output
-$o = (& ssh @opts ($duser + '@' $desktop) 'type F:\fig1_rebuild\install_out.txt 2>nul' 2>&1 | Out-String).Trim()
+$o = (& ssh @opts ($duser + '@' + $desktop) 'type F:\fig1_rebuild\install_out.txt 2>nul' 2>&1 | Out-String).Trim()
 foreach ($ln in ($o -split "`r?`n")) { $x = San $ln; if ($x.Trim() -and $x -notmatch 'CategoryInfo|FullyQualifiedErrorId|~~|\+ ') { L ('   ' + $x) } }
-$e = (& ssh @opts ($duser + '@' $desktop) 'type F:\fig1_rebuild\install_err.txt 2>nul' 2>&1 | Out-String).Trim()
+$e = (& ssh @opts ($duser + '@' + $desktop) 'type F:\fig1_rebuild\install_err.txt 2>nul' 2>&1 | Out-String).Trim()
 if ($e) { foreach ($ln in ($e -split "`r?`n")) { $x = San $ln; if ($x.Trim() -and $x -notmatch 'CategoryInfo|FullyQualifiedErrorId|~~|\+ ') { L ('   err| ' + $x) } } }
 
 # ------------------------------------------------ 4. verification probes (short)
@@ -47,7 +47,7 @@ foreach ($probe in @(
     @{ t = 'skills'; c = 'dir /b C:\Users\BNI\.codex\skills' },
     @{ t = 'aiexe'; c = 'dir /b /s F:\Adobe*Illustrator*\Illustrator.exe 2>nul' }
 )) {
-    $o = (& ssh @opts ($duser + '@' $desktop) $probe.c 2>&1 | Out-String).Trim()
+    $o = (& ssh @opts ($duser + '@' + $desktop) $probe.c 2>&1 | Out-String).Trim()
     foreach ($ln in ($o -split "`r?`n")) { $x = San $ln; if ($x.Trim() -and $x -notmatch 'CategoryInfo|FullyQualifiedErrorId|~~|\+ ') { L ('   ' + $probe.t + '| ' + $x) } }
 }
 L '--- task t86 v2 done ---'
