@@ -1,9 +1,9 @@
 {
-  "round": 104,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 104: t76 cell_su7 smoke test: stage test_fixture.svg, fresh AI doc, run cell_su7 runner (bridge-patched), verify .ai/.png + probe textFrames=2 pathItems=4, close, copy artifacts to repo results/fig1_rebuild/test/cell_su7/",
-  "arena_updated": "2026-10-01 03:11:57",
-  "local_updated": null
+    "round":  104,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 104: t76 cell_su7 smoke test: stage test_fixture.svg, fresh AI doc, run cell_su7 runner (bridge-patched), verify .ai/.png + probe textFrames=2 pathItems=4, close, copy artifacts to repo results/fig1_rebuild/test/cell_su7/",
+    "arena_updated":  "2026-10-01 03:11:57",
+    "local_updated":  "2026-10-01 11:14:42"
 }
