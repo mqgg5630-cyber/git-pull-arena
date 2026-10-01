@@ -1,19 +1,15 @@
-PREP[a1] start prewarm=1
-PREP: resiliency + first-run state cleared
-PREP: powerpnt running=0
-PREP: prewarm launch (flush first-run dialogs; watcher closes them)
-PREP: prewarm quit issued
-PREP: prewarm exited cleanly
-PREP[a1] done
+PASS 11 MCP tools and capability contracts
+PASS batch create five native objects
+PASS legacy basic edits share the advanced session
+PASS completion footer returned verbatim
 Traceback (most recent call last):
   File "F:\fig1_rebuild\cpe\src\integration.py", line 108, in <module>
     if __name__=='__main__':main()
                             ^^^^^^
-  File "F:\fig1_rebuild\cpe\src\integration.py", line 28, in main
-    sid=client.call('ppt_turbo_bind',{'path':str(out/'acceptance.pptx'),'mode':'in_place'})['session_id']
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\fig1_rebuild\cpe\src\integration.py", line 45, in main
+    client.call('ppt_studio_patch',{**base,'patches':[{'name':'cell0','set':{'fill_color':'#7030A0','left':50,'line_width':0}}],'request_id':uuid.uuid4().hex})
   File "F:\fig1_rebuild\cpe\src\client.py", line 50, in call
     raise RuntimeError(result)
-RuntimeError: {'content': [{'type': 'text', 'text': '{"error": "PowerPoint.Application.Presentations", "details": {}, "server_ms": 372.103, "completion_footer": "¸ÐÐ»¶¶Òô£ºÄ¾ÎÆ"}'}], 'structuredContent': {'error': 'PowerPoint.Application.Presentations', 'details': {}, 'server_ms': 372.103, 'completion_footer': '¸ÐÐ»¶¶Òô£ºÄ¾ÎÆ'}, 'isError': True}
+RuntimeError: {'content': [{'type': 'text', 'text': '{"status": "partial_or_uncertain", "path": "F:\\\\fig1_rebuild\\\\cpe\\\\iout_a1\\\\acceptance.pptx", "error": "(-2147418111, \'±»ºô½Ð·½¾Ü¾ø½ÓÊÕºô½Ð¡£\', None, None)", "completed": [], "attempted_names": ["cell0"], "saved": false, "requires_inspection": true, "server_ms": 665.022, "completion_footer": "¸ÐÐ»¶¶Òô£ºÄ¾ÎÆ"}'}], 'structuredContent': {'status': 'partial_or_uncertain', 'path': 'F:\\fig1_rebuild\\cpe\\iout_a1\\acceptance.pptx', 'error': "(-2147418111, '±»ºô½Ð·½¾Ü¾ø½ÓÊÕºô½Ð¡£', None, None)", 'completed': [], 'attempted_names': ['cell0'], 'saved': False, 'requires_inspection': True, 'server_ms': 665.022, 'completion_footer': '¸ÐÐ»¶¶Òô£ºÄ¾ÎÆ'}, 'isError': True}
 INTEG-EXIT 1 
 INTEG-DONE 

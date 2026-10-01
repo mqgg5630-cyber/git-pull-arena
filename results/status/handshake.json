@@ -1,9 +1,9 @@
 {
-    "round":  170,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 170: t128 - stage watcher.ps1 + prepcpe.ps1 to the desktop cpe dir, then ssh run desk_cpe_test3.ps1: ospp activation diagnostics + up to 3 clean attempts (watcher logs/closes POWERPNT modal dialogs, prepcpe clears Resiliency crash state + graceful quit + attempt-1 prewarm, then integration.py 27 checks with packaged exe). Watch for: PASS 27/27 -\u003e FINAL: PASS, watcher \u0027closing dialog\u0027 lines revealing the blocking dialog, PREP lines showing graceful quit success. Collect all logs + artifacts into results/cell_ppt_edited/",
-    "arena_updated":  "2026-10-01 18:22:30",
-    "local_updated":  "2026-10-02 02:26:20"
+  "round": 170,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-01 18:26:39",
+  "local_updated": "2026-10-02 02:26:20"
 }
