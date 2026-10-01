@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "F:\fig1_rebuild\harness_results\deck_warm_build.py", line 222, in <module>
+    main()
+  File "F:\fig1_rebuild\harness_results\deck_warm_build.py", line 147, in main
+    impress_mod.add_element(project, idx, el.get("type", "text_box"),
+    ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'cli_anything.wps.core.impress' has no attribute 'add_element'
