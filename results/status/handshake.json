@@ -1,9 +1,9 @@
 {
-  "round": 126,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 127: t92 copy via F$: test-cell-lct + test-cell_su7 .ai/.png, jobs shibielujing1 (cell_su7) + shibielujing2 (cell-lct) .ai/.png/.svg/manifest, rebuild.log, probe.result -> repo results/fig1_rebuild/desktop/",
-  "arena_updated": "2026-10-01 09:24:14",
-  "local_updated": null
+    "round":  126,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 127: t92 copy via F$: test-cell-lct + test-cell_su7 .ai/.png, jobs shibielujing1 (cell_su7) + shibielujing2 (cell-lct) .ai/.png/.svg/manifest, rebuild.log, probe.result -\u003e repo results/fig1_rebuild/desktop/",
+    "arena_updated":  "2026-10-01 09:24:14",
+    "local_updated":  "2026-10-01 17:27:44"
 }
