@@ -1,9 +1,9 @@
 {
-    "round":  160,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 160: t121 retry - same as r159 with impress_mod.add_slide_element fix: warm wpp, phase1 single-process deck build, phase2 interactive fallback, writer smoke, FINAL verdict, collect artifacts",
-    "arena_updated":  "2026-10-01 17:02:11",
-    "local_updated":  "2026-10-02 01:04:51"
+  "round": 161,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 161: t122 - stage amp_deck_build.py + desk_amp_deck.ps1, ssh run: kill WPS, warm wpp via wpplaunch, single-process first-client build (harness impress authoring + COM render + SaveAs + reopen verify), interactive wpstest3 fallback with log polling, FINAL verdict, collect amp_ml_prediction.pptx + proj_amp.json into results/amp_deck/",
+  "arena_updated": "2026-10-01 17:13:19",
+  "local_updated": null
 }
