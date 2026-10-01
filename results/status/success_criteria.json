@@ -158,7 +158,8 @@
     "code/tasks/t105_laptop_wps_harness.ps1",
     "code/tasks/t106_laptop_impress_patch.ps1",
     "code/tasks/desk_wps_install.ps1",
-    "code/tasks/verify_pptx.py"
+    "code/tasks/verify_pptx.py",
+    "code/tasks/t107_laptop_impress_patch2.ps1"
   ],
   "forbid_files": [
     "local/inbox",
