@@ -1,9 +1,9 @@
 {
-  "round": 124,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-10-01 09:18:43",
-  "local_updated": "2026-10-01 17:18:27"
+  "round": 125,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 126: t90 JOB.marker=fig1|cell-lct, schtasks run fig1desk, poll DONE/FAILED 16min, dump rebuild.log + png inventory",
+  "arena_updated": "2026-10-01 09:19:17",
+  "local_updated": null
 }
