@@ -184,7 +184,9 @@
     "code/tasks/t118_desk_final.ps1",
     "code/tasks/desk_wps_final.ps1",
     "code/tasks/t119_desk_final2.ps1",
-    "code/tasks/desk_wps_final2.ps1"
+    "code/tasks/desk_wps_final2.ps1",
+    "code/tasks/t120_desk_warm.ps1",
+    "code/tasks/desk_wpp_warm.ps1"
   ],
   "forbid_files": [
     "local/inbox",
