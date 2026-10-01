@@ -307,10 +307,17 @@ def save_as(doc, path: str, doc_type: str = "writer", format_name: str = None):
     fmt_const = formats.get(format_name)
     if fmt_const is None:
         # 格式不在映射表中，尝试直接保存
-        doc.SaveAs2(abs_path)
+        try:
+            doc.SaveAs2(abs_path)
+        except AttributeError:
+            doc.SaveAs(abs_path)
         return abs_path
 
-    doc.SaveAs2(abs_path, FileFormat=fmt_const)
+    try:
+        doc.SaveAs2(abs_path, FileFormat=fmt_const)
+    except AttributeError:
+        # WPS 12 (KWPP/KWPS) only implements SaveAs, not SaveAs2
+        doc.SaveAs(abs_path, FileFormat=fmt_const)
     return abs_path
 
 

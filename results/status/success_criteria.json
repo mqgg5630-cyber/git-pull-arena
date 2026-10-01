@@ -180,7 +180,9 @@
     "code/tasks/desk_wps_interactive.ps1",
     "code/tasks/wpsrun.cmd",
     "code/tasks/t117_desk_automation.ps1",
-    "code/tasks/desk_wps_automation.ps1"
+    "code/tasks/desk_wps_automation.ps1",
+    "code/tasks/t118_desk_final.ps1",
+    "code/tasks/desk_wps_final.ps1"
   ],
   "forbid_files": [
     "local/inbox",
