@@ -147,12 +147,17 @@ META_TITLE = "\u53cc\u673a\u81ea\u52a8\u5316\u7ba1\u7ebf\u6210\u679c\u6c47\u62a5
 
 
 def get_engine():
+    import time
     import win32com.client
-    for pg in ("KWPP.Application", "wpp.Application"):
-        try:
-            return win32com.client.Dispatch(pg)
-        except Exception:
-            pass
+    for _attempt in range(3):
+        for pg in ("KWPP.Application", "wpp.Application"):
+            try:
+                app = win32com.client.Dispatch(pg)
+                _ = app.Presentations.Count
+                return app
+            except Exception:
+                pass
+        time.sleep(5)
     raise RuntimeError("no WPP COM engine available")
 
 

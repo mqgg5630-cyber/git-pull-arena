@@ -46,6 +46,7 @@ $w += ('export: ' + ((Invoke-Expression ($pyexe + ' -m cli_anything.wps --projec
 foreach ($ln in $w) { if ($ln) { L ('   W ' + $ln.Substring(0, [Math]::Min(220, $ln.Length))) } }
 if (Test-Path -LiteralPath 'test_writer.docx') { L ('   writer OK: test_writer.docx ' + [math]::Round((Get-Item 'test_writer.docx').Length/1KB) + 'KB') }
 else { L '   [FAIL] writer docx missing' }
+Start-Sleep -Seconds 8
 
 # ---------------- 3. impress smoke ----------------
 $i = @()
@@ -60,6 +61,7 @@ if (Test-Path -LiteralPath 'test_impress.pptx') {
     foreach ($ln in @($rv | Select-Object -Last 2)) { L ('   verify: ' + (San ([string]$ln))) }
 }
 else { L '   [FAIL] impress pptx missing' }
+Start-Sleep -Seconds 8
 
 # ---------------- 4. the 12-slide deck ----------------
 L '   building 12-slide deck...'

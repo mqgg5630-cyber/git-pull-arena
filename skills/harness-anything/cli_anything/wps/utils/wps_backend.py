@@ -167,47 +167,35 @@ def find_wps(app_type: str = "writer"):
         import win32com.client
         import pythoncom
         pythoncom.CoInitialize()
-        app = win32com.client.Dispatch(progid)
         if app_type.lower() in ("impress", "wpp"):
-            ok = False
-            try:
-                p = app.Presentations.Add()
-                try:
-                    if p.Slides.Count == 0:
-                        p.Slides.Add(1, 2)
-                    _ = p.Slides(1)
-                    ok = True
-                finally:
+            # WPS 12 engines are flaky when created back-to-back (RPC server
+            # unavailable right after another component Quit) - retry with a
+            # cooldown across all candidate engines.
+            import time as _time
+            candidates = (progid, "wpp.Application", "{44720441-94BF-4940-926D-4F38FECF2A48}")
+            for _attempt in range(3):
+                for _cand in candidates:
+                    app = None
                     try:
-                        p.Close()
+                        app = win32com.client.Dispatch(_cand)
+                        p = app.Presentations.Add()
+                        if p.Slides.Count == 0:
+                            p.Slides.Add(1, 2)
+                        _ = p.Slides(1)
+                        try:
+                            p.Close()
+                        except Exception:
+                            pass
+                        return app
                     except Exception:
-                        pass
-            except Exception:
-                ok = False
-            if ok:
-                return app
-            try:
-                app.Quit()
-            except Exception:
-                pass
-            for alt in ("wpp.Application", "{44720441-94BF-4940-926D-4F38FECF2A48}"):
-                try:
-                    app = win32com.client.Dispatch(alt)
-                    p = app.Presentations.Add()
-                    if p.Slides.Count == 0:
-                        p.Slides.Add(1, 2)
-                    _ = p.Slides(1)
-                    try:
-                        p.Close()
-                    except Exception:
-                        pass
-                    return app
-                except Exception:
-                    try:
-                        app.Quit()
-                    except Exception:
-                        pass
-            raise RuntimeError("no healthy WPP COM engine found (tried KWPP, wpp.Application, CLSID)")
+                        if app is not None:
+                            try:
+                                app.Quit()
+                            except Exception:
+                                pass
+                _time.sleep(5)
+            raise RuntimeError("no healthy WPP COM engine found after retries (tried KWPP, wpp.Application, CLSID)")
+        app = win32com.client.Dispatch(progid)
         return app
     except ImportError:
         raise RuntimeError(
