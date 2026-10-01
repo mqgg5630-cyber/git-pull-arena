@@ -1,9 +1,9 @@
 {
-    "round":  164,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 164: t124 - stage desk_cpe_setup.ps1 + skill src on F$, ssh run: PowerPoint detection (ProgID/App Paths/uninstall entries/POWERPNT.EXE), Codex detection, download release zip+SHA256SUMS via local proxy 127.0.0.1:10808, verify sha256, extract, cell-ppt-edited.exe --self-test + --doctor, Install.ps1 -CheckOnly",
-    "arena_updated":  "2026-10-01 17:53:14",
-    "local_updated":  "2026-10-02 01:55:22"
+  "round": 165,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 165: t125 - retry phase 1 with --ssl-no-revoke on proxy curl: download zip+sums, verify sha256, extract, self-test + doctor, CheckOnly (PowerPoint 2016 confirmed present; Codex absent - engine-only test path)",
+  "arena_updated": "2026-10-01 17:56:07",
+  "local_updated": null
 }
