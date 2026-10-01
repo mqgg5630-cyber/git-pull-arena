@@ -298,6 +298,9 @@
     ],
     "110": [
       "t80_desktop_ssh_stability.ps1"
+    ],
+    "111": [
+      "t81_smb_key_install.ps1"
     ]
   }
 }
