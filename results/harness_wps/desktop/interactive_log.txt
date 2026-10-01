@@ -1,0 +1,9 @@
+00:23:03 === interactive WPS harness session start ===
+00:23:33 COM KWPP cold: FAIL 0x80080005
+00:23:33 warm-starting wpp.exe + wps.exe...
+00:23:48 wpp.exe processes: 3
+00:24:19 COM KWPP warm: FAIL 0x80080005
+00:25:19 COM KWPS: FAIL 0x80080005
+00:25:19 COM KET: FAIL 0x80080005
+00:25:19 INTERACTIVE-RESULT: COM-FAIL
+00:25:19 INTERACTIVE-DONE
