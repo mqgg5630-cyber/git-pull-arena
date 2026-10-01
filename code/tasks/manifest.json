@@ -385,6 +385,9 @@
     ],
     "139": [
       "t103_desk_sync_survey.ps1"
+    ],
+    "140": [
+      "t104_desk_ide_sync.ps1"
     ]
   }
 }
