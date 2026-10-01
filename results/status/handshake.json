@@ -1,9 +1,9 @@
 {
-  "round": 113,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-10-01 07:43:03",
-  "local_updated": "2026-10-01 15:42:50"
+  "round": 114,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 114: t84 zip both patched skills, stage worker/installer/inputs to F:\\fig1_rebuild, launch detached robocopy AI 2020 E:\\ -> F:\\ (MIR/MT:16, log+marker), 50s peek",
+  "arena_updated": "2026-10-01 07:45:58",
+  "local_updated": null
 }
