@@ -1,9 +1,9 @@
 {
-  "round": 151,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 151: t115 - stage desk_wps_register.ps1, ssh run: kill stray WPS, registry search for Kingsoft COM keys, /regserver on wps/et/wpp, manual HKCU registration fallback (KWPS/KET/KWPP -> CLSID -> LocalServer32), COM verify, if healthy: harness pip + writer/impress smoke + verify_pptx reopen",
-  "arena_updated": "2026-10-01 14:55:04",
-  "local_updated": null
+    "round":  151,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 151: t115 - stage desk_wps_register.ps1, ssh run: kill stray WPS, registry search for Kingsoft COM keys, /regserver on wps/et/wpp, manual HKCU registration fallback (KWPS/KET/KWPP -\u003e CLSID -\u003e LocalServer32), COM verify, if healthy: harness pip + writer/impress smoke + verify_pptx reopen",
+    "arena_updated":  "2026-10-01 14:55:04",
+    "local_updated":  "2026-10-01 23:07:56"
 }
