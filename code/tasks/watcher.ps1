@@ -1,9 +1,12 @@
-# watcher.ps1 - runs ON THE DESKTOP in the INTERACTIVE session (started by
-# the integrun cmd file). Polls every 1.5s for visible top-level windows
-# owned by POWERPNT processes; logs every new window class/title (so we can
-# SEE which dialog PowerPoint shows) and closes any standard Win32 modal
-# dialog (class #32770, e.g. safe-mode prompt / first-run prompts) that
-# would block COM automation with RPC_E_CALL_REJECTED.
+# watcher.ps1 (v2) - runs ON THE DESKTOP in the INTERACTIVE session
+# (started by the integrun cmd file). Polls every 1.5s for visible
+# top-level windows owned by POWERPNT processes; logs every new window
+# class/title and CLOSES modal dialogs that block COM automation.
+# r170 proved the blocker is an Office NUIDialog (activation/first-run
+# wizard - ospp shows LICENSE STATUS: NOTIFICATIONS), so v2 closes both
+# standard Win32 dialogs (#32770) AND NUIDialog windows, using WM_CLOSE
+# plus an ESC keypress fallback, and logs when a dialog survives close
+# attempts.
 # Usage: powershell -File watcher.ps1 <logfile> <maxSeconds>
 # ASCII-only.
 
@@ -47,6 +50,11 @@ public static class PW {
     public static bool CloseDialog(long h) {
         return PostMessage(new IntPtr(h), 0x0010U, IntPtr.Zero, IntPtr.Zero);
     }
+    public static bool EscDialog(long h) {
+        bool a = PostMessage(new IntPtr(h), 0x0100U, new IntPtr(0x1B), IntPtr.Zero);
+        bool b = PostMessage(new IntPtr(h), 0x0101U, new IntPtr(0x1B), IntPtr.Zero);
+        return a && b;
+    }
 }
 '
 try { Add-Type -TypeDefinition $cs -ErrorAction Stop } catch { }
@@ -55,9 +63,10 @@ function WL([string]$m) {
     try { Add-Content -LiteralPath $LogFile -Value ((Get-Date -Format 'HH:mm:ss') + ' ' + $m) } catch { }
 }
 
-WL ('watcher start pid=' + $PID + ' max=' + $MaxSec + 's')
+WL ('watcher v2 start pid=' + $PID + ' max=' + $MaxSec + 's')
 $deadline = (Get-Date).AddSeconds($MaxSec)
 $known = @{}
+$cc = @{}
 $scanOk = $true
 if (-not ('PW' -as [type])) { WL 'watcher: Add-Type failed, cannot scan'; $scanOk = $false }
 
@@ -79,9 +88,17 @@ while ($scanOk -and ((Get-Date) -lt $deadline)) {
             $known[$key] = $true
             WL ('window: [' + $cls + '] ' + $title)
         }
-        if ($cls -eq '#32770') {
-            WL ('closing dialog: [' + $cls + '] ' + $title)
+        if ($cls -eq '#32770' -or $cls -eq 'NUIDialog') {
+            if (-not $cc.ContainsKey($hwndS)) {
+                $cc[$hwndS] = 0
+                WL ('closing dialog: [' + $cls + '] ' + $title)
+            }
+            $cc[$hwndS] = [int]$cc[$hwndS] + 1
             $null = [PW]::CloseDialog([long]$hwndS)
+            $null = [PW]::EscDialog([long]$hwndS)
+            if (([int]$cc[$hwndS] % 3) -eq 0) {
+                WL ('dialog still present after ' + $cc[$hwndS] + ' close attempts: [' + $cls + '] ' + $title)
+            }
         }
     }
 }
