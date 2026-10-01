@@ -1,0 +1,29 @@
+{
+  "content": [
+    {
+      "level": 1,
+      "style": {},
+      "text": "HarnessSmokeTest",
+      "type": "heading"
+    },
+    {
+      "style": {},
+      "text": "EditableParagraphViaWpsComOnDesktop.",
+      "type": "paragraph"
+    }
+  ],
+  "metadata": {
+    "author": "",
+    "created": "2026-10-02T00:37:16.627846",
+    "description": "",
+    "modified": "2026-10-02T00:37:17.102092",
+    "software": "cli-anything-wps 1.0.0",
+    "subject": "",
+    "title": "harnesssmoke"
+  },
+  "name": "harnesssmoke",
+  "settings": {},
+  "styles": {},
+  "type": "writer",
+  "version": "1.0"
+}
