@@ -44,7 +44,7 @@ foreach ($skill in @('cell-lct')) {
     $netOut = (& net use $fshare /persistent:no 2>&1 | Out-String).Trim()
     if ($LASTEXITCODE -ne 0) { L '   [FAIL] F$ unreachable'; exit 2 }
     foreach ($m in @('DONE.marker', 'FAILED.marker', 'probe.result')) { Remove-Item -LiteralPath (Join-Path $deskRoot $m) -Force -ErrorAction SilentlyContinue }
-    [IO.File]::WriteAllText((Join-Path $deskRoot 'JOB.marker'), ('fixture|' + $skill), (New-Object System.Text.UTF8Encoding($false)))
+    [IO.File]::WriteAllText((Join-Path $deskRoot 'JOB.marker'), ('fig1|' + $skill), (New-Object System.Text.UTF8Encoding($false)))
     & net use $fshare /delete 2>&1 | Out-Null
     L '   JOB.marker written (fig1)'
     # 2. run the task
