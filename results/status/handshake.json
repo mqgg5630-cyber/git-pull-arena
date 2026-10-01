@@ -1,9 +1,9 @@
 {
-  "round": 107,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-10-01 03:28:46",
-  "local_updated": "2026-10-01 11:28:22"
+  "round": 108,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 108: t64 poll E:\\fig1_rebuild: DONE -> copy latest job (shibielujing6) .ai/.png/.svg + text-manifest.json + rebuild.log into repo results/fig1_rebuild/out; if FAILED -> dump logs",
+  "arena_updated": "2026-10-01 03:32:57",
+  "local_updated": null
 }
