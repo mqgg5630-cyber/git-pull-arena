@@ -1,9 +1,9 @@
 {
-  "round": 149,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 149: t113 - parse-check, stage desk_wps_install2.ps1, ssh run: wps_setup.exe /s -agreelicense (fallback /S -agreelicense), ProgID polls, COM verify, temp log diagnostics on failure, pip setuptools-first then harness install, writer docx + impress pptx smoke + verify_pptx reopen",
-  "arena_updated": "2026-10-01 14:31:03",
-  "local_updated": null
+    "round":  149,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 149: t113 - parse-check, stage desk_wps_install2.ps1, ssh run: wps_setup.exe /s -agreelicense (fallback /S -agreelicense), ProgID polls, COM verify, temp log diagnostics on failure, pip setuptools-first then harness install, writer docx + impress pptx smoke + verify_pptx reopen",
+    "arena_updated":  "2026-10-01 14:31:03",
+    "local_updated":  "2026-10-01 22:46:25"
 }
