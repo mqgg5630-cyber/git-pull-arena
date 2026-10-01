@@ -304,6 +304,9 @@
     ],
     "112": [
       "t82_bni_ssh_test.ps1"
+    ],
+    "113": [
+      "t83_deskprobe.ps1"
     ]
   }
 }
