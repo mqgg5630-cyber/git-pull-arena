@@ -1,9 +1,9 @@
 {
-  "round": 108,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-10-01 03:35:33",
-  "local_updated": "2026-10-01 11:35:11"
+  "round": 109,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 109: t79 print+explorer-open the cell-lct/cell_su7 result paths, then test desktop ssh key auth for candidate users, try SMB C$ pubkey install (user ak + administrators_authorized_keys), retest, report exact usable ssh command",
+  "arena_updated": "2026-10-01 07:15:30",
+  "local_updated": null
 }
