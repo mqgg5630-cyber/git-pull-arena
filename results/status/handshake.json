@@ -1,9 +1,9 @@
 {
-  "round": 167,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-10-01 18:04:03",
-  "local_updated": "2026-10-02 02:03:48"
+  "round": 168,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 168: t126 - ssh run desk_cpe_test.ps1: exe --self-test + --doctor, Install.ps1 -CheckOnly, then interactive cpeinteg task runs integration.py with the PACKAGED exe as MCP server (28 PowerPoint COM live checks, fresh acceptance deck), poll log 11 min, report PASS count + artifacts, collect into results/cell_ppt_edited/",
+  "arena_updated": "2026-10-01 18:05:13",
+  "local_updated": null
 }
