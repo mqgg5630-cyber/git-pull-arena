@@ -3,4 +3,3 @@
 02:25:00 window: [PPTFrameClass] acceptance.pptx - PowerPoint(产品激活失败)
 02:25:00 window: [MSO_BORDEREFFECT_WINDOW_CLASS] 
 02:25:11 window: [PPTFrameClass] 演示文稿1 - PowerPoint(产品激活失败)
-02:29:59 watcher end

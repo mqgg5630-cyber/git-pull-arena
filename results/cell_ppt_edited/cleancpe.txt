@@ -1,7 +1,7 @@
 PREP[final] start prewarm=0
 PREP: resiliency + first-run state cleared
 PREP: powerpnt running=1
-PREP: active object ok, presentations=1
+PREP: active object ok, presentations=0
 PREP: graceful quit issued
 PREP: still running, force kill + clean crash state
 PREP[final] done

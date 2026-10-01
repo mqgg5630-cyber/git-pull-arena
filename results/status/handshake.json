@@ -1,9 +1,9 @@
 {
-    "round":  171,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 171: t129 - stage watcher v2 + prepcpe v2, ssh run desk_cpe_test4.ps1: 3 attempts each with watcher closing the Office activation NUIDialog (WM_CLOSE+ESC) and prewarm-visible-left-running so integration.py attaches warm via GetActiveObject. Judge: FINAL: PASS with 27/27, watcher \u0027closing dialog\u0027 vs \u0027still present\u0027 lines tell whether WM_CLOSE works on NUIDialog. Collect all logs + artifacts into results/cell_ppt_edited/",
-    "arena_updated":  "2026-10-01 18:30:39",
-    "local_updated":  "2026-10-02 02:34:33"
+  "round": 171,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-01 18:34:49",
+  "local_updated": "2026-10-02 02:34:33"
 }
