@@ -1,9 +1,9 @@
 {
-  "round": 121,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-10-01 09:05:18",
-  "local_updated": "2026-10-01 17:05:07"
+  "round": 122,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 122: t89 for each skill (cell-lct, cell_su7): reset markers, JOB.marker=fixture, schtasks run fig1desk, poll DONE/FAILED 6min, dump rebuild.log tail + probe.result + png inventory",
+  "arena_updated": "2026-10-01 09:06:13",
+  "local_updated": null
 }
