@@ -131,7 +131,9 @@
     "code/tasks/t89_desk_fixture.ps1",
     "code/tasks/t90_desk_fig1.ps1",
     "code/tasks/t91_desk_fig1b.ps1",
-    "code/tasks/t92_desk_collect.ps1"
+    "code/tasks/t92_desk_collect.ps1",
+    "code/tasks/t93_desk_antigravity.ps1",
+    "code/tasks/desk_antigravity_diag.ps1"
   ],
   "forbid_files": [
     "local/inbox",
