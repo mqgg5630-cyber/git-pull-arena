@@ -1,9 +1,9 @@
 {
-  "round": 110,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 110: t80 ssh desktop 100.84.137.117 as laptop user: 3 spaced probes (stability after r109 flake), then whoami/hostname/ver/git/python; verdict stable vs flaky",
-  "arena_updated": "2026-10-01 07:19:08",
-  "local_updated": null
+    "round":  110,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 110: t80 ssh desktop 100.84.137.117 as laptop user: 3 spaced probes (stability after r109 flake), then whoami/hostname/ver/git/python; verdict stable vs flaky",
+    "arena_updated":  "2026-10-01 07:19:08",
+    "local_updated":  "2026-10-01 15:20:08"
 }
