@@ -120,7 +120,10 @@
     "code/tasks/t80_desktop_ssh_stability.ps1",
     "code/tasks/t81_smb_key_install.ps1",
     "code/tasks/t82_bni_ssh_test.ps1",
-    "code/tasks/t83_deskprobe.ps1"
+    "code/tasks/t83_deskprobe.ps1",
+    "code/tasks/t84_deskstage_sync.ps1",
+    "code/tasks/desktop_worker.ps1",
+    "code/tasks/install_desktop.ps1"
   ],
   "forbid_files": [
     "local/inbox",

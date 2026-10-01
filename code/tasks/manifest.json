@@ -307,6 +307,9 @@
     ],
     "113": [
       "t83_deskprobe.ps1"
+    ],
+    "114": [
+      "t84_deskstage_sync.ps1"
     ]
   }
 }
