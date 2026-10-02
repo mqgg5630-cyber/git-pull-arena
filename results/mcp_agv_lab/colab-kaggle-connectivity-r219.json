@@ -1,0 +1,26 @@
+[
+    {
+        "name":  "colab",
+        "url":  "https://colab.research.google.com/",
+        "ok":  true,
+        "text":  "HTTP=200 time=0.836518 speed=113988 url=https://colab.research.google.com/"
+    },
+    {
+        "name":  "kaggle",
+        "url":  "https://www.kaggle.com/",
+        "ok":  true,
+        "text":  "curl.exe : curl: (56) schannel: server closed abruptly (missing close_notify)?????? E:\\0github\\git-sync\\git-pull-arena-01a0fa39\\code\\tasks\\[REDACTED].ps1:14 ??: 17??+ ... try { $txt=(\u0026 $ce -L -sS -o NUL --max-time 20 -w $fmt $Url 2\u003e\u00261 | Out ...??+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~??    + CategoryInfo          : NotSpecified: (curl: (56) scha...g close_notify):String) [], RemoteException??    + FullyQualifiedErrorId : NativeCommandError?? ??HTTP=000 time=12.068399 speed=0 url=https://www.kaggle.com/"
+    },
+    {
+        "name":  "kaggle_api",
+        "url":  "https://www.kaggle.com/api/v1/datasets/list?search=mnist",
+        "ok":  true,
+        "text":  "HTTP=200 time=1.016520 speed=73384 url=https://www.kaggle.[REDACTED]?search=mnist"
+    },
+    {
+        "name":  "google_storage",
+        "url":  "https://storage.googleapis.com/",
+        "ok":  true,
+        "text":  "HTTP=400 time=0.610626 speed=296 url=https://storage.googleapis.com/"
+    }
+]

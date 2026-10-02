@@ -1,0 +1,198 @@
+[
+    {
+        "kind":  "research",
+        "name":  "academic-experimental-paper-writer",
+        "category":  "research",
+        "relative":  ".agents\\skills\\academic-experimental-paper-writer\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\.agents\\skills\\academic-experimental-paper-writer\\SKILL.md"
+    },
+    {
+        "kind":  "research",
+        "name":  "cnki-academic-agent",
+        "category":  "research",
+        "relative":  ".agents\\skills\\cnki-academic-agent\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\.agents\\skills\\cnki-academic-agent\\SKILL.md"
+    },
+    {
+        "kind":  "research",
+        "name":  "english-academic-agent",
+        "category":  "research",
+        "relative":  ".agents\\skills\\english-academic-agent\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\.agents\\skills\\english-academic-agent\\SKILL.md"
+    },
+    {
+        "kind":  "research",
+        "name":  "hybrid-academic-agent",
+        "category":  "research",
+        "relative":  ".agents\\skills\\hybrid-academic-agent\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\.agents\\skills\\hybrid-academic-agent\\SKILL.md"
+    },
+    {
+        "kind":  "research",
+        "name":  "lark-thesis-formatter",
+        "category":  "research",
+        "relative":  ".agents\\skills\\lark-thesis-formatter\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\.agents\\skills\\lark-thesis-formatter\\SKILL.md"
+    },
+    {
+        "kind":  "research",
+        "name":  "light-citation",
+        "category":  "research",
+        "relative":  ".agents\\skills\\light-citation\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\.agents\\skills\\light-citation\\SKILL.md"
+    },
+    {
+        "kind":  "research",
+        "name":  "light-consistency",
+        "category":  "research",
+        "relative":  ".agents\\skills\\light-consistency\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\.agents\\skills\\light-consistency\\SKILL.md"
+    },
+    {
+        "kind":  "research",
+        "name":  "light-data-engineering",
+        "category":  "research",
+        "relative":  ".agents\\skills\\light-data-engineering\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\.agents\\skills\\light-data-engineering\\SKILL.md"
+    },
+    {
+        "kind":  "vector-figure",
+        "name":  "light-figure",
+        "category":  "figure",
+        "relative":  ".agents\\skills\\light-figure\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\.agents\\skills\\light-figure\\SKILL.md"
+    },
+    {
+        "kind":  "research",
+        "name":  "light-paper-writing",
+        "category":  "research",
+        "relative":  ".agents\\skills\\light-paper-writing\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\.agents\\skills\\light-paper-writing\\SKILL.md"
+    },
+    {
+        "kind":  "research",
+        "name":  "light-research-ethics",
+        "category":  "agent-mcp",
+        "relative":  ".agents\\skills\\light-research-ethics\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\.agents\\skills\\light-research-ethics\\SKILL.md"
+    },
+    {
+        "kind":  "research",
+        "name":  "light-research-plan",
+        "category":  "agent-mcp",
+        "relative":  ".agents\\skills\\light-research-plan\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\.agents\\skills\\light-research-plan\\SKILL.md"
+    },
+    {
+        "kind":  "research",
+        "name":  "nature-citation",
+        "category":  "research",
+        "relative":  ".agents\\skills\\nature-citation\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\.agents\\skills\\nature-citation\\SKILL.md"
+    },
+    {
+        "kind":  "research",
+        "name":  "nature-data",
+        "category":  "research",
+        "relative":  ".agents\\skills\\nature-data\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\.agents\\skills\\nature-data\\SKILL.md"
+    },
+    {
+        "kind":  "vector-figure",
+        "name":  "nature-figure",
+        "category":  "figure",
+        "relative":  ".agents\\skills\\nature-figure\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\.agents\\skills\\nature-figure\\SKILL.md"
+    },
+    {
+        "kind":  "research",
+        "name":  "nature-paper-card",
+        "category":  "research",
+        "relative":  ".agents\\skills\\nature-paper-card\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\.agents\\skills\\nature-paper-card\\SKILL.md"
+    },
+    {
+        "kind":  "vector-figure",
+        "name":  "pure-vector-svg-illustrator",
+        "category":  "figure",
+        "relative":  ".agents\\skills\\pure-vector-svg-illustrator\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\.agents\\skills\\pure-vector-svg-illustrator\\SKILL.md"
+    },
+    {
+        "kind":  "vector-figure",
+        "name":  "scientific-figure-shapes",
+        "category":  "figure",
+        "relative":  ".agents\\skills\\scientific-figure-shapes\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\.agents\\skills\\scientific-figure-shapes\\SKILL.md"
+    },
+    {
+        "kind":  "research",
+        "name":  "nature-academic-search",
+        "category":  "research",
+        "relative":  "nature-skills\\skills\\nature-academic-search\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\nature-skills\\skills\\nature-academic-search\\SKILL.md"
+    },
+    {
+        "kind":  "research",
+        "name":  "nature-citation",
+        "category":  "research",
+        "relative":  "nature-skills\\skills\\nature-citation\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\nature-skills\\skills\\nature-citation\\SKILL.md"
+    },
+    {
+        "kind":  "research",
+        "name":  "nature-data",
+        "category":  "research",
+        "relative":  "nature-skills\\skills\\nature-data\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\nature-skills\\skills\\nature-data\\SKILL.md"
+    },
+    {
+        "kind":  "vector-figure",
+        "name":  "nature-figure",
+        "category":  "figure",
+        "relative":  "nature-skills\\skills\\nature-figure\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\nature-skills\\skills\\nature-figure\\SKILL.md"
+    },
+    {
+        "kind":  "research",
+        "name":  "nature-paper-card",
+        "category":  "research",
+        "relative":  "nature-skills\\skills\\nature-paper-card\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\nature-skills\\skills\\nature-paper-card\\SKILL.md"
+    },
+    {
+        "kind":  "research",
+        "name":  "nature-paper-to-patent",
+        "category":  "research",
+        "relative":  "nature-skills\\skills\\nature-paper-to-patent\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\nature-skills\\skills\\nature-paper-to-patent\\SKILL.md"
+    },
+    {
+        "kind":  "research",
+        "name":  "nature-paper2ppt",
+        "category":  "presentation",
+        "relative":  "nature-skills\\skills\\nature-paper2ppt\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\nature-skills\\skills\\nature-paper2ppt\\SKILL.md"
+    },
+    {
+        "kind":  "vector-figure",
+        "name":  "scipilot-figure-skill",
+        "category":  "figure",
+        "relative":  "scipilot-figure-skill\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\scipilot-figure-skill\\SKILL.md"
+    },
+    {
+        "kind":  "vector-figure",
+        "name":  "scipilot-figure-skill",
+        "category":  "figure",
+        "relative":  "scipilot-figure-skill\\.agents\\skills\\scipilot-figure-skill\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\scipilot-figure-skill\\.agents\\skills\\scipilot-figure-skill\\SKILL.md"
+    },
+    {
+        "kind":  "vector-figure",
+        "name":  "smart-illustrator",
+        "category":  "figure",
+        "relative":  "smart-illustrator\\SKILL.md",
+        "source":  "E:\\0mcp-agv\\smart-illustrator\\SKILL.md"
+    }
+]
