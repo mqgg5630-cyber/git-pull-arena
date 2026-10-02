@@ -1,0 +1,311 @@
+check round 233 on LAPTOP-R77M5D6M - passed (exit 0)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 82s
+
+OK: all .ps1 files are ASCII-only
+OK: sync.config.json branch=arena/01a0fa39-git-pull-arena
+OK: sync.config.json branch matches HEAD (arena/01a0fa39-git-pull-arena)
+OK: root scripts identical to skills/git-sync/scripts
+OK: no drive-style variable typos ($var:)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+OK: every .ps1 parses
+   (gate ran via E:\hermes\git\bin\bash.exe [git])
+== accept 2a: silent push PROVEN (ls-remote + push --dry-run, prompts disabled)
+== accept 2b (fallback): one LONG-LIVED loop process - one brief flash per logon,
+   not per poll. For zero flash: admin PowerShell -> .\watch.ps1 -Unregister ;
+   .\watch.ps1 -Register -Headless   (or fix the launcher, see watch-*.log)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+== check_loop_summary PASSED
+== accept 2c: watcher closing lines verified (every exit path has its summary)
+== deliverables: 2 Office file(s) declared in deliverable/OFFICE_HASHES.json
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.docx (39743 B, docx)
+   OK   3b all 6 required parts present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.docx (17 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B, pptx)
+   OK   3b all 9 required parts present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.pptx (52 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3g slides in deliverable/LINK_PROOF_v2.8.1.pptx : 8 >= 8
+   OK   3h Word.Application opened read-only, name=LINK_PROOF_v2.8.1.docx : deliverable\LINK_PROOF_v2.8.1.docx
+   OK   3h PowerPoint.Application opened read-only, slides=8 : deliverable\LINK_PROOF_v2.8.1.pptx
+== task r233: t184_zerotier_wireguard_desktop_r233.ps1
+# R233 ZeroTier and self-hosted WireGuard desktop setup
+time=2026-10-02 20:38:25
+computer=LAPTOP-R77M5D6M user=??
+no_antigravity_or_ide_actions=True
+is_admin=False
+file_share_pid=99856
+file_share_firewall=???????????????????????????
+lan_url=http://172.30.192.1:18089/ ok=True
+lan_url=http://172.28.224.1:18089/ ok=True
+lan_url=http://192.168.110.172:18089/ ok=True
+lan_url=http://10.0.0.15:18089/ ok=True
+zerotier_winget_head=?????ZeroTier One [ZeroTier.ZeroTierOne] ??? 1.16.2 | ???????????????????????? | Microsoft ???????????????????????????????????????????? | ????????????????? | ??????????????.. | ?????????????????????????? | ???????????????????: 1618 | ???????????????????? C:\Users\???\AppData\Local\Packages\Microsoft.[REDACTED]\LocalState\DiagOutputDir\ZeroTier.ZeroTierOne.1.16.2-26-10-02-20-38-36.log
+zerotier_cli=
+wireguard_winget_head=?????WireGuard [WireGuard.WireGuard] ??? 1.1.1 | ???????????????????????? | Microsoft ???????????????????????????????????????????? | ?????? https://download.wireguard.[REDACTED].1.1.msi | ????????????????? | ??????????????.. | ?????????????????????????? | ???????????????????: 1618 | ???????????????????? C:\Users\???\AppData\Local\Packages\Microsoft.[REDACTED]\LocalState\DiagOutputDir\WireGuard.WireGuard.1.1.1-26-10-02-20-38-55.log
+wireguard_wg_exe=
+wireguard_app=
+wireguard_firewall=???????????????????????????
+public_ip_probe=
+wireguard_configs_generated=False
+wireguard_server_conf_local_only=False
+wireguard_phone_conf_local_only=False
+status_zerotier=ZEROTIER_INSTALL_ATTEMPTED_NEEDS_ADMIN_OR_RETRY
+status_wireguard=WIREGUARD_INSTALL_ATTEMPTED_NEEDS_ADMIN_OR_RETRY
+status_share=FILE_SHARE_OK
+FINAL_R233: ZEROTIER_INSTALL_ATTEMPTED_NEEDS_ADMIN_OR_RETRY_WIREGUARD_INSTALL_ATTEMPTED_NEEDS_ADMIN_OR_RETRY_FILE_SHARE_OK
+== task r233 t184_zerotier_wireguard_desktop_r233.ps1 ok (51s)
+== accept 2d: hands-free auto_pull/auto_push present in watch.ps1
+== success criteria: results/status/success_criteria.json
+   v2.8.1 on arena/01a0fa39-git-pull-arena: the newest skill (source branch arena/01a0a98d-git-pull-arena, installer refuses to downgrade) plus the repo gate (code/check_all.sh, which now proves each python candidate python3 / python / py -3) and the real-machine check (code/local_check.ps1, sections 3a-3h). The deliverables LINK_PROOF_v2.8.1.docx / .pptx travel through git and are judged by the Windows watcher: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide count and a real Word/PowerPoint open. 'Local' means that machine's scheduled watcher - never a sandbox folder, never a hand-made stand-in skill. From round 22 on the repo also ships code/tasks/*.ps1 (mapped per round in code/tasks/manifest.json) which run on the machine inside local_check.ps1 section 4 as child processes: round 22 = read-only diagnostics for the Antigravity login, the Java install state and E: cleanup candidates.
+   OK   exists: 01a0a821.md (2016 B)
+   OK   exists: skills/git-sync/VERSION (6 B)
+   OK   exists: skills/git-sync/scripts/agent-install.sh (13404 B)
+   OK   exists: skills/git-sync/scripts/agent-handoff.sh (4603 B)
+   OK   exists: skills/git-sync/scripts/agent-handsfree.sh (3989 B)
+   OK   exists: skills/git-sync/scripts/agent-criteria.sh (5190 B)
+   OK   exists: skills/git-sync/scripts/watch.ps1 (84094 B)
+   OK   exists: skills/git-sync/templates/one-sentence.md (6524 B)
+   OK   exists: skills/git-sync/templates/gate.yml (1166 B)
+   OK   exists: code/check_all.sh (9945 B)
+   OK   exists: code/local_check.ps1 (30124 B)
+   OK   exists: code/make_link_proof.py (22948 B)
+   OK   exists: deliverable/OFFICE_HASHES.json (2401 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.docx (39743 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B)
+   OK   exists: watch.ps1 (84094 B)
+   OK   exists: code/tasks/manifest.json (12638 B)
+   OK   exists: code/tasks/t1_antigravity_diag.ps1 (14461 B)
+   OK   exists: code/tasks/t2_java_diag.ps1 (8626 B)
+   OK   exists: code/tasks/t3_edrive_scan.ps1 (9393 B)
+   OK   exists: code/tasks/t1_fix_antigravity.ps1 (10411 B)
+   OK   exists: code/tasks/t3_edrive_scan2.ps1 (9007 B)
+   OK   exists: code/tasks/t2_install_java.ps1 (14030 B)
+   OK   exists: code/tasks/t3_edrive_scan3.ps1 (7084 B)
+   OK   exists: code/tasks/t4_cleanup_dryrun.ps1 (5995 B)
+   OK   exists: code/tasks/t1_antigravity_verify.ps1 (3793 B)
+   OK   exists: code/tasks/t2_cleanup_exec.ps1 (12624 B)
+   OK   exists: results/status/round22_findings.md (3511 B)
+   OK   exists: code/tasks/t5_cleanup_fix.ps1 (7475 B)
+   OK   exists: code/tasks/t7_ligplus_test.ps1 (6214 B)
+   OK   exists: code/tasks/t1_antigravity_tun2.ps1 (7694 B)
+   OK   exists: code/tasks/t6_docker_report.ps1 (5648 B)
+   OK   exists: code/tasks/t8_uvcache_finish.ps1 (2719 B)
+   OK   exists: code/tasks/t9_ligplus_upgrade.ps1 (8739 B)
+   OK   exists: code/tasks/t10_ligplus_final.ps1 (9282 B)
+   OK   exists: code/tasks/t11_javagui_fix.ps1 (3986 B)
+   OK   exists: code/tasks/t12_ligplus_new.ps1 (7178 B)
+   OK   exists: code/tasks/t13_docker_autofigure.ps1 (2917 B)
+   OK   exists: code/tasks/t14_recyclebin_empty.ps1 (2689 B)
+   OK   exists: code/tasks/t15_uvcache_final.ps1 (4126 B)
+   OK   exists: code/tasks/t16_uvcache_final2.ps1 (3987 B)
+   OK   exists: code/tasks/t17_uv_delete_bg.ps1 (4570 B)
+   OK   exists: code/tasks/t18_edrive_survey.ps1 (15793 B)
+   OK   exists: code/tasks/t17b_uv_finish.ps1 (3803 B)
+   OK   exists: code/tasks/t19_cleanup_approved.ps1 (9331 B)
+   OK   exists: code/tasks/t20_docker_pagefile.ps1 (5765 B)
+   OK   exists: code/tasks/t21_optimize_review.ps1 (7881 B)
+   OK   exists: code/tasks/t22_pagefile_uac.ps1 (2571 B)
+   OK   exists: code/tasks/t23_tailscale_verify.ps1 (2476 B)
+   OK   exists: code/tasks/t24_oldsync_cleanup.ps1 (2537 B)
+   OK   exists: code/tasks/t25_oldtask_uac.ps1 (4503 B)
+   OK   exists: code/tasks/t26_pagefile_fix_uac.ps1 (4880 B)
+   OK   exists: code/tasks/t27_pagefile_registry.ps1 (4513 B)
+   OK   exists: code/tasks/t28_reboot_verify.ps1 (2764 B)
+   OK   exists: code/tasks/t29_ddrive_survey.ps1 (9818 B)
+   OK   exists: code/tasks/t30_tailscale_prep.ps1 (5189 B)
+   OK   exists: code/tasks/t31_enable_rdp_ssh.ps1 (4127 B)
+   OK   exists: code/tasks/t32_wsl26_survey.ps1 (4565 B)
+   OK   exists: code/tasks/t33_hpc_probe.ps1 (5024 B)
+   OK   exists: code/tasks/t34_hpc_bridge.ps1 (4027 B)
+   OK   exists: code/tasks/t35_desktop_access_probe.ps1 (4368 B)
+   OK   exists: code/tasks/t36_autostart_vpn_tailscale.ps1 (6281 B)
+   OK   exists: code/tasks/t37_software_inventory.ps1 (6288 B)
+   OK   exists: code/tasks/t38_uninstall_qwenpaw.ps1 (6601 B)
+   OK   exists: code/tasks/t39_toolbox_and_paths.ps1 (6919 B)
+   OK   exists: code/tasks/t40_mcp_n8n_r_survey.ps1 (12366 B)
+   OK   exists: code/tasks/t41_bigdocs_report.ps1 (8722 B)
+   OK   exists: code/tasks/t42_fix_desktop_and_rdetail.ps1 (3650 B)
+   OK   exists: code/tasks/t43_wsl_r_probe2.ps1 (1800 B)
+   OK   exists: code/tasks/t44_r_final_check.ps1 (1752 B)
+   OK   exists: code/tasks/t45_r_versions_cleanup.ps1 (6361 B)
+   OK   exists: code/tasks/t46_zotero_recon.ps1 (11043 B)
+   OK   exists: code/tasks/t47_pipeline_fetch.ps1 (6956 B)
+   OK   exists: code/tasks/t48_run.ps1 (2765 B)
+   OK   exists: code/tasks/t48_english_citations.py (3044 B)
+   OK   exists: code/tasks/t48_zotero_match.py (2228 B)
+   OK   exists: code/tasks/t49_run.ps1 (912 B)
+   OK   exists: code/tasks/t49_dump_refs.py (3503 B)
+   OK   exists: code/tasks/t50_run.ps1 (1969 B)
+   OK   exists: code/tasks/t50_zotero_link.py (14995 B)
+   OK   exists: code/tasks/t51_run.ps1 (1053 B)
+   OK   exists: code/tasks/t51_verify_fix.py (16798 B)
+   OK   exists: code/tasks/t52_run.ps1 (1041 B)
+   OK   exists: code/tasks/t52_build_final.py (17034 B)
+   OK   exists: code/tasks/t53_word_check.ps1 (1876 B)
+   OK   exists: code/tasks/t54_recon2.ps1 (6934 B)
+   OK   exists: code/tasks/t54_crossref_verify.py (3308 B)
+   OK   exists: code/tasks/t55_run.ps1 (4739 B)
+   OK   exists: code/tasks/t55_rebuild9.py (17034 B)
+   OK   exists: code/tasks/t56_abtest.ps1 (5636 B)
+   OK   exists: code/tasks/t56_import_zotero.py (2992 B)
+   OK   exists: code/tasks/t57_run.ps1 (981 B)
+   OK   exists: code/tasks/t57_bind_uris.py (5318 B)
+   OK   exists: code/tasks/t58_recon_install.ps1 (6846 B)
+   OK   exists: code/tasks/t59_install_bridge.ps1 (10039 B)
+   OK   exists: code/tasks/t60_rot_bridge.ps1 (7846 B)
+   OK   exists: code/tasks/t61_rot_fallback.ps1 (6145 B)
+   OK   exists: code/tasks/t62_file_bridge.ps1 (12790 B)
+   OK   exists: code/tasks/fig1_rebuild_worker.ps1 (17400 B)
+   OK   exists: code/tasks/t63_final_rebuild.ps1 (3259 B)
+   OK   exists: code/tasks/t64_poll_rebuild.ps1 (4877 B)
+   OK   exists: code/tasks/t65_relaunch_worker.ps1 (3077 B)
+   OK   exists: code/tasks/t66_diag_rebuild.ps1 (3307 B)
+   OK   exists: code/tasks/t67_probe_ai_state.ps1 (6861 B)
+   OK   exists: code/tasks/t68_bridge_v2_resume.ps1 (7061 B)
+   OK   exists: code/tasks/t69_tfprobe.ps1 (5639 B)
+   OK   exists: code/tasks/t70_v2_rebuild.ps1 (5637 B)
+   OK   exists: code/tasks/t71_install_celllct.ps1 (11998 B)
+   OK   exists: code/tasks/t72_fix_getcs.ps1 (3975 B)
+   OK   exists: code/tasks/t73_v5_relaunch.ps1 (2813 B)
+   OK   exists: code/tasks/t74_hpc_watch.ps1 (4333 B)
+   OK   exists: code/tasks/t75_test_celllct.ps1 (8744 B)
+   OK   exists: code/tasks/t76_test_cellsu7.ps1 (8729 B)
+   OK   exists: code/tasks/t77_demo_celllct.ps1 (3053 B)
+   OK   exists: code/tasks/t78_demo_cellsu7.ps1 (3053 B)
+   OK   exists: code/tasks/t79_desktop_ssh_and_paths.ps1 (8292 B)
+   OK   exists: code/tasks/t80_desktop_ssh_stability.ps1 (3135 B)
+   OK   exists: code/tasks/t81_smb_key_install.ps1 (6256 B)
+   OK   exists: code/tasks/t82_bni_ssh_test.ps1 (2170 B)
+   OK   exists: code/tasks/t83_deskprobe.ps1 (3312 B)
+   OK   exists: code/tasks/t84_deskstage_sync.ps1 (5216 B)
+   OK   exists: code/tasks/desktop_worker.ps1 (11147 B)
+   OK   exists: code/tasks/install_desktop.ps1 (7594 B)
+   OK   exists: code/tasks/t85_syncfix.ps1 (3014 B)
+   OK   exists: code/tasks/t86_deskinstall.ps1 (3447 B)
+   OK   exists: code/tasks/t87_deskpython.ps1 (5575 B)
+   OK   exists: code/tasks/t88_deskdeps.ps1 (3839 B)
+   OK   exists: code/tasks/t89_desk_fixture.ps1 (3801 B)
+   OK   exists: code/tasks/t90_desk_fig1.ps1 (3772 B)
+   OK   exists: code/tasks/t91_desk_fig1b.ps1 (3773 B)
+   OK   exists: code/tasks/t92_desk_collect.ps1 (3232 B)
+   OK   exists: code/tasks/t93_desk_antigravity.ps1 (2326 B)
+   OK   exists: code/tasks/desk_antigravity_diag.ps1 (6657 B)
+   OK   exists: code/tasks/t94_desk_agy_fix.ps1 (2146 B)
+   OK   exists: code/tasks/desk_antigravity_fix.ps1 (5081 B)
+   OK   exists: code/tasks/t95_desk_agy_fix2.ps1 (2152 B)
+   OK   exists: code/tasks/desk_antigravity_fix2.ps1 (5225 B)
+   OK   exists: code/tasks/t96_desk_agy_verify.ps1 (2060 B)
+   OK   exists: code/tasks/desk_antigravity_verify.ps1 (2657 B)
+   OK   exists: code/tasks/t97_desk_agy_fix3.ps1 (2000 B)
+   OK   exists: code/tasks/desk_antigravity_fix3.ps1 (4558 B)
+   OK   exists: code/tasks/t98_desk_agy_verify2.ps1 (2079 B)
+   OK   exists: code/tasks/desk_antigravity_verify2.ps1 (3475 B)
+   OK   exists: code/tasks/t99_desk_agy_verify3.ps1 (3333 B)
+   OK   exists: code/tasks/desk_antigravity_verify3.ps1 (6500 B)
+   OK   exists: code/tasks/t100_desk_agy_fix4.ps1 (2698 B)
+   OK   exists: code/tasks/desk_antigravity_fix4.ps1 (13273 B)
+   OK   exists: code/tasks/t101_desk_agy_fix4.ps1 (3191 B)
+   OK   exists: code/tasks/t102_desk_agy_verify4.ps1 (2522 B)
+   OK   exists: code/tasks/desk_antigravity_verify4.ps1 (6413 B)
+   OK   exists: code/tasks/t103_desk_sync_survey.ps1 (7289 B)
+   OK   exists: code/tasks/desk_survey_sync.ps1 (3855 B)
+   OK   exists: code/tasks/t104_desk_ide_sync.ps1 (7597 B)
+   OK   exists: code/tasks/desk_sync_ide.ps1 (6997 B)
+   OK   exists: code/tasks/t105_laptop_wps_harness.ps1 (11541 B)
+   OK   exists: code/tasks/t106_laptop_impress_patch.ps1 (6865 B)
+   OK   exists: code/tasks/desk_wps_install.ps1 (7691 B)
+   OK   exists: code/tasks/verify_pptx.py (710 B)
+   OK   exists: code/tasks/t107_laptop_impress_patch2.ps1 (6920 B)
+   OK   exists: code/tasks/t108_laptop_harness_patch2.ps1 (5486 B)
+   OK   exists: code/tasks/patch_harness.py (4098 B)
+   OK   exists: code/tasks/wpsdl.cmd (1189 B)
+   OK   exists: code/tasks/t109_laptop_impress_retry.ps1 (4040 B)
+   OK   exists: code/tasks/t109_cancel_desktop_status.ps1 (1495 B)
+   OK   exists: code/tasks/t110_desk_wpsdl_fix.ps1 (3592 B)
+   OK   exists: code/tasks/t111_desk_wps_go.ps1 (2776 B)
+   OK   exists: code/tasks/t112_desk_deck_collect.ps1 (2851 B)
+   OK   exists: code/tasks/desk_harness_deck.py (8671 B)
+   OK   exists: code/tasks/t111b_desk_wps_go2.ps1 (3934 B)
+   OK   exists: code/tasks/t113_desk_wps_silent.ps1 (3065 B)
+   OK   exists: code/tasks/desk_wps_install2.ps1 (8618 B)
+   OK   exists: code/tasks/t114_desk_wps_launch.ps1 (2486 B)
+   OK   exists: code/tasks/desk_wps_launch.ps1 (8930 B)
+   OK   exists: code/tasks/t115_desk_wps_register.ps1 (2456 B)
+   OK   exists: code/tasks/desk_wps_register.ps1 (9949 B)
+   OK   exists: code/tasks/t116_desk_interactive.ps1 (4975 B)
+   OK   exists: code/tasks/desk_wps_interactive.ps1 (6845 B)
+   OK   exists: code/tasks/wpsrun.cmd (103 B)
+   OK   exists: code/tasks/t117_desk_automation.ps1 (3344 B)
+   OK   exists: code/tasks/desk_wps_automation.ps1 (9332 B)
+   OK   exists: code/tasks/t118_desk_final.ps1 (3671 B)
+   OK   exists: code/tasks/desk_wps_final.ps1 (5305 B)
+   OK   exists: code/tasks/t119_desk_final2.ps1 (3522 B)
+   OK   exists: code/tasks/desk_wps_final2.ps1 (5158 B)
+   OK   exists: code/tasks/t120_desk_warm.ps1 (3525 B)
+   OK   exists: code/tasks/desk_wpp_warm.ps1 (6716 B)
+   OK   exists: code/tasks/t121_desk_warm2.ps1 (4123 B)
+   OK   exists: code/tasks/desk_warm2.ps1 (6012 B)
+   OK   exists: code/tasks/deck_warm_build.py (7937 B)
+   OK   exists: code/tasks/t122_amp_deck.ps1 (3809 B)
+   OK   exists: code/tasks/desk_amp_deck.ps1 (4495 B)
+   OK   exists: code/tasks/amp_deck_build.py (16739 B)
+   OK   exists: code/tasks/t123_amp_deck2.ps1 (3851 B)
+   OK   exists: code/tasks/desk_amp_deck2.ps1 (4553 B)
+   OK   exists: code/tasks/amp_deck_v2_build.py (36459 B)
+   OK   exists: code/tasks/t124_cpe_setup.ps1 (2615 B)
+   OK   exists: code/tasks/desk_cpe_setup.ps1 (6175 B)
+   OK   exists: code/tasks/t125_cpe_setup2.ps1 (2624 B)
+   OK   exists: code/tasks/t126_cpe_test.ps1 (3617 B)
+   OK   exists: code/tasks/desk_cpe_test.ps1 (5058 B)
+   OK   exists: code/tasks/t127_cpe_test2.ps1 (3950 B)
+   OK   exists: code/tasks/desk_cpe_test2.ps1 (6813 B)
+   OK   exists: code/tasks/t128_cpe_test3.ps1 (4550 B)
+   OK   exists: code/tasks/desk_cpe_test3.ps1 (9346 B)
+   OK   exists: code/tasks/watcher.ps1 (4592 B)
+   OK   exists: code/tasks/prepcpe.ps1 (4427 B)
+   OK   exists: code/tasks/t129_cpe_test4.ps1 (4516 B)
+   OK   exists: code/tasks/desk_cpe_test4.ps1 (8865 B)
+   OK   absent: local/inbox
+   OK   absent: local/status_receipts
+   OK   absent: skills/docx_skill.py
+   OK   absent: local_bridge_skill.py
+   OK   contains skills/git-sync/VERSION <- 2.8.1
+   OK   contains 01a0a821.md <- arena/01a0a98d-git-pull-arena
+   OK   contains skills/git-sync/sync.config.json <- arena/01a0fa39-git-pull-arena
+   OK   contains skills/git-sync/templates/one-sentence.md <- agent-handoff.sh
+   OK   contains skills/git-sync/scripts/agent-install.sh <- refusing to downgrade
+   OK   contains code/check_all.sh <- py -3
+   OK   contains code/local_check.ps1 <- no Office deliverable declared
+   OK   contains deliverable/OFFICE_HASHES.json <- arena/01a0a9f0-git-pull-arena
+   OK   contains watch.ps1 <- function Invoke-AutoPull
+   OK   contains skills/git-sync/scripts/watch.ps1 <- function Invoke-Focus
+   OK   contains code/tasks/manifest.json <- t3_edrive_scan.ps1
+   OK   contains code/tasks/t1_fix_antigravity.ps1 <- http.proxy
+   OK   contains code/tasks/t2_install_java.ps1 <- E:\java
+   OK   regex watch.ps1
+   OK   regex code/local_check.ps1
+   OK   regex deliverable/OFFICE_HASHES.json
+   OK   size skills/git-sync/scripts/agent-handoff.sh: 4603 >= 2000
+   OK   size skills/git-sync/scripts/agent-install.sh: 13404 >= 10000
+   OK   size code/check_all.sh: 9945 >= 8000
+   OK   size code/local_check.ps1: 30124 >= 12000
+   OK   size code/make_link_proof.py: 22948 >= 8000
+   OK   size deliverable/OFFICE_HASHES.json: 2401 >= 500
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 >= 5000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 >= 15000
+   OK   size watch.ps1: 84094 >= 20000
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 <= 3000000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 <= 3000000
+== local checks passed

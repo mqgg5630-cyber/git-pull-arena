@@ -1,0 +1,53 @@
+{
+    "isAdmin":  false,
+    "shareRoot":  "E:\\0mcp-agv-arena-optimized\\phone-share",
+    "sharePort":  18089,
+    "lan":  [
+                {
+                    "url":  "http://172.30.192.1:18089/",
+                    "ok":  true
+                },
+                {
+                    "url":  "http://172.28.224.1:18089/",
+                    "ok":  true
+                },
+                {
+                    "url":  "http://192.168.110.172:18089/",
+                    "ok":  true
+                },
+                {
+                    "url":  "http://10.0.0.15:18089/",
+                    "ok":  true
+                }
+            ],
+    "zeroTier":  {
+                     "installAttempted":  true,
+                     "cli":  {
+
+                             },
+                     "info":  "",
+                     "nodeId":  "",
+                     "networks":  "",
+                     "ips":  [
+
+                             ],
+                     "joinScript":  "E:\\0mcp-agv-arena-optimized\\zerotier\\join-zerotier-network.ps1"
+                 },
+    "wireGuard":  {
+                      "installAttempted":  true,
+                      "wgExe":  {
+
+                                },
+                      "wgApp":  {
+
+                                },
+                      "publicIp":  "",
+                      "configsGenerated":  false,
+                      "genScript":  "E:\\0mcp-agv-arena-optimized\\wireguard\\generate-wireguard-configs-local.ps1",
+                      "installScript":  "E:\\0mcp-agv-arena-optimized\\wireguard\\install-wireguard-tunnel-admin.ps1",
+                      "removeScript":  "E:\\0mcp-agv-arena-optimized\\wireguard\\remove-wireguard-tunnel-admin.ps1",
+                      "serverConfExists":  false,
+                      "phoneConfExists":  false
+                  },
+    "guide":  "E:\\0github\\git-sync\\git-pull-arena-01a0fa39\\results\\mcp_agv_lab\\zerotier-wireguard-phone-guide-r233.md"
+}
