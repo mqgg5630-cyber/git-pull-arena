@@ -667,6 +667,9 @@
     ],
     "234": [
       "t185_wireguard_local_configs_r234.ps1"
+    ],
+    "235": [
+      "t186_install_openspeedy_desktop_r235.ps1"
     ]
   }
 }
