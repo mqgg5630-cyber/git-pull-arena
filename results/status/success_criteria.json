@@ -208,7 +208,8 @@
     "code/tasks/watcher.ps1",
     "code/tasks/prepcpe.ps1",
     "code/tasks/t129_cpe_test4.ps1",
-    "code/tasks/desk_cpe_test4.ps1"
+    "code/tasks/desk_cpe_test4.ps1",
+    "code/tasks/t130_register_watcher.ps1"
   ],
   "forbid_files": [
     "local/inbox",

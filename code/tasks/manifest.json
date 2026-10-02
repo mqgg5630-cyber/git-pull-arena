@@ -478,6 +478,9 @@
     ],
     "171": [
       "t129_cpe_test4.ps1"
+    ],
+    "172": [
+      "t130_register_watcher.ps1"
     ]
   }
 }
