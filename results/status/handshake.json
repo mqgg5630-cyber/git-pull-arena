@@ -1,9 +1,9 @@
 {
-  "round": 204,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "round 204: windows-computer-use find invoke button proof",
-  "arena_updated": "2026-10-02 05:52:08",
-  "local_updated": "2026-10-02 13:51:33"
+  "round": 205,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 205: move lab to E, register computer-use MCP, software ops, optimized skills",
+  "arena_updated": "2026-10-02 06:23:46",
+  "local_updated": null
 }
