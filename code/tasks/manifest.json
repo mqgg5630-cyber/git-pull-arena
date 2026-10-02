@@ -553,6 +553,9 @@
     ],
     "196": [
       "t153_mcp_agv_computer_use_lab.ps1"
+    ],
+    "197": [
+      "t154_computer_use_project_smoke.ps1"
     ]
   }
 }
