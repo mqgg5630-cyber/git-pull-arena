@@ -1,9 +1,9 @@
 {
-  "round": 212,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "round 212: targeted Antigravity message input",
-  "arena_updated": "2026-10-02 07:28:56",
-  "local_updated": "2026-10-02 15:19:45"
+  "round": 213,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 213: computer-use capability audit laptop and desktop",
+  "arena_updated": "2026-10-02 07:29:00",
+  "local_updated": null
 }
