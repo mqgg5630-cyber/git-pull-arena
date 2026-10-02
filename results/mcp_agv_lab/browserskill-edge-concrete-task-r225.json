@@ -1,0 +1,64 @@
+{
+  "ok": true,
+  "eid": "emacgiaaaiojkkpkddmmdfhmokgmnikg",
+  "targets": [
+    {
+      "type": "page",
+      "title": "我们现在正在你的所有设备上同步你的浏览数据",
+      "url": "edge://sync-confirmation-dialog/"
+    },
+    {
+      "type": "background_page",
+      "title": "Microsoft Voices",
+      "url": "chrome-extension://jdiccldimpdaibmpdkjnbmckianbfold/_generated_background_page.html"
+    },
+    {
+      "type": "background_page",
+      "title": "WebRTC Internals Extension",
+      "url": "chrome-extension://ncbjelpjchkpbikbpkcchkhkblodoama/_generated_background_page.html"
+    },
+    {
+      "type": "background_page",
+      "title": "Media Internals Services Extension",
+      "url": "chrome-extension://fikbjbembnmfhppjfnmfkahdhfohhjmg/_generated_background_page.html"
+    },
+    {
+      "type": "background_page",
+      "title": "Edge 反馈",
+      "url": "chrome-extension://ihmafllikibpmigkcoadcmckbfhibefp/_generated_background_page.html"
+    },
+    {
+      "type": "background_page",
+      "title": "WebRTC Extension",
+      "url": "chrome-extension://nkeimhogjdpnpccoofpliimaahmaaome/background.html"
+    },
+    {
+      "type": "page",
+      "title": "BrowserSkill task R225",
+      "url": "file:///E:/0mcp-agv-arena-optimized/browser-tests/browserskill_edge_r225/browserskill_task_r225.html"
+    },
+    {
+      "type": "service_worker",
+      "title": "Service Worker chrome-extension://ndcpkimcihhghdcddljkfmmjccdmcmof/background.rollup.js",
+      "url": "chrome-extension://ndcpkimcihhghdcddljkfmmjccdmcmof/background.rollup.js"
+    },
+    {
+      "type": "service_worker",
+      "title": "Service Worker chrome-extension://emacgiaaaiojkkpkddmmdfhmokgmnikg/background.js",
+      "url": "chrome-extension://emacgiaaaiojkkpkddmmdfhmokgmnikg/background.js"
+    }
+  ],
+  "extensionTargets": [
+    {
+      "type": "service_worker",
+      "title": "Service Worker chrome-extension://emacgiaaaiojkkpkddmmdfhmokgmnikg/background.js",
+      "url": "chrome-extension://emacgiaaaiojkkpkddmmdfhmokgmnikg/background.js"
+    }
+  ],
+  "pluginLoaded": true,
+  "check": {
+    "task": "OK",
+    "out": "BROWSERSKILL_R225_OK",
+    "title": "BrowserSkill task R225"
+  }
+}

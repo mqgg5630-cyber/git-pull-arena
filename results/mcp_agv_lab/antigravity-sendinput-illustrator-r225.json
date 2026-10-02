@@ -1,0 +1,31 @@
+{
+    "ok":  false,
+    "marker":  "ARENA_AGV_SENDINPUT_TERMINAL_R225_20261002_174648",
+    "invoke":  {
+                   "exists":  false,
+                   "path":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_sendinput_illustrator_r225\\agv_sendinput_terminal_invoked_r225.txt",
+                   "bytes":  0,
+                   "mtime":  ""
+               },
+    "ai":  {
+               "exists":  false,
+               "path":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_sendinput_illustrator_r225\\agv_sendinput_figure_r225.ai",
+               "bytes":  0,
+               "mtime":  ""
+           },
+    "png":  {
+                "exists":  false,
+                "path":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_sendinput_illustrator_r225\\agv_sendinput_figure_r225.png",
+                "bytes":  0,
+                "mtime":  ""
+            },
+    "done":  {
+                 "exists":  false,
+                 "path":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_sendinput_illustrator_r225\\agv_sendinput_illustrator_done_r225.txt",
+                 "bytes":  0,
+                 "mtime":  ""
+             },
+    "runner":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_sendinput_illustrator_r225\\run_illustrator_r225.ps1",
+    "log":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_sendinput_illustrator_r225\\agv_sendinput_runner_r225.log",
+    "sendOut":  "powershell.exe : 使用“1”个参数调用“SendWait”时发生异常:“拒绝访问。”\r\n    + CategoryInfo          : NotSpecified: (使用“1”个参数调用“SendWait”时发生异常:“拒绝访问。”:String) [], RemoteException\r\n    + FullyQualifiedErrorId : NativeCommandError\r\n \r\n所在位置 E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_sendinput_illustrator_r225\\send_antigravity_keys_r225.ps1:17\r\n 字符: 1\r\n+ [System.Windows.Forms.SendKeys]::SendWait(\u0027{F1}\u0027)\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException\r\n    + FullyQualifiedErrorId : Win32Exception\r\n \r\n使用“1”个参数调用“SendWait”时发生异常:“拒绝访问。”\r\n所在位置 E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_sendinput_illustrator_r225\\send_antigravity_keys_r225.ps1:9 \r\n字符: 32\r\n+ ... string]$s){ [System.Windows.Forms.SendKeys]::SendWait((EscSend $s));  ...\r\n+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException\r\n    + FullyQualifiedErrorId : Win32Exception\r\n \r\n使用“1”个参数调用“SendWait”时发生异常:“拒绝访问。”\r\n所在位置 E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_sendinput_illustrator_r225\\send_antigravity_keys_r225.ps1:20\r\n 字符: 1\r\n+ [System.Windows.Forms.SendKeys]::SendWait(\u0027{ENTER}\u0027)\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException\r\n    + FullyQualifiedErrorId : Win32Exception\r\n \r\n使用“1”个参数调用“SendWait”时发生异常:“拒绝访问。”\r\n所在位置 E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_sendinput_illustrator_r225\\send_antigravity_keys_r225.ps1:9 \r\n字符: 32\r\n+ ... string]$s){ [System.Windows.Forms.SendKeys]::SendWait((EscSend $s));  ...\r\n+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException\r\n    + FullyQualifiedErrorId : Win32Exception\r\n \r\n使用“1”个参数调用“SendWait”时发生异常:“拒绝访问。”\r\n所在位置 E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_sendinput_illustrator_r225\\send_antigravity_keys_r225.ps1:23\r\n 字符: 1\r\n+ [System.Windows.Forms.SendKeys]::SendWait(\u0027{ENTER}\u0027)\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException\r\n    + FullyQualifiedErrorId : Win32Exception"
+}
