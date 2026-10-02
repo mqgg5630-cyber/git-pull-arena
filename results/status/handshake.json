@@ -1,9 +1,9 @@
 {
-  "round": 194,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "round 194: verify desktop bridge stable and GreenVPN autostart",
-  "arena_updated": "2026-10-02 05:13:32",
-  "local_updated": "2026-10-02 13:12:36"
+  "round": 195,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 195: persist desktop Antigravity bridge",
+  "arena_updated": "2026-10-02 05:13:36",
+  "local_updated": null
 }
