@@ -1,0 +1,441 @@
+# 0mcp-agv source inventory
+time=2026-10-02 13:26:47
+
+## Source: E:\0mcp-agv
+### Top-level directories
+- .agent
+- .agents
+- .playwright-mcp
+- academic_hub_gui
+- agents
+- ARTA_Agent_Output
+- banana-slides
+- cep-extension
+- complexes_best_vina
+- cyber_svg_icons
+- cyber_svg_icons_png
+- CyberPPT
+- dashi-ppt-skill
+- docs
+- extracted_icons_15slides
+- fig1_assets
+- gas-sheet-project
+- guizang-ppt-skill
+- icon_cache
+- icon_cache_flagship
+- illustrator_mcp
+- illustrator_mcp.egg-info
+- illustrator-scripts
+- living test
+- mcp_servers
+- nature-skills
+- output_dashi_umami
+- PPTist
+- ppt-master
+- renders_ad_exact_15slides
+- renders_ad_flagship_15slides
+- renders_ad_stage_amp
+- renders_amp_15slides
+- renders_dashi_final
+- renders_dashi_theme07
+- renders_original_15slides
+- renders_original_dashi_umami
+- renders_zonghe
+- renders_zonghe_opt
+- sci_docking_studio
+- scipilot-figure-skill
+- scratch
+- scripts
+- smart-illustrator
+- tests
+- tests_jsx
+- uxp-plugin
+- 机器学习筛选鲜味肽_综述成果
+### Top-level files
+- .env.example (266 bytes)
+- .gitignore (1205 bytes)
+- 1.md (658 bytes)
+- ad_amp_biorender_mechanisms.ai (277069 bytes)
+- ad_amp_biorender_mechanisms.png (325159 bytes)
+- ad_amp_scientific_workflow.ai (261565 bytes)
+- ad_amp_scientific_workflow.png (273429 bytes)
+- ad_exact_original_style_15slides.pptx (114161 bytes)
+- ad_flagship_amp_screening_15slides.pptx (136148 bytes)
+- ad_stage_amp_deep_learning.pptx (161992 bytes)
+- AGENTS.md (19149 bytes)
+- amp_ml_screening_15slides.pptx (638350 bytes)
+- amp_ml_screening_15slides_v2.pptx (58747 bytes)
+- build_clean_fig1.jsx (4248 bytes)
+- build_master_fig1.jsx (3926 bytes)
+- build_master_fig1_embed.jsx (4011 bytes)
+- build_optimized_zonghe_deck.py (50718 bytes)
+- build_ultimate_fig1.jsx (978 bytes)
+- captcha_bg.png (61087 bytes)
+- captcha_piece.png (1562 bytes)
+- captcha_screen.png (982314 bytes)
+- cyberppt_amp_screening.pptx (34016 bytes)
+- CyberPPT_Full_20_Slides.pptx (73776 bytes)
+- cyberppt_umami_peptide_screening.pptx (33900 bytes)
+- deck_content_dump.json (41308 bytes)
+- demo_server.py (3109 bytes)
+- example_sci_docking_pipeline.py (1618 bytes)
+- extract_all_hbonds.py (5091 bytes)
+- fig1_exact_vector.svg (32411 bytes)
+- fig1_fresh_scientific_master.ai (307117 bytes)
+- fig1_fresh_scientific_render.png (538699 bytes)
+- fig1_fresh_scientific_vector.svg (38363 bytes)
+- fig1_graphical_abstract.png (1821408 bytes)
+- fig1_graphical_abstract_1to1.ai (259823 bytes)
+- fig1_graphical_abstract_1to1_master.ai (3503398 bytes)
+- fig1_graphical_abstract_master.png (24575 bytes)
+- fig1_graphical_abstract_pure_vector.svg (33986 bytes)
+- fig1_graphical_abstract_reproduced.png (257074 bytes)
+- fig1_graphical_abstract_ultimate_master.ai (264069 bytes)
+- fig1_journal_master.svg (35257 bytes)
+- fig1_journal_master_render.png (486413 bytes)
+- fig1_master_exact_render.png (1833063 bytes)
+- fig1_master_render.png (23085 bytes)
+- fig1_pure_native_vector.ai (236688 bytes)
+- fig1_pure_native_vector.svg (33962 bytes)
+- fig1_pure_native_vector_final.png (582604 bytes)
+- fig1_pure_native_vector_render.png (582604 bytes)
+- fig1_pure_vector.ai (239952 bytes)
+- fig1_pure_vector_final.png (569865 bytes)
+- fig1_pure_vector_render.png (569865 bytes)
+- fig1_smart_illustrated_hd.png (1049890 bytes)
+- fig1_smart_illustrator_style.ai (3562194 bytes)
+- fig1_smart_illustrator_style_render.png (3257014 bytes)
+- fig1_ultimate_render.png (2531756 bytes)
+- fig1_ultimate_vector_render.png (590125 bytes)
+- image.png (244028 bytes)
+- install-antigravity.bat (2030 bytes)
+- install-cep.bat (3204 bytes)
+- install-cep.sh (2402 bytes)
+- pyproject.toml (2011 bytes)
+- README.md (41502 bytes)
+- run_full_docking_pipeline.py (6240 bytes)
+- scan_e_drive.py (2166 bytes)
+- smart_illustrator_fig1_light.png (1342421 bytes)
+- template_sci_docking.py (15680 bytes)
+- test_brain.png (521 bytes)
+- test_checkpoint_results.txt (30246 bytes)
+- test_curves_result.txt (6159 bytes)
+- uv.lock (253819 bytes)
+- 机器学习筛选鲜味肽_BananaSlides.pptx (43169 bytes)
+- 机器学习筛选鲜味肽_BananaSlides_旗舰版.pptx (43173 bytes)
+- 机器学习筛选鲜味肽_CyberPPT_纯矢量SVG定制版.pptx (667998 bytes)
+- 机器学习筛选鲜味肽_CyberPPT纯矢量SVG版.pptx (42049 bytes)
+- 机器学习筛选鲜味肽_CyberPPT旗舰版.pptx (57213 bytes)
+- 机器学习筛选鲜味肽_DashiPPT.pptx (86055 bytes)
+- 机器学习筛选鲜味肽_PPTMaster.pptx (32555 bytes)
+- 机器学习筛选鲜味肽_Swiss_Deck.html (225117 bytes)
+- 机器学习筛选鲜味肽_Swiss_Deck.pptx (42908 bytes)
+- 机器学习筛选鲜味肽_研究汇报.pptx (40242 bytes)
+- 机器学习筛选鲜味肽_综合版.pptx (67836 bytes)
+- 鲜味肽_机器学习筛选.pptx (106322 bytes)
+- 鲜味肽_机器学习筛选_原生可编辑.pptx (86962 bytes)
+total_files_sampled=2000
+### Extension counts
+- .py: 538
+- .md: 464
+- .ts: 167
+- .json: 123
+- .pyc: 73
+- .pdf: 65
+- .png: 56
+- .exe: 55
+- .js: 48
+- .yaml: 39
+- (none): 35
+- .mdx: 34
+- .pptx: 31
+- .svg: 17
+- .sh: 16
+- .yml: 16
+- .webp: 14
+- .tsx: 14
+- .txt: 14
+- .mjs: 12
+### Interesting script/config files (names only)
+- .agent\mcp_config.json (305 bytes)
+- .agent\skills\vlm-checkpoint\SKILL.md (6333 bytes)
+- .agents\agents\cnki_academic_agent.md (2965 bytes)
+- .agents\agents\english_academic_agent.md (3254 bytes)
+- .agents\agents\hybrid_academic_agent.md (6389 bytes)
+- .agents\mcp_config.json (305 bytes)
+- .agents\mcp_config.json.example (286 bytes)
+- .agents\skills\academic-experimental-paper-writer\SKILL.md (10717 bytes)
+- .agents\skills\banana-slides\examples\generate_banana_slides_flagship.py (32001 bytes)
+- .agents\skills\banana-slides\examples\generate_banana_slides_pptx.py (32343 bytes)
+- .agents\skills\banana-slides\SKILL.md (1198 bytes)
+- .agents\skills\cnki-academic-agent\SKILL.md (3287 bytes)
+- .agents\skills\cyber-ppt\examples\generate_cyberppt_custom_svg.py (23832 bytes)
+- .agents\skills\cyber-ppt\SKILL.md (5854 bytes)
+- .agents\skills\dashi-ppt\examples\build_clean_dashi_deck.py (7852 bytes)
+- .agents\skills\dashi-ppt\SKILL.md (27382 bytes)
+- .agents\skills\english-academic-agent\SKILL.md (5359 bytes)
+- .agents\skills\guizang-ppt-skill\.github\pull_request_template.md (442 bytes)
+- .agents\skills\guizang-ppt-skill\assets\motion.min.js (64213 bytes)
+- .agents\skills\guizang-ppt-skill\CONTRIBUTING.md (1998 bytes)
+- .agents\skills\guizang-ppt-skill\docs\unification-plan.md (6439 bytes)
+- .agents\skills\guizang-ppt-skill\examples\generate_guizang_swiss_deck.py (34099 bytes)
+- .agents\skills\guizang-ppt-skill\README.en.md (26731 bytes)
+- .agents\skills\guizang-ppt-skill\README.md (29337 bytes)
+- .agents\skills\guizang-ppt-skill\references\checklist.md (37721 bytes)
+- .agents\skills\guizang-ppt-skill\references\components.md (15941 bytes)
+- .agents\skills\guizang-ppt-skill\references\image-prompts.md (12593 bytes)
+- .agents\skills\guizang-ppt-skill\references\layouts.md (29440 bytes)
+- .agents\skills\guizang-ppt-skill\references\layouts-swiss.md (53661 bytes)
+- .agents\skills\guizang-ppt-skill\references\presenter-mode.md (11478 bytes)
+- .agents\skills\guizang-ppt-skill\references\screenshot-framing.md (8397 bytes)
+- .agents\skills\guizang-ppt-skill\references\swiss-layout-lock.md (6205 bytes)
+- .agents\skills\guizang-ppt-skill\references\swiss-map-component.md (13714 bytes)
+- .agents\skills\guizang-ppt-skill\references\themes.md (3676 bytes)
+- .agents\skills\guizang-ppt-skill\references\themes-swiss.md (5821 bytes)
+- .agents\skills\guizang-ppt-skill\scripts\check-presenter-runtime-sync.mjs (1798 bytes)
+- .agents\skills\guizang-ppt-skill\scripts\install-antigravity.ps1 (4254 bytes)
+- .agents\skills\guizang-ppt-skill\scripts\validate-presenter-mode.mjs (8811 bytes)
+- .agents\skills\guizang-ppt-skill\scripts\validate-swiss-deck.mjs (13912 bytes)
+- .agents\skills\guizang-ppt-skill\SKILL.md (45944 bytes)
+- .agents\skills\guizang-ppt-skill\SPONSORS.md (1704 bytes)
+- .agents\skills\guizang-ppt-skill\tools\audit_font_size.py (1018 bytes)
+- .agents\skills\guizang-ppt-skill\tools\build_editable_pptx.py (31257 bytes)
+- .agents\skills\guizang-ppt-skill\tools\generate_true_swiss_editable_deck.py (70608 bytes)
+- .agents\skills\guizang-ppt-skill\tools\html2pptx.mjs (10898 bytes)
+- .agents\skills\guizang-ppt-skill\tools\package.json (592 bytes)
+- .agents\skills\guizang-ppt-skill\tools\package-lock.json (8728 bytes)
+- .agents\skills\guizang-ppt-skill\tools\upgrade_all_fonts.py (1704 bytes)
+- .agents\skills\hybrid-academic-agent\SKILL.md (5744 bytes)
+- .agents\skills\lark-thesis-formatter\SKILL.md (8048 bytes)
+- .agents\skills\light-citation\assets\citation_checklist.md (2180 bytes)
+- .agents\skills\light-citation\citation-resource-map.md (5309 bytes)
+- .agents\skills\light-citation\references.md (32463 bytes)
+- .agents\skills\light-citation\references\locator_audit.md (4465 bytes)
+- .agents\skills\light-citation\references\registry_contract.md (3988 bytes)
+- .agents\skills\light-citation\scripts\citation_four_gate.py (26000 bytes)
+- .agents\skills\light-citation\scripts\citation_registry.py (41239 bytes)
+- .agents\skills\light-citation\scripts\citation_verify_gate.py (47616 bytes)
+- .agents\skills\light-citation\scripts\citekey_audit.py (7737 bytes)
+- .agents\skills\light-citation\scripts\doi_to_any.py (14754 bytes)
+- .agents\skills\light-citation\scripts\verify_citation_edge.py (11536 bytes)
+- .agents\skills\light-citation\scripts\verify_refs.py (34196 bytes)
+- .agents\skills\light-citation\SKILL.md (13799 bytes)
+- .agents\skills\light-citation\templates\citation_input.json (972 bytes)
+- .agents\skills\light-citation\templates\citation-four-gate.example.json (939 bytes)
+- .agents\skills\light-citation\templates\claim_citation_review.json (1332 bytes)
+- .agents\skills\light-consistency\assets\claims_registry.yaml (3593 bytes)
+- .agents\skills\light-consistency\assets\consistency-registry.example.json (5045 bytes)
+- .agents\skills\light-consistency\assets\glossary.yaml (3803 bytes)
+- .agents\skills\light-consistency\assets\method_lock.yaml (2456 bytes)
+- .agents\skills\light-consistency\assets\metric_registry.yaml (4148 bytes)
+- .agents\skills\light-consistency\examples\fact-bindings.example.json (766 bytes)
+- .agents\skills\light-consistency\references\consistency-resource-map.md (15055 bytes)
+- .agents\skills\light-consistency\scripts\consistency_audit.py (67133 bytes)
+- .agents\skills\light-consistency\scripts\consistency_delta.py (13317 bytes)
+- .agents\skills\light-consistency\scripts\consistency_registry_gate.py (36503 bytes)
+- .agents\skills\light-consistency\scripts\fact_consistency.py (6672 bytes)
+- .agents\skills\light-consistency\SKILL.md (25814 bytes)
+- .agents\skills\light-data-engineering\assets\data_card_template.md (5258 bytes)
+- .agents\skills\light-data-engineering\examples\derive_spec.example.json (927 bytes)
+- .agents\skills\light-data-engineering\examples\rules.example.yaml (1008 bytes)
+- .agents\skills\light-data-engineering\examples\worked_example.md (7729 bytes)
+- .agents\skills\light-data-engineering\references.md (22944 bytes)
+- .agents\skills\light-data-engineering\references\data-resource-map.md (11271 bytes)
+- .agents\skills\light-data-engineering\scripts\check_access_level.py (5941 bytes)
+- .agents\skills\light-data-engineering\scripts\croissant_export.py (7162 bytes)
+- .agents\skills\light-data-engineering\scripts\data_doctor.py (23285 bytes)
+- .agents\skills\light-data-engineering\scripts\data_feasibility.py (10064 bytes)
+- .agents\skills\light-data-engineering\scripts\data_feasibility_gate.py (20323 bytes)
+- .agents\skills\light-data-engineering\scripts\data_identity_fitness.py (41598 bytes)
+- .agents\skills\light-data-engineering\scripts\dataset_intake.py (17645 bytes)
+- .agents\skills\light-data-engineering\scripts\derive_eval_set.py (9700 bytes)
+- .agents\skills\light-data-engineering\scripts\drift_check.py (10709 bytes)
+- .agents\skills\light-data-engineering\scripts\quality_gate.py (11041 bytes)
+- .agents\skills\light-data-engineering\scripts\safe_split.py (13081 bytes)
+- .agents\skills\light-data-engineering\scripts\sample_size_check.py (9461 bytes)
+- .agents\skills\light-data-engineering\scripts\split_leakage.py (25937 bytes)
+- .agents\skills\light-data-engineering\SKILL.md (31066 bytes)
+- .agents\skills\light-data-engineering\templates\annotation_guide.md (4863 bytes)
+- .agents\skills\light-data-engineering\templates\data-identity-fitness.example.json (2008 bytes)
+- .agents\skills\light-experiment-coding\examples\repro_spec.example.json (1859 bytes)
+- .agents\skills\light-experiment-coding\references\code_examples.md (3208 bytes)
+- .agents\skills\light-experiment-coding\references\debug_protocol.md (5922 bytes)
+- .agents\skills\light-experiment-coding\references\experiment-coding-resource-map.md (7798 bytes)
+- .agents\skills\light-experiment-coding\references\tdd_redflags.md (4710 bytes)
+- .agents\skills\light-experiment-coding\references\tools.md (3565 bytes)
+- .agents\skills\light-experiment-coding\scripts\experiment_execution_contract.py (58169 bytes)
+- .agents\skills\light-experiment-coding\scripts\repro_gate.py (28139 bytes)
+- .agents\skills\light-experiment-coding\scripts\review_gate.py (20338 bytes)
+- .agents\skills\light-experiment-coding\scripts\run_artifact_check.py (25814 bytes)
+- .agents\skills\light-experiment-coding\scripts\seed_audit.py (20990 bytes)
+- .agents\skills\light-experiment-coding\SKILL.md (13185 bytes)
+- .agents\skills\light-experiment-coding\templates\experiment-execution-contract.example.json (2386 bytes)
+- .agents\skills\light-experiment-coding\templates\run_manifest.md (2775 bytes)
+- .agents\skills\light-experiment-coding\templates\run_manifest.template.json (2163 bytes)
+- .agents\skills\light-figure\examples\bad_figure_example.py (1762 bytes)
+- .agents\skills\light-figure\examples\example_framework_render.py (3758 bytes)
+- .agents\skills\light-figure\examples\example_matplotlib_multipanel.py (4888 bytes)
+- .agents\skills\light-figure\examples\example_seaborn_stats.py (3625 bytes)
+- .agents\skills\light-figure\examples\worked_example.md (7104 bytes)
+- .agents\skills\light-figure\references\figure_integrity.md (5972 bytes)
+- .agents\skills\light-figure\scripts\audit_figure_set.py (17699 bytes)
+- .agents\skills\light-figure\scripts\color_palettes.py (7591 bytes)
+- .agents\skills\light-figure\scripts\figure_contract.py (27002 bytes)
+- .agents\skills\light-figure\scripts\figure_export.py (31908 bytes)
+- .agents\skills\light-figure\scripts\figure_integrity_lint.py (9160 bytes)
+- .agents\skills\light-figure\scripts\figure_visual_qa.py (14379 bytes)
+- .agents\skills\light-figure\scripts\r_ggplot.py (44399 bytes)
+- .agents\skills\light-figure\scripts\recommend_chart.py (13572 bytes)
+- .agents\skills\light-figure\scripts\validate_plan_card.py (12166 bytes)
+- .agents\skills\light-figure\scripts\visual_honesty_gate.py (35099 bytes)
+- .agents\skills\light-figure\SKILL.md (26722 bytes)
+- .agents\skills\light-figure\templates\figure_plan_card.md (5508 bytes)
+- .agents\skills\light-figure\templates\figure-delivery.example.json (3121 bytes)
+- .agents\skills\light-figure\templates\table_plan_card.md (4606 bytes)
+- .agents\skills\light-file-reading\assets\extraction-benchmark.example.json (824 bytes)
+- .agents\skills\light-file-reading\assets\reading-contract.example.json (5397 bytes)
+- .agents\skills\light-file-reading\assets\understanding-note.template.md (6586 bytes)
+- .agents\skills\light-file-reading\references\DOCX-REF.md (4103 bytes)
+- .agents\skills\light-file-reading\references\IMG-REF.md (5603 bytes)
+- .agents\skills\light-file-reading\references\PDF-REF.md (6078 bytes)
+- .agents\skills\light-file-reading\references\PPTX-REF.md (2666 bytes)
+- .agents\skills\light-file-reading\references\reading-resource-map.md (13981 bytes)
+- .agents\skills\light-file-reading\references\tools.md (20974 bytes)
+- .agents\skills\light-file-reading\references\XLSX-REF.md (3326 bytes)
+- .agents\skills\light-file-reading\scripts\document_status.py (6667 bytes)
+- .agents\skills\light-file-reading\scripts\docx_read.py (13918 bytes)
+- .agents\skills\light-file-reading\scripts\extraction_benchmark.py (11084 bytes)
+- .agents\skills\light-file-reading\scripts\pdf_ops.py (26979 bytes)
+- .agents\skills\light-file-reading\scripts\reading_contract.py (34588 bytes)
+- .agents\skills\light-file-reading\scripts\understanding_note_gate.py (29990 bytes)
+- .agents\skills\light-file-reading\scripts\xlsx_read.py (7015 bytes)
+- .agents\skills\light-file-reading\SKILL.md (28619 bytes)
+- .agents\skills\light-frontend-design\references.md (5584 bytes)
+- .agents\skills\light-frontend-design\references\design-systems-map.md (3759 bytes)
+- .agents\skills\light-frontend-design\references\ecosystem-2026.md (5309 bytes)
+- .agents\skills\light-frontend-design\references\fonts-and-colors.md (2558 bytes)
+- .agents\skills\light-frontend-design\references\redesign-audit.md (3331 bytes)
+- .agents\skills\light-frontend-design\references\resource-map.md (11748 bytes)
+- .agents\skills\light-frontend-design\references\visual-a11y-rules.md (3715 bytes)
+- .agents\skills\light-frontend-design\scripts\ai_tell_lint.py (12396 bytes)
+- .agents\skills\light-frontend-design\scripts\audit_checklist.py (11352 bytes)
+- .agents\skills\light-frontend-design\scripts\browser_qa.py (12280 bytes)
+- .agents\skills\light-frontend-design\scripts\contrast_lint.py (14384 bytes)
+- .agents\skills\light-frontend-design\scripts\design_delivery_gate.py (41086 bytes)
+- .agents\skills\light-frontend-design\SKILL.md (21914 bytes)
+- .agents\skills\light-frontend-design\templates\frontend-delivery.example.json (1447 bytes)
+- .agents\skills\light-idea-critique\critique-resource-map.md (15034 bytes)
+- .agents\skills\light-idea-critique\examples\worked_example_dermoscopy.md (6846 bytes)
+- .agents\skills\light-idea-critique\references.md (24496 bytes)
+- .agents\skills\light-idea-critique\references\contract.md (3935 bytes)
+- .agents\skills\light-idea-critique\references\protocol.md (10534 bytes)
+- .agents\skills\light-idea-critique\references\rubric.md (12914 bytes)
+- .agents\skills\light-idea-critique\scripts\calibration.py (7819 bytes)
+- .agents\skills\light-idea-critique\scripts\critique_self_audit.py (28453 bytes)
+- .agents\skills\light-idea-critique\scripts\fatal_flaw_gate.py (32821 bytes)
+- .agents\skills\light-idea-critique\scripts\novelty_audit.py (18528 bytes)
+- .agents\skills\light-idea-critique\scripts\novelty_density.py (14935 bytes)
+- .agents\skills\light-idea-critique\scripts\novelty_evidence_gate.py (33573 bytes)
+- .agents\skills\light-idea-critique\scripts\score_aggregate.py (22413 bytes)
+- .agents\skills\light-idea-critique\scripts\sycophancy_guard.py (6779 bytes)
+- .agents\skills\light-idea-critique\SKILL.md (30473 bytes)
+- .agents\skills\light-idea-critique\templates\novelty-evidence.example.json (1114 bytes)
+- .agents\skills\light-idea-critique\templates\Revision_Roadmap.md (1895 bytes)
+- .agents\skills\light-idea-critique\templates\verdict_template.md (3667 bytes)
+- .agents\skills\light-idea-generation\examples\candidates.example.json (1602 bytes)
+- .agents\skills\light-idea-generation\examples\idea_candidates.example.md (8655 bytes)
+- .agents\skills\light-idea-generation\idea-resource-map.md (13647 bytes)
+- .agents\skills\light-idea-generation\references.md (19919 bytes)
+- .agents\skills\light-idea-generation\scripts\candidate_dedup.py (8714 bytes)
+- .agents\skills\light-idea-generation\scripts\card_gate.py (21321 bytes)
+- .agents\skills\light-idea-generation\scripts\gap_evidence_gate.py (22962 bytes)
+- .agents\skills\light-idea-generation\scripts\idea_genealogy.py (21787 bytes)
+- .agents\skills\light-idea-generation\scripts\idea_selfcheck.py (21456 bytes)
+- .agents\skills\light-idea-generation\scripts\innovation_engine.py (19895 bytes)
+- .agents\skills\light-idea-generation\scripts\provocation_gen.py (11325 bytes)
+- .agents\skills\light-idea-generation\scripts\rank_ideas.py (10697 bytes)
+- .agents\skills\light-idea-generation\scripts\swiss_rank.py (8944 bytes)
+- .agents\skills\light-idea-generation\SKILL.md (29899 bytes)
+- .agents\skills\light-idea-generation\templates\idea_card.md (4473 bytes)
+- .agents\skills\light-idea-generation\templates\idea-gap-evidence.example.json (647 bytes)
+- .agents\skills\light-idea-generation\templates\idea-genealogy.example.json (2333 bytes)
+- .agents\skills\light-idea-generation\templates\innovation-engine.example.json (2223 bytes)
+- .agents\skills\light-literature-search\assets\litreview_template.md (2280 bytes)
+- .agents\skills\light-literature-search\assets\method_card.md (1599 bytes)
+- .agents\skills\light-literature-search\examples\goat_littable.md (2990 bytes)
+- .agents\skills\light-literature-search\examples\goat_search.json (21654 bytes)
+- .agents\skills\light-literature-search\examples\worked_example_dairy_goat.md (3362 bytes)
+- .agents\skills\light-literature-search\references.md (52597 bytes)
+- .agents\skills\light-literature-search\scripts\arxiv_search.py (18143 bytes)
+- .agents\skills\light-literature-search\scripts\biomedical_search.py (18780 bytes)
+- .agents\skills\light-literature-search\scripts\cn_journal_probe.py (8198 bytes)
+- .agents\skills\light-literature-search\scripts\cross_domain_search.py (8753 bytes)
+- .agents\skills\light-literature-search\scripts\domain_map.py (37327 bytes)
+- .agents\skills\light-literature-search\scripts\pipeline.py (9575 bytes)
+- .agents\skills\light-literature-search\scripts\prisma_flow.py (6636 bytes)
+- .agents\skills\light-literature-search\scripts\search_normalize.py (47482 bytes)
+- .agents\skills\light-literature-search\scripts\search_protocol_gate.py (33481 bytes)
+- .agents\skills\light-literature-search\scripts\snowball.py (24139 bytes)
+- .agents\skills\light-literature-search\scripts\tracker.py (9343 bytes)
+- .agents\skills\light-literature-search\scripts\verify_citations.py (17658 bytes)
+- .agents\skills\light-literature-search\search-resource-map.md (12099 bytes)
+- .agents\skills\light-literature-search\SKILL.md (24761 bytes)
+- .agents\skills\light-literature-search\templates\search-protocol.example.json (2949 bytes)
+- .agents\skills\light-memory-pm\assets\decision_log.template.md (968 bytes)
+- .agents\skills\light-memory-pm\assets\handoff_card.template.md (1747 bytes)
+- .agents\skills\light-memory-pm\assets\handoff_prompt.template.md (622 bytes)
+- .agents\skills\light-memory-pm\assets\memory-governance.example.json (3407 bytes)
+- .agents\skills\light-memory-pm\assets\project_card.template.md (2147 bytes)
+- .agents\skills\light-memory-pm\assets\terminology.template.md (921 bytes)
+- .agents\skills\light-memory-pm\assets\version_history.template.md (816 bytes)
+- .agents\skills\light-memory-pm\references\cross_harness_resume.md (4815 bytes)
+- .agents\skills\light-memory-pm\references\session_handoff.md (5212 bytes)
+- .agents\skills\light-memory-pm\scripts\check_bfact_freshness.py (11945 bytes)
+- .agents\skills\light-memory-pm\scripts\check_project_card.py (20202 bytes)
+- .agents\skills\light-memory-pm\scripts\handoff_contract.py (25428 bytes)
+- .agents\skills\light-memory-pm\scripts\memory_governance_gate.py (32379 bytes)
+- .agents\skills\light-memory-pm\scripts\memory_items.py (19317 bytes)
+- .agents\skills\light-memory-pm\scripts\pm.py (35691 bytes)
+- .agents\skills\light-memory-pm\scripts\resume_report.py (18655 bytes)
+- .agents\skills\light-memory-pm\scripts\version_tag_reconcile.py (12699 bytes)
+- .agents\skills\light-memory-pm\SKILL.md (33965 bytes)
+- .agents\skills\light-orchestrator\references\integration-contract.json (6597 bytes)
+- .agents\skills\light-orchestrator\references\orchestrator-resource-map.md (7014 bytes)
+- .agents\skills\light-orchestrator\references\passport.schema.json (2576 bytes)
+- .agents\skills\light-orchestrator\resident\AGENTS.snippet.md (3634 bytes)
+- .agents\skills\light-orchestrator\resident\CLAUDE.snippet.md (3609 bytes)
+- .agents\skills\light-orchestrator\resident\INSTALL.md (8183 bytes)
+- .agents\skills\light-orchestrator\resident\session_start_resident.py (14748 bytes)
+- .agents\skills\light-orchestrator\resident\settings.snippet.unix.json (340 bytes)
+- .agents\skills\light-orchestrator\resident\settings.snippet.windows.json (353 bytes)
+- .agents\skills\light-orchestrator\scripts\decision_checkpoint.py (3891 bytes)
+- .agents\skills\light-orchestrator\scripts\execution_mode.py (10405 bytes)
+- .agents\skills\light-orchestrator\scripts\integration_audit.py (15650 bytes)
+- .agents\skills\light-orchestrator\scripts\lifecycle.py (17321 bytes)
+- .agents\skills\light-orchestrator\scripts\passport.py (81546 bytes)
+- .agents\skills\light-orchestrator\scripts\reroute.py (25901 bytes)
+- .agents\skills\light-orchestrator\scripts\run_checkpoint.py (26691 bytes)
+- .agents\skills\light-orchestrator\scripts\workflow_ledger.py (23486 bytes)
+- .agents\skills\light-orchestrator\SKILL.md (16640 bytes)
+### package.json: .agents\skills\guizang-ppt-skill\tools\package.json
+name=guizang-pptx-export
+scripts=install-browser, pptx, pptx:hd
+### package.json: banana-slides\package.json
+name=banana-slides
+scripts=build, dev, dev:backend, dev:frontend, lint, lint:backend, lint:frontend, quick-check, setup:hooks, setup:test, start, stop, test, test:all, test:backend, test:docker, test:e2e, test:e2e:ui, test:frontend
+### package.json: banana-slides\desktop\package.json
+name=banana-slides-desktop
+scripts=build:all, build:linux, build:mac, build:meta, build:win, check:icons, dev, prebuild:all, prebuild:linux, prebuild:mac, prebuild:win, prepare, start, test, test:download-session
+### package.json: banana-slides\frontend\package.json
+name=banana-slides-frontend
+scripts=build, build:check, dev, lint, lint:strict, preview, test, test:coverage, test:e2e, test:e2e:headed, test:e2e:ui, test:run, test:ui
+### package.json: cep-extension\package.json
+name=illustrator-mcp-panel
+scripts=build, dev
+### package.json: cep-extension\node_modules\@esbuild\win32-x64\package.json
+name=@esbuild/win32-x64
+### package.json: cep-extension\node_modules\@rolldown\pluginutils\package.json
+name=@rolldown/pluginutils
+scripts=build, test
+### package.json: cep-extension\node_modules\@rollup\rollup-win32-x64-gnu\package.json
+name=@rollup/rollup-win32-x64-gnu
