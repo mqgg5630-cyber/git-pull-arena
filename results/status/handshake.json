@@ -1,9 +1,9 @@
 {
-  "round": 202,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "round 202: optimized UIA window actions set text and save",
-  "arena_updated": "2026-10-02 05:46:51",
-  "local_updated": "2026-10-02 13:45:58"
+  "round": 203,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 203: windows-computer-use click button proof",
+  "arena_updated": "2026-10-02 05:46:55",
+  "local_updated": null
 }
