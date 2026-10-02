@@ -1,0 +1,47 @@
+{
+    "isAdmin":  false,
+    "shareRoot":  "E:\\0mcp-agv-arena-optimized\\phone-share",
+    "sharePort":  18089,
+    "lan":  [
+                {
+                    "url":  "http://172.30.192.1:18089/",
+                    "ok":  true
+                },
+                {
+                    "url":  "http://172.28.224.1:18089/",
+                    "ok":  true
+                },
+                {
+                    "url":  "http://192.168.110.172:18089/",
+                    "ok":  true
+                },
+                {
+                    "url":  "http://10.0.0.15:18089/",
+                    "ok":  true
+                }
+            ],
+    "preferredLan":  "192.168.110.172",
+    "publicIp":  "192.236.234.71",
+    "endpoint":  "192.236.234.71",
+    "serverConf":  {
+                       "exists":  true,
+                       "path":  "E:\\0mcp-agv-arena-optimized\\wireguard\\arena-phone-server.conf",
+                       "bytes":  222,
+                       "mtime":  "2026-10-03T00:18:17"
+                   },
+    "phoneConf":  {
+                      "exists":  true,
+                      "path":  "E:\\0mcp-agv-arena-optimized\\wireguard\\arena-phone-client.conf",
+                      "bytes":  267,
+                      "mtime":  "2026-10-03T00:18:17"
+                  },
+    "configsReady":  true,
+    "wgExe":  "",
+    "wgApp":  "",
+    "adminInstall":  "E:\\0mcp-agv-arena-optimized\\wireguard\\ADMIN_1_install_wireguard.ps1",
+    "adminStart":  "E:\\0mcp-agv-arena-optimized\\wireguard\\ADMIN_2_install_tunnel.ps1",
+    "adminStop":  "E:\\0mcp-agv-arena-optimized\\wireguard\\ADMIN_3_remove_tunnel.ps1",
+    "tunnelAttempt":  "skipped",
+    "tunnelOut":  "",
+    "guide":  "E:\\0github\\git-sync\\git-pull-arena-01a0fa39\\results\\mcp_agv_lab\\wireguard-phone-guide-r234.md"
+}

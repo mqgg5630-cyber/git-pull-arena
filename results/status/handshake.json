@@ -1,9 +1,9 @@
 {
-  "round": 234,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 234: generate local-only WireGuard configs and phone guide",
-  "arena_updated": "2026-10-02 16:15:50",
-  "local_updated": null
+    "round":  234,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 234: generate local-only WireGuard configs and phone guide",
+    "arena_updated":  "2026-10-02 16:15:50",
+    "local_updated":  "2026-10-03 00:22:31"
 }
