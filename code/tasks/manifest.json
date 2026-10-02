@@ -661,6 +661,9 @@
     ],
     "232": [
       "t183_zerotier_desktop_setup_r232.ps1"
+    ],
+    "233": [
+      "t184_zerotier_wireguard_desktop_r233.ps1"
     ]
   }
 }
