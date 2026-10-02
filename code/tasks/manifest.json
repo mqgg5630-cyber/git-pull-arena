@@ -514,6 +514,9 @@
     ],
     "183": [
       "t140_direct_node_payload_bridge.ps1"
+    ],
+    "184": [
+      "t141_run_bridge_private_payload.ps1"
     ]
   }
 }
