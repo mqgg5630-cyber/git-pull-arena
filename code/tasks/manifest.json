@@ -490,6 +490,9 @@
     ],
     "175": [
       "t132_vpn_schtasks_ascii.ps1"
+    ],
+    "176": [
+      "t133_vpn_startup_verify.ps1"
     ]
   }
 }
