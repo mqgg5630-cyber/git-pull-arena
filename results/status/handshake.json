@@ -1,9 +1,9 @@
 {
-    "round":  192,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 192: stable verify Antigravity bridge",
-    "arena_updated":  "2026-10-02 04:51:11",
-    "local_updated":  "2026-10-02 12:53:12"
+  "round": 192,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "round 192: stable verify Antigravity bridge",
+  "arena_updated": "2026-10-02 04:53:36",
+  "local_updated": "2026-10-02 12:53:12"
 }
