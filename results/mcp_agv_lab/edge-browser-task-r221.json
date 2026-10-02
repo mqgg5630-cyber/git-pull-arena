@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "target": {
+    "title": "Arena Edge Browser Task R221",
+    "url": "file:///E:/0mcp-agv-arena-optimized/browser-tests/edge_task_r221/edge_browser_task_r221.html"
+  },
+  "title": "Arena Edge Browser Task R221",
+  "check": {
+    "clicked": "yes",
+    "out": "EDGE_BROWSER_TASK_R221_OK"
+  }
+}

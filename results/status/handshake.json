@@ -1,9 +1,9 @@
 {
-  "round": 221,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 221: Antigravity Illustrator browser phone share",
-  "arena_updated": "2026-10-02 09:08:41",
-  "local_updated": null
+    "round":  221,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 221: Antigravity Illustrator browser phone share",
+    "arena_updated":  "2026-10-02 09:08:41",
+    "local_updated":  "2026-10-02 17:23:43"
 }
