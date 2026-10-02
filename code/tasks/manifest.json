@@ -580,6 +580,9 @@
     ],
     "205": [
       "t162_migrate_integrate_mcp_agv.ps1"
+    ],
+    "206": [
+      "t163_fix_bridge_and_ops_after_migration.ps1"
     ]
   }
 }
