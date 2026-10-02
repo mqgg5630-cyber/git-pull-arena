@@ -1,0 +1,7 @@
+{
+    "tailscaleExe":  "E:\\Tailscale\\tailscale.exe",
+    "ip4":  "100.71.123.19",
+    "statusHead":  "100.71.123.19   laptop-r77m5d6m-1    shaohuawen03@  windows  -                            ??100.84.137.117  desktop-ieudgs5      shaohuawen03@  windows  -                            ??100.99.113.111  laptop-r77m5d6m      shaohuawen03@  windows  offline, last seen 109d ago  ??100.109.207.34  muse                 shaohuawen03@           offline, last seen 4h ago    ??100.90.87.92    redmi-note-12-turbo  shaohuawen03@  android  -                            ??100.83.148.67   xiaomi-23049rad8c    shaohuawen03@  android  offline, last seen 255d ago",
+    "desktopPing":  "pong from desktop-ieudgs5 (100.84.137.117) via 192.168.110.226:41641 in 6ms",
+    "hpcSshProbe":  "TIMEOUT"
+}

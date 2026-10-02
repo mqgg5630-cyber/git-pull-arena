@@ -1,0 +1,361 @@
+{
+    "browserHits":  [
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\.bin\\playwright",
+                            "Length":  383
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\.bin\\playwright-core",
+                            "Length":  393
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\.bin\\playwright-core.cmd",
+                            "Length":  327
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\.bin\\playwright-core.ps1",
+                            "Length":  813
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\.bin\\playwright.cmd",
+                            "Length":  322
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\.bin\\playwright.ps1",
+                            "Length":  793
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\inherits\\inherits_browser.js",
+                            "Length":  753
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\playwright\\cli.js",
+                            "Length":  698
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\playwright\\index.d.ts",
+                            "Length":  636
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\playwright\\index.js",
+                            "Length":  648
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\playwright\\index.mjs",
+                            "Length":  704
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\playwright\\jsx-runtime.js",
+                            "Length":  942
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\playwright\\jsx-runtime.mjs",
+                            "Length":  764
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\playwright\\LICENSE",
+                            "Length":  11601
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\playwright\\NOTICE",
+                            "Length":  254
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\playwright\\package.json",
+                            "Length":  1416
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\playwright\\README.md",
+                            "Length":  11282
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\playwright\\test.d.ts",
+                            "Length":  673
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\playwright\\test.js",
+                            "Length":  806
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\playwright\\test.mjs",
+                            "Length":  1400
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\playwright\\ThirdPartyNotices.txt",
+                            "Length":  705
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\playwright-core\\browsers.json",
+                            "Length":  1780
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\playwright-core\\cli.js",
+                            "Length":  839
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\playwright-core\\index.d.ts",
+                            "Length":  634
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\playwright-core\\index.js",
+                            "Length":  697
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\playwright-core\\index.mjs",
+                            "Length":  1063
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\playwright-core\\LICENSE",
+                            "Length":  11601
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\playwright-core\\NOTICE",
+                            "Length":  254
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\playwright-core\\package.json",
+                            "Length":  876
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\playwright-core\\README.md",
+                            "Length":  120
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\playwright-core\\ThirdPartyNotices.txt",
+                            "Length":  676
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\readable-stream\\duplex-browser.js",
+                            "Length":  53
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\readable-stream\\readable-browser.js",
+                            "Length":  351
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\readable-stream\\writable-browser.js",
+                            "Length":  55
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\guizang-ppt-skill\\tools\\node_modules\\util-deprecate\\browser.js",
+                            "Length":  1614
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\light-citation\\scripts\\verify_citation_edge.py",
+                            "Length":  11536
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\light-frontend-design\\scripts\\browser_qa.py",
+                            "Length":  12280
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\light-orchestrator\\scripts\\workflow_ledger.py",
+                            "Length":  23486
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\light-orchestrator\\templates\\workflow-ledger.example.json",
+                            "Length":  2156
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\light-review-rebuttal\\templates\\commitment_ledger.json",
+                            "Length":  511
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\nature-downloader\\references\\institutional-browser-workflow.md",
+                            "Length":  12486
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\nature-downloader\\scripts\\browser_pdf_downloader.mjs",
+                            "Length":  5499
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\nature-shared\\core\\terminology-ledger.md",
+                            "Length":  2768
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\scripts\\tts_backends\\backend_edge.py",
+                            "Length":  17442
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\chunk-filled\\browser.svg",
+                            "Length":  530
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\phosphor-duotone\\browser.svg",
+                            "Length":  309
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\phosphor-duotone\\browsers.svg",
+                            "Length":  440
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\phosphor-duotone\\google-chrome-logo.svg",
+                            "Length":  549
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\simple-icons\\chromecast.svg",
+                            "Length":  536
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\simple-icons\\chromewebstore.svg",
+                            "Length":  578
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\simple-icons\\dedge.svg",
+                            "Length":  388
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\simple-icons\\edgeimpulse.svg",
+                            "Length":  642
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\simple-icons\\firefoxbrowser.svg",
+                            "Length":  1471
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\simple-icons\\googlechrome.svg",
+                            "Length":  535
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\simple-icons\\hedgedoc.svg",
+                            "Length":  1033
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\simple-icons\\heliumbrowser.svg",
+                            "Length":  412
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\simple-icons\\knowledgebase.svg",
+                            "Length":  576
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\simple-icons\\microsoftedge.svg",
+                            "Length":  1486
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\simple-icons\\playwright.svg",
+                            "Length":  1000
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\simple-icons\\selenium.svg",
+                            "Length":  1221
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\simple-icons\\torbrowser.svg",
+                            "Length":  453
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\simple-icons\\zenbrowser.svg",
+                            "Length":  519
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\tabler-outline\\brand-chrome.svg",
+                            "Length":  585
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\tabler-outline\\brand-edge.svg",
+                            "Length":  741
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\tabler-outline\\browser-check.svg",
+                            "Length":  558
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\tabler-outline\\browser-maximize.svg",
+                            "Length":  575
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\tabler-outline\\browser-minus.svg",
+                            "Length":  533
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\tabler-outline\\browser-off.svg",
+                            "Length":  568
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\tabler-outline\\browser-plus.svg",
+                            "Length":  546
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\tabler-outline\\browser-share.svg",
+                            "Length":  580
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\tabler-outline\\browser-x.svg",
+                            "Length":  586
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.agents\\skills\\ppt-master\\templates\\icons\\tabler-outline\\browser.svg",
+                            "Length":  521
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.playwright-mcp\\console-2026-09-10T06-54-34-371Z.log",
+                            "Length":  624
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.playwright-mcp\\console-2026-09-10T06-54-45-242Z.log",
+                            "Length":  2086
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.playwright-mcp\\page-2026-09-10T06-54-36-458Z.yml",
+                            "Length":  8273
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\.playwright-mcp\\page-2026-09-10T06-54-46-679Z.yml",
+                            "Length":  299
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\ARTA_Agent_Output\\edge_amp_screen.png",
+                            "Length":  117124
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\ARTA_Agent_Output\\edge_cnki_after_drag.png",
+                            "Length":  964497
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\ARTA_Agent_Output\\edge_cnki_screen.png",
+                            "Length":  982314
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv\\banana-slides\\.venv\\Lib\\site-packages\\edge_playback\\py.typed",
+                            "Length":  0
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv-arena-optimized\\.venv\\Lib\\site-packages\\pythonwin\\pywin\\tools\\browser.py",
+                            "Length":  13337
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv-arena-optimized\\.venv\\Lib\\site-packages\\win32comext\\shell\\demos\\explorer_browser.py",
+                            "Length":  5091
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv-arena-optimized\\github\\pywinauto-mcp\\docs\\composing-with-playwright.md",
+                            "Length":  2174
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv-arena-optimized\\github\\pywinauto-mcp\\web_sota\\playwright.config.ts",
+                            "Length":  814
+                        },
+                        {
+                            "FullName":  "E:\\0mcp-agv-arena-optimized\\github\\windows-computer-use\\plugins\\windows-computer-use\\scripts\\browser-complex-smoke.mjs",
+                            "Length":  14253
+                        }
+                    ],
+    "kaggle":  [
+                   {
+                       "scope":  "windows",
+                       "kaggleCommand":  false,
+                       "kagglePath":  "",
+                       "tokenFileExists":  false,
+                       "testOutput":  ""
+                   },
+                   {
+                       "scope":  "wsl",
+                       "wslCommand":  true,
+                       "distros":  "? ?N?A?M?E? ? ? ? ? ? ? ? ? ? ? ? ? ? ?S?T?A?T?E? ? ? ? ? ? ? ? ? ? ? ?V?E?R?S?I?O?N???????*? ?U?b?u?n?t?u?-?2?6?.?0?4? ? ? ? ? ? ?S?t?o?p?p?e?d? ? ? ? ? ? ? ? ? ?2??????? ? ?d?o?c?k?e?r?-?d?e?s?k?t?o?p? ? ? ? ?S?t?o?p?p?e?d? ? ? ? ? ? ? ? ? ?2??????? ? ?U?b?u?n?t?u?-?2?4?.?0?4? ? ? ? ? ? ?S?t?o?p?p?e?d? ? ? ? ? ? ? ? ? ?2???????",
+                       "kagglePath":  "wsl.exe : w?s?l?:? ??Km0R ?l?o?c?a?l?h?o?s?t? ???tM????FO*g\\?P0R ?W?S?L??0N?A?T? ?!j?_?N? ?W?S?L? ???    + CategoryInfo          : NotSpecified: (w?s?l?:? ??Km0R...?_?N? ?W?S?L? ?:String) [], RemoteException??    + FullyQualifiedErrorId : NativeCommandError?? ??N/e?c ?l?o?c?a?l?h?o?s?t? ???t?0??????",
+                       "tokenStatus":  "wsl.exe : w?s?l?:? ??Km0R ?l?o?c?a?l?h?o?s?t? ???tM????FO*g\\?P0R ?W?S?L??0N?A?T? ?!j?_?N? ?W?S?L? ???    + CategoryInfo          : NotSpecified: (w?s?l?:? ??Km0R...?_?N? ?W?S?L? ?:String) [], RemoteException??    + FullyQualifiedErrorId : NativeCommandError?? ??N/e?c ?l?o?c?a?l?h?o?s?t? ???t?0?????token_file_exists=false???",
+                       "testOutput":  "wsl.exe : w?s?l?:? ??Km0R ?l?o?c?a?l?h?o?s?t? ???tM????FO*g\\?P0R ?W?S?L??0N?A?T? ?!j?_?N? ?W?S?L? ???    + CategoryInfo          : NotSpecified: (w?s?l?:? ??Km0R...?_?N? ?W?S?L? ?:String) [], RemoteException??    + FullyQualifiedErrorId : NativeCommandError?? ??N/e?c ?l?o?c?a?l?h?o?s?t? ???t?0?????kaggle_command_missing???"
+                   }
+               ]
+}

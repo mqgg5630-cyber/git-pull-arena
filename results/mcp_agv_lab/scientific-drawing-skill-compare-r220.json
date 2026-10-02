@@ -1,0 +1,29 @@
+[
+    {
+        "skill":  "cell-lct",
+        "historicalRound":  "r103 smoke",
+        "runner":  "C:\\Users\\\u003cuser\u003e\\.codex\\skills\\cell-lct\\scripts\\run_cell_lct.ps1",
+        "result":  "PASS",
+        "evidence":  "2 text frames + 4 paths, AI saved, PNG exported",
+        "ai":  "results\\fig1_rebuild\\test\\cell-lct\\test_cell-lct.ai",
+        "png":  "results\\fig1_rebuild\\test\\cell-lct\\test_cell-lct.png"
+    },
+    {
+        "skill":  "cell_su7",
+        "historicalRound":  "r104 smoke, r107 full demo",
+        "runner":  "C:\\Users\\\u003cuser\u003e\\.codex\\skills\\cell_su7\\scripts\\run_cell_lct.ps1",
+        "result":  "PASS",
+        "evidence":  "2 text frames + 4 paths smoke; full demo launched",
+        "ai":  "results\\fig1_rebuild\\test\\cell_su7\\test_cell_su7.ai",
+        "png":  "results\\fig1_rebuild\\test\\cell_su7\\test_cell_su7.png"
+    },
+    {
+        "skill":  "vector-editable-figure",
+        "historicalRound":  "r219 sample",
+        "runner":  "E:\\0mcp-agv-arena-optimized\\agents-skills\\skills\\vector-editable-figure\\SKILL.md",
+        "result":  "PASS",
+        "evidence":  "editable SVG sample generated",
+        "ai":  "",
+        "png":  "E:\\0mcp-agv-arena-optimized\\resume-samples\\research_vector_editable_figure_r219.svg"
+    }
+]
