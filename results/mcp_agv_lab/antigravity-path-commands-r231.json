@@ -1,0 +1,62 @@
+[
+    {
+        "name":  "agv",
+        "path":  "+ CategoryInfo          : NotSpecified: (信息: 用提供的模式无法找到文件。:String) [], RemoteException"
+    },
+    {
+        "name":  "agv",
+        "path":  "+ FullyQualifiedErrorId : NativeCommandError"
+    },
+    {
+        "name":  "agv",
+        "path":  "where.exe : 信息: 用提供的模式无法找到文件。"
+    },
+    {
+        "name":  "agv.cmd",
+        "path":  "+ CategoryInfo          : NotSpecified: (信息: 用提供的模式无法找到文件。:String) [], RemoteException"
+    },
+    {
+        "name":  "agv.cmd",
+        "path":  "+ FullyQualifiedErrorId : NativeCommandError"
+    },
+    {
+        "name":  "agv.cmd",
+        "path":  "where.exe : 信息: 用提供的模式无法找到文件。"
+    },
+    {
+        "name":  "antigravity",
+        "path":  "+ CategoryInfo          : NotSpecified: (信息: 用提供的模式无法找到文件。:String) [], RemoteException"
+    },
+    {
+        "name":  "antigravity",
+        "path":  "+ FullyQualifiedErrorId : NativeCommandError"
+    },
+    {
+        "name":  "antigravity",
+        "path":  "where.exe : 信息: 用提供的模式无法找到文件。"
+    },
+    {
+        "name":  "antigravity.cmd",
+        "path":  "+ CategoryInfo          : NotSpecified: (信息: 用提供的模式无法找到文件。:String) [], RemoteException"
+    },
+    {
+        "name":  "antigravity.cmd",
+        "path":  "+ FullyQualifiedErrorId : NativeCommandError"
+    },
+    {
+        "name":  "antigravity.cmd",
+        "path":  "where.exe : 信息: 用提供的模式无法找到文件。"
+    },
+    {
+        "name":  "gemini",
+        "path":  "E:\\npm\\gemini"
+    },
+    {
+        "name":  "gemini",
+        "path":  "E:\\npm\\gemini.cmd"
+    },
+    {
+        "name":  "gemini.cmd",
+        "path":  "E:\\npm\\gemini.cmd"
+    }
+]
