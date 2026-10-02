@@ -562,6 +562,9 @@
     ],
     "199": [
       "t156_wcu_coordinate_gui_control.ps1"
+    ],
+    "200": [
+      "t157_wcu_sta_gui_control.ps1"
     ]
   }
 }
