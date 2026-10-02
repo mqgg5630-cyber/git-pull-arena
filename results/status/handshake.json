@@ -1,9 +1,9 @@
 {
-  "round": 208,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 208: probe Antigravity UI and test SendInput computer-use suite",
-  "arena_updated": "2026-10-02 07:00:52",
-  "local_updated": null
+    "round":  208,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 208: probe Antigravity UI and test SendInput computer-use suite",
+    "arena_updated":  "2026-10-02 07:00:52",
+    "local_updated":  "2026-10-02 15:02:00"
 }
