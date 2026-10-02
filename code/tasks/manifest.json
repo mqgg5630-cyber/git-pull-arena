@@ -583,6 +583,9 @@
     ],
     "206": [
       "t163_fix_bridge_and_ops_after_migration.ps1"
+    ],
+    "207": [
+      "t164_verify_mcp_config_parse.ps1"
     ]
   }
 }
