@@ -1,9 +1,9 @@
 {
-  "round": 199,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "round 199: windows-computer-use click type save proof",
-  "arena_updated": "2026-10-02 05:38:15",
-  "local_updated": "2026-10-02 13:37:38"
+  "round": 200,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 200: windows-computer-use STA click type save proof",
+  "arena_updated": "2026-10-02 05:38:19",
+  "local_updated": null
 }
