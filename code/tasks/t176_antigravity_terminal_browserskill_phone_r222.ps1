@@ -64,7 +64,7 @@ if(-not $aiExe){ try{ $cmd=Get-Command Illustrator.exe -ErrorAction SilentlyCont
 L ('illustrator_exe=' + (San $aiExe))
 if(-not $aiExe -or -not (Test-Path -LiteralPath $aiExe)){ L 'FINAL: FAIL_NO_ILLUSTRATOR'; W $outLog $script:Lines; exit 2 }
 try{ Remove-Item -LiteralPath $outAi,$outPng,$outDone -Force -ErrorAction SilentlyContinue }catch{}
-$jsx=@'
+$jsx=@"
 (function(){
   function rgb(r,g,b){ var c=new RGBColor(); c.red=r; c.green=g; c.blue=b; return c; }
   function txt(doc, contents, x, y, size, color){ var t=doc.textFrames.add(); t.contents=contents; t.position=[x,y]; t.textRange.characterAttributes.size=size; t.textRange.characterAttributes.fillColor=color; t.textRange.characterAttributes.textFont=app.textFonts.getByName('ArialMT'); return t; }
@@ -102,7 +102,7 @@ $jsx=@'
     log.encoding='UTF-8'; log.open('w'); log.write('ERR '+e.message+' line '+e.line); log.close();
   }
 })();
-'@
+"@
 [IO.File]::WriteAllText($outJsx,$jsx,(New-Object Text.UTF8Encoding($false)))
 Start-Process -FilePath $aiExe -ArgumentList @('"' + $outJsx + '"') | Out-Null
 $deadline=(Get-Date).AddSeconds(180)
