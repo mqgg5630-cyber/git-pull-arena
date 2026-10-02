@@ -1,9 +1,9 @@
 {
-    "round":  229,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 229: restart Antigravity CDP, click Install IDE, continue Illustrator polling",
-    "arena_updated":  "2026-10-02 11:02:31",
-    "local_updated":  "2026-10-02 19:25:42"
+  "round": 230,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 230: free LAN share, scan Antigravity CLI, continue polling Illustrator outputs",
+  "arena_updated": "2026-10-02 11:38:49",
+  "local_updated": null
 }
