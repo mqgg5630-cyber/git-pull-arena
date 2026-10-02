@@ -1,9 +1,9 @@
 {
-  "round": 235,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "round 235: download game1024 OpenSpeedy to Desktop and create one-click launcher",
-  "arena_updated": "2026-10-02 16:44:32",
-  "local_updated": "2026-10-03 00:44:06"
+  "round": 236,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 236: install jianying-editor skill to E, download materials, build funny talking-head video with narration/subtitles/effects",
+  "arena_updated": "2026-10-02 17:17:11",
+  "local_updated": null
 }
