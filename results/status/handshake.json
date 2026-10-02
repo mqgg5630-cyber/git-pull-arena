@@ -1,9 +1,9 @@
 {
-  "round": 178,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "round 178 accepted: TUN/10808 confirmed HK Cloudflare WARP (unsupported); delayed VPN startup installed",
-  "arena_updated": "2026-10-02 02:52:58",
-  "local_updated": "2026-10-02 10:52:33"
+  "round": 179,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 179: probe local V2Ray/mixed/socks/http routes and apply supported route to Antigravity",
+  "arena_updated": "2026-10-02 02:57:09",
+  "local_updated": null
 }
