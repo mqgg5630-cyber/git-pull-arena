@@ -1,9 +1,9 @@
 {
-  "round": 180,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "round 180 accepted: v2rayN node bridge ready; local private subscription file absent",
-  "arena_updated": "2026-10-02 04:06:15",
-  "local_updated": "2026-10-02 12:05:48"
+  "round": 181,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 181: install small Green VPN launcher; read v2ray subscription URLs from clipboard/private file and bridge Antigravity if available",
+  "arena_updated": "2026-10-02 04:14:47",
+  "local_updated": null
 }
