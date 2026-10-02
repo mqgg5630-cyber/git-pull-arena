@@ -1,9 +1,9 @@
 {
-    "round":  193,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 193: bridge desktop Antigravity and verify IDE",
-    "arena_updated":  "2026-10-02 05:06:57",
-    "local_updated":  "2026-10-02 13:09:47"
+  "round": 193,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "round 193: bridge desktop Antigravity and verify IDE",
+  "arena_updated": "2026-10-02 05:10:22",
+  "local_updated": "2026-10-02 13:09:47"
 }
