@@ -520,6 +520,9 @@
     ],
     "185": [
       "t142_parse_and_bridge_private_payload.ps1"
+    ],
+    "186": [
+      "t143_parse_fix2_bridge.ps1"
     ]
   }
 }

@@ -21,6 +21,10 @@ function B64Decode([string]$s) {
     while (($x.Length % 4) -ne 0) { $x += '=' }
     try { return [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($x)) } catch { return '' }
 }
+function UDec([string]$s) {
+    if ($null -eq $s) { return '' }
+    try { return [Uri]::UnescapeDataString($s) } catch { return $s }
+}
 function Q([string]$query) {
     $h = @{}
     if (-not $query) { return $h }
@@ -28,8 +32,8 @@ function Q([string]$query) {
     foreach ($p in ($q -split '&')) {
         if (-not $p) { continue }
         $kv = $p -split '=', 2
-        $k = [Uri]::UnescapeDataString($kv[0])
-        $v = if ($kv.Count -gt 1) { [Uri]::UnescapeDataString($kv[1]) } else { '' }
+        $k = UDec $kv[0]
+        $v = if ($kv.Count -gt 1) { UDec $kv[1] } else { '' }
         $h[$k] = $v
     }
     return $h
@@ -105,8 +109,8 @@ function Parse-Share([string]$u) {
             $m = [regex]::Match($u, '^(?<proto>vless|trojan)://(?<user>[^@]+)@(?<host>\[[^\]]+\]|[^:/?#]+):(?<port>\d+)(?<rest>.*)$')
             if (-not $m.Success) { return $null }
             $proto = $m.Groups['proto'].Value
-            $user = [Uri]::UnescapeDataString($m.Groups['user'].Value)
-            $hostName = [Uri]::UnescapeDataString(($m.Groups['host'].Value).Trim('[',']'))
+            $user = UDec $m.Groups['user'].Value
+            $hostName = UDec (($m.Groups['host'].Value) -replace '^\[|\]$', '')
             $portNum = [int]$m.Groups['port'].Value
             $rest = [string]$m.Groups['rest'].Value
             $frag = ''
@@ -114,7 +118,7 @@ function Parse-Share([string]$u) {
             $query = ''
             if ($rest -match '^\?') { $query = $rest }
             $qq = Q $query
-            $name = [Uri]::UnescapeDataString($frag)
+            $name = UDec $frag
             $net = [string]$qq['type']; if (-not $net) { $net = [string]$qq['network'] }; if (-not $net) { $net = 'tcp' }
             $sec = [string]$qq['security']; if (-not $sec) { $sec = 'none' }
             if ($proto -eq 'vless') {
@@ -129,7 +133,7 @@ function Parse-Share([string]$u) {
         }
         if ($u -match '^ss://(.+)$') {
             $rest = $Matches[1]; $name = ''
-            if ($rest -match '#') { $parts = $rest -split '#',2; $rest=$parts[0]; $name=[Uri]::UnescapeDataString($parts[1]) }
+            if ($rest -match '#') { $parts = $rest -split '#',2; $rest=$parts[0]; $name=UDec $parts[1] }
             if ($rest -match '\?') { $rest = ($rest -split '\?',2)[0] }
             $decoded = ''
             if ($rest -match '@') { $decoded = $rest } else { $decoded = B64Decode $rest }
