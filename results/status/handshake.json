@@ -1,9 +1,9 @@
 {
-  "round": 204,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 204: windows-computer-use find invoke button proof",
-  "arena_updated": "2026-10-02 05:49:22",
-  "local_updated": null
+    "round":  204,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 204: windows-computer-use find invoke button proof",
+    "arena_updated":  "2026-10-02 05:49:22",
+    "local_updated":  "2026-10-02 13:51:33"
 }
