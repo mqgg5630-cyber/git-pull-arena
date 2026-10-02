@@ -547,6 +547,9 @@
     ],
     "194": [
       "t151_desktop_stable_greenvpn.ps1"
+    ],
+    "195": [
+      "t152_desk_bridge_persist.ps1"
     ]
   }
 }
