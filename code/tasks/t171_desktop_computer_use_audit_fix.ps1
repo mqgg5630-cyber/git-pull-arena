@@ -6,7 +6,7 @@
 $ErrorActionPreference = 'Continue'
 function San([string]$s) { if ($null -eq $s) { return '' }; try { $s = $s -replace '[A-Za-z0-9+/_=]{32,}', '[REDACTED]' } catch { }; try { $s = $s -replace '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}', '[REDACTED-GUID]' } catch { }; try { $s = $s -replace '[^\x20-\x7E]', '?' } catch { }; return $s }
 function L([string]$m) { Write-Output $m; $script:Lines += $m }
-function W([string]$p,[string[]]$lines) { New-Item -ItemType Directory -Force -Path (Split-Path -Parent $p) | Out-Null; $enc=New-Object System.Text.UTF8Encoding -ArgumentList $false; [IO.File]::WriteAllText($p, ($lines -join "`r`n") + "`r`n", $enc) }
+function W([string]$p,[string[]]$lines) { New-Item -ItemType Directory -Force -Path (Split-Path -Parent $p) | Out-Null; [IO.File]::WriteAllText($p, ($lines -join "`r`n") + "`r`n") }
 function Run-Capped([string]$Name,[scriptblock]$Block,[int]$TimeoutSec) { L ('RUN_START=' + $Name); $job=Start-Job -ScriptBlock $Block; if(-not (Wait-Job $job -Timeout $TimeoutSec)){ Stop-Job $job -Force -ErrorAction SilentlyContinue; Remove-Job $job -Force -ErrorAction SilentlyContinue; L ('RUN_TIMEOUT=' + $Name); return @{ok=$false;text='TIMEOUT'} }; $txt=(Receive-Job $job | Out-String).Trim(); Remove-Job $job -Force -ErrorAction SilentlyContinue; foreach($ln in (($txt -split "`r?`n") | Select-Object -First 60)){ if($ln.Trim()){ L ('RUN_OUT|' + $Name + '| ' + (San $ln)) } }; return @{ok=$true;text=$txt} }
 
 $script:Lines=@()

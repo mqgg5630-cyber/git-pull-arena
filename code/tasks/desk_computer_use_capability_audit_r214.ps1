@@ -5,8 +5,8 @@
 $ErrorActionPreference = 'Continue'
 function San([string]$s) { if ($null -eq $s) { return '' }; try { $s = $s -replace '[A-Za-z0-9+/_=]{32,}', '[REDACTED]' } catch { }; try { $s = $s -replace '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}', '[REDACTED-GUID]' } catch { }; try { $s = $s -replace '[^\x20-\x7E]', '?' } catch { }; return $s }
 function L([string]$m) { Write-Output $m; $script:Lines += $m }
-function W([string]$p,[string[]]$lines) { New-Item -ItemType Directory -Force -Path (Split-Path -Parent $p) | Out-Null; $enc=New-Object System.Text.UTF8Encoding -ArgumentList $false; [IO.File]::WriteAllText($p, ($lines -join "`r`n") + "`r`n", $enc) }
-function Write-Text([string]$p,[string]$text) { New-Item -ItemType Directory -Force -Path (Split-Path -Parent $p) | Out-Null; $enc=New-Object System.Text.UTF8Encoding -ArgumentList $false; [IO.File]::WriteAllText($p, $text, $enc) }
+function W([string]$p,[string[]]$lines) { New-Item -ItemType Directory -Force -Path (Split-Path -Parent $p) | Out-Null; [IO.File]::WriteAllText($p, ($lines -join "`r`n") + "`r`n") }
+function Write-Text([string]$p,[string]$text) { New-Item -ItemType Directory -Force -Path (Split-Path -Parent $p) | Out-Null; [IO.File]::WriteAllText($p, $text) }
 function Add-Cap([string]$App,[string]$Backend,[string]$Task,[string]$Result,[string]$Evidence,[string]$Artifact) { $script:Caps += [pscustomobject]@{computer=$env:COMPUTERNAME; app=$App; backend=$Backend; task=$Task; result=$Result; evidence=(San $Evidence); artifact=(San $Artifact)} }
 function Test-Port([int]$p) { try { $c=New-Object Net.Sockets.TcpClient; $iar=$c.BeginConnect('127.0.0.1',$p,$null,$null); if($iar.AsyncWaitHandle.WaitOne(500)){ $c.EndConnect($iar); $c.Close(); return $true }; $c.Close() } catch { }; return $false }
 function Run-Capped([string]$Name,[scriptblock]$Block,[int]$TimeoutSec) { $job=Start-Job -ScriptBlock $Block; if(-not (Wait-Job $job -Timeout $TimeoutSec)){ Stop-Job $job -Force -ErrorAction SilentlyContinue; Remove-Job $job -Force -ErrorAction SilentlyContinue; return @{ok=$false;text='TIMEOUT';name=$Name} }; $txt=(Receive-Job $job | Out-String).Trim(); Remove-Job $job -Force -ErrorAction SilentlyContinue; return @{ok=$true;text=$txt;name=$Name} }
@@ -19,7 +19,7 @@ function Ensure-Project([string]$Name,[string]$Url,[string]$Dest,[string]$ZipPat
             Remove-Item -LiteralPath $tmp -Recurse -Force -ErrorAction SilentlyContinue
             New-Item -ItemType Directory -Force -Path $tmp | Out-Null
             Expand-Archive -LiteralPath $ZipPath -DestinationPath $tmp -Force
-            Copy-Item -LiteralPath (Join-Path $tmp '*') -Destination $Dest -Recurse -Force -ErrorAction SilentlyContinue
+            Copy-Item -Path (Join-Path $tmp '*') -Destination $Dest -Recurse -Force -ErrorAction SilentlyContinue
             Remove-Item -LiteralPath $tmp -Recurse -Force -ErrorAction SilentlyContinue
             if(Test-Path -LiteralPath (Join-Path $Dest '.git')){ return 'unzipped-from-F' }
         }catch{ return ('unzip-failed-' + (San $_.Exception.Message)) }
@@ -118,8 +118,7 @@ $wins=@(Get-Process | Where-Object { $_.MainWindowTitle } | Select-Object -First
 L ('open_window_count=' + $wins.Count)
 foreach($w in ($wins | Select-Object -First 20)){ L ('window|' + (San $w.ProcessName) + '|title=' + (San $w.MainWindowTitle)) }
 $data=[ordered]@{computer=$env:COMPUTERNAME; user=$env:USERNAME; labRoot=$root; capabilities=$script:Caps; windows=$wins; time=(Get-Date).ToString('s')}
-$enc=New-Object System.Text.UTF8Encoding -ArgumentList $false
-[IO.File]::WriteAllText($json, (($data | ConvertTo-Json -Depth 12) + "`r`n"), $enc)
+[IO.File]::WriteAllText($json, (($data | ConvertTo-Json -Depth 12) + "`r`n"))
 L ''
 L '## Capability list'
 foreach($c in $script:Caps){ L ('cap|' + $c.computer + '|' + $c.app + '|' + $c.backend + '|' + $c.task + '|' + $c.result + '|' + $c.evidence + '|' + $c.artifact) }

@@ -1,9 +1,9 @@
 {
-    "round":  215,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 214: desktop computer-use audit fix and final checklist",
-    "arena_updated":  "2026-10-02 07:38:57",
-    "local_updated":  "2026-10-02 15:44:54"
+  "round": 215,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "round 214: desktop computer-use audit fix and final checklist",
+  "arena_updated": "2026-10-02 07:45:29",
+  "local_updated": "2026-10-02 15:44:54"
 }
