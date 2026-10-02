@@ -1,9 +1,9 @@
 {
-  "round": 216,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 216: desktop audit report fix",
-  "arena_updated": "2026-10-02 07:45:34",
-  "local_updated": null
+    "round":  216,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 216: desktop audit report fix",
+    "arena_updated":  "2026-10-02 07:45:34",
+    "local_updated":  "2026-10-02 15:50:27"
 }
