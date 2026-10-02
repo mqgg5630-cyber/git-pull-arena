@@ -1,9 +1,9 @@
 {
-    "round":  187,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 187: parser diagnostics private bridge",
-    "arena_updated":  "2026-10-02 04:34:25",
-    "local_updated":  "2026-10-02 12:36:52"
+  "round": 188,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 188: Host collision fix private bridge",
+  "arena_updated": "2026-10-02 04:37:45",
+  "local_updated": null
 }
