@@ -1,9 +1,9 @@
 {
-  "round": 210,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "round 210: Antigravity CDP DOM dialog probe",
-  "arena_updated": "2026-10-02 07:13:52",
-  "local_updated": "2026-10-02 15:11:57"
+  "round": 211,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 211: fix Antigravity CDP dialog probe",
+  "arena_updated": "2026-10-02 07:13:56",
+  "local_updated": null
 }
