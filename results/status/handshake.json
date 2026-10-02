@@ -1,9 +1,9 @@
 {
-  "round": 207,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 207: parse verify MCP configs point to E",
-  "arena_updated": "2026-10-02 06:30:28",
-  "local_updated": null
+    "round":  207,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 207: parse verify MCP configs point to E",
+    "arena_updated":  "2026-10-02 06:30:28",
+    "local_updated":  "2026-10-02 14:32:13"
 }
