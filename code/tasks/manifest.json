@@ -481,6 +481,9 @@
     ],
     "172": [
       "t130_register_watcher.ps1"
+    ],
+    "173": [
+      "t131_watcher_diag.ps1"
     ]
   }
 }
