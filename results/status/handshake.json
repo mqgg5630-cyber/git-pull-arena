@@ -1,9 +1,9 @@
 {
-  "round": 237,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 237: finish funny talking-head video using bundled ffmpeg",
-  "arena_updated": "2026-10-02 17:20:36",
-  "local_updated": null
+    "round":  237,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 237: finish funny talking-head video using bundled ffmpeg",
+    "arena_updated":  "2026-10-02 17:20:36",
+    "local_updated":  "2026-10-03 01:24:03"
 }

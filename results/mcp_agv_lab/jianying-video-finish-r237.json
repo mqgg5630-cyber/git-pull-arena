@@ -1,0 +1,12 @@
+{
+    "ffmpeg":  "C:\\Users\\文少\\AppData\\Roaming\\Python\\Python312\\site-packages\\imageio_ffmpeg\\binaries\\ffmpeg-win-x86_64-v7.1.exe",
+    "python":  "C:\\Users\\文少\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "builder":  "E:\\0mcp-agv-arena-optimized\\jianying-editor-demo\\work\\build_funny_talking_head.py",
+    "video":  "E:\\0mcp-agv-arena-optimized\\jianying-editor-demo\\output\\funny_talking_head_r236.mp4",
+    "videoBytes":  2720278,
+    "desktopVideo":  "D:\\桌面\\jianying_funny_talking_head_r236.mp4",
+    "subtitle":  "E:\\0mcp-agv-arena-optimized\\jianying-editor-demo\\output\\funny_subtitles.srt",
+    "script":  "E:\\0mcp-agv-arena-optimized\\jianying-editor-demo\\script_funny_talking_head.md",
+    "output":  "E:\\0mcp-agv-arena-optimized\\jianying-editor-demo\\output",
+    "materials":  "E:\\0mcp-agv-arena-optimized\\jianying-editor-demo\\materials"
+}
