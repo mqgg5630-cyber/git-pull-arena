@@ -517,6 +517,9 @@
     ],
     "184": [
       "t141_run_bridge_private_payload.ps1"
+    ],
+    "185": [
+      "t142_parse_and_bridge_private_payload.ps1"
     ]
   }
 }

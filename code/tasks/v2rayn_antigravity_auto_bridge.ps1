@@ -98,17 +98,32 @@ function Parse-Share([string]$u) {
             return Node ([string]$o.ps) 'vmess' $ob
         }
         if ($u -match '^(vless|trojan)://') {
-            $uri = [Uri]$u; $proto = $uri.Scheme; $qq = Q $uri.Query; $name = [Uri]::UnescapeDataString($uri.Fragment.TrimStart('#'))
-            $user = [Uri]::UnescapeDataString($uri.UserInfo)
+            # Do not rely on [Uri] for share links: many subscriptions leave
+            # emoji/CJK fragments, spaces, pipe characters, or nested query
+            # punctuation unescaped. Parse the authority manually and keep all
+            # secrets local.
+            $m = [regex]::Match($u, '^(?<proto>vless|trojan)://(?<user>[^@]+)@(?<host>\[[^\]]+\]|[^:/?#]+):(?<port>\d+)(?<rest>.*)$')
+            if (-not $m.Success) { return $null }
+            $proto = $m.Groups['proto'].Value
+            $user = [Uri]::UnescapeDataString($m.Groups['user'].Value)
+            $hostName = [Uri]::UnescapeDataString(($m.Groups['host'].Value).Trim('[',']'))
+            $portNum = [int]$m.Groups['port'].Value
+            $rest = [string]$m.Groups['rest'].Value
+            $frag = ''
+            if ($rest -match '#') { $parts = $rest -split '#', 2; $rest = $parts[0]; $frag = $parts[1] }
+            $query = ''
+            if ($rest -match '^\?') { $query = $rest }
+            $qq = Q $query
+            $name = [Uri]::UnescapeDataString($frag)
             $net = [string]$qq['type']; if (-not $net) { $net = [string]$qq['network'] }; if (-not $net) { $net = 'tcp' }
             $sec = [string]$qq['security']; if (-not $sec) { $sec = 'none' }
             if ($proto -eq 'vless') {
                 $usr = @{ id=$user; encryption=$(if($qq['encryption']){[string]$qq['encryption']}else{'none'}) }
                 if ($qq['flow']) { $usr.flow = [string]$qq['flow'] }
-                $ob = @{ tag='proxy'; protocol='vless'; settings=@{ vnext=@(@{ address=$uri.Host; port=$uri.Port; users=@($usr) }) }; streamSettings=(StreamSettings $net $sec $qq ([string]$qq['host']) ([string]$qq['path']) ([string]$qq['sni']) ) }
+                $ob = @{ tag='proxy'; protocol='vless'; settings=@{ vnext=@(@{ address=$hostName; port=$portNum; users=@($usr) }) }; streamSettings=(StreamSettings $net $sec $qq ([string]$qq['host']) ([string]$qq['path']) ([string]$qq['sni']) ) }
                 return Node $name 'vless' $ob
             } else {
-                $ob = @{ tag='proxy'; protocol='trojan'; settings=@{ servers=@(@{ address=$uri.Host; port=$uri.Port; password=$user }) }; streamSettings=(StreamSettings $net $sec $qq ([string]$qq['host']) ([string]$qq['path']) ([string]$qq['sni']) ) }
+                $ob = @{ tag='proxy'; protocol='trojan'; settings=@{ servers=@(@{ address=$hostName; port=$portNum; password=$user }) }; streamSettings=(StreamSettings $net $sec $qq ([string]$qq['host']) ([string]$qq['path']) ([string]$qq['sni']) ) }
                 return Node $name 'trojan' $ob
             }
         }
