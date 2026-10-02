@@ -535,6 +535,9 @@
     ],
     "190": [
       "t147_verify_antigravity_bridge.ps1"
+    ],
+    "191": [
+      "t148_restart_verify_bridge.ps1"
     ]
   }
 }
