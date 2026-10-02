@@ -77,16 +77,16 @@ function Wait-Port([int]$port, [int]$sec) {
     }
     return $false
 }
-function StreamSettings([string]$net, [string]$sec, [hashtable]$q, [string]$host, [string]$path, [string]$sni) {
+function StreamSettings([string]$net, [string]$sec, [hashtable]$q, [string]$hostHdr, [string]$path, [string]$sni) {
     $st = @{ network = $(if ($net) { $net } else { 'tcp' }) }
     if ($sec -and $sec -ne 'none') { $st.security = $sec }
-    if ($st.security -eq 'tls') { $st.tlsSettings = @{ serverName = $(if ($sni) { $sni } elseif ($host) { $host } else { '' }); allowInsecure = $false } }
+    if ($st.security -eq 'tls') { $st.tlsSettings = @{ serverName = $(if ($sni) { $sni } elseif ($hostHdr) { $hostHdr } else { '' }); allowInsecure = $false } }
     if ($st.security -eq 'reality') {
         $st.realitySettings = @{ serverName = $(if ($sni) { $sni } elseif ($q['sni']) { $q['sni'] } else { '' }); publicKey = [string]$q['pbk']; shortId = [string]$q['sid']; fingerprint = $(if ($q['fp']) { [string]$q['fp'] } else { 'chrome' }); spiderX = [string]$q['spx'] }
     }
-    if ($st.network -eq 'ws') { $st.wsSettings = @{ path = $(if ($path) { $path } elseif ($q['path']) { [string]$q['path'] } else { '/' }); headers = @{ Host = $(if ($host) { $host } elseif ($q['host']) { [string]$q['host'] } else { '' }) } } }
+    if ($st.network -eq 'ws') { $st.wsSettings = @{ path = $(if ($path) { $path } elseif ($q['path']) { [string]$q['path'] } else { '/' }); headers = @{ Host = $(if ($hostHdr) { $hostHdr } elseif ($q['host']) { [string]$q['host'] } else { '' }) } } }
     if ($st.network -eq 'grpc') { $st.grpcSettings = @{ serviceName = $(if ($q['serviceName']) { [string]$q['serviceName'] } elseif ($q['service']) { [string]$q['service'] } else { '' }) } }
-    if ($st.network -eq 'tcp' -and $q['type'] -eq 'http') { $st.tcpSettings = @{ header = @{ type='http'; request=@{ headers=@{ Host=@($(if ($host) { $host } else { '' })) }; path=@($(if ($path) { $path } else { '/' })) } } } }
+    if ($st.network -eq 'tcp' -and $q['type'] -eq 'http') { $st.tcpSettings = @{ header = @{ type='http'; request=@{ headers=@{ Host=@($(if ($hostHdr) { $hostHdr } else { '' })) }; path=@($(if ($path) { $path } else { '/' })) } } } }
     return $st
 }
 function Node([string]$name, [string]$proto, [hashtable]$out) { return [pscustomobject]@{ name=$name; proto=$proto; outbound=$out } }
@@ -97,8 +97,8 @@ function Parse-Share([string]$u) {
             $o = $j | ConvertFrom-Json
             $q = @{}
             $net = [string]$o.net; $sec = [string]$o.tls; if (-not $sec) { $sec = [string]$o.security }
-            $host = [string]$o.host; $path = [string]$o.path; $sni = [string]$o.sni
-            $ob = @{ tag='proxy'; protocol='vmess'; settings=@{ vnext=@(@{ address=[string]$o.add; port=[int]$o.port; users=@(@{ id=[string]$o.id; alterId=$(try{[int]$o.aid}catch{0}); security=$(if($o.scy){[string]$o.scy}else{'auto'}) }) }) }; streamSettings=(StreamSettings $net $sec $q $host $path $sni) }
+            $hostHdr = [string]$o.host; $path = [string]$o.path; $sni = [string]$o.sni
+            $ob = @{ tag='proxy'; protocol='vmess'; settings=@{ vnext=@(@{ address=[string]$o.add; port=[int]$o.port; users=@(@{ id=[string]$o.id; alterId=$(try{[int]$o.aid}catch{0}); security=$(if($o.scy){[string]$o.scy}else{'auto'}) }) }) }; streamSettings=(StreamSettings $net $sec $q $hostHdr $path $sni) }
             return Node ([string]$o.ps) 'vmess' $ob
         }
         if ($u -match '^(vless|trojan)://') {
@@ -174,12 +174,12 @@ function Add-JsonNodes($obj, [string]$source) {
             $net=[string]$obj.network; if(-not $net){$net='tcp'}
             $sec=[string]$obj.streamSecurity; if(-not $sec -or $sec -eq 'none') { if($obj.tls -eq 'tls'){$sec='tls'} else {$sec='none'} }
             $q=@{}; foreach($k in @('pbk','sid','fp','spx','type','serviceName')){ if($obj.$k){$q[$k]=[string]$obj.$k} }
-            $host=[string]$obj.requestHost; if(-not $host){$host=[string]$obj.host}
+            $hostHdr=[string]$obj.requestHost; if(-not $hostHdr){$hostHdr=[string]$obj.host}
             $path=[string]$obj.path
             $sni=[string]$obj.sni
-            if($proto -eq 'vmess' -and $obj.id){ $ob=@{tag='proxy';protocol='vmess';settings=@{vnext=@(@{address=$addr;port=$port;users=@(@{id=[string]$obj.id;alterId=$(try{[int]$obj.alterId}catch{0});security=$(if($obj.security){[string]$obj.security}else{'auto'})})})};streamSettings=(StreamSettings $net $sec $q $host $path $sni)}; $script:Nodes += (Node $name 'vmess' $ob); L ('node_json=' + $source + ' proto=vmess name=' + (San $name)) }
-            elseif($proto -eq 'vless' -and $obj.id){ $usr=@{id=[string]$obj.id;encryption='none'}; if($obj.flow){$usr['flow']=[string]$obj.flow}; $ob=@{tag='proxy';protocol='vless';settings=@{vnext=@(@{address=$addr;port=$port;users=@($usr)})};streamSettings=(StreamSettings $net $sec $q $host $path $sni)}; $script:Nodes += (Node $name 'vless' $ob); L ('node_json=' + $source + ' proto=vless name=' + (San $name)) }
-            elseif($proto -eq 'trojan' -and $obj.password){ $ob=@{tag='proxy';protocol='trojan';settings=@{servers=@(@{address=$addr;port=$port;password=[string]$obj.password})};streamSettings=(StreamSettings $net $sec $q $host $path $sni)}; $script:Nodes += (Node $name 'trojan' $ob); L ('node_json=' + $source + ' proto=trojan name=' + (San $name)) }
+            if($proto -eq 'vmess' -and $obj.id){ $ob=@{tag='proxy';protocol='vmess';settings=@{vnext=@(@{address=$addr;port=$port;users=@(@{id=[string]$obj.id;alterId=$(try{[int]$obj.alterId}catch{0});security=$(if($obj.security){[string]$obj.security}else{'auto'})})})};streamSettings=(StreamSettings $net $sec $q $hostHdr $path $sni)}; $script:Nodes += (Node $name 'vmess' $ob); L ('node_json=' + $source + ' proto=vmess name=' + (San $name)) }
+            elseif($proto -eq 'vless' -and $obj.id){ $usr=@{id=[string]$obj.id;encryption='none'}; if($obj.flow){$usr['flow']=[string]$obj.flow}; $ob=@{tag='proxy';protocol='vless';settings=@{vnext=@(@{address=$addr;port=$port;users=@($usr)})};streamSettings=(StreamSettings $net $sec $q $hostHdr $path $sni)}; $script:Nodes += (Node $name 'vless' $ob); L ('node_json=' + $source + ' proto=vless name=' + (San $name)) }
+            elseif($proto -eq 'trojan' -and $obj.password){ $ob=@{tag='proxy';protocol='trojan';settings=@{servers=@(@{address=$addr;port=$port;password=[string]$obj.password})};streamSettings=(StreamSettings $net $sec $q $hostHdr $path $sni)}; $script:Nodes += (Node $name 'trojan' $ob); L ('node_json=' + $source + ' proto=trojan name=' + (San $name)) }
             elseif(($proto -eq 'ss' -or $proto -eq 'shadowsocks') -and $obj.password){ $ob=@{tag='proxy';protocol='shadowsocks';settings=@{servers=@(@{address=$addr;port=$port;method=[string]$obj.method;password=[string]$obj.password})}}; $script:Nodes += (Node $name 'ss' $ob); L ('node_json=' + $source + ' proto=ss name=' + (San $name)) }
         } catch { }
     }

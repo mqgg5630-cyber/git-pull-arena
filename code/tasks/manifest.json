@@ -526,6 +526,9 @@
     ],
     "187": [
       "t144_parse_diag_bridge.ps1"
+    ],
+    "188": [
+      "t145_hostvar_fix_bridge.ps1"
     ]
   }
 }
