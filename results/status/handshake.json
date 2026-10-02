@@ -1,9 +1,9 @@
 {
-  "round": 223,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 222 retry: Antigravity terminal Illustrator BrowserSkill phone share",
-  "arena_updated": "2026-10-02 09:33:09",
-  "local_updated": null
+    "round":  223,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 222 retry: Antigravity terminal Illustrator BrowserSkill phone share",
+    "arena_updated":  "2026-10-02 09:33:09",
+    "local_updated":  "2026-10-02 17:35:11"
 }
