@@ -1,9 +1,9 @@
 {
-  "round": 177,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "round 177 accepted: diagnosis confirms Google API geo restriction (Hong Kong Cloudflare WARP exit), watcher restored after reboot",
-  "arena_updated": "2026-10-02 02:44:46",
-  "local_updated": "2026-10-02 10:44:12"
+  "round": 178,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 178: use TUN direct/10808 route for Antigravity; install delayed Green VPN startup helper",
+  "arena_updated": "2026-10-02 02:49:46",
+  "local_updated": null
 }
