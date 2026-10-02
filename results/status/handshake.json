@@ -1,9 +1,9 @@
 {
-    "round":  186,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 186: parser decode fix private payload bridge",
-    "arena_updated":  "2026-10-02 04:31:20",
-    "local_updated":  "2026-10-02 12:33:35"
+  "round": 187,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 187: parser diagnostics private bridge",
+  "arena_updated": "2026-10-02 04:34:25",
+  "local_updated": null
 }
