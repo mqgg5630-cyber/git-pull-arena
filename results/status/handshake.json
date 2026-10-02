@@ -1,9 +1,9 @@
 {
-    "round":  172,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 172: t130 - on the laptop: clone branch arena/01a0fa39-git-pull-arena into E:\\0github\\git-sync\\git-pull-arena-01a0fa39, bootstrap, auth -Setup, then watch.ps1 -Register -KeepOthers (MUST keep the old watcher git-sync-watch-git-pull-arena-01a0a9f0 running - do NOT let it get parked), doctor + status, verify BOTH watcher tasks alive, report states + heartbeat. Judge: FINAL: PASS - new watcher registered and alive; old watcher untouched",
-    "arena_updated":  "2026-10-02 01:50:15",
-    "local_updated":  "2026-10-02 09:59:26"
+  "round": 173,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 173: t131 - on the laptop: re-run watch.ps1 -Register -KeepOthers for the new clone with cmd-file handle-level output capture (reg172.txt dumped in full), raw schtasks + Get-ScheduledTask enumeration before/after, git-sync state files + heartbeat + loop pid, old watcher health. Judge: FINAL: PASS - new watcher task exists, old watcher intact",
+  "arena_updated": "2026-10-02 02:04:53",
+  "local_updated": null
 }
