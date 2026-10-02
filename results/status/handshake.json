@@ -1,9 +1,9 @@
 {
-  "round": 228,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 228: install IDE retry, Tailscale serve yes, poll Antigravity Illustrator",
-  "arena_updated": "2026-10-02 10:37:28",
-  "local_updated": null
+    "round":  228,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 228: install IDE retry, Tailscale serve yes, poll Antigravity Illustrator",
+    "arena_updated":  "2026-10-02 10:37:28",
+    "local_updated":  "2026-10-02 19:01:43"
 }

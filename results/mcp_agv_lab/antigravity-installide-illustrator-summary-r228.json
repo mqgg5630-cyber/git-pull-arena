@@ -1,0 +1,32 @@
+{
+    "ok":  false,
+    "marker":  "ARENA_AGV_INSTALLIDE_R228_20261002_184141",
+    "invoke":  {
+                   "exists":  false,
+                   "path":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_installide_r228\\agv_installide_invoked_r228.txt",
+                   "bytes":  0,
+                   "mtime":  ""
+               },
+    "ai":  {
+               "exists":  false,
+               "path":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_agent_autorun_r227\\agv_agent_figure_r227.ai",
+               "bytes":  0,
+               "mtime":  ""
+           },
+    "png":  {
+                "exists":  false,
+                "path":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_agent_autorun_r227\\agv_agent_figure_r227.png",
+                "bytes":  0,
+                "mtime":  ""
+            },
+    "done":  {
+                 "exists":  false,
+                 "path":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_agent_autorun_r227\\agv_agent_done_r227.txt",
+                 "bytes":  0,
+                 "mtime":  ""
+             },
+    "runner":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_agent_autorun_r227\\run_illustrator_agent_r227.ps1",
+    "installJson":  "E:\\0mcp-agv-arena-optimized\\reports\\antigravity-installide-click-r228.json",
+    "submitJson":  "E:\\0mcp-agv-arena-optimized\\reports\\antigravity-installide-submit-r228.json",
+    "approveJson":  "E:\\0mcp-agv-arena-optimized\\reports\\antigravity-installide-approve-r228.json"
+}
