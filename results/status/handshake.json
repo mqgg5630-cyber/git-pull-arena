@@ -1,9 +1,9 @@
 {
-    "round":  219,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 219: resume skills compute Antigravity laptop only",
-    "arena_updated":  "2026-10-02 08:28:15",
-    "local_updated":  "2026-10-02 16:32:07"
+  "round": 219,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "round 219: resume skills compute Antigravity laptop only",
+  "arena_updated": "2026-10-02 08:32:53",
+  "local_updated": "2026-10-02 16:32:07"
 }
