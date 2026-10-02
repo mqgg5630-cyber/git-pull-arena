@@ -1,9 +1,9 @@
 {
-    "round":  176,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 176: verify Green VPN Startup-folder fallback",
-    "arena_updated":  "2026-10-02 02:31:06",
-    "local_updated":  "2026-10-02 10:33:06"
+  "round": 176,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "round 176 accepted: VPN startup fallback verified; Antigravity/WPS results collected",
+  "arena_updated": "2026-10-02 02:33:50",
+  "local_updated": "2026-10-02 10:33:06"
 }
