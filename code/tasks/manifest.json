@@ -658,6 +658,9 @@
     ],
     "231": [
       "t182_cli_error_diagnose_free_lan_r231.ps1"
+    ],
+    "232": [
+      "t183_zerotier_desktop_setup_r232.ps1"
     ]
   }
 }
