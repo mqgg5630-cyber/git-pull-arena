@@ -655,6 +655,9 @@
     ],
     "230": [
       "t181_free_lan_cli_antigravity_loop_r230.ps1"
+    ],
+    "231": [
+      "t182_cli_error_diagnose_free_lan_r231.ps1"
     ]
   }
 }
