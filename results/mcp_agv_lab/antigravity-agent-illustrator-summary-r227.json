@@ -1,0 +1,33 @@
+{
+    "ok":  false,
+    "marker":  "ARENA_AGV_AGENT_AUTORUN_R227_20261002_182057",
+    "command":  "cmd.exe /c echo ARENA_AGV_AGENT_AUTORUN_R227_20261002_182057 \u003e \"E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_agent_autorun_r227\\agv_agent_invoked_r227.txt\" \u0026\u0026 powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_agent_autorun_r227\\run_illustrator_agent_r227.ps1\"",
+    "invoke":  {
+                   "exists":  false,
+                   "path":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_agent_autorun_r227\\agv_agent_invoked_r227.txt",
+                   "bytes":  0,
+                   "mtime":  ""
+               },
+    "ai":  {
+               "exists":  false,
+               "path":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_agent_autorun_r227\\agv_agent_figure_r227.ai",
+               "bytes":  0,
+               "mtime":  ""
+           },
+    "png":  {
+                "exists":  false,
+                "path":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_agent_autorun_r227\\agv_agent_figure_r227.png",
+                "bytes":  0,
+                "mtime":  ""
+            },
+    "done":  {
+                 "exists":  false,
+                 "path":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_agent_autorun_r227\\agv_agent_done_r227.txt",
+                 "bytes":  0,
+                 "mtime":  ""
+             },
+    "runner":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_agent_autorun_r227\\run_illustrator_agent_r227.ps1",
+    "log":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_agent_autorun_r227\\agv_agent_runner_r227.log",
+    "submitJson":  "E:\\0mcp-agv-arena-optimized\\reports\\antigravity-agent-autorun-r227.json",
+    "approveJson":  "E:\\0mcp-agv-arena-optimized\\reports\\antigravity-agent-approve-r227.json"
+}
