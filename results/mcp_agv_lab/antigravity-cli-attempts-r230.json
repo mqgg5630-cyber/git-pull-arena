@@ -1,0 +1,42 @@
+[
+    {
+        "path":  "C:\\Users\\文少\\AppData\\Local\\Programs\\Antigravity\\resources\\bin\\language_server.exe",
+        "form":  "--prompt",
+        "out":  "C:\\Users\\文少\\AppData\\Local\\Programs\\Antigravity\\resources\\bin\\language_server.exe : flags provided but not defined: -pro\nmpt\n    + CategoryInfo          : NotSpecified: (flags provided but not defined: -prompt:String) [], RemoteException\n    + FullyQualifiedErrorId : NativeCommandError\n \nUsage of C:\\Users\\鏂囧皯\\AppData\\Local\\Programs\\Antigravity\\resources\\bin\\language_server.exe:\n  -analytics_server_url=\"\": Analytics server host\n  -api_server_url=\"http://0.0.0.0:50001\": API server host\n  -app_data_dir=\"antigravity-ide\": Path where application data is stored, relative to GeminiDir\n  -beyond_quota_bucket=\"\": Quota bucket to use for Beyond API calls (format: team/bucket)\n  -beyond_service_addr=\"\": Address of the Beyond generative service (Stubby client)\n  -browser_eval_env=false: Whether to enable browser eval environment setup (pre-installed playwright, CA certs, proxy/\nSSO)\n  -cdp_port=9222: Port for Chrome DevTools Protocol\n  -cloud_code_endpoint=\"\": CCPA API URL\n  -config_dir=\"config\": Path where user configuration files are stored, relative to GeminiDir.\n  -csrf_token=\"\": CSRF token for language server\n  -disable_telemetry=false: If true, disable telemetry logging\n  -enable_lsp=false: If true, enable LSP\n  -exit_on_stdin_close=false: If true, shut down gracefully when stdin reaches EOF. Used when the parent process cannot"
+    },
+    {
+        "path":  "C:\\Users\\文少\\AppData\\Local\\Programs\\Antigravity\\resources\\bin\\language_server.exe",
+        "form":  "chat",
+        "out":  "C:\\Users\\文少\\AppData\\Local\\Programs\\Antigravity\\resources\\bin\\language_server.exe : ERROR: logging before google.Init: I\n1002 19:43:55.109179       1 server.go:1584] Starting language server process with pid 86440\n    + CategoryInfo          : NotSpecified: (ERROR: logging ... with pid 86440:String) [], RemoteException\n    + FullyQualifiedErrorId : NativeCommandError\n \nERROR: logging before google.Init: I1002 19:43:55.122169       1 server.go:465] Setting GOMAXPROCS to 4\nERROR: logging before google.Init: F1002 19:43:55.131038       1 main.go:326] Language server failed - Failed to read i\nnitial metadata from stdin: %!s(\u003cnil\u003e)\n(1) attached stack trace\n  -- stack trace:\n  | google3/third_party/jetski/language_server/language_server.setUpMetadataProvider\n  | \tthird_party/jetski/language_server/server.go:527\n  | google3/third_party/jetski/language_server/language_server.CreateLanguageServerAndServe\n  | \tthird_party/jetski/language_server/server.go:1629\n  | main.main\n  | \tthird_party/jetski/cmd/language_server/main.go:324\n  | runtime.main\n  | \tthird_party/go/gc/src/runtime/proc.go:302\n  | runtime.goexit\n  | \tthird_party/go/gc/src/runtime/asm_amd64.s:1264"
+    },
+    {
+        "path":  "C:\\Users\\文少\\AppData\\Local\\Programs\\Antigravity\\resources\\bin\\language_server.exe",
+        "form":  "agent",
+        "out":  "C:\\Users\\文少\\AppData\\Local\\Programs\\Antigravity\\resources\\bin\\language_server.exe : ERROR: logging before google.Init: I\n1002 19:44:12.723507       1 server.go:1584] Starting language server process with pid 78640\n    + CategoryInfo          : NotSpecified: (ERROR: logging ... with pid 78640:String) [], RemoteException\n    + FullyQualifiedErrorId : NativeCommandError\n \nERROR: logging before google.Init: I1002 19:44:12.736571       1 server.go:465] Setting GOMAXPROCS to 4\nERROR: logging before google.Init: F1002 19:44:12.736571       1 main.go:326] Language server failed - Failed to read i\nnitial metadata from stdin: %!s(\u003cnil\u003e)\n(1) attached stack trace\n  -- stack trace:\n  | google3/third_party/jetski/language_server/language_server.setUpMetadataProvider\n  | \tthird_party/jetski/language_server/server.go:527\n  | google3/third_party/jetski/language_server/language_server.CreateLanguageServerAndServe\n  | \tthird_party/jetski/language_server/server.go:1629\n  | main.main\n  | \tthird_party/jetski/cmd/language_server/main.go:324\n  | runtime.main\n  | \tthird_party/go/gc/src/runtime/proc.go:302\n  | runtime.goexit\n  | \tthird_party/go/gc/src/runtime/asm_amd64.s:1264"
+    },
+    {
+        "path":  "C:\\Users\\文少\\AppData\\Local\\Programs\\Antigravity\\resources\\bin\\language_server.exe",
+        "form":  "run",
+        "out":  "C:\\Users\\文少\\AppData\\Local\\Programs\\Antigravity\\resources\\bin\\language_server.exe : ERROR: logging before google.Init: I\n1002 19:44:48.011161       1 server.go:1584] Starting language server process with pid 90068\n    + CategoryInfo          : NotSpecified: (ERROR: logging ... with pid 90068:String) [], RemoteException\n    + FullyQualifiedErrorId : NativeCommandError\n \nERROR: logging before google.Init: I1002 19:44:48.021981       1 server.go:465] Setting GOMAXPROCS to 4\nERROR: logging before google.Init: F1002 19:44:48.039679       1 main.go:326] Language server failed - Failed to read i\nnitial metadata from stdin: %!s(\u003cnil\u003e)\n(1) attached stack trace\n  -- stack trace:\n  | google3/third_party/jetski/language_server/language_server.setUpMetadataProvider\n  | \tthird_party/jetski/language_server/server.go:527\n  | google3/third_party/jetski/language_server/language_server.CreateLanguageServerAndServe\n  | \tthird_party/jetski/language_server/server.go:1629\n  | main.main\n  | \tthird_party/jetski/cmd/language_server/main.go:324\n  | runtime.main\n  | \tthird_party/go/gc/src/runtime/proc.go:302\n  | runtime.goexit\n  | \tthird_party/go/gc/src/runtime/asm_amd64.s:1264"
+    },
+    {
+        "path":  "C:\\Users\\文少\\AppData\\Local\\Programs\\Antigravity\\resources\\elevate.exe",
+        "form":  "--prompt",
+        "out":  "C:\\Users\\文少\\AppData\\Local\\Programs\\Antigravity\\resources\\elevate.exe : Unrecognized Flag -prompt\n    + CategoryInfo          : NotSpecified: (Unrecognized Flag -prompt:String) [], RemoteException\n    + FullyQualifiedErrorId : NativeCommandError"
+    },
+    {
+        "path":  "C:\\Users\\文少\\AppData\\Local\\Programs\\Antigravity\\resources\\elevate.exe",
+        "form":  "chat",
+        "out":  "C:\\Users\\文少\\AppData\\Local\\Programs\\Antigravity\\resources\\elevate.exe : Command Line too long\n    + CategoryInfo          : NotSpecified: (Command Line too long:String) [], RemoteException\n    + FullyQualifiedErrorId : NativeCommandError"
+    },
+    {
+        "path":  "C:\\Users\\文少\\AppData\\Local\\Programs\\Antigravity\\resources\\elevate.exe",
+        "form":  "agent",
+        "out":  "C:\\Users\\文少\\AppData\\Local\\Programs\\Antigravity\\resources\\elevate.exe : Command Line too long\n    + CategoryInfo          : NotSpecified: (Command Line too long:String) [], RemoteException\n    + FullyQualifiedErrorId : NativeCommandError"
+    },
+    {
+        "path":  "C:\\Users\\文少\\AppData\\Local\\Programs\\Antigravity\\resources\\elevate.exe",
+        "form":  "run",
+        "out":  "C:\\Users\\文少\\AppData\\Local\\Programs\\Antigravity\\resources\\elevate.exe : Command Line too long\n    + CategoryInfo          : NotSpecified: (Command Line too long:String) [], RemoteException\n    + FullyQualifiedErrorId : NativeCommandError"
+    }
+]

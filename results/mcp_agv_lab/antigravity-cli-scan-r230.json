@@ -1,0 +1,22 @@
+[
+    {
+        "path":  "C:\\Users\\文少\\AppData\\Local\\Programs\\Antigravity\\Antigravity.exe",
+        "help":  "TIMEOUT"
+    },
+    {
+        "path":  "C:\\Users\\文少\\AppData\\Local\\Programs\\Antigravity\\resources\\bin\\language_server.exe",
+        "help":  "language_server.exe : Usage of C:\\Users\\鏂囧皯\\AppData\\Local\\Programs\\Antigravity\\resources\\bin\\language_server.exe:\n所在位置 行:1 字符: 2\n+  \u0026 $using:cc --help 2\u003e\u00261|Out-String\n+  ~~~~~~~~~~~~~~~~~~~~~~~\n    + CategoryInfo          : NotSpecified: (Usage of C:\\Use...age_server.exe::String) [], RemoteException\n    + FullyQualifiedErrorId : NativeCommandError\n \n  -analytics_server_url=\"\": Analytics server host\n  -api_server_url=\"http://0.0.0.0:50001\": API server host\n  -app_data_dir=\"antigravity-ide\": Path where application data is stored, relative to GeminiDir\n  -beyond_quota_bucket=\"\": Quota bucket to use for Beyond API calls (format: team/bucket)\n  -beyond_service_addr=\"\": Address of the Beyond generative service (Stubby client)\n  -browser_eval_env=false: Whether to enable browser eval environment setup (pre-installed playwright, CA certs, proxy/\nSSO)\n  -cdp_port=9222: Port for Chrome DevTools Protocol\n  -cloud_code_endpoint=\"\": CCPA API URL\n  -config_dir=\"config\": Path where user configuration files are stored, relative to GeminiDir.\n  -csrf_token=\"\": CSRF token for language server\n  -disable_telemetry=false: If true, disable telemetry logging\n  -enable_lsp=false: If true, enable LSP"
+    },
+    {
+        "path":  "C:\\Users\\文少\\AppData\\Local\\Programs\\Antigravity\\resources\\bin\\webm_encoder.exe",
+        "help":  ""
+    },
+    {
+        "path":  "C:\\Users\\文少\\AppData\\Local\\Programs\\Antigravity\\resources\\elevate.exe",
+        "help":  "elevate.exe : Unrecognized Flag -help\n所在位置 行:1 字符: 2\n+  \u0026 $using:cc --help 2\u003e\u00261|Out-String\n+  ~~~~~~~~~~~~~~~~~~~~~~~\n    + CategoryInfo          : NotSpecified: (Unrecognized Flag -help:String) [], RemoteException\n    + FullyQualifiedErrorId : NativeCommandError"
+    },
+    {
+        "path":  "C:\\Users\\文少\\AppData\\Local\\Programs\\Antigravity\\Uninstall Antigravity.exe",
+        "help":  ""
+    }
+]
