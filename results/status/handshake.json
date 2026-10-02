@@ -1,9 +1,9 @@
 {
-    "round":  233,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 233: ZeroTier and self-hosted WireGuard desktop prep plus phone guide",
-    "arena_updated":  "2026-10-02 12:36:26",
-    "local_updated":  "2026-10-02 20:39:15"
+  "round": 233,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "round 233: ZeroTier and self-hosted WireGuard desktop prep plus phone guide",
+  "arena_updated": "2026-10-02 12:39:53",
+  "local_updated": "2026-10-02 20:39:15"
 }
