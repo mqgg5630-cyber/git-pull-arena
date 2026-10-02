@@ -604,6 +604,9 @@
     ],
     "213": [
       "t170_computer_use_capability_audit.ps1"
+    ],
+    "214": [
+      "t171_desktop_computer_use_audit_fix.ps1"
     ]
   }
 }
