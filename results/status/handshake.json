@@ -1,9 +1,9 @@
 {
-  "round": 171,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-10-01 18:34:49",
-  "local_updated": "2026-10-02 02:34:33"
+  "round": 172,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 172: t130 - on the laptop: clone branch arena/01a0fa39-git-pull-arena into E:\\0github\\git-sync\\git-pull-arena-01a0fa39, bootstrap, auth -Setup, then watch.ps1 -Register -KeepOthers (MUST keep the old watcher git-sync-watch-git-pull-arena-01a0a9f0 running - do NOT let it get parked), doctor + status, verify BOTH watcher tasks alive, report states + heartbeat. Judge: FINAL: PASS - new watcher registered and alive; old watcher untouched",
+  "arena_updated": "2026-10-02 01:50:15",
+  "local_updated": null
 }
