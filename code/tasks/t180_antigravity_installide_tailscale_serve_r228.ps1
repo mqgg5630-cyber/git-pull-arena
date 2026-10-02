@@ -1,5 +1,5 @@
-# t180_antigravity_installide_tailscale_serve_r228.ps1 - round 228.
-# Retry: enable Tailscale Serve with --yes, click Antigravity Install IDE,
+# t180_antigravity_installide_tailscale_serve_r228.ps1 - round 228/229.
+# Retry: keep proven HTTP share, restart Antigravity CDP, click Install IDE,
 # submit the existing Illustrator runner command, and poll approvals/outputs.
 # ASCII-only.
 
@@ -41,16 +41,8 @@ if($tsExe){
   $tsIp=(Run-Cap { & $using:te ip -4 2>&1|Select-Object -First 1|Out-String } 20).Trim()
   $sjRaw=Run-Cap { & $using:te status --json 2>&1|Out-String } 30
   try{ $sj=$sjRaw|ConvertFrom-Json; $dns=[string]$sj.Self.DNSName; if($dns.EndsWith('.')){$dns=$dns.Substring(0,$dns.Length-1)} }catch{}
-  $serveOuts += 'yes1:'+(Run-Cap { & $using:te serve --yes --bg http://127.0.0.1:18089 2>&1|Out-String } 35)
+  $serveOuts += 'skip: tailscale serve commands previously hung; keeping proven raw HTTP tailnet URL active'
   $serveStatus=Run-Cap { & $using:te serve status 2>&1|Out-String } 20
-  if($serveStatus -notmatch '18089|127\.0\.0\.1'){
-    $serveOuts += 'yes2:'+(Run-Cap { & $using:te serve --yes --bg --set-path / http://127.0.0.1:18089 2>&1|Out-String } 35)
-    $serveStatus=Run-Cap { & $using:te serve status 2>&1|Out-String } 20
-  }
-  if($serveStatus -notmatch '18089|127\.0\.0\.1'){
-    $serveOuts += 'yes3:'+(Run-Cap { & $using:te serve --yes --bg 18089 2>&1|Out-String } 35)
-    $serveStatus=Run-Cap { & $using:te serve status 2>&1|Out-String } 20
-  }
 }
 $httpUrl=if($tsIp){'http://'+$tsIp+':'+$sharePort+'/'}else{''}
 $httpsUrl=if($dns){'https://'+$dns+'/'}else{''}
@@ -74,8 +66,12 @@ try{ Remove-Item -LiteralPath $outAi,$outPng,$outDone,$outInvoke -Force -ErrorAc
 L ('runner_exists='+(Test-Path -LiteralPath $runner)+' runner='+(San $runner))
 $agExe=Join-Path $env:LOCALAPPDATA 'Programs\Antigravity\Antigravity.exe'
 $port=9223
-$cdp=Wait-Port $port 2
-if(-not $cdp -and(Test-Path -LiteralPath $agExe)){ try{ Start-Process -FilePath $agExe -ArgumentList @('--force-renderer-accessibility','--remote-debugging-port='+$port)|Out-Null }catch{}; Start-Sleep -Seconds 8; $cdp=Wait-Port $port 8 }
+try{ foreach($n in @('Antigravity','language_server')){ taskkill /f /im ($n+'.exe') 2>&1|Out-Null } }catch{}
+Start-Sleep -Seconds 3
+$cdp=$false
+if(Test-Path -LiteralPath $agExe){ try{ Start-Process -FilePath $agExe -ArgumentList @('--force-renderer-accessibility','--remote-debugging-port='+$port)|Out-Null; L ('antigravity_started='+(San $agExe)) }catch{ L ('antigravity_start_ERR='+(San $_.Exception.Message)) } }
+Start-Sleep -Seconds 15
+$cdp=Wait-Port $port 30
 L ('antigravity_cdp='+$cdp)
 $marker='ARENA_AGV_INSTALLIDE_R228_'+(Get-Date -Format 'yyyyMMdd_HHmmss')
 $cmdLine='cmd.exe /c echo '+$marker+' > "'+$outInvoke+'" && powershell.exe -NoProfile -ExecutionPolicy Bypass -File "'+$runner+'"'
