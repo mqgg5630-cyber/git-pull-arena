@@ -568,6 +568,9 @@
     ],
     "201": [
       "t158_wcu_optimized_uia_wrapper.ps1"
+    ],
+    "202": [
+      "t159_optimized_uia_window_actions.ps1"
     ]
   }
 }
