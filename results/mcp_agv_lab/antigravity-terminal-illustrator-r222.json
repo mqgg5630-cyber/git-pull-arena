@@ -1,0 +1,32 @@
+{
+    "ok":  false,
+    "terminalMarker":  "ARENA_AGV_TERMINAL_CMD_R222_20261002_173748",
+    "command":  "cmd.exe /c echo ARENA_AGV_TERMINAL_CMD_R222_20261002_173748 \u003e \"E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_terminal_illustrator_r222\\agv_terminal_invoked_r222.txt\" \u0026\u0026 powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_terminal_illustrator_r222\\run_illustrator_from_antigravity_terminal_r222.ps1\"",
+    "invoke":  {
+                   "exists":  false,
+                   "path":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_terminal_illustrator_r222\\agv_terminal_invoked_r222.txt",
+                   "bytes":  0,
+                   "mtime":  ""
+               },
+    "ai":  {
+               "exists":  false,
+               "path":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_terminal_illustrator_r222\\agv_terminal_figure_r222.ai",
+               "bytes":  0,
+               "mtime":  ""
+           },
+    "png":  {
+                "exists":  false,
+                "path":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_terminal_illustrator_r222\\agv_terminal_figure_r222.png",
+                "bytes":  0,
+                "mtime":  ""
+            },
+    "done":  {
+                 "exists":  false,
+                 "path":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_terminal_illustrator_r222\\agv_terminal_illustrator_done_r222.txt",
+                 "bytes":  0,
+                 "mtime":  ""
+             },
+    "runner":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_terminal_illustrator_r222\\run_illustrator_from_antigravity_terminal_r222.ps1",
+    "cdpJson":  "E:\\0mcp-agv-arena-optimized\\reports\\antigravity-terminal-inject-r222.json",
+    "log":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_terminal_illustrator_r222\\agv_terminal_illustrator_runner_r222.log"
+}
