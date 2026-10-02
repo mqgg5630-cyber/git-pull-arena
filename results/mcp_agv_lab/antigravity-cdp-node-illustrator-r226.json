@@ -1,0 +1,38 @@
+{
+  "ok": false,
+  "marker": "ARENA_AGV_CDP_NODE_CMD_R226_20261002_175529",
+  "targets": [
+    {
+      "title": "Antigravity",
+      "url": "https://127.0.0.1:58433/",
+      "type": "page"
+    }
+  ],
+  "target": {
+    "title": "Antigravity",
+    "url": "https://127.0.0.1:58433/",
+    "type": "page"
+  },
+  "diag": {
+    "reqType": "undefined",
+    "procType": "object",
+    "keys": [
+      "__electronLog",
+      "electronUpdater",
+      "electronNative",
+      "process",
+      "ipc",
+      "Ipc",
+      "MonacoPerformanceMarks"
+    ],
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.19.1 Chrome/152.0.7977.78 Electron/44.3.0 Safari/537.36",
+    "title": "Antigravity"
+  },
+  "spawn": {
+    "spawned": false,
+    "marker": "ARENA_AGV_CDP_NODE_CMD_R226_20261002_175529",
+    "requireCandidates": 0,
+    "used": -1,
+    "lastError": ""
+  }
+}

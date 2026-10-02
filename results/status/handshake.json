@@ -1,9 +1,9 @@
 {
-  "round": 226,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 226: Antigravity CDP Node child_process Illustrator attempt",
-  "arena_updated": "2026-10-02 09:54:20",
-  "local_updated": null
+    "round":  226,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 226: Antigravity CDP Node child_process Illustrator attempt",
+    "arena_updated":  "2026-10-02 09:54:20",
+    "local_updated":  "2026-10-02 18:00:38"
 }

@@ -1,0 +1,31 @@
+{
+    "ok":  false,
+    "marker":  "ARENA_AGV_CDP_NODE_CMD_R226_20261002_175529",
+    "invoke":  {
+                   "exists":  false,
+                   "path":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_cdp_node_illustrator_r226\\agv_cdp_node_invoked_r226.txt",
+                   "bytes":  0,
+                   "mtime":  ""
+               },
+    "ai":  {
+               "exists":  false,
+               "path":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_cdp_node_illustrator_r226\\agv_cdp_node_figure_r226.ai",
+               "bytes":  0,
+               "mtime":  ""
+           },
+    "png":  {
+                "exists":  false,
+                "path":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_cdp_node_illustrator_r226\\agv_cdp_node_figure_r226.png",
+                "bytes":  0,
+                "mtime":  ""
+            },
+    "done":  {
+                 "exists":  false,
+                 "path":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_cdp_node_illustrator_r226\\agv_cdp_node_done_r226.txt",
+                 "bytes":  0,
+                 "mtime":  ""
+             },
+    "runner":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_cdp_node_illustrator_r226\\run_illustrator_r226.ps1",
+    "log":  "E:\\0mcp-agv-arena-optimized\\antigravity-tests\\agv_cdp_node_illustrator_r226\\agv_cdp_node_runner_r226.log",
+    "cdpJson":  "E:\\0mcp-agv-arena-optimized\\reports\\antigravity-cdp-node-illustrator-r226.json"
+}
