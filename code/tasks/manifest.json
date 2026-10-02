@@ -541,6 +541,9 @@
     ],
     "192": [
       "t149_verify_bridge_stable.ps1"
+    ],
+    "193": [
+      "t150_desk_antigravity_bridge.ps1"
     ]
   }
 }
