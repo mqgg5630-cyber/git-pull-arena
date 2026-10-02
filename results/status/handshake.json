@@ -1,9 +1,9 @@
 {
-    "round":  180,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 180: parse v2rayN nodes locally and create private Antigravity xray bridge if supported node found",
-    "arena_updated":  "2026-10-02 04:02:45",
-    "local_updated":  "2026-10-02 12:05:48"
+  "round": 180,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "round 180 accepted: v2rayN node bridge ready; local private subscription file absent",
+  "arena_updated": "2026-10-02 04:06:15",
+  "local_updated": "2026-10-02 12:05:48"
 }
