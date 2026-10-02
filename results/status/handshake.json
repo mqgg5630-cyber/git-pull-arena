@@ -1,9 +1,9 @@
 {
-  "round": 196,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "round 196: inspect 0mcp-agv and test isolated computer-use lab",
-  "arena_updated": "2026-10-02 05:29:34",
-  "local_updated": "2026-10-02 13:28:07"
+  "round": 197,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 197: use windows-computer-use project to operate Notepad",
+  "arena_updated": "2026-10-02 05:29:39",
+  "local_updated": null
 }
