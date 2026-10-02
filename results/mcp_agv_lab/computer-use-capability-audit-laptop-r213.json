@@ -1,0 +1,208 @@
+{
+    "computer":  "LAPTOP-R77M5D6M",
+    "user":  "文少",
+    "labRoot":  "E:\\0mcp-agv-arena-optimized",
+    "projects":  [
+                     {
+                         "dest":  "E:\\0mcp-agv-arena-optimized\\github\\windows-computer-use",
+                         "url":  "https://github.com/cgissing/windows-computer-use.git",
+                         "name":  "windows-computer-use"
+                     },
+                     {
+                         "dest":  "E:\\0mcp-agv-arena-optimized\\github\\Windows-MCP",
+                         "url":  "https://github.com/CursorTouch/Windows-MCP.git",
+                         "name":  "Windows-MCP"
+                     },
+                     {
+                         "dest":  "E:\\0mcp-agv-arena-optimized\\github\\pywinauto-mcp",
+                         "url":  "https://github.com/sandraschi/pywinauto-mcp.git",
+                         "name":  "pywinauto-mcp"
+                     }
+                 ],
+    "capabilities":  [
+                         {
+                             "computer":  "LAPTOP-R77M5D6M",
+                             "app":  "windows-computer-use",
+                             "backend":  "E-drive install",
+                             "task":  "install/presence check",
+                             "result":  "OK",
+                             "evidence":  "present",
+                             "artifact":  "E:\\[REDACTED]\\github\\[REDACTED]"
+                         },
+                         {
+                             "computer":  "LAPTOP-R77M5D6M",
+                             "app":  "Windows-MCP",
+                             "backend":  "E-drive install",
+                             "task":  "install/presence check",
+                             "result":  "OK",
+                             "evidence":  "present",
+                             "artifact":  "E:\\[REDACTED]\\github\\Windows-MCP"
+                         },
+                         {
+                             "computer":  "LAPTOP-R77M5D6M",
+                             "app":  "pywinauto-mcp",
+                             "backend":  "E-drive install",
+                             "task":  "install/presence check",
+                             "result":  "OK",
+                             "evidence":  "cloned",
+                             "artifact":  "E:\\[REDACTED]\\github\\pywinauto-mcp"
+                         },
+                         {
+                             "computer":  "LAPTOP-R77M5D6M",
+                             "app":  "Antigravity",
+                             "backend":  "Antigravity terminal CLI",
+                             "task":  "open E-drive probe file/workspace",
+                             "result":  "OK_ISSUED",
+                             "evidence":  "version=",
+                             "artifact":  "E:\\[REDACTED]\\reports\\[REDACTED].txt"
+                         },
+                         {
+                             "computer":  "LAPTOP-R77M5D6M",
+                             "app":  "Lab WinForms app",
+                             "backend":  "windows-computer-use MCP/UIA",
+                             "task":  "find button and invoke it",
+                             "result":  "OK",
+                             "evidence":  "marker file created by invoked button",
+                             "artifact":  "E:\\[REDACTED]\\smoke\\[REDACTED].txt"
+                         },
+                         {
+                             "computer":  "LAPTOP-R77M5D6M",
+                             "app":  "antigravity",
+                             "backend":  "software-ops wrapper",
+                             "task":  "run antigravity-status",
+                             "result":  "OK",
+                             "evidence":  "{??    \"app\":  \"Antigravity\",??    \"installed\":  true,??    \"version\":  \"2.19.1.0\",??    \"processes\":  6,??    \"languageServer\":  1,??    \"proxy18088\":  true,??    \"mcpConfig\":  true??}",
+                             "artifact":  "E:\\[REDACTED]\\software-ops\\[REDACTED].ps1"
+                         },
+                         {
+                             "computer":  "LAPTOP-R77M5D6M",
+                             "app":  "v2rayn",
+                             "backend":  "software-ops wrapper",
+                             "task":  "run v2rayn-status",
+                             "result":  "OK",
+                             "evidence":  "{??    \"app\":  \"v2rayN\",??    \"v2rayN\":  1,??    \"xray\":  2,??    \"bridge18088\":  true,??    \"bridgeTask\":  false??}",
+                             "artifact":  "E:\\[REDACTED]\\software-ops\\[REDACTED].ps1"
+                         },
+                         {
+                             "computer":  "LAPTOP-R77M5D6M",
+                             "app":  "greenvpn",
+                             "backend":  "software-ops wrapper",
+                             "task":  "run greenvpn-status",
+                             "result":  "OK",
+                             "evidence":  "{??    \"app\":  \"GreenVPN\",??    \"exe\":  true,??    \"processes\":  4,??    \"startup\":  true,??    \"scheduledTask\":  false??}",
+                             "artifact":  "E:\\[REDACTED]\\software-ops\\[REDACTED].ps1"
+                         },
+                         {
+                             "computer":  "LAPTOP-R77M5D6M",
+                             "app":  "wps",
+                             "backend":  "software-ops wrapper",
+                             "task":  "run wps-status",
+                             "result":  "OK",
+                             "evidence":  "{??    \"app\":  \"WPS\",??    \"processes\":  4,??    \"com\":  {??                \"KWPS.Application\":  \"OK\",??                \"KET.Application\":  \"OK\",??                \"KWPP.Application\":  \"OK\"??            }??}",
+                             "artifact":  "E:\\[REDACTED]\\software-ops\\[REDACTED].ps1"
+                         },
+                         {
+                             "computer":  "LAPTOP-R77M5D6M",
+                             "app":  "illustrator",
+                             "backend":  "software-ops wrapper",
+                             "task":  "run illustrator-status",
+                             "result":  "OK",
+                             "evidence":  "{??    \"app\":  \"Illustrator\",??    \"processes\":  0,??    \"paths\":  [??                  \"E:\\\\Adobe Illustrator 2020 ?????\\Support Files\\\\Contents\\\\Windows\\\\Illustrator.exe\"??              ]??}",
+                             "artifact":  "E:\\[REDACTED]\\software-ops\\[REDACTED].ps1"
+                         },
+                         {
+                             "computer":  "LAPTOP-R77M5D6M",
+                             "app":  "WPS Office",
+                             "backend":  "COM automation",
+                             "task":  "instantiate Writer/Sheet/Presentation COM",
+                             "result":  "OK",
+                             "evidence":  "KWPP.Application=OK;KWPS.Application=OK;KET.Application=OK",
+                             "artifact":  "[REDACTED].pptx"
+                         },
+                         {
+                             "computer":  "LAPTOP-R77M5D6M",
+                             "app":  "Antigravity chat",
+                             "backend":  "CDP/Electron DOM",
+                             "task":  "submit message input",
+                             "result":  "OK_PROVEN_R212",
+                             "evidence":  "message input role=combobox aria=Message input; cdp-insertText; marker visible after submit",
+                             "artifact":  "E:\\[REDACTED]\\reports\\[REDACTED].json"
+                         },
+                         {
+                             "computer":  "LAPTOP-R77M5D6M",
+                             "app":  "File Explorer",
+                             "backend":  "shell CLI",
+                             "task":  "open E-drive lab folder",
+                             "result":  "OK_CAPABLE",
+                             "evidence":  "explorer.exe can open local folders",
+                             "artifact":  "E:\\[REDACTED]"
+                         },
+                         {
+                             "computer":  "LAPTOP-R77M5D6M",
+                             "app":  "Notepad",
+                             "backend":  "process/file CLI",
+                             "task":  "open/edit text file by path",
+                             "result":  "OK_CAPABLE",
+                             "evidence":  "notepad.exe present",
+                             "artifact":  "C:\\WINDOWS\\system32\\notepad.exe"
+                         }
+                     ],
+    "windows":  [
+                    {
+                        "ProcessName":  "Antigravity",
+                        "Id":  44036,
+                        "MainWindowTitle":  "Reply exactly: ARENA_AGV_..."
+                    },
+                    {
+                        "ProcessName":  "Antigravity IDE",
+                        "Id":  50076,
+                        "MainWindowTitle":  "0mcp-agv - Antigravity IDE - 1.md●"
+                    },
+                    {
+                        "ProcessName":  "ApplicationFrameHost",
+                        "Id":  8540,
+                        "MainWindowTitle":  "设置"
+                    },
+                    {
+                        "ProcessName":  "AweSun",
+                        "Id":  5112,
+                        "MainWindowTitle":  "向日葵远程控制"
+                    },
+                    {
+                        "ProcessName":  "firefox",
+                        "Id":  12476,
+                        "MainWindowTitle":  "YouTube — Mozilla Firefox"
+                    },
+                    {
+                        "ProcessName":  "msedge",
+                        "Id":  15172,
+                        "MainWindowTitle":  "Arena | Benchmark \u0026 Compare the Best AI Models 和另外 19 个页面 - 个人 - Microsoft​ Edge"
+                    },
+                    {
+                        "ProcessName":  "msedgewebview2",
+                        "Id":  25860,
+                        "MainWindowTitle":  "登录向日葵"
+                    },
+                    {
+                        "ProcessName":  "SystemSettings",
+                        "Id":  19836,
+                        "MainWindowTitle":  "设置"
+                    },
+                    {
+                        "ProcessName":  "TextInputHost",
+                        "Id":  13356,
+                        "MainWindowTitle":  "Windows 输入体验"
+                    },
+                    {
+                        "ProcessName":  "v2rayN",
+                        "Id":  2088,
+                        "MainWindowTitle":  "v2rayN - V7.24.9 - X64 - 以管理员身份运行"
+                    },
+                    {
+                        "ProcessName":  "WindowsTerminal",
+                        "Id":  10292,
+                        "MainWindowTitle":  "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+                    }
+                ],
+    "time":  "2026-10-02T15:33:13"
+}
