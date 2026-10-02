@@ -32,8 +32,8 @@ function Q([string]$query) {
     foreach ($p in ($q -split '&')) {
         if (-not $p) { continue }
         $kv = $p -split '=', 2
-        $k = UDec $kv[0]
-        $v = if ($kv.Count -gt 1) { UDec $kv[1] } else { '' }
+        $k = UDec ($kv[0])
+        $v = if ($kv.Count -gt 1) { UDec ($kv[1]) } else { '' }
         $h[$k] = $v
     }
     return $h
@@ -107,9 +107,9 @@ function Parse-Share([string]$u) {
             # punctuation unescaped. Parse the authority manually and keep all
             # secrets local.
             $m = [regex]::Match($u, '^(?<proto>vless|trojan)://(?<user>[^@]+)@(?<host>\[[^\]]+\]|[^:/?#]+):(?<port>\d+)(?<rest>.*)$')
-            if (-not $m.Success) { return $null }
+            if (-not $m.Success) { $script:ParseFailCount++; if($script:ParseFailCount -le 25){ L ('parse_nomatch scheme=' + (($u -split '://',2)[0]) + ' len=' + $u.Length) }; return $null }
             $proto = $m.Groups['proto'].Value
-            $user = UDec $m.Groups['user'].Value
+            $user = UDec ($m.Groups['user'].Value)
             $hostName = UDec (($m.Groups['host'].Value) -replace '^\[|\]$', '')
             $portNum = [int]$m.Groups['port'].Value
             $rest = [string]$m.Groups['rest'].Value
@@ -118,12 +118,12 @@ function Parse-Share([string]$u) {
             $query = ''
             if ($rest -match '^\?') { $query = $rest }
             $qq = Q $query
-            $name = UDec $frag
+            $name = UDec ($frag)
             $net = [string]$qq['type']; if (-not $net) { $net = [string]$qq['network'] }; if (-not $net) { $net = 'tcp' }
             $sec = [string]$qq['security']; if (-not $sec) { $sec = 'none' }
             if ($proto -eq 'vless') {
                 $usr = @{ id=$user; encryption=$(if($qq['encryption']){[string]$qq['encryption']}else{'none'}) }
-                if ($qq['flow']) { $usr.flow = [string]$qq['flow'] }
+                if ($qq['flow']) { $usr['flow'] = [string]$qq['flow'] }
                 $ob = @{ tag='proxy'; protocol='vless'; settings=@{ vnext=@(@{ address=$hostName; port=$portNum; users=@($usr) }) }; streamSettings=(StreamSettings $net $sec $qq ([string]$qq['host']) ([string]$qq['path']) ([string]$qq['sni']) ) }
                 return Node $name 'vless' $ob
             } else {
@@ -133,7 +133,7 @@ function Parse-Share([string]$u) {
         }
         if ($u -match '^ss://(.+)$') {
             $rest = $Matches[1]; $name = ''
-            if ($rest -match '#') { $parts = $rest -split '#',2; $rest=$parts[0]; $name=UDec $parts[1] }
+            if ($rest -match '#') { $parts = $rest -split '#',2; $rest=$parts[0]; $name=UDec ($parts[1]) }
             if ($rest -match '\?') { $rest = ($rest -split '\?',2)[0] }
             $decoded = ''
             if ($rest -match '@') { $decoded = $rest } else { $decoded = B64Decode $rest }
@@ -143,7 +143,7 @@ function Parse-Share([string]$u) {
                 return Node $name 'ss' $ob
             }
         }
-    } catch { return $null }
+    } catch { $script:ParseFailCount++; if($script:ParseFailCount -le 25){ L ('parse_fail reason=' + (San $_.Exception.Message)) }; return $null }
     return $null
 }
 function Add-Nodes-From-Text([string]$text, [string]$source) {
@@ -178,7 +178,7 @@ function Add-JsonNodes($obj, [string]$source) {
             $path=[string]$obj.path
             $sni=[string]$obj.sni
             if($proto -eq 'vmess' -and $obj.id){ $ob=@{tag='proxy';protocol='vmess';settings=@{vnext=@(@{address=$addr;port=$port;users=@(@{id=[string]$obj.id;alterId=$(try{[int]$obj.alterId}catch{0});security=$(if($obj.security){[string]$obj.security}else{'auto'})})})};streamSettings=(StreamSettings $net $sec $q $host $path $sni)}; $script:Nodes += (Node $name 'vmess' $ob); L ('node_json=' + $source + ' proto=vmess name=' + (San $name)) }
-            elseif($proto -eq 'vless' -and $obj.id){ $usr=@{id=[string]$obj.id;encryption='none'}; if($obj.flow){$usr.flow=[string]$obj.flow}; $ob=@{tag='proxy';protocol='vless';settings=@{vnext=@(@{address=$addr;port=$port;users=@($usr)})};streamSettings=(StreamSettings $net $sec $q $host $path $sni)}; $script:Nodes += (Node $name 'vless' $ob); L ('node_json=' + $source + ' proto=vless name=' + (San $name)) }
+            elseif($proto -eq 'vless' -and $obj.id){ $usr=@{id=[string]$obj.id;encryption='none'}; if($obj.flow){$usr['flow']=[string]$obj.flow}; $ob=@{tag='proxy';protocol='vless';settings=@{vnext=@(@{address=$addr;port=$port;users=@($usr)})};streamSettings=(StreamSettings $net $sec $q $host $path $sni)}; $script:Nodes += (Node $name 'vless' $ob); L ('node_json=' + $source + ' proto=vless name=' + (San $name)) }
             elseif($proto -eq 'trojan' -and $obj.password){ $ob=@{tag='proxy';protocol='trojan';settings=@{servers=@(@{address=$addr;port=$port;password=[string]$obj.password})};streamSettings=(StreamSettings $net $sec $q $host $path $sni)}; $script:Nodes += (Node $name 'trojan' $ob); L ('node_json=' + $source + ' proto=trojan name=' + (San $name)) }
             elseif(($proto -eq 'ss' -or $proto -eq 'shadowsocks') -and $obj.password){ $ob=@{tag='proxy';protocol='shadowsocks';settings=@{servers=@(@{address=$addr;port=$port;method=[string]$obj.method;password=[string]$obj.password})}}; $script:Nodes += (Node $name 'ss' $ob); L ('node_json=' + $source + ' proto=ss name=' + (San $name)) }
         } catch { }
@@ -225,7 +225,7 @@ function Apply-Bridge($node, [string]$xray) {
 }
 function Relaunch-Agy([bool]$interactive){ foreach($n in @('language_server','Antigravity')){try{taskkill /f /im ($n+'.exe') 2>&1|Out-Null}catch{}}; Start-Sleep -Seconds 3; $exe=Join-Path $env:LOCALAPPDATA 'Programs\Antigravity\Antigravity.exe'; if(Test-Path $exe){ if($interactive){ try{$tn='agyrelaunch_auto_bridge'; $la=New-ScheduledTaskAction -Execute $exe; $pr=New-ScheduledTaskPrincipal -UserId $env:USERNAME -LogonType Interactive -RunLevel Limited; Register-ScheduledTask -TaskName $tn -Action $la -Principal $pr -Force | Out-Null; Start-ScheduledTask -TaskName $tn; L ('agy_relaunch_task=' + $tn)}catch{L('agy_relaunch_WARN='+(San $_.Exception.Message))} } else { try{Start-Process $exe; L 'agy_relaunch=OK'}catch{L('agy_relaunch_WARN='+(San $_.Exception.Message))} } } }
 
-$script:Lines=@(); $script:Nodes=@()
+$script:Lines=@(); $script:Nodes=@(); $script:ParseFailCount=0
 if(-not $OutPath){$OutPath=Join-Path $env:TEMP 'v2rayn_node_bridge.md'}
 L '# v2rayN node auto bridge'
 L ('time=' + (Get-Date).ToString('yyyy-MM-dd HH:mm:ss') + ' apply=' + [bool]$Apply)

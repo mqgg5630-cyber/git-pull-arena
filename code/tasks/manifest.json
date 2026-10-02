@@ -523,6 +523,9 @@
     ],
     "186": [
       "t143_parse_fix2_bridge.ps1"
+    ],
+    "187": [
+      "t144_parse_diag_bridge.ps1"
     ]
   }
 }
