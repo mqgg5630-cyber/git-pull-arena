@@ -1,9 +1,9 @@
 {
-  "round": 235,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 235: download game1024 OpenSpeedy to Desktop and create one-click launcher",
-  "arena_updated": "2026-10-02 16:43:21",
-  "local_updated": null
+    "round":  235,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 235: download game1024 OpenSpeedy to Desktop and create one-click launcher",
+    "arena_updated":  "2026-10-02 16:43:21",
+    "local_updated":  "2026-10-03 00:44:06"
 }

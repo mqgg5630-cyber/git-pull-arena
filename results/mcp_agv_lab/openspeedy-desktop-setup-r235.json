@@ -1,0 +1,20 @@
+{
+    "releaseTag":  "3.3.13",
+    "assetName":  "OpenSpeedy-3.3.13-portable-signed.zip",
+    "assetUrl":  "https://github.com/game1024/OpenSpeedy/releases/download/3.3.13/OpenSpeedy-3.3.13-portable-signed.zip",
+    "downloadOk":  true,
+    "downloadBytes":  5259279,
+    "downloadPath":  "D:\\桌面\\OpenSpeedy\\_download\\OpenSpeedy-3.3.13-portable-signed.zip",
+    "desktop":  "D:\\桌面",
+    "dest":  "D:\\桌面\\OpenSpeedy",
+    "extractRoot":  "D:\\桌面\\OpenSpeedy\\app",
+    "exePath":  "D:\\桌面\\OpenSpeedy\\app\\openspeedy.exe",
+    "exeBytes":  13782312,
+    "signatureStatus":  "Valid",
+    "signatureSigner":  "CN=SignPath Foundation, O=SignPath Foundation, L=Lewes, S=Delaware, C=US",
+    "runBat":  "D:\\桌面\\OpenSpeedy\\Run-OpenSpeedy.bat",
+    "adminBat":  "D:\\桌面\\OpenSpeedy\\Run-OpenSpeedy-as-Admin.bat",
+    "desktopBat":  "D:\\桌面\\OpenSpeedy.bat",
+    "desktopLnk":  "D:\\桌面\\OpenSpeedy.lnk",
+    "readme":  "D:\\桌面\\OpenSpeedy\\README_ARENA.txt"
+}
