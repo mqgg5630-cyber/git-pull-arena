@@ -508,6 +508,9 @@
     ],
     "181": [
       "t138_launcher_clipboard_subs.ps1"
+    ],
+    "182": [
+      "t139_ephemeral_sub_bridge.ps1"
     ]
   }
 }

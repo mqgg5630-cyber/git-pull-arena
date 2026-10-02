@@ -219,7 +219,7 @@ $roots += @($env:APPDATA, $env:LOCALAPPDATA, $env:USERPROFILE, 'E:\v2rayN-new', 
 $files=@()
 foreach($r in @($roots|Where-Object{$_}|Select-Object -Unique)){ if(Test-Path $r){ $files += @(Get-ChildItem -LiteralPath $r -Recurse -Depth 5 -Include *.json,*.txt -File -ErrorAction SilentlyContinue | Where-Object { $_.FullName -match 'v2ray|gui|server|sub|config|profile|subscription' }) } }
 $privSubs = Join-Path $env:USERPROFILE '.arena-private\v2ray_subs.txt'
-if(Test-Path $privSubs){ L 'private_subs_file=present'; foreach($url in @(Get-Content $privSubs | Where-Object { $_ -match '^https?://' })){ $txt=Curl @('-L','--max-time','30','-sS',$url); Add-Nodes-From-Text $txt 'private_sub' } } else { L 'private_subs_file=absent' }
+if(Test-Path $privSubs){ L 'private_subs_file=present'; try { $rawPriv = Get-Content -LiteralPath $privSubs -Raw -ErrorAction SilentlyContinue; Add-Nodes-From-Text $rawPriv 'private_file' } catch { }; foreach($url in @(Get-Content $privSubs | Where-Object { $_ -match '^https?://' })){ $txt=Curl @('-L','--max-time','30','-sS',$url); Add-Nodes-From-Text $txt 'private_sub' } } else { L 'private_subs_file=absent' }
 foreach($f in @($files|Sort-Object FullName -Unique|Select-Object -First 80)){
     try{ $txt=Get-Content -LiteralPath $f.FullName -Raw -ErrorAction SilentlyContinue; if($txt -match '(vmess|vless|trojan|ss)://'){ Add-Nodes-From-Text $txt (Split-Path -Leaf $f.FullName) }; if($f.Extension -eq '.json'){ try{$j=$txt|ConvertFrom-Json; Add-JsonNodes $j (Split-Path -Leaf $f.FullName)}catch{} } }catch{}
 }
