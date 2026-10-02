@@ -1,9 +1,9 @@
 {
-  "round": 174,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 174: isolated Green VPN autostart fix and verification",
-  "arena_updated": "2026-10-02 02:25:55",
-  "local_updated": null
+    "round":  174,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 174: isolated Green VPN autostart fix and verification",
+    "arena_updated":  "2026-10-02 02:25:55",
+    "local_updated":  "2026-10-02 10:27:44"
 }
