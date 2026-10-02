@@ -1,5 +1,5 @@
 # Desktop computer-use audit fix r214
-time=2026-10-02 15:48:10
+time=2026-10-02 15:53:02
 computer=LAPTOP-R77M5D6M user=文少
 desktop_script_staged=OK
 RUN_START=zip_windows-computer-use
@@ -9,7 +9,7 @@ zip_project=Windows-MCP ok=True exists=True
 RUN_START=zip_pywinauto-mcp
 zip_project=pywinauto-mcp ok=True exists=True
 desktop| # Desktop computer-use capability audit r214
-desktop| time=2026-10-02 15:49:59
+desktop| time=2026-10-02 15:54:48
 desktop| computer=DESKTOP-IEUDGS5 user=bni
 desktop| lab_root=E:\0mcp-agv-arena-optimized
 desktop| stage_root=F:\fig1_rebuild\cu_r214
@@ -17,7 +17,7 @@ desktop| project|windows-computer-use|status=unzip-failed-????????|path=E:\0mcp-
 desktop| project|Windows-MCP|status=unzip-failed-????????|path=E:\0mcp-agv-arena-optimized\github\Windows-MCP
 desktop| project|pywinauto-mcp|status=unzip-failed-????????|path=E:\0mcp-agv-arena-optimized\github\pywinauto-mcp
 desktop| antigravity_cli_candidates=1
-desktop| ag_cli_version|path=C:\Users\BNI\AppData\Local\Programs\Antigravity\Antigravity.exe|ok=True|exit=0|out=[48076:1002/155017.765:ERROR:chrome\browser\process_singleton_win.cc:457] Lock file can not be created! Error code: 32
+desktop| ag_cli_version|path=C:\Users\BNI\AppData\Local\Programs\Antigravity\Antigravity.exe|ok=True|exit=0|out=[29920:1002/155505.774:ERROR:chrome\browser\process_singleton_win.cc:457] Lock file can not be created! Error code: 32
 desktop| ssh : ???2???????WriteAllText??????:???????
 desktop| ?
 desktop| ???? F:\fig1_rebuild\[REDACTED].ps1:9 ??: 127
@@ -30,7 +30,7 @@ desktop| cap|DESKTOP-IEUDGS5|windows-computer-use|E-drive install|install/presen
 desktop| cap|DESKTOP-IEUDGS5|Windows-MCP|E-drive install|install/presence check|CHECK_REPORT|unzip-failed-????????|E:\0mcp-agv-arena-optimized\github\Windows-MCP
 desktop| cap|DESKTOP-IEUDGS5|pywinauto-mcp|E-drive install|install/presence check|CHECK_REPORT|unzip-failed-????????|E:\0mcp-agv-arena-optimized\github\pywinauto-mcp
 desktop| cap|DESKTOP-IEUDGS5|Windows GUI apps|windows-computer-use|UIA backend available on E drive|NOT_READY|backend missing|E:\0mcp-agv-arena-optimized\github\windows-computer-use\plugins\windows-computer-use\scripts\windows-uia.ps1
-desktop| cap|DESKTOP-IEUDGS5|Antigravity|Antigravity terminal CLI|open E-drive probe file/workspace|OK_ISSUED|version=[48076:1002/155017.765:ERROR:chrome\browser\process_singleton_win.cc:457] Lock file can not be created! Error code: 32|E:\0mcp-agv-arena-optimized\reports\antigravity-cli-probe-desktop-r214.txt
+desktop| cap|DESKTOP-IEUDGS5|Antigravity|Antigravity terminal CLI|open E-drive probe file/workspace|OK_ISSUED|version=[29920:1002/155505.774:ERROR:chrome\browser\process_singleton_win.cc:457] Lock file can not be created! Error code: 32|E:\0mcp-agv-arena-optimized\reports\antigravity-cli-probe-desktop-r214.txt
 desktop| cap|DESKTOP-IEUDGS5|GreenVPN|app-specific status|check install/process/startup target|OK|exe=True;processes=4|F:\NsfocusVPN\NsfocusVPN.exe
 desktop| cap|DESKTOP-IEUDGS5|WPS Office|COM automation|instantiate Writer/Sheet/Presentation COM|OK|KWPP.Application=OK;KWPS.Application=OK;KET.Application=OK|
 desktop| cap|DESKTOP-IEUDGS5|Adobe Illustrator|path/process probe|detect executable/process for future COM/UIA wrapper|OK|paths=F:\Adobe Illustrator 2020 ???\Adobe Illustrator 2020 ???\Support Files\Contents\Windows\Illustrator.exe;F:\Adobe Illustrator 2020 ???\Support Files\Contents\Windows\Illustrator.exe|
