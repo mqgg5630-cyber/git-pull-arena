@@ -1,9 +1,9 @@
 {
-    "round":  179,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 179: probe local V2Ray/mixed/socks/http routes and apply supported route to Antigravity",
-    "arena_updated":  "2026-10-02 02:57:09",
-    "local_updated":  "2026-10-02 11:14:58"
+  "round": 179,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "round 179 accepted: V2Ray local route probe completed; no supported-region local route found",
+  "arena_updated": "2026-10-02 04:00:01",
+  "local_updated": "2026-10-02 11:14:58"
 }
