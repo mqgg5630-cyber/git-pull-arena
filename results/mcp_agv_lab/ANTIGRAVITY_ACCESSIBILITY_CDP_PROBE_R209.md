@@ -1,0 +1,21 @@
+--- task t166: Antigravity accessibility/CDP probe ---
+time=2026-10-02 15:04:35
+antigravity_exe_exists=True
+wcu_backend_exists=True
+bridge_18088=True
+antigravity_relaunch_flags=--force-renderer-accessibility --remote-debugging-port=9223
+cdp_9223_listening=True
+cdp_version_path=E:\[REDACTED]\reports\[REDACTED].json
+cdp_browser=Chrome/152.0.7977.78 protocol=1.3
+cdp_targets=1
+cdp_target type=page title=Antigravity url=https://127.0.0.1:51681/
+cdp_target type=page title=data:text/html;charset=utf-8,%0A&lt;!DOCTYPE html&gt;%0A&lt;html&gt;%0A&lt;head&gt;%0A&lt;style&gt;%0A  body %7B%0A    margin%3A 0%3B%0A    padding%3A 0%3B%0A    background%3A %23131313%3B%0A    color%3A %23FAFAFA%3B%0A    font-family%3A system-ui%2C -apple-system%2C sans-serif%3B%0A    display%3A flex%3B%0A    flex-direction%3A column%3B%0A    align-items%3A center%3B%0A    justify-content%3A center%3B%0A    height%3A 100vh%3B%0A    overflow%3A hidden%3B%0A    -webkit-app-region%3A drag%3B%0A    -webkit-user-select%3A none%3B%0A  %7D%0A  .logo %7B%0A    width%3A 64px%3B%0A    height%3A 64px%3B%0A    color%3A %23FAFAFA%3B%0A    animation%3A logo-pulse 2.2s infinite ease-in-out%3B%0A  %7D%0A  %40keyframes logo-pulse %7B%0A    0%25%2C 100%25 %7B opacity%3A 0.25%3B %7D%0A    50%25 %7B opacity%3A 0.5%3B %7D%0A  %7D%0A&lt;%2Fstyle&gt;%0A&lt;%2Fhead&gt;%0A&lt;body&gt;%0A  &lt;svg%0A    class%3D&quot;logo&quot;%0A    viewBox%3D&quot;0 0 180 180&quot;%0A    fill%3D&quot;none&quot;%0A    xmlns%3D&quot;http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg&quot;&gt;%0A    &lt;path%0A      d%3D&quot;M144.248 149.062C151.748 154.688 162.998 150.938 152.685 140.625C121.748 110.625 128.31 28.125 89.8727 28.125C51.4352 28.125 57.9977 110.625 27.0602 140.625C15.8102 151.875 27.9977 154.688 35.4977 149.062C64.5602 129.375 62.6852 94.6875 89.8727 94.6875C117.06 94.6875 115.185 129.375 144.248 149.062Z&quot;%0A      fill%3D&quot;currentColor&quot;%0A    %2F&gt;%0A  &lt;%2Fsvg&gt;%0A&lt;%2Fbody&gt;%0A&lt;%2Fhtml&gt;%0A   url=data:text/html;charset=utf-8,%0A%3C!DOCTYPE%20html%3E%0A%3Chtml%3E%0A%3Chead%3E%0A%3Cstyle%3E%0A%20%20body%20%7B%0A%20%20%20%20margin%3A%200%3B%0A%20%20%20%20padding%3A%200%3B%0A%20%20%20%20background%3A%20%23131313%3B%0A%20%20%20%20color%3A%20%23FAFAFA%3B%0A%20%20%20%20font-family%3A%20system-ui%2C%20-apple-system%2C%20sans-serif%3B%0A%20%20%20%20display%3A%20flex%3B%0A%20%20%20%20flex-direction%3A%20column%3B%0A%20%20%20%20align-items%3A%20center%3B%0A%20%20%20%20justify-content%3A%20center%3B%0A%20%20%20%20height%3A%20100vh%3B%0A%20%20%20%20overflow%3A%20hidden%3B%0A%20%20%20%[REDACTED]%3A%20drag%3B%0A%20%20%20%[REDACTED]%3A%20none%3B%0A%20%20%7D%0A%20%20.logo%20%7B%0A%20%20%20%20width%3A%2064px%3B%0A%20%20%20%20height%3A%2064px%3B%0A%20%20%20%20color%3A%20%23FAFAFA%3B%0A%20%20%20%20animation%3A%20logo-pulse%202.2s%20infinite%20ease-in-out%3B%0A%20%20%7D%0A%20%20%40keyframes%20logo-pulse%20%7B%0A%20%20%20%200%25%2C%20100%25%20%7B%20opacity%3A%200.25%3B%20%7D%0A%20%20%20%2050%25%20%7B%20opacity%3A%200.5%3B%20%7D%0A%20%20%7D%0A%3C%2Fstyle%3E%0A%3C%2Fhead%3E%0A%3Cbody%3E%0A%20%20%3Csvg%0A%20%20%20%20class%3D%22logo%22%0A%20%20%20%20viewBox%3D%220%200%20180%20180%22%0A%20%20%20%20fill%3D%22none%22%0A%20%20%20%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpath%0A%20%20%20%20%20%20d%3D%22M144.248%20149.062C151.748%20154.688%20162.998%20150.938%20152.685%20140.625C121.748%20110.625%20128.31%2028.125%2089.8727%2028.125C51.4352%2028.125%2057.9977%20110.625%2027.0602%20140.625C15.8102%20151.875%2027.9977%20154.688%2035.4977%20149.062C64.5602%20129.375%2062.6852%2094.6875%2089.8727%2094.6875C117.06%2094.6875%20115.185%20129.375%20144.248%20149.062Z%22%0A%20%20%20%20%20%20fill%3D%22currentColor%22%0A%20%20%20%20%2F%3E%0A%20%20%3C%2Fsvg%3E%0A%3C%2Fbody%3E%0A%3C%2Fhtml%3E%0A%20%20
+antigravity_window_count=1
+antigravity_window=Antigravity pid=44036
+uia_control_ok=False nodes= candidates=0 types=
+uia_control_path=E:\[REDACTED]\reports\[REDACTED].json
+uia_raw_ok=False nodes= candidates=0 types=
+uia_raw_path=E:\[REDACTED]\reports\[REDACTED].json
+uia_content_ok=False nodes= candidates=0 types=
+uia_content_path=E:\[REDACTED]\reports\[REDACTED].json
+FINAL_R209: ANTIGRAVITY_CDP_AVAILABLE_AND_UIA_PROBED
