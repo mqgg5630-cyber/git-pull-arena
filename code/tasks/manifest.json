@@ -484,6 +484,9 @@
     ],
     "173": [
       "t130_vpn_agy_wps.ps1"
+    ],
+    "174": [
+      "t131_vpn_autostart_fix.ps1"
     ]
   }
 }
