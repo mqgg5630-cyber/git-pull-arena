@@ -487,6 +487,9 @@
     ],
     "174": [
       "t131_vpn_autostart_fix.ps1"
+    ],
+    "175": [
+      "t132_vpn_schtasks_ascii.ps1"
     ]
   }
 }
