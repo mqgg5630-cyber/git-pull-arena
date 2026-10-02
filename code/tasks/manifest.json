@@ -550,6 +550,9 @@
     ],
     "195": [
       "t152_desk_bridge_persist.ps1"
+    ],
+    "196": [
+      "t153_mcp_agv_computer_use_lab.ps1"
     ]
   }
 }
