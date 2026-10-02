@@ -1,9 +1,9 @@
 {
-    "round":  213,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 213: computer-use capability audit laptop and desktop",
-    "arena_updated":  "2026-10-02 07:29:00",
-    "local_updated":  "2026-10-02 15:33:51"
+  "round": 213,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "round 213: computer-use capability audit laptop and desktop",
+  "arena_updated": "2026-10-02 07:35:44",
+  "local_updated": "2026-10-02 15:33:51"
 }
