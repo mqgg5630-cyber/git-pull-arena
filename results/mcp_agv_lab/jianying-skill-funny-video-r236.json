@@ -1,0 +1,52 @@
+{
+    "skillDir":  "E:\\0mcp-agv-arena-optimized\\skills\\jianying-editor",
+    "skillInstalled":  true,
+    "project":  "E:\\0mcp-agv-arena-optimized\\jianying-editor-demo",
+    "materials":  "E:\\0mcp-agv-arena-optimized\\jianying-editor-demo\\materials",
+    "assets":  [
+                   {
+                       "name":  "openmoji_face_tears_of_joy.png",
+                       "path":  "E:\\0mcp-agv-arena-optimized\\jianying-editor-demo\\materials\\openmoji_face_tears_of_joy.png",
+                       "ok":  true,
+                       "bytes":  14172,
+                       "url":  "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/618x618/1F602.png"
+                   },
+                   {
+                       "name":  "openmoji_rocket.png",
+                       "path":  "E:\\0mcp-agv-arena-optimized\\jianying-editor-demo\\materials\\openmoji_rocket.png",
+                       "ok":  true,
+                       "bytes":  13012,
+                       "url":  "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/618x618/1F680.png"
+                   },
+                   {
+                       "name":  "openmoji_laptop.png",
+                       "path":  "E:\\0mcp-agv-arena-optimized\\jianying-editor-demo\\materials\\openmoji_laptop.png",
+                       "ok":  true,
+                       "bytes":  3644,
+                       "url":  "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/618x618/1F4BB.png"
+                   },
+                   {
+                       "name":  "openmoji_movie_camera.png",
+                       "path":  "E:\\0mcp-agv-arena-optimized\\jianying-editor-demo\\materials\\openmoji_movie_camera.png",
+                       "ok":  true,
+                       "bytes":  11907,
+                       "url":  "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/618x618/1F3A5.png"
+                   },
+                   {
+                       "name":  "openmoji_sparkles.png",
+                       "path":  "E:\\0mcp-agv-arena-optimized\\jianying-editor-demo\\materials\\openmoji_sparkles.png",
+                       "ok":  true,
+                       "bytes":  12536,
+                       "url":  "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/618x618/2728.png"
+                   }
+               ],
+    "ffmpeg":  "",
+    "python":  "C:\\Users\\文少\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "video":  "E:\\0mcp-agv-arena-optimized\\jianying-editor-demo\\output\\funny_talking_head_r236.mp4",
+    "videoBytes":  0,
+    "desktopVideo":  "D:\\桌面\\jianying_funny_talking_head_r236.mp4",
+    "script":  "E:\\0mcp-agv-arena-optimized\\jianying-editor-demo\\script_funny_talking_head.md",
+    "subtitle":  "E:\\0mcp-agv-arena-optimized\\jianying-editor-demo\\output\\funny_subtitles.srt",
+    "manifest":  "E:\\0mcp-agv-arena-optimized\\jianying-editor-demo\\output\\build_manifest.json",
+    "output":  "E:\\0mcp-agv-arena-optimized\\jianying-editor-demo\\output"
+}
