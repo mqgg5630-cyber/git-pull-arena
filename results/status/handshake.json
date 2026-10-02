@@ -1,9 +1,9 @@
 {
-  "round": 189,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 189: curl invocation fix private bridge",
-  "arena_updated": "2026-10-02 04:40:45",
-  "local_updated": null
+    "round":  189,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 189: curl invocation fix private bridge",
+    "arena_updated":  "2026-10-02 04:40:45",
+    "local_updated":  "2026-10-02 12:43:57"
 }
