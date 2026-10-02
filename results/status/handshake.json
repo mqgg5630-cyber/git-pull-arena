@@ -1,9 +1,9 @@
 {
-  "round": 173,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 173: t131 - on the laptop: re-run watch.ps1 -Register -KeepOthers for the new clone with cmd-file handle-level output capture (reg172.txt dumped in full), raw schtasks + Get-ScheduledTask enumeration before/after, git-sync state files + heartbeat + loop pid, old watcher health. Judge: FINAL: PASS - new watcher task exists, old watcher intact",
-  "arena_updated": "2026-10-02 02:04:53",
-  "local_updated": null
+    "round":  173,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 173: t131 - on the laptop: re-run watch.ps1 -Register -KeepOthers for the new clone with cmd-file handle-level output capture (reg172.txt dumped in full), raw schtasks + Get-ScheduledTask enumeration before/after, git-sync state files + heartbeat + loop pid, old watcher health. Judge: FINAL: PASS - new watcher task exists, old watcher intact",
+    "arena_updated":  "2026-10-02 02:04:53",
+    "local_updated":  "2026-10-02 10:08:55"
 }
