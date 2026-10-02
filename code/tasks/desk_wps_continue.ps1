@@ -9,15 +9,15 @@ function San([string]$s) {
     try { $s = $s -replace '[^\x20-\x7E]', '?' } catch { }
     return $s
 }
-function L([string]$m) { Write-Output $m; $script:Report += $m }
+function L([string]$m) { Write-Output $m; $script:ReportLines += $m }
 
-$script:Report = @()
+$script:ReportLines = @()
 $results = 'F:\fig1_rebuild\harness_results'
-$report = Join-Path $results 'wps_continue_r172.md'
+$reportPath = Join-Path $results 'wps_continue_r173.md'
 New-Item -ItemType Directory -Force -Path $results | Out-Null
 Set-Location -LiteralPath $results
 
-L '# WPS desktop continuation r172'
+L '# WPS desktop continuation r173'
 L ('time: ' + (Get-Date).ToString('yyyy-MM-dd HH:mm:ss'))
 L ('computer: ' + $env:COMPUTERNAME + ' user: ' + $env:USERNAME)
 
@@ -40,7 +40,7 @@ foreach ($vd in @(Get-ChildItem (Join-Path $env:LOCALAPPDATA 'Kingsoft\WPS Offic
 }
 if (-not $office6) {
     L 'FINAL: WPS_FAIL office6 not found'
-    [IO.File]::WriteAllText($report, ($script:Report -join "`r`n") + "`r`n", (New-Object System.Text.UTF8Encoding($false)))
+    [IO.File]::WriteAllText($reportPath, ($script:ReportLines -join "`r`n") + "`r`n", (New-Object System.Text.UTF8Encoding($false)))
     exit 2
 }
 $wppExe = Join-Path $office6 'wpp.exe'
@@ -50,7 +50,7 @@ L ('wpp.exe exists: ' + (Test-Path -LiteralPath $wppExe))
 # Prefer a fresh rebuild. The build script was staged by the wrapper.
 $build = Join-Path $results 'amp_deck_v2_build.py'
 $deck = Join-Path $results 'amp_ml_prediction_v2.pptx'
-$deckCopy = Join-Path $results 'amp_ml_prediction_v2_r172.pptx'
+$deckCopy = Join-Path $results 'amp_ml_prediction_v2_r173.pptx'
 $start = Get-Date
 $deckOk = $false
 
@@ -101,6 +101,6 @@ if ((Test-Path -LiteralPath $verify) -and (Test-Path -LiteralPath $deckCopy)) {
 Kill-Wps
 if ($deckOk) { L 'FINAL: WPS_CONTINUE_OK fresh/editable deck available (or existing deck verified).' }
 else { L 'FINAL: WPS_CONTINUE_FAIL no deck available.' }
-try { [IO.File]::WriteAllText($report, ($script:Report -join "`r`n") + "`r`n", (New-Object System.Text.UTF8Encoding($false))) } catch { }
-L ('report: ' + $report)
+try { [IO.File]::WriteAllText($reportPath, ($script:ReportLines -join "`r`n") + "`r`n", (New-Object System.Text.UTF8Encoding($false))) } catch { }
+L ('report: ' + $reportPath)
 if ($deckOk) { exit 0 } else { exit 2 }

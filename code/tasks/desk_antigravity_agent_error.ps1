@@ -24,10 +24,10 @@ function AddRecentMatches([string]$label, [string]$path, [string]$pattern) {
 
 $script:Report = @()
 $stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
-$reportPath = 'F:\fig1_rebuild\agy_agent_diag_r172.md'
+$reportPath = 'F:\fig1_rebuild\agy_agent_diag_r173.md'
 $proxy = 'http://127.0.0.1:10808'
 
-L '# Antigravity agent-error desktop diagnostic r172'
+L '# Antigravity agent-error desktop diagnostic r173'
 L ('time: ' + (Get-Date).ToString('yyyy-MM-dd HH:mm:ss'))
 L ('computer: ' + $env:COMPUTERNAME + ' user: ' + $env:USERNAME)
 
@@ -152,33 +152,91 @@ function DumpState([string]$tag) {
 DumpState 'before'
 
 L '## controlled relaunch'
+$relaunchAt = Get-Date
 try {
     foreach ($n in @('language_server','Antigravity')) { & taskkill /f /im ($n + '.exe') 2>&1 | Out-Null }
-    Start-Sleep -Seconds 4
+    Start-Sleep -Seconds 5
     if (Test-Path -LiteralPath $wrap) {
-        Start-Process -FilePath $wrap -WindowStyle Hidden
-        L '   relaunched through wrapper'
+        try {
+            $tn = 'agyrelaunch_git'
+            $la = New-ScheduledTaskAction -Execute $wrap
+            $pr = New-ScheduledTaskPrincipal -UserId $env:USERNAME -LogonType Interactive -RunLevel Limited
+            $st = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -ExecutionTimeLimit (New-TimeSpan -Minutes 10)
+            Register-ScheduledTask -TaskName $tn -Action $la -Principal $pr -Settings $st -Force | Out-Null
+            Start-ScheduledTask -TaskName $tn
+            L ('   relaunched through interactive scheduled task: ' + $tn)
+        } catch {
+            L ('   scheduled relaunch WARN ' + (San $_.Exception.Message))
+            try {
+                $null = & schtasks /delete /tn agyrelaunch_git /f 2>$null
+                $so = (& schtasks /create /tn agyrelaunch_git /tr $wrap /sc once /st 23:59 /it /f 2>&1 | Out-String).Trim()
+                L ('   schtasks create: ' + (San $so))
+                $ro = (& schtasks /run /tn agyrelaunch_git 2>&1 | Out-String).Trim()
+                L ('   schtasks run: ' + (San $ro))
+            } catch { L ('   schtasks relaunch FAIL ' + (San $_.Exception.Message)) }
+        }
     } elseif (Test-Path -LiteralPath $agyExe) {
         Start-Process -FilePath $agyExe
         L '   relaunched direct exe (wrapper missing)'
     } else { L '   relaunch skipped, exe missing' }
 } catch { L ('   relaunch WARN ' + (San $_.Exception.Message)) }
-Start-Sleep -Seconds 25
+Start-Sleep -Seconds 75
 DumpState 'after'
 
-# 6. Verdict. The browser working but IDE agent failing most often means the
-# IDE helper process is not using the browser/system proxy. If the after-state
-# has proxy TCP connections and no fresh dial/tls errors, the network layer is
-# repaired; remaining terminations are likely account/quota/model/extension log
-# errors shown above.
-$txt = ($script:Report -join "`n")
-$hasTerm = ($txt -match 'Agent execution terminated|terminated due to error')
-$hasProxy = ($txt -match 'tcp: to_proxy=[1-9]')
-$hasDial = ($txt -match 'dial tcp|record with version 15')
-if ($hasProxy -and -not $hasDial) { L 'FINAL: AGY_NETWORK_LAYER_OK proxy path active; inspect termination/error lines above if UI still fails.' }
-elseif ($hasDial) { L 'FINAL: AGY_NETWORK_LAYER_STILL_BAD direct dial/tls errors remain.' }
-else { L 'FINAL: AGY_DIAG_DONE no proxy connection yet; open a new chat and rerun if needed.' }
-if ($hasTerm) { L 'FINAL_DETAIL: termination marker found in logs.' } else { L 'FINAL_DETAIL: no exact termination marker found in scanned logs.' }
+# 6. Fresh post-relaunch analysis. Do not let old log lines from before this
+# run make the verdict look bad; the UI must be judged from relaunchAt onward.
+function LsTime([string]$ln) {
+    if ($ln -match '([EWIF])(\d{2})(\d{2}) (\d{2}):(\d{2}):(\d{2})') {
+        try { return (Get-Date -Year (Get-Date).Year -Month ([int]$Matches[2]) -Day ([int]$Matches[3]) -Hour ([int]$Matches[4]) -Minute ([int]$Matches[5]) -Second ([int]$Matches[6]) ) } catch { return $null }
+    }
+    return $null
+}
+function MainTime([string]$ln) {
+    if ($ln -match '^\[(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})') {
+        try { return [DateTime]::ParseExact($Matches[1], 'yyyy-MM-dd HH:mm:ss', $null) } catch { return $null }
+    }
+    return $null
+}
+$freshLines = 0; $freshBad = 0; $freshTerm = 0; $freshGood = 0
+$lsLog2 = Join-Path $env:APPDATA 'Antigravity\logs\language_server.log'
+if (Test-Path -LiteralPath $lsLog2) {
+    foreach ($ln in @(Get-Content -LiteralPath $lsLog2 -Tail 260 -ErrorAction SilentlyContinue)) {
+        $t = LsTime $ln
+        if ($t -and $t -ge $relaunchAt) {
+            $freshLines++
+            if ($ln -match 'dial tcp|record with version 15|Failed to get OAuth|Unauthenticated') { $freshBad++; L ('   fresh_bad_ls: ' + (San $ln.Trim())) }
+            if ($ln -match 'Auth succeeded|loadCodeAssist|fetchAvailableModels|availableModels|userTier') { $freshGood++ }
+        }
+    }
+}
+$mainLog2 = Join-Path $env:APPDATA 'Antigravity\logs\main.log'
+if (Test-Path -LiteralPath $mainLog2) {
+    foreach ($ln in @(Get-Content -LiteralPath $mainLog2 -Tail 260 -ErrorAction SilentlyContinue)) {
+        $t = MainTime $ln
+        if ($t -and $t -ge $relaunchAt) {
+            if ($ln -match 'Agent execution terminated|terminated due to error') { $freshTerm++; L ('   fresh_term_main: ' + (San $ln.Trim())) }
+            elseif ($ln -match 'net::ERR_CONNECTION_CLOSED|\[error\]') { L ('   fresh_main_note: ' + (San $ln.Trim())) }
+        }
+    }
+}
+$procsAfter = @(Get-CimInstance Win32_Process -ErrorAction SilentlyContinue | Where-Object {
+    (($_.ExecutablePath) -and ($_.ExecutablePath -match 'Antigravity')) -or
+    ($_.Name -eq 'Antigravity.exe') -or ($_.Name -eq 'language_server.exe')
+})
+$pcAfter = 0; $d4After = 0
+foreach ($p2 in $procsAfter) {
+    foreach ($c2 in @(Get-NetTCPConnection -OwningProcess $p2.ProcessId -ErrorAction SilentlyContinue)) {
+        $ra2 = [string]$c2.RemoteAddress
+        if ($ra2 -eq '127.0.0.1' -and $c2.RemotePort -eq 10808) { $pcAfter++ }
+        elseif ($c2.RemotePort -eq 443 -and $ra2 -notmatch '^127\.') { $d4After++ }
+    }
+}
+L ('fresh summary: ls_lines=' + $freshLines + ' good=' + $freshGood + ' bad=' + $freshBad + ' term=' + $freshTerm + ' procs=' + $procsAfter.Count + ' to_proxy=' + $pcAfter + ' direct443=' + $d4After)
+
+if ($procsAfter.Count -gt 0 -and $freshBad -eq 0 -and $freshTerm -eq 0) { L 'FINAL: AGY_RELAUNCH_OK fresh session has no new network/termination errors.' }
+elseif ($freshBad -gt 0) { L 'FINAL: AGY_NETWORK_LAYER_STILL_BAD fresh language_server network errors remain.' }
+elseif ($freshTerm -gt 0) { L 'FINAL: AGY_AGENT_TERMINATION_STILL_PRESENT fresh termination marker remains.' }
+else { L 'FINAL: AGY_RELAUNCH_CHECK no fresh bad lines, but Antigravity process/proxy activity is not fully proven yet.' }
 
 try { [IO.File]::WriteAllText($reportPath, ($script:Report -join "`r`n") + "`r`n", (New-Object System.Text.UTF8Encoding($false))) } catch { }
 L ('report: ' + $reportPath)

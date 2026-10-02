@@ -19,7 +19,7 @@ function Write-Utf8([string]$Path, [string[]]$Lines) {
 }
 
 $repo = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..\..')).Path
-$outRoot = Join-Path $repo 'results\ops_r172'
+$outRoot = Join-Path $repo 'results\ops_r173'
 New-Item -ItemType Directory -Force -Path $outRoot | Out-Null
 $fail = 0
 
@@ -48,12 +48,18 @@ foreach ($c in @($cands | Select-Object -Unique)) { if (Test-Path -LiteralPath $
 VR ('shortcut_found=' + [bool]$lnk)
 if ($lnk) {
     VR ('shortcut=' + (San $lnk))
+    $targetPath = ''
+    $targetArgs = ''
+    $targetWork = ''
     try {
         $ws = New-Object -ComObject WScript.Shell
         $sc = $ws.CreateShortcut($lnk)
-        VR ('target=' + (San ([string]$sc.TargetPath)))
-        VR ('arguments=' + (San ([string]$sc.Arguments)))
-        VR ('working_dir=' + (San ([string]$sc.WorkingDirectory)))
+        $targetPath = [string]$sc.TargetPath
+        $targetArgs = [string]$sc.Arguments
+        $targetWork = [string]$sc.WorkingDirectory
+        VR ('target=' + (San $targetPath))
+        VR ('arguments=' + (San $targetArgs))
+        VR ('working_dir=' + (San $targetWork))
     } catch { VR ('shortcut_resolve_WARN=' + (San $_.Exception.Message)) }
 
     try {
@@ -68,19 +74,28 @@ if ($lnk) {
     $taskOk = $false
     $cmd = Join-Path $env:SystemRoot 'System32\cmd.exe'
     $arg = '/c start "" "' + $lnk + '"'
+    $taskExe = $cmd
+    $taskArg = $arg
+    $taskWork = ''
+    if ($targetPath -and (Test-Path -LiteralPath $targetPath)) {
+        $taskExe = $targetPath
+        $taskArg = $targetArgs
+        $taskWork = $targetWork
+    }
     try {
-        $action = New-ScheduledTaskAction -Execute $cmd -Argument $arg
+        if ($taskWork) { $action = New-ScheduledTaskAction -Execute $taskExe -Argument $taskArg -WorkingDirectory $taskWork }
+        else { $action = New-ScheduledTaskAction -Execute $taskExe -Argument $taskArg }
         $trigger = New-ScheduledTaskTrigger -AtLogOn
         $settings = New-ScheduledTaskSettingsSet -StartWhenAvailable -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -MultipleInstances IgnoreNew
         $userId = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-        $principal = New-ScheduledTaskPrincipal -UserId $userId -LogonType Interactive -RunLevel LeastPrivilege
+        $principal = New-ScheduledTaskPrincipal -UserId $userId -LogonType Interactive -RunLevel Limited
         Register-ScheduledTask -TaskName $taskName -Action $action -Trigger $trigger -Settings $settings -Principal $principal -Description 'Launch Green VPN from public desktop shortcut at user logon' -Force | Out-Null
         $taskOk = $true
-        VR ('scheduled_task=OK principal=' + (San $userId))
+        VR ('scheduled_task=OK principal=' + (San $userId) + ' exe=' + (San $taskExe))
     } catch {
         VR ('scheduled_task_primary=FAIL ' + (San $_.Exception.Message))
         try {
-            $tr = $cmd + ' ' + $arg
+            $tr = '"' + $taskExe + '" ' + $taskArg
             $so = (& schtasks /Create /TN $taskName /SC ONLOGON /TR $tr /F 2>&1 | Out-String).Trim()
             VR ('scheduled_task_fallback=' + (San $so))
             $taskOk = ($LASTEXITCODE -eq 0)
@@ -121,6 +136,7 @@ function Stage-DesktopFile([string]$LocalRel, [string]$RemoteRel) {
     L ('   staged ' + $LocalRel + ' -> ' + (San $dst))
 }
 function Run-DesktopScript([string]$RemotePath, [int]$TimeoutSec) {
+    $script:RemoteCode = 1
     L ('   run remote: ' + $RemotePath)
     $job = Start-Job -ScriptBlock {
         param($o, $u, $h, $rp)
@@ -131,16 +147,17 @@ function Run-DesktopScript([string]$RemotePath, [int]$TimeoutSec) {
         Stop-Job $job -Force -ErrorAction SilentlyContinue
         Remove-Job $job -Force -ErrorAction SilentlyContinue
         L ('   [FAIL] remote timeout: ' + $RemotePath)
-        return 124
+        $script:RemoteCode = 124
+        return
     }
     $out = (Receive-Job $job | Out-String)
     $state = $job.State
     Remove-Job $job -Force -ErrorAction SilentlyContinue
     foreach ($ln in ($out -split "`r?`n")) { if ($ln.Trim()) { L ('   desk| ' + (San $ln)) } }
-    if ($out -match 'FINAL: WPS_CONTINUE_FAIL|FAIL - no deck|\[FAIL\] WPS') { return 2 }
-    if ($out -match 'FINAL: WPS_CONTINUE_OK') { return 0 }
-    if ($state -eq 'Completed') { return 0 }
-    return 1
+    if ($out -match 'FINAL: WPS_CONTINUE_FAIL|FAIL - no deck|\[FAIL\] WPS') { $script:RemoteCode = 2; return }
+    if ($out -match 'FINAL: WPS_CONTINUE_OK') { $script:RemoteCode = 0; return }
+    if ($state -eq 'Completed') { $script:RemoteCode = 0; return }
+    $script:RemoteCode = 1
 }
 function Copy-Back([string]$RemoteRel, [string]$LocalRel) {
     $src = Join-Path $stageDir $RemoteRel
@@ -171,17 +188,19 @@ if (-not $netOk) {
         & net use $fshare /delete 2>&1 | Out-Null
     }
 
-    $rc1 = Run-DesktopScript ($remoteStage + '\desk_antigravity_agent_error.ps1') 420
+    Run-DesktopScript ($remoteStage + '\desk_antigravity_agent_error.ps1') 540
+    $rc1 = [int]$script:RemoteCode
     if ($rc1 -ne 0) { L ('   [WARN] Antigravity diag remote exit ' + $rc1) }
 
-    $rc2 = Run-DesktopScript ($remoteStage + '\desk_wps_continue.ps1') 900
+    Run-DesktopScript ($remoteStage + '\desk_wps_continue.ps1') 900
+    $rc2 = [int]$script:RemoteCode
     if ($rc2 -ne 0) { L ('   [FAIL] WPS continue remote exit ' + $rc2); $fail = 1 }
 
     try {
         $null = & net use $fshare /persistent:no 2>&1
-        Copy-Back 'fig1_rebuild\agy_agent_diag_r172.md' 'results\antigravity\agy_agent_diag_r172.md'
-        Copy-Back 'fig1_rebuild\harness_results\wps_continue_r172.md' 'results\wps_continue\wps_continue_r172.md'
-        Copy-Back 'fig1_rebuild\harness_results\amp_ml_prediction_v2_r172.pptx' 'results\wps_continue\amp_ml_prediction_v2_r172.pptx'
+        Copy-Back 'fig1_rebuild\agy_agent_diag_r173.md' 'results\antigravity\agy_agent_diag_r173.md'
+        Copy-Back 'fig1_rebuild\harness_results\wps_continue_r173.md' 'results\wps_continue\wps_continue_r173.md'
+        Copy-Back 'fig1_rebuild\harness_results\amp_ml_prediction_v2_r173.pptx' 'results\wps_continue\amp_ml_prediction_v2_r173.pptx'
         Copy-Back 'fig1_rebuild\harness_results\amp_deck_v2_log.txt' 'results\wps_continue\amp_deck_v2_log.txt'
     } finally {
         & net use $fshare /delete 2>&1 | Out-Null
