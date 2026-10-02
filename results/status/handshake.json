@@ -1,9 +1,9 @@
 {
-  "round": 218,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 218: desktop fallback capability report",
-  "arena_updated": "2026-10-02 07:56:53",
-  "local_updated": null
+    "round":  218,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 218: desktop fallback capability report",
+    "arena_updated":  "2026-10-02 07:56:53",
+    "local_updated":  "2026-10-02 15:58:19"
 }

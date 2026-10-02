@@ -1,0 +1,118 @@
+﻿{
+    "computer":  "DESKTOP-IEUDGS5",
+    "user":  "bni",
+    "eDriveAvailable":  false,
+    "rootMode":  "F_FALLBACK_NO_E_DRIVE",
+    "root":  "F:\\0mcp-agv-arena-optimized",
+    "capabilities":  [
+                         {
+                             "computer":  "DESKTOP-IEUDGS5",
+                             "app":  "windows-computer-use",
+                             "backend":  "F_FALLBACK_NO_E_DRIVE install",
+                             "task":  "install/presence check",
+                             "result":  "OK",
+                             "evidence":  "unzipped-but-no-git-dir",
+                             "artifact":  "F:\\0mcp-agv-arena-optimized\\github\\windows-computer-use"
+                         },
+                         {
+                             "computer":  "DESKTOP-IEUDGS5",
+                             "app":  "Windows-MCP",
+                             "backend":  "F_FALLBACK_NO_E_DRIVE install",
+                             "task":  "install/presence check",
+                             "result":  "OK",
+                             "evidence":  "unzipped-but-no-git-dir",
+                             "artifact":  "F:\\0mcp-agv-arena-optimized\\github\\Windows-MCP"
+                         },
+                         {
+                             "computer":  "DESKTOP-IEUDGS5",
+                             "app":  "pywinauto-mcp",
+                             "backend":  "F_FALLBACK_NO_E_DRIVE install",
+                             "task":  "install/presence check",
+                             "result":  "OK",
+                             "evidence":  "unzipped-but-no-git-dir",
+                             "artifact":  "F:\\0mcp-agv-arena-optimized\\github\\pywinauto-mcp"
+                         },
+                         {
+                             "computer":  "DESKTOP-IEUDGS5",
+                             "app":  "Windows GUI apps",
+                             "backend":  "windows-computer-use",
+                             "task":  "UIA backend available",
+                             "result":  "OK",
+                             "evidence":  "backend exists",
+                             "artifact":  "F:\\0mcp-agv-arena-optimized\\github\\windows-computer-use\\plugins\\windows-computer-use\\scripts\\windows-uia.ps1"
+                         },
+                         {
+                             "computer":  "DESKTOP-IEUDGS5",
+                             "app":  "Antigravity",
+                             "backend":  "Antigravity terminal CLI",
+                             "task":  "open probe file/workspace",
+                             "result":  "OK_ISSUED",
+                             "evidence":  "version=[33420:1002/155809.967:ERROR:chrome\\browser\\process_singleton_win.cc:457] Lock file can not be created! Error code: 32",
+                             "artifact":  "F:\\0mcp-agv-arena-optimized\\reports\\antigravity-cli-probe-desktop-r218.txt"
+                         },
+                         {
+                             "computer":  "DESKTOP-IEUDGS5",
+                             "app":  "Antigravity",
+                             "backend":  "app-specific status + bridge",
+                             "task":  "installed/process/proxy check",
+                             "result":  "OK",
+                             "evidence":  "version=2.15.1.0;proc=6;ls=1;18088=True",
+                             "artifact":  ""
+                         },
+                         {
+                             "computer":  "DESKTOP-IEUDGS5",
+                             "app":  "v2rayN/xray",
+                             "backend":  "process + port status",
+                             "task":  "check bridge/network helper",
+                             "result":  "OK",
+                             "evidence":  "v2rayN=1;xray=2;18088=True",
+                             "artifact":  ""
+                         },
+                         {
+                             "computer":  "DESKTOP-IEUDGS5",
+                             "app":  "GreenVPN",
+                             "backend":  "app-specific status",
+                             "task":  "check install/process/startup target",
+                             "result":  "OK",
+                             "evidence":  "exe=True;processes=4",
+                             "artifact":  "F:\\NsfocusVPN\\NsfocusVPN.exe"
+                         },
+                         {
+                             "computer":  "DESKTOP-IEUDGS5",
+                             "app":  "WPS Office",
+                             "backend":  "COM automation",
+                             "task":  "instantiate Writer/Sheet/Presentation COM",
+                             "result":  "OK",
+                             "evidence":  "KWPP.Application=OK;KWPS.Application=OK;KET.Application=OK",
+                             "artifact":  ""
+                         },
+                         {
+                             "computer":  "DESKTOP-IEUDGS5",
+                             "app":  "Adobe Illustrator",
+                             "backend":  "path/process probe",
+                             "task":  "detect executable/process for future COM/UIA wrapper",
+                             "result":  "OK",
+                             "evidence":  "paths=F:\\Adobe Illustrator 2020 ???\\Adobe Illustrator 2020 ???\\Support Files\\Contents\\Windows\\Illustrator.exe;F:\\Adobe Illustrator 2020 ???\\Support Files\\Contents\\Windows\\Illustrator.exe",
+                             "artifact":  ""
+                         },
+                         {
+                             "computer":  "DESKTOP-IEUDGS5",
+                             "app":  "File Explorer",
+                             "backend":  "shell CLI",
+                             "task":  "open chosen lab folder",
+                             "result":  "OK_CAPABLE",
+                             "evidence":  "explorer.exe can open local folders",
+                             "artifact":  "F:\\0mcp-agv-arena-optimized"
+                         },
+                         {
+                             "computer":  "DESKTOP-IEUDGS5",
+                             "app":  "Notepad",
+                             "backend":  "process/file CLI",
+                             "task":  "open/edit text file by path",
+                             "result":  "OK_CAPABLE",
+                             "evidence":  "notepad.exe present",
+                             "artifact":  "C:\\WINDOWS\\system32\\notepad.exe"
+                         }
+                     ],
+    "time":  "2026-10-02T15:58:21"
+}
