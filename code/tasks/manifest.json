@@ -511,6 +511,9 @@
     ],
     "182": [
       "t139_ephemeral_sub_bridge.ps1"
+    ],
+    "183": [
+      "t140_direct_node_payload_bridge.ps1"
     ]
   }
 }
