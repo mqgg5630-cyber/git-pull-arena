@@ -1,9 +1,9 @@
 {
-    "round":  197,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 197: use windows-computer-use project to operate Notepad",
-    "arena_updated":  "2026-10-02 05:29:39",
-    "local_updated":  "2026-10-02 13:31:16"
+  "round": 197,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "round 197: use windows-computer-use project to operate Notepad",
+  "arena_updated": "2026-10-02 05:32:13",
+  "local_updated": "2026-10-02 13:31:16"
 }
