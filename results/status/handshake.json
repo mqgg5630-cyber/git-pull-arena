@@ -1,9 +1,9 @@
 {
-  "round": 184,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 184: rerun private payload bridge with captured output",
-  "arena_updated": "2026-10-02 04:24:47",
-  "local_updated": null
+    "round":  184,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 184: rerun private payload bridge with captured output",
+    "arena_updated":  "2026-10-02 04:24:47",
+    "local_updated":  "2026-10-02 12:27:18"
 }
