@@ -1,0 +1,6 @@
+# v2rayN node auto bridge
+time=2026-10-02 12:05:39 apply=True
+xray=F:\v2rayN-new\v2rayN-windows-64\bin\xray\xray.exe
+private_subs_file=absent
+nodes_found=0
+FINAL: V2RAYN_NODE_BRIDGE_NO_SUPPORTED_NODE no parsable/tested node produced a supported-region API route. Put subscription URLs in %USERPROFILE%\.arena-private\v2ray_subs.txt or select a supported node in v2rayN.
