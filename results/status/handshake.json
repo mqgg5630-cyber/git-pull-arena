@@ -1,9 +1,9 @@
 {
-    "round":  220,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 220: scientific drawing browser kaggle tailscale probes",
-    "arena_updated":  "2026-10-02 08:40:36",
-    "local_updated":  "2026-10-02 16:45:36"
+  "round": 220,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "round 220: scientific drawing browser kaggle tailscale probes",
+  "arena_updated": "2026-10-02 08:46:38",
+  "local_updated": "2026-10-02 16:45:36"
 }
