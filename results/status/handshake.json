@@ -1,9 +1,9 @@
 {
-    "round":  191,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 191: restart and verify Antigravity bridge listener",
-    "arena_updated":  "2026-10-02 04:47:43",
-    "local_updated":  "2026-10-02 12:50:28"
+  "round": 192,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 192: stable verify Antigravity bridge",
+  "arena_updated": "2026-10-02 04:51:11",
+  "local_updated": null
 }
