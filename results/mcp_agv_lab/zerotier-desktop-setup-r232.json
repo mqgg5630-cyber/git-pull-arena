@@ -1,0 +1,44 @@
+{
+    "isAdmin":  false,
+    "installAttempted":  true,
+    "installOut":  "TIMEOUT",
+    "cli":  {
+
+            },
+    "version":  "",
+    "info":  "",
+    "nodeId":  "",
+    "listnetworks":  "",
+    "services":  [
+
+                 ],
+    "zerotierIps":  [
+
+                    ],
+    "lan":  [
+                {
+                    "url":  "http://172.30.192.1:18089/",
+                    "ok":  true
+                },
+                {
+                    "url":  "http://172.28.224.1:18089/",
+                    "ok":  true
+                },
+                {
+                    "url":  "http://192.168.110.172:18089/",
+                    "ok":  true
+                },
+                {
+                    "url":  "http://10.0.0.15:18089/",
+                    "ok":  true
+                }
+            ],
+    "shareRoot":  "E:\\0mcp-agv-arena-optimized\\phone-share",
+    "sharePort":  18089,
+    "serverPid":  98292,
+    "networkFile":  "E:\\0mcp-agv-arena-optimized\\zerotier\\network-id.txt",
+    "joinScript":  "E:\\0mcp-agv-arena-optimized\\zerotier\\join-zerotier-network.ps1",
+    "joinAttempted":  false,
+    "joinOut":  "",
+    "phoneGuide":  "E:\\0github\\git-sync\\git-pull-arena-01a0fa39\\results\\mcp_agv_lab\\zerotier-phone-access-guide-r232.md"
+}

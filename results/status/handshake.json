@@ -1,9 +1,9 @@
 {
-  "round": 232,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 232: ZeroTier desktop setup for free phone file access",
-  "arena_updated": "2026-10-02 12:18:18",
-  "local_updated": null
+    "round":  232,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 232: ZeroTier desktop setup for free phone file access",
+    "arena_updated":  "2026-10-02 12:18:18",
+    "local_updated":  "2026-10-02 20:27:21"
 }
