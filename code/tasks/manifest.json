@@ -559,6 +559,9 @@
     ],
     "198": [
       "t155_wcu_winforms_control.ps1"
+    ],
+    "199": [
+      "t156_wcu_coordinate_gui_control.ps1"
     ]
   }
 }
