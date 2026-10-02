@@ -529,6 +529,9 @@
     ],
     "188": [
       "t145_hostvar_fix_bridge.ps1"
+    ],
+    "189": [
+      "t146_curl_fix_bridge.ps1"
     ]
   }
 }

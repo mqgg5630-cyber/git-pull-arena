@@ -51,11 +51,11 @@ function Supported([string]$cc) {
     $good = @('US','CA','GB','AU','NZ','JP','KR','SG','TW','DE','FR','NL','SE','NO','FI','DK','IE','ES','IT','PT','PL','BE','CH','AT','CZ','EE','LV','LT','LU','RO','BG','GR','HR','HU','IS','LI','MT','SK','SI')
     return ($good -contains $x)
 }
-function Curl([string[]]$args) { try { return (& curl.exe @args 2>&1 | Out-String).Trim() } catch { return $_.Exception.Message } }
+function Invoke-Curl([string[]]$CurlArgs) { try { $ce = Join-Path $env:SystemRoot 'System32\curl.exe'; return (& $ce @CurlArgs 2>&1 | Out-String).Trim() } catch { return $_.Exception.Message } }
 function GeoVia([int]$port) {
     $proxy = 'http://127.0.0.1:' + $port
-    $txt = Curl @('-L','--max-time','12','-sS','--proxy',$proxy,'https://ipinfo.io/json')
-    if (-not $txt -or $txt -match 'curl:|Failed|timed out') { $txt = Curl @('-L','--max-time','12','-sS','--proxy',$proxy,'http://ip-api.com/json/?fields=status,countryCode,country,city,query,isp,org') }
+    $txt = Invoke-Curl -CurlArgs @('-L','--max-time','12','-sS','--proxy',$proxy,'https://ipinfo.io/json')
+    if (-not $txt -or $txt -match 'curl:|Failed|timed out') { $txt = Invoke-Curl -CurlArgs @('-L','--max-time','12','-sS','--proxy',$proxy,'http://ip-api.com/json/?fields=status,countryCode,country,city,query,isp,org') }
     $cc=''; $country=''; $ip=''; $org=''
     try {
         $o = $txt | ConvertFrom-Json
@@ -64,7 +64,7 @@ function GeoVia([int]$port) {
         $ip = [string]$o.ip; if (-not $ip) { $ip = [string]$o.query }
         $org = [string]$o.org; if (-not $org) { $org = [string]$o.isp }
     } catch { $country = San $txt }
-    $head = Curl @('-I','-L','--max-time','12','-sS','--proxy',$proxy,'https://daily-cloudcode-pa.googleapis.com/')
+    $head = Invoke-Curl -CurlArgs @('-I','-L','--max-time','12','-sS','--proxy',$proxy,'https://daily-cloudcode-pa.googleapis.com/')
     $h = (($head -split "`r?`n") | Where-Object { $_ -match '^HTTP/' } | Select-Object -Last 1)
     if (-not $h) { $h = (($head -split "`r?`n") | Select-Object -Last 1) }
     return @{ cc=$cc.ToUpperInvariant(); country=$country; ip=$ip; org=$org; cloud=$h }
@@ -238,7 +238,7 @@ $roots += @($env:APPDATA, $env:LOCALAPPDATA, $env:USERPROFILE, 'E:\v2rayN-new', 
 $files=@()
 foreach($r in @($roots|Where-Object{$_}|Select-Object -Unique)){ if(Test-Path $r){ $files += @(Get-ChildItem -LiteralPath $r -Recurse -Depth 5 -Include *.json,*.txt -File -ErrorAction SilentlyContinue | Where-Object { $_.FullName -match 'v2ray|gui|server|sub|config|profile|subscription' }) } }
 $privSubs = Join-Path $env:USERPROFILE '.arena-private\v2ray_subs.txt'
-if(Test-Path $privSubs){ L 'private_subs_file=present'; try { $rawPriv = Get-Content -LiteralPath $privSubs -Raw -ErrorAction SilentlyContinue; Add-Nodes-From-Text $rawPriv 'private_file' } catch { }; foreach($url in @(Get-Content $privSubs | Where-Object { $_ -match '^https?://' })){ $txt=Curl @('-L','--max-time','30','-sS',$url); Add-Nodes-From-Text $txt 'private_sub' } } else { L 'private_subs_file=absent' }
+if(Test-Path $privSubs){ L 'private_subs_file=present'; try { $rawPriv = Get-Content -LiteralPath $privSubs -Raw -ErrorAction SilentlyContinue; Add-Nodes-From-Text $rawPriv 'private_file' } catch { }; foreach($url in @(Get-Content $privSubs | Where-Object { $_ -match '^https?://' })){ $txt=Invoke-Curl -CurlArgs @('-L','--max-time','30','-sS',$url); Add-Nodes-From-Text $txt 'private_sub' } } else { L 'private_subs_file=absent' }
 foreach($f in @($files|Sort-Object FullName -Unique|Select-Object -First 80)){
     try{ $txt=Get-Content -LiteralPath $f.FullName -Raw -ErrorAction SilentlyContinue; if($txt -match '(vmess|vless|trojan|ss)://'){ Add-Nodes-From-Text $txt (Split-Path -Leaf $f.FullName) }; if($f.Extension -eq '.json'){ try{$j=$txt|ConvertFrom-Json; Add-JsonNodes $j (Split-Path -Leaf $f.FullName)}catch{} } }catch{}
 }
