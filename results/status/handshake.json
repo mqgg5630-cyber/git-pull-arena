@@ -1,9 +1,9 @@
 {
-    "round":  172,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 172: fix Green VPN autostart; diagnose Antigravity agent termination; continue desktop WPS deck",
-    "arena_updated":  "2026-10-02 02:15:31",
-    "local_updated":  "2026-10-02 10:19:40"
+  "round": 173,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 173: retry VPN autostart registration, interactive Antigravity relaunch, collect WPS report",
+  "arena_updated": "2026-10-02 02:21:43",
+  "local_updated": null
 }
