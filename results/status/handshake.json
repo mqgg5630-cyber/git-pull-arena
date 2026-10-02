@@ -1,9 +1,9 @@
 {
-    "round":  177,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 177: diagnose Antigravity User location not supported and apply supported proxy if found",
-    "arena_updated":  "2026-10-02 02:39:45",
-    "local_updated":  "2026-10-02 10:44:12"
+  "round": 177,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "round 177 accepted: diagnosis confirms Google API geo restriction (Hong Kong Cloudflare WARP exit), watcher restored after reboot",
+  "arena_updated": "2026-10-02 02:44:46",
+  "local_updated": "2026-10-02 10:44:12"
 }
