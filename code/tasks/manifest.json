@@ -532,6 +532,9 @@
     ],
     "189": [
       "t146_curl_fix_bridge.ps1"
+    ],
+    "190": [
+      "t147_verify_antigravity_bridge.ps1"
     ]
   }
 }
