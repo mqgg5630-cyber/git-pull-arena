@@ -538,6 +538,9 @@
     ],
     "191": [
       "t148_restart_verify_bridge.ps1"
+    ],
+    "192": [
+      "t149_verify_bridge_stable.ps1"
     ]
   }
 }
