@@ -1,9 +1,9 @@
 {
-    "round":  253,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "verify Drive health/probe after argument fix and confirm laptop computer-use smoke",
-    "arena_updated":  "2026-10-03 12:33:37",
-    "local_updated":  "2026-10-03 20:36:47"
+  "round": 254,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "final verify Drive interop, computer-use smoke, and updated skill docs",
+  "arena_updated": "2026-10-03 12:37:57",
+  "local_updated": null
 }
