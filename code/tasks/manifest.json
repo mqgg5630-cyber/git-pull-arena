@@ -1,681 +1,684 @@
 {
-  "note": "repo tasks: map a handshake round number to task scripts in code/tasks. They run on the local machine inside code/local_check.ps1 section 4 (child powershell.exe, stdout goes to the round receipt, non-zero exit fails the round). Older rounds' entries are kept for the audit trail but only the CURRENT round runs.",
-  "rounds": {
-    "22": [
-      "t1_antigravity_diag.ps1",
-      "t2_java_diag.ps1",
-      "t3_edrive_scan.ps1"
-    ],
-    "23": [
-      "t1_fix_antigravity.ps1",
-      "t3_edrive_scan2.ps1",
-      "t2_install_java.ps1"
-    ],
-    "24": [
-      "t3_edrive_scan3.ps1",
-      "t4_cleanup_dryrun.ps1"
-    ],
-    "25": [
-      "t1_antigravity_verify.ps1",
-      "t2_cleanup_exec.ps1"
-    ],
-    "26": [
-      "t5_cleanup_fix.ps1"
-    ],
-    "27": [
-      "t7_ligplus_test.ps1",
-      "t1_antigravity_tun2.ps1",
-      "t6_docker_report.ps1",
-      "t8_uvcache_finish.ps1"
-    ],
-    "28": [
-      "t9_ligplus_upgrade.ps1",
-      "t8_uvcache_finish.ps1"
-    ],
-    "29": [
-      "t10_ligplus_final.ps1",
-      "t8_uvcache_finish.ps1"
-    ],
-    "30": [
-      "t12_ligplus_new.ps1",
-      "t11_javagui_fix.ps1",
-      "t6_docker_report.ps1",
-      "t8_uvcache_finish.ps1"
-    ],
-    "31": [
-      "t12_ligplus_new.ps1",
-      "t11_javagui_fix.ps1",
-      "t6_docker_report.ps1",
-      "t8_uvcache_finish.ps1"
-    ],
-    "32": [
-      "t13_docker_autofigure.ps1",
-      "t14_recyclebin_empty.ps1",
-      "t15_uvcache_final.ps1"
-    ],
-    "33": [
-      "t16_uvcache_final2.ps1"
-    ],
-    "34": [
-      "t17_uv_delete_bg.ps1",
-      "t18_edrive_survey.ps1"
-    ],
-    "35": [
-      "t17b_uv_finish.ps1",
-      "t18_edrive_survey.ps1"
-    ],
-    "36": [
-      "t18_edrive_survey.ps1"
-    ],
-    "37": [
-      "t19_cleanup_approved.ps1",
-      "t20_docker_pagefile.ps1"
-    ],
-    "38": [
-      "t21_optimize_review.ps1",
-      "t22_pagefile_uac.ps1"
-    ],
-    "39": [
-      "t23_tailscale_verify.ps1",
-      "t24_oldsync_cleanup.ps1"
-    ],
-    "40": [
-      "t25_oldtask_uac.ps1"
-    ],
-    "41": [
-      "t26_pagefile_fix_uac.ps1"
-    ],
-    "42": [
-      "t27_pagefile_registry.ps1"
-    ],
-    "43": [
-      "t28_reboot_verify.ps1",
-      "t29_ddrive_survey.ps1",
-      "t30_tailscale_prep.ps1"
-    ],
-    "44": [
-      "t31_enable_rdp_ssh.ps1",
-      "t32_wsl26_survey.ps1"
-    ],
-    "45": [
-      "t33_hpc_probe.ps1"
-    ],
-    "46": [
-      "t34_hpc_bridge.ps1"
-    ],
-    "47": [
-      "t35_desktop_access_probe.ps1"
-    ],
-    "48": [
-      "t36_autostart_vpn_tailscale.ps1",
-      "t37_software_inventory.ps1"
-    ],
-    "49": [
-      "t38_uninstall_qwenpaw.ps1",
-      "t39_toolbox_and_paths.ps1"
-    ],
-    "50": [
-      "t40_mcp_n8n_r_survey.ps1",
-      "t41_bigdocs_report.ps1"
-    ],
-    "51": [
-      "t40_mcp_n8n_r_survey.ps1",
-      "t41_bigdocs_report.ps1"
-    ],
-    "52": [
-      "t42_fix_desktop_and_rdetail.ps1"
-    ],
-    "53": [
-      "t43_wsl_r_probe2.ps1"
-    ],
-    "54": [
-      "t44_r_final_check.ps1"
-    ],
-    "55": [
-      "t45_r_versions_cleanup.ps1"
-    ],
-    "56": [
-      "t45_r_versions_cleanup.ps1"
-    ],
-    "57": [
-      "t46_zotero_recon.ps1"
-    ],
-    "58": [
-      "t47_pipeline_fetch.ps1"
-    ],
-    "59": [
-      "t48_run.ps1"
-    ],
-    "60": [
-      "t49_run.ps1"
-    ],
-    "61": [
-      "t50_run.ps1"
-    ],
-    "62": [
-      "t51_run.ps1"
-    ],
-    "63": [
-      "t52_run.ps1"
-    ],
-    "64": [
-      "t52_run.ps1"
-    ],
-    "65": [
-      "t53_word_check.ps1"
-    ],
-    "66": [
-      "t54_recon2.ps1"
-    ],
-    "67": [
-      "t55_run.ps1"
-    ],
-    "68": [
-      "t56_abtest.ps1"
-    ],
-    "69": [
-      "t57_run.ps1"
-    ],
-    "70": [
-      "t57_run.ps1"
-    ],
-    "71": [
-      "t58_recon_install.ps1"
-    ],
-    "72": [
-      "t59_install_bridge.ps1"
-    ],
-    "73": [
-      "t60_rot_bridge.ps1"
-    ],
-    "74": [
-      "t61_rot_fallback.ps1"
-    ],
-    "75": [
-      "t62_file_bridge.ps1"
-    ],
-    "76": [
-      "t63_final_rebuild.ps1"
-    ],
-    "77": [
-      "t64_poll_rebuild.ps1"
-    ],
-    "78": [
-      "t65_relaunch_worker.ps1"
-    ],
-    "79": [
-      "t64_poll_rebuild.ps1"
-    ],
-    "80": [
-      "t66_diag_rebuild.ps1"
-    ],
-    "81": [
-      "t67_probe_ai_state.ps1"
-    ],
-    "82": [
-      "t68_bridge_v2_resume.ps1"
-    ],
-    "83": [
-      "t64_poll_rebuild.ps1"
-    ],
-    "84": [
-      "t64_poll_rebuild.ps1"
-    ],
-    "85": [
-      "t69_tfprobe.ps1"
-    ],
-    "86": [
-      "t70_v2_rebuild.ps1"
-    ],
-    "87": [
-      "t71_install_celllct.ps1"
-    ],
-    "88": [
-      "t70_v2_rebuild.ps1"
-    ],
-    "89": [
-      "t71_install_celllct.ps1"
-    ],
-    "90": [
-      "t64_poll_rebuild.ps1"
-    ],
-    "91": [
-      "t70_v2_rebuild.ps1"
-    ],
-    "92": [
-      "t66_diag_rebuild.ps1"
-    ],
-    "93": [
-      "t72_fix_getcs.ps1"
-    ],
-    "94": [
-      "t64_poll_rebuild.ps1"
-    ],
-    "95": [
-      "t73_v5_relaunch.ps1"
-    ],
-    "96": [
-      "t64_poll_rebuild.ps1"
-    ],
-    "97": [
-      "t73_v5_relaunch.ps1"
-    ],
-    "98": [
-      "t64_poll_rebuild.ps1"
-    ],
-    "99": [
-      "t74_hpc_watch.ps1"
-    ],
-    "100": [
-      "t74_hpc_watch.ps1"
-    ],
-    "101": [
-      "t74_hpc_watch.ps1"
-    ],
-    "102": [
-      "t74_hpc_watch.ps1"
-    ],
-    "103": [
-      "t75_test_celllct.ps1"
-    ],
-    "104": [
-      "t76_test_cellsu7.ps1"
-    ],
-    "105": [
-      "t77_demo_celllct.ps1"
-    ],
-    "106": [
-      "t64_poll_rebuild.ps1"
-    ],
-    "107": [
-      "t78_demo_cellsu7.ps1"
-    ],
-    "108": [
-      "t64_poll_rebuild.ps1"
-    ],
-    "109": [
-      "t79_desktop_ssh_and_paths.ps1"
-    ],
-    "110": [
-      "t80_desktop_ssh_stability.ps1"
-    ],
-    "111": [
-      "t81_smb_key_install.ps1"
-    ],
-    "112": [
-      "t82_bni_ssh_test.ps1"
-    ],
-    "113": [
-      "t83_deskprobe.ps1"
-    ],
-    "114": [
-      "t84_deskstage_sync.ps1"
-    ],
-    "115": [
-      "t85_syncfix.ps1"
-    ],
-    "116": [
-      "t86_deskinstall.ps1"
-    ],
-    "117": [
-      "t86_deskinstall.ps1"
-    ],
-    "118": [
-      "t86_deskinstall.ps1"
-    ],
-    "119": [
-      "t87_deskpython.ps1"
-    ],
-    "120": [
-      "t88_deskdeps.ps1"
-    ],
-    "121": [
-      "t88_deskdeps.ps1"
-    ],
-    "122": [
-      "t89_desk_fixture.ps1"
-    ],
-    "123": [
-      "t90_desk_fig1.ps1"
-    ],
-    "124": [
-      "t91_desk_fig1b.ps1"
-    ],
-    "125": [
-      "t90_desk_fig1.ps1"
-    ],
-    "126": [
-      "t90_desk_fig1.ps1"
-    ],
-    "127": [
-      "t92_desk_collect.ps1"
-    ],
-    "128": [
-      "t92_desk_collect.ps1"
-    ],
-    "129": [
-      "t93_desk_antigravity.ps1"
-    ],
-    "130": [
-      "t94_desk_agy_fix.ps1"
-    ],
-    "131": [
-      "t95_desk_agy_fix2.ps1"
-    ],
-    "132": [
-      "t96_desk_agy_verify.ps1"
-    ],
-    "133": [
-      "t97_desk_agy_fix3.ps1"
-    ],
-    "134": [
-      "t98_desk_agy_verify2.ps1"
-    ],
-    "135": [
-      "t99_desk_agy_verify3.ps1"
-    ],
-    "136": [
-      "t100_desk_agy_fix4.ps1"
-    ],
-    "137": [
-      "t101_desk_agy_fix4.ps1"
-    ],
-    "138": [
-      "t102_desk_agy_verify4.ps1"
-    ],
-    "139": [
-      "t103_desk_sync_survey.ps1"
-    ],
-    "140": [
-      "t104_desk_ide_sync.ps1"
-    ],
-    "141": [
-      "t105_laptop_wps_harness.ps1"
-    ],
-    "142": [
-      "t106_laptop_impress_patch.ps1"
-    ],
-    "143": [
-      "t107_laptop_impress_patch2.ps1"
-    ],
-    "144": [
-      "t108_laptop_harness_patch2.ps1"
-    ],
-    "145": [
-      "t109_cancel_desktop_status.ps1"
-    ],
-    "146": [
-      "t110_desk_wpsdl_fix.ps1"
-    ],
-    "147": [
-      "t111_desk_wps_go.ps1"
-    ],
-    "148": [
-      "t111b_desk_wps_go2.ps1"
-    ],
-    "149": [
-      "t113_desk_wps_silent.ps1"
-    ],
-    "150": [
-      "t114_desk_wps_launch.ps1"
-    ],
-    "151": [
-      "t115_desk_wps_register.ps1"
-    ],
-    "152": [
-      "t116_desk_interactive.ps1"
-    ],
-    "153": [
-      "t117_desk_automation.ps1"
-    ],
-    "154": [
-      "t118_desk_final.ps1"
-    ],
-    "155": [
-      "t118_desk_final.ps1"
-    ],
-    "156": [
-      "t118_desk_final.ps1"
-    ],
-    "157": [
-      "t119_desk_final2.ps1"
-    ],
-    "158": [
-      "t120_desk_warm.ps1"
-    ],
-    "159": [
-      "t121_desk_warm2.ps1"
-    ],
-    "160": [
-      "t121_desk_warm2.ps1"
-    ],
-    "161": [
-      "t122_amp_deck.ps1"
-    ],
-    "162": [
-      "t123_amp_deck2.ps1"
-    ],
-    "163": [
-      "t123_amp_deck2.ps1"
-    ],
-    "164": [
-      "t124_cpe_setup.ps1"
-    ],
-    "166": [
-      "t125_cpe_setup2.ps1"
-    ],
-    "167": [
-      "t125_cpe_setup2.ps1"
-    ],
-    "168": [
-      "t126_cpe_test.ps1"
-    ],
-    "169": [
-      "t127_cpe_test2.ps1"
-    ],
-    "170": [
-      "t128_cpe_test3.ps1"
-    ],
-    "171": [
-      "t129_cpe_test4.ps1"
-    ],
-    "172": [
-      "t130_vpn_agy_wps.ps1"
-    ],
-    "173": [
-      "t130_vpn_agy_wps.ps1"
-    ],
-    "174": [
-      "t131_vpn_autostart_fix.ps1"
-    ],
-    "175": [
-      "t132_vpn_schtasks_ascii.ps1"
-    ],
-    "176": [
-      "t133_vpn_startup_verify.ps1"
-    ],
-    "177": [
-      "t134_agy_location_probe.ps1"
-    ],
-    "178": [
-      "t135_tun_route_and_vpn_delay.ps1"
-    ],
-    "179": [
-      "t136_v2ray_antigravity_bridge.ps1"
-    ],
-    "180": [
-      "t137_v2rayn_node_bridge.ps1"
-    ],
-    "181": [
-      "t138_launcher_clipboard_subs.ps1"
-    ],
-    "182": [
-      "t139_ephemeral_sub_bridge.ps1"
-    ],
-    "183": [
-      "t140_direct_node_payload_bridge.ps1"
-    ],
-    "184": [
-      "t141_run_bridge_private_payload.ps1"
-    ],
-    "185": [
-      "t142_parse_and_bridge_private_payload.ps1"
-    ],
-    "186": [
-      "t143_parse_fix2_bridge.ps1"
-    ],
-    "187": [
-      "t144_parse_diag_bridge.ps1"
-    ],
-    "188": [
-      "t145_hostvar_fix_bridge.ps1"
-    ],
-    "189": [
-      "t146_curl_fix_bridge.ps1"
-    ],
-    "190": [
-      "t147_verify_antigravity_bridge.ps1"
-    ],
-    "191": [
-      "t148_restart_verify_bridge.ps1"
-    ],
-    "192": [
-      "t149_verify_bridge_stable.ps1"
-    ],
-    "193": [
-      "t150_desk_antigravity_bridge.ps1"
-    ],
-    "194": [
-      "t151_desktop_stable_greenvpn.ps1"
-    ],
-    "195": [
-      "t152_desk_bridge_persist.ps1"
-    ],
-    "196": [
-      "t153_mcp_agv_computer_use_lab.ps1"
-    ],
-    "197": [
-      "t154_computer_use_project_smoke.ps1"
-    ],
-    "198": [
-      "t155_wcu_winforms_control.ps1"
-    ],
-    "199": [
-      "t156_wcu_coordinate_gui_control.ps1"
-    ],
-    "200": [
-      "t157_wcu_sta_gui_control.ps1"
-    ],
-    "201": [
-      "t158_wcu_optimized_uia_wrapper.ps1"
-    ],
-    "202": [
-      "t159_optimized_uia_window_actions.ps1"
-    ],
-    "203": [
-      "t160_wcu_button_app_proof.ps1"
-    ],
-    "204": [
-      "t161_wcu_find_invoke_button_proof.ps1"
-    ],
-    "205": [
-      "t162_migrate_integrate_mcp_agv.ps1"
-    ],
-    "206": [
-      "t163_fix_bridge_and_ops_after_migration.ps1"
-    ],
-    "207": [
-      "t164_verify_mcp_config_parse.ps1"
-    ],
-    "208": [
-      "t165_antigravity_ui_probe_suite.ps1"
-    ],
-    "209": [
-      "t166_antigravity_accessibility_cdp_probe.ps1"
-    ],
-    "210": [
-      "t167_antigravity_cdp_dom_dialog_probe.ps1"
-    ],
-    "211": [
-      "t168_antigravity_cdp_dom_dialog_probe_fix.ps1"
-    ],
-    "212": [
-      "t169_antigravity_cdp_targeted_message_input.ps1"
-    ],
-    "213": [
-      "t170_computer_use_capability_audit.ps1"
-    ],
-    "214": [
-      "t171_desktop_computer_use_audit_fix.ps1"
-    ],
-    "215": [
-      "t171_desktop_computer_use_audit_fix.ps1"
-    ],
-    "216": [
-      "t171_desktop_computer_use_audit_fix.ps1"
-    ],
-    "217": [
-      "t171_desktop_computer_use_audit_fix.ps1"
-    ],
-    "218": [
-      "t172_desktop_computer_use_fallback_report.ps1"
-    ],
-    "219": [
-      "t173_resume_skills_compute_antigravity.ps1"
-    ],
-    "220": [
-      "t174_scientific_browser_kaggle_tailscale.ps1"
-    ],
-    "221": [
-      "t175_antigravity_illustrator_browser_phone_share.ps1"
-    ],
-    "222": [
-      "t176_antigravity_terminal_browserskill_phone_r222.ps1"
-    ],
-    "223": [
-      "t176_antigravity_terminal_browserskill_phone_r222.ps1"
-    ],
-    "224": [
-      "t176_antigravity_terminal_browserskill_phone_r222.ps1"
-    ],
-    "225": [
-      "t177_antigravity_sendinput_browserskill_r225.ps1"
-    ],
-    "226": [
-      "t178_antigravity_cdp_node_illustrator_r226.ps1"
-    ],
-    "227": [
-      "t179_antigravity_agent_autorun_phonefix_r227.ps1"
-    ],
-    "228": [
-      "t180_antigravity_installide_tailscale_serve_r228.ps1"
-    ],
-    "229": [
-      "t180_antigravity_installide_tailscale_serve_r228.ps1"
-    ],
-    "230": [
-      "t181_free_lan_cli_antigravity_loop_r230.ps1"
-    ],
-    "231": [
-      "t182_cli_error_diagnose_free_lan_r231.ps1"
-    ],
-    "232": [
-      "t183_zerotier_desktop_setup_r232.ps1"
-    ],
-    "233": [
-      "t184_zerotier_wireguard_desktop_r233.ps1"
-    ],
-    "234": [
-      "t185_wireguard_local_configs_r234.ps1"
-    ],
-    "235": [
-      "t186_install_openspeedy_desktop_r235.ps1"
-    ],
-    "236": [
-      "t187_jianying_skill_funny_video_r236.ps1"
-    ],
-    "237": [
-      "t188_finish_jianying_video_r237.ps1"
-    ]
-  }
+ "note": "repo tasks: map a handshake round number to task scripts in code/tasks. They run on the local machine inside code/local_check.ps1 section 4 (child powershell.exe, stdout goes to the round receipt, non-zero exit fails the round). Older rounds' entries are kept for the audit trail but only the CURRENT round runs.",
+ "rounds": {
+  "22": [
+   "t1_antigravity_diag.ps1",
+   "t2_java_diag.ps1",
+   "t3_edrive_scan.ps1"
+  ],
+  "23": [
+   "t1_fix_antigravity.ps1",
+   "t3_edrive_scan2.ps1",
+   "t2_install_java.ps1"
+  ],
+  "24": [
+   "t3_edrive_scan3.ps1",
+   "t4_cleanup_dryrun.ps1"
+  ],
+  "25": [
+   "t1_antigravity_verify.ps1",
+   "t2_cleanup_exec.ps1"
+  ],
+  "26": [
+   "t5_cleanup_fix.ps1"
+  ],
+  "27": [
+   "t7_ligplus_test.ps1",
+   "t1_antigravity_tun2.ps1",
+   "t6_docker_report.ps1",
+   "t8_uvcache_finish.ps1"
+  ],
+  "28": [
+   "t9_ligplus_upgrade.ps1",
+   "t8_uvcache_finish.ps1"
+  ],
+  "29": [
+   "t10_ligplus_final.ps1",
+   "t8_uvcache_finish.ps1"
+  ],
+  "30": [
+   "t12_ligplus_new.ps1",
+   "t11_javagui_fix.ps1",
+   "t6_docker_report.ps1",
+   "t8_uvcache_finish.ps1"
+  ],
+  "31": [
+   "t12_ligplus_new.ps1",
+   "t11_javagui_fix.ps1",
+   "t6_docker_report.ps1",
+   "t8_uvcache_finish.ps1"
+  ],
+  "32": [
+   "t13_docker_autofigure.ps1",
+   "t14_recyclebin_empty.ps1",
+   "t15_uvcache_final.ps1"
+  ],
+  "33": [
+   "t16_uvcache_final2.ps1"
+  ],
+  "34": [
+   "t17_uv_delete_bg.ps1",
+   "t18_edrive_survey.ps1"
+  ],
+  "35": [
+   "t17b_uv_finish.ps1",
+   "t18_edrive_survey.ps1"
+  ],
+  "36": [
+   "t18_edrive_survey.ps1"
+  ],
+  "37": [
+   "t19_cleanup_approved.ps1",
+   "t20_docker_pagefile.ps1"
+  ],
+  "38": [
+   "t21_optimize_review.ps1",
+   "t22_pagefile_uac.ps1"
+  ],
+  "39": [
+   "t23_tailscale_verify.ps1",
+   "t24_oldsync_cleanup.ps1"
+  ],
+  "40": [
+   "t25_oldtask_uac.ps1"
+  ],
+  "41": [
+   "t26_pagefile_fix_uac.ps1"
+  ],
+  "42": [
+   "t27_pagefile_registry.ps1"
+  ],
+  "43": [
+   "t28_reboot_verify.ps1",
+   "t29_ddrive_survey.ps1",
+   "t30_tailscale_prep.ps1"
+  ],
+  "44": [
+   "t31_enable_rdp_ssh.ps1",
+   "t32_wsl26_survey.ps1"
+  ],
+  "45": [
+   "t33_hpc_probe.ps1"
+  ],
+  "46": [
+   "t34_hpc_bridge.ps1"
+  ],
+  "47": [
+   "t35_desktop_access_probe.ps1"
+  ],
+  "48": [
+   "t36_autostart_vpn_tailscale.ps1",
+   "t37_software_inventory.ps1"
+  ],
+  "49": [
+   "t38_uninstall_qwenpaw.ps1",
+   "t39_toolbox_and_paths.ps1"
+  ],
+  "50": [
+   "t40_mcp_n8n_r_survey.ps1",
+   "t41_bigdocs_report.ps1"
+  ],
+  "51": [
+   "t40_mcp_n8n_r_survey.ps1",
+   "t41_bigdocs_report.ps1"
+  ],
+  "52": [
+   "t42_fix_desktop_and_rdetail.ps1"
+  ],
+  "53": [
+   "t43_wsl_r_probe2.ps1"
+  ],
+  "54": [
+   "t44_r_final_check.ps1"
+  ],
+  "55": [
+   "t45_r_versions_cleanup.ps1"
+  ],
+  "56": [
+   "t45_r_versions_cleanup.ps1"
+  ],
+  "57": [
+   "t46_zotero_recon.ps1"
+  ],
+  "58": [
+   "t47_pipeline_fetch.ps1"
+  ],
+  "59": [
+   "t48_run.ps1"
+  ],
+  "60": [
+   "t49_run.ps1"
+  ],
+  "61": [
+   "t50_run.ps1"
+  ],
+  "62": [
+   "t51_run.ps1"
+  ],
+  "63": [
+   "t52_run.ps1"
+  ],
+  "64": [
+   "t52_run.ps1"
+  ],
+  "65": [
+   "t53_word_check.ps1"
+  ],
+  "66": [
+   "t54_recon2.ps1"
+  ],
+  "67": [
+   "t55_run.ps1"
+  ],
+  "68": [
+   "t56_abtest.ps1"
+  ],
+  "69": [
+   "t57_run.ps1"
+  ],
+  "70": [
+   "t57_run.ps1"
+  ],
+  "71": [
+   "t58_recon_install.ps1"
+  ],
+  "72": [
+   "t59_install_bridge.ps1"
+  ],
+  "73": [
+   "t60_rot_bridge.ps1"
+  ],
+  "74": [
+   "t61_rot_fallback.ps1"
+  ],
+  "75": [
+   "t62_file_bridge.ps1"
+  ],
+  "76": [
+   "t63_final_rebuild.ps1"
+  ],
+  "77": [
+   "t64_poll_rebuild.ps1"
+  ],
+  "78": [
+   "t65_relaunch_worker.ps1"
+  ],
+  "79": [
+   "t64_poll_rebuild.ps1"
+  ],
+  "80": [
+   "t66_diag_rebuild.ps1"
+  ],
+  "81": [
+   "t67_probe_ai_state.ps1"
+  ],
+  "82": [
+   "t68_bridge_v2_resume.ps1"
+  ],
+  "83": [
+   "t64_poll_rebuild.ps1"
+  ],
+  "84": [
+   "t64_poll_rebuild.ps1"
+  ],
+  "85": [
+   "t69_tfprobe.ps1"
+  ],
+  "86": [
+   "t70_v2_rebuild.ps1"
+  ],
+  "87": [
+   "t71_install_celllct.ps1"
+  ],
+  "88": [
+   "t70_v2_rebuild.ps1"
+  ],
+  "89": [
+   "t71_install_celllct.ps1"
+  ],
+  "90": [
+   "t64_poll_rebuild.ps1"
+  ],
+  "91": [
+   "t70_v2_rebuild.ps1"
+  ],
+  "92": [
+   "t66_diag_rebuild.ps1"
+  ],
+  "93": [
+   "t72_fix_getcs.ps1"
+  ],
+  "94": [
+   "t64_poll_rebuild.ps1"
+  ],
+  "95": [
+   "t73_v5_relaunch.ps1"
+  ],
+  "96": [
+   "t64_poll_rebuild.ps1"
+  ],
+  "97": [
+   "t73_v5_relaunch.ps1"
+  ],
+  "98": [
+   "t64_poll_rebuild.ps1"
+  ],
+  "99": [
+   "t74_hpc_watch.ps1"
+  ],
+  "100": [
+   "t74_hpc_watch.ps1"
+  ],
+  "101": [
+   "t74_hpc_watch.ps1"
+  ],
+  "102": [
+   "t74_hpc_watch.ps1"
+  ],
+  "103": [
+   "t75_test_celllct.ps1"
+  ],
+  "104": [
+   "t76_test_cellsu7.ps1"
+  ],
+  "105": [
+   "t77_demo_celllct.ps1"
+  ],
+  "106": [
+   "t64_poll_rebuild.ps1"
+  ],
+  "107": [
+   "t78_demo_cellsu7.ps1"
+  ],
+  "108": [
+   "t64_poll_rebuild.ps1"
+  ],
+  "109": [
+   "t79_desktop_ssh_and_paths.ps1"
+  ],
+  "110": [
+   "t80_desktop_ssh_stability.ps1"
+  ],
+  "111": [
+   "t81_smb_key_install.ps1"
+  ],
+  "112": [
+   "t82_bni_ssh_test.ps1"
+  ],
+  "113": [
+   "t83_deskprobe.ps1"
+  ],
+  "114": [
+   "t84_deskstage_sync.ps1"
+  ],
+  "115": [
+   "t85_syncfix.ps1"
+  ],
+  "116": [
+   "t86_deskinstall.ps1"
+  ],
+  "117": [
+   "t86_deskinstall.ps1"
+  ],
+  "118": [
+   "t86_deskinstall.ps1"
+  ],
+  "119": [
+   "t87_deskpython.ps1"
+  ],
+  "120": [
+   "t88_deskdeps.ps1"
+  ],
+  "121": [
+   "t88_deskdeps.ps1"
+  ],
+  "122": [
+   "t89_desk_fixture.ps1"
+  ],
+  "123": [
+   "t90_desk_fig1.ps1"
+  ],
+  "124": [
+   "t91_desk_fig1b.ps1"
+  ],
+  "125": [
+   "t90_desk_fig1.ps1"
+  ],
+  "126": [
+   "t90_desk_fig1.ps1"
+  ],
+  "127": [
+   "t92_desk_collect.ps1"
+  ],
+  "128": [
+   "t92_desk_collect.ps1"
+  ],
+  "129": [
+   "t93_desk_antigravity.ps1"
+  ],
+  "130": [
+   "t94_desk_agy_fix.ps1"
+  ],
+  "131": [
+   "t95_desk_agy_fix2.ps1"
+  ],
+  "132": [
+   "t96_desk_agy_verify.ps1"
+  ],
+  "133": [
+   "t97_desk_agy_fix3.ps1"
+  ],
+  "134": [
+   "t98_desk_agy_verify2.ps1"
+  ],
+  "135": [
+   "t99_desk_agy_verify3.ps1"
+  ],
+  "136": [
+   "t100_desk_agy_fix4.ps1"
+  ],
+  "137": [
+   "t101_desk_agy_fix4.ps1"
+  ],
+  "138": [
+   "t102_desk_agy_verify4.ps1"
+  ],
+  "139": [
+   "t103_desk_sync_survey.ps1"
+  ],
+  "140": [
+   "t104_desk_ide_sync.ps1"
+  ],
+  "141": [
+   "t105_laptop_wps_harness.ps1"
+  ],
+  "142": [
+   "t106_laptop_impress_patch.ps1"
+  ],
+  "143": [
+   "t107_laptop_impress_patch2.ps1"
+  ],
+  "144": [
+   "t108_laptop_harness_patch2.ps1"
+  ],
+  "145": [
+   "t109_cancel_desktop_status.ps1"
+  ],
+  "146": [
+   "t110_desk_wpsdl_fix.ps1"
+  ],
+  "147": [
+   "t111_desk_wps_go.ps1"
+  ],
+  "148": [
+   "t111b_desk_wps_go2.ps1"
+  ],
+  "149": [
+   "t113_desk_wps_silent.ps1"
+  ],
+  "150": [
+   "t114_desk_wps_launch.ps1"
+  ],
+  "151": [
+   "t115_desk_wps_register.ps1"
+  ],
+  "152": [
+   "t116_desk_interactive.ps1"
+  ],
+  "153": [
+   "t117_desk_automation.ps1"
+  ],
+  "154": [
+   "t118_desk_final.ps1"
+  ],
+  "155": [
+   "t118_desk_final.ps1"
+  ],
+  "156": [
+   "t118_desk_final.ps1"
+  ],
+  "157": [
+   "t119_desk_final2.ps1"
+  ],
+  "158": [
+   "t120_desk_warm.ps1"
+  ],
+  "159": [
+   "t121_desk_warm2.ps1"
+  ],
+  "160": [
+   "t121_desk_warm2.ps1"
+  ],
+  "161": [
+   "t122_amp_deck.ps1"
+  ],
+  "162": [
+   "t123_amp_deck2.ps1"
+  ],
+  "163": [
+   "t123_amp_deck2.ps1"
+  ],
+  "164": [
+   "t124_cpe_setup.ps1"
+  ],
+  "166": [
+   "t125_cpe_setup2.ps1"
+  ],
+  "167": [
+   "t125_cpe_setup2.ps1"
+  ],
+  "168": [
+   "t126_cpe_test.ps1"
+  ],
+  "169": [
+   "t127_cpe_test2.ps1"
+  ],
+  "170": [
+   "t128_cpe_test3.ps1"
+  ],
+  "171": [
+   "t129_cpe_test4.ps1"
+  ],
+  "172": [
+   "t130_vpn_agy_wps.ps1"
+  ],
+  "173": [
+   "t130_vpn_agy_wps.ps1"
+  ],
+  "174": [
+   "t131_vpn_autostart_fix.ps1"
+  ],
+  "175": [
+   "t132_vpn_schtasks_ascii.ps1"
+  ],
+  "176": [
+   "t133_vpn_startup_verify.ps1"
+  ],
+  "177": [
+   "t134_agy_location_probe.ps1"
+  ],
+  "178": [
+   "t135_tun_route_and_vpn_delay.ps1"
+  ],
+  "179": [
+   "t136_v2ray_antigravity_bridge.ps1"
+  ],
+  "180": [
+   "t137_v2rayn_node_bridge.ps1"
+  ],
+  "181": [
+   "t138_launcher_clipboard_subs.ps1"
+  ],
+  "182": [
+   "t139_ephemeral_sub_bridge.ps1"
+  ],
+  "183": [
+   "t140_direct_node_payload_bridge.ps1"
+  ],
+  "184": [
+   "t141_run_bridge_private_payload.ps1"
+  ],
+  "185": [
+   "t142_parse_and_bridge_private_payload.ps1"
+  ],
+  "186": [
+   "t143_parse_fix2_bridge.ps1"
+  ],
+  "187": [
+   "t144_parse_diag_bridge.ps1"
+  ],
+  "188": [
+   "t145_hostvar_fix_bridge.ps1"
+  ],
+  "189": [
+   "t146_curl_fix_bridge.ps1"
+  ],
+  "190": [
+   "t147_verify_antigravity_bridge.ps1"
+  ],
+  "191": [
+   "t148_restart_verify_bridge.ps1"
+  ],
+  "192": [
+   "t149_verify_bridge_stable.ps1"
+  ],
+  "193": [
+   "t150_desk_antigravity_bridge.ps1"
+  ],
+  "194": [
+   "t151_desktop_stable_greenvpn.ps1"
+  ],
+  "195": [
+   "t152_desk_bridge_persist.ps1"
+  ],
+  "196": [
+   "t153_mcp_agv_computer_use_lab.ps1"
+  ],
+  "197": [
+   "t154_computer_use_project_smoke.ps1"
+  ],
+  "198": [
+   "t155_wcu_winforms_control.ps1"
+  ],
+  "199": [
+   "t156_wcu_coordinate_gui_control.ps1"
+  ],
+  "200": [
+   "t157_wcu_sta_gui_control.ps1"
+  ],
+  "201": [
+   "t158_wcu_optimized_uia_wrapper.ps1"
+  ],
+  "202": [
+   "t159_optimized_uia_window_actions.ps1"
+  ],
+  "203": [
+   "t160_wcu_button_app_proof.ps1"
+  ],
+  "204": [
+   "t161_wcu_find_invoke_button_proof.ps1"
+  ],
+  "205": [
+   "t162_migrate_integrate_mcp_agv.ps1"
+  ],
+  "206": [
+   "t163_fix_bridge_and_ops_after_migration.ps1"
+  ],
+  "207": [
+   "t164_verify_mcp_config_parse.ps1"
+  ],
+  "208": [
+   "t165_antigravity_ui_probe_suite.ps1"
+  ],
+  "209": [
+   "t166_antigravity_accessibility_cdp_probe.ps1"
+  ],
+  "210": [
+   "t167_antigravity_cdp_dom_dialog_probe.ps1"
+  ],
+  "211": [
+   "t168_antigravity_cdp_dom_dialog_probe_fix.ps1"
+  ],
+  "212": [
+   "t169_antigravity_cdp_targeted_message_input.ps1"
+  ],
+  "213": [
+   "t170_computer_use_capability_audit.ps1"
+  ],
+  "214": [
+   "t171_desktop_computer_use_audit_fix.ps1"
+  ],
+  "215": [
+   "t171_desktop_computer_use_audit_fix.ps1"
+  ],
+  "216": [
+   "t171_desktop_computer_use_audit_fix.ps1"
+  ],
+  "217": [
+   "t171_desktop_computer_use_audit_fix.ps1"
+  ],
+  "218": [
+   "t172_desktop_computer_use_fallback_report.ps1"
+  ],
+  "219": [
+   "t173_resume_skills_compute_antigravity.ps1"
+  ],
+  "220": [
+   "t174_scientific_browser_kaggle_tailscale.ps1"
+  ],
+  "221": [
+   "t175_antigravity_illustrator_browser_phone_share.ps1"
+  ],
+  "222": [
+   "t176_antigravity_terminal_browserskill_phone_r222.ps1"
+  ],
+  "223": [
+   "t176_antigravity_terminal_browserskill_phone_r222.ps1"
+  ],
+  "224": [
+   "t176_antigravity_terminal_browserskill_phone_r222.ps1"
+  ],
+  "225": [
+   "t177_antigravity_sendinput_browserskill_r225.ps1"
+  ],
+  "226": [
+   "t178_antigravity_cdp_node_illustrator_r226.ps1"
+  ],
+  "227": [
+   "t179_antigravity_agent_autorun_phonefix_r227.ps1"
+  ],
+  "228": [
+   "t180_antigravity_installide_tailscale_serve_r228.ps1"
+  ],
+  "229": [
+   "t180_antigravity_installide_tailscale_serve_r228.ps1"
+  ],
+  "230": [
+   "t181_free_lan_cli_antigravity_loop_r230.ps1"
+  ],
+  "231": [
+   "t182_cli_error_diagnose_free_lan_r231.ps1"
+  ],
+  "232": [
+   "t183_zerotier_desktop_setup_r232.ps1"
+  ],
+  "233": [
+   "t184_zerotier_wireguard_desktop_r233.ps1"
+  ],
+  "234": [
+   "t185_wireguard_local_configs_r234.ps1"
+  ],
+  "235": [
+   "t186_install_openspeedy_desktop_r235.ps1"
+  ],
+  "236": [
+   "t187_jianying_skill_funny_video_r236.ps1"
+  ],
+  "237": [
+   "t188_finish_jianying_video_r237.ps1"
+  ],
+  "238": [
+   "t189_upload_pdfs_r238.ps1"
+  ]
+ }
 }
