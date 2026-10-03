@@ -1,5 +1,5 @@
 # v2rayN node auto bridge
-time=2026-10-03 16:50:50 apply=True
+time=2026-10-03 17:00:43 apply=True
 xray=C:\ProgramData\agy-bridge\xray\xray.exe
 private_subs_file=present
 node_from=private_file proto=vless name=SG-01
@@ -33,7 +33,7 @@ node_from=v2ray_subs.txt proto=vless name=JP-03
 node_from=v2ray_subs.txt proto=vless name=JP-04
 node_from=v2ray_subs.txt proto=vless name=JP-05
 nodes_found=15
-test 1/15 proto=vless name=SG-01 country=SG ip=104.28.156.103 org=Cloudflare WARP cloud=HTTP/1.1 404 Not Found supported=True
+test 1/15 proto=vless name=SG-01 country=SG ip=104.28.162.11 org=Cloudflare WARP cloud=HTTP/1.1 404 Not Found supported=True
 chosen_node proto=vless name=SG-01
 bridge_task_OK=antigravity-xray-bridge
 env_User=http://127.0.0.1:18088

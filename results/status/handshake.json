@@ -1,9 +1,9 @@
 {
-  "round": 246,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 246: final V2ray takeover verification using applied 18088 bridge; process Muse artifact",
-  "arena_updated": "2026-10-03 08:59:18",
-  "local_updated": null
+    "round":  246,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 246: final V2ray takeover verification using applied 18088 bridge; process Muse artifact",
+    "arena_updated":  "2026-10-03 08:59:18",
+    "local_updated":  "2026-10-03 17:01:51"
 }
