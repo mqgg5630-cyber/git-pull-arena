@@ -1,9 +1,9 @@
 {
-  "round": 239,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 239: deliver time-only regenerated PDFs to Downloads",
-  "arena_updated": "2026-10-03 07:46:29",
-  "local_updated": null
+    "round":  239,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 239: deliver time-only regenerated PDFs to Downloads",
+    "arena_updated":  "2026-10-03 07:46:29",
+    "local_updated":  "2026-10-03 15:48:29"
 }
