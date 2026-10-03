@@ -239,7 +239,7 @@
     "code/tasks/t1_fix_antigravity.ps1": "http.proxy",
     "code/tasks/t2_install_java.ps1": "E:\\java",
     "results/status/muse_tailscale_probe_r238.md": "MUSE_TAILSCALE_PROBE_DONE",
-    "results/status/timeonly_pdfs_r239.md": "only the cover-page date strings",
+    "results/status/timeonly_pdfs_r239.md": "only replace the two cover-page date strings",
     "results/status/timeonly_pdfs_r239.json": "Oct 3, 2026, 3:45 PM GMT"
   },
   "require_regex": {
