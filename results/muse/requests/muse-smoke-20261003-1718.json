@@ -1,0 +1,16 @@
+{
+  "task_id": "muse-smoke-20261003-1718",
+  "state": "pending",
+  "type": "smoke_zip_v1",
+  "created_by": "arena",
+  "created_at": "2026-10-03T09:18:00Z",
+  "branch": "arena/01a0ff69-git-pull-arena",
+  "instructions": "Automatic trigger smoke test: Muse should detect this pending request, create a zip package with README.txt, outputs/hello_from_muse.txt, and logs/run.txt, write a status JSON, mark this request done, commit, and push. Do not include secrets.",
+  "expected_artifact": "sources/muse/muse_out_smoke_20261003_1718.zip",
+  "expected_status": "results/muse/status_smoke_20261003_1718.json",
+  "acceptance": [
+    "request JSON state becomes done",
+    "sources/muse/muse_out_smoke_20261003_1718.zip exists",
+    "results/muse/status_smoke_20261003_1718.json exists and has state=done"
+  ]
+}
