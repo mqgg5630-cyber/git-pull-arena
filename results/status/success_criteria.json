@@ -228,7 +228,11 @@
     "deliverable/muse/.gitkeep",
     "code/tasks/t192_muse_interconnect_probe_r242.ps1",
     "results/muse/INTERCONNECT_R242.md",
-    "results/muse/INTERCONNECT_R242.json"
+    "results/muse/INTERCONNECT_R242.json",
+    "code/tasks/t193_muse_interconnect_probe_r243.ps1",
+    "results/muse/INTERCONNECT_R243.md",
+    "results/muse/INTERCONNECT_R243.json",
+    "results/muse/bridge_test_20261003.json"
   ],
   "forbid_files": [
     "local/inbox",
@@ -247,7 +251,7 @@
     "deliverable/OFFICE_HASHES.json": "arena/01a0a9f0-git-pull-arena",
     "watch.ps1": "function Invoke-AutoPull",
     "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus",
-    "code/tasks/manifest.json": "t192_muse_interconnect_probe_r242.ps1",
+    "code/tasks/manifest.json": "t193_muse_interconnect_probe_r243.ps1",
     "code/tasks/t1_fix_antigravity.ps1": "http.proxy",
     "code/tasks/t2_install_java.ps1": "E:\\java",
     "results/status/muse_tailscale_probe_r238.md": "MUSE_TAILSCALE_PROBE_DONE",
@@ -257,13 +261,17 @@
     "results/muse/HANDOFF.md": "outbound-only Tailscale client",
     "code/tasks/t191_deliver_no_overwrite_pdfs_r241.ps1": "no existing file was overwritten",
     "code/tasks/t192_muse_interconnect_probe_r242.ps1": "INTERCONNECT_PROBE_DONE",
-    "results/muse/INTERCONNECT_R242.md": "Report paths:"
+    "results/muse/INTERCONNECT_R242.md": "Report paths:",
+    "code/tasks/t193_muse_interconnect_probe_r243.ps1": "INTERCONNECT_PROBE_DONE",
+    "results/muse/INTERCONNECT_R243.md": "MUSE_PUSH_SEEN: yes",
+    "results/muse/bridge_test_20261003.json": "bridge_ok"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
     "code/local_check.ps1": "Get-FileHash",
     "deliverable/OFFICE_HASHES.json": "[0-9a-f]{64}",
-    "results/muse/INTERCONNECT_R242.md": "INTERCONNECT_PROBE_DONE"
+    "results/muse/INTERCONNECT_R242.md": "INTERCONNECT_PROBE_DONE",
+    "results/muse/INTERCONNECT_R243.md": "laptop -> desktop .*:22 = OPEN[\\s\\S]*laptop -> hpc .*:22 = OPEN"
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,
