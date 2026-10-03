@@ -222,7 +222,8 @@
     "code/tasks/t135_media_bridge2.ps1",
     "code/tasks/t136_media_bridge3.ps1",
     "code/tasks/t137_tg_task.ps1",
-    "code/tasks/t138_tg_task2.ps1"
+    "code/tasks/t138_tg_task2.ps1",
+    "code/tasks/t139_xhs_stack.ps1"
   ],
   "forbid_files": [
     "local/inbox",
