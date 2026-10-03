@@ -3,6 +3,18 @@
 > 更新：2026-09-16（**本会话（`arena/01a0a9f0`）HQ = 新克隆 `git-pull-arena-01a0a9f0` / `arena/01a0a9f0-git-pull-arena`，技能 **v2.8.1**（源自 `arena/01a0a98d`）；**不要覆盖旧目录**。三个不要覆盖的目录：`git-pull-arena`（旧 v2.6.7）、`git-pull-arena-v268`、`git-pull-arena-s2`。上一个会话 HQ = `git-pull-arena-s2` / `arena/01a0a821`（v2.7.4，值守已被新会话 park，可 `.\\watch.ps1 -Focus` 切回））｜ 技能版本：v2.8.1（开发分支）/ v2.6.7（`main`）｜ 开发分支 `arena/01a0a9f0-git-pull-arena`（本会话）｜ 退路 `arena/01a0a4f5-git-pull-arena`（v2.6.7）/ `arena/01a09fc1-git-pull-arena`（v2.4.7）｜ 本文件在 `E:\0github\git-sync\git-pull-arena-01a0a9f0\CONNECTIONS.md`
 > 忘了的时候：`cd E:\0github\git-sync\git-pull-arena-01a0a9f0` 然后 `notepad CONNECTIONS.md`
 
+
+
+## 2026-10-03 cloud/account interop update
+
+- New skill family: `skills/cloud-interop/`.
+- Google Drive path: use local Windows `rclone` OAuth remotes; tokens stay in `%APPDATA%\rclone\rclone.conf`, not in git.
+- Recommended remote for the requested Gmail account: `gdrive_jzthjyz`.
+- Setup script: `skills\cloud-interop\scripts\setup-gdrive-rclone.ps1`.
+- Health report script: `skills\cloud-interop\scripts\interop-health.ps1`, output `results\cloud_interop\INTEROP_HEALTH.md`.
+- Kaggle rule: keep `kaggle.json` in `%USERPROFILE%\.kaggle\` or `KAGGLE_CONFIG_DIR`; never commit the username/key pair.
+- Muse rule remains outbound-only: use GitHub request/status/artifact directories or an approved cloud mailbox; do not require inbound laptop -> Muse connections.
+
 ## 一、当前所有连接
 
 | 用途 | GitHub 仓库 | 工作分支 | 本机路径 | 值守任务名 | 状态 |
