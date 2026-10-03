@@ -1,9 +1,9 @@
 {
-  "round": 180,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 180: t138 - on the laptop: register media-bridge-tg with New-ScheduledTaskTrigger -AtLogOn -User $env:USERNAME (r179 access-denied root cause), fallback schtasks with escaped quotes, start it, verify tg_bridge.py process + log shows 'tg_bridge start' and 'waiting for conf/tg_token.txt'. Judge: FINAL: PASS - media-bridge-tg registered and tg_bridge.py is alive",
-  "arena_updated": "2026-10-03 09:21:22",
-  "local_updated": null
+    "round":  180,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 180: t138 - on the laptop: register media-bridge-tg with New-ScheduledTaskTrigger -AtLogOn -User $env:USERNAME (r179 access-denied root cause), fallback schtasks with escaped quotes, start it, verify tg_bridge.py process + log shows \u0027tg_bridge start\u0027 and \u0027waiting for conf/tg_token.txt\u0027. Judge: FINAL: PASS - media-bridge-tg registered and tg_bridge.py is alive",
+    "arena_updated":  "2026-10-03 09:21:22",
+    "local_updated":  "2026-10-03 17:22:20"
 }
