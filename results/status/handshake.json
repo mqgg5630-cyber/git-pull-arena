@@ -1,9 +1,9 @@
 {
-  "round": 238,
-  "arena_state": "accepted",
-  "local_state": "failed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "accepted: Muse is Tailscale outbound-only; do not pursue laptop inbound file path",
-  "arena_updated": "2026-10-03 07:40:09",
-  "local_updated": "2026-10-03 15:37:15"
+  "round": 239,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 239: deliver time-only regenerated PDFs to Downloads",
+  "arena_updated": "2026-10-03 07:46:29",
+  "local_updated": null
 }
