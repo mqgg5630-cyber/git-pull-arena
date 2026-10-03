@@ -484,6 +484,9 @@
     ],
     "173": [
       "t131_watcher_diag.ps1"
+    ],
+    "174": [
+      "t132_register_ff64.ps1"
     ]
   }
 }
