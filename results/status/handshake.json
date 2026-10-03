@@ -1,9 +1,9 @@
 {
-  "round": 180,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-10-03 09:22:39",
-  "local_updated": "2026-10-03 17:22:20"
+  "round": 181,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 181: t139 - on the laptop: install the XHS stack: pip install social-auto-upload requirements (aliyun mirror, core-subset fallback) into E:\\0github\\git-sync\\media-bridge\\venv, PLAYWRIGHT_DOWNLOAD_HOST=npmmirror playwright install chromium, verify sau --help answers and chrome.exe exists, xhs status. Long install, allow 15 min. Judge: FINAL: PASS - sau CLI answers and chromium is installed",
+  "arena_updated": "2026-10-03 09:24:39",
+  "local_updated": null
 }
