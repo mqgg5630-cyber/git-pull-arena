@@ -1,9 +1,9 @@
 {
-  "round": 245,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 245: diagnose + fix Antigravity bridge persistence (env via registry, logon+30min guard), verify end to end",
-  "arena_updated": "2026-10-03 02:55:56",
-  "local_updated": null
+    "round":  245,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 245: diagnose + fix Antigravity bridge persistence (env via registry, logon+30min guard), verify end to end",
+    "arena_updated":  "2026-10-03 02:55:56",
+    "local_updated":  "2026-10-03 10:59:50"
 }
