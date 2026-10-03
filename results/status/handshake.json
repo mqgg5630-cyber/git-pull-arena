@@ -1,9 +1,9 @@
 {
-  "round": 247,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 247: start bridge directly, install Run-key autostart + guard v3, verify end to end",
-  "arena_updated": "2026-10-03 03:10:49",
-  "local_updated": null
+    "round":  247,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 247: start bridge directly, install Run-key autostart + guard v3, verify end to end",
+    "arena_updated":  "2026-10-03 03:10:49",
+    "local_updated":  "2026-10-03 11:12:35"
 }
