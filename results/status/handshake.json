@@ -1,9 +1,9 @@
 {
-  "round": 238,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 238: copy plag_English.pdf + AI_English.pdf from Downloads to sources/ and commit",
-  "arena_updated": "2026-10-03 01:56:40",
-  "local_updated": null
+    "round":  238,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 238: copy plag_English.pdf + AI_English.pdf from Downloads to sources/ and commit",
+    "arena_updated":  "2026-10-03 01:56:40",
+    "local_updated":  "2026-10-03 09:58:34"
 }
