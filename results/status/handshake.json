@@ -1,9 +1,9 @@
 {
-  "round": 242,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-10-03 02:33:48",
-  "local_updated": "2026-10-03 10:33:32"
+  "round": 243,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 243: deliver AI_English_from_docx.pdf + plag_English_from_docx.pdf (dates unified, sha-pinned) to Downloads",
+  "arena_updated": "2026-10-03 02:35:01",
+  "local_updated": null
 }
