@@ -57,37 +57,36 @@ if (-not $rcloneCmd) {
     $has = $false
     foreach ($r in $remotes) { if ($r.Trim() -eq $remoteWithColon) { $has = $true } }
     L ('gdrive_remote=' + $remoteWithColon + ' present=' + $has)
-    if ($has) {
-        $about = RunText $rclone @('about', $remoteWithColon, '--json')
-        if ($LASTEXITCODE -eq 0 -and $about) {
-            L 'gdrive_about_ok=True'
-            try {
-                $a = $about | ConvertFrom-Json
-                if ($a.total) { L ('gdrive_total_bytes=' + $a.total) }
-                if ($a.used) { L ('gdrive_used_bytes=' + $a.used) }
-                if ($a.free) { L ('gdrive_free_bytes=' + $a.free) }
-            } catch { L 'gdrive_about_parse_warn=True' }
-        } else {
-            L 'gdrive_about_ok=False'
-            if ($about) { L ('gdrive_about_detail=' + ($about -replace "`r?`n", ' | ')) }
-        }
-        if ($ProbeWrite) {
-            $stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
-            $tmp = Join-Path $env:TEMP ('arena-gdrive-probe-' + $stamp + '.txt')
-            Set-Content -LiteralPath $tmp -Encoding UTF8 -Value ('arena interop probe ' + $stamp + ' host=' + $env:COMPUTERNAME)
-            $dst = $remoteWithColon + 'Arena/interop/probe-' + $stamp + '.txt'
-            $copy = RunText $rclone @('copyto', $tmp, $dst)
-            if ($LASTEXITCODE -eq 0) {
-                L ('gdrive_probe_write=True path=' + $dst)
-                if ($CleanupProbe) {
-                    $del = RunText $rclone @('deletefile', $dst)
-                    L ('gdrive_probe_cleanup_exit=' + $LASTEXITCODE)
-                }
-            } else {
-                L ('gdrive_probe_write=False detail=' + ($copy -replace "`r?`n", ' | '))
+    $about = RunText $rclone @('about', $remoteWithColon, '--json')
+    $aboutOk = ($LASTEXITCODE -eq 0 -and $about)
+    if ($aboutOk) {
+        L 'gdrive_about_ok=True'
+        try {
+            $a = $about | ConvertFrom-Json
+            if ($a.total) { L ('gdrive_total_bytes=' + $a.total) }
+            if ($a.used) { L ('gdrive_used_bytes=' + $a.used) }
+            if ($a.free) { L ('gdrive_free_bytes=' + $a.free) }
+        } catch { L 'gdrive_about_parse_warn=True' }
+    } else {
+        L 'gdrive_about_ok=False'
+        if ($about) { L ('gdrive_about_detail=' + ($about -replace "`r?`n", ' | ')) }
+    }
+    if ($ProbeWrite -and $aboutOk) {
+        $stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
+        $tmp = Join-Path $env:TEMP ('arena-gdrive-probe-' + $stamp + '.txt')
+        Set-Content -LiteralPath $tmp -Encoding UTF8 -Value ('arena interop probe ' + $stamp + ' host=' + $env:COMPUTERNAME)
+        $dst = $remoteWithColon + 'Arena/interop/probe-' + $stamp + '.txt'
+        $copy = RunText $rclone @('copyto', $tmp, $dst)
+        if ($LASTEXITCODE -eq 0) {
+            L ('gdrive_probe_write=True path=' + $dst)
+            if ($CleanupProbe) {
+                $del = RunText $rclone @('deletefile', $dst)
+                L ('gdrive_probe_cleanup_exit=' + $LASTEXITCODE)
             }
-            Remove-Item -LiteralPath $tmp -Force -ErrorAction SilentlyContinue
+        } else {
+            L ('gdrive_probe_write=False detail=' + ($copy -replace "`r?`n", ' | '))
         }
+        Remove-Item -LiteralPath $tmp -Force -ErrorAction SilentlyContinue
     }
 }
 L ''

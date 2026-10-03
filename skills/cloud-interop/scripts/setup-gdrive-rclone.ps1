@@ -119,25 +119,34 @@ try { $remotes = @(& $rclone listremotes 2>$null) } catch { $remotes = @() }
 $remoteWithColon = $RemoteName + ':'
 $hasRemote = $false
 foreach ($r in $remotes) { if ($r.Trim() -eq $remoteWithColon) { $hasRemote = $true } }
+if (-not $hasRemote) {
+    $null = & $rclone about $remoteWithColon --json 2>$null
+    if ($LASTEXITCODE -eq 0) { $hasRemote = $true; Say 'remote_about_preexisting=True' }
+}
 
 if (-not $hasRemote) {
     Say "remote_create=$RemoteName"
     if ($AccountEmail) { Say "account_hint=$AccountEmail" }
     Say 'oauth_action=browser_will_open_choose_the_requested_google_account'
+    Say 'If a browser opens, sign in locally and approve. Do not paste tokens into chat.'
     & $rclone --auto-confirm config create $RemoteName drive scope $Scope
     if ($LASTEXITCODE -ne 0) { Fail 'rclone config create failed' }
 }
 
-Say 'oauth_reconnect_start=True'
-Say 'If a browser opens, sign in locally and approve. Do not paste tokens into chat.'
-& $rclone --auto-confirm config reconnect $remoteWithColon
-if ($LASTEXITCODE -ne 0) {
-    Say 'oauth_reconnect_warn=nonzero_exit; remote may already be connected or user cancelled'
-}
-
 Say 'verify_about_start=True'
-& $rclone about $remoteWithColon
-if ($LASTEXITCODE -ne 0) { Fail 'rclone about failed; Google Drive remote is not ready yet' }
+$aboutOut = (& $rclone about $remoteWithColon 2>&1 | Out-String).Trim()
+$aboutCode = $LASTEXITCODE
+if ($aboutOut) { foreach ($ln in (($aboutOut -split "`r?`n") | Select-Object -First 20)) { Say $ln } }
+if ($aboutCode -ne 0) {
+    Say 'oauth_reconnect_start=True'
+    Say 'If a browser opens, sign in locally and approve. Do not paste tokens into chat.'
+    & $rclone --auto-confirm config reconnect $remoteWithColon
+    if ($LASTEXITCODE -ne 0) { Fail 'rclone reconnect failed; Google Drive remote is not ready yet' }
+    $aboutOut = (& $rclone about $remoteWithColon 2>&1 | Out-String).Trim()
+    $aboutCode = $LASTEXITCODE
+    if ($aboutOut) { foreach ($ln in (($aboutOut -split "`r?`n") | Select-Object -First 20)) { Say $ln } }
+}
+if ($aboutCode -ne 0) { Fail 'rclone about failed; Google Drive remote is not ready yet' }
 Say 'GDRIVE_RCLONE_READY=True'
 Say "remote=$remoteWithColon"
 exit 0
