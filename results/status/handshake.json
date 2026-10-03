@@ -1,9 +1,9 @@
 {
-    "round":  242,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 242: upload Downloads plag_English.docx -\u003e sources/plag_English_as_edited.docx",
-    "arena_updated":  "2026-10-03 02:30:42",
-    "local_updated":  "2026-10-03 10:33:32"
+  "round": 242,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-03 02:33:48",
+  "local_updated": "2026-10-03 10:33:32"
 }
