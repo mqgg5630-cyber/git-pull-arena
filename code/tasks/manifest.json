@@ -490,6 +490,9 @@
     ],
     "175": [
       "t133_watcher_health.ps1"
+    ],
+    "176": [
+      "t134_media_bridge.ps1"
     ]
   }
 }

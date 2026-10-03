@@ -212,7 +212,13 @@
     "code/tasks/t130_register_watcher.ps1",
     "code/tasks/t131_watcher_diag.ps1",
     "code/tasks/t132_register_ff64.ps1",
-    "code/tasks/t133_watcher_health.ps1"
+    "code/tasks/t133_watcher_health.ps1",
+    "code/tasks/t134_media_bridge.ps1",
+    "code/media-bridge/tg_bridge.py",
+    "code/media-bridge/wxmp_cli.py",
+    "code/media-bridge/xhs_publish.py",
+    "code/media-bridge/run_tg_bridge.ps1",
+    "code/media-bridge/SETUP.md"
   ],
   "forbid_files": [
     "local/inbox",
