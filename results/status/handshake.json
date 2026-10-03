@@ -1,9 +1,9 @@
 {
-    "round":  241,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 241: deliver current and previous PDFs with non-overwriting names; verify Muse bridge docs",
-    "arena_updated":  "2026-10-03 07:55:03",
-    "local_updated":  "2026-10-03 15:55:56"
+  "round": 241,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "accepted: no-overwrite PDF copies delivered; Muse outbound bridge documented",
+  "arena_updated": "2026-10-03 07:56:16",
+  "local_updated": "2026-10-03 15:55:56"
 }
