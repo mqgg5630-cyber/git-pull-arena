@@ -1,5 +1,5 @@
 ﻿# Laptop computer-use / Windows MCP smoke r249
-time=2026-10-03 20:28:50 +08:00
+time=2026-10-03 20:32:34 +08:00
 host=LAPTOP-R77M5D6M
 lab_root=E:\0mcp-agv-arena-optimized
 project|windows-computer-use|status=present|path=E:\0mcp-agv-arena-optimized\github\windows-computer-use
@@ -14,7 +14,7 @@ open_window_count=10
 window|ApplicationFrameHost|title=??
 window|Code|title=??.md - 0github - Visual Studio Code
 window|firefox|title=YouTube ? Mozilla Firefox
-window|msedge|title=Arena | Benchmark & Compare the Best AI Models ??? 19 ??? - ?? - Microsoft? Edge
+window|msedge|title=Arena | Benchmark & Compare the Best AI Models ??? 20 ??? - ?? - Microsoft? Edge
 window|Notepad|title=[REDACTED].txt - Notepad
 window|SystemSettings|title=??
 window|TextInputHost|title=Windows ????
