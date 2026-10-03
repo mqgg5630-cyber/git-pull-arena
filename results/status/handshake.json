@@ -1,9 +1,9 @@
 {
-  "round": 254,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "final verify Drive interop, computer-use smoke, and updated skill docs",
-  "arena_updated": "2026-10-03 12:37:57",
-  "local_updated": null
+    "round":  254,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "final verify Drive interop, computer-use smoke, and updated skill docs",
+    "arena_updated":  "2026-10-03 12:37:57",
+    "local_updated":  "2026-10-03 20:40:04"
 }
