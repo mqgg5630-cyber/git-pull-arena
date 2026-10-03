@@ -1,0 +1,81 @@
+﻿{
+    "time":  "2026-10-03T20:19:01",
+    "computer":  "LAPTOP-R77M5D6M",
+    "gdriveReady":  false,
+    "gdriveProbeWrite":  false,
+    "wcuUiaInvokeOk":  true,
+    "capabilities":  [
+                         {
+                             "computer":  "LAPTOP-R77M5D6M",
+                             "app":  "windows-computer-use",
+                             "backend":  "E-drive install",
+                             "task":  "install/presence check",
+                             "result":  "OK",
+                             "evidence":  "present",
+                             "artifact":  "E:\\0mcp-agv-arena-optimized\\github\\windows-computer-use"
+                         },
+                         {
+                             "computer":  "LAPTOP-R77M5D6M",
+                             "app":  "Windows-MCP",
+                             "backend":  "E-drive install",
+                             "task":  "install/presence check",
+                             "result":  "OK",
+                             "evidence":  "present",
+                             "artifact":  "E:\\0mcp-agv-arena-optimized\\github\\Windows-MCP"
+                         },
+                         {
+                             "computer":  "LAPTOP-R77M5D6M",
+                             "app":  "pywinauto-mcp",
+                             "backend":  "E-drive install",
+                             "task":  "install/presence check",
+                             "result":  "OK",
+                             "evidence":  "present",
+                             "artifact":  "E:\\0mcp-agv-arena-optimized\\github\\pywinauto-mcp"
+                         },
+                         {
+                             "computer":  "LAPTOP-R77M5D6M",
+                             "app":  "Lab WinForms app",
+                             "backend":  "windows-computer-use MCP/UIA",
+                             "task":  "find button and invoke it",
+                             "result":  "OK",
+                             "evidence":  "health=True;activate=True;find=True;invoke=True;marker=True",
+                             "artifact":  "E:\\0mcp-agv-arena-optimized\\smoke\\wcu_find_invoke_result_r249.txt"
+                         },
+                         {
+                             "computer":  "LAPTOP-R77M5D6M",
+                             "app":  "Antigravity",
+                             "backend":  "terminal/GUI surface",
+                             "task":  "detect installed executable",
+                             "result":  "OK",
+                             "evidence":  "True",
+                             "artifact":  "C:\\Users\\??\\AppData\\Local\\Programs\\Antigravity\\Antigravity.exe"
+                         },
+                         {
+                             "computer":  "LAPTOP-R77M5D6M",
+                             "app":  "WPS Office",
+                             "backend":  "COM automation",
+                             "task":  "instantiate KWPS.Application",
+                             "result":  "OK",
+                             "evidence":  "True",
+                             "artifact":  "KWPS.Application"
+                         },
+                         {
+                             "computer":  "LAPTOP-R77M5D6M",
+                             "app":  "WPS Office",
+                             "backend":  "COM automation",
+                             "task":  "instantiate KET.Application",
+                             "result":  "OK",
+                             "evidence":  "True",
+                             "artifact":  "KET.Application"
+                         },
+                         {
+                             "computer":  "LAPTOP-R77M5D6M",
+                             "app":  "WPS Office",
+                             "backend":  "COM automation",
+                             "task":  "instantiate KWPP.Application",
+                             "result":  "OK",
+                             "evidence":  "True",
+                             "artifact":  "KWPP.Application"
+                         }
+                     ]
+}
