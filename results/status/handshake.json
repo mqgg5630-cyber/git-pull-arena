@@ -1,9 +1,9 @@
 {
-    "round":  248,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "rerun Qingjian installed/switch verification and close Muse smoke completion criteria",
-    "arena_updated":  "2026-10-03 11:54:52",
-    "local_updated":  "2026-10-03 19:56:56"
+  "round": 248,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "accepted: Qingjian IME installed and configured as default; Muse smoke request completed",
+  "arena_updated": "2026-10-03 11:57:20",
+  "local_updated": "2026-10-03 19:56:56"
 }
