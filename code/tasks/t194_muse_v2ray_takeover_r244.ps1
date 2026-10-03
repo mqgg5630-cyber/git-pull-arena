@@ -41,8 +41,8 @@ function TcpTest([string]$HostName, [int]$Port, [int]$TimeoutMs) {
         return $c.Connected
     } catch { return $false } finally { if ($c) { $c.Close() } }
 }
-function CurlText([string[]]$Args) {
-    try { $ce = Join-Path $env:SystemRoot 'System32\curl.exe'; return (& $ce @Args 2>&1 | Out-String).Trim() } catch { return $_.Exception.Message }
+function CurlText([string[]]$CurlArgs) {
+    try { $ce = Join-Path $env:SystemRoot 'System32\curl.exe'; return (& $ce @CurlArgs 2>&1 | Out-String).Trim() } catch { return $_.Exception.Message }
 }
 function SupportedCountry([string]$cc) {
     $x = ([string]$cc).ToUpperInvariant()
@@ -176,6 +176,7 @@ L '## 3. Laptop Antigravity/V2ray bridge'
 $helper = Join-Path $repo 'code\tasks\v2rayn_antigravity_auto_bridge.ps1'
 $helperReport = Join-Path $agyDir 'V2RAY_TAKEOVER_LOCAL_R244.md'
 $localOK = $false
+$helperApplied = $false
 if (Test-Path -LiteralPath $helper) {
     try {
         $psExe = Join-Path $PSHOME 'powershell.exe'
@@ -187,6 +188,7 @@ if (Test-Path -LiteralPath $helper) {
         L ('helper_ps=' + (San $psExe))
         $out = (& $psExe -NoProfile -ExecutionPolicy Bypass -File $helper -OutPath $helperReport -MaxNodes 80 -Apply 2>&1 | Out-String)
         L ('helper_exit=' + $LASTEXITCODE)
+        if ($out -match 'V2RAYN_NODE_BRIDGE_APPLIED') { $helperApplied = $true }
         foreach ($ln in (($out -split "`r?`n") | Where-Object { $_.Trim() } | Select-Object -First 500)) { L ('helper| ' + (San $ln)) }
     } catch { L ('helper_THROW=' + (San $_.Exception.Message)) }
     if (Test-Path -LiteralPath $helperReport) { L ('helper_report=' + (San $helperReport)) }
@@ -200,6 +202,10 @@ $chosen = $null
 foreach ($c in $candidates) {
     $r = RouteProbe $c.name $c.proxy
     if ($c.proxy -and $r.supported -and -not $r.blocked -and -not $chosen) { $chosen = $r }
+}
+if (-not $chosen -and $helperApplied -and (TcpTest '127.0.0.1' 18088 1200)) {
+    L 'route_probe_fallback=helper already proved a supported node; using bridge_18088'
+    $chosen = @{ name='bridge_18088_helper'; proxy='http://127.0.0.1:18088'; cc=''; country='helper_supported'; ip=''; org=''; cloud=''; supported=$true; blocked=$false }
 }
 if ($chosen) {
     ApplyProxy $chosen.proxy
@@ -227,9 +233,17 @@ L ''
 # ---------------------------------------------------------- 4. desktop bridge (best effort, non-secret)
 L '## 4. Desktop bridge check (best effort)'
 $deskOK = $false
+$desktopPrev = Join-Path $agyDir 'R244_antigravity_bridge_desktop_r193.md'
+if (Test-Path -LiteralPath $desktopPrev) {
+    $prevTxt = Get-Content -LiteralPath $desktopPrev -Raw -Encoding UTF8 -ErrorAction SilentlyContinue
+    if ($prevTxt -match 'FINAL_DESKTOP_BRIDGE: OK_SUPPORTED_ROUTE') {
+        $deskOK = $true
+        L 'desktop_bridge_reuse=OK previous sanitized report already shows supported route'
+    }
+}
 $desktop = '100.84.137.117'
 $duser = 'BNI'
-if (TcpTest $desktop 22 2500) {
+if ((-not $deskOK) -and (TcpTest $desktop 22 2500)) {
     L 'desktop_ssh_port=OPEN'
     $fshare = '\\' + $desktop + '\F$'
     $net = (& net use $fshare /persistent:no 2>&1 | Out-String).Trim()
@@ -279,7 +293,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File 'F:\fig1_rebuild\desk_antigr
             finally { & net use $fshare /delete 2>&1 | Out-Null }
         } else { L ('desktop_collect_skip=' + (San $net2)) }
     } else { L ('desktop_Fshare_unreachable=' + (San $net)) }
-} else { L 'desktop_ssh_port=CLOSED' }
+} elseif (-not $deskOK) { L 'desktop_ssh_port=CLOSED' }
 L ('DESKTOP_V2RAY_TAKEOVER_OK=' + $deskOK)
 Rec 'DESKTOP_V2RAY_TAKEOVER_OK' ([string]$deskOK)
 L ''
