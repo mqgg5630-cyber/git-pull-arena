@@ -1,5 +1,5 @@
 {
-  "description": "v2.8.1 on arena/01a0fa39-git-pull-arena: the newest skill (source branch arena/01a0a98d-git-pull-arena, installer refuses to downgrade) plus the repo gate (code/check_all.sh, which now proves each python candidate python3 / python / py -3) and the real-machine check (code/local_check.ps1, sections 3a-3h). The deliverables LINK_PROOF_v2.8.1.docx / .pptx travel through git and are judged by the Windows watcher: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide count and a real Word/PowerPoint open. 'Local' means that machine's scheduled watcher - never a sandbox folder, never a hand-made stand-in skill. From round 22 on the repo also ships code/tasks/*.ps1 (mapped per round in code/tasks/manifest.json) which run on the machine inside local_check.ps1 section 4 as child processes: round 22 = read-only diagnostics for the Antigravity login, the Java install state and E: cleanup candidates.",
+  "description": "v2.8.1 on arena/01a0ff69-git-pull-arena: the newest skill (source branch arena/01a0a98d-git-pull-arena, installer refuses to downgrade) plus the repo gate (code/check_all.sh, which now proves each python candidate python3 / python / py -3) and the real-machine check (code/local_check.ps1, sections 3a-3h). The deliverables LINK_PROOF_v2.8.1.docx / .pptx travel through git and are judged by the Windows watcher: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide count and a real Word/PowerPoint open. 'Local' means that machine's scheduled watcher - never a sandbox folder, never a hand-made stand-in skill. From round 22 on the repo also ships code/tasks/*.ps1 (mapped per round in code/tasks/manifest.json) which run on the machine inside local_check.ps1 section 4 as child processes: round 22 = read-only diagnostics for the Antigravity login, the Java install state and E: cleanup candidates.",
   "require_files": [
     "01a0a821.md",
     "skills/git-sync/VERSION",
@@ -208,7 +208,9 @@
     "code/tasks/watcher.ps1",
     "code/tasks/prepcpe.ps1",
     "code/tasks/t129_cpe_test4.ps1",
-    "code/tasks/desk_cpe_test4.ps1"
+    "code/tasks/desk_cpe_test4.ps1",
+    "code/tasks/t189_muse_tailscale_probe_r238.ps1",
+    "results/status/muse_tailscale_probe_r238.md"
   ],
   "forbid_files": [
     "local/inbox",
@@ -219,7 +221,7 @@
   "require_contains": {
     "skills/git-sync/VERSION": "2.8.1",
     "01a0a821.md": "arena/01a0a98d-git-pull-arena",
-    "skills/git-sync/sync.config.json": "arena/01a0fa39-git-pull-arena",
+    "skills/git-sync/sync.config.json": "arena/01a0ff69-git-pull-arena",
     "skills/git-sync/templates/one-sentence.md": "agent-handoff.sh",
     "skills/git-sync/scripts/agent-install.sh": "refusing to downgrade",
     "code/check_all.sh": "py -3",
@@ -227,9 +229,10 @@
     "deliverable/OFFICE_HASHES.json": "arena/01a0a9f0-git-pull-arena",
     "watch.ps1": "function Invoke-AutoPull",
     "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus",
-    "code/tasks/manifest.json": "t3_edrive_scan.ps1",
+    "code/tasks/manifest.json": "t189_muse_tailscale_probe_r238.ps1",
     "code/tasks/t1_fix_antigravity.ps1": "http.proxy",
-    "code/tasks/t2_install_java.ps1": "E:\\java"
+    "code/tasks/t2_install_java.ps1": "E:\\java",
+    "results/status/muse_tailscale_probe_r238.md": "MUSE_TAILSCALE_PROBE_DONE"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
