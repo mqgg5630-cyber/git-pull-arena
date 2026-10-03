@@ -1,9 +1,9 @@
 {
-    "round":  178,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 178: t136 - on the laptop: final media-bridge base: stage wxmp_cli.py v2 (pure requests REST - wechatpy dropped), pip install requests with proxy-scrub + mirror fallback, social-auto-upload clone, media-bridge-tg scheduled task + start, self-checks (wxmp config-missing expected, xhs status, tg log alive). Judge: FINAL: PASS - media-bridge base installed; tg bridge alive",
-    "arena_updated":  "2026-10-03 09:15:50",
-    "local_updated":  "2026-10-03 17:16:46"
+  "round": 179,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 179: t137 - on the laptop: (re)register the media-bridge-tg scheduled task via Register-ScheduledTask (schtasks /TR quote bug fix), start it, verify tg_bridge.py process + bridge log shows 'tg_bridge start ... waiting for conf/tg_token.txt'. Judge: FINAL: PASS - media-bridge-tg registered and tg_bridge.py is alive",
+  "arena_updated": "2026-10-03 09:18:06",
+  "local_updated": null
 }
