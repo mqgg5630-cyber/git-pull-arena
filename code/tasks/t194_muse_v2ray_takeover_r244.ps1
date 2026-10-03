@@ -178,7 +178,14 @@ $helperReport = Join-Path $agyDir 'V2RAY_TAKEOVER_LOCAL_R244.md'
 $localOK = $false
 if (Test-Path -LiteralPath $helper) {
     try {
-        $out = (& powershell -NoProfile -ExecutionPolicy Bypass -File $helper -OutPath $helperReport -MaxNodes 80 -Apply 2>&1 | Out-String)
+        $psExe = Join-Path $PSHOME 'powershell.exe'
+        if (-not (Test-Path -LiteralPath $psExe)) {
+            $cmd = Get-Command powershell.exe -ErrorAction SilentlyContinue | Select-Object -First 1
+            if ($cmd -and $cmd.Source) { $psExe = [string]$cmd.Source }
+        }
+        if (-not (Test-Path -LiteralPath $psExe)) { throw 'powershell.exe not found for helper child process' }
+        L ('helper_ps=' + (San $psExe))
+        $out = (& $psExe -NoProfile -ExecutionPolicy Bypass -File $helper -OutPath $helperReport -MaxNodes 80 -Apply 2>&1 | Out-String)
         L ('helper_exit=' + $LASTEXITCODE)
         foreach ($ln in (($out -split "`r?`n") | Where-Object { $_.Trim() } | Select-Object -First 500)) { L ('helper| ' + (San $ln)) }
     } catch { L ('helper_THROW=' + (San $_.Exception.Message)) }
