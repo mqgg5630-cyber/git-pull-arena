@@ -119,13 +119,13 @@ if (-not $hasRemote) {
     Say "remote_create=$RemoteName"
     if ($AccountEmail) { Say "account_hint=$AccountEmail" }
     Say 'oauth_action=browser_will_open_choose_the_requested_google_account'
-    & $rclone config create $RemoteName drive scope $Scope
+    & $rclone --auto-confirm config create $RemoteName drive scope $Scope
     if ($LASTEXITCODE -ne 0) { Fail 'rclone config create failed' }
 }
 
 Say 'oauth_reconnect_start=True'
 Say 'If a browser opens, sign in locally and approve. Do not paste tokens into chat.'
-& $rclone config reconnect $remoteWithColon
+& $rclone --auto-confirm config reconnect $remoteWithColon
 if ($LASTEXITCODE -ne 0) {
     Say 'oauth_reconnect_warn=nonzero_exit; remote may already be connected or user cancelled'
 }
