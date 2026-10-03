@@ -1,9 +1,9 @@
 {
-  "round": 176,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 176: t134 - on the laptop: install the media-bridge green base at E:\\0github\\git-sync\\media-bridge: stage tg_bridge.py/wxmp_cli.py/xhs_publish.py/run_tg_bridge.ps1 from the repo, create conf/logs/cookies/content, python venv + wechatpy via tuna mirror, shallow-clone social-auto-upload, register + start the media-bridge-tg scheduled task, self-checks (bridge log alive, wxmp check expects config-missing, xhs status). Judge: FINAL: PASS - media-bridge base installed; tg bridge alive",
-  "arena_updated": "2026-10-03 09:07:41",
-  "local_updated": null
+    "round":  176,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 176: t134 - on the laptop: install the media-bridge green base at E:\\0github\\git-sync\\media-bridge: stage tg_bridge.py/wxmp_cli.py/xhs_publish.py/run_tg_bridge.ps1 from the repo, create conf/logs/cookies/content, python venv + wechatpy via tuna mirror, shallow-clone social-auto-upload, register + start the media-bridge-tg scheduled task, self-checks (bridge log alive, wxmp check expects config-missing, xhs status). Judge: FINAL: PASS - media-bridge base installed; tg bridge alive",
+    "arena_updated":  "2026-10-03 09:07:41",
+    "local_updated":  "2026-10-03 17:08:50"
 }
