@@ -35,3 +35,12 @@ The report lands at `results/cloud_interop/INTEROP_HEALTH.md` and can be pushed 
 - Confirm whether to use the whole Drive, a folder, or a Shared Drive/folder id.
 - Be at the Windows machine once to approve the Google OAuth browser prompt.
 - Confirm whether a small `Arena/interop/` probe file may be written.
+
+
+## Empirical updates from laptop round 253
+
+- Google Drive remote `gdrive_jzthjyz:` is configured by local rclone OAuth for the requested account and `drive` scope.
+- Drive probe write succeeded at `gdrive_jzthjyz:Arena/interop/probe-20261003-203544.txt`.
+- Laptop computer-use smoke succeeded: `windows-computer-use` UIA activated a local WinForms window, found the `Write Marker` button, invoked it, and wrote the marker file.
+- `Windows-MCP` and `pywinauto-mcp` are present in the E-drive computer-use lab inventory.
+- Added `skills/computer-use/` to document the Windows MCP/computer-use workflow and safety rules.

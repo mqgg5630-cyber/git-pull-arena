@@ -85,3 +85,24 @@ Google Drive 真正打通时，我只需要这些非密码信息：
 5. 是否允许写一个很小的 `Arena/interop/` 探针文件来证明读写。
 
 我不需要、也不会索要：Google 密码、短信验证码、2FA、OAuth token、cookie、Kaggle key、SSH 私钥。
+
+
+## 6. 本次实测结果（2026-10-03）
+
+`gdrive_jzthjyz:` 已在 Windows 笔记本通过 rclone OAuth 打通，账号提示为 `jzthjyz@gmail.com`，权限范围为 `drive`。
+
+实测报告：
+
+- `results/cloud_interop/GDRIVE_SETUP_R249.md`
+- `results/cloud_interop/INTEROP_HEALTH.md`
+
+通过标记：
+
+```text
+GDRIVE_RCLONE_READY=True
+GDRIVE_PROBE_WRITE_OK=True
+gdrive_about_ok=True
+gdrive_probe_write=True path=gdrive_jzthjyz:Arena/interop/probe-20261003-203544.txt
+```
+
+注意：rclone 报告提示 shared Google Drive client_id 会在 2026 年停用；短期可用，长期建议以后为本账号创建自有 Google OAuth client_id。

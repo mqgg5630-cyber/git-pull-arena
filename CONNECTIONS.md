@@ -254,3 +254,11 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - A/B test (r68): Zotero.Refresh via COM throws E_FAIL on the SUCCESS-CASE docx too -> E_FAIL is an automation-context artifact, NOT a document defect.
 - FINAL STATE: English.docx (same path) = 62 ZOTERO_ITEM fields (91 citation items, all uris bound + full itemData embedded) + ZOTERO_BIBL (refs 1-36) + AMA en-US prefs v9 + storeReferences; format unchanged; English_backup_pre-zotero.docx = original; English_Zotero_library.json = CSL export (for reference only - import already done via API).
 - Word plugin Zotero.dotm present in %APPDATA%\Microsoft\Word\STARTUP. Usage: open English.docx in Word -> Zotero tab -> Refresh (citations keep [n] look in AMA; switch styles via Document Preferences).
+
+
+### 2026-10-03 tested interop status
+
+- Google Drive remote `gdrive_jzthjyz:` verified on laptop via rclone OAuth and probe write.
+- Probe path: `gdrive_jzthjyz:Arena/interop/probe-20261003-203544.txt`.
+- Computer-use laptop smoke verified: `windows-computer-use` UIA find/invoke marker test passed; `Windows-MCP` and `pywinauto-mcp` present under the E-drive lab.
+- Skill docs: `skills/cloud-interop/` and `skills/computer-use/`.

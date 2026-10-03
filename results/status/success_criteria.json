@@ -1,5 +1,5 @@
 {
-  "description": "v2.8.1 on arena/01a0ff69-git-pull-arena: the newest skill (source branch arena/01a0a98d-git-pull-arena, installer refuses to downgrade) plus the repo gate (code/check_all.sh, which now proves each python candidate python3 / python / py -3) and the real-machine check (code/local_check.ps1, sections 3a-3h). The deliverables LINK_PROOF_v2.8.1.docx / .pptx travel through git and are judged by the Windows watcher: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide count and a real Word/PowerPoint open. 'Local' means that machine's scheduled watcher - never a sandbox folder, never a hand-made stand-in skill. From round 22 on the repo also ships code/tasks/*.ps1 (mapped per round in code/tasks/manifest.json) which run on the machine inside local_check.ps1 section 4 as child processes: round 22 = read-only diagnostics for the Antigravity login, the Java install state and E: cleanup candidates. Round 247 requires Qingjian IME installed/configured on the Windows laptop and the Muse smoke trigger completed. Round 249 requires Google Drive rclone remote gdrive_jzthjyz with probe write and a fresh laptop computer-use/Windows MCP UIA smoke.",
+  "description": "v2.8.1 on arena/01a0ff69-git-pull-arena: the newest skill (source branch arena/01a0a98d-git-pull-arena, installer refuses to downgrade) plus the repo gate (code/check_all.sh, which now proves each python candidate python3 / python / py -3) and the real-machine check (code/local_check.ps1, sections 3a-3h). The deliverables LINK_PROOF_v2.8.1.docx / .pptx travel through git and are judged by the Windows watcher: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide count and a real Word/PowerPoint open. 'Local' means that machine's scheduled watcher - never a sandbox folder, never a hand-made stand-in skill. From round 22 on the repo also ships code/tasks/*.ps1 (mapped per round in code/tasks/manifest.json) which run on the machine inside local_check.ps1 section 4 as child processes: round 22 = read-only diagnostics for the Antigravity login, the Java install state and E: cleanup candidates. Round 247 requires Qingjian IME installed/configured on the Windows laptop and the Muse smoke trigger completed. Round 249 requires Google Drive rclone remote gdrive_jzthjyz with probe write and a fresh laptop computer-use/Windows MCP UIA smoke. Round 254 closes the interop update with computer-use skill docs after empirical laptop success.",
   "require_files": [
     "01a0a821.md",
     "skills/git-sync/VERSION",
@@ -254,7 +254,9 @@
     "results/cloud_interop/GDRIVE_SETUP_R249.md",
     "results/cloud_interop/INTEROP_HEALTH.md",
     "results/computer_use/COMPUTER_USE_LAPTOP_R249.md",
-    "results/computer_use/COMPUTER_USE_LAPTOP_R249.json"
+    "results/computer_use/COMPUTER_USE_LAPTOP_R249.json",
+    "skills/computer-use/SKILL.md",
+    "skills/computer-use/README_CN.md"
   ],
   "forbid_files": [
     "local/inbox",
@@ -298,7 +300,11 @@
     "skills/cloud-interop/SKILL.md": "Google Drive policy",
     "results/cloud_interop/GDRIVE_SETUP_R249.md": "GDRIVE_SETUP_OK=True",
     "results/cloud_interop/INTEROP_HEALTH.md": "gdrive_probe_write=True",
-    "results/computer_use/COMPUTER_USE_LAPTOP_R249.md": "COMPUTER_USE_LAPTOP_OK=True"
+    "results/computer_use/COMPUTER_USE_LAPTOP_R249.md": "COMPUTER_USE_LAPTOP_OK=True",
+    "skills/computer-use/SKILL.md": "WCU_UIA_INVOKE_OK=True",
+    "skills/computer-use/README_CN.md": "Windows-MCP",
+    "results/skills/SKILLS_INTEROP_SUMMARY.md": "Empirical updates from laptop round 253",
+    "CONNECTIONS.md": "gdrive_jzthjyz:Arena/interop/probe-20261003-203544.txt"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
@@ -308,7 +314,7 @@
     "results/muse/INTERCONNECT_R243.md": "laptop -> desktop .*:22 = OPEN[\\s\\S]*laptop -> hpc .*:22 = OPEN",
     "results/muse/MUSE_V2RAY_TAKEOVER_R244.md": "MUSE_PACKAGE_VALID=True[\\s\\S]*LOCAL_V2RAY_TAKEOVER_OK=True[\\s\\S]*MUSE_V2RAY_TAKEOVER_DONE",
     "results/input/QINGJIAN_INSTALL_R247.md": "QINGJIAN_SWITCH_CONFIGURED=True",
-    "results/computer_use/COMPUTER_USE_LAPTOP_R249.md": "WCU_UIA_INVOKE_OK=True[\\s\\S]*Windows-MCP"
+    "results/computer_use/COMPUTER_USE_LAPTOP_R249.md": "Windows-MCP[\\s\\S]*WCU_UIA_INVOKE_OK=True"
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,
