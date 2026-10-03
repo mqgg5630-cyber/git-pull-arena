@@ -1,0 +1,25 @@
+{
+  "note": "no-overwrite named copies: current time-only plus previous successful 01a0ff64 r244 outputs",
+  "files": [
+    {
+      "path": "deliverable/AI_English_timeonly_20261003_1545.pdf",
+      "bytes": 1527133,
+      "sha256": "31bfb47299dd58210b79d3207d26fb48251d9ee1523828a42419491dc6f48c31"
+    },
+    {
+      "path": "deliverable/plag_English_timeonly_20261003_1545.pdf",
+      "bytes": 1625379,
+      "sha256": "b2eb8c9a9b7e263c364c19e1c7863f47ce92971fc1c1243370c947e1b2fe603e"
+    },
+    {
+      "path": "deliverable/AI_English_previous_01a0ff64_r244_20261003_1045.pdf",
+      "bytes": 1901872,
+      "sha256": "7476c87c1569e311aad48864b9d8daebe7ab04ce725f1349df1cb5657bd45494"
+    },
+    {
+      "path": "deliverable/plag_English_previous_01a0ff64_r244_20261003_1045.pdf",
+      "bytes": 2316099,
+      "sha256": "760db38f05fa8f03b7f3b57a03199ab22cd7ab3f40d39dfa2d1edd638ad39197"
+    }
+  ]
+}
