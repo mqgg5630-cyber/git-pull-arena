@@ -1,9 +1,9 @@
 {
-  "round": 240,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 240: Word-export Downloads AI_English.docx -> AI_English_from_docx.pdf, deliver to Downloads + repo",
-  "arena_updated": "2026-10-03 02:15:37",
-  "local_updated": null
+    "round":  240,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 240: Word-export Downloads AI_English.docx -\u003e AI_English_from_docx.pdf, deliver to Downloads + repo",
+    "arena_updated":  "2026-10-03 02:15:37",
+    "local_updated":  "2026-10-03 10:17:13"
 }
