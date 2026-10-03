@@ -1,69 +1,121 @@
 {
-  "generated_utc": "2026-09-16T11:31:33Z",
-  "generator": "code/make_link_proof.py",
-  "generator_note": "python-docx + python-pptx (allowed in the sandbox since v2.8.0); the manifest is the contract the REAL machine verifies in code/local_check.ps1 section 3, and the same 3a-3g rules are mirrored in Python here so a package that cannot pass is never pushed",
-  "branch": "arena/01a0a9f0-git-pull-arena",
-  "skill_version": "2.8.1",
-  "how_local_verifies": "code/local_check.ps1 compares sha256/bytes, opens the package, requires every required_parts entry, parses every .xml/.rels part, resolves every relationship target and content type, searches must_contain across all xml parts and counts slides against min_slides; the Office COM open test (3h) runs on the real machine",
-  "files": [
-    {
-      "path": "deliverable/LINK_PROOF_v2.8.1.docx",
-      "kind": "docx",
-      "bytes": 39743,
-      "sha256": "8637d9f0442e80a0a1480612de053335c1ade4b7c7434c286d48fac248bb7163",
-      "required_parts": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "word/document.xml",
-        "word/styles.xml",
-        "word/_rels/document.xml.rels",
-        "docProps/core.xml"
-      ],
-      "main_part": "word/document.xml",
-      "must_contain": [
-        "2.8.1",
-        "git-sync",
-        "local_check.ps1",
-        "round 20",
-        "LAPTOP-R77M5D6M",
-        "arena/01a0a9f0-git-pull-arena"
-      ],
-      "min_slides": null,
-      "sandbox_selftest": {
-        "parts": 17,
-        "slides": 0
-      }
-    },
-    {
-      "path": "deliverable/LINK_PROOF_v2.8.1.pptx",
-      "kind": "pptx",
-      "bytes": 35886,
-      "sha256": "4aee7b2f88aa9e2e04de044d1a75dc209c2f67bd0b1c284af7ca73eef36dd25d",
-      "required_parts": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "ppt/presentation.xml",
-        "ppt/_rels/presentation.xml.rels",
-        "ppt/slides/slide1.xml",
-        "ppt/slideMasters/slideMaster1.xml",
-        "ppt/slideLayouts/slideLayout1.xml",
-        "ppt/theme/theme1.xml",
-        "docProps/core.xml"
-      ],
-      "main_part": "ppt/presentation.xml",
-      "must_contain": [
-        "2.8.1",
-        "git-sync",
-        "local_check.ps1",
-        "round 20",
-        "LAPTOP-R77M5D6M",
-        "arena/01a0a9f0-git-pull-arena"
-      ],
-      "min_slides": 8,
-      "sandbox_selftest": {
-        "parts": 52,
-        "slides": 8
-      }
-    }
-  ]
+ "generated_utc": "2026-10-03T02:01:09Z",
+ "generator": "code/make_link_proof.py",
+ "generator_note": "python-docx + python-pptx (allowed in the sandbox since v2.8.0); the manifest is the contract the REAL machine verifies in code/local_check.ps1 section 3, and the same 3a-3g rules are mirrored in Python here so a package that cannot pass is never pushed",
+ "branch": "arena/01a0a9f0-git-pull-arena",
+ "skill_version": "2.8.1",
+ "how_local_verifies": "code/local_check.ps1 compares sha256/bytes, opens the package, requires every required_parts entry, parses every .xml/.rels part, resolves every relationship target and content type, searches must_contain across all xml parts and counts slides against min_slides; the Office COM open test (3h) runs on the real machine",
+ "files": [
+  {
+   "path": "deliverable/LINK_PROOF_v2.8.1.docx",
+   "kind": "docx",
+   "bytes": 39743,
+   "sha256": "8637d9f0442e80a0a1480612de053335c1ade4b7c7434c286d48fac248bb7163",
+   "required_parts": [
+    "[Content_Types].xml",
+    "_rels/.rels",
+    "word/document.xml",
+    "word/styles.xml",
+    "word/_rels/document.xml.rels",
+    "docProps/core.xml"
+   ],
+   "main_part": "word/document.xml",
+   "must_contain": [
+    "2.8.1",
+    "git-sync",
+    "local_check.ps1",
+    "round 20",
+    "LAPTOP-R77M5D6M",
+    "arena/01a0a9f0-git-pull-arena"
+   ],
+   "min_slides": null,
+   "sandbox_selftest": {
+    "parts": 17,
+    "slides": 0
+   }
+  },
+  {
+   "path": "deliverable/LINK_PROOF_v2.8.1.pptx",
+   "kind": "pptx",
+   "bytes": 35886,
+   "sha256": "4aee7b2f88aa9e2e04de044d1a75dc209c2f67bd0b1c284af7ca73eef36dd25d",
+   "required_parts": [
+    "[Content_Types].xml",
+    "_rels/.rels",
+    "ppt/presentation.xml",
+    "ppt/_rels/presentation.xml.rels",
+    "ppt/slides/slide1.xml",
+    "ppt/slideMasters/slideMaster1.xml",
+    "ppt/slideLayouts/slideLayout1.xml",
+    "ppt/theme/theme1.xml",
+    "docProps/core.xml"
+   ],
+   "main_part": "ppt/presentation.xml",
+   "must_contain": [
+    "2.8.1",
+    "git-sync",
+    "local_check.ps1",
+    "round 20",
+    "LAPTOP-R77M5D6M",
+    "arena/01a0a9f0-git-pull-arena"
+   ],
+   "min_slides": 8,
+   "sandbox_selftest": {
+    "parts": 52,
+    "slides": 8
+   }
+  },
+  {
+   "path": "deliverable/plag_English.docx",
+   "kind": "docx",
+   "bytes": 2388128,
+   "sha256": "646d38db92107cce859805af24441915e02447c9e177a97733530fb5e4d14154",
+   "required_parts": [
+    "[Content_Types].xml",
+    "_rels/.rels",
+    "word/document.xml",
+    "word/styles.xml",
+    "word/_rels/document.xml.rels",
+    "docProps/core.xml"
+   ],
+   "main_part": "word/document.xml",
+   "must_contain": [
+    "Submission ID",
+    "Page 2 of",
+    "Integrity"
+   ],
+   "min_slides": null,
+   "sandbox_selftest": {
+    "parts": 39,
+    "slides": 0
+   },
+   "note": "converted from sources/plag_English.pdf with pdf2docx (layout-preserving), round 239"
+  },
+  {
+   "path": "deliverable/AI_English.docx",
+   "kind": "docx",
+   "bytes": 2654987,
+   "sha256": "9e09e0b88c7bc2e1852de49defb4424fef4ec6ad761ab4f65c79963a9705aa6d",
+   "required_parts": [
+    "[Content_Types].xml",
+    "_rels/.rels",
+    "word/document.xml",
+    "word/styles.xml",
+    "word/_rels/document.xml.rels",
+    "docProps/core.xml"
+   ],
+   "main_part": "word/document.xml",
+   "must_contain": [
+    "Submission ID",
+    "Turnitin",
+    "Page 2 of"
+   ],
+   "min_slides": null,
+   "sandbox_selftest": {
+    "parts": 27,
+    "slides": 0
+   },
+   "note": "converted from sources/AI_English.pdf with pdf2docx (layout-preserving), round 239"
+  }
+ ]
 }
