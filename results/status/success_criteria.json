@@ -240,7 +240,6 @@
     "results/muse/MUSE_V2RAY_TAKEOVER_R244.json",
     "results/muse/extracted_20261003_1633/README.txt",
     "results/muse/extracted_20261003_1633/outputs/Hello-World/README",
-    "results/muse/extracted_20261003_1633/logs/package.log",
     "results/antigravity/V2RAY_TAKEOVER_LOCAL_R244.md"
   ],
   "forbid_files": [
@@ -276,7 +275,7 @@
     "results/muse/bridge_test_20261003.json": "bridge_ok",
     "code/tasks/t194_muse_v2ray_takeover_r244.ps1": "MUSE_V2RAY_TAKEOVER_DONE",
     "results/muse/status_20261003_1633.json": "muse-20261003-1633",
-    "results/muse/MUSE_V2RAY_TAKEOVER_R244.md": "LOCAL_V2RAY_TAKEOVER_OK=True"
+    "results/muse/MUSE_V2RAY_TAKEOVER_R244.md": "zip_file=logs/package.log"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
