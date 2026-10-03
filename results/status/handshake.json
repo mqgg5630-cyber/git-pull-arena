@@ -1,9 +1,9 @@
 {
-    "round":  254,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "final verify Drive interop, computer-use smoke, and updated skill docs",
-    "arena_updated":  "2026-10-03 12:37:57",
-    "local_updated":  "2026-10-03 20:40:04"
+  "round": 254,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "accepted: Google Drive gdrive_jzthjyz connected with probe write; computer-use/Windows MCP laptop smoke passed; skills updated",
+  "arena_updated": "2026-10-03 12:40:45",
+  "local_updated": "2026-10-03 20:40:04"
 }
