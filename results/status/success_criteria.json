@@ -232,7 +232,16 @@
     "code/tasks/t193_muse_interconnect_probe_r243.ps1",
     "results/muse/INTERCONNECT_R243.md",
     "results/muse/INTERCONNECT_R243.json",
-    "results/muse/bridge_test_20261003.json"
+    "results/muse/bridge_test_20261003.json",
+    "code/tasks/t194_muse_v2ray_takeover_r244.ps1",
+    "sources/muse/muse_out_20261003_1633.zip",
+    "results/muse/status_20261003_1633.json",
+    "results/muse/MUSE_V2RAY_TAKEOVER_R244.md",
+    "results/muse/MUSE_V2RAY_TAKEOVER_R244.json",
+    "results/muse/extracted_20261003_1633/README.txt",
+    "results/muse/extracted_20261003_1633/outputs/Hello-World/README",
+    "results/muse/extracted_20261003_1633/logs/package.log",
+    "results/antigravity/V2RAY_TAKEOVER_LOCAL_R244.md"
   ],
   "forbid_files": [
     "local/inbox",
@@ -251,7 +260,7 @@
     "deliverable/OFFICE_HASHES.json": "arena/01a0a9f0-git-pull-arena",
     "watch.ps1": "function Invoke-AutoPull",
     "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus",
-    "code/tasks/manifest.json": "t193_muse_interconnect_probe_r243.ps1",
+    "code/tasks/manifest.json": "t194_muse_v2ray_takeover_r244.ps1",
     "code/tasks/t1_fix_antigravity.ps1": "http.proxy",
     "code/tasks/t2_install_java.ps1": "E:\\java",
     "results/status/muse_tailscale_probe_r238.md": "MUSE_TAILSCALE_PROBE_DONE",
@@ -264,14 +273,18 @@
     "results/muse/INTERCONNECT_R242.md": "Report paths:",
     "code/tasks/t193_muse_interconnect_probe_r243.ps1": "INTERCONNECT_PROBE_DONE",
     "results/muse/INTERCONNECT_R243.md": "MUSE_PUSH_SEEN: yes",
-    "results/muse/bridge_test_20261003.json": "bridge_ok"
+    "results/muse/bridge_test_20261003.json": "bridge_ok",
+    "code/tasks/t194_muse_v2ray_takeover_r244.ps1": "MUSE_V2RAY_TAKEOVER_DONE",
+    "results/muse/status_20261003_1633.json": "muse-20261003-1633",
+    "results/muse/MUSE_V2RAY_TAKEOVER_R244.md": "LOCAL_V2RAY_TAKEOVER_OK=True"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
     "code/local_check.ps1": "Get-FileHash",
     "deliverable/OFFICE_HASHES.json": "[0-9a-f]{64}",
     "results/muse/INTERCONNECT_R242.md": "INTERCONNECT_PROBE_DONE",
-    "results/muse/INTERCONNECT_R243.md": "laptop -> desktop .*:22 = OPEN[\\s\\S]*laptop -> hpc .*:22 = OPEN"
+    "results/muse/INTERCONNECT_R243.md": "laptop -> desktop .*:22 = OPEN[\\s\\S]*laptop -> hpc .*:22 = OPEN",
+    "results/muse/MUSE_V2RAY_TAKEOVER_R244.md": "MUSE_PACKAGE_VALID=True[\\s\\S]*LOCAL_V2RAY_TAKEOVER_OK=True[\\s\\S]*MUSE_V2RAY_TAKEOVER_DONE"
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,
@@ -288,7 +301,8 @@
     "deliverable/AI_English_timeonly_20261003_1545.pdf": 1000000,
     "deliverable/plag_English_timeonly_20261003_1545.pdf": 1000000,
     "deliverable/AI_English_previous_01a0ff64_r244_20261003_1045.pdf": 1000000,
-    "deliverable/plag_English_previous_01a0ff64_r244_20261003_1045.pdf": 1000000
+    "deliverable/plag_English_previous_01a0ff64_r244_20261003_1045.pdf": 1000000,
+    "sources/muse/muse_out_20261003_1633.zip": 1000
   },
   "max_bytes": {
     "deliverable/LINK_PROOF_v2.8.1.docx": 3000000,
