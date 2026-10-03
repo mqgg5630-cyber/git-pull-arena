@@ -1,6 +1,6 @@
 # v2rayN node auto bridge
-time=2026-10-03 16:51:42 apply=True
-xray=F:\v2rayN-new\v2rayN-windows-64\bin\xray\xray.exe
+time=2026-10-03 16:50:50 apply=True
+xray=C:\ProgramData\agy-bridge\xray\xray.exe
 private_subs_file=present
 node_from=private_file proto=vless name=SG-01
 node_from=private_file proto=vless name=SG-02
@@ -33,12 +33,11 @@ node_from=v2ray_subs.txt proto=vless name=JP-03
 node_from=v2ray_subs.txt proto=vless name=JP-04
 node_from=v2ray_subs.txt proto=vless name=JP-05
 nodes_found=15
-test 1/15 proto=vless name=SG-01 country=SG ip=104.28.166.117 org=Cloudflare WARP cloud=HTTP/1.1 404 Not Found supported=True
+test 1/15 proto=vless name=SG-01 country=SG ip=104.28.156.103 org=Cloudflare WARP cloud=HTTP/1.1 404 Not Found supported=True
 chosen_node proto=vless name=SG-01
 bridge_task_OK=antigravity-xray-bridge
 env_User=http://127.0.0.1:18088
-env_Machine=http://127.0.0.1:18088
-settings_OK=C:\Users\BNI\AppData\Roaming\Antigravity\User\settings.json
-settings_OK=C:\Users\BNI\AppData\Roaming\Antigravity IDE\User\settings.json
-agy_relaunch_task=agyrelaunch_auto_bridge
+env_WARN=???3???????SetEnvironmentVariable??????:????????????????
+settings_OK=C:\Users\文少\AppData\Roaming\Antigravity\User\settings.json
+settings_OK=C:\Users\文少\AppData\Roaming\Antigravity IDE\User\settings.json
 FINAL: V2RAYN_NODE_BRIDGE_APPLIED selected node is serving Antigravity at http://127.0.0.1:18088
