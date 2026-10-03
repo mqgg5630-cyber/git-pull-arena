@@ -1,9 +1,9 @@
 {
-    "round":  238,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 238: probe Muse in Tailscale and report SMB/SSH file-access path from laptop",
-    "arena_updated":  "2026-10-03 07:35:25",
-    "local_updated":  "2026-10-03 15:37:15"
+  "round": 238,
+  "arena_state": "accepted",
+  "local_state": "failed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "accepted: Muse is Tailscale outbound-only; do not pursue laptop inbound file path",
+  "arena_updated": "2026-10-03 07:40:09",
+  "local_updated": "2026-10-03 15:37:15"
 }
