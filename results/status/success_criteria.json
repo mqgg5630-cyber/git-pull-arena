@@ -220,7 +220,8 @@
     "code/media-bridge/run_tg_bridge.ps1",
     "code/media-bridge/SETUP.md",
     "code/tasks/t135_media_bridge2.ps1",
-    "code/tasks/t136_media_bridge3.ps1"
+    "code/tasks/t136_media_bridge3.ps1",
+    "code/tasks/t137_tg_task.ps1"
   ],
   "forbid_files": [
     "local/inbox",
