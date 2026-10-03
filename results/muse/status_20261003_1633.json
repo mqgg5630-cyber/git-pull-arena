@@ -1,0 +1,7 @@
+{
+  "task_id": "muse-20261003-1633",
+  "state": "uploaded",
+  "artifact": "sources/muse/muse_out_20261003_1633.zip",
+  "created_by": "muse",
+  "notes": "Formal result package via GitHub relay (flow B test): Hello-World test project, zip layout README.txt + outputs/ + logs/ per HANDOFF.md"
+}
