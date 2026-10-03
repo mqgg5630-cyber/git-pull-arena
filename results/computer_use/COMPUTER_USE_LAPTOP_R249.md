@@ -1,5 +1,5 @@
 ﻿# Laptop computer-use / Windows MCP smoke r249
-time=2026-10-03 20:21:51 +08:00
+time=2026-10-03 20:28:50 +08:00
 host=LAPTOP-R77M5D6M
 lab_root=E:\0mcp-agv-arena-optimized
 project|windows-computer-use|status=present|path=E:\0mcp-agv-arena-optimized\github\windows-computer-use
@@ -13,7 +13,7 @@ wps_com|KWPP.Application=True
 open_window_count=10
 window|ApplicationFrameHost|title=??
 window|Code|title=??.md - 0github - Visual Studio Code
-window|firefox|title=TikTok - Make Your Day ? Mozilla Firefox
+window|firefox|title=YouTube ? Mozilla Firefox
 window|msedge|title=Arena | Benchmark & Compare the Best AI Models ??? 19 ??? - ?? - Microsoft? Edge
 window|Notepad|title=[REDACTED].txt - Notepad
 window|SystemSettings|title=??

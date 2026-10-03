@@ -1,9 +1,9 @@
 {
-  "round": 251,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "retry Google Drive gdrive_jzthjyz OAuth/probe with empty-config fix and verify laptop computer-use smoke",
-  "arena_updated": "2026-10-03 12:22:58",
-  "local_updated": null
+    "round":  251,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "retry Google Drive gdrive_jzthjyz OAuth/probe with empty-config fix and verify laptop computer-use smoke",
+    "arena_updated":  "2026-10-03 12:22:58",
+    "local_updated":  "2026-10-03 20:29:08"
 }
