@@ -1,9 +1,9 @@
 {
-    "round":  240,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 240: rerun delivery verification for time-only regenerated PDFs",
-    "arena_updated":  "2026-10-03 07:49:15",
-    "local_updated":  "2026-10-03 15:51:10"
+  "round": 240,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "accepted: time-only regenerated PDFs delivered to Downloads",
+  "arena_updated": "2026-10-03 07:51:37",
+  "local_updated": "2026-10-03 15:51:10"
 }
