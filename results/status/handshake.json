@@ -1,9 +1,9 @@
 {
-  "round": 244,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 244: deliver regenerated AI + plag PDFs (new time, 15% similarity) to Downloads",
-  "arena_updated": "2026-10-03 02:41:12",
-  "local_updated": null
+    "round":  244,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 244: deliver regenerated AI + plag PDFs (new time, 15% similarity) to Downloads",
+    "arena_updated":  "2026-10-03 02:41:12",
+    "local_updated":  "2026-10-03 10:43:41"
 }
