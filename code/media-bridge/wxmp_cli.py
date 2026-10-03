@@ -1,22 +1,25 @@
 #!/usr/bin/env python3
-# wxmp_cli.py - WeChat Official Account (MP) mini-CLI on wechatpy (green
-# channel: official API). Calls api.weixin.qq.com DIRECTLY (domestic, no
-# proxy needed); make sure the laptop's public IP is in the MP admin
-# IP whitelist or token fetch returns 40164.
+# wxmp_cli.py - WeChat Official Account (MP) mini-CLI (green channel:
+# official API). Pure requests, no wechatpy: the published wechatpy wheel
+# (1.8.18) does not expose draft/freepublish components, so this talks to
+# the REST endpoints directly:
+#   token    GET  /cgi-bin/token
+#   material POST /cgi-bin/material/add_material   (multipart, cover image)
+#   draft    POST /cgi-bin/draft/add               (JSON)
+#   publish  POST /cgi-bin/freepublish/submit      (JSON)
+# Calls api.weixin.qq.com DIRECTLY (domestic, fast, no proxy). Make sure
+# this machine's public IP is in the MP admin IP whitelist, or token
+# fetch returns errcode 40164.
 # Config: conf/wxmp.txt with two lines:  appid=...  secret=...
-# Commands:
-#   check              - read config, fetch access_token, report reachability
-#   upload-thumb <img> - upload a permanent image as article cover (media id
-#                        saved to conf/wxmp_thumb.txt)
-#   draft <title> <md> - markdown file -> inline-styled HTML -> new draft,
-#                        prints the draft media_id
-#   publish <id>       - submit a draft for publish (needs certified account)
 # ASCII-only.
 
 import os
 import re
 import sys
 
+import requests
+
+API = 'https://api.weixin.qq.com'
 BASE = os.path.dirname(os.path.abspath(__file__))
 CONF = os.path.join(BASE, 'conf')
 
@@ -37,15 +40,26 @@ def load_cfg():
     return cfg
 
 
-def client():
-    from wechatpy import WeChatClient
+def cfg_or_die():
     cfg = load_cfg() or {}
     if not cfg.get('appid') or not cfg.get('secret'):
         print('config missing or incomplete:')
-        print('  create conf/wxmp.txt with two lines: appid=... and secret=...')
+        print('  fill conf/wxmp.txt with two lines: appid=... and secret=...')
         print('  (MP admin console -> settings & development -> developer info)')
-        return None
-    return WeChatClient(cfg['appid'], cfg['secret'])
+        sys.exit(2)
+    return cfg
+
+
+def get_token(cfg):
+    r = requests.get(API + '/cgi-bin/token', params={
+        'grant_type': 'client_credential',
+        'appid': cfg['appid'],
+        'secret': cfg['secret'],
+    }, timeout=20)
+    j = r.json()
+    if 'access_token' not in j:
+        raise RuntimeError('token response: %s' % j)
+    return j['access_token']
 
 
 def esc(s):
@@ -84,59 +98,68 @@ def main():
     args = sys.argv[1:]
     cmd = args[0] if args else 'check'
     if cmd == 'check':
-        c = client()
-        if not c:
-            return 2
+        cfg = cfg_or_die()
         try:
-            c.fetch_access_token()
-            print('access_token OK - appid reachable from this machine')
+            t = get_token(cfg)
+            print('access_token OK (len %d) - appid reachable' % len(t))
             print('note: draft/publish need a CERTIFIED subscription/'
                   'service account; a test (sandbox) account only proves'
                   ' the token path.')
             return 0
         except Exception as e:
-            print('token fetch FAILED: %r' % (e,))
-            print('if error code 40164: add this machine\'s public IP to '
-                  'the MP admin IP whitelist and retry')
+            print('token fetch FAILED: %s' % e)
+            print('errcode 40164 => add this machine\'s public IP to the '
+                  'MP admin IP whitelist and retry')
             return 1
     if cmd == 'upload-thumb':
-        c = client()
-        if not c:
-            return 2
+        cfg = cfg_or_die()
+        t = get_token(cfg)
         with open(args[1], 'rb') as f:
-            r = c.material.add('image', f)
-        mid = r.get('media_id')
+            r = requests.post(API + '/cgi-bin/material/add_material',
+                              params={'access_token': t, 'type': 'image'},
+                              files={'media': f}, timeout=60)
+        j = r.json()
+        if 'media_id' not in j:
+            print('upload failed: %s' % j)
+            return 1
         with open(os.path.join(CONF, 'wxmp_thumb.txt'), 'w') as f:
-            f.write(mid or '')
-        print('cover uploaded, media_id =', mid)
+            f.write(j['media_id'])
+        print('cover uploaded, media_id =', j['media_id'])
         return 0
     if cmd == 'draft':
-        c = client()
-        if not c:
-            return 2
+        cfg = cfg_or_die()
         title, mdfile = args[1], args[2]
         mid = thumb_id()
         if not mid:
             print('no cover set - first run: '
                   'wxmp_cli.py upload-thumb <cover.jpg>')
             return 2
+        t = get_token(cfg)
         html = md_to_html(open(mdfile, encoding='utf-8').read())
-        r = c.draft.add([{
-            'title': title,
-            'content': html,
-            'thumb_media_id': mid,
-            'need_open_comment': 0,
-            'only_fans_can_comment': 0,
-        }])
-        print('draft created, media_id =', r.get('media_id'))
+        r = requests.post(API + '/cgi-bin/draft/add',
+                          params={'access_token': t},
+                          json={'articles': [{
+                              'title': title,
+                              'content': html,
+                              'thumb_media_id': mid,
+                              'need_open_comment': 0,
+                              'only_fans_can_comment': 0,
+                          }]}, timeout=30)
+        j = r.json()
+        if 'media_id' not in j:
+            print('draft failed: %s' % j)
+            return 1
+        print('draft created, media_id =', j['media_id'])
         return 0
     if cmd == 'publish':
-        c = client()
-        if not c:
-            return 2
-        r = c.freepublish.submit(args[1])
-        print('publish submitted:', r)
-        return 0
+        cfg = cfg_or_die()
+        t = get_token(cfg)
+        r = requests.post(API + '/cgi-bin/freepublish/submit',
+                          params={'access_token': t},
+                          json={'media_id': args[1]}, timeout=30)
+        j = r.json()
+        print('publish response:', j)
+        return 0 if j.get('errcode') in (0, None) else 1
     print('usage: check | upload-thumb <img> | draft <title> <md> | '
           'publish <media_id>')
     return 2
