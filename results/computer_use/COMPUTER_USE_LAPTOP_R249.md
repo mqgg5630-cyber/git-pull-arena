@@ -1,5 +1,5 @@
 ﻿# Laptop computer-use / Windows MCP smoke r249
-time=2026-10-03 20:32:34 +08:00
+time=2026-10-03 20:36:29 +08:00
 host=LAPTOP-R77M5D6M
 lab_root=E:\0mcp-agv-arena-optimized
 project|windows-computer-use|status=present|path=E:\0mcp-agv-arena-optimized\github\windows-computer-use
