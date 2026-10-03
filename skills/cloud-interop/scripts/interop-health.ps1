@@ -20,8 +20,8 @@ function Mask($s) {
     if ($s.Length -le 4) { return '***' }
     return ($s.Substring(0,2) + '***' + $s.Substring($s.Length-2))
 }
-function RunText($exe, $args) {
-    try { return (& $exe @args 2>&1 | Out-String).Trim() } catch { return $_.Exception.Message }
+function RunText($exe, $ArgList) {
+    try { return (& $exe @ArgList 2>&1 | Out-String).Trim() } catch { return $_.Exception.Message }
 }
 
 New-Item -ItemType Directory -Force -Path (Split-Path -Parent $OutPath) | Out-Null
