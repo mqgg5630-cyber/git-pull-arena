@@ -225,7 +225,10 @@
     "deliverable/plag_English_previous_01a0ff64_r244_20261003_1045.pdf",
     "results/muse/HANDOFF.md",
     "sources/muse/.gitkeep",
-    "deliverable/muse/.gitkeep"
+    "deliverable/muse/.gitkeep",
+    "code/tasks/t192_muse_interconnect_probe_r242.ps1",
+    "results/muse/INTERCONNECT_R242.md",
+    "results/muse/INTERCONNECT_R242.json"
   ],
   "forbid_files": [
     "local/inbox",
@@ -244,7 +247,7 @@
     "deliverable/OFFICE_HASHES.json": "arena/01a0a9f0-git-pull-arena",
     "watch.ps1": "function Invoke-AutoPull",
     "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus",
-    "code/tasks/manifest.json": "t191_deliver_no_overwrite_pdfs_r241.ps1",
+    "code/tasks/manifest.json": "t192_muse_interconnect_probe_r242.ps1",
     "code/tasks/t1_fix_antigravity.ps1": "http.proxy",
     "code/tasks/t2_install_java.ps1": "E:\\java",
     "results/status/muse_tailscale_probe_r238.md": "MUSE_TAILSCALE_PROBE_DONE",
@@ -252,12 +255,15 @@
     "results/status/timeonly_pdfs_r239.json": "Oct 3, 2026, 3:45 PM GMT",
     "results/status/no_overwrite_pdf_manifest_r241.json": "no-overwrite named copies",
     "results/muse/HANDOFF.md": "outbound-only Tailscale client",
-    "code/tasks/t191_deliver_no_overwrite_pdfs_r241.ps1": "no existing file was overwritten"
+    "code/tasks/t191_deliver_no_overwrite_pdfs_r241.ps1": "no existing file was overwritten",
+    "code/tasks/t192_muse_interconnect_probe_r242.ps1": "INTERCONNECT_PROBE_DONE",
+    "results/muse/INTERCONNECT_R242.md": "Report paths:"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
     "code/local_check.ps1": "Get-FileHash",
-    "deliverable/OFFICE_HASHES.json": "[0-9a-f]{64}"
+    "deliverable/OFFICE_HASHES.json": "[0-9a-f]{64}",
+    "results/muse/INTERCONNECT_R242.md": "INTERCONNECT_PROBE_DONE"
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,

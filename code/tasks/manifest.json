@@ -688,6 +688,9 @@
     ],
     "241": [
       "t191_deliver_no_overwrite_pdfs_r241.ps1"
+    ],
+    "242": [
+      "t192_muse_interconnect_probe_r242.ps1"
     ]
   }
 }
