@@ -284,7 +284,7 @@
     "results/input/QINGJIAN_INSTALL_R247.md": "QINGJIAN_INSTALL_OK=True",
     "results/muse/requests/muse-smoke-20261003-1718.json": "\"state\": \"done\"",
     "results/muse/status_smoke_20261003_1718.json": "\"state\": \"done\"",
-    "results/muse/REQUEST_PROTOCOL.md": "Muse GitHub-trigger request protocol"
+    "results/muse/REQUEST_PROTOCOL.md": "Muse GitHub-trigger protocol"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
