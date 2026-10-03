@@ -1,0 +1,66 @@
+﻿{
+    "time":  "2026-10-03 16:13:56 +08:00",
+    "host":  "LAPTOP-R77M5D6M",
+    "records":  [
+                    {
+                        "name":  "muse_push",
+                        "state":  "not_seen",
+                        "detail":  "No Muse result package/status has landed yet; deploy-key push must be tested from Muse side."
+                    },
+                    {
+                        "name":  "tailscale",
+                        "state":  "ok",
+                        "detail":  "laptop=100.71.123.19 desktop=100.84.137.117 muse=100.109.207.34"
+                    },
+                    {
+                        "name":  "laptop_to_desktop_22",
+                        "state":  "OPEN",
+                        "detail":  "100.84.137.117:22"
+                    },
+                    {
+                        "name":  "laptop_to_desktop_3389",
+                        "state":  "OPEN",
+                        "detail":  "100.84.137.117:3389"
+                    },
+                    {
+                        "name":  "laptop_to_desktop_445",
+                        "state":  "OPEN",
+                        "detail":  "100.84.137.117:445"
+                    },
+                    {
+                        "name":  "laptop_to_muse_22",
+                        "state":  "closed/filtered",
+                        "detail":  "100.109.207.34:22"
+                    },
+                    {
+                        "name":  "laptop_to_muse_445",
+                        "state":  "closed/filtered",
+                        "detail":  "100.109.207.34:445"
+                    },
+                    {
+                        "name":  "laptop_to_muse_80",
+                        "state":  "closed/filtered",
+                        "detail":  "100.109.207.34:80"
+                    },
+                    {
+                        "name":  "laptop_to_muse_443",
+                        "state":  "closed/filtered",
+                        "detail":  "100.109.207.34:443"
+                    },
+                    {
+                        "name":  "laptop_to_hpc_22",
+                        "state":  "OPEN",
+                        "detail":  "10.10.5.210:22"
+                    },
+                    {
+                        "name":  "laptop_to_desktop_ssh",
+                        "state":  "OK",
+                        "detail":  "DESKTOP_SSH_OK ??DESKTOP-IEUDGS5??True????: TCP connect to (10.10.5.210 : 22) failed??False"
+                    },
+                    {
+                        "name":  "laptop_to_hpc_ssh",
+                        "state":  "OK",
+                        "detail":  "HPC_SSH_OK??mu01??25wenshaohua??/mnt/hpc/home/25menglei/25wenshaohua??HPC_TO_LAPTOP_22_NO"
+                    }
+                ]
+}
