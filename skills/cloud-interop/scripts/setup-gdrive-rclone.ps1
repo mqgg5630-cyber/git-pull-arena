@@ -13,7 +13,7 @@ param(
     [switch]$NoInstall
 )
 
-$ErrorActionPreference = 'Stop'
+$ErrorActionPreference = 'Continue'
 
 function Say($m) { [Console]::Out.WriteLine([string]$m) }
 function Fail($m) { Write-Error $m; exit 1 }
@@ -103,6 +103,10 @@ if ($NoInstall) {
 }
 
 Say "rclone=$rclone"
+$rcloneConfigDir = Join-Path $env:APPDATA 'rclone'
+$rcloneConfigFile = Join-Path $rcloneConfigDir 'rclone.conf'
+New-Item -ItemType Directory -Force -Path $rcloneConfigDir | Out-Null
+if (-not (Test-Path -LiteralPath $rcloneConfigFile)) { New-Item -ItemType File -Force -Path $rcloneConfigFile | Out-Null }
 & $rclone version | Select-Object -First 4 | ForEach-Object { Say ('rclone_version| ' + $_) }
 
 if ($InstallOnly) {
@@ -110,7 +114,8 @@ if ($InstallOnly) {
     exit 0
 }
 
-$remotes = @(& $rclone listremotes 2>$null)
+$remotes = @()
+try { $remotes = @(& $rclone listremotes 2>$null) } catch { $remotes = @() }
 $remoteWithColon = $RemoteName + ':'
 $hasRemote = $false
 foreach ($r in $remotes) { if ($r.Trim() -eq $remoteWithColon) { $hasRemote = $true } }
