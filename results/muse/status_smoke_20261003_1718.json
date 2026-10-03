@@ -1,0 +1,10 @@
+{
+  "task_id": "muse-smoke-20261003-1718",
+  "state": "done",
+  "created_by": "muse",
+  "completed_at": "2026-10-03T09:20:34Z",
+  "artifact": "sources/muse/muse_out_smoke_20261003_1718.zip",
+  "bytes": 660,
+  "sha256": "98e4ed7fc840924589bbb0d577fbae17c15b2c12937e82dc92a5f6633fd1fc19",
+  "notes": "Automatic smoke task completed by Muse poller."
+}
