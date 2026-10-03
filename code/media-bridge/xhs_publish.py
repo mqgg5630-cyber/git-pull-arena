@@ -4,8 +4,8 @@
 # automation with locally stored cookies - low risk, your own logged-in
 # session). This script reports what is installed and what is still
 # missing; the actual publish calls go through the `sau` CLI:
-#   venv\Scripts\sau.exe xhs login --account <name>   (once, scan QR)
-#   venv\Scripts\sau.exe xhs upload ...               (after cookies exist)
+#   venv\Scripts\sau.exe xiaohongshu login --account <name>  (once, scan QR)
+#   venv\Scripts\sau.exe xiaohongshu ...            (after cookies exist)
 # ASCII-only.
 
 import glob
@@ -36,7 +36,7 @@ def main():
         print('cookies: ' + ', '.join(cookies[:5]))
     else:
         print('cookies: none yet - once sau is installed, run '
-              '"sau xhs login --account <name>" and scan the QR with '
+              '"sau xiaohongshu login --account <name>" and scan the QR with '
               'the XHS app')
     return 0 if ok else 1
 
