@@ -1,9 +1,9 @@
 {
-  "round": 247,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "install Qingjian IME v0.1.4 on Windows, verify SHA256, start server, configure Qingjian as default input method; also verify Muse smoke completion",
-  "arena_updated": "2026-10-03 11:52:59",
-  "local_updated": null
+    "round":  247,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "install Qingjian IME v0.1.4 on Windows, verify SHA256, start server, configure Qingjian as default input method; also verify Muse smoke completion",
+    "arena_updated":  "2026-10-03 11:52:59",
+    "local_updated":  "2026-10-03 19:54:10"
 }
