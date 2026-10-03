@@ -210,7 +210,13 @@
     "code/tasks/t129_cpe_test4.ps1",
     "code/tasks/desk_cpe_test4.ps1",
     "code/tasks/t189_muse_tailscale_probe_r238.ps1",
-    "results/status/muse_tailscale_probe_r238.md"
+    "results/status/muse_tailscale_probe_r238.md",
+    "code/tasks/make_timeonly_turnitin_pdfs.py",
+    "code/tasks/t190_deliver_timeonly_pdfs_r239.ps1",
+    "deliverable/AI_English_from_docx.pdf",
+    "deliverable/plag_English_from_docx.pdf",
+    "results/status/timeonly_pdfs_r239.json",
+    "results/status/timeonly_pdfs_r239.md"
   ],
   "forbid_files": [
     "local/inbox",
@@ -229,10 +235,12 @@
     "deliverable/OFFICE_HASHES.json": "arena/01a0a9f0-git-pull-arena",
     "watch.ps1": "function Invoke-AutoPull",
     "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus",
-    "code/tasks/manifest.json": "t189_muse_tailscale_probe_r238.ps1",
+    "code/tasks/manifest.json": "t190_deliver_timeonly_pdfs_r239.ps1",
     "code/tasks/t1_fix_antigravity.ps1": "http.proxy",
     "code/tasks/t2_install_java.ps1": "E:\\java",
-    "results/status/muse_tailscale_probe_r238.md": "MUSE_TAILSCALE_PROBE_DONE"
+    "results/status/muse_tailscale_probe_r238.md": "MUSE_TAILSCALE_PROBE_DONE",
+    "results/status/timeonly_pdfs_r239.md": "only the cover-page date strings",
+    "results/status/timeonly_pdfs_r239.json": "Oct 3, 2026, 3:45 PM GMT"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
@@ -248,7 +256,9 @@
     "deliverable/OFFICE_HASHES.json": 500,
     "deliverable/LINK_PROOF_v2.8.1.docx": 5000,
     "deliverable/LINK_PROOF_v2.8.1.pptx": 15000,
-    "watch.ps1": 20000
+    "watch.ps1": 20000,
+    "deliverable/AI_English_from_docx.pdf": 1000000,
+    "deliverable/plag_English_from_docx.pdf": 1000000
   },
   "max_bytes": {
     "deliverable/LINK_PROOF_v2.8.1.docx": 3000000,

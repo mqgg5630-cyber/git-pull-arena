@@ -1,0 +1,27 @@
+{
+  "stamp": "Oct 3, 2026, 3:45 PM GMT",
+  "base_branch": "origin/arena/01a0ff64-git-pull-arena",
+  "mode": "time-only cover edit from original source PDFs; all other content kept from the source PDFs",
+  "files": [
+    {
+      "source": "/tmp/ff64src/AI_English.pdf",
+      "output": "deliverable/AI_English_from_docx.pdf",
+      "bytes": 1527133,
+      "sha256": "31bfb47299dd58210b79d3207d26fb48251d9ee1523828a42419491dc6f48c31",
+      "new_stamp": "Oct 3, 2026, 3:45 PM GMT",
+      "new_stamp_count_page1": 2,
+      "other_date_strings_page1": [],
+      "pages": 32
+    },
+    {
+      "source": "/tmp/ff64src/plag_English.pdf",
+      "output": "deliverable/plag_English_from_docx.pdf",
+      "bytes": 1625379,
+      "sha256": "b2eb8c9a9b7e263c364c19e1c7863f47ce92971fc1c1243370c947e1b2fe603e",
+      "new_stamp": "Oct 3, 2026, 3:45 PM GMT",
+      "new_stamp_count_page1": 2,
+      "other_date_strings_page1": [],
+      "pages": 34
+    }
+  ]
+}
