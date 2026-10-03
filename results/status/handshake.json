@@ -1,9 +1,9 @@
 {
-  "round": 241,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "accepted: no-overwrite PDF copies delivered; Muse outbound bridge documented",
-  "arena_updated": "2026-10-03 07:56:16",
-  "local_updated": "2026-10-03 15:55:56"
+  "round": 242,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 242: test Muse bridge status and laptop/desktop/HPC interconnectivity; write logs and paths",
+  "arena_updated": "2026-10-03 08:09:25",
+  "local_updated": null
 }
