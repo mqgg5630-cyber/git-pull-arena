@@ -118,20 +118,44 @@ if (Test-Path -LiteralPath $parkFile) {
 else { L '   park ledger: none' }
 
 # ---------------- verdict ----------------
-$mine = $null;  $ff64 = $null; $fa39 = $null
+# Semantics after the 2026-10-03 15:32 focus event (a newer session
+# watcher parked 11 tasks): healthy means (a) THIS session's task is
+# Running with a fresh heartbeat, and (b) every OTHER task is either
+# Running with a fresh heartbeat (an active session) or Disabled
+# (deliberately parked/retired). A Running task with a stale heartbeat
+# is a ZOMBIE - the exact failure this session's watcher had earlier
+# today (task Running, loop dead since 11:13, pid file pointing at a
+# recycled pid while keeper ticks deferred to the ghost forever).
+$bad = @()
+$runningN = 0
 foreach ($t in $tasks) {
     $n = [string]$t.TaskName
-    if ($n -match '01a0a9f0') { $mine = $t }
-    elseif ($n -match '01a0ff64') { $ff64 = $t }
-    elseif ($n -match '01a0fa39') { $fa39 = $t }
+    $st = [string]$t.State
+    if ($st -eq 'Disabled') { continue }
+    if ($st -ne 'Running') { $bad += ($n + ' state=' + $st); continue }
+    $runningN++
+    $repoN = $n -replace '^git-sync-watch-', ''
+    $hbF = Join-Path $sd ('watch-' + $repoN + '.json')
+    $ageMin = -1
+    if (Test-Path -LiteralPath $hbF) {
+        try {
+            $hb2 = Get-Content -LiteralPath $hbF -Raw -Encoding UTF8 | ConvertFrom-Json
+            $dt2 = [datetime]::ParseExact([string]$hb2.last_run, 'yyyy-MM-dd HH:mm:ss', $null)
+            $ageMin = [int]((Get-Date) - $dt2).TotalMinutes
+        } catch { }
+    }
+    if ($ageMin -lt 0 -or $ageMin -gt 30) { $bad += ($n + ' Running but heartbeat age=' + $ageMin + 'min (zombie?)') }
+    else { L ('   healthy: ' + $n + ' (heartbeat ' + $ageMin + 'min ago)') }
 }
-$okMine = ($mine -and ([string]$mine.State -eq 'Running'))
-$okFf64 = ($ff64 -and ([string]$ff64.State -eq 'Running'))
-$okFa39 = ($fa39 -and ([string]$fa39.State -eq 'Disabled'))
-if (-not $fa39) { $okFa39 = $true; L '   [note] 01a0fa39 task not present (treated as retired)' }
-if ($okMine -and $okFf64 -and $okFa39) { L '   FINAL: PASS - this session Running, newest Running, retired Disabled' }
+$mine2 = $null
+foreach ($t in $tasks) { if (([string]$t.TaskName) -match '01a0a9f0') { $mine2 = $t } }
+if (-not $mine2 -or ([string]$mine2.State -ne 'Running')) { $bad += 'this session watcher (01a0a9f0) is not Running' }
+if ($bad.Count -eq 0) {
+    L ('   FINAL: PASS - ' + $runningN + ' watcher(s) Running with fresh heartbeats, all others deliberately Disabled')
+}
 else {
-    L ('   FINAL: FAIL - mine=' + $(if ($mine) { [string]$mine.State } else { 'missing' }) + ' ff64=' + $(if ($ff64) { [string]$ff64.State } else { 'missing' }) + ' fa39=' + $(if ($fa39) { [string]$fa39.State } else { 'missing' }))
+    foreach ($b in $bad) { L ('   [FAIL] ' + $b) }
+    L '   FINAL: FAIL - see lines above'
     exit 2
 }
 L '--- task t133 done ---'
