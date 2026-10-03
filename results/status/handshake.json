@@ -1,9 +1,9 @@
 {
-  "round": 244,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 244: process Muse formal artifact; take over V2ray/Antigravity route without storing subscription secrets; verify GitHub child proxy",
-  "arena_updated": "2026-10-03 08:39:39",
-  "local_updated": null
+    "round":  244,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 244: process Muse formal artifact; take over V2ray/Antigravity route without storing subscription secrets; verify GitHub child proxy",
+    "arena_updated":  "2026-10-03 08:39:39",
+    "local_updated":  "2026-10-03 16:47:27"
 }
