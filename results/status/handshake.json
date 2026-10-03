@@ -1,9 +1,9 @@
 {
-  "round": 246,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "accepted: all tasks closed - Muse package processed; V2ray/Antigravity SG bridge and Git proxy verified",
-  "arena_updated": "2026-10-03 09:03:04",
-  "local_updated": "2026-10-03 17:01:51"
+  "round": 247,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "install Qingjian IME v0.1.4 on Windows, verify SHA256, start server, configure Qingjian as default input method; also verify Muse smoke completion",
+  "arena_updated": "2026-10-03 11:52:59",
+  "local_updated": null
 }
