@@ -1,9 +1,9 @@
 {
-  "round": 243,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 243: rerun interconnect after Muse bridge push; require Muse push seen",
-  "arena_updated": "2026-10-03 08:15:17",
-  "local_updated": null
+    "round":  243,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 243: rerun interconnect after Muse bridge push; require Muse push seen",
+    "arena_updated":  "2026-10-03 08:15:17",
+    "local_updated":  "2026-10-03 16:19:22"
 }
