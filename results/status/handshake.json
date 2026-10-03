@@ -1,9 +1,9 @@
 {
-    "round":  249,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "configure Google Drive remote gdrive_jzthjyz for jzthjyz@gmail.com with drive scope and probe write; run fresh laptop computer-use Windows MCP smoke",
-    "arena_updated":  "2026-10-03 12:17:02",
-    "local_updated":  "2026-10-03 20:19:02"
+  "round": 250,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "rerun Google Drive gdrive_jzthjyz OAuth/probe after rclone script fix and verify computer-use smoke",
+  "arena_updated": "2026-10-03 12:19:55",
+  "local_updated": null
 }
