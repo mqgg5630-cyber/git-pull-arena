@@ -1,9 +1,9 @@
 {
-  "round": 182,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 182: t140 - on the laptop: install XHS stack correctly: pip install the social-auto-upload directory itself (its pyproject declares only 6 deps: loguru/opencv-python/patchright/qrcode/requests/segno; creates sau.exe), then python -m patchright install chromium (npmmirror host, playwright CDN fallback), verify sau --help + chrome.exe + xhs status. Raw error tails on failure. Judge: FINAL: PASS - sau CLI answers and patchright chromium is installed",
-  "arena_updated": "2026-10-03 09:58:54",
-  "local_updated": null
+    "round":  182,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 182: t140 - on the laptop: install XHS stack correctly: pip install the social-auto-upload directory itself (its pyproject declares only 6 deps: loguru/opencv-python/patchright/qrcode/requests/segno; creates sau.exe), then python -m patchright install chromium (npmmirror host, playwright CDN fallback), verify sau --help + chrome.exe + xhs status. Raw error tails on failure. Judge: FINAL: PASS - sau CLI answers and patchright chromium is installed",
+    "arena_updated":  "2026-10-03 09:58:54",
+    "local_updated":  "2026-10-03 18:07:55"
 }
