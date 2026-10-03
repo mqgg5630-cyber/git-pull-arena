@@ -15,7 +15,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-function Say($m) { Write-Output $m }
+function Say($m) { [Console]::Out.WriteLine([string]$m) }
 function Fail($m) { Write-Error $m; exit 1 }
 function Get-RcloneExe {
     param([string]$Dir)
@@ -96,10 +96,10 @@ if ($RemoteName -match ':') { Fail 'RemoteName should not contain colon' }
 
 $rclone = ''
 if ($NoInstall) {
-    $rclone = Get-RcloneExe $InstallDir
+    $rclone = [string](@(Get-RcloneExe $InstallDir) | Select-Object -Last 1)
     if (-not $rclone) { Fail 'rclone not found; remove -NoInstall to install it' }
 } else {
-    $rclone = Ensure-Rclone $InstallDir
+    $rclone = [string](@(Ensure-Rclone $InstallDir) | Select-Object -Last 1)
 }
 
 Say "rclone=$rclone"

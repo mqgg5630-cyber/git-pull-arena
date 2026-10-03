@@ -11,6 +11,7 @@ param(
 )
 
 $ErrorActionPreference = 'Continue'
+try { $RepoRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..\..\..')).Path; Set-Location $RepoRoot } catch { }
 $lines = New-Object System.Collections.Generic.List[string]
 function L($m) { $script:lines.Add([string]$m) | Out-Null; Write-Output $m }
 function Mask($s) {
