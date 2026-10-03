@@ -218,7 +218,8 @@
     "code/media-bridge/wxmp_cli.py",
     "code/media-bridge/xhs_publish.py",
     "code/media-bridge/run_tg_bridge.ps1",
-    "code/media-bridge/SETUP.md"
+    "code/media-bridge/SETUP.md",
+    "code/tasks/t135_media_bridge2.ps1"
   ],
   "forbid_files": [
     "local/inbox",
