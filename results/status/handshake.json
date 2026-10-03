@@ -1,9 +1,9 @@
 {
-    "round":  241,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 241: deliver AI_English_from_docx.pdf (32-page original layout, sha-pinned) to Downloads",
-    "arena_updated":  "2026-10-03 02:23:20",
-    "local_updated":  "2026-10-03 10:24:20"
+  "round": 241,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-03 02:24:37",
+  "local_updated": "2026-10-03 10:24:20"
 }
