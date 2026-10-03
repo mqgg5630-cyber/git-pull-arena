@@ -487,6 +487,9 @@
     ],
     "174": [
       "t132_register_ff64.ps1"
+    ],
+    "175": [
+      "t133_watcher_health.ps1"
     ]
   }
 }
