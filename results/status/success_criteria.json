@@ -208,7 +208,10 @@
     "code/tasks/watcher.ps1",
     "code/tasks/prepcpe.ps1",
     "code/tasks/t129_cpe_test4.ps1",
-    "code/tasks/desk_cpe_test4.ps1"
+    "code/tasks/desk_cpe_test4.ps1",
+    "deliverable/patches/goutoujunshi-love-letter-confession-bfb071b.patch",
+    "code/tasks/t190_apply_goutoujunshi_love_letter_r239.ps1",
+    "results/mcp_agv_lab/GOUTOUJUNSHI_LOVE_LETTER_R239.md"
   ],
   "forbid_files": [
     "local/inbox",
@@ -229,12 +232,14 @@
     "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus",
     "code/tasks/manifest.json": "t3_edrive_scan.ps1",
     "code/tasks/t1_fix_antigravity.ps1": "http.proxy",
-    "code/tasks/t2_install_java.ps1": "E:\\java"
+    "code/tasks/t2_install_java.ps1": "E:\\java",
+    "results/mcp_agv_lab/GOUTOUJUNSHI_LOVE_LETTER_R239.md": "GOUTOUJUNSHI_LOVE_LETTER_APPLIED=True"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
     "code/local_check.ps1": "Get-FileHash",
-    "deliverable/OFFICE_HASHES.json": "[0-9a-f]{64}"
+    "deliverable/OFFICE_HASHES.json": "[0-9a-f]{64}",
+    "results/mcp_agv_lab/GOUTOUJUNSHI_LOVE_LETTER_R239.md": "target_push_exit=0"
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,
@@ -245,7 +250,9 @@
     "deliverable/OFFICE_HASHES.json": 500,
     "deliverable/LINK_PROOF_v2.8.1.docx": 5000,
     "deliverable/LINK_PROOF_v2.8.1.pptx": 15000,
-    "watch.ps1": 20000
+    "watch.ps1": 20000,
+    "deliverable/patches/goutoujunshi-love-letter-confession-bfb071b.patch": 50000,
+    "results/mcp_agv_lab/GOUTOUJUNSHI_LOVE_LETTER_R239.md": 1000
   },
   "max_bytes": {
     "deliverable/LINK_PROOF_v2.8.1.docx": 3000000,
