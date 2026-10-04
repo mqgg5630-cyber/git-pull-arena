@@ -1,9 +1,9 @@
 {
-  "round": 237,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "round 237: finish funny talking-head video using bundled ffmpeg",
-  "arena_updated": "2026-10-02 17:24:38",
-  "local_updated": "2026-10-03 01:24:03"
+  "round": 238,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 238: install find-skills, research couple love-record and video skills/high-star GitHub repos, write markdown report to laptop desktop",
+  "arena_updated": "2026-10-04 09:26:43",
+  "local_updated": null
 }
