@@ -1,0 +1,15 @@
+{
+    "status":  "FIND_SKILLS_REPORT_READY",
+    "installStatus":  "installed_by_npx",
+    "desktopReport":  "D:\\桌面\\love-record-video-skills-github-report.md",
+    "repoReport":  "E:\\0github\\git-sync\\git-pull-arena-01a0fa39\\results\\mcp_agv_lab\\FIND_SKILLS_LOVE_VIDEO_REPORT_R238.md",
+    "projectSkillDir":  "E:\\0github\\git-sync\\git-pull-arena-01a0fa39\\.agents\\skills\\find-skills",
+    "projectSkillExists":  true,
+    "agentSkillDir":  "E:\\0github\\git-sync\\git-pull-arena-01a0fa39\\agent\\skills\\find-skills",
+    "agentSkillExists":  false,
+    "eSkillDir":  "E:\\0mcp-agv-arena-optimized\\skills\\find-skills",
+    "eSkillExists":  true,
+    "node":  "E:\\hermes\\node\\node.exe",
+    "npx":  "E:\\hermes\\node\\npx.cmd",
+    "copiedE":  true
+}
