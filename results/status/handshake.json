@@ -1,9 +1,9 @@
 {
-  "round": 259,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 259 final attempt: cleanly kill all stale Lively/Livelycu/mpv and custom hosts, restart Explorer, start Lively fresh so WorkerW is recreated, apply the lightweight existing Anime Girl Beneath a Meteor Sky MP4, capture before/after/after desktop screenshots (not lock screen), prove changed and moving; if not proven, rollback immediately to static.",
-  "arena_updated": "2026-10-05 06:58:06",
-  "local_updated": null
+    "round":  259,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 259 final attempt: cleanly kill all stale Lively/Livelycu/mpv and custom hosts, restart Explorer, start Lively fresh so WorkerW is recreated, apply the lightweight existing Anime Girl Beneath a Meteor Sky MP4, capture before/after/after desktop screenshots (not lock screen), prove changed and moving; if not proven, rollback immediately to static.",
+    "arena_updated":  "2026-10-05 06:58:06",
+    "local_updated":  "2026-10-05 14:59:18"
 }
