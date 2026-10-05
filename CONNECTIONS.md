@@ -243,3 +243,14 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - A/B test (r68): Zotero.Refresh via COM throws E_FAIL on the SUCCESS-CASE docx too -> E_FAIL is an automation-context artifact, NOT a document defect.
 - FINAL STATE: English.docx (same path) = 62 ZOTERO_ITEM fields (91 citation items, all uris bound + full itemData embedded) + ZOTERO_BIBL (refs 1-36) + AMA en-US prefs v9 + storeReferences; format unchanged; English_backup_pre-zotero.docx = original; English_Zotero_library.json = CSL export (for reference only - import already done via API).
 - Word plugin Zotero.dotm present in %APPDATA%\Microsoft\Word\STARTUP. Usage: open English.docx in Word -> Zotero tab -> Refresh (citations keep [n] look in AMA; switch styles via Document Preferences).
+
+## round 269 (2026-10-05, session arena/01a10bf3 - real dynamic video wallpaper)
+- 用户改派任务：「轮询任务是给我本机壁纸变为动态的……直接去找一个本身是动态壁纸的换上」。
+- `code/tasks/t221_run_dynamic_video_wallpaper_r269.ps1`（薄壳，避开本机 AMSI）+ `t221_dynamic_video_wallpaper_r269.py`（复刻 **r266 已验证** 的 VLC `--video-wallpaper` 配方）：
+  1. **找**：从 livelywallpaper.app CDN 下载真·动态壁纸 mp4（候选：Hotori 落日城市 → 蓝档案 Kisaki 金鱼 → 夕阳窗边猫；本地兜底 r254/r255 两个 mp4）；
+  2. **换**：VLC video-wallpaper 模式设为桌面壁纸（本机 17:25 实证过该配方）；
+  3. **证**：截图像素差——换上前 vs 后 ≥2% 变化 + 两帧间隔持续运动（r266 同款阈值）；
+  4. **留**：Start/Stop bat + 开机自启（Startup 文件夹）+ PATHS.txt；失败自动回滚 r267 静态壁纸。
+- 判据维护：修掉上一会话遗留的 5 条坏判据（R264 幻影回执 + 3 条 min_bytes 虚高），新增 R268 回执判据。
+- 回执：`results/mcp_agv_lab/R269_DYNAMIC_VIDEO_WALLPAPER.md` + `r269-dynamic-video-wallpaper.json` + 四帧截图。
+- 状态：⏳ 已排队（round 268 accept 后自动发起，值守 2 分钟内消化）。
