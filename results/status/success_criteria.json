@@ -282,11 +282,12 @@
     "results/mcp_agv_lab/r258_desktop_after_b.png",
     "code/tasks/t210_clean_restart_lively_r259.ps1",
     "code/tasks/t211_simple_lively_restart_r260.ps1",
-    "results/mcp_agv_lab/R260_SIMPLE_LIVELY_RESTART_DYNAMIC.md",
-    "results/mcp_agv_lab/r260-simple-lively-restart-dynamic.json",
-    "results/mcp_agv_lab/r260_desktop_before.png",
-    "results/mcp_agv_lab/r260_desktop_after_a.png",
-    "results/mcp_agv_lab/r260_desktop_after_b.png"
+    "code/tasks/t212_vlc_video_wallpaper_r261.ps1",
+    "results/mcp_agv_lab/R261_VLC_VIDEO_WALLPAPER.md",
+    "results/mcp_agv_lab/r261-vlc-video-wallpaper.json",
+    "results/mcp_agv_lab/r261_desktop_before.png",
+    "results/mcp_agv_lab/r261_desktop_after_a.png",
+    "results/mcp_agv_lab/r261_desktop_after_b.png"
   ],
   "forbid_files": [
     "local/inbox",
@@ -324,7 +325,7 @@
     "results/mcp_agv_lab/R255_EXISTING_ANIME_WALLPAPER_ARMED.md": "R255_EXISTING_ANIME_WALLPAPER_ARMED=True",
     "results/mcp_agv_lab/R256_CONFIRM_EXISTING_ANIME_WALLPAPER_ARMED.md": "R256_CONFIRM_EXISTING_ANIME_WALLPAPER_ARMED_READY=True",
     "results/mcp_agv_lab/R257_EMERGENCY_WALLPAPER_RECOVERY.md": "R257_EMERGENCY_WALLPAPER_RECOVERY_READY=True",
-    "results/mcp_agv_lab/R260_SIMPLE_LIVELY_RESTART_DYNAMIC.md": "R260_SIMPLE_LIVELY_RESTART_DYNAMIC_READY=True"
+    "results/mcp_agv_lab/R261_VLC_VIDEO_WALLPAPER.md": "R261_VLC_VIDEO_WALLPAPER_READY=True"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
@@ -345,7 +346,7 @@
     "results/mcp_agv_lab/R255_EXISTING_ANIME_WALLPAPER_ARMED.md": "(?s)(?=.*existing_live_wallpaper_downloaded=True)(?=.*apply_script_ready=True)(?=.*unlock_or_logon_auto_apply_ready=True)(?=.*desktop_tidy_ok=True).*",
     "results/mcp_agv_lab/R256_CONFIRM_EXISTING_ANIME_WALLPAPER_ARMED.md": "(?s)(?=.*existing_live_wallpaper_downloaded=True)(?=.*apply_script_ready=True)(?=.*unlock_or_logon_auto_apply_ready=True)(?=.*desktop_tidy_ok=True).*",
     "results/mcp_agv_lab/R257_EMERGENCY_WALLPAPER_RECOVERY.md": "(?s)(?=.*static_wallpaper_set=True)(?=.*autostarts_removed=True)(?=.*screenshot_captured=True)(?=.*dynamic_wallpaper_disabled=True)(?=.*desktop_tidy_done=True).*",
-    "results/mcp_agv_lab/R260_SIMPLE_LIVELY_RESTART_DYNAMIC.md": "(?s)(?=.*lively_set_ok=True)(?=.*actual_desktop_changed_to_new_wallpaper=True)(?=.*actual_desktop_is_moving=True)(?=.*desktop_tidy_done=True).*"
+    "results/mcp_agv_lab/R261_VLC_VIDEO_WALLPAPER.md": "(?s)(?=.*vlc_start_ok=True)(?=.*actual_desktop_changed_to_new_wallpaper=True)(?=.*actual_desktop_is_moving=True)(?=.*desktop_tidy_done=True).*"
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,
@@ -427,11 +428,12 @@
     "results/mcp_agv_lab/r258_desktop_after_b.png": 5000,
     "code/tasks/t210_clean_restart_lively_r259.ps1": 13000,
     "code/tasks/t211_simple_lively_restart_r260.ps1": 9000,
-    "results/mcp_agv_lab/R260_SIMPLE_LIVELY_RESTART_DYNAMIC.md": 2200,
-    "results/mcp_agv_lab/r260-simple-lively-restart-dynamic.json": 700,
-    "results/mcp_agv_lab/r260_desktop_before.png": 5000,
-    "results/mcp_agv_lab/r260_desktop_after_a.png": 5000,
-    "results/mcp_agv_lab/r260_desktop_after_b.png": 5000
+    "code/tasks/t212_vlc_video_wallpaper_r261.ps1": 9000,
+    "results/mcp_agv_lab/R261_VLC_VIDEO_WALLPAPER.md": 2000,
+    "results/mcp_agv_lab/r261-vlc-video-wallpaper.json": 700,
+    "results/mcp_agv_lab/r261_desktop_before.png": 5000,
+    "results/mcp_agv_lab/r261_desktop_after_a.png": 5000,
+    "results/mcp_agv_lab/r261_desktop_after_b.png": 5000
   },
   "max_bytes": {
     "deliverable/LINK_PROOF_v2.8.1.docx": 3000000,
