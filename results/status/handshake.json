@@ -1,9 +1,9 @@
 {
-    "round":  252,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 252: make the cute anime dynamic wallpaper a desktop/WorkerW hosted wallpaper with nonzero desktop parent and visible screen-diff proof; tidy desktop again",
-    "arena_updated":  "2026-10-05 03:29:53",
-    "local_updated":  "2026-10-05 11:31:05"
+  "round": 253,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 253: restore the actually visible cute anime dynamic wallpaper after the hidden WorkerW diagnostic, verify real desktop screen-diff movement, keep it running, and tidy desktop",
+  "arena_updated": "2026-10-05 03:32:18",
+  "local_updated": null
 }
