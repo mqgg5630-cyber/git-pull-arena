@@ -273,7 +273,13 @@
     "code/tasks/t208_emergency_wallpaper_recover_r257.ps1",
     "results/mcp_agv_lab/R257_EMERGENCY_WALLPAPER_RECOVERY.md",
     "results/mcp_agv_lab/r257-emergency-wallpaper-recovery.json",
-    "results/mcp_agv_lab/r257_desktop_after_recovery.png"
+    "results/mcp_agv_lab/r257_desktop_after_recovery.png",
+    "code/tasks/t209_safe_lively_dynamic_r258.ps1",
+    "results/mcp_agv_lab/R258_SAFE_LIVELY_DYNAMIC_WALLPAPER.md",
+    "results/mcp_agv_lab/r258-safe-lively-dynamic-wallpaper.json",
+    "results/mcp_agv_lab/r258_desktop_before.png",
+    "results/mcp_agv_lab/r258_desktop_after_a.png",
+    "results/mcp_agv_lab/r258_desktop_after_b.png"
   ],
   "forbid_files": [
     "local/inbox",
@@ -310,7 +316,8 @@
     "results/mcp_agv_lab/R253_RESTORE_VISIBLE_DYNAMIC_WALLPAPER.md": "R253_RESTORE_VISIBLE_DYNAMIC_WALLPAPER_READY=True",
     "results/mcp_agv_lab/R255_EXISTING_ANIME_WALLPAPER_ARMED.md": "R255_EXISTING_ANIME_WALLPAPER_ARMED=True",
     "results/mcp_agv_lab/R256_CONFIRM_EXISTING_ANIME_WALLPAPER_ARMED.md": "R256_CONFIRM_EXISTING_ANIME_WALLPAPER_ARMED_READY=True",
-    "results/mcp_agv_lab/R257_EMERGENCY_WALLPAPER_RECOVERY.md": "R257_EMERGENCY_WALLPAPER_RECOVERY_READY=True"
+    "results/mcp_agv_lab/R257_EMERGENCY_WALLPAPER_RECOVERY.md": "R257_EMERGENCY_WALLPAPER_RECOVERY_READY=True",
+    "results/mcp_agv_lab/R258_SAFE_LIVELY_DYNAMIC_WALLPAPER.md": "R258_SAFE_LIVELY_DYNAMIC_WALLPAPER_READY=True"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
@@ -330,7 +337,8 @@
     "results/mcp_agv_lab/R253_RESTORE_VISIBLE_DYNAMIC_WALLPAPER.md": "(?s)(?=.*visible_dynamic_screen_proof=True)(?=.*visible_host_running=True)(?=.*desktop_tidy_ok=True)(?=.*screen_diff_ratio=(0\\.(00[3-9]|0[1-9]|[1-9])|1\\.000000)).*",
     "results/mcp_agv_lab/R255_EXISTING_ANIME_WALLPAPER_ARMED.md": "(?s)(?=.*existing_live_wallpaper_downloaded=True)(?=.*apply_script_ready=True)(?=.*unlock_or_logon_auto_apply_ready=True)(?=.*desktop_tidy_ok=True).*",
     "results/mcp_agv_lab/R256_CONFIRM_EXISTING_ANIME_WALLPAPER_ARMED.md": "(?s)(?=.*existing_live_wallpaper_downloaded=True)(?=.*apply_script_ready=True)(?=.*unlock_or_logon_auto_apply_ready=True)(?=.*desktop_tidy_ok=True).*",
-    "results/mcp_agv_lab/R257_EMERGENCY_WALLPAPER_RECOVERY.md": "(?s)(?=.*static_wallpaper_set=True)(?=.*autostarts_removed=True)(?=.*screenshot_captured=True)(?=.*dynamic_wallpaper_disabled=True)(?=.*desktop_tidy_done=True).*"
+    "results/mcp_agv_lab/R257_EMERGENCY_WALLPAPER_RECOVERY.md": "(?s)(?=.*static_wallpaper_set=True)(?=.*autostarts_removed=True)(?=.*screenshot_captured=True)(?=.*dynamic_wallpaper_disabled=True)(?=.*desktop_tidy_done=True).*",
+    "results/mcp_agv_lab/R258_SAFE_LIVELY_DYNAMIC_WALLPAPER.md": "(?s)(?=.*lively_set_ok=True)(?=.*actual_desktop_changed_to_new_wallpaper=True)(?=.*actual_desktop_is_moving=True)(?=.*rollback_marker_written=True)(?=.*desktop_tidy_done=True).*"
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,
@@ -403,7 +411,13 @@
     "code/tasks/t208_emergency_wallpaper_recover_r257.ps1": 12000,
     "results/mcp_agv_lab/R257_EMERGENCY_WALLPAPER_RECOVERY.md": 1200,
     "results/mcp_agv_lab/r257-emergency-wallpaper-recovery.json": 500,
-    "results/mcp_agv_lab/r257_desktop_after_recovery.png": 3000
+    "results/mcp_agv_lab/r257_desktop_after_recovery.png": 3000,
+    "code/tasks/t209_safe_lively_dynamic_r258.ps1": 17000,
+    "results/mcp_agv_lab/R258_SAFE_LIVELY_DYNAMIC_WALLPAPER.md": 2500,
+    "results/mcp_agv_lab/r258-safe-lively-dynamic-wallpaper.json": 800,
+    "results/mcp_agv_lab/r258_desktop_before.png": 5000,
+    "results/mcp_agv_lab/r258_desktop_after_a.png": 5000,
+    "results/mcp_agv_lab/r258_desktop_after_b.png": 5000
   },
   "max_bytes": {
     "deliverable/LINK_PROOF_v2.8.1.docx": 3000000,
