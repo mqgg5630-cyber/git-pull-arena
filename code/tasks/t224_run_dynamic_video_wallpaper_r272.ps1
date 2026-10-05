@@ -1,4 +1,4 @@
-# t223_run_dynamic_video_wallpaper_r271.ps1 - round 272 wrapper.
+# t224_run_dynamic_video_wallpaper_r272.ps1 - round 272 wrapper.
 $ErrorActionPreference='Continue'
 $py=''
 foreach($n in @('python.exe','python','py.exe')){ try{ $c=Get-Command $n -ErrorAction SilentlyContinue | Select-Object -First 1; if($c -and $c.Source){ $py=$c.Source; break } }catch{} }
