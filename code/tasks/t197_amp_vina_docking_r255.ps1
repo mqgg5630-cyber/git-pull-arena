@@ -84,7 +84,7 @@ L ('python=' + (San $py))
 try { L ('python_version=' + (San ((& $py -c "import sys; print(sys.version)" 2>&1 | Out-String).Trim()))) } catch { }
 
 L '## Dependency setup'
-$install1 = Run-Capped 'pip_install_core' { & $using:py -m pip install --user --upgrade --quiet numpy matplotlib 2>&1 | Out-String } 600
+$install1 = Run-Capped 'pip_install_core' { & $using:py -m pip install --user --upgrade --quiet "numpy==1.26.4" matplotlib 2>&1 | Out-String } 600
 foreach ($ln in (($install1.text -split "`r?`n") | Where-Object { $_.Trim() } | Select-Object -Last 12)) { L ('pip_core| ' + (San $ln)) }
 $install2 = Run-Capped 'pip_install_rdkit' { & $using:py -m pip install --user --upgrade --quiet rdkit 2>&1 | Out-String } 900
 foreach ($ln in (($install2.text -split "`r?`n") | Where-Object { $_.Trim() } | Select-Object -Last 20)) { L ('pip_rdkit| ' + (San $ln)) }
@@ -94,9 +94,7 @@ if ($rdImport.text -notmatch 'RDKIT_OK=True') {
     $install2b = Run-Capped 'pip_install_rdkit_pypi' { & $using:py -m pip install --user --upgrade --quiet rdkit-pypi 2>&1 | Out-String } 900
     foreach ($ln in (($install2b.text -split "`r?`n") | Where-Object { $_.Trim() } | Select-Object -Last 20)) { L ('pip_rdkit_pypi| ' + (San $ln)) }
 }
-$install3 = Run-Capped 'pip_install_vina' { & $using:py -m pip install --user --upgrade --quiet vina 2>&1 | Out-String } 900
-foreach ($ln in (($install3.text -split "`r?`n") | Where-Object { $_.Trim() } | Select-Object -Last 30)) { L ('pip_vina| ' + (San $ln)) }
-$import = Run-Capped 'import_check' { & $using:py -c "import rdkit, vina, matplotlib, numpy; print('IMPORT_OK=True')" 2>&1 | Out-String } 60
+$import = Run-Capped 'import_check' { & $using:py -c "import rdkit, matplotlib, numpy; print('IMPORT_OK=True')" 2>&1 | Out-String } 60
 foreach ($ln in (($import.text -split "`r?`n") | Where-Object { $_.Trim() } | Select-Object -Last 20)) { L ('import| ' + (San $ln)) }
 if ($import.text -notmatch 'IMPORT_OK=True') {
     L 'DEPENDENCIES_OK=False'
@@ -105,6 +103,33 @@ if ($import.text -notmatch 'IMPORT_OK=True') {
     exit 3
 }
 L 'DEPENDENCIES_OK=True'
+
+L '## AutoDock Vina CLI setup'
+$vinaDir = Join-Path $env:LOCALAPPDATA 'ArenaTools\vina'
+New-Item -ItemType Directory -Force -Path $vinaDir | Out-Null
+$vinaExe = Join-Path $vinaDir 'vina_1.2.7_win.exe'
+if (-not (Test-Path -LiteralPath $vinaExe)) {
+    $url = 'https://github.com/ccsb-scripps/AutoDock-Vina/releases/download/v1.2.7/vina_1.2.7_win.exe'
+    $curl = Join-Path $env:SystemRoot 'System32\curl.exe'
+    if (Test-Path -LiteralPath $curl) {
+        $dl = Run-Capped 'download_vina_cli' { & $using:curl -L --ssl-no-revoke --retry 3 --connect-timeout 20 --max-time 600 -o $using:vinaExe $using:url 2>&1 | Out-String } 720
+        foreach ($ln in (($dl.text -split "`r?`n") | Where-Object { $_.Trim() } | Select-Object -Last 10)) { L ('vina_download| ' + (San $ln)) }
+    } else {
+        try { Invoke-WebRequest -UseBasicParsing -Uri $url -OutFile $vinaExe } catch { L ('vina_download_WARN=' + (San $_.Exception.Message)) }
+    }
+}
+if (-not (Test-Path -LiteralPath $vinaExe)) {
+    L 'VINA_CLI_READY=False'
+    L 'AMP_DOCKING_DONE=False'
+    Write-Main
+    exit 4
+}
+try { L ('vina_sha256=' + (Get-FileHash -LiteralPath $vinaExe -Algorithm SHA256).Hash.ToLower()) } catch { }
+$vver = Run-Capped 'vina_version' { & $using:vinaExe --version 2>&1 | Out-String } 60
+foreach ($ln in (($vver.text -split "`r?`n") | Where-Object { $_.Trim() } | Select-Object -Last 10)) { L ('vina| ' + (San $ln)) }
+$env:VINA_EXE = $vinaExe
+L ('VINA_EXE=' + (San $vinaExe))
+L 'VINA_CLI_READY=True'
 
 if (Test-Path -LiteralPath $outDir) { Remove-Item -LiteralPath $outDir -Recurse -Force -ErrorAction SilentlyContinue }
 New-Item -ItemType Directory -Force -Path $outDir | Out-Null
@@ -117,7 +142,7 @@ if (-not (Test-Path -LiteralPath $pipeline)) {
 }
 
 L '## Docking run'
-$run = Run-Capped 'vina_pipeline' { & $using:py $using:pipeline $using:outDir 2>&1 | Out-String } 1500
+$run = Run-Capped 'vina_pipeline' { $env:VINA_EXE = $using:vinaExe; & $using:py $using:pipeline $using:outDir 2>&1 | Out-String } 1500
 foreach ($ln in (($run.text -split "`r?`n") | Where-Object { $_.Trim() } | Select-Object -Last 120)) { L ('dock| ' + (San $ln)) }
 $pipelineOk = ($run.text -match 'DOCKING_PIPELINE_DONE=True') -and (Test-Path -LiteralPath (Join-Path $outDir 'REPORT.md'))
 L ('pipeline_ok=' + $pipelineOk)

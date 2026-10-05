@@ -41,12 +41,6 @@ except Exception as e:  # pragma: no cover
     raise
 
 try:
-    from vina import Vina
-except Exception as e:  # pragma: no cover
-    print(f"IMPORT_ERROR: vina unavailable: {e}", file=sys.stderr)
-    raise
-
-try:
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
@@ -385,20 +379,52 @@ def fallback_contact_plot(complex_pdb: Path, png: Path, receptor_atoms, ligand_a
     plt.close(fig)
 
 
+def parse_vina_score(text: str) -> float:
+    for line in text.splitlines():
+        parts = line.strip().split()
+        if len(parts) >= 2 and parts[0] == "1":
+            try:
+                return float(parts[1])
+            except Exception:
+                pass
+    # Vina sometimes writes just the table to the log file; keep a robust fallback.
+    import re
+    m = re.search(r"^\s*1\s+(-?\d+(?:\.\d+)?)", text, flags=re.M)
+    if m:
+        return float(m.group(1))
+    raise RuntimeError("could not parse Vina best score")
+
+
 def run_vina_for_pair(target: Target, peptide: Peptide, receptor_pdbqt: Path, ligand_pdbqt: Path, center: np.ndarray, box: np.ndarray, out_dir: Path, repeats: int = 3, exhaustiveness: int = 6) -> List[Dict[str, object]]:
     rows = []
+    vina_exe = os.environ.get("VINA_EXE") or shutil.which("vina") or shutil.which("vina.exe")
+    if not vina_exe:
+        raise RuntimeError("VINA_EXE/vina executable not found")
     for rep in range(1, repeats + 1):
         seed = 100000 + rep * 1000 + abs(hash(target.key + peptide.key)) % 997
         pose_pdbqt = out_dir / f"{target.key}__{peptide.key}__rep{rep}_best.pdbqt"
+        log_file = out_dir / f"{target.key}__{peptide.key}__rep{rep}_vina.log"
         log(f"DOCK {target.key} {peptide.key} rep={rep} seed={seed}")
-        v = Vina(sf_name="vina", seed=int(seed), verbosity=0)
-        v.set_receptor(str(receptor_pdbqt))
-        v.set_ligand_from_file(str(ligand_pdbqt))
-        v.compute_vina_maps(center=center.tolist(), box_size=box.tolist())
-        v.dock(exhaustiveness=exhaustiveness, n_poses=5)
-        energies = v.energies(n_poses=5)
-        best = float(energies[0][0])
-        v.write_poses(str(pose_pdbqt), n_poses=1, overwrite=True)
+        cmd = [
+            vina_exe,
+            "--receptor", str(receptor_pdbqt),
+            "--ligand", str(ligand_pdbqt),
+            "--center_x", f"{center[0]:.3f}",
+            "--center_y", f"{center[1]:.3f}",
+            "--center_z", f"{center[2]:.3f}",
+            "--size_x", f"{box[0]:.3f}",
+            "--size_y", f"{box[1]:.3f}",
+            "--size_z", f"{box[2]:.3f}",
+            "--exhaustiveness", str(exhaustiveness),
+            "--num_modes", "5",
+            "--seed", str(seed),
+            "--out", str(pose_pdbqt),
+        ]
+        code, text = run(cmd, timeout=420)
+        log_file.write_text(text, encoding="utf-8", errors="replace")
+        if code != 0 or not pose_pdbqt.exists():
+            raise RuntimeError(f"vina CLI failed code={code}; see {log_file}; tail={text[-500:]}")
+        best = parse_vina_score(text)
         rows.append({
             "target_key": target.key,
             "organism": target.organism,
@@ -410,6 +436,7 @@ def run_vina_for_pair(target: Target, peptide: Peptide, receptor_pdbqt: Path, li
             "seed": seed,
             "best_affinity_kcal_mol": best,
             "pose_pdbqt": str(pose_pdbqt),
+            "vina_log": str(log_file),
             "center_x": float(center[0]),
             "center_y": float(center[1]),
             "center_z": float(center[2]),
@@ -418,7 +445,6 @@ def run_vina_for_pair(target: Target, peptide: Peptide, receptor_pdbqt: Path, li
             "box_z": float(box[2]),
         })
     return rows
-
 
 def write_csv(path: Path, rows: List[Dict[str, object]]) -> None:
     if not rows:
@@ -596,7 +622,7 @@ def main(argv: List[str]) -> int:
         f.write("- Ligands: RDKit `MolFromFASTA`, explicit hydrogens, ETKDG conformers, UFF energy minimization; best conformer docked as rigid peptide PDBQT.\n")
         f.write("- Receptors: RCSB PDB first model; protein ATOM records retained; crystallographic waters, ions and hetero ligands removed; simple rigid receptor PDBQT generated.\n")
         f.write("- Search box: centered on crystallographic hetero/cofactor pocket when present; otherwise receptor center; Vina exhaustiveness 6.\n")
-        f.write("- Replicates: 3 independent Vina seeds per peptide-target pair; the reported score is the mean of each replicate's best pose.\n")
+        f.write("- Replicates: 3 independent AutoDock Vina CLI seeds per peptide-target pair; the reported score is the mean of each replicate's best pose.\n")
         f.write("- Contacts/figures: residues within 4.0 A of the best selected pose are listed and labelled in figures/PyMOL scripts.\n")
         f.write("\n## Results: mean of three best Vina scores\n\n")
         f.write("| Organism | Target | PDB | Peptide | Mean best kcal/mol | SD | Best single |\n")
@@ -626,6 +652,7 @@ def main(argv: List[str]) -> int:
         "summary_rows": summary_rows,
         "figure_rows": figure_rows,
         "pymol": pymol,
+        "vina_exe": os.environ.get("VINA_EXE") or shutil.which("vina") or shutil.which("vina.exe"),
         "status": "done",
         "report": str(report),
     })
