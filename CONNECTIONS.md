@@ -1,13 +1,14 @@
 # 连接台账 —— Arena 仓库 × 分支 × 本机路径（防忘专用）
 
-> 更新：2026-09-16（**本会话（`arena/01a0a9f0`）HQ = 新克隆 `git-pull-arena-01a0a9f0` / `arena/01a0a9f0-git-pull-arena`，技能 **v2.8.1**（源自 `arena/01a0a98d`）；**不要覆盖旧目录**。三个不要覆盖的目录：`git-pull-arena`（旧 v2.6.7）、`git-pull-arena-v268`、`git-pull-arena-s2`。上一个会话 HQ = `git-pull-arena-s2` / `arena/01a0a821`（v2.7.4，值守已被新会话 park，可 `.\\watch.ps1 -Focus` 切回））｜ 技能版本：v2.8.1（开发分支）/ v2.6.7（`main`）｜ 开发分支 `arena/01a0a9f0-git-pull-arena`（本会话）｜ 退路 `arena/01a0a4f5-git-pull-arena`（v2.6.7）/ `arena/01a09fc1-git-pull-arena`（v2.4.7）｜ 本文件在 `E:\0github\git-sync\git-pull-arena-01a0a9f0\CONNECTIONS.md`
-> 忘了的时候：`cd E:\0github\git-sync\git-pull-arena-01a0a9f0` 然后 `notepad CONNECTIONS.md`
+> 更新：2026-10-05（**本会话（`arena/01a10bf3`）HQ = 新克隆 `git-pull-arena-01a10bf3` / `arena/01a10bf3-git-pull-arena`，技能 **v2.8.1**；**不要覆盖旧目录**。不要覆盖的目录：`git-pull-arena`（旧 v2.6.7）、`git-pull-arena-v268`、`git-pull-arena-s2`、`git-pull-arena-01a0a9f0` 及其他更早会话目录。上一个会话 `arena/01a10bde`（动态壁纸重试，其 round 268 未在本分支闭环）值守已被本会话 park，可在其目录 `.\\watch.ps1 -Focus` 切回）｜ 技能版本：v2.8.1（开发分支）/ v2.6.7（`main`）｜ 开发分支 `arena/01a10bf3-git-pull-arena`（本会话）｜ 退路 `arena/01a0a4f5-git-pull-arena`（v2.6.7）/ `arena/01a09fc1-git-pull-arena`（v2.4.7）｜ 本文件在 `E:\0github\git-sync\git-pull-arena-01a10bf3\CONNECTIONS.md`
+> 忘了的时候：`cd E:\0github\git-sync\git-pull-arena-01a10bf3` 然后 `notepad CONNECTIONS.md`
 
 ## 一、当前所有连接
 
 | 用途 | GitHub 仓库 | 工作分支 | 本机路径 | 值守任务名 | 状态 |
 |---|---|---|---|---|---|
-| **git-sync 技能总部（本会话）** | [mqgg5630-cyber/git-pull-arena](https://github.com/mqgg5630-cyber/git-pull-arena) | **`arena/01a0a9f0-git-pull-arena`**（技能 v2.8.1） | `E:\0github\git-sync\git-pull-arena-01a0a9f0` | `git-sync-watch-git-pull-arena-01a0a9f0` | ⏳ 本机粘一次交接块（`bootstrap.ps1 -Auto`）后收 round 回执；**不要覆盖旧目录** |
+| **git-sync 技能总部（本会话）** | [mqgg5630-cyber/git-pull-arena](https://github.com/mqgg5630-cyber/git-pull-arena) | **`arena/01a10bf3-git-pull-arena`**（技能 v2.8.1） | `E:\0github\git-sync\git-pull-arena-01a10bf3` | `git-sync-watch-git-pull-arena-01a10bf3` | ⏳ 本机粘一次交接块（`bootstrap.ps1 -Auto`）后收 round 回执；**不要覆盖旧目录** |
+| git-sync 上一会话克隆（v2.8.1，值守已被本会话 park） | 同上 | `arena/01a0a9f0-git-pull-arena`（v2.8.1） | `E:\0github\git-sync\git-pull-arena-01a0a9f0` | `git-sync-watch-git-pull-arena-01a0a9f0` | ⏸ 切回：`cd git-pull-arena-01a0a9f0 ; .\watch.ps1 -Focus`（不要覆盖这个目录） |
 | git-sync 上一会话克隆（v2.7.4，值守已被本会话 park） | 同上 | `arena/01a0a821-git-pull-arena`（v2.7.4） | `E:\0github\git-sync\git-pull-arena-s2` | `git-sync-watch-git-pull-arena-s2` | ⏸ 切回：`cd git-pull-arena-s2 ; .\watch.ps1 -Focus`（不要覆盖这个目录） |
 | git-sync 上一会话克隆（v2.6.8 静态/收尾行已验，冻结） | 同上 | `arena/01a0a7de-git-pull-arena`（v2.6.8；PR #3 已关） | `E:\0github\git-sync\git-pull-arena-v268` | `git-sync-watch-git-pull-arena-v268` | ⏸ **不要覆盖、不要在这里跑本会话的 `.\sync.ps1`** |
 | git-sync 旧安装（v2.6.7，冻结当退路） | 同上 | `arena/01a0a4f5-git-pull-arena`（v2.6.7） | `E:\0github\git-sync\git-pull-arena` | `git-sync-watch-git-pull-arena`（2026-09-16 已 `-Pause`） | ⏸ 不要在这里跑 `.\sync.ps1`，会停在 v2.6.7 |
