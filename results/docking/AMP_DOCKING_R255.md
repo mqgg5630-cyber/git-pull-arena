@@ -163,3 +163,8 @@ VINA_REPEATS_PER_PAIR=3
 ENERGY_MINIMIZATION_DONE=True
 RECEPTOR_STANDARDIZATION_DONE=True
 AMP_DOCKING_DONE=True
+
+## Desktop result folder (unredacted probe)
+desktop_result_folder_raw=D:\桌面\AMP_Docking_Vina_R255_20261005_1552
+desktop_result_folder_escaped=D:\\u684C\u9762\AMP_Docking_Vina_R255_20261005_1552
+DESKTOP_DOCKING_EXISTS=True
