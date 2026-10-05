@@ -1,9 +1,9 @@
 {
-  "round": 258,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 258 safe apply: user says do not freeze the desktop. Use ONLY a lightweight existing MP4 through Lively, no custom host. Start rollback watchdog first, remove prior autostarts/hosts, apply Anime Girl Beneath a Meteor Sky, capture actual desktop before/after/after screenshots (not lock screen), prove changed and moving; if not proven, rollback to static immediately.",
-  "arena_updated": "2026-10-05 06:47:07",
-  "local_updated": null
+    "round":  258,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 258 safe apply: user says do not freeze the desktop. Use ONLY a lightweight existing MP4 through Lively, no custom host. Start rollback watchdog first, remove prior autostarts/hosts, apply Anime Girl Beneath a Meteor Sky, capture actual desktop before/after/after screenshots (not lock screen), prove changed and moving; if not proven, rollback to static immediately.",
+    "arena_updated":  "2026-10-05 06:47:07",
+    "local_updated":  "2026-10-05 14:50:21"
 }

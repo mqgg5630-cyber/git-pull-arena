@@ -1,0 +1,21 @@
+{
+    "ready":  false,
+    "locked":  false,
+    "mp4":  "E:\\0mcp-agv-arena-optimized\\wallpapers\\safe-existing-anime-live-r258\\anime_girl_meteor_sky_safe_r258.mp4",
+    "mp4Bytes":  2229291,
+    "watchdogStarted":  true,
+    "livelySetOk":  true,
+    "before":  "E:\\0github\\git-sync\\git-pull-arena-01a0fa39\\results\\mcp_agv_lab\\r258_desktop_before.png",
+    "afterA":  "E:\\0github\\git-sync\\git-pull-arena-01a0fa39\\results\\mcp_agv_lab\\r258_desktop_after_a.png",
+    "afterB":  "E:\\0github\\git-sync\\git-pull-arena-01a0fa39\\results\\mcp_agv_lab\\r258_desktop_after_b.png",
+    "rollbackScreenshot":  "E:\\0github\\git-sync\\git-pull-arena-01a0fa39\\results\\mcp_agv_lab\\r258_rollback_screenshot.png",
+    "desktopChangedFromBeforeRatio":  0,
+    "desktopChangedFromBeforeAvg":  6.0281635802469132E-05,
+    "desktopMotionDiffRatio":  0,
+    "desktopMotionDiffAvg":  0,
+    "actualDesktopChangedToNewWallpaper":  false,
+    "actualDesktopIsMoving":  false,
+    "keepMarkerWritten":  false,
+    "livelyProcessCount":  25,
+    "tidyManifest":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\AUTO_TIDY_LAST_RUN.txt"
+}
