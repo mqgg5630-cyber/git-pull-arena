@@ -251,7 +251,10 @@
     "results/mcp_agv_lab/r250-lively-exact-args.json",
     "code/tasks/t202_visible_dynamic_wallpaper_r251.ps1",
     "results/mcp_agv_lab/R251_VISIBLE_DYNAMIC_WALLPAPER.md",
-    "results/mcp_agv_lab/r251-visible-dynamic-wallpaper.json"
+    "results/mcp_agv_lab/r251-visible-dynamic-wallpaper.json",
+    "code/tasks/t203_workerw_dynamic_wallpaper_r252.ps1",
+    "results/mcp_agv_lab/R252_WORKERW_DYNAMIC_WALLPAPER.md",
+    "results/mcp_agv_lab/r252-workerw-dynamic-wallpaper.json"
   ],
   "forbid_files": [
     "local/inbox",
@@ -284,7 +287,8 @@
     "results/mcp_agv_lab/R248_FORCE_LIVELY_DYNAMIC.md": "R248_FORCE_LIVELY_DYNAMIC_READY=True",
     "results/mcp_agv_lab/R249_LIVELY_EQUALS_DYNAMIC.md": "R249_LIVELY_EQUALS_DYNAMIC_READY=True",
     "results/mcp_agv_lab/R250_LIVELY_EXACT_ARGS.md": "R250_LIVELY_EXACT_ARGS_READY=True",
-    "results/mcp_agv_lab/R251_VISIBLE_DYNAMIC_WALLPAPER.md": "R251_VISIBLE_DYNAMIC_WALLPAPER_READY=True"
+    "results/mcp_agv_lab/R251_VISIBLE_DYNAMIC_WALLPAPER.md": "R251_VISIBLE_DYNAMIC_WALLPAPER_READY=True",
+    "results/mcp_agv_lab/R252_WORKERW_DYNAMIC_WALLPAPER.md": "R252_WORKERW_DYNAMIC_WALLPAPER_READY=True"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
@@ -300,7 +304,8 @@
     "results/mcp_agv_lab/R248_FORCE_LIVELY_DYNAMIC.md": "(?s)(?=.*html_dynamic_project_ok=True)(?=.*argv_safe_set_ok=True)(?=.*lively_process_seen=True)(?=.*desktop_tidy_ok=True)(?=.*desktop_tidy_done=True).*",
     "results/mcp_agv_lab/R249_LIVELY_EQUALS_DYNAMIC.md": "(?s)(?=.*html_dynamic_project_ok=True)(?=.*equals_arg_set_ok=True)(?=.*lively_process_seen=True)(?=.*desktop_tidy_ok=True)(?=.*desktop_tidy_done=True).*",
     "results/mcp_agv_lab/R250_LIVELY_EXACT_ARGS.md": "(?s)(?=.*html_dynamic_project_ok=True)(?=.*exact_arg_set_ok=True)(?=.*lively_process_seen=True)(?=.*desktop_tidy_ok=True)(?=.*desktop_tidy_done=True).*",
-    "results/mcp_agv_lab/R251_VISIBLE_DYNAMIC_WALLPAPER.md": "(?s)(?=.*visible_dynamic_screen_proof=True)(?=.*visible_host_running=True)(?=.*desktop_tidy_ok=True)(?=.*screen_diff_ratio=0\\.(00[3-9]|0[1-9]|[1-9])).*"
+    "results/mcp_agv_lab/R251_VISIBLE_DYNAMIC_WALLPAPER.md": "(?s)(?=.*visible_dynamic_screen_proof=True)(?=.*visible_host_running=True)(?=.*desktop_tidy_ok=True)(?=.*screen_diff_ratio=0\\.(00[3-9]|0[1-9]|[1-9])).*",
+    "results/mcp_agv_lab/R252_WORKERW_DYNAMIC_WALLPAPER.md": "(?s)(?=.*visible_dynamic_screen_proof=True)(?=.*visible_host_running=True)(?=.*workerw_or_desktop_parent_ok=True)(?=.*desktop_tidy_ok=True)(?=.*screen_diff_ratio=(0\\.(00[3-9]|0[1-9]|[1-9])|1\\.000000)).*"
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,
@@ -352,7 +357,10 @@
     "results/mcp_agv_lab/r250-lively-exact-args.json": 300,
     "code/tasks/t202_visible_dynamic_wallpaper_r251.ps1": 12000,
     "results/mcp_agv_lab/R251_VISIBLE_DYNAMIC_WALLPAPER.md": 1600,
-    "results/mcp_agv_lab/r251-visible-dynamic-wallpaper.json": 500
+    "results/mcp_agv_lab/r251-visible-dynamic-wallpaper.json": 500,
+    "code/tasks/t203_workerw_dynamic_wallpaper_r252.ps1": 12000,
+    "results/mcp_agv_lab/R252_WORKERW_DYNAMIC_WALLPAPER.md": 1800,
+    "results/mcp_agv_lab/r252-workerw-dynamic-wallpaper.json": 600
   },
   "max_bytes": {
     "deliverable/LINK_PROOF_v2.8.1.docx": 3000000,
