@@ -1,9 +1,9 @@
 {
-  "round": 256,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "round 256: criteria-only fix and confirmation after round 255. Confirm the existing anime live wallpaper is downloaded, the apply and unlock-wait scripts are ready, no PIN is requested, the wallpaper will apply on manual unlock/logon, and tidy desktop",
-  "arena_updated": "2026-10-05 05:10:23",
-  "local_updated": "2026-10-05 13:09:56"
+  "round": 257,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 257 emergency: user says the live wallpaper froze the computer. Immediately stop all dynamic wallpaper/Lively/custom host/waiter processes, remove wallpaper autostarts, restore a static Windows wallpaper, restart Explorer, capture a screenshot to results/mcp_agv_lab/r257_desktop_after_recovery.png for chat, and tidy desktop",
+  "arena_updated": "2026-10-05 06:37:52",
+  "local_updated": null
 }
