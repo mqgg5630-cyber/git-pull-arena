@@ -1,9 +1,9 @@
 {
-  "round": 272,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 272: dynamic video wallpaper - reuse hotori mp4, vlc video-wallpaper, pixel-only verdict with dual late probes (~105s and ~200s), autostart",
-  "arena_updated": "2026-10-05 12:52:24",
-  "local_updated": null
+    "round":  272,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 272: dynamic video wallpaper - reuse hotori mp4, vlc video-wallpaper, pixel-only verdict with dual late probes (~105s and ~200s), autostart",
+    "arena_updated":  "2026-10-05 12:52:24",
+    "local_updated":  "2026-10-05 20:58:19"
 }
