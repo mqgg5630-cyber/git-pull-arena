@@ -1,9 +1,9 @@
 {
-    "round":  268,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 268: loop smoke - watcher auto-pulls this request, runs t220 on the real machine, pushes the receipt back; agent polls until the verdict lands",
-    "arena_updated":  "2026-10-05 12:18:00",
-    "local_updated":  "2026-10-05 20:22:58"
+  "round": 268,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-05 12:34:07",
+  "local_updated": "2026-10-05 20:22:58"
 }
