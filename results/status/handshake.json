@@ -1,9 +1,9 @@
 {
-  "round": 253,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "round 253: restore the actually visible cute anime dynamic wallpaper after the hidden WorkerW diagnostic, verify real desktop screen-diff movement, keep it running, and tidy desktop",
-  "arena_updated": "2026-10-05 03:34:27",
-  "local_updated": "2026-10-05 11:34:01"
+  "round": 254,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 254: user says desktop wallpaper is still static. First capture current desktop screenshot, stop earlier custom hosts, download a real existing anime live MP4 from livelywallpaper.app (Anime Girl Beneath a Meteor Sky), set it through Lively for duplicate/all monitors, then capture before/after and after-vs-after screenshots proving the actual desktop changed and is moving; tidy desktop",
+  "arena_updated": "2026-10-05 04:59:22",
+  "local_updated": null
 }
