@@ -739,6 +739,9 @@
     ],
     "258": [
       "t209_safe_lively_dynamic_r258.ps1"
+    ],
+    "259": [
+      "t210_clean_restart_lively_r259.ps1"
     ]
   }
 }
