@@ -1,9 +1,9 @@
 {
-  "round": 254,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "accepted: Google Drive gdrive_jzthjyz connected with probe write; computer-use/Windows MCP laptop smoke passed; skills updated",
-  "arena_updated": "2026-10-03 12:40:45",
-  "local_updated": "2026-10-03 20:40:04"
+  "round": 255,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "run AMP docking workflow: install open/free Vina baseline, prepare/minimize three peptides, standardize E. coli/S. aureus targets, dock 3 repeats per pair, generate PyMOL/contact figures, copy results to Desktop",
+  "arena_updated": "2026-10-05 06:59:11",
+  "local_updated": null
 }
