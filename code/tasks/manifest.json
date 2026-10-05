@@ -760,6 +760,9 @@
     ],
     "265": [
       "t216_run_confirm_vlc_dynamic_r265.ps1"
+    ],
+    "266": [
+      "t217_run_vlc_persistent_wallpaper_r266.ps1"
     ]
   }
 }
