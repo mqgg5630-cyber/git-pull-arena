@@ -1,9 +1,9 @@
 {
-    "round":  255,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 255: I inspected the proof from round 254 and it showed the Windows PIN lock screen, not the desktop. Do not ask for the PIN. Download a real existing anime live MP4 wallpaper (prefer Mahiru flower field from livelywallpaper.app), stop prior custom hosts, create/apply a Lively wallpaper script now, arm an unlock/logon waiter so it applies automatically when the user manually unlocks, save current screen proof, and tidy the desktop",
-    "arena_updated":  "2026-10-05 05:03:40",
-    "local_updated":  "2026-10-05 13:06:39"
+  "round": 256,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 256: criteria-only fix and confirmation after round 255. Confirm the existing anime live wallpaper is downloaded, the apply and unlock-wait scripts are ready, no PIN is requested, the wallpaper will apply on manual unlock/logon, and tidy desktop",
+  "arena_updated": "2026-10-05 05:07:51",
+  "local_updated": null
 }
