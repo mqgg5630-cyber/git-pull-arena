@@ -1,0 +1,19 @@
+check round 263 on LAPTOP-R77M5D6M - failed (exit -532462766)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 51s
+
+OK: all .ps1 files are ASCII-only
+OK: sync.config.json branch=arena/01a0fa39-git-pull-arena
+OK: sync.config.json branch matches HEAD (arena/01a0fa39-git-pull-arena)
+OK: root scripts identical to skills/git-sync/scripts
+OK: no drive-style variable typos ($var:)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+OK: every .ps1 parses
+   (gate ran via E:\hermes\git\bin\bash.exe [git])
+[FAIL] accept 2a: auth.ps1 probe failed (run .\auth.ps1 by hand to see why)
+发生的错误未能正确处理。下面列出了有关其他信息。Windows PowerShell 进程将退出。
+--- stderr ---
+未经处理的异常:  OutOfMemoryException.
