@@ -1,9 +1,9 @@
 {
-  "round": 262,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 262: PowerShell wallpaper scripts are being blocked by Defender. Use a minimal PowerShell wrapper that runs Python. In Python, use VLC --video-wallpaper with the existing Anime Girl Beneath a Meteor Sky MP4, capture real desktop BMP screenshots before/after/after, verify changed and moving, rollback if not proven.",
-  "arena_updated": "2026-10-05 07:06:09",
-  "local_updated": null
+    "round":  262,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 262: PowerShell wallpaper scripts are being blocked by Defender. Use a minimal PowerShell wrapper that runs Python. In Python, use VLC --video-wallpaper with the existing Anime Girl Beneath a Meteor Sky MP4, capture real desktop BMP screenshots before/after/after, verify changed and moving, rollback if not proven.",
+    "arena_updated":  "2026-10-05 07:06:09",
+    "local_updated":  "2026-10-05 15:08:50"
 }
