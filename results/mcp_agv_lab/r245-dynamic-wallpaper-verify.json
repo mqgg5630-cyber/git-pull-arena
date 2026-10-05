@@ -1,0 +1,19 @@
+{
+    "ready":  true,
+    "desktop":  "D:\\桌面",
+    "eRoot":  "E:\\0mcp-agv-arena-optimized",
+    "hardVideo":  "E:\\0mcp-agv-arena-optimized\\video\\hypit-hard-anime-viral-r244\\hypit_hard_anime_viral_r244.mp4",
+    "hardVideoBytes":  56152048,
+    "wallpaperVideo":  "E:\\0mcp-agv-arena-optimized\\wallpapers\\anime-live-r244\\anime_live_wallpaper_r244.mp4",
+    "wallpaperBytes":  30261071,
+    "storyboard":  "E:\\0mcp-agv-arena-optimized\\video\\hypit-hard-anime-viral-r244\\hypit_storyboard_hard_viral_anime.svml",
+    "manifest":  "E:\\0mcp-agv-arena-optimized\\video\\hypit-hard-anime-viral-r244\\viral_rebuild_manifest.json",
+    "dynamicWallpaperSetOk":  true,
+    "dynamicWallpaperExe":  "C:\\Program Files\\Lively Wallpaper\\Lively.exe",
+    "dynamicWallpaperCmd":  "setwp --file \"E:\\0mcp-agv-arena-optimized\\wallpapers\\anime-live-r244\\anime_live_wallpaper_r244.mp4\" setwp --file \"E:\\0mcp-agv-arena-optimized\\wallpapers\\anime-live-r244\\anime_live_wallpaper_r244.mp4\" --monitor 1",
+    "desktopOrganizedVideo":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\03-Video-Creation\\hypit_hard_anime_viral_r244.mp4",
+    "desktopOrganizedWallpaper":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\09-Anime-Wallpapers\\anime_live_wallpaper_r244.mp4",
+    "desktopOrganizer":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer",
+    "tidyManifest":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\AUTO_TIDY_LAST_RUN.txt",
+    "pathsSummary":  "E:\\0mcp-agv-arena-optimized\\r244-hard-anime-video-wallpaper\\PATHS.txt"
+}
