@@ -22,7 +22,7 @@ Set-Location (Join-Path $PSScriptRoot '..')   # repo root (this file lives in co
 # and would otherwise prevent the requested desktop task from running at all.
 try {
     $hsFast = Get-Content -LiteralPath '.\results\status\handshake.json' -Raw -Encoding UTF8 | ConvertFrom-Json
-    if ([int]$hsFast.round -in @(264,265,266,267)) {
+    if ([int]$hsFast.round -in @(264,265,266,267,268)) {
         $taskRootFast = '.\code\tasks'
         $taskManifestFast = Join-Path $taskRootFast 'manifest.json'
         $codeFast = 0
