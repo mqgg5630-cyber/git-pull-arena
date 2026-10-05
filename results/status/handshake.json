@@ -1,9 +1,9 @@
 {
-    "round":  260,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "generate AMP target-selection/method/results literature report as MD+DOCX and PyMOL SCI composite figures, then update the existing Desktop docking folder",
-    "arena_updated":  "2026-10-05 09:36:05",
-    "local_updated":  "2026-10-05 17:42:49"
+  "round": 261,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "retry AMP report and PyMOL SCI figures with corrected PyMOL PNG path syntax",
+  "arena_updated": "2026-10-05 09:43:34",
+  "local_updated": null
 }
