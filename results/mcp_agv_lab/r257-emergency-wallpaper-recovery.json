@@ -1,0 +1,21 @@
+{
+    "ready":  true,
+    "screenLockedBeforeRecovery":  false,
+    "autostartItemsRemoved":  1,
+    "stopAttempts":  [
+                         "lively_cmd_closewp_--monitor_-1_exit=0",
+                         "lively_cmd_--shutdown_true_exit=0",
+                         25
+                     ],
+    "staticWallpaper":  "C:\\Windows\\Web\\Wallpaper\\Windows\\img0.jpg",
+    "staticWallpaperSet":  true,
+    "explorerRestarted":  true,
+    "screenshot":  "E:\\0github\\git-sync\\git-pull-arena-01a0fa39\\results\\mcp_agv_lab\\r257_desktop_after_recovery.png",
+    "screenshotOk":  true,
+    "screenshotWidth":  1536,
+    "screenshotHeight":  864,
+    "livelyProcessesRemaining":  23,
+    "dynamicAutostartProcessesRemaining":  0,
+    "explorerProcessCount":  1,
+    "tidyManifest":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\AUTO_TIDY_LAST_RUN.txt"
+}
