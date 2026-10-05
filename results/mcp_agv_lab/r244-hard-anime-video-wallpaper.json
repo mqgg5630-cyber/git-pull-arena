@@ -1,0 +1,25 @@
+{
+    "ready":  true,
+    "desktop":  "D:\\桌面",
+    "eRoot":  "E:\\0mcp-agv-arena-optimized",
+    "animeImage":  "E:\\0mcp-agv-arena-optimized\\images\\anime-wallpaper-r244\\anime_dynamic_wallpaper_v2.png",
+    "hardVideo":  "E:\\0mcp-agv-arena-optimized\\video\\hypit-hard-anime-viral-r244\\hypit_hard_anime_viral_r244.mp4",
+    "hardVideoBytes":  56152048,
+    "hardStoryboard":  "E:\\0mcp-agv-arena-optimized\\video\\hypit-hard-anime-viral-r244\\hypit_storyboard_hard_viral_anime.svml",
+    "hardManifest":  "E:\\0mcp-agv-arena-optimized\\video\\hypit-hard-anime-viral-r244\\viral_rebuild_manifest.json",
+    "desktopOrganizedVideo":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\03-Video-Creation\\hypit_hard_anime_viral_r244.mp4",
+    "wallpaperVideo":  "E:\\0mcp-agv-arena-optimized\\wallpapers\\anime-live-r244\\anime_live_wallpaper_r244.mp4",
+    "wallpaperBytes":  30261071,
+    "desktopOrganizedWallpaper":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\09-Anime-Wallpapers\\anime_live_wallpaper_r244.mp4",
+    "lively":  [
+                   "lively_winget_install_exit=0",
+                   "lively_winget_install_tail=姝ゅ簲鐢ㄧ▼搴忕敱鍏舵墍鏈夎€呮巿鏉冪粰浣犮€? | Microsoft 瀵圭涓夋柟绋嬪簭鍖呮涓嶈礋璐ｏ紝涔熶笉鍚戠涓夋柟绋嬪簭鍖呮巿浜堜换浣曡鍙瘉銆? | 姝ｅ湪涓嬭浇 https://msedge.sf.dl.delivery.mp.microsoft.[REDACTED].exe | 宸叉垚鍔熼獙璇佸畨瑁呯▼搴忓搱甯? | 姝ｅ湪鍚姩绋嬪簭鍖呭畨瑁?.. | 宸叉垚鍔熷畨瑁? |  | 姝ｅ湪涓嬭浇 https://github.com/rocksdanister/lively/releases/download/v2.2.1.0/lively_setup_x86_full_v2210.exe | 宸叉垚鍔熼獙璇佸畨瑁呯▼搴忓搱甯? | 姝ｅ湪鍚姩绋嬪簭鍖呭畨瑁?.. | 瀹夎绋嬪簭灏嗚姹備互绠＄悊鍛樿韩浠借繍琛屻€傛湡寰呮彁绀恒€? | 宸叉垚鍔熷畨瑁?",
+                   "C:\\Program Files\\Lively Wallpaper\\Lively.exe"
+               ],
+    "dynamicWallpaperSetOk":  false,
+    "staticWallpaperFallbackOk":  true,
+    "desktopOrganizer":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer",
+    "autoTidyScript":  "E:\\0mcp-agv-arena-optimized\\tools\\desktop-organizer\\auto_tidy_desktop.ps1",
+    "tidyManifest":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\AUTO_TIDY_LAST_RUN.txt",
+    "pathsSummary":  "E:\\0mcp-agv-arena-optimized\\r244-hard-anime-video-wallpaper\\PATHS.txt"
+}

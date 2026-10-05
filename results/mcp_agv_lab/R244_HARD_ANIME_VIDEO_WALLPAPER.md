@@ -1,0 +1,6 @@
+Hard anime viral video: E:\0mcp-agv-arena-optimized\video\hypit-hard-anime-viral-r244\hypit_hard_anime_viral_r244.mp4 Hard video desktop organized copy: D:\桌面\DeskBox-Cute-Desktop-Organizer\03-Video-Creation\hypit_hard_anime_viral_r244.mp4 Storyboard: E:\0mcp-agv-arena-optimized\video\hypit-hard-anime-viral-r244\hypit_storyboard_hard_viral_anime.svml Manifest: E:\0mcp-agv-arena-optimized\video\hypit-hard-anime-viral-r244\viral_rebuild_manifest.json Anime live wallpaper video: E:\0mcp-agv-arena-optimized\wallpapers\anime-live-r244\anime_live_wallpaper_r244.mp4 Wallpaper organized copy: D:\桌面\DeskBox-Cute-Desktop-Organizer\09-Anime-Wallpapers\anime_live_wallpaper_r244.mp4 Anime source image: E:\0mcp-agv-arena-optimized\images\anime-wallpaper-r244\anime_dynamic_wallpaper_v2.png Lively command: System.Object[] Desktop organizer: D:\桌面\DeskBox-Cute-Desktop-Organizer Auto tidy script: E:\0mcp-agv-arena-optimized\tools\desktop-organizer\auto_tidy_desktop.ps1 Tidy manifest: D:\桌面\DeskBox-Cute-Desktop-Organizer\AUTO_TIDY_LAST_RUN.txt
+paths_summary=E:\0mcp-agv-arena-optimized\r244-hard-anime-video-wallpaper\PATHS.txt exists=True
+hard_video_ok=True
+wallpaper_video_ok=True
+wallpaper_applied_ok=True
+R244_HARD_VIDEO_WALLPAPER_READY=True
