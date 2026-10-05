@@ -1,0 +1,49 @@
+{
+    "ready":  true,
+    "desktop":  "D:\\桌面",
+    "eRoot":  "E:\\0mcp-agv-arena-optimized",
+    "webApps":  [
+                    {
+                        "name":  "Douyin",
+                        "dir":  "E:\\0mcp-agv-arena-optimized\\apps\\web-apps\\douyin",
+                        "shortcut":  "D:\\桌面\\Douyin.lnk",
+                        "exists":  true
+                    },
+                    {
+                        "name":  "Xiaohongshu",
+                        "dir":  "E:\\0mcp-agv-arena-optimized\\apps\\web-apps\\xiaohongshu",
+                        "shortcut":  "D:\\桌面\\Xiaohongshu.lnk",
+                        "exists":  true
+                    },
+                    {
+                        "name":  "WeChat Official Account",
+                        "dir":  "E:\\0mcp-agv-arena-optimized\\apps\\web-apps\\wechat-official-account",
+                        "shortcut":  "D:\\桌面\\WeChat Official Account.lnk",
+                        "exists":  true
+                    },
+                    {
+                        "name":  "Jianying",
+                        "dir":  "E:\\0mcp-agv-arena-optimized\\apps\\web-apps\\jianying",
+                        "shortcut":  "D:\\桌面\\Jianying.lnk",
+                        "exists":  true
+                    }
+                ],
+    "deskboxDir":  "E:\\0mcp-agv-arena-optimized\\apps\\DeskBox",
+    "deskboxInstaller":  "",
+    "deskboxExe":  "",
+    "deskboxShortcut":  "D:\\桌面\\DeskBox Cute.lnk",
+    "photoOriginal":  "E:\\0mcp-agv-arena-optimized\\images\\career-id-photo\\cute_professional_id_photo_original.png",
+    "photo295":  "E:\\0mcp-agv-arena-optimized\\images\\career-id-photo\\career_id_photo_295x413.png",
+    "photo413":  "E:\\0mcp-agv-arena-optimized\\images\\career-id-photo\\career_id_photo_413x579.png",
+    "desktopPhoto":  "D:\\桌面\\cute_professional_id_photo_295x413.png",
+    "xiutuDir":  "E:\\0mcp-agv-arena-optimized\\skills\\xiutu.skill",
+    "aiJobSearchDir":  "E:\\0mcp-agv-arena-optimized\\career\\ai-job-search",
+    "careerOpsDir":  "E:\\0mcp-agv-arena-optimized\\career\\career-ops",
+    "hypitDir":  "E:\\0mcp-agv-arena-optimized\\video\\hypit",
+    "hypitNpmPackage":  "E:\\0mcp-agv-arena-optimized\\tools\\hypit-npm-package\\node_modules\\@hypit\\hypit\\package.json",
+    "hypitProject":  "E:\\0mcp-agv-arena-optimized\\video\\hypit-safe-viral-clone-r242",
+    "hypitVideo":  "E:\\0mcp-agv-arena-optimized\\video\\hypit-safe-viral-clone-r242\\hypit_safe_viral_clone_r242.mp4",
+    "desktopVideo":  "D:\\桌面\\hypit_safe_viral_clone_r242.mp4",
+    "pathsSummary":  "E:\\0mcp-agv-arena-optimized\\r241-paths-and-tools\\PATHS.txt",
+    "pathsShortcut":  "D:\\桌面\\R241 Paths and Tools.lnk"
+}
