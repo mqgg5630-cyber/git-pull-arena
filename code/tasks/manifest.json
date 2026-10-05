@@ -688,6 +688,9 @@
     ],
     "241": [
       "t192_install_media_career_tools_r241.ps1"
+    ],
+    "242": [
+      "t193_finish_media_career_tools_r242.ps1"
     ]
   }
 }
