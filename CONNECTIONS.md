@@ -263,9 +263,15 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 271 (2026-10-05, pixel-only verdict)
 - r270 诊断：像素证据显示视频壁纸**在播**（换上前→后 99.7% 变化；100s/106s 两帧 7.8% 持续运动——与 r266 成功时同量级），但 `tasklist` 数到 0 个 vlc.exe，触发保守回滚（现已是 r267 静态）。教训重申（r251 就写过）：**信像素，别信进程计数**。
 - r271 = `t223_*`：判定改为纯像素（A→B 变化 + 两处晚期探针 ~101s/107s 和 ~195s/201s 都在动才 READY）；复用已下载的 hotori mp4；清理 r270 残留；PATHS.txt utf-8 / bat ascii 守卫保留。
-- 状态：⏳ 已排队。
+- 状态：❌ NameError 崩溃（助手侧拼装错误，无副作用）。
 
 ## round 272 (2026-10-05)
 - r271 败因：助手侧拼接脚本的低级错误——`R270_MP4` 未定义（NameError，任务 20 秒即崩，没碰任何壁纸状态；r270 的残留 bat 已被清掉）。
 - r272 = `t224_*`：补上定义 + 全量未定义名字扫描通过；其余与 r271 设计一致（纯像素判定 + 双晚期探针）。
 - 状态：⏳ 已排队。
+
+## round 272 结果（2026-10-05 20:54-20:59，✅ 动态壁纸上墙，闭环）
+- **Hotori Above a Sunset City**（livelywallpaper.app 现成动态壁纸 mp4，1080p/2.66MB/15.5s 循环）已设为桌面壁纸，VLC `--video-wallpaper` 播放。
+- 像素证明：换上前→后 99.5% 变化；~105s 两帧 8.4% 运动、~200s 两帧 13.3% 运动 → `persistent_motion_proven=True`；`DYNAMIC_VIDEO_WALLPAPER_READY=True`；round 272 自动 accept（判据 485+ 全过）。
+- 持久化：`E:\0mcp-agv-arena-optimized\wallpapers\dynamic-video-r272\`（mp4 + Start/Stop bat + PATHS.txt）；开机自启 = Startup 文件夹 `R272 Dynamic Video Wallpaper Start.bat`（开机延迟 20 秒启动；不想开机自动恢复就删它；停止用 Stop bat；换回静态 = 右键个性化或重设 r267 png）。
+- 本会话总账：round 268 通道冒烟 ✅ → 269 编码崩溃 ❌ → 270 进程计数误判回滚 ❌（但像素证明在播）→ 271 助手侧 NameError ❌ → 272 ✅ 闭环。「自动 pull → 执行代码 → push 本地结果 → 反复轮询」全链路在 5 轮里自动运转，两轮完全 hands-free accept（268、272）。

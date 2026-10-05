@@ -314,7 +314,14 @@
     "results/mcp_agv_lab/r267_static_desktop_after.png",
     "code/tasks/t220_loop_smoke_r268.ps1",
     "results/mcp_agv_lab/R268_LOOP_POLL_SMOKE.md",
-    "results/mcp_agv_lab/r268-loop-poll-smoke.json"
+    "results/mcp_agv_lab/r268-loop-poll-smoke.json",
+    "code/tasks/t224_run_dynamic_video_wallpaper_r272.ps1",
+    "code/tasks/t224_dynamic_video_wallpaper_r272.py",
+    "results/mcp_agv_lab/R272_DYNAMIC_VIDEO_WALLPAPER.md",
+    "results/mcp_agv_lab/r272-dynamic-video-wallpaper.json",
+    "results/mcp_agv_lab/r272_frame_b_after.bmp",
+    "results/mcp_agv_lab/r272_frame_e_late2.bmp",
+    "results/mcp_agv_lab/r272_frame_f_late2.bmp"
   ],
   "forbid_files": [
     "local/inbox",
@@ -374,7 +381,8 @@
     "results/mcp_agv_lab/R256_CONFIRM_EXISTING_ANIME_WALLPAPER_ARMED.md": "(?s)(?=.*existing_live_wallpaper_downloaded=True)(?=.*apply_script_ready=True)(?=.*unlock_or_logon_auto_apply_ready=True)(?=.*desktop_tidy_ok=True).*",
     "results/mcp_agv_lab/R257_EMERGENCY_WALLPAPER_RECOVERY.md": "(?s)(?=.*static_wallpaper_set=True)(?=.*autostarts_removed=True)(?=.*screenshot_captured=True)(?=.*dynamic_wallpaper_disabled=True)(?=.*desktop_tidy_done=True).*",
     "results/mcp_agv_lab/R267_STATIC_ANIME_WALLPAPER.md": "(?s)(?=.*static_wallpaper_set=True)(?=.*screenshot_png=.*exists=True)(?=.*vlc_process_count=0)(?=.*desktop_tidy_done=True).*",
-    "results/mcp_agv_lab/R268_LOOP_POLL_SMOKE.md": "(?s)(?=.*auto_pull_branch_ok=True)(?=.*auto_pull_head_ok=True)(?=.*code_exec_ok=True)(?=.*self_mapped_ok=True)(?=.*receipt_written=True)(?=.*loop_smoke_ok=True).*"
+    "results/mcp_agv_lab/R268_LOOP_POLL_SMOKE.md": "(?s)(?=.*auto_pull_branch_ok=True)(?=.*auto_pull_head_ok=True)(?=.*code_exec_ok=True)(?=.*self_mapped_ok=True)(?=.*receipt_written=True)(?=.*loop_smoke_ok=True).*",
+    "results/mcp_agv_lab/R272_DYNAMIC_VIDEO_WALLPAPER.md": "(?s)(?=.*wallpaper_inherently_dynamic=True)(?=.*persistent_motion_proven=True)(?=.*actual_desktop_changed_to_new_wallpaper=True)(?=.*actual_desktop_is_moving_late=True)(?=.*actual_desktop_is_moving_late2=True)(?=.*autostart_ready=True)(?=.*DYNAMIC_VIDEO_WALLPAPER_READY=True).*"
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,
@@ -488,7 +496,14 @@
     "results/mcp_agv_lab/r267_static_desktop_after.png": 5000,
     "code/tasks/t220_loop_smoke_r268.ps1": 5000,
     "results/mcp_agv_lab/R268_LOOP_POLL_SMOKE.md": 800,
-    "results/mcp_agv_lab/r268-loop-poll-smoke.json": 500
+    "results/mcp_agv_lab/r268-loop-poll-smoke.json": 500,
+    "code/tasks/t224_run_dynamic_video_wallpaper_r272.ps1": 300,
+    "code/tasks/t224_dynamic_video_wallpaper_r272.py": 8000,
+    "results/mcp_agv_lab/R272_DYNAMIC_VIDEO_WALLPAPER.md": 1400,
+    "results/mcp_agv_lab/r272-dynamic-video-wallpaper.json": 800,
+    "results/mcp_agv_lab/r272_frame_b_after.bmp": 1000000,
+    "results/mcp_agv_lab/r272_frame_e_late2.bmp": 1000000,
+    "results/mcp_agv_lab/r272_frame_f_late2.bmp": 1000000
   },
   "max_bytes": {
     "deliverable/LINK_PROOF_v2.8.1.docx": 3000000,
