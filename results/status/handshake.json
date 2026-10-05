@@ -1,9 +1,9 @@
 {
-  "round": 265,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 265: confirm the currently running VLC Direct3D cute anime dynamic wallpaper from round 264. Capture two real desktop frames, verify VLC process exists and desktop pixels are moving, and tidy desktop. Do not change or rollback unless not moving.",
-  "arena_updated": "2026-10-05 09:18:18",
-  "local_updated": null
+    "round":  265,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 265: confirm the currently running VLC Direct3D cute anime dynamic wallpaper from round 264. Capture two real desktop frames, verify VLC process exists and desktop pixels are moving, and tidy desktop. Do not change or rollback unless not moving.",
+    "arena_updated":  "2026-10-05 09:18:18",
+    "local_updated":  "2026-10-05 17:21:27"
 }

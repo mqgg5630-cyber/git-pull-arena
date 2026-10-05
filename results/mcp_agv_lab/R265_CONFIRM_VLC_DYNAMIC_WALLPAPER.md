@@ -1,0 +1,12 @@
+# R265 confirm VLC dynamic wallpaper
+time=2026-10-05 17:21:18
+vlc_process_count=0
+frame_a=E:\0github\git-sync\git-pull-arena-01a0fa39\results\mcp_agv_lab\r265_desktop_frame_a.bmp ok=True width=1536 height=864 err=
+frame_b=E:\0github\git-sync\git-pull-arena-01a0fa39\results\mcp_agv_lab\r265_desktop_frame_b.bmp ok=True width=1536 height=864 err=
+desktop_motion_diff_ratio=0.000121
+desktop_motion_diff_avg=0.063
+actual_desktop_is_moving=False
+wallpaper_video=E:\0mcp-agv-arena-optimized\wallpapers\vlc-direct3d-anime-r264\cute_mahiru_or_meteor_vlc_r264.mp4 exists=True
+desktop_tidy_manifest=C:\Users\??\Desktop\DeskBox-Cute-Desktop-Organizer\AUTO_TIDY_LAST_RUN.txt
+desktop_tidy_done=True
+R265_CONFIRM_VLC_DYNAMIC_WALLPAPER_READY=False

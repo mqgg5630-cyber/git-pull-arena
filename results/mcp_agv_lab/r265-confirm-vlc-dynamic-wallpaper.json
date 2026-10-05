@@ -1,0 +1,11 @@
+{
+  "ready": false,
+  "vlcProcessCount": 0,
+  "frameA": "E:\\0github\\git-sync\\git-pull-arena-01a0fa39\\results\\mcp_agv_lab\\r265_desktop_frame_a.bmp",
+  "frameB": "E:\\0github\\git-sync\\git-pull-arena-01a0fa39\\results\\mcp_agv_lab\\r265_desktop_frame_b.bmp",
+  "desktopMotionDiffRatio": 0.00012056327160493826,
+  "desktopMotionDiffAvg": 0.06306664737654322,
+  "actualDesktopIsMoving": false,
+  "wallpaperVideo": "E:\\0mcp-agv-arena-optimized\\wallpapers\\vlc-direct3d-anime-r264\\cute_mahiru_or_meteor_vlc_r264.mp4",
+  "tidyManifest": "C:\\Users\\文少\\Desktop\\DeskBox-Cute-Desktop-Organizer\\AUTO_TIDY_LAST_RUN.txt"
+}
