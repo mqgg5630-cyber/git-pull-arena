@@ -1,0 +1,20 @@
+{
+    "ready":  true,
+    "diagnosis":  "Previous checks used Lively exit/process; R251 uses screen diff proof.",
+    "hostDir":  "E:\\0mcp-agv-arena-optimized\\wallpapers\\cute-anime-live-r251\\visible-host",
+    "hostScript":  "E:\\0mcp-agv-arena-optimized\\wallpapers\\cute-anime-live-r251\\visible-host\\CuteAnimeDynamicWallpaperHost.ps1",
+    "startBat":  "E:\\0mcp-agv-arena-optimized\\wallpapers\\cute-anime-live-r251\\visible-host\\Start-CuteAnimeDynamicWallpaper.bat",
+    "stopBat":  "E:\\0mcp-agv-arena-optimized\\wallpapers\\cute-anime-live-r251\\visible-host\\Stop-CuteAnimeDynamicWallpaper.bat",
+    "background":  "E:\\0mcp-agv-arena-optimized\\wallpapers\\cute-anime-live-r251\\visible-host\\background.png",
+    "hostProcessCount":  1,
+    "screenFrameA":  "E:\\0mcp-agv-arena-optimized\\wallpapers\\cute-anime-live-r251\\proof\\visible_desktop_frame_a.png",
+    "screenFrameB":  "E:\\0mcp-agv-arena-optimized\\wallpapers\\cute-anime-live-r251\\proof\\visible_desktop_frame_b.png",
+    "screenDiffRatio":  0.99878231095679015,
+    "screenDiffAvg":  298.20200376157408,
+    "visibleDynamicScreenProof":  true,
+    "livelyCloseAllOk":  true,
+    "startupLink":  "C:\\Users\\文少\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\Cute Anime Dynamic Wallpaper R251.lnk",
+    "desktopHostCopy":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\09-Anime-Wallpapers\\Cute-Anime-Dynamic-R251-Visible-Host",
+    "desktopOrganizer":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer",
+    "tidyManifest":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\AUTO_TIDY_LAST_RUN.txt"
+}
