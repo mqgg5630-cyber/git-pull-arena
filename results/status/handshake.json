@@ -1,9 +1,9 @@
 {
-  "round": 243,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 243: retry DeskBox installer download with ssl-no-revoke and create the final DeskBox desktop shortcut/artifact",
-  "arena_updated": "2026-10-05 01:27:11",
-  "local_updated": null
+    "round":  243,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 243: retry DeskBox installer download with ssl-no-revoke and create the final DeskBox desktop shortcut/artifact",
+    "arena_updated":  "2026-10-05 01:27:11",
+    "local_updated":  "2026-10-05 09:28:38"
 }
