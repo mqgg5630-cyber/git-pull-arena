@@ -221,7 +221,10 @@
     "results/mcp_agv_lab/r241-install-media-career-tools.json",
     "code/tasks/t193_finish_media_career_tools_r242.ps1",
     "results/mcp_agv_lab/R242_FINISH_MEDIA_CAREER_TOOLS.md",
-    "results/mcp_agv_lab/r242-finish-media-career-tools.json"
+    "results/mcp_agv_lab/r242-finish-media-career-tools.json",
+    "code/tasks/t194_install_deskbox_r243.ps1",
+    "results/mcp_agv_lab/R243_DESKBOX_INSTALL.md",
+    "results/mcp_agv_lab/r243-deskbox-install.json"
   ],
   "forbid_files": [
     "local/inbox",
@@ -245,7 +248,8 @@
     "code/tasks/t2_install_java.ps1": "E:\\java",
     "results/mcp_agv_lab/GOUTOUJUNSHI_LOVE_LETTER_R239.md": "GOUTOUJUNSHI_LOVE_LETTER_APPLIED=True",
     "results/mcp_agv_lab/LOVE_LETTER_STANDALONE_GEM_R240.md": "LOVE_LETTER_STANDALONE_GEM_READY=True",
-    "results/mcp_agv_lab/R242_FINISH_MEDIA_CAREER_TOOLS.md": "R242_MEDIA_CAREER_READY=True"
+    "results/mcp_agv_lab/R242_FINISH_MEDIA_CAREER_TOOLS.md": "R242_MEDIA_CAREER_READY=True",
+    "results/mcp_agv_lab/R243_DESKBOX_INSTALL.md": "R243_DESKBOX_INSTALL_READY=True"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
@@ -253,7 +257,8 @@
     "deliverable/OFFICE_HASHES.json": "[0-9a-f]{64}",
     "results/mcp_agv_lab/GOUTOUJUNSHI_LOVE_LETTER_R239.md": "target_push_exit=0",
     "results/mcp_agv_lab/LOVE_LETTER_STANDALONE_GEM_R240.md": "target_push_exit=0",
-    "results/mcp_agv_lab/R242_FINISH_MEDIA_CAREER_TOOLS.md": "(?s)(?=.*web_shortcuts_ok=True)(?=.*deskbox_shortcut_ok=True)(?=.*xiutu_dir_exists=True)(?=.*ai_job_search_dir_exists=True)(?=.*career_ops_dir_exists=True)(?=.*hypit_repo_dir_exists=True)(?=.*id_photo_295_exists=True)(?=.*hypit_safe_clone_video_exists=True)(?=.*hypit_safe_clone_video_bytes=[1-9][0-9]{5,}).*"
+    "results/mcp_agv_lab/R242_FINISH_MEDIA_CAREER_TOOLS.md": "(?s)(?=.*web_shortcuts_ok=True)(?=.*deskbox_shortcut_ok=True)(?=.*xiutu_dir_exists=True)(?=.*ai_job_search_dir_exists=True)(?=.*career_ops_dir_exists=True)(?=.*hypit_repo_dir_exists=True)(?=.*id_photo_295_exists=True)(?=.*hypit_safe_clone_video_exists=True)(?=.*hypit_safe_clone_video_bytes=[1-9][0-9]{5,}).*",
+    "results/mcp_agv_lab/R243_DESKBOX_INSTALL.md": "(?s)(?=.*deskbox_shortcut=.*exists=True)(?=.*deskbox_(exe|installer)=.*exists=True)(?=.*R243_DESKBOX_INSTALL_READY=True).*"
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,
@@ -275,7 +280,10 @@
     "results/mcp_agv_lab/r241-install-media-career-tools.json": 1000,
     "code/tasks/t193_finish_media_career_tools_r242.ps1": 20000,
     "results/mcp_agv_lab/R242_FINISH_MEDIA_CAREER_TOOLS.md": 2000,
-    "results/mcp_agv_lab/r242-finish-media-career-tools.json": 1000
+    "results/mcp_agv_lab/r242-finish-media-career-tools.json": 1000,
+    "code/tasks/t194_install_deskbox_r243.ps1": 5000,
+    "results/mcp_agv_lab/R243_DESKBOX_INSTALL.md": 500,
+    "results/mcp_agv_lab/r243-deskbox-install.json": 200
   },
   "max_bytes": {
     "deliverable/LINK_PROOF_v2.8.1.docx": 3000000,
