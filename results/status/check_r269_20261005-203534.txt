@@ -1,0 +1,34 @@
+check round 269 on LAPTOP-R77M5D6M - failed (exit 1)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 52s
+
+== priority task r269: t221_run_dynamic_video_wallpaper_r269.ps1
+# R269 real dynamic video wallpaper
+time=2026-10-05 20:35:36
+goal=find a wallpaper that is inherently dynamic (a live-wallpaper MP4) and set it as the desktop wallpaper
+screen_locked_detected=False
+vlc_exe=C:\Program Files\VideoLAN\VLC\vlc.exe exists=True
+download_try=hotori-neverness-to-everness url=https://cdn.livelywallpaper.app/wallpapers/hotori-neverness-to-everness/hd.mp4
+download_exit=0 bytes=2664174
+download_ok=True via hotori-neverness-to-everness
+wallpaper_source=hotori-neverness-to-everness
+wallpaper_name=Hotori Above a Sunset City
+wallpaper_source_url=https://cdn.livelywallpaper.app/wallpapers/hotori-neverness-to-everness/hd.mp4
+wallpaper_inherently_dynamic=True (live-wallpaper MP4, not a static image)
+downloaded_ok=True download_method=curl
+mp4=E:\0mcp-agv-arena-optimized\wallpapers\dynamic-video-r269\dynamic_video_wallpaper_r269.mp4 exists=True
+mp4_bytes=2664174
+frame_a_before_start=E:\0github\git-sync\git-pull-arena-01a10bf3\results\mcp_agv_lab\r269_frame_a_before.bmp ok=True width=1536 height=864 err=
+vlc_start_ok=True
+start_bat=E:\0mcp-agv-arena-optimized\wallpapers\dynamic-video-r269\Start-R269-Dynamic-Wallpaper.bat exists=True
+stop_bat=E:\0mcp-agv-arena-optimized\wallpapers\dynamic-video-r269\Stop-R269-Dynamic-Wallpaper.bat exists=True
+autostart_bat=C:\Users\??\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\R269 Dynamic Video Wallpaper Start.bat exists=True
+   [FAIL] priority task exited 1
+--- stderr ---
+Traceback (most recent call last):
+  File "E:\0github\git-sync\git-pull-arena-01a10bf3\code\tasks\t221_dynamic_video_wallpaper_r269.py", line 144, in <module>
+    paths.write_text('R269 dynamic video wallpaper\r\n===============================\r\nwallpaper : '+str(MP4)+'\r\nsource    : '+chosen_name+' <'+chosen_url+'>\r\nstart     : '+str(start_bat)+'\r\nstop      : '+str(stop_bat)+'\r\nautostart : '+str(startup_bat)+' (delete this file to stop it coming back after reboot)\r\nrestore static: right-click desktop > Personalize, or re-run the r267 static png at\r\n              '+str(STATIC_R267)+'\r\n',encoding='ascii')
+  File "C:\Users\文少\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1048, in write_text
+    return f.write(data)
+           ^^^^^^^^^^^^^
+UnicodeEncodeError: 'ascii' codec can't encode characters in position 522-523: ordinal not in range(128)
