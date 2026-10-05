@@ -1,9 +1,9 @@
 {
-    "round":  259,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "record exact unredacted Desktop path for completed AMP docking result folder",
-    "arena_updated":  "2026-10-05 07:53:52",
-    "local_updated":  "2026-10-05 15:55:24"
+  "round": 259,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "record exact unredacted Desktop path for completed AMP docking result folder",
+  "arena_updated": "2026-10-05 07:55:46",
+  "local_updated": "2026-10-05 15:55:24"
 }
