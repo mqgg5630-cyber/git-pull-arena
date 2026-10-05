@@ -1,9 +1,9 @@
 {
-  "round": 259,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "record exact unredacted Desktop path for completed AMP docking result folder",
-  "arena_updated": "2026-10-05 07:55:46",
-  "local_updated": "2026-10-05 15:55:24"
+  "round": 260,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "generate AMP target-selection/method/results literature report as MD+DOCX and PyMOL SCI composite figures, then update the existing Desktop docking folder",
+  "arena_updated": "2026-10-05 09:36:05",
+  "local_updated": null
 }
