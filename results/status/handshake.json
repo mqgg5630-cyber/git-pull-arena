@@ -1,9 +1,9 @@
 {
-    "round":  251,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 251: user reports wallpaper is still static; replace it with an actually visible cute anime dynamic desktop wallpaper host and verify with real desktop screen-diff proof, then tidy desktop",
-    "arena_updated":  "2026-10-05 03:27:25",
-    "local_updated":  "2026-10-05 11:28:09"
+  "round": 252,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 252: make the cute anime dynamic wallpaper a desktop/WorkerW hosted wallpaper with nonzero desktop parent and visible screen-diff proof; tidy desktop again",
+  "arena_updated": "2026-10-05 03:29:53",
+  "local_updated": null
 }
