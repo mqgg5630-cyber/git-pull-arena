@@ -1,9 +1,9 @@
 {
-    "round":  264,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 264 priority: run the wallpaper task before the flaky auth probe. Use VLC Direct3D video-wallpaper mode with the cute Mahiru MP4 if available, otherwise Anime Girl Beneath a Meteor Sky. Capture real desktop BMP screenshots before/after/after, verify changed and moving; rollback if not proven.",
-    "arena_updated":  "2026-10-05 09:14:37",
-    "local_updated":  "2026-10-05 17:16:57"
+  "round": 265,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 265: confirm the currently running VLC Direct3D cute anime dynamic wallpaper from round 264. Capture two real desktop frames, verify VLC process exists and desktop pixels are moving, and tidy desktop. Do not change or rollback unless not moving.",
+  "arena_updated": "2026-10-05 09:18:18",
+  "local_updated": null
 }
