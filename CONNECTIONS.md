@@ -254,3 +254,8 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - 判据维护：修掉上一会话遗留的 5 条坏判据（R264 幻影回执 + 3 条 min_bytes 虚高），新增 R268 回执判据。
 - 回执：`results/mcp_agv_lab/R269_DYNAMIC_VIDEO_WALLPAPER.md` + `r269-dynamic-video-wallpaper.json` + 四帧截图。
 - 状态：⏳ 已排队（round 268 accept 后自动发起，值守 2 分钟内消化）。
+
+## round 270 (2026-10-05, retry: r269 编码修复)
+- r269 诊断：Hotori mp4 已下载（2.66MB）+ VLC 已启动，但写 PATHS.txt 用了 `encoding='ascii'`，路径里的中文用户名（`C:\Users\文少\...`）直接 UnicodeEncodeError 崩溃，像素验证没跑成（check_r269 日志）。
+- r270 = `t222_run_dynamic_video_wallpaper_r270.ps1` + `.py`：PATHS.txt 改 utf-8、bat 走 ascii-replace 守卫、优先复用 r269 已下载的 mp4、清理 r269 的 Startup/bat 残留（防重启双开），其余复刻 r266 已验证配方。
+- 状态：⏳ 已排队。
