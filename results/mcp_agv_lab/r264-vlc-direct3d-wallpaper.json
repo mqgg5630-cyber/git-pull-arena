@@ -1,0 +1,20 @@
+{
+  "ready": true,
+  "locked": false,
+  "vlc": "C:\\Program Files\\VideoLAN\\VLC\\vlc.exe",
+  "vlcStarted": true,
+  "mp4": "E:\\0mcp-agv-arena-optimized\\wallpapers\\vlc-direct3d-anime-r264\\cute_mahiru_or_meteor_vlc_r264.mp4",
+  "mp4Bytes": 1211443,
+  "before": "E:\\0github\\git-sync\\git-pull-arena-01a0fa39\\results\\mcp_agv_lab\\r264_desktop_before.bmp",
+  "afterA": "E:\\0github\\git-sync\\git-pull-arena-01a0fa39\\results\\mcp_agv_lab\\r264_desktop_after_a.bmp",
+  "afterB": "E:\\0github\\git-sync\\git-pull-arena-01a0fa39\\results\\mcp_agv_lab\\r264_desktop_after_b.bmp",
+  "rollback": "E:\\0github\\git-sync\\git-pull-arena-01a0fa39\\results\\mcp_agv_lab\\r264_rollback_screenshot.bmp",
+  "desktopChangedFromBeforeRatio": 0.9897641782407407,
+  "desktopChangedFromBeforeAvg": 240.5814163773148,
+  "desktopMotionDiffRatio": 0.029682677469135804,
+  "desktopMotionDiffAvg": 3.245900848765432,
+  "actualDesktopChangedToNewWallpaper": true,
+  "actualDesktopIsMoving": true,
+  "vlcProcessCount": 1,
+  "tidyManifest": "C:\\Users\\文少\\Desktop\\DeskBox-Cute-Desktop-Organizer\\AUTO_TIDY_LAST_RUN.txt"
+}
