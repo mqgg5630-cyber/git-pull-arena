@@ -264,7 +264,16 @@
     "results/docking/AMP_Docking_Vina_R255/tables/vina_summary_mean_of_3.csv",
     "results/docking/AMP_Docking_Vina_R255/tables/vina_repeats.csv",
     "results/docking/AMP_Docking_Vina_R255/figures/vina_affinity_heatmap.png",
-    "results/docking/AMP_Docking_Vina_R255/tables/selected_best_complexes_for_figures.csv"
+    "results/docking/AMP_Docking_Vina_R255/tables/selected_best_complexes_for_figures.csv",
+    "code/tasks/amp_docking_report_and_sci_figures.py",
+    "code/tasks/t199_amp_report_sci_figures_r260.ps1",
+    "results/docking/AMP_REPORT_SCI_FIGURES_R260.md",
+    "results/docking/AMP_Docking_Vina_R255/AMP_Docking_Targets_Methods_Results.md",
+    "results/docking/AMP_Docking_Vina_R255/AMP_Docking_Targets_Methods_Results.docx",
+    "results/docking/AMP_Docking_Vina_R255/complexes_best_vina/sci_composite_figures/Figure_4_Part1_A-F_300dpi.png",
+    "results/docking/AMP_Docking_Vina_R255/complexes_best_vina/sci_composite_figures/Figure_4_Part2_G-L_300dpi.png",
+    "results/docking/AMP_Docking_Vina_R255/complexes_best_vina/sci_composite_figures/Figure_S1_12_Combined_300dpi.png",
+    "results/docking/AMP_Docking_Vina_R255/complexes_best_vina/all_panel_render_records.csv"
   ],
   "forbid_files": [
     "local/inbox",
@@ -317,7 +326,10 @@
     "results/docking/AMP_Docking_Vina_R255/REPORT.md": "DOCKING_PIPELINE_DONE=True",
     "results/docking/AMP_Docking_Vina_R255/tables/vina_summary_mean_of_3.csv": "FVNKLNRIIPVKGFSMR",
     "results/docking/AMP_Docking_Vina_R255/tables/vina_repeats.csv": "best_affinity_kcal_mol",
-    "code/tasks/t197_amp_vina_docking_r255.ps1": "VINA_REPEATS_PER_PAIR=3"
+    "code/tasks/t197_amp_vina_docking_r255.ps1": "VINA_REPEATS_PER_PAIR=3",
+    "results/docking/AMP_REPORT_SCI_FIGURES_R260.md": "AMP_REPORT_SCI_FIGURES_DONE=True",
+    "results/docking/AMP_Docking_Vina_R255/AMP_Docking_Targets_Methods_Results.md": "AMP_DOC_REPORT_DONE=True",
+    "results/docking/AMP_Docking_Vina_R255/complexes_best_vina/all_panel_render_records.csv": "panel_png"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
@@ -329,7 +341,8 @@
     "results/input/QINGJIAN_INSTALL_R247.md": "QINGJIAN_SWITCH_CONFIGURED=True",
     "results/computer_use/COMPUTER_USE_LAPTOP_R249.md": "Windows-MCP[\\s\\S]*WCU_UIA_INVOKE_OK=True",
     "results/docking/AMP_DOCKING_R255.md": "DOCKING_PIPELINE_DONE=True[\\s\\S]*VINA_REPEATS_PER_PAIR=3[\\s\\S]*ENERGY_MINIMIZATION_DONE=True[\\s\\S]*RECEPTOR_STANDARDIZATION_DONE=True",
-    "results/docking/AMP_Docking_Vina_R255/REPORT.md": "Escherichia coli[\\s\\S]*Staphylococcus aureus[\\s\\S]*VINA_REPEATS_PER_PAIR=3"
+    "results/docking/AMP_Docking_Vina_R255/REPORT.md": "Escherichia coli[\\s\\S]*Staphylococcus aureus[\\s\\S]*VINA_REPEATS_PER_PAIR=3",
+    "results/docking/AMP_REPORT_SCI_FIGURES_R260.md": "AMP_MD_DONE=True[\\s\\S]*AMP_DOCX_DONE=True[\\s\\S]*SCI_COMPOSITE_FIGURES_DONE=True"
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,
