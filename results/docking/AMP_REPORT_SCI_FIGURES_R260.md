@@ -1,5 +1,5 @@
 ﻿# AMP docking literature report and SCI PyMOL figures - round 260
-time=2026-10-05 17:42:14 +08:00
+time=2026-10-05 17:45:29 +08:00
 host=LAPTOP-R77M5D6M
 repo=E:\0github\git-sync\git-pull-arena-01a0ff69
 out_dir=E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255
@@ -21,20 +21,35 @@ pymol_found=E:\spider\Scripts\pymol.EXE
 PYMOL_FOUND=True
 ## Generate literature report and PyMOL SCI figures
 run| PYMOL=E:\spider\Scripts\pymol.EXE
-run| ERROR: PyMOL render failed for A_ecoli_FtsZ_6UNX__P1_FVNKLNRIIPVKGFSMR; code=0; tail=verview_clean.png".png"! Please check directory...
-run|  Executive: Colored 2198 atoms.
-run|  Setting: transparency set for 2198 atoms in object "complex".
-run|  Executive: Colored 142 atoms.
-run|  Executive: Colored 93 atoms.
-run|  Executive: object "hbonds" created.
-run|  Setting: dash_color set to magenta.
-run|  Setting: dash_width set to 2.50000.
-run|  Setting: dash_gap set to 0.35000.
-run|  Setting: label_size set to 18.00000.
-run|  Setting: label_font_id set to 7.
-run|  Setting: label_color set to black.
-run|  Label: labelled 12 atoms.
-run|  Ray: render time: 13.11 sec. = 274.6 frames/hour (15.25 sec. accum.).
-run|  ScenePNG-Error: error writing ""E:[REDACTED].png".png"! Please check directory...
-generation_ok=False
-AMP_REPORT_SCI_FIGURES_DONE=False
+run| PANEL A ecoli_FtsZ_6UNX P1_FVNKLNRIIPVKGFSMR contacts=15
+run| PANEL B ecoli_FtsZ_6UNX P2_LISNTKKFGTAIASHR contacts=11
+run| PANEL C ecoli_FtsZ_6UNX P3_ISLAIPLASKISGFTLALVKNAST contacts=16
+run| PANEL D ecoli_GyrB_4DUH P1_FVNKLNRIIPVKGFSMR contacts=11
+run| PANEL E ecoli_GyrB_4DUH P2_LISNTKKFGTAIASHR contacts=11
+run| PANEL F ecoli_GyrB_4DUH P3_ISLAIPLASKISGFTLALVKNAST contacts=13
+run| PANEL G saureus_FtsZ_5MN4 P1_FVNKLNRIIPVKGFSMR contacts=10
+run| PANEL H saureus_FtsZ_5MN4 P2_LISNTKKFGTAIASHR contacts=14
+run| PANEL I saureus_FtsZ_5MN4 P3_ISLAIPLASKISGFTLALVKNAST contacts=20
+run| PANEL J saureus_SrtA_1T2W P1_FVNKLNRIIPVKGFSMR contacts=26
+run| PANEL K saureus_SrtA_1T2W P2_LISNTKKFGTAIASHR contacts=17
+run| PANEL L saureus_SrtA_1T2W P3_ISLAIPLASKISGFTLALVKNAST contacts=30
+run| MD=E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\AMP_Docking_Targets_Methods_Results.md
+run| DOCX=E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\AMP_Docking_Targets_Methods_Results.docx
+run| SCI_FIGURES=E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\complexes_best_vina\sci_composite_figures
+run| AMP_DOC_REPORT_DONE=True
+run| AMP_DOCX_DONE=True
+run| AMP_MD_DONE=True
+run| SCI_COMPOSITE_FIGURES_DONE=True
+generation_ok=True
+desktop_updated_raw=D:\桌面\AMP_Docking_Vina_R255_20261005_1552
+desktop_updated_escaped=D:\\u684C\u9762\AMP_Docking_Vina_R255_20261005_1552
+DESKTOP_FOLDER_UPDATED=True
+
+markdown_report=E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\AMP_Docking_Targets_Methods_Results.md
+docx_report=E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\AMP_Docking_Targets_Methods_Results.docx
+sci_composite_figures=E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\complexes_best_vina\sci_composite_figures
+AMP_MD_DONE=True
+AMP_DOCX_DONE=True
+AMP_DOC_REPORT_DONE=True
+SCI_COMPOSITE_FIGURES_DONE=True
+AMP_REPORT_SCI_FIGURES_DONE=True

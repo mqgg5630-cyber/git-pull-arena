@@ -1,0 +1,15 @@
+{
+  "time": "2026-10-05 17:49:53",
+  "pymol": "E:\\spider\\Scripts\\pymol.EXE",
+  "markdown": "E:\\0github\\git-sync\\git-pull-arena-01a0ff69\\results\\docking\\AMP_Docking_Vina_R255\\AMP_Docking_Targets_Methods_Results.md",
+  "docx": "E:\\0github\\git-sync\\git-pull-arena-01a0ff69\\results\\docking\\AMP_Docking_Vina_R255\\AMP_Docking_Targets_Methods_Results.docx",
+  "composite_figures": [
+    "E:\\0github\\git-sync\\git-pull-arena-01a0ff69\\results\\docking\\AMP_Docking_Vina_R255\\complexes_best_vina\\sci_composite_figures\\Figure_4_Part1_A-F_300dpi.png",
+    "E:\\0github\\git-sync\\git-pull-arena-01a0ff69\\results\\docking\\AMP_Docking_Vina_R255\\complexes_best_vina\\sci_composite_figures\\Figure_4_Part2_G-L_300dpi.png",
+    "E:\\0github\\git-sync\\git-pull-arena-01a0ff69\\results\\docking\\AMP_Docking_Vina_R255\\complexes_best_vina\\sci_composite_figures\\Figure_S1_12_Combined_300dpi.png"
+  ],
+  "panels": 12,
+  "summary_rows": 12,
+  "repeat_rows": 36,
+  "status": "done"
+}

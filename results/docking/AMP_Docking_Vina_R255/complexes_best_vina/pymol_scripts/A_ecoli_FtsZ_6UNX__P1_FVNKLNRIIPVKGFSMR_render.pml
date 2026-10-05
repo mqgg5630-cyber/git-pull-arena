@@ -1,5 +1,5 @@
 reinitialize
-load "E:/0github/git-sync/git-pull-arena-01a0ff69/results/docking/AMP_Docking_Vina_R255/complexes_best_vina/all_12_complexes/A_ecoli_FtsZ_6UNX__P1_FVNKLNRIIPVKGFSMR_complex_best.pdb", complex
+load E:/0github/git-sync/git-pull-arena-01a0ff69/results/docking/AMP_Docking_Vina_R255/complexes_best_vina/all_12_complexes/A_ecoli_FtsZ_6UNX__P1_FVNKLNRIIPVKGFSMR_complex_best.pdb, complex
 remove solvent
 hide everything
 set retain_order, 1
@@ -25,7 +25,7 @@ color cyan, pocket
 set transparency, 0.10, receptor
 orient receptor
 zoom receptor, 6
-png "E:/0github/git-sync/git-pull-arena-01a0ff69/results/docking/AMP_Docking_Vina_R255/complexes_best_vina/visualizations/A_ecoli_FtsZ_6UNX__P1_FVNKLNRIIPVKGFSMR_overview_clean.png", width=1200, height=900, dpi=300, ray=1
+png E:/0github/git-sync/git-pull-arena-01a0ff69/results/docking/AMP_Docking_Vina_R255/complexes_best_vina/visualizations/A_ecoli_FtsZ_6UNX__P1_FVNKLNRIIPVKGFSMR_overview_clean.png, width=1200, height=900, dpi=300, ray=1
 hide labels
 show cartoon, receptor
 color gray85, receptor
@@ -45,6 +45,6 @@ set label_color, black
 label contact_labels and name CA, resn+resi
 orient peptide
 zoom peptide or pocket, 5
-png "E:/0github/git-sync/git-pull-arena-01a0ff69/results/docking/AMP_Docking_Vina_R255/complexes_best_vina/visualizations/A_ecoli_FtsZ_6UNX__P1_FVNKLNRIIPVKGFSMR_zoom_labelled.png", width=1400, height=900, dpi=300, ray=1
-save "E:/0github/git-sync/git-pull-arena-01a0ff69/results/docking/AMP_Docking_Vina_R255/complexes_best_vina/visualizations/A_ecoli_FtsZ_6UNX__P1_FVNKLNRIIPVKGFSMR_vector.pse"
+png E:/0github/git-sync/git-pull-arena-01a0ff69/results/docking/AMP_Docking_Vina_R255/complexes_best_vina/visualizations/A_ecoli_FtsZ_6UNX__P1_FVNKLNRIIPVKGFSMR_zoom_labelled.png, width=1400, height=900, dpi=300, ray=1
+save E:/0github/git-sync/git-pull-arena-01a0ff69/results/docking/AMP_Docking_Vina_R255/complexes_best_vina/visualizations/A_ecoli_FtsZ_6UNX__P1_FVNKLNRIIPVKGFSMR_vector.pse
 quit

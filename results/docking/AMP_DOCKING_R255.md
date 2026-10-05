@@ -163,3 +163,11 @@ VINA_REPEATS_PER_PAIR=3
 ENERGY_MINIMIZATION_DONE=True
 RECEPTOR_STANDARDIZATION_DONE=True
 AMP_DOCKING_DONE=True
+
+## Round 260 literature report and SCI figure update
+desktop_updated_raw=D:\桌面\AMP_Docking_Vina_R255_20261005_1552
+markdown_report=E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\AMP_Docking_Targets_Methods_Results.md
+docx_report=E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\AMP_Docking_Targets_Methods_Results.docx
+sci_composite_figures=E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\complexes_best_vina\sci_composite_figures
+AMP_DOC_REPORT_DONE=True
+SCI_COMPOSITE_FIGURES_DONE=True
