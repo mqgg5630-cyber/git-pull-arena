@@ -5,6 +5,21 @@
 
 
 
+## 2026-10-05 本会话（`arena/01a10bfd`）—— 自动 pull → 执行代码 → push 本地结果，反复轮询
+
+| 项 | 值 |
+|---|---|
+| GitHub 仓库 | `mqgg5630-cyber/git-pull-arena` |
+| 工作分支 | **`arena/01a10bfd-git-pull-arena`**（技能 v2.8.1） |
+| 本机新文件夹 | `E:\0github\git-sync\git-pull-arena-01a10bfd`（**新目录**，不要覆盖 `git-pull-arena` / `git-pull-arena-v268` / `git-pull-arena-s2` / `git-pull-arena-01a0a9f0`） |
+| 值守任务名 | `git-sync-watch-git-pull-arena-01a10bfd` |
+| 轮询 | 每 2 分钟：`auto_pull` → 跑 `code/local_check.ps1`（含 section 4 的本轮任务）→ `auto_push` 回执 |
+| 本轮任务 | round 262 = `code/tasks/t200_loop_proof_r262.ps1` |
+| 本轮回执 | `results/status/LOOP_PROOF_R262.md` / `.json`（判定行 `LOOP_PULL_EXEC_PUSH_OK=True`） |
+| 本机一次性命令 | `bash skills/git-sync/scripts/agent-handoff.sh` 生成（clone 新文件夹 + `.\bootstrap.ps1 -Auto`） |
+| 切回本会话 | `cd E:\0github\git-sync\git-pull-arena-01a10bfd ; .\watch.ps1 -Focus` |
+| 恢复被 park 的其他值守 | `.\watch.ps1 -RestoreParked` |
+
 ## 2026-10-03 cloud/account interop update
 
 - New skill family: `skills/cloud-interop/`.

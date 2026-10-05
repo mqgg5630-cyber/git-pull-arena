@@ -1,5 +1,5 @@
 {
-  "description": "v2.8.1 on arena/01a0ff69-git-pull-arena: the newest skill (source branch arena/01a0a98d-git-pull-arena, installer refuses to downgrade) plus the repo gate (code/check_all.sh, which now proves each python candidate python3 / python / py -3) and the real-machine check (code/local_check.ps1, sections 3a-3h). The deliverables LINK_PROOF_v2.8.1.docx / .pptx travel through git and are judged by the Windows watcher: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide count and a real Word/PowerPoint open. 'Local' means that machine's scheduled watcher - never a sandbox folder, never a hand-made stand-in skill. From round 22 on the repo also ships code/tasks/*.ps1 (mapped per round in code/tasks/manifest.json) which run on the machine inside local_check.ps1 section 4 as child processes: round 22 = read-only diagnostics for the Antigravity login, the Java install state and E: cleanup candidates. Round 247 requires Qingjian IME installed/configured on the Windows laptop and the Muse smoke trigger completed. Round 249 requires Google Drive rclone remote gdrive_jzthjyz with probe write and a fresh laptop computer-use/Windows MCP UIA smoke. Round 254 closes the interop update with computer-use skill docs after empirical laptop success. Round 255 requires an AutoDock Vina antimicrobial-peptide docking workflow with 3 repeats per pair, standardized/minimized inputs, visual/contact outputs, and a Desktop result folder.",
+  "description": "Round 262 on arena/01a10bfd-git-pull-arena: prove the local loop end to end - the agent pushes code to this branch, the Windows watcher auto_pulls it, runs code/tasks/t200_loop_proof_r262.ps1 on the real machine (deterministic compute + python probe + git identity), writes results/status/LOOP_PROOF_R262.md/.json and auto_pushes them back, and the agent accepts only when the receipt says LOOP_PULL_EXEC_PUSH_OK=True. 'Local' means that machine's scheduled watcher - never a sandbox folder, never a hand-made stand-in skill. The v2.8.1 skill, the repo gate (code/check_all.sh) and the real-machine check (code/local_check.ps1) stay in force, and all deliverables inherited from earlier rounds must still be present.",
   "require_files": [
     "01a0a821.md",
     "skills/git-sync/VERSION",
@@ -273,7 +273,10 @@
     "results/docking/AMP_Docking_Vina_R255/complexes_best_vina/sci_composite_figures/Figure_4_Part1_A-F_300dpi.png",
     "results/docking/AMP_Docking_Vina_R255/complexes_best_vina/sci_composite_figures/Figure_4_Part2_G-L_300dpi.png",
     "results/docking/AMP_Docking_Vina_R255/complexes_best_vina/sci_composite_figures/Figure_S1_12_Combined_300dpi.png",
-    "results/docking/AMP_Docking_Vina_R255/complexes_best_vina/all_panel_render_records.csv"
+    "results/docking/AMP_Docking_Vina_R255/complexes_best_vina/all_panel_render_records.csv",
+    "code/tasks/t200_loop_proof_r262.ps1",
+    "results/status/LOOP_PROOF_R262.md",
+    "results/status/LOOP_PROOF_R262.json"
   ],
   "forbid_files": [
     "local/inbox",
@@ -284,7 +287,7 @@
   "require_contains": {
     "skills/git-sync/VERSION": "2.8.1",
     "01a0a821.md": "arena/01a0a98d-git-pull-arena",
-    "skills/git-sync/sync.config.json": "arena/01a0ff69-git-pull-arena",
+    "skills/git-sync/sync.config.json": "arena/01a10bfd-git-pull-arena",
     "skills/git-sync/templates/one-sentence.md": "agent-handoff.sh",
     "skills/git-sync/scripts/agent-install.sh": "refusing to downgrade",
     "code/check_all.sh": "py -3",
@@ -292,7 +295,7 @@
     "deliverable/OFFICE_HASHES.json": "arena/01a0a9f0-git-pull-arena",
     "watch.ps1": "function Invoke-AutoPull",
     "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus",
-    "code/tasks/manifest.json": "t194_muse_v2ray_takeover_r244.ps1",
+    "code/tasks/manifest.json": "t200_loop_proof_r262.ps1",
     "code/tasks/t1_fix_antigravity.ps1": "http.proxy",
     "code/tasks/t2_install_java.ps1": "E:\\java",
     "results/status/muse_tailscale_probe_r238.md": "MUSE_TAILSCALE_PROBE_DONE",
@@ -329,7 +332,9 @@
     "code/tasks/t197_amp_vina_docking_r255.ps1": "VINA_REPEATS_PER_PAIR=3",
     "results/docking/AMP_REPORT_SCI_FIGURES_R260.md": "AMP_REPORT_SCI_FIGURES_DONE=True",
     "results/docking/AMP_Docking_Vina_R255/AMP_Docking_Targets_Methods_Results.md": "AMP_DOC_REPORT_DONE=True",
-    "results/docking/AMP_Docking_Vina_R255/complexes_best_vina/all_panel_render_records.csv": "panel_png"
+    "results/docking/AMP_Docking_Vina_R255/complexes_best_vina/all_panel_render_records.csv": "panel_png",
+    "code/tasks/t200_loop_proof_r262.ps1": "LOOP_PROOF_DONE=True",
+    "results/status/LOOP_PROOF_R262.md": "LOOP_PULL_EXEC_PUSH_OK=True"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
@@ -342,7 +347,9 @@
     "results/computer_use/COMPUTER_USE_LAPTOP_R249.md": "Windows-MCP[\\s\\S]*WCU_UIA_INVOKE_OK=True",
     "results/docking/AMP_DOCKING_R255.md": "DOCKING_PIPELINE_DONE=True[\\s\\S]*VINA_REPEATS_PER_PAIR=3[\\s\\S]*ENERGY_MINIMIZATION_DONE=True[\\s\\S]*RECEPTOR_STANDARDIZATION_DONE=True",
     "results/docking/AMP_Docking_Vina_R255/REPORT.md": "Escherichia coli[\\s\\S]*Staphylococcus aureus[\\s\\S]*VINA_REPEATS_PER_PAIR=3",
-    "results/docking/AMP_REPORT_SCI_FIGURES_R260.md": "AMP_MD_DONE=True[\\s\\S]*AMP_DOCX_DONE=True[\\s\\S]*SCI_COMPOSITE_FIGURES_DONE=True"
+    "results/docking/AMP_REPORT_SCI_FIGURES_R260.md": "AMP_MD_DONE=True[\\s\\S]*AMP_DOCX_DONE=True[\\s\\S]*SCI_COMPOSITE_FIGURES_DONE=True",
+    "results/status/LOOP_PROOF_R262.md": "BRANCH_MATCHES=True[\\s\\S]*CODE_EXECUTED=True[\\s\\S]*auto_pull=True[\\s\\S]*auto_push=True[\\s\\S]*LOOP_PROOF_DONE=True",
+    "results/status/LOOP_PROOF_R262.json": "\"loop_ok\":\\s*true"
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,
@@ -360,7 +367,9 @@
     "deliverable/plag_English_timeonly_20261003_1545.pdf": 1000000,
     "deliverable/AI_English_previous_01a0ff64_r244_20261003_1045.pdf": 1000000,
     "deliverable/plag_English_previous_01a0ff64_r244_20261003_1045.pdf": 1000000,
-    "sources/muse/muse_out_20261003_1633.zip": 1000
+    "sources/muse/muse_out_20261003_1633.zip": 1000,
+    "code/tasks/t200_loop_proof_r262.ps1": 3000,
+    "results/status/LOOP_PROOF_R262.md": 400
   },
   "max_bytes": {
     "deliverable/LINK_PROOF_v2.8.1.docx": 3000000,
