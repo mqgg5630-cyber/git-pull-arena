@@ -1,9 +1,9 @@
 {
-    "round":  263,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 263: retry Python VLC wallpaper after fixing GBK logging. Use VLC --video-wallpaper with existing Anime Girl Beneath a Meteor Sky MP4, capture real desktop BMP screenshots before/after/after, verify changed and moving, rollback if not proven.",
-    "arena_updated":  "2026-10-05 07:09:46",
-    "local_updated":  "2026-10-05 15:18:49"
+  "round": 264,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 264 priority: run the wallpaper task before the flaky auth probe. Use VLC Direct3D video-wallpaper mode with the cute Mahiru MP4 if available, otherwise Anime Girl Beneath a Meteor Sky. Capture real desktop BMP screenshots before/after/after, verify changed and moving; rollback if not proven.",
+  "arena_updated": "2026-10-05 09:14:37",
+  "local_updated": null
 }
