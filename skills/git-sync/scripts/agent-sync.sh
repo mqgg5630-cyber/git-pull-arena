@@ -69,7 +69,7 @@ fi
 # ---------------------------------------------------------------- 2. fetch
 # a sandbox .git reset often leaves a narrow fetch refspec behind, which hides
 # the remote branch and would silently disable the self-heal below - fix it
-git config "remote.$REMOTE.fetch" "+refs/heads/*:refs/remotes/$REMOTE/*"
+git config --replace-all "remote.$REMOTE.fetch" "+refs/heads/*:refs/remotes/$REMOTE/*"
 if ! git fetch "$REMOTE" 2>&1 | tail -2; then
   echo "[ERROR] git fetch failed" >&2; exit 3
 fi

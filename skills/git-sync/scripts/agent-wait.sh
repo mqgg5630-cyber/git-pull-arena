@@ -85,7 +85,7 @@ INTERVAL="$(python3 -c "print(max(5,int('${INTERVAL}' or 15)))" 2>/dev/null || e
 if [ "$DO_REQUEST" = 1 ]; then
   bash "$HERE/agent-check.sh" --request "$NOTE" || exit 1
 else
-  git config "remote.$REMOTE.fetch" "+refs/heads/*:refs/remotes/$REMOTE/*"
+  git config --replace-all "remote.$REMOTE.fetch" "+refs/heads/*:refs/remotes/$REMOTE/*"
   git fetch "$REMOTE" --quiet || { echo "[ERROR] fetch failed" >&2; exit 1; }
   if ! git show "$ORIGIN:$HS_NORM" >/dev/null 2>&1; then
     echo "[ERROR] no handshake yet - start a round with: agent-wait.sh --request \"note\"" >&2

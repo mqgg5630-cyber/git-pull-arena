@@ -53,7 +53,7 @@ CURRENT="$(git rev-parse --abbrev-ref HEAD)"
 
 HS_NORM="${HANDSHAKE//\\//}"
 ORIGIN="$REMOTE/$BRANCH"
-git config "remote.$REMOTE.fetch" "+refs/heads/*:refs/remotes/$REMOTE/*"
+git config --replace-all "remote.$REMOTE.fetch" "+refs/heads/*:refs/remotes/$REMOTE/*"
 git fetch "$REMOTE" --quiet || { echo "[ERROR] fetch failed" >&2; exit 1; }
 
 # read the handshake from the REMOTE tip - that is where the local watcher

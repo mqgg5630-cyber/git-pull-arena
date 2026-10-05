@@ -84,6 +84,42 @@ WAIT_RC=$?
 set -e
 echo "== wait exit: $WAIT_RC"
 
+# agent-wait only FETCHES - it reads the handshake out of the remote ref and
+# never touches the working tree. agent-criteria reads the working tree. So
+# without this fast-forward the criteria are judged against the files as they
+# were BEFORE the machine pushed its results, and every round that depends on a
+# freshly produced receipt fails with "MISSING file" even though the watcher
+# just pushed it (seen on round 262, 2026-10-05).
+ff_to_origin() {
+  local remote branch cur
+  remote="$(python3 - <<'PY' 2>/dev/null || echo origin
+import json
+for p in ('skills/git-sync/sync.config.json', 'sync.config.json'):
+    try:
+        print(json.load(open(p, encoding='utf-8')).get('remote') or 'origin'); break
+    except Exception:
+        continue
+else:
+    print('origin')
+PY
+)"
+  [ -z "$remote" ] && remote=origin
+  branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || true)"
+  if [ -z "$branch" ] || [ "$branch" = "HEAD" ]; then return 0; fi
+  git fetch --quiet "$remote" "$branch" 2>/dev/null || return 0
+  cur="$(git rev-parse HEAD 2>/dev/null)"
+  if [ "$cur" = "$(git rev-parse FETCH_HEAD 2>/dev/null)" ]; then
+    echo "== pull: already at $(git rev-parse --short HEAD) (nothing new from the machine)"
+    return 0
+  fi
+  if git merge --ff-only --quiet FETCH_HEAD 2>/dev/null; then
+    echo "== pull: fast-forwarded to $(git rev-parse --short HEAD) $(git log -1 --pretty=%s)"
+  else
+    echo "== pull: cannot fast-forward (local commits ahead) - criteria read the current tree"
+  fi
+}
+ff_to_origin
+
 if [ "$WAIT_RC" -eq 3 ]; then
   echo "== TIMEOUT/PENDING - is the local watcher running? (.\\watch.ps1 -Status)"
   exit 3

@@ -43,7 +43,7 @@ echo "== before : $(git log -1 --oneline 2>/dev/null || echo '(no HEAD)')"
 echo "== dirty  : $(git status --porcelain | wc -l) file(s) in the worktree"
 
 # 1) full fetch refspec, then fetch
-git config "remote.$REMOTE.fetch" "+refs/heads/*:refs/remotes/$REMOTE/*"
+git config --replace-all "remote.$REMOTE.fetch" "+refs/heads/*:refs/remotes/$REMOTE/*"
 if ! git fetch "$REMOTE"; then
   echo "[ERROR] fetch failed - check the network before recovering" >&2
   exit 3

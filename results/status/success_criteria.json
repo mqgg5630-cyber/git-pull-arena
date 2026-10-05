@@ -1,5 +1,5 @@
 {
-  "description": "Round 262 on arena/01a10bfd-git-pull-arena: prove the local loop end to end - the agent pushes code to this branch, the Windows watcher auto_pulls it, runs code/tasks/t200_loop_proof_r262.ps1 on the real machine (deterministic compute + python probe + git identity), writes results/status/LOOP_PROOF_R262.md/.json and auto_pushes them back, and the agent accepts only when the receipt says LOOP_PULL_EXEC_PUSH_OK=True. 'Local' means that machine's scheduled watcher - never a sandbox folder, never a hand-made stand-in skill. The v2.8.1 skill, the repo gate (code/check_all.sh) and the real-machine check (code/local_check.ps1) stay in force, and all deliverables inherited from earlier rounds must still be present.",
+  "description": "Round 263 on arena/01a10bfd-git-pull-arena: prove the local loop REPEATS. Round 262 already closed (agent push -> watcher auto_pull -> code/tasks/t200_loop_proof_r262.ps1 ran on LAPTOP-R77M5D6M -> auto_push of results/status/LOOP_PROOF_R262.*). Round 263 runs code/tasks/t201_loop_repeat_r263.ps1, which re-executes the compute with a FRESH nonce, verifies the round-262 receipt came back through git, and appends a row per round to results/status/LOOP_LEDGER.md. Acceptance needs LOOP_REPEAT_OK=True plus both rounds present in the ledger. 'Local' means that machine's scheduled watcher - never a sandbox folder, never a hand-made stand-in skill. The v2.8.1 skill, the repo gate (code/check_all.sh) and code/local_check.ps1 stay in force, and all deliverables inherited from earlier rounds must still be present.",
   "require_files": [
     "01a0a821.md",
     "skills/git-sync/VERSION",
@@ -276,7 +276,11 @@
     "results/docking/AMP_Docking_Vina_R255/complexes_best_vina/all_panel_render_records.csv",
     "code/tasks/t200_loop_proof_r262.ps1",
     "results/status/LOOP_PROOF_R262.md",
-    "results/status/LOOP_PROOF_R262.json"
+    "results/status/LOOP_PROOF_R262.json",
+    "code/tasks/t201_loop_repeat_r263.ps1",
+    "results/status/LOOP_PROOF_R263.md",
+    "results/status/LOOP_PROOF_R263.json",
+    "results/status/LOOP_LEDGER.md"
   ],
   "forbid_files": [
     "local/inbox",
@@ -295,7 +299,7 @@
     "deliverable/OFFICE_HASHES.json": "arena/01a0a9f0-git-pull-arena",
     "watch.ps1": "function Invoke-AutoPull",
     "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus",
-    "code/tasks/manifest.json": "t200_loop_proof_r262.ps1",
+    "code/tasks/manifest.json": "t201_loop_repeat_r263.ps1",
     "code/tasks/t1_fix_antigravity.ps1": "http.proxy",
     "code/tasks/t2_install_java.ps1": "E:\\java",
     "results/status/muse_tailscale_probe_r238.md": "MUSE_TAILSCALE_PROBE_DONE",
@@ -334,7 +338,10 @@
     "results/docking/AMP_Docking_Vina_R255/AMP_Docking_Targets_Methods_Results.md": "AMP_DOC_REPORT_DONE=True",
     "results/docking/AMP_Docking_Vina_R255/complexes_best_vina/all_panel_render_records.csv": "panel_png",
     "code/tasks/t200_loop_proof_r262.ps1": "LOOP_PROOF_DONE=True",
-    "results/status/LOOP_PROOF_R262.md": "LOOP_PULL_EXEC_PUSH_OK=True"
+    "results/status/LOOP_PROOF_R262.md": "LOOP_PULL_EXEC_PUSH_OK=True",
+    "code/tasks/t201_loop_repeat_r263.ps1": "LOOP_REPEAT_OK",
+    "results/status/LOOP_PROOF_R263.md": "LOOP_REPEAT_OK=True",
+    "results/status/LOOP_LEDGER.md": "run sha256"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
@@ -349,7 +356,10 @@
     "results/docking/AMP_Docking_Vina_R255/REPORT.md": "Escherichia coli[\\s\\S]*Staphylococcus aureus[\\s\\S]*VINA_REPEATS_PER_PAIR=3",
     "results/docking/AMP_REPORT_SCI_FIGURES_R260.md": "AMP_MD_DONE=True[\\s\\S]*AMP_DOCX_DONE=True[\\s\\S]*SCI_COMPOSITE_FIGURES_DONE=True",
     "results/status/LOOP_PROOF_R262.md": "BRANCH_MATCHES=True[\\s\\S]*CODE_EXECUTED=True[\\s\\S]*auto_pull=True[\\s\\S]*auto_push=True[\\s\\S]*LOOP_PROOF_DONE=True",
-    "results/status/LOOP_PROOF_R262.json": "\"loop_ok\":\\s*true"
+    "results/status/LOOP_PROOF_R262.json": "\"loop_ok\":\\s*true",
+    "results/status/LOOP_PROOF_R263.md": "BRANCH_MATCHES=True[\\s\\S]*PREV_ROUND_OK=True[\\s\\S]*nonce_differs_from_prev=True[\\s\\S]*CODE_EXECUTED=True[\\s\\S]*auto_push=True[\\s\\S]*LOOP_REPEAT_OK=True",
+    "results/status/LOOP_PROOF_R263.json": "\"repeat_ok\":\\s*true",
+    "results/status/LOOP_LEDGER.md": "\\|\\s*262\\s*\\|[\\s\\S]*\\|\\s*263\\s*\\|"
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,
@@ -369,7 +379,10 @@
     "deliverable/plag_English_previous_01a0ff64_r244_20261003_1045.pdf": 1000000,
     "sources/muse/muse_out_20261003_1633.zip": 1000,
     "code/tasks/t200_loop_proof_r262.ps1": 3000,
-    "results/status/LOOP_PROOF_R262.md": 400
+    "results/status/LOOP_PROOF_R262.md": 400,
+    "code/tasks/t201_loop_repeat_r263.ps1": 4000,
+    "results/status/LOOP_PROOF_R263.md": 500,
+    "results/status/LOOP_LEDGER.md": 300
   },
   "max_bytes": {
     "deliverable/LINK_PROOF_v2.8.1.docx": 3000000,
