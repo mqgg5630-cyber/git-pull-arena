@@ -1,9 +1,9 @@
 {
-    "round":  270,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 270: retry real dynamic video wallpaper - utf-8 fix, reuse r269 mp4, clean r269 leftovers, vlc video-wallpaper, pixel proof, autostart",
-    "arena_updated":  "2026-10-05 12:39:51",
-    "local_updated":  "2026-10-05 20:43:25"
+  "round": 271,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 271: dynamic video wallpaper, pixel-only verdict - changed A-B plus motion at both late probes (~105s and ~200s), reuse hotori mp4, clean r270 leftovers",
+  "arena_updated": "2026-10-05 12:49:43",
+  "local_updated": null
 }
