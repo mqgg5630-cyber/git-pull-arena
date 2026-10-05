@@ -259,3 +259,8 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - r269 诊断：Hotori mp4 已下载（2.66MB）+ VLC 已启动，但写 PATHS.txt 用了 `encoding='ascii'`，路径里的中文用户名（`C:\Users\文少\...`）直接 UnicodeEncodeError 崩溃，像素验证没跑成（check_r269 日志）。
 - r270 = `t222_run_dynamic_video_wallpaper_r270.ps1` + `.py`：PATHS.txt 改 utf-8、bat 走 ascii-replace 守卫、优先复用 r269 已下载的 mp4、清理 r269 的 Startup/bat 残留（防重启双开），其余复刻 r266 已验证配方。
 - 状态：⏳ 已排队。
+
+## round 271 (2026-10-05, pixel-only verdict)
+- r270 诊断：像素证据显示视频壁纸**在播**（换上前→后 99.7% 变化；100s/106s 两帧 7.8% 持续运动——与 r266 成功时同量级），但 `tasklist` 数到 0 个 vlc.exe，触发保守回滚（现已是 r267 静态）。教训重申（r251 就写过）：**信像素，别信进程计数**。
+- r271 = `t223_*`：判定改为纯像素（A→B 变化 + 两处晚期探针 ~101s/107s 和 ~195s/201s 都在动才 READY）；复用已下载的 hotori mp4；清理 r270 残留；PATHS.txt utf-8 / bat ascii 守卫保留。
+- 状态：⏳ 已排队。
