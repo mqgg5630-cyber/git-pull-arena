@@ -1,9 +1,9 @@
 {
-  "round": 268,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-10-05 12:34:07",
-  "local_updated": "2026-10-05 20:22:58"
+  "round": 269,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 269: find an inherently-dynamic live wallpaper (lively CDN mp4, fallbacks local), set it via VLC video-wallpaper, prove motion with screen pixels, add autostart",
+  "arena_updated": "2026-10-05 12:34:09",
+  "local_updated": null
 }
