@@ -224,16 +224,16 @@ def build_peptide(peptide: Peptide, out_pdb: Path, out_pdbqt: Path, seed: int) -
     mol = Chem.AddHs(mol)
     params = AllChem.ETKDGv3()
     params.randomSeed = int(seed)
-    params.numThreads = 0
+    params.numThreads = 1
     params.pruneRmsThresh = 0.5
-    conf_ids = list(AllChem.EmbedMultipleConfs(mol, numConfs=12, params=params))
+    conf_ids = list(AllChem.EmbedMultipleConfs(mol, numConfs=8, params=params))
     if not conf_ids:
         # deterministic fallback: one conformer with random coords.
         params.useRandomCoords = True
         conf_ids = list(AllChem.EmbedMultipleConfs(mol, numConfs=4, params=params))
     if not conf_ids:
         raise RuntimeError(f"RDKit embedding failed for {peptide.key}")
-    results = AllChem.UFFOptimizeMoleculeConfs(mol, numThreads=0, maxIters=1000)
+    results = AllChem.UFFOptimizeMoleculeConfs(mol, numThreads=1, maxIters=750)
     best_i, best_e = min(enumerate([float(x[1]) for x in results]), key=lambda t: t[1])
     best_conf = conf_ids[best_i]
     Chem.MolToPDBFile(mol, str(out_pdb), confId=int(best_conf))
@@ -243,9 +243,17 @@ def build_peptide(peptide: Peptide, out_pdb: Path, out_pdbqt: Path, seed: int) -
         pass
     conf = mol.GetConformer(int(best_conf))
     pdbqt_lines = ["ROOT"]
+    pdbqt_serial = 1
+    heavy_atoms = 0
     for i, atom in enumerate(mol.GetAtoms(), start=1):
-        pos = conf.GetAtomPosition(i - 1)
+        # AutoDockTools normally merges non-polar hydrogens for PDBQT.  These
+        # peptides are long enough that retaining every explicit H can make the
+        # Windows Vina binary allocate excessive memory, so the docked rigid
+        # PDBQT uses heavy atoms while the archived minimized PDB keeps all H.
         sym = atom.GetSymbol().upper()
+        if sym == "H":
+            continue
+        pos = conf.GetAtomPosition(i - 1)
         typ = ad_type(sym)
         q = 0.0
         if atom.HasProp("_GasteigerCharge"):
@@ -255,11 +263,13 @@ def build_peptide(peptide: Peptide, out_pdb: Path, out_pdbqt: Path, seed: int) -
                     q = 0.0
             except Exception:
                 q = 0.0
-        name = f"{sym}{i}"[:4]
-        pdbqt_lines.append(f"HETATM{i:5d} {name:<4s} LIG A   1    {pos.x:8.3f}{pos.y:8.3f}{pos.z:8.3f}  1.00  0.00    {q:6.3f} {typ:>2s}")
+        name = f"{sym}{pdbqt_serial}"[:4]
+        pdbqt_lines.append(f"HETATM{pdbqt_serial:5d} {name:<4s} LIG A   1    {pos.x:8.3f}{pos.y:8.3f}{pos.z:8.3f}  1.00  0.00    {q:6.3f} {typ:>2s}")
+        pdbqt_serial += 1
+        heavy_atoms += 1
     pdbqt_lines += ["ENDROOT", "TORSDOF 0"]
     out_pdbqt.write_text("\n".join(pdbqt_lines) + "\n", encoding="ascii")
-    return {"uff_energy": best_e, "n_atoms": float(mol.GetNumAtoms()), "n_conformers": float(len(conf_ids))}
+    return {"uff_energy": best_e, "n_atoms": float(mol.GetNumAtoms()), "n_heavy_atoms_pdbqt": float(heavy_atoms), "n_conformers": float(len(conf_ids))}
 
 
 def parse_pdbqt_coords(path: Path) -> List[Tuple[str, np.ndarray]]:
@@ -395,7 +405,7 @@ def parse_vina_score(text: str) -> float:
     raise RuntimeError("could not parse Vina best score")
 
 
-def run_vina_for_pair(target: Target, peptide: Peptide, receptor_pdbqt: Path, ligand_pdbqt: Path, center: np.ndarray, box: np.ndarray, out_dir: Path, repeats: int = 3, exhaustiveness: int = 6) -> List[Dict[str, object]]:
+def run_vina_for_pair(target: Target, peptide: Peptide, receptor_pdbqt: Path, ligand_pdbqt: Path, center: np.ndarray, box: np.ndarray, out_dir: Path, repeats: int = 3, exhaustiveness: int = 1) -> List[Dict[str, object]]:
     rows = []
     vina_exe = os.environ.get("VINA_EXE") or shutil.which("vina") or shutil.which("vina.exe")
     if not vina_exe:
@@ -416,11 +426,12 @@ def run_vina_for_pair(target: Target, peptide: Peptide, receptor_pdbqt: Path, li
             "--size_y", f"{box[1]:.3f}",
             "--size_z", f"{box[2]:.3f}",
             "--exhaustiveness", str(exhaustiveness),
-            "--num_modes", "5",
+            "--num_modes", "3",
+            "--cpu", "1",
             "--seed", str(seed),
             "--out", str(pose_pdbqt),
         ]
-        code, text = run(cmd, timeout=420)
+        code, text = run(cmd, timeout=600)
         log_file.write_text(text, encoding="utf-8", errors="replace")
         if code != 0 or not pose_pdbqt.exists():
             raise RuntimeError(f"vina CLI failed code={code}; see {log_file}; tail={text[-500:]}")
@@ -501,8 +512,10 @@ def main(argv: List[str]) -> int:
         write_receptor_pdbqt(clean, rec_pdbqt)
         center = het_center if het_center is not None else np.mean(coords, axis=0)
         span = np.max(coords, axis=0) - np.min(coords, axis=0)
-        # Active/cofactor pocket if available; otherwise broad receptor center. Keep boxes practical for Vina.
-        box_edge = 30.0 if het_center is not None else float(min(max(np.max(span) + 8.0, 32.0), 52.0))
+        # Active/cofactor pocket if available; otherwise receptor center. Keep boxes
+        # practical for Windows Vina memory while still large enough for a rigid
+        # minimized peptide baseline.
+        box_edge = 30.0
         box = np.array([box_edge, box_edge, box_edge], dtype=float)
         target_infos[t.key] = {"raw": raw, "clean": clean, "pdbqt": rec_pdbqt, "coords": coords, "atoms": atoms, "center": center, "box": box, "het_center": het_center is not None}
         log(f"TARGET {t.key} atoms={len(atoms)} center={center.round(2).tolist()} box={box.tolist()} het_center={het_center is not None}")
@@ -523,7 +536,7 @@ def main(argv: List[str]) -> int:
             pair_dir = dirs["poses"] / t.key / p.key
             pair_dir.mkdir(parents=True, exist_ok=True)
             try:
-                dock_rows.extend(run_vina_for_pair(t, p, ti["pdbqt"], pi["pdbqt"], ti["center"], ti["box"], pair_dir, repeats=3, exhaustiveness=6))
+                dock_rows.extend(run_vina_for_pair(t, p, ti["pdbqt"], pi["pdbqt"], ti["center"], ti["box"], pair_dir, repeats=3, exhaustiveness=1))
             except Exception as e:
                 log(f"DOCK_FAIL {t.key} {p.key}: {e}")
                 dock_rows.append({
@@ -555,6 +568,11 @@ def main(argv: List[str]) -> int:
             "best_pose_pdbqt": bestrow["pose_pdbqt"],
         })
     summary_rows.sort(key=lambda r: (r["organism"], r["peptide_key"], float(r["mean_best_affinity_kcal_mol"])))
+    expected = {(t.key, p.key) for t in TARGETS for p in PEPTIDES}
+    incomplete = [f"{tkey}/{pkey}:{len(grouped.get((tkey, pkey), []))}" for (tkey, pkey) in sorted(expected) if len(grouped.get((tkey, pkey), [])) != 3]
+    if incomplete:
+        (out / "tables" / "vina_incomplete_pairs.json").write_text(json.dumps({"incomplete_pairs": incomplete, "successful_summary_rows": len(summary_rows)}, indent=2), encoding="utf-8")
+        raise RuntimeError("incomplete Vina docking repeats; expected 3 successful repeats for every peptide-target pair; " + ", ".join(incomplete[:12]))
     write_csv(out / "tables" / "vina_summary_mean_of_3.csv", summary_rows)
     heatmap(summary_rows, dirs["figures"] / "vina_affinity_heatmap.png")
 
@@ -619,9 +637,9 @@ def main(argv: List[str]) -> int:
         for t in TARGETS:
             f.write(f"- {t.organism}: {t.protein}, PDB `{t.pdb_id}` ({t.note})\n")
         f.write("\n## Method summary\n\n")
-        f.write("- Ligands: RDKit `MolFromFASTA`, explicit hydrogens, ETKDG conformers, UFF energy minimization; best conformer docked as rigid peptide PDBQT.\n")
+        f.write("- Ligands: RDKit `MolFromFASTA`, explicit hydrogens, ETKDG conformers, UFF energy minimization; best conformer exported as a rigid heavy-atom peptide PDBQT (archived minimized PDB keeps hydrogens).\n")
         f.write("- Receptors: RCSB PDB first model; protein ATOM records retained; crystallographic waters, ions and hetero ligands removed; simple rigid receptor PDBQT generated.\n")
-        f.write("- Search box: centered on crystallographic hetero/cofactor pocket when present; otherwise receptor center; Vina exhaustiveness 6.\n")
+        f.write("- Search box: centered on crystallographic hetero/cofactor pocket when present; otherwise receptor center; 30 A cubic grid; Vina exhaustiveness 1 with one CPU to avoid Windows-memory failures for long peptide ligands.\n")
         f.write("- Replicates: 3 independent AutoDock Vina CLI seeds per peptide-target pair; the reported score is the mean of each replicate's best pose.\n")
         f.write("- Contacts/figures: residues within 4.0 A of the best selected pose are listed and labelled in figures/PyMOL scripts.\n")
         f.write("\n## Results: mean of three best Vina scores\n\n")

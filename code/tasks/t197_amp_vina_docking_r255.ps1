@@ -142,7 +142,7 @@ if (-not (Test-Path -LiteralPath $pipeline)) {
 }
 
 L '## Docking run'
-$run = Run-Capped 'vina_pipeline' { $env:VINA_EXE = $using:vinaExe; & $using:py $using:pipeline $using:outDir 2>&1 | Out-String } 1500
+$run = Run-Capped 'vina_pipeline' { $env:VINA_EXE = $using:vinaExe; & $using:py $using:pipeline $using:outDir 2>&1 | Out-String } 5400
 foreach ($ln in (($run.text -split "`r?`n") | Where-Object { $_.Trim() } | Select-Object -Last 120)) { L ('dock| ' + (San $ln)) }
 $pipelineOk = ($run.text -match 'DOCKING_PIPELINE_DONE=True') -and (Test-Path -LiteralPath (Join-Path $outDir 'REPORT.md'))
 L ('pipeline_ok=' + $pipelineOk)
