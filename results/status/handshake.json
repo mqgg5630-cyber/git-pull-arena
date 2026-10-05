@@ -1,9 +1,9 @@
 {
-    "round":  269,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 269: find an inherently-dynamic live wallpaper (lively CDN mp4, fallbacks local), set it via VLC video-wallpaper, prove motion with screen pixels, add autostart",
-    "arena_updated":  "2026-10-05 12:34:09",
-    "local_updated":  "2026-10-05 20:36:26"
+  "round": 270,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 270: retry real dynamic video wallpaper - utf-8 fix, reuse r269 mp4, clean r269 leftovers, vlc video-wallpaper, pixel proof, autostart",
+  "arena_updated": "2026-10-05 12:39:51",
+  "local_updated": null
 }
