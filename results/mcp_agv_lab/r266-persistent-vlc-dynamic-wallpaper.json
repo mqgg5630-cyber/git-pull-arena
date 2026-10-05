@@ -1,0 +1,19 @@
+{
+  "ready": true,
+  "locked": false,
+  "vlcStarted": true,
+  "vlcProcessCountLate": 1,
+  "mp4": "E:\\0mcp-agv-arena-optimized\\wallpapers\\persistent-vlc-anime-r266\\cute_anime_persistent_vlc_r266.mp4",
+  "mp4Bytes": 1211443,
+  "frameA": "E:\\0github\\git-sync\\git-pull-arena-01a0fa39\\results\\mcp_agv_lab\\r266_frame_a.bmp",
+  "frameB": "E:\\0github\\git-sync\\git-pull-arena-01a0fa39\\results\\mcp_agv_lab\\r266_frame_b.bmp",
+  "frameC": "E:\\0github\\git-sync\\git-pull-arena-01a0fa39\\results\\mcp_agv_lab\\r266_frame_c_late.bmp",
+  "frameD": "E:\\0github\\git-sync\\git-pull-arena-01a0fa39\\results\\mcp_agv_lab\\r266_frame_d_late.bmp",
+  "desktopChangedFromBeforeRatio": 0.9987581983024691,
+  "desktopChangedFromBeforeAvg": 409.06480275848764,
+  "desktopLateMotionRatio": 0.038881655092592594,
+  "desktopLateMotionAvg": 8.488353587962964,
+  "actualDesktopChangedToNewWallpaper": true,
+  "actualDesktopIsMovingLate": true,
+  "tidyManifest": "C:\\Users\\文少\\Desktop\\DeskBox-Cute-Desktop-Organizer\\AUTO_TIDY_LAST_RUN.txt"
+}

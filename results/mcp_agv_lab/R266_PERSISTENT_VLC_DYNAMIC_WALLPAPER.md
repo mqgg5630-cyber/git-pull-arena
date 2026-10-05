@@ -1,0 +1,22 @@
+# R266 persistent VLC dynamic wallpaper
+time=2026-10-05 17:25:12
+screen_locked_detected=False
+selected_existing_wallpaper=Golden Afternoon With Mahiru Shiina if available
+mp4=E:\0mcp-agv-arena-optimized\wallpapers\persistent-vlc-anime-r266\cute_anime_persistent_vlc_r266.mp4 exists=True
+mp4_bytes=1211443
+frame_a_before_start=E:\0github\git-sync\git-pull-arena-01a0fa39\results\mcp_agv_lab\r266_frame_a.bmp ok=True width=1536 height=864 err=
+vlc_exe=C:\Program Files\VideoLAN\VLC\vlc.exe exists=True
+vlc_start_ok=True
+frame_b_after_start=E:\0github\git-sync\git-pull-arena-01a0fa39\results\mcp_agv_lab\r266_frame_b.bmp ok=True width=1536 height=864 err=
+frame_c_late=E:\0github\git-sync\git-pull-arena-01a0fa39\results\mcp_agv_lab\r266_frame_c_late.bmp ok=True width=1536 height=864 err=
+frame_d_late=E:\0github\git-sync\git-pull-arena-01a0fa39\results\mcp_agv_lab\r266_frame_d_late.bmp ok=True width=1536 height=864 err=
+desktop_changed_from_before_ratio=0.998758
+desktop_changed_from_before_avg=409.065
+desktop_late_motion_ratio=0.038882
+desktop_late_motion_avg=8.488
+vlc_process_count_late=1
+actual_desktop_changed_to_new_wallpaper=True
+actual_desktop_is_moving_late=True
+desktop_tidy_manifest=C:\Users\??\Desktop\DeskBox-Cute-Desktop-Organizer\AUTO_TIDY_LAST_RUN.txt
+desktop_tidy_done=True
+R266_PERSISTENT_VLC_DYNAMIC_WALLPAPER_READY=True
