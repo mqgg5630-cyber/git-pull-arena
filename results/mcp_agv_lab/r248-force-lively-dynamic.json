@@ -1,0 +1,16 @@
+{
+    "ready":  true,
+    "htmlProject":  "E:\\0mcp-agv-arena-optimized\\wallpapers\\cute-anime-live-r247\\lively-html-project",
+    "backupVideo":  "E:\\0mcp-agv-arena-optimized\\wallpapers\\cute-anime-live-r247\\cute_anime_live_wallpaper_r247.mp4",
+    "livelyExe":  "C:\\Program Files\\Lively Wallpaper\\Lively.exe",
+    "livelyCu":  "E:\\0mcp-agv-arena-optimized\\tools\\lively-command-utility\\livelycu.exe",
+    "dynamicSetOk":  true,
+    "dynamicSetExe":  "C:\\Program Files\\Lively Wallpaper\\Lively.exe",
+    "dynamicSetArgs":  "setwp --file E:\\0mcp-agv-arena-optimized\\wallpapers\\cute-anime-live-r247\\lively-html-project --monitor 1",
+    "livelyProcessCount":  26,
+    "libraryHit":  false,
+    "desktopProjectCopy":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\09-Anime-Wallpapers\\Cute-Anime-Dynamic-R247-HTML-Project",
+    "desktopVideoCopy":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\09-Anime-Wallpapers\\cute_anime_live_wallpaper_r247.mp4",
+    "tidyManifest":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\AUTO_TIDY_LAST_RUN.txt",
+    "pathsSummary":  "E:\\0mcp-agv-arena-optimized\\r247-cute-dynamic-wallpaper\\PATHS.txt"
+}
