@@ -1,9 +1,9 @@
 {
-  "round": 255,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "run AMP docking workflow: install open/free Vina baseline, prepare/minimize three peptides, standardize E. coli/S. aureus targets, dock 3 repeats per pair, generate PyMOL/contact figures, copy results to Desktop",
-  "arena_updated": "2026-10-05 06:59:11",
-  "local_updated": null
+    "round":  255,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "run AMP docking workflow: install open/free Vina baseline, prepare/minimize three peptides, standardize E. coli/S. aureus targets, dock 3 repeats per pair, generate PyMOL/contact figures, copy results to Desktop",
+    "arena_updated":  "2026-10-05 06:59:11",
+    "local_updated":  "2026-10-05 15:00:24"
 }
