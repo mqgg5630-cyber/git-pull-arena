@@ -1,9 +1,9 @@
 {
-    "round":  257,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 257 emergency: user says the live wallpaper froze the computer. Immediately stop all dynamic wallpaper/Lively/custom host/waiter processes, remove wallpaper autostarts, restore a static Windows wallpaper, restart Explorer, capture a screenshot to results/mcp_agv_lab/r257_desktop_after_recovery.png for chat, and tidy desktop",
-    "arena_updated":  "2026-10-05 06:37:52",
-    "local_updated":  "2026-10-05 14:40:21"
+  "round": 257,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "round 257 emergency: user says the live wallpaper froze the computer. Immediately stop all dynamic wallpaper/Lively/custom host/waiter processes, remove wallpaper autostarts, restore a static Windows wallpaper, restart Explorer, capture a screenshot to results/mcp_agv_lab/r257_desktop_after_recovery.png for chat, and tidy desktop",
+  "arena_updated": "2026-10-05 06:41:10",
+  "local_updated": "2026-10-05 14:40:21"
 }
