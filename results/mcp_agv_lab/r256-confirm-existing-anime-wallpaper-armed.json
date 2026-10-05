@@ -1,0 +1,15 @@
+{
+    "ready":  true,
+    "screenLockedDetected":  true,
+    "mp4":  "E:\\0mcp-agv-arena-optimized\\wallpapers\\existing-anime-live-r255\\golden_afternoon_mahiru_shiina_existing_r255.mp4",
+    "mp4Bytes":  1211443,
+    "applyScript":  "E:\\0mcp-agv-arena-optimized\\wallpapers\\existing-anime-live-r255\\Apply-ExistingAnimeWallpaper.ps1",
+    "waitScript":  "E:\\0mcp-agv-arena-optimized\\wallpapers\\existing-anime-live-r255\\Wait-And-Apply-On-Unlock.ps1",
+    "applyExit":  0,
+    "waiterProcessCount":  1,
+    "startupLink":  "C:\\Users\\文少\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\Apply Existing Anime Live Wallpaper R255.lnk",
+    "currentScreen":  "E:\\0github\\git-sync\\git-pull-arena-01a0fa39\\results\\mcp_agv_lab\\r256_current_screen.png",
+    "desktopOrganizer":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer",
+    "tidyManifest":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\AUTO_TIDY_LAST_RUN.txt",
+    "note":  "Manual unlock is required before any agent can honestly verify the visible desktop wallpaper."
+}
