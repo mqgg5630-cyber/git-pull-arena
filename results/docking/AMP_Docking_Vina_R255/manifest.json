@@ -1,0 +1,56 @@
+{
+  "start": "2026-10-05 15:07:12",
+  "out": "E:\\0github\\git-sync\\git-pull-arena-01a0ff69\\results\\docking\\AMP_Docking_Vina_R255",
+  "targets": [
+    {
+      "key": "ecoli_FtsZ_6UNX",
+      "organism": "Escherichia coli",
+      "protein": "FtsZ cell-division protein",
+      "pdb_id": "6UNX",
+      "note": "E. coli FtsZ GTP-complex active-site/grid around cofactor if present"
+    },
+    {
+      "key": "ecoli_GyrB_4DUH",
+      "organism": "Escherichia coli",
+      "protein": "DNA gyrase B ATPase domain",
+      "pdb_id": "4DUH",
+      "note": "E. coli GyrB ATPase domain inhibitor pocket"
+    },
+    {
+      "key": "saureus_FtsZ_5MN4",
+      "organism": "Staphylococcus aureus",
+      "protein": "FtsZ cell-division protein",
+      "pdb_id": "5MN4",
+      "note": "S. aureus FtsZ open/GDP form"
+    },
+    {
+      "key": "saureus_SrtA_1T2W",
+      "organism": "Staphylococcus aureus",
+      "protein": "Sortase A transpeptidase",
+      "pdb_id": "1T2W",
+      "note": "S. aureus Sortase A substrate-bound structure"
+    }
+  ],
+  "peptides": [
+    {
+      "key": "P1_FVNKLNRIIPVKGFSMR",
+      "sequence": "FVNKLNRIIPVKGFSMR"
+    },
+    {
+      "key": "P2_LISNTKKFGTAIASHR",
+      "sequence": "LISNTKKFGTAIASHR"
+    },
+    {
+      "key": "P3_ISLAIPLASKISGFTLALVKNAST",
+      "sequence": "ISLAIPLASKISGFTLALVKNAST"
+    }
+  ],
+  "finish": "2026-10-05 15:22:57",
+  "elapsed_sec": 945.4,
+  "summary_rows": [],
+  "figure_rows": [],
+  "pymol": "E:\\spider\\Scripts\\pymol.EXE",
+  "vina_exe": "C:\\Users\\文少\\AppData\\Local\\ArenaTools\\vina\\vina_1.2.7_win.exe",
+  "status": "done",
+  "report": "E:\\0github\\git-sync\\git-pull-arena-01a0ff69\\results\\docking\\AMP_Docking_Vina_R255\\REPORT.md"
+}

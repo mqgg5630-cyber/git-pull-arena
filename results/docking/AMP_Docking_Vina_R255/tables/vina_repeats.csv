@@ -1,0 +1,193 @@
+target_key,organism,protein,pdb_id,peptide_key,sequence,repeat,seed,best_affinity_kcal_mol,pose_pdbqt,error,center_x,center_y,center_z,box_x,box_y,box_z
+ecoli_FtsZ_6UNX,Escherichia coli,FtsZ cell-division protein,6UNX,P1_FVNKLNRIIPVKGFSMR,FVNKLNRIIPVKGFSMR,0,0,NA,,"vina CLI failed code=1; see E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_FtsZ_6UNX\P1_FVNKLNRIIPVKGFSMR\ecoli_FtsZ_6UNX__P1_FVNKLNRIIPVKGFSMR__rep1_vina.log; tail=#############################################
+
+Scoring function : vina
+Rigid receptor: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\ecoli_FtsZ_6UNX_receptor.pdbqt
+Ligand: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\P1_FVNKLNRIIPVKGFSMR_rigid_minimized.pdbqt
+Grid center: X 21.543 Y -1.459 Z 20.91
+Grid size  : X 30 Y 30 Z 30
+Grid space : 0.375
+Exhaustiveness: 6
+CPU: 0
+Verbosity: 1
+
+
+
+Error: insufficient memory!
+",21.543343750000002,-1.4585312499999998,20.9096875,30.0,30.0,30.0
+ecoli_FtsZ_6UNX,Escherichia coli,FtsZ cell-division protein,6UNX,P2_LISNTKKFGTAIASHR,LISNTKKFGTAIASHR,0,0,NA,,"vina CLI failed code=1; see E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_FtsZ_6UNX\P2_LISNTKKFGTAIASHR\ecoli_FtsZ_6UNX__P2_LISNTKKFGTAIASHR__rep1_vina.log; tail=##############################################
+
+Scoring function : vina
+Rigid receptor: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\ecoli_FtsZ_6UNX_receptor.pdbqt
+Ligand: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\P2_LISNTKKFGTAIASHR_rigid_minimized.pdbqt
+Grid center: X 21.543 Y -1.459 Z 20.91
+Grid size  : X 30 Y 30 Z 30
+Grid space : 0.375
+Exhaustiveness: 6
+CPU: 0
+Verbosity: 1
+
+
+
+Error: insufficient memory!
+",21.543343750000002,-1.4585312499999998,20.9096875,30.0,30.0,30.0
+ecoli_FtsZ_6UNX,Escherichia coli,FtsZ cell-division protein,6UNX,P3_ISLAIPLASKISGFTLALVKNAST,ISLAIPLASKISGFTLALVKNAST,0,0,NA,,"vina CLI failed code=1; see E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_FtsZ_6UNX\P3_ISLAIPLASKISGFTLALVKNAST\ecoli_FtsZ_6UNX__P3_ISLAIPLASKISGFTLALVKNAST__rep1_vina.log; tail=######################################
+
+Scoring function : vina
+Rigid receptor: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\ecoli_FtsZ_6UNX_receptor.pdbqt
+Ligand: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\P3_ISLAIPLASKISGFTLALVKNAST_rigid_minimized.pdbqt
+Grid center: X 21.543 Y -1.459 Z 20.91
+Grid size  : X 30 Y 30 Z 30
+Grid space : 0.375
+Exhaustiveness: 6
+CPU: 0
+Verbosity: 1
+
+
+
+Error: insufficient memory!
+",21.543343750000002,-1.4585312499999998,20.9096875,30.0,30.0,30.0
+ecoli_GyrB_4DUH,Escherichia coli,DNA gyrase B ATPase domain,4DUH,P1_FVNKLNRIIPVKGFSMR,FVNKLNRIIPVKGFSMR,0,0,NA,,"vina CLI failed code=1; see E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_GyrB_4DUH\P1_FVNKLNRIIPVKGFSMR\ecoli_GyrB_4DUH__P1_FVNKLNRIIPVKGFSMR__rep1_vina.log; tail=#############################################
+
+Scoring function : vina
+Rigid receptor: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\ecoli_GyrB_4DUH_receptor.pdbqt
+Ligand: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\P1_FVNKLNRIIPVKGFSMR_rigid_minimized.pdbqt
+Grid center: X 16.328 Y 3.494 Z 21.088
+Grid size  : X 30 Y 30 Z 30
+Grid space : 0.375
+Exhaustiveness: 6
+CPU: 0
+Verbosity: 1
+
+
+
+Error: insufficient memory!
+",16.32842307692308,3.494346153846153,21.087653846153845,30.0,30.0,30.0
+ecoli_GyrB_4DUH,Escherichia coli,DNA gyrase B ATPase domain,4DUH,P2_LISNTKKFGTAIASHR,LISNTKKFGTAIASHR,0,0,NA,,"vina CLI failed code=1; see E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_GyrB_4DUH\P2_LISNTKKFGTAIASHR\ecoli_GyrB_4DUH__P2_LISNTKKFGTAIASHR__rep1_vina.log; tail=##############################################
+
+Scoring function : vina
+Rigid receptor: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\ecoli_GyrB_4DUH_receptor.pdbqt
+Ligand: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\P2_LISNTKKFGTAIASHR_rigid_minimized.pdbqt
+Grid center: X 16.328 Y 3.494 Z 21.088
+Grid size  : X 30 Y 30 Z 30
+Grid space : 0.375
+Exhaustiveness: 6
+CPU: 0
+Verbosity: 1
+
+
+
+Error: insufficient memory!
+",16.32842307692308,3.494346153846153,21.087653846153845,30.0,30.0,30.0
+ecoli_GyrB_4DUH,Escherichia coli,DNA gyrase B ATPase domain,4DUH,P3_ISLAIPLASKISGFTLALVKNAST,ISLAIPLASKISGFTLALVKNAST,0,0,NA,,"vina CLI failed code=1; see E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_GyrB_4DUH\P3_ISLAIPLASKISGFTLALVKNAST\ecoli_GyrB_4DUH__P3_ISLAIPLASKISGFTLALVKNAST__rep1_vina.log; tail=######################################
+
+Scoring function : vina
+Rigid receptor: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\ecoli_GyrB_4DUH_receptor.pdbqt
+Ligand: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\P3_ISLAIPLASKISGFTLALVKNAST_rigid_minimized.pdbqt
+Grid center: X 16.328 Y 3.494 Z 21.088
+Grid size  : X 30 Y 30 Z 30
+Grid space : 0.375
+Exhaustiveness: 6
+CPU: 0
+Verbosity: 1
+
+
+
+Error: insufficient memory!
+",16.32842307692308,3.494346153846153,21.087653846153845,30.0,30.0,30.0
+saureus_FtsZ_5MN4,Staphylococcus aureus,FtsZ cell-division protein,5MN4,P1_FVNKLNRIIPVKGFSMR,FVNKLNRIIPVKGFSMR,0,0,NA,,"vina CLI failed code=1; see E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_FtsZ_5MN4\P1_FVNKLNRIIPVKGFSMR\saureus_FtsZ_5MN4__P1_FVNKLNRIIPVKGFSMR__rep1_vina.log; tail=#########################################
+
+Scoring function : vina
+Rigid receptor: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\saureus_FtsZ_5MN4_receptor.pdbqt
+Ligand: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\P1_FVNKLNRIIPVKGFSMR_rigid_minimized.pdbqt
+Grid center: X -18.685 Y -8.098 Z 20.172
+Grid size  : X 30 Y 30 Z 30
+Grid space : 0.375
+Exhaustiveness: 6
+CPU: 0
+Verbosity: 1
+
+
+
+Error: insufficient memory!
+",-18.68488888888889,-8.097972222222221,20.17238888888889,30.0,30.0,30.0
+saureus_FtsZ_5MN4,Staphylococcus aureus,FtsZ cell-division protein,5MN4,P2_LISNTKKFGTAIASHR,LISNTKKFGTAIASHR,0,0,NA,,"vina CLI failed code=1; see E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_FtsZ_5MN4\P2_LISNTKKFGTAIASHR\saureus_FtsZ_5MN4__P2_LISNTKKFGTAIASHR__rep1_vina.log; tail=##########################################
+
+Scoring function : vina
+Rigid receptor: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\saureus_FtsZ_5MN4_receptor.pdbqt
+Ligand: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\P2_LISNTKKFGTAIASHR_rigid_minimized.pdbqt
+Grid center: X -18.685 Y -8.098 Z 20.172
+Grid size  : X 30 Y 30 Z 30
+Grid space : 0.375
+Exhaustiveness: 6
+CPU: 0
+Verbosity: 1
+
+
+
+Error: insufficient memory!
+",-18.68488888888889,-8.097972222222221,20.17238888888889,30.0,30.0,30.0
+saureus_FtsZ_5MN4,Staphylococcus aureus,FtsZ cell-division protein,5MN4,P3_ISLAIPLASKISGFTLALVKNAST,ISLAIPLASKISGFTLALVKNAST,0,0,NA,,"vina CLI failed code=1; see E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_FtsZ_5MN4\P3_ISLAIPLASKISGFTLALVKNAST\saureus_FtsZ_5MN4__P3_ISLAIPLASKISGFTLALVKNAST__rep1_vina.log; tail=##################################
+
+Scoring function : vina
+Rigid receptor: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\saureus_FtsZ_5MN4_receptor.pdbqt
+Ligand: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\P3_ISLAIPLASKISGFTLALVKNAST_rigid_minimized.pdbqt
+Grid center: X -18.685 Y -8.098 Z 20.172
+Grid size  : X 30 Y 30 Z 30
+Grid space : 0.375
+Exhaustiveness: 6
+CPU: 0
+Verbosity: 1
+
+
+
+Error: insufficient memory!
+",-18.68488888888889,-8.097972222222221,20.17238888888889,30.0,30.0,30.0
+saureus_SrtA_1T2W,Staphylococcus aureus,Sortase A transpeptidase,1T2W,P1_FVNKLNRIIPVKGFSMR,FVNKLNRIIPVKGFSMR,0,0,NA,,"vina CLI failed code=1; see E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_SrtA_1T2W\P1_FVNKLNRIIPVKGFSMR\saureus_SrtA_1T2W__P1_FVNKLNRIIPVKGFSMR__rep1_vina.log; tail=########################################
+
+Scoring function : vina
+Rigid receptor: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\saureus_SrtA_1T2W_receptor.pdbqt
+Ligand: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\P1_FVNKLNRIIPVKGFSMR_rigid_minimized.pdbqt
+Grid center: X -14.35 Y -20.951 Z -11.198
+Grid size  : X 52 Y 52 Z 52
+Grid space : 0.375
+Exhaustiveness: 6
+CPU: 0
+Verbosity: 1
+
+
+
+Error: insufficient memory!
+",-14.350406709829283,-20.951492348440272,-11.197598587404348,52.0,52.0,52.0
+saureus_SrtA_1T2W,Staphylococcus aureus,Sortase A transpeptidase,1T2W,P2_LISNTKKFGTAIASHR,LISNTKKFGTAIASHR,0,0,NA,,"vina CLI failed code=1; see E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_SrtA_1T2W\P2_LISNTKKFGTAIASHR\saureus_SrtA_1T2W__P2_LISNTKKFGTAIASHR__rep1_vina.log; tail=#########################################
+
+Scoring function : vina
+Rigid receptor: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\saureus_SrtA_1T2W_receptor.pdbqt
+Ligand: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\P2_LISNTKKFGTAIASHR_rigid_minimized.pdbqt
+Grid center: X -14.35 Y -20.951 Z -11.198
+Grid size  : X 52 Y 52 Z 52
+Grid space : 0.375
+Exhaustiveness: 6
+CPU: 0
+Verbosity: 1
+
+
+
+Error: insufficient memory!
+",-14.350406709829283,-20.951492348440272,-11.197598587404348,52.0,52.0,52.0
+saureus_SrtA_1T2W,Staphylococcus aureus,Sortase A transpeptidase,1T2W,P3_ISLAIPLASKISGFTLALVKNAST,ISLAIPLASKISGFTLALVKNAST,0,0,NA,,"vina CLI failed code=1; see E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_SrtA_1T2W\P3_ISLAIPLASKISGFTLALVKNAST\saureus_SrtA_1T2W__P3_ISLAIPLASKISGFTLALVKNAST__rep1_vina.log; tail=#################################
+
+Scoring function : vina
+Rigid receptor: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\saureus_SrtA_1T2W_receptor.pdbqt
+Ligand: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\P3_ISLAIPLASKISGFTLALVKNAST_rigid_minimized.pdbqt
+Grid center: X -14.35 Y -20.951 Z -11.198
+Grid size  : X 52 Y 52 Z 52
+Grid space : 0.375
+Exhaustiveness: 6
+CPU: 0
+Verbosity: 1
+
+
+
+Error: insufficient memory!
+",-14.350406709829283,-20.951492348440272,-11.197598587404348,52.0,52.0,52.0
