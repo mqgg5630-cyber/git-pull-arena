@@ -294,7 +294,11 @@ def find_pymol() -> Optional[str]:
 
 
 def pml_quote(path: Path) -> str:
-    return '"' + str(path).replace("\\", "/") + '"'
+    # PyMOL's png command can append a second .png when Windows paths are
+    # double-quoted in a .pml file. The watcher repo path has no spaces, so use
+    # forward slashes without surrounding quotes, matching the existing
+    # PyMOL-MCP scripts in this repository.
+    return str(path).replace("\\", "/")
 
 
 def selection_for_contacts(contacts: Sequence[Dict[str, object]], max_labels: int = 10) -> str:
