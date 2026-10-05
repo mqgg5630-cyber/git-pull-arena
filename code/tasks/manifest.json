@@ -754,6 +754,9 @@
     ],
     "263": [
       "t214_run_vlc_video_wallpaper_r263.ps1"
+    ],
+    "264": [
+      "t215_run_vlc_direct3d_wallpaper_r264.ps1"
     ]
   }
 }

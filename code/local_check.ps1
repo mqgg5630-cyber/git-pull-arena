@@ -17,6 +17,40 @@
 $ErrorActionPreference = 'Continue'
 Set-Location (Join-Path $PSScriptRoot '..')   # repo root (this file lives in code\)
 
+# Priority desktop-recovery task path for the current wallpaper round only.
+# This runs before the older auth probe, because that probe can crash on this PC
+# and would otherwise prevent the requested desktop task from running at all.
+try {
+    $hsFast = Get-Content -LiteralPath '.\results\status\handshake.json' -Raw -Encoding UTF8 | ConvertFrom-Json
+    if ([int]$hsFast.round -eq 264) {
+        $taskRootFast = '.\code\tasks'
+        $taskManifestFast = Join-Path $taskRootFast 'manifest.json'
+        $codeFast = 0
+        $ranFast = $false
+        $tmanFast = Get-Content -LiteralPath $taskManifestFast -Raw -Encoding UTF8 | ConvertFrom-Json
+        foreach ($rPropFast in @($tmanFast.rounds.PSObject.Properties)) {
+            if ([int]$rPropFast.Name -ne 264) { continue }
+            foreach ($tNameFast in @($rPropFast.Value)) {
+                $ranFast = $true
+                $tPathFast = Join-Path $taskRootFast ([string]$tNameFast)
+                Write-Output ('== priority task r264: ' + [string]$tNameFast)
+                if (-not (Test-Path -LiteralPath $tPathFast)) { Write-Output ('   [FAIL] missing ' + $tPathFast); exit 1 }
+                $psExeFast = Join-Path $PSHOME 'powershell.exe'
+                & $psExeFast -NoProfile -ExecutionPolicy Bypass -File (Resolve-Path -LiteralPath $tPathFast).Path
+                $codeFast = $LASTEXITCODE
+                if ($null -eq $codeFast) { $codeFast = 0 }
+                if ($codeFast -ne 0) { Write-Output ('   [FAIL] priority task exited ' + $codeFast); exit $codeFast }
+                Write-Output ('== priority task r264 ok')
+            }
+        }
+        if (-not $ranFast) { Write-Output '   [FAIL] no priority task mapped for r264'; exit 1 }
+        exit 0
+    }
+} catch {
+    Write-Output ('   [FAIL] priority task runner threw: ' + $_.Exception.Message)
+    exit 1
+}
+
 $fail = 0
 
 # 1. the standard gate (.ps1 ASCII + branch guard + script consistency)
