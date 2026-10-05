@@ -214,7 +214,11 @@
     "results/mcp_agv_lab/GOUTOUJUNSHI_LOVE_LETTER_R239.md",
     "deliverable/patches/goutoujunshi-standalone-love-letter-gem.patch",
     "code/tasks/t191_apply_love_letter_standalone_gem_r240.ps1",
-    "results/mcp_agv_lab/LOVE_LETTER_STANDALONE_GEM_R240.md"
+    "results/mcp_agv_lab/LOVE_LETTER_STANDALONE_GEM_R240.md",
+    "deliverable/assets/cute_professional_id_photo.png",
+    "code/tasks/t192_install_media_career_tools_r241.ps1",
+    "results/mcp_agv_lab/R241_INSTALL_MEDIA_CAREER_TOOLS.md",
+    "results/mcp_agv_lab/r241-install-media-career-tools.json"
   ],
   "forbid_files": [
     "local/inbox",
@@ -237,14 +241,16 @@
     "code/tasks/t1_fix_antigravity.ps1": "http.proxy",
     "code/tasks/t2_install_java.ps1": "E:\\java",
     "results/mcp_agv_lab/GOUTOUJUNSHI_LOVE_LETTER_R239.md": "GOUTOUJUNSHI_LOVE_LETTER_APPLIED=True",
-    "results/mcp_agv_lab/LOVE_LETTER_STANDALONE_GEM_R240.md": "LOVE_LETTER_STANDALONE_GEM_READY=True"
+    "results/mcp_agv_lab/LOVE_LETTER_STANDALONE_GEM_R240.md": "LOVE_LETTER_STANDALONE_GEM_READY=True",
+    "results/mcp_agv_lab/R241_INSTALL_MEDIA_CAREER_TOOLS.md": "R241_MEDIA_CAREER_READY=True"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
     "code/local_check.ps1": "Get-FileHash",
     "deliverable/OFFICE_HASHES.json": "[0-9a-f]{64}",
     "results/mcp_agv_lab/GOUTOUJUNSHI_LOVE_LETTER_R239.md": "target_push_exit=0",
-    "results/mcp_agv_lab/LOVE_LETTER_STANDALONE_GEM_R240.md": "target_push_exit=0"
+    "results/mcp_agv_lab/LOVE_LETTER_STANDALONE_GEM_R240.md": "target_push_exit=0",
+    "results/mcp_agv_lab/R241_INSTALL_MEDIA_CAREER_TOOLS.md": "(?s)(?=.*web_shortcuts_ok=True)(?=.*deskbox_shortcut_ok=True)(?=.*xiutu_dir_exists=True)(?=.*ai_job_search_dir_exists=True)(?=.*career_ops_dir_exists=True)(?=.*hypit_repo_dir_exists=True)(?=.*id_photo_295_exists=True)(?=.*hypit_safe_clone_video_exists=True)(?=.*hypit_safe_clone_video_bytes=[1-9][0-9]{5,}).*"
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,
@@ -259,7 +265,11 @@
     "deliverable/patches/goutoujunshi-love-letter-confession-bfb071b.patch": 50000,
     "results/mcp_agv_lab/GOUTOUJUNSHI_LOVE_LETTER_R239.md": 1000,
     "deliverable/patches/goutoujunshi-standalone-love-letter-gem.patch": 50000,
-    "results/mcp_agv_lab/LOVE_LETTER_STANDALONE_GEM_R240.md": 1000
+    "results/mcp_agv_lab/LOVE_LETTER_STANDALONE_GEM_R240.md": 1000,
+    "deliverable/assets/cute_professional_id_photo.png": 50000,
+    "code/tasks/t192_install_media_career_tools_r241.ps1": 20000,
+    "results/mcp_agv_lab/R241_INSTALL_MEDIA_CAREER_TOOLS.md": 2000,
+    "results/mcp_agv_lab/r241-install-media-career-tools.json": 1000
   },
   "max_bytes": {
     "deliverable/LINK_PROOF_v2.8.1.docx": 3000000,
