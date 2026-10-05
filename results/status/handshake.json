@@ -1,9 +1,9 @@
 {
-  "round": 250,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "round 250: use exact --file=path Lively.exe arguments for the cute anime dynamic wallpaper and tidy desktop",
-  "arena_updated": "2026-10-05 03:21:30",
-  "local_updated": "2026-10-05 11:21:04"
+  "round": 251,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 251: user reports wallpaper is still static; replace it with an actually visible cute anime dynamic desktop wallpaper host and verify with real desktop screen-diff proof, then tidy desktop",
+  "arena_updated": "2026-10-05 03:27:25",
+  "local_updated": null
 }
