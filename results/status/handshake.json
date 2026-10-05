@@ -1,9 +1,9 @@
 {
-  "round": 256,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "retry AMP docking workflow using E drive scientific Python for RDKit/Vina dependencies",
-  "arena_updated": "2026-10-05 07:01:28",
-  "local_updated": null
+    "round":  256,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "retry AMP docking workflow using E drive scientific Python for RDKit/Vina dependencies",
+    "arena_updated":  "2026-10-05 07:01:28",
+    "local_updated":  "2026-10-05 15:03:51"
 }
