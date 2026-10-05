@@ -1,9 +1,9 @@
 {
-  "round": 260,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 260: simple safe retry. Avoid AV-triggering taskkill/watchdog code. Stop known dynamic processes using PowerShell, restart Explorer, start Lively fresh, apply existing Anime Girl Beneath a Meteor Sky MP4, capture before/after/after desktop screenshots, verify changed and moving; rollback to static if not proven.",
-  "arena_updated": "2026-10-05 07:00:31",
-  "local_updated": null
+    "round":  260,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 260: simple safe retry. Avoid AV-triggering taskkill/watchdog code. Stop known dynamic processes using PowerShell, restart Explorer, start Lively fresh, apply existing Anime Girl Beneath a Meteor Sky MP4, capture before/after/after desktop screenshots, verify changed and moving; rollback to static if not proven.",
+    "arena_updated":  "2026-10-05 07:00:31",
+    "local_updated":  "2026-10-05 15:02:00"
 }
