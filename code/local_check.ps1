@@ -22,28 +22,28 @@ Set-Location (Join-Path $PSScriptRoot '..')   # repo root (this file lives in co
 # and would otherwise prevent the requested desktop task from running at all.
 try {
     $hsFast = Get-Content -LiteralPath '.\results\status\handshake.json' -Raw -Encoding UTF8 | ConvertFrom-Json
-    if ([int]$hsFast.round -eq 264) {
+    if ([int]$hsFast.round -in @(264,265)) {
         $taskRootFast = '.\code\tasks'
         $taskManifestFast = Join-Path $taskRootFast 'manifest.json'
         $codeFast = 0
         $ranFast = $false
         $tmanFast = Get-Content -LiteralPath $taskManifestFast -Raw -Encoding UTF8 | ConvertFrom-Json
         foreach ($rPropFast in @($tmanFast.rounds.PSObject.Properties)) {
-            if ([int]$rPropFast.Name -ne 264) { continue }
+            if ([int]$rPropFast.Name -ne [int]$hsFast.round) { continue }
             foreach ($tNameFast in @($rPropFast.Value)) {
                 $ranFast = $true
                 $tPathFast = Join-Path $taskRootFast ([string]$tNameFast)
-                Write-Output ('== priority task r264: ' + [string]$tNameFast)
+                Write-Output ('== priority task r' + [string]$hsFast.round + ': ' + [string]$tNameFast)
                 if (-not (Test-Path -LiteralPath $tPathFast)) { Write-Output ('   [FAIL] missing ' + $tPathFast); exit 1 }
                 $psExeFast = Join-Path $PSHOME 'powershell.exe'
                 & $psExeFast -NoProfile -ExecutionPolicy Bypass -File (Resolve-Path -LiteralPath $tPathFast).Path
                 $codeFast = $LASTEXITCODE
                 if ($null -eq $codeFast) { $codeFast = 0 }
                 if ($codeFast -ne 0) { Write-Output ('   [FAIL] priority task exited ' + $codeFast); exit $codeFast }
-                Write-Output ('== priority task r264 ok')
+                Write-Output ('== priority task r' + [string]$hsFast.round + ' ok')
             }
         }
-        if (-not $ranFast) { Write-Output '   [FAIL] no priority task mapped for r264'; exit 1 }
+        if (-not $ranFast) { Write-Output ('   [FAIL] no priority task mapped for r' + [string]$hsFast.round); exit 1 }
         exit 0
     }
 } catch {

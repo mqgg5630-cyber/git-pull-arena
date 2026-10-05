@@ -293,7 +293,13 @@
     "results/mcp_agv_lab/r264-vlc-direct3d-wallpaper.json",
     "results/mcp_agv_lab/r264_desktop_before.bmp",
     "results/mcp_agv_lab/r264_desktop_after_a.bmp",
-    "results/mcp_agv_lab/r264_desktop_after_b.bmp"
+    "results/mcp_agv_lab/r264_desktop_after_b.bmp",
+    "code/tasks/t216_run_confirm_vlc_dynamic_r265.ps1",
+    "code/tasks/t216_confirm_vlc_dynamic_r265.py",
+    "results/mcp_agv_lab/R265_CONFIRM_VLC_DYNAMIC_WALLPAPER.md",
+    "results/mcp_agv_lab/r265-confirm-vlc-dynamic-wallpaper.json",
+    "results/mcp_agv_lab/r265_desktop_frame_a.bmp",
+    "results/mcp_agv_lab/r265_desktop_frame_b.bmp"
   ],
   "forbid_files": [
     "local/inbox",
@@ -331,7 +337,7 @@
     "results/mcp_agv_lab/R255_EXISTING_ANIME_WALLPAPER_ARMED.md": "R255_EXISTING_ANIME_WALLPAPER_ARMED=True",
     "results/mcp_agv_lab/R256_CONFIRM_EXISTING_ANIME_WALLPAPER_ARMED.md": "R256_CONFIRM_EXISTING_ANIME_WALLPAPER_ARMED_READY=True",
     "results/mcp_agv_lab/R257_EMERGENCY_WALLPAPER_RECOVERY.md": "R257_EMERGENCY_WALLPAPER_RECOVERY_READY=True",
-    "results/mcp_agv_lab/R264_VLC_DIRECT3D_WALLPAPER.md": "R264_VLC_DIRECT3D_WALLPAPER_READY=True"
+    "results/mcp_agv_lab/R265_CONFIRM_VLC_DYNAMIC_WALLPAPER.md": "R265_CONFIRM_VLC_DYNAMIC_WALLPAPER_READY=True"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
@@ -352,7 +358,7 @@
     "results/mcp_agv_lab/R255_EXISTING_ANIME_WALLPAPER_ARMED.md": "(?s)(?=.*existing_live_wallpaper_downloaded=True)(?=.*apply_script_ready=True)(?=.*unlock_or_logon_auto_apply_ready=True)(?=.*desktop_tidy_ok=True).*",
     "results/mcp_agv_lab/R256_CONFIRM_EXISTING_ANIME_WALLPAPER_ARMED.md": "(?s)(?=.*existing_live_wallpaper_downloaded=True)(?=.*apply_script_ready=True)(?=.*unlock_or_logon_auto_apply_ready=True)(?=.*desktop_tidy_ok=True).*",
     "results/mcp_agv_lab/R257_EMERGENCY_WALLPAPER_RECOVERY.md": "(?s)(?=.*static_wallpaper_set=True)(?=.*autostarts_removed=True)(?=.*screenshot_captured=True)(?=.*dynamic_wallpaper_disabled=True)(?=.*desktop_tidy_done=True).*",
-    "results/mcp_agv_lab/R264_VLC_DIRECT3D_WALLPAPER.md": "(?s)(?=.*vlc_start_ok=True)(?=.*actual_desktop_changed_to_new_wallpaper=True)(?=.*actual_desktop_is_moving=True)(?=.*desktop_tidy_done=True).*"
+    "results/mcp_agv_lab/R265_CONFIRM_VLC_DYNAMIC_WALLPAPER.md": "(?s)(?=.*vlc_process_count=1)(?=.*actual_desktop_is_moving=True)(?=.*desktop_tidy_done=True).*"
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,
@@ -445,7 +451,13 @@
     "results/mcp_agv_lab/r264-vlc-direct3d-wallpaper.json": 650,
     "results/mcp_agv_lab/r264_desktop_before.bmp": 5000,
     "results/mcp_agv_lab/r264_desktop_after_a.bmp": 5000,
-    "results/mcp_agv_lab/r264_desktop_after_b.bmp": 5000
+    "results/mcp_agv_lab/r264_desktop_after_b.bmp": 5000,
+    "code/tasks/t216_run_confirm_vlc_dynamic_r265.ps1": 300,
+    "code/tasks/t216_confirm_vlc_dynamic_r265.py": 5000,
+    "results/mcp_agv_lab/R265_CONFIRM_VLC_DYNAMIC_WALLPAPER.md": 700,
+    "results/mcp_agv_lab/r265-confirm-vlc-dynamic-wallpaper.json": 300,
+    "results/mcp_agv_lab/r265_desktop_frame_a.bmp": 5000,
+    "results/mcp_agv_lab/r265_desktop_frame_b.bmp": 5000
   },
   "max_bytes": {
     "deliverable/LINK_PROOF_v2.8.1.docx": 3000000,
