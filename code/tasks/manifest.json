@@ -742,6 +742,9 @@
     ],
     "259": [
       "t210_clean_restart_lively_r259.ps1"
+    ],
+    "260": [
+      "t211_simple_lively_restart_r260.ps1"
     ]
   }
 }
