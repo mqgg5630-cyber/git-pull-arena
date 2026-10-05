@@ -1,0 +1,20 @@
+{
+    "ready":  true,
+    "desktop":  "D:\\桌面",
+    "eRoot":  "E:\\0mcp-agv-arena-optimized",
+    "sourceImage":  "E:\\0mcp-agv-arena-optimized\\images\\anime-wallpaper-r246\\anime_ultra_dynamic_wallpaper_r246.png",
+    "video":  "E:\\0mcp-agv-arena-optimized\\video\\hypit-ultra-anime-viral-r246\\hypit_ultra_anime_viral_r246.mp4",
+    "videoBytes":  49085205,
+    "storyboard":  "E:\\0mcp-agv-arena-optimized\\video\\hypit-ultra-anime-viral-r246\\hypit_ultra_viral_storyboard.svml",
+    "manifest":  "E:\\0mcp-agv-arena-optimized\\video\\hypit-ultra-anime-viral-r246\\ultra_viral_manifest.json",
+    "organizedVideo":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\03-Video-Creation\\hypit_ultra_anime_viral_r246.mp4",
+    "wallpaper":  "E:\\0mcp-agv-arena-optimized\\wallpapers\\anime-live-r246\\anime_ultra_live_wallpaper_r246.mp4",
+    "wallpaperBytes":  10232799,
+    "organizedWallpaper":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\09-Anime-Wallpapers\\anime_ultra_live_wallpaper_r246.mp4",
+    "dynamicWallpaperSetOk":  true,
+    "dynamicWallpaperExe":  "C:\\Program Files\\Lively Wallpaper\\Lively.exe",
+    "dynamicWallpaperCmd":  "setwp --file \"E:\\0mcp-agv-arena-optimized\\wallpapers\\anime-live-r246\\anime_ultra_live_wallpaper_r246.mp4\" setwp --file \"E:\\0mcp-agv-arena-optimized\\wallpapers\\anime-live-r246\\anime_ultra_live_wallpaper_r246.mp4\" --monitor 1",
+    "desktopOrganizer":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer",
+    "tidyManifest":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\AUTO_TIDY_LAST_RUN.txt",
+    "pathsSummary":  "E:\\0mcp-agv-arena-optimized\\r246-ultra-anime-video-wallpaper\\PATHS.txt"
+}
