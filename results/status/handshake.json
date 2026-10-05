@@ -1,9 +1,9 @@
 {
-  "round": 267,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "round 267: user gives up on dynamic. Stop VLC/Lively dynamic wallpaper, remove the video wallpaper, set a good static cute anime wallpaper, capture the actual desktop screenshot as PNG, and tidy desktop.",
-  "arena_updated": "2026-10-05 11:39:16",
-  "local_updated": "2026-10-05 19:38:33"
+  "round": 268,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 268: loop smoke - watcher auto-pulls this request, runs t220 on the real machine, pushes the receipt back; agent polls until the verdict lands",
+  "arena_updated": "2026-10-05 12:18:00",
+  "local_updated": null
 }
