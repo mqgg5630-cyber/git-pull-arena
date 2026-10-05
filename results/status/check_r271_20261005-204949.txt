@@ -1,0 +1,19 @@
+check round 271 on LAPTOP-R77M5D6M - failed (exit 1)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 3s
+
+== priority task r271: t223_run_dynamic_video_wallpaper_r271.ps1
+# R271 real dynamic video wallpaper (pixel-only verdict, two late probes)
+time=2026-10-05 20:49:52
+fix_vs_r270=verdict is PIXELS ONLY (r270 proved playing but tasklist missed vlc.exe); second late probe at ~200s proves persistence
+screen_locked_detected=False
+vlc_exe=C:\Program Files\VideoLAN\VLC\vlc.exe exists=True
+cleanup_r270_leftover=E:\0mcp-agv-arena-optimized\wallpapers\dynamic-video-r270\Start-R270-Dynamic-Wallpaper.bat
+cleanup_r270_leftover=E:\0mcp-agv-arena-optimized\wallpapers\dynamic-video-r270\Stop-R270-Dynamic-Wallpaper.bat
+   [FAIL] priority task exited 1
+--- stderr ---
+Traceback (most recent call last):
+  File "E:\0github\git-sync\git-pull-arena-01a10bf3\code\tasks\t223_dynamic_video_wallpaper_r271.py", line 96, in <module>
+    for reuse_src, reuse_slug in [(R270_MP4,'reuse-hotori-r270'),(R269_MP4,'reuse-hotori-r269')]:
+                                   ^^^^^^^^
+NameError: name 'R270_MP4' is not defined. Did you mean: 'R269_MP4'?

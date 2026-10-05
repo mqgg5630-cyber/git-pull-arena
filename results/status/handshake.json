@@ -1,9 +1,9 @@
 {
-  "round": 271,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 271: dynamic video wallpaper, pixel-only verdict - changed A-B plus motion at both late probes (~105s and ~200s), reuse hotori mp4, clean r270 leftovers",
-  "arena_updated": "2026-10-05 12:49:43",
-  "local_updated": null
+    "round":  271,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 271: dynamic video wallpaper, pixel-only verdict - changed A-B plus motion at both late probes (~105s and ~200s), reuse hotori mp4, clean r270 leftovers",
+    "arena_updated":  "2026-10-05 12:49:43",
+    "local_updated":  "2026-10-05 20:49:52"
 }
