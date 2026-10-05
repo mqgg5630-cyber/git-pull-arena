@@ -1,193 +1,37 @@
-target_key,organism,protein,pdb_id,peptide_key,sequence,repeat,seed,best_affinity_kcal_mol,pose_pdbqt,error,center_x,center_y,center_z,box_x,box_y,box_z
-ecoli_FtsZ_6UNX,Escherichia coli,FtsZ cell-division protein,6UNX,P1_FVNKLNRIIPVKGFSMR,FVNKLNRIIPVKGFSMR,0,0,NA,,"vina CLI failed code=1; see E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_FtsZ_6UNX\P1_FVNKLNRIIPVKGFSMR\ecoli_FtsZ_6UNX__P1_FVNKLNRIIPVKGFSMR__rep1_vina.log; tail=#############################################
-
-Scoring function : vina
-Rigid receptor: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\ecoli_FtsZ_6UNX_receptor.pdbqt
-Ligand: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\P1_FVNKLNRIIPVKGFSMR_rigid_minimized.pdbqt
-Grid center: X 21.543 Y -1.459 Z 20.91
-Grid size  : X 30 Y 30 Z 30
-Grid space : 0.375
-Exhaustiveness: 6
-CPU: 0
-Verbosity: 1
-
-
-
-Error: insufficient memory!
-",21.543343750000002,-1.4585312499999998,20.9096875,30.0,30.0,30.0
-ecoli_FtsZ_6UNX,Escherichia coli,FtsZ cell-division protein,6UNX,P2_LISNTKKFGTAIASHR,LISNTKKFGTAIASHR,0,0,NA,,"vina CLI failed code=1; see E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_FtsZ_6UNX\P2_LISNTKKFGTAIASHR\ecoli_FtsZ_6UNX__P2_LISNTKKFGTAIASHR__rep1_vina.log; tail=##############################################
-
-Scoring function : vina
-Rigid receptor: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\ecoli_FtsZ_6UNX_receptor.pdbqt
-Ligand: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\P2_LISNTKKFGTAIASHR_rigid_minimized.pdbqt
-Grid center: X 21.543 Y -1.459 Z 20.91
-Grid size  : X 30 Y 30 Z 30
-Grid space : 0.375
-Exhaustiveness: 6
-CPU: 0
-Verbosity: 1
-
-
-
-Error: insufficient memory!
-",21.543343750000002,-1.4585312499999998,20.9096875,30.0,30.0,30.0
-ecoli_FtsZ_6UNX,Escherichia coli,FtsZ cell-division protein,6UNX,P3_ISLAIPLASKISGFTLALVKNAST,ISLAIPLASKISGFTLALVKNAST,0,0,NA,,"vina CLI failed code=1; see E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_FtsZ_6UNX\P3_ISLAIPLASKISGFTLALVKNAST\ecoli_FtsZ_6UNX__P3_ISLAIPLASKISGFTLALVKNAST__rep1_vina.log; tail=######################################
-
-Scoring function : vina
-Rigid receptor: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\ecoli_FtsZ_6UNX_receptor.pdbqt
-Ligand: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\P3_ISLAIPLASKISGFTLALVKNAST_rigid_minimized.pdbqt
-Grid center: X 21.543 Y -1.459 Z 20.91
-Grid size  : X 30 Y 30 Z 30
-Grid space : 0.375
-Exhaustiveness: 6
-CPU: 0
-Verbosity: 1
-
-
-
-Error: insufficient memory!
-",21.543343750000002,-1.4585312499999998,20.9096875,30.0,30.0,30.0
-ecoli_GyrB_4DUH,Escherichia coli,DNA gyrase B ATPase domain,4DUH,P1_FVNKLNRIIPVKGFSMR,FVNKLNRIIPVKGFSMR,0,0,NA,,"vina CLI failed code=1; see E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_GyrB_4DUH\P1_FVNKLNRIIPVKGFSMR\ecoli_GyrB_4DUH__P1_FVNKLNRIIPVKGFSMR__rep1_vina.log; tail=#############################################
-
-Scoring function : vina
-Rigid receptor: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\ecoli_GyrB_4DUH_receptor.pdbqt
-Ligand: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\P1_FVNKLNRIIPVKGFSMR_rigid_minimized.pdbqt
-Grid center: X 16.328 Y 3.494 Z 21.088
-Grid size  : X 30 Y 30 Z 30
-Grid space : 0.375
-Exhaustiveness: 6
-CPU: 0
-Verbosity: 1
-
-
-
-Error: insufficient memory!
-",16.32842307692308,3.494346153846153,21.087653846153845,30.0,30.0,30.0
-ecoli_GyrB_4DUH,Escherichia coli,DNA gyrase B ATPase domain,4DUH,P2_LISNTKKFGTAIASHR,LISNTKKFGTAIASHR,0,0,NA,,"vina CLI failed code=1; see E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_GyrB_4DUH\P2_LISNTKKFGTAIASHR\ecoli_GyrB_4DUH__P2_LISNTKKFGTAIASHR__rep1_vina.log; tail=##############################################
-
-Scoring function : vina
-Rigid receptor: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\ecoli_GyrB_4DUH_receptor.pdbqt
-Ligand: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\P2_LISNTKKFGTAIASHR_rigid_minimized.pdbqt
-Grid center: X 16.328 Y 3.494 Z 21.088
-Grid size  : X 30 Y 30 Z 30
-Grid space : 0.375
-Exhaustiveness: 6
-CPU: 0
-Verbosity: 1
-
-
-
-Error: insufficient memory!
-",16.32842307692308,3.494346153846153,21.087653846153845,30.0,30.0,30.0
-ecoli_GyrB_4DUH,Escherichia coli,DNA gyrase B ATPase domain,4DUH,P3_ISLAIPLASKISGFTLALVKNAST,ISLAIPLASKISGFTLALVKNAST,0,0,NA,,"vina CLI failed code=1; see E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_GyrB_4DUH\P3_ISLAIPLASKISGFTLALVKNAST\ecoli_GyrB_4DUH__P3_ISLAIPLASKISGFTLALVKNAST__rep1_vina.log; tail=######################################
-
-Scoring function : vina
-Rigid receptor: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\ecoli_GyrB_4DUH_receptor.pdbqt
-Ligand: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\P3_ISLAIPLASKISGFTLALVKNAST_rigid_minimized.pdbqt
-Grid center: X 16.328 Y 3.494 Z 21.088
-Grid size  : X 30 Y 30 Z 30
-Grid space : 0.375
-Exhaustiveness: 6
-CPU: 0
-Verbosity: 1
-
-
-
-Error: insufficient memory!
-",16.32842307692308,3.494346153846153,21.087653846153845,30.0,30.0,30.0
-saureus_FtsZ_5MN4,Staphylococcus aureus,FtsZ cell-division protein,5MN4,P1_FVNKLNRIIPVKGFSMR,FVNKLNRIIPVKGFSMR,0,0,NA,,"vina CLI failed code=1; see E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_FtsZ_5MN4\P1_FVNKLNRIIPVKGFSMR\saureus_FtsZ_5MN4__P1_FVNKLNRIIPVKGFSMR__rep1_vina.log; tail=#########################################
-
-Scoring function : vina
-Rigid receptor: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\saureus_FtsZ_5MN4_receptor.pdbqt
-Ligand: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\P1_FVNKLNRIIPVKGFSMR_rigid_minimized.pdbqt
-Grid center: X -18.685 Y -8.098 Z 20.172
-Grid size  : X 30 Y 30 Z 30
-Grid space : 0.375
-Exhaustiveness: 6
-CPU: 0
-Verbosity: 1
-
-
-
-Error: insufficient memory!
-",-18.68488888888889,-8.097972222222221,20.17238888888889,30.0,30.0,30.0
-saureus_FtsZ_5MN4,Staphylococcus aureus,FtsZ cell-division protein,5MN4,P2_LISNTKKFGTAIASHR,LISNTKKFGTAIASHR,0,0,NA,,"vina CLI failed code=1; see E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_FtsZ_5MN4\P2_LISNTKKFGTAIASHR\saureus_FtsZ_5MN4__P2_LISNTKKFGTAIASHR__rep1_vina.log; tail=##########################################
-
-Scoring function : vina
-Rigid receptor: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\saureus_FtsZ_5MN4_receptor.pdbqt
-Ligand: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\P2_LISNTKKFGTAIASHR_rigid_minimized.pdbqt
-Grid center: X -18.685 Y -8.098 Z 20.172
-Grid size  : X 30 Y 30 Z 30
-Grid space : 0.375
-Exhaustiveness: 6
-CPU: 0
-Verbosity: 1
-
-
-
-Error: insufficient memory!
-",-18.68488888888889,-8.097972222222221,20.17238888888889,30.0,30.0,30.0
-saureus_FtsZ_5MN4,Staphylococcus aureus,FtsZ cell-division protein,5MN4,P3_ISLAIPLASKISGFTLALVKNAST,ISLAIPLASKISGFTLALVKNAST,0,0,NA,,"vina CLI failed code=1; see E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_FtsZ_5MN4\P3_ISLAIPLASKISGFTLALVKNAST\saureus_FtsZ_5MN4__P3_ISLAIPLASKISGFTLALVKNAST__rep1_vina.log; tail=##################################
-
-Scoring function : vina
-Rigid receptor: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\saureus_FtsZ_5MN4_receptor.pdbqt
-Ligand: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\P3_ISLAIPLASKISGFTLALVKNAST_rigid_minimized.pdbqt
-Grid center: X -18.685 Y -8.098 Z 20.172
-Grid size  : X 30 Y 30 Z 30
-Grid space : 0.375
-Exhaustiveness: 6
-CPU: 0
-Verbosity: 1
-
-
-
-Error: insufficient memory!
-",-18.68488888888889,-8.097972222222221,20.17238888888889,30.0,30.0,30.0
-saureus_SrtA_1T2W,Staphylococcus aureus,Sortase A transpeptidase,1T2W,P1_FVNKLNRIIPVKGFSMR,FVNKLNRIIPVKGFSMR,0,0,NA,,"vina CLI failed code=1; see E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_SrtA_1T2W\P1_FVNKLNRIIPVKGFSMR\saureus_SrtA_1T2W__P1_FVNKLNRIIPVKGFSMR__rep1_vina.log; tail=########################################
-
-Scoring function : vina
-Rigid receptor: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\saureus_SrtA_1T2W_receptor.pdbqt
-Ligand: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\P1_FVNKLNRIIPVKGFSMR_rigid_minimized.pdbqt
-Grid center: X -14.35 Y -20.951 Z -11.198
-Grid size  : X 52 Y 52 Z 52
-Grid space : 0.375
-Exhaustiveness: 6
-CPU: 0
-Verbosity: 1
-
-
-
-Error: insufficient memory!
-",-14.350406709829283,-20.951492348440272,-11.197598587404348,52.0,52.0,52.0
-saureus_SrtA_1T2W,Staphylococcus aureus,Sortase A transpeptidase,1T2W,P2_LISNTKKFGTAIASHR,LISNTKKFGTAIASHR,0,0,NA,,"vina CLI failed code=1; see E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_SrtA_1T2W\P2_LISNTKKFGTAIASHR\saureus_SrtA_1T2W__P2_LISNTKKFGTAIASHR__rep1_vina.log; tail=#########################################
-
-Scoring function : vina
-Rigid receptor: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\saureus_SrtA_1T2W_receptor.pdbqt
-Ligand: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\P2_LISNTKKFGTAIASHR_rigid_minimized.pdbqt
-Grid center: X -14.35 Y -20.951 Z -11.198
-Grid size  : X 52 Y 52 Z 52
-Grid space : 0.375
-Exhaustiveness: 6
-CPU: 0
-Verbosity: 1
-
-
-
-Error: insufficient memory!
-",-14.350406709829283,-20.951492348440272,-11.197598587404348,52.0,52.0,52.0
-saureus_SrtA_1T2W,Staphylococcus aureus,Sortase A transpeptidase,1T2W,P3_ISLAIPLASKISGFTLALVKNAST,ISLAIPLASKISGFTLALVKNAST,0,0,NA,,"vina CLI failed code=1; see E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_SrtA_1T2W\P3_ISLAIPLASKISGFTLALVKNAST\saureus_SrtA_1T2W__P3_ISLAIPLASKISGFTLALVKNAST__rep1_vina.log; tail=#################################
-
-Scoring function : vina
-Rigid receptor: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\saureus_SrtA_1T2W_receptor.pdbqt
-Ligand: E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\pdbqt\P3_ISLAIPLASKISGFTLALVKNAST_rigid_minimized.pdbqt
-Grid center: X -14.35 Y -20.951 Z -11.198
-Grid size  : X 52 Y 52 Z 52
-Grid space : 0.375
-Exhaustiveness: 6
-CPU: 0
-Verbosity: 1
-
-
-
-Error: insufficient memory!
-",-14.350406709829283,-20.951492348440272,-11.197598587404348,52.0,52.0,52.0
+target_key,organism,protein,pdb_id,peptide_key,sequence,repeat,seed,best_affinity_kcal_mol,pose_pdbqt,vina_log,center_x,center_y,center_z,box_x,box_y,box_z
+ecoli_FtsZ_6UNX,Escherichia coli,FtsZ cell-division protein,6UNX,P1_FVNKLNRIIPVKGFSMR,FVNKLNRIIPVKGFSMR,1,101150,-7.261,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_FtsZ_6UNX\P1_FVNKLNRIIPVKGFSMR\ecoli_FtsZ_6UNX__P1_FVNKLNRIIPVKGFSMR__rep1_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_FtsZ_6UNX\P1_FVNKLNRIIPVKGFSMR\ecoli_FtsZ_6UNX__P1_FVNKLNRIIPVKGFSMR__rep1_vina.log,21.543343750000002,-1.4585312499999998,20.9096875,30.0,30.0,30.0
+ecoli_FtsZ_6UNX,Escherichia coli,FtsZ cell-division protein,6UNX,P1_FVNKLNRIIPVKGFSMR,FVNKLNRIIPVKGFSMR,2,102150,-7.221,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_FtsZ_6UNX\P1_FVNKLNRIIPVKGFSMR\ecoli_FtsZ_6UNX__P1_FVNKLNRIIPVKGFSMR__rep2_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_FtsZ_6UNX\P1_FVNKLNRIIPVKGFSMR\ecoli_FtsZ_6UNX__P1_FVNKLNRIIPVKGFSMR__rep2_vina.log,21.543343750000002,-1.4585312499999998,20.9096875,30.0,30.0,30.0
+ecoli_FtsZ_6UNX,Escherichia coli,FtsZ cell-division protein,6UNX,P1_FVNKLNRIIPVKGFSMR,FVNKLNRIIPVKGFSMR,3,103150,-7.245,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_FtsZ_6UNX\P1_FVNKLNRIIPVKGFSMR\ecoli_FtsZ_6UNX__P1_FVNKLNRIIPVKGFSMR__rep3_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_FtsZ_6UNX\P1_FVNKLNRIIPVKGFSMR\ecoli_FtsZ_6UNX__P1_FVNKLNRIIPVKGFSMR__rep3_vina.log,21.543343750000002,-1.4585312499999998,20.9096875,30.0,30.0,30.0
+ecoli_FtsZ_6UNX,Escherichia coli,FtsZ cell-division protein,6UNX,P2_LISNTKKFGTAIASHR,LISNTKKFGTAIASHR,1,101528,-8.779,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_FtsZ_6UNX\P2_LISNTKKFGTAIASHR\ecoli_FtsZ_6UNX__P2_LISNTKKFGTAIASHR__rep1_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_FtsZ_6UNX\P2_LISNTKKFGTAIASHR\ecoli_FtsZ_6UNX__P2_LISNTKKFGTAIASHR__rep1_vina.log,21.543343750000002,-1.4585312499999998,20.9096875,30.0,30.0,30.0
+ecoli_FtsZ_6UNX,Escherichia coli,FtsZ cell-division protein,6UNX,P2_LISNTKKFGTAIASHR,LISNTKKFGTAIASHR,2,102528,-8.819,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_FtsZ_6UNX\P2_LISNTKKFGTAIASHR\ecoli_FtsZ_6UNX__P2_LISNTKKFGTAIASHR__rep2_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_FtsZ_6UNX\P2_LISNTKKFGTAIASHR\ecoli_FtsZ_6UNX__P2_LISNTKKFGTAIASHR__rep2_vina.log,21.543343750000002,-1.4585312499999998,20.9096875,30.0,30.0,30.0
+ecoli_FtsZ_6UNX,Escherichia coli,FtsZ cell-division protein,6UNX,P2_LISNTKKFGTAIASHR,LISNTKKFGTAIASHR,3,103528,-8.782,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_FtsZ_6UNX\P2_LISNTKKFGTAIASHR\ecoli_FtsZ_6UNX__P2_LISNTKKFGTAIASHR__rep3_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_FtsZ_6UNX\P2_LISNTKKFGTAIASHR\ecoli_FtsZ_6UNX__P2_LISNTKKFGTAIASHR__rep3_vina.log,21.543343750000002,-1.4585312499999998,20.9096875,30.0,30.0,30.0
+ecoli_FtsZ_6UNX,Escherichia coli,FtsZ cell-division protein,6UNX,P3_ISLAIPLASKISGFTLALVKNAST,ISLAIPLASKISGFTLALVKNAST,1,101751,2.437,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_FtsZ_6UNX\P3_ISLAIPLASKISGFTLALVKNAST\ecoli_FtsZ_6UNX__P3_ISLAIPLASKISGFTLALVKNAST__rep1_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_FtsZ_6UNX\P3_ISLAIPLASKISGFTLALVKNAST\ecoli_FtsZ_6UNX__P3_ISLAIPLASKISGFTLALVKNAST__rep1_vina.log,21.543343750000002,-1.4585312499999998,20.9096875,30.0,30.0,30.0
+ecoli_FtsZ_6UNX,Escherichia coli,FtsZ cell-division protein,6UNX,P3_ISLAIPLASKISGFTLALVKNAST,ISLAIPLASKISGFTLALVKNAST,2,102751,2.41,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_FtsZ_6UNX\P3_ISLAIPLASKISGFTLALVKNAST\ecoli_FtsZ_6UNX__P3_ISLAIPLASKISGFTLALVKNAST__rep2_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_FtsZ_6UNX\P3_ISLAIPLASKISGFTLALVKNAST\ecoli_FtsZ_6UNX__P3_ISLAIPLASKISGFTLALVKNAST__rep2_vina.log,21.543343750000002,-1.4585312499999998,20.9096875,30.0,30.0,30.0
+ecoli_FtsZ_6UNX,Escherichia coli,FtsZ cell-division protein,6UNX,P3_ISLAIPLASKISGFTLALVKNAST,ISLAIPLASKISGFTLALVKNAST,3,103751,2.452,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_FtsZ_6UNX\P3_ISLAIPLASKISGFTLALVKNAST\ecoli_FtsZ_6UNX__P3_ISLAIPLASKISGFTLALVKNAST__rep3_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_FtsZ_6UNX\P3_ISLAIPLASKISGFTLALVKNAST\ecoli_FtsZ_6UNX__P3_ISLAIPLASKISGFTLALVKNAST__rep3_vina.log,21.543343750000002,-1.4585312499999998,20.9096875,30.0,30.0,30.0
+ecoli_GyrB_4DUH,Escherichia coli,DNA gyrase B ATPase domain,4DUH,P1_FVNKLNRIIPVKGFSMR,FVNKLNRIIPVKGFSMR,1,101208,-10.75,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_GyrB_4DUH\P1_FVNKLNRIIPVKGFSMR\ecoli_GyrB_4DUH__P1_FVNKLNRIIPVKGFSMR__rep1_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_GyrB_4DUH\P1_FVNKLNRIIPVKGFSMR\ecoli_GyrB_4DUH__P1_FVNKLNRIIPVKGFSMR__rep1_vina.log,16.32842307692308,3.494346153846153,21.087653846153845,30.0,30.0,30.0
+ecoli_GyrB_4DUH,Escherichia coli,DNA gyrase B ATPase domain,4DUH,P1_FVNKLNRIIPVKGFSMR,FVNKLNRIIPVKGFSMR,2,102208,-10.75,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_GyrB_4DUH\P1_FVNKLNRIIPVKGFSMR\ecoli_GyrB_4DUH__P1_FVNKLNRIIPVKGFSMR__rep2_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_GyrB_4DUH\P1_FVNKLNRIIPVKGFSMR\ecoli_GyrB_4DUH__P1_FVNKLNRIIPVKGFSMR__rep2_vina.log,16.32842307692308,3.494346153846153,21.087653846153845,30.0,30.0,30.0
+ecoli_GyrB_4DUH,Escherichia coli,DNA gyrase B ATPase domain,4DUH,P1_FVNKLNRIIPVKGFSMR,FVNKLNRIIPVKGFSMR,3,103208,-10.76,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_GyrB_4DUH\P1_FVNKLNRIIPVKGFSMR\ecoli_GyrB_4DUH__P1_FVNKLNRIIPVKGFSMR__rep3_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_GyrB_4DUH\P1_FVNKLNRIIPVKGFSMR\ecoli_GyrB_4DUH__P1_FVNKLNRIIPVKGFSMR__rep3_vina.log,16.32842307692308,3.494346153846153,21.087653846153845,30.0,30.0,30.0
+ecoli_GyrB_4DUH,Escherichia coli,DNA gyrase B ATPase domain,4DUH,P2_LISNTKKFGTAIASHR,LISNTKKFGTAIASHR,1,101855,-9.656,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_GyrB_4DUH\P2_LISNTKKFGTAIASHR\ecoli_GyrB_4DUH__P2_LISNTKKFGTAIASHR__rep1_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_GyrB_4DUH\P2_LISNTKKFGTAIASHR\ecoli_GyrB_4DUH__P2_LISNTKKFGTAIASHR__rep1_vina.log,16.32842307692308,3.494346153846153,21.087653846153845,30.0,30.0,30.0
+ecoli_GyrB_4DUH,Escherichia coli,DNA gyrase B ATPase domain,4DUH,P2_LISNTKKFGTAIASHR,LISNTKKFGTAIASHR,2,102855,-9.784,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_GyrB_4DUH\P2_LISNTKKFGTAIASHR\ecoli_GyrB_4DUH__P2_LISNTKKFGTAIASHR__rep2_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_GyrB_4DUH\P2_LISNTKKFGTAIASHR\ecoli_GyrB_4DUH__P2_LISNTKKFGTAIASHR__rep2_vina.log,16.32842307692308,3.494346153846153,21.087653846153845,30.0,30.0,30.0
+ecoli_GyrB_4DUH,Escherichia coli,DNA gyrase B ATPase domain,4DUH,P2_LISNTKKFGTAIASHR,LISNTKKFGTAIASHR,3,103855,-9.811,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_GyrB_4DUH\P2_LISNTKKFGTAIASHR\ecoli_GyrB_4DUH__P2_LISNTKKFGTAIASHR__rep3_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_GyrB_4DUH\P2_LISNTKKFGTAIASHR\ecoli_GyrB_4DUH__P2_LISNTKKFGTAIASHR__rep3_vina.log,16.32842307692308,3.494346153846153,21.087653846153845,30.0,30.0,30.0
+ecoli_GyrB_4DUH,Escherichia coli,DNA gyrase B ATPase domain,4DUH,P3_ISLAIPLASKISGFTLALVKNAST,ISLAIPLASKISGFTLALVKNAST,1,101367,-7.868,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_GyrB_4DUH\P3_ISLAIPLASKISGFTLALVKNAST\ecoli_GyrB_4DUH__P3_ISLAIPLASKISGFTLALVKNAST__rep1_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_GyrB_4DUH\P3_ISLAIPLASKISGFTLALVKNAST\ecoli_GyrB_4DUH__P3_ISLAIPLASKISGFTLALVKNAST__rep1_vina.log,16.32842307692308,3.494346153846153,21.087653846153845,30.0,30.0,30.0
+ecoli_GyrB_4DUH,Escherichia coli,DNA gyrase B ATPase domain,4DUH,P3_ISLAIPLASKISGFTLALVKNAST,ISLAIPLASKISGFTLALVKNAST,2,102367,-8.006,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_GyrB_4DUH\P3_ISLAIPLASKISGFTLALVKNAST\ecoli_GyrB_4DUH__P3_ISLAIPLASKISGFTLALVKNAST__rep2_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_GyrB_4DUH\P3_ISLAIPLASKISGFTLALVKNAST\ecoli_GyrB_4DUH__P3_ISLAIPLASKISGFTLALVKNAST__rep2_vina.log,16.32842307692308,3.494346153846153,21.087653846153845,30.0,30.0,30.0
+ecoli_GyrB_4DUH,Escherichia coli,DNA gyrase B ATPase domain,4DUH,P3_ISLAIPLASKISGFTLALVKNAST,ISLAIPLASKISGFTLALVKNAST,3,103367,-8.642,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_GyrB_4DUH\P3_ISLAIPLASKISGFTLALVKNAST\ecoli_GyrB_4DUH__P3_ISLAIPLASKISGFTLALVKNAST__rep3_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\ecoli_GyrB_4DUH\P3_ISLAIPLASKISGFTLALVKNAST\ecoli_GyrB_4DUH__P3_ISLAIPLASKISGFTLALVKNAST__rep3_vina.log,16.32842307692308,3.494346153846153,21.087653846153845,30.0,30.0,30.0
+saureus_FtsZ_5MN4,Staphylococcus aureus,FtsZ cell-division protein,5MN4,P1_FVNKLNRIIPVKGFSMR,FVNKLNRIIPVKGFSMR,1,101655,6.93,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_FtsZ_5MN4\P1_FVNKLNRIIPVKGFSMR\saureus_FtsZ_5MN4__P1_FVNKLNRIIPVKGFSMR__rep1_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_FtsZ_5MN4\P1_FVNKLNRIIPVKGFSMR\saureus_FtsZ_5MN4__P1_FVNKLNRIIPVKGFSMR__rep1_vina.log,-18.68488888888889,-8.097972222222221,20.17238888888889,30.0,30.0,30.0
+saureus_FtsZ_5MN4,Staphylococcus aureus,FtsZ cell-division protein,5MN4,P1_FVNKLNRIIPVKGFSMR,FVNKLNRIIPVKGFSMR,2,102655,-0.1034,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_FtsZ_5MN4\P1_FVNKLNRIIPVKGFSMR\saureus_FtsZ_5MN4__P1_FVNKLNRIIPVKGFSMR__rep2_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_FtsZ_5MN4\P1_FVNKLNRIIPVKGFSMR\saureus_FtsZ_5MN4__P1_FVNKLNRIIPVKGFSMR__rep2_vina.log,-18.68488888888889,-8.097972222222221,20.17238888888889,30.0,30.0,30.0
+saureus_FtsZ_5MN4,Staphylococcus aureus,FtsZ cell-division protein,5MN4,P1_FVNKLNRIIPVKGFSMR,FVNKLNRIIPVKGFSMR,3,103655,-3.766,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_FtsZ_5MN4\P1_FVNKLNRIIPVKGFSMR\saureus_FtsZ_5MN4__P1_FVNKLNRIIPVKGFSMR__rep3_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_FtsZ_5MN4\P1_FVNKLNRIIPVKGFSMR\saureus_FtsZ_5MN4__P1_FVNKLNRIIPVKGFSMR__rep3_vina.log,-18.68488888888889,-8.097972222222221,20.17238888888889,30.0,30.0,30.0
+saureus_FtsZ_5MN4,Staphylococcus aureus,FtsZ cell-division protein,5MN4,P2_LISNTKKFGTAIASHR,LISNTKKFGTAIASHR,1,101568,-6.622,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_FtsZ_5MN4\P2_LISNTKKFGTAIASHR\saureus_FtsZ_5MN4__P2_LISNTKKFGTAIASHR__rep1_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_FtsZ_5MN4\P2_LISNTKKFGTAIASHR\saureus_FtsZ_5MN4__P2_LISNTKKFGTAIASHR__rep1_vina.log,-18.68488888888889,-8.097972222222221,20.17238888888889,30.0,30.0,30.0
+saureus_FtsZ_5MN4,Staphylococcus aureus,FtsZ cell-division protein,5MN4,P2_LISNTKKFGTAIASHR,LISNTKKFGTAIASHR,2,102568,-6.645,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_FtsZ_5MN4\P2_LISNTKKFGTAIASHR\saureus_FtsZ_5MN4__P2_LISNTKKFGTAIASHR__rep2_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_FtsZ_5MN4\P2_LISNTKKFGTAIASHR\saureus_FtsZ_5MN4__P2_LISNTKKFGTAIASHR__rep2_vina.log,-18.68488888888889,-8.097972222222221,20.17238888888889,30.0,30.0,30.0
+saureus_FtsZ_5MN4,Staphylococcus aureus,FtsZ cell-division protein,5MN4,P2_LISNTKKFGTAIASHR,LISNTKKFGTAIASHR,3,103568,-6.957,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_FtsZ_5MN4\P2_LISNTKKFGTAIASHR\saureus_FtsZ_5MN4__P2_LISNTKKFGTAIASHR__rep3_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_FtsZ_5MN4\P2_LISNTKKFGTAIASHR\saureus_FtsZ_5MN4__P2_LISNTKKFGTAIASHR__rep3_vina.log,-18.68488888888889,-8.097972222222221,20.17238888888889,30.0,30.0,30.0
+saureus_FtsZ_5MN4,Staphylococcus aureus,FtsZ cell-division protein,5MN4,P3_ISLAIPLASKISGFTLALVKNAST,ISLAIPLASKISGFTLALVKNAST,1,101454,0.5441,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_FtsZ_5MN4\P3_ISLAIPLASKISGFTLALVKNAST\saureus_FtsZ_5MN4__P3_ISLAIPLASKISGFTLALVKNAST__rep1_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_FtsZ_5MN4\P3_ISLAIPLASKISGFTLALVKNAST\saureus_FtsZ_5MN4__P3_ISLAIPLASKISGFTLALVKNAST__rep1_vina.log,-18.68488888888889,-8.097972222222221,20.17238888888889,30.0,30.0,30.0
+saureus_FtsZ_5MN4,Staphylococcus aureus,FtsZ cell-division protein,5MN4,P3_ISLAIPLASKISGFTLALVKNAST,ISLAIPLASKISGFTLALVKNAST,2,102454,0.4949,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_FtsZ_5MN4\P3_ISLAIPLASKISGFTLALVKNAST\saureus_FtsZ_5MN4__P3_ISLAIPLASKISGFTLALVKNAST__rep2_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_FtsZ_5MN4\P3_ISLAIPLASKISGFTLALVKNAST\saureus_FtsZ_5MN4__P3_ISLAIPLASKISGFTLALVKNAST__rep2_vina.log,-18.68488888888889,-8.097972222222221,20.17238888888889,30.0,30.0,30.0
+saureus_FtsZ_5MN4,Staphylococcus aureus,FtsZ cell-division protein,5MN4,P3_ISLAIPLASKISGFTLALVKNAST,ISLAIPLASKISGFTLALVKNAST,3,103454,0.6053,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_FtsZ_5MN4\P3_ISLAIPLASKISGFTLALVKNAST\saureus_FtsZ_5MN4__P3_ISLAIPLASKISGFTLALVKNAST__rep3_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_FtsZ_5MN4\P3_ISLAIPLASKISGFTLALVKNAST\saureus_FtsZ_5MN4__P3_ISLAIPLASKISGFTLALVKNAST__rep3_vina.log,-18.68488888888889,-8.097972222222221,20.17238888888889,30.0,30.0,30.0
+saureus_SrtA_1T2W,Staphylococcus aureus,Sortase A transpeptidase,1T2W,P1_FVNKLNRIIPVKGFSMR,FVNKLNRIIPVKGFSMR,1,101302,194.6,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_SrtA_1T2W\P1_FVNKLNRIIPVKGFSMR\saureus_SrtA_1T2W__P1_FVNKLNRIIPVKGFSMR__rep1_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_SrtA_1T2W\P1_FVNKLNRIIPVKGFSMR\saureus_SrtA_1T2W__P1_FVNKLNRIIPVKGFSMR__rep1_vina.log,-14.350406709829283,-20.951492348440272,-11.197598587404348,30.0,30.0,30.0
+saureus_SrtA_1T2W,Staphylococcus aureus,Sortase A transpeptidase,1T2W,P1_FVNKLNRIIPVKGFSMR,FVNKLNRIIPVKGFSMR,2,102302,186.2,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_SrtA_1T2W\P1_FVNKLNRIIPVKGFSMR\saureus_SrtA_1T2W__P1_FVNKLNRIIPVKGFSMR__rep2_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_SrtA_1T2W\P1_FVNKLNRIIPVKGFSMR\saureus_SrtA_1T2W__P1_FVNKLNRIIPVKGFSMR__rep2_vina.log,-14.350406709829283,-20.951492348440272,-11.197598587404348,30.0,30.0,30.0
+saureus_SrtA_1T2W,Staphylococcus aureus,Sortase A transpeptidase,1T2W,P1_FVNKLNRIIPVKGFSMR,FVNKLNRIIPVKGFSMR,3,103302,212.4,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_SrtA_1T2W\P1_FVNKLNRIIPVKGFSMR\saureus_SrtA_1T2W__P1_FVNKLNRIIPVKGFSMR__rep3_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_SrtA_1T2W\P1_FVNKLNRIIPVKGFSMR\saureus_SrtA_1T2W__P1_FVNKLNRIIPVKGFSMR__rep3_vina.log,-14.350406709829283,-20.951492348440272,-11.197598587404348,30.0,30.0,30.0
+saureus_SrtA_1T2W,Staphylococcus aureus,Sortase A transpeptidase,1T2W,P2_LISNTKKFGTAIASHR,LISNTKKFGTAIASHR,1,101928,79.79,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_SrtA_1T2W\P2_LISNTKKFGTAIASHR\saureus_SrtA_1T2W__P2_LISNTKKFGTAIASHR__rep1_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_SrtA_1T2W\P2_LISNTKKFGTAIASHR\saureus_SrtA_1T2W__P2_LISNTKKFGTAIASHR__rep1_vina.log,-14.350406709829283,-20.951492348440272,-11.197598587404348,30.0,30.0,30.0
+saureus_SrtA_1T2W,Staphylococcus aureus,Sortase A transpeptidase,1T2W,P2_LISNTKKFGTAIASHR,LISNTKKFGTAIASHR,2,102928,36.97,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_SrtA_1T2W\P2_LISNTKKFGTAIASHR\saureus_SrtA_1T2W__P2_LISNTKKFGTAIASHR__rep2_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_SrtA_1T2W\P2_LISNTKKFGTAIASHR\saureus_SrtA_1T2W__P2_LISNTKKFGTAIASHR__rep2_vina.log,-14.350406709829283,-20.951492348440272,-11.197598587404348,30.0,30.0,30.0
+saureus_SrtA_1T2W,Staphylococcus aureus,Sortase A transpeptidase,1T2W,P2_LISNTKKFGTAIASHR,LISNTKKFGTAIASHR,3,103928,32.43,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_SrtA_1T2W\P2_LISNTKKFGTAIASHR\saureus_SrtA_1T2W__P2_LISNTKKFGTAIASHR__rep3_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_SrtA_1T2W\P2_LISNTKKFGTAIASHR\saureus_SrtA_1T2W__P2_LISNTKKFGTAIASHR__rep3_vina.log,-14.350406709829283,-20.951492348440272,-11.197598587404348,30.0,30.0,30.0
+saureus_SrtA_1T2W,Staphylococcus aureus,Sortase A transpeptidase,1T2W,P3_ISLAIPLASKISGFTLALVKNAST,ISLAIPLASKISGFTLALVKNAST,1,101424,288.3,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_SrtA_1T2W\P3_ISLAIPLASKISGFTLALVKNAST\saureus_SrtA_1T2W__P3_ISLAIPLASKISGFTLALVKNAST__rep1_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_SrtA_1T2W\P3_ISLAIPLASKISGFTLALVKNAST\saureus_SrtA_1T2W__P3_ISLAIPLASKISGFTLALVKNAST__rep1_vina.log,-14.350406709829283,-20.951492348440272,-11.197598587404348,30.0,30.0,30.0
+saureus_SrtA_1T2W,Staphylococcus aureus,Sortase A transpeptidase,1T2W,P3_ISLAIPLASKISGFTLALVKNAST,ISLAIPLASKISGFTLALVKNAST,2,102424,416.2,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_SrtA_1T2W\P3_ISLAIPLASKISGFTLALVKNAST\saureus_SrtA_1T2W__P3_ISLAIPLASKISGFTLALVKNAST__rep2_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_SrtA_1T2W\P3_ISLAIPLASKISGFTLALVKNAST\saureus_SrtA_1T2W__P3_ISLAIPLASKISGFTLALVKNAST__rep2_vina.log,-14.350406709829283,-20.951492348440272,-11.197598587404348,30.0,30.0,30.0
+saureus_SrtA_1T2W,Staphylococcus aureus,Sortase A transpeptidase,1T2W,P3_ISLAIPLASKISGFTLALVKNAST,ISLAIPLASKISGFTLALVKNAST,3,103424,1113.0,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_SrtA_1T2W\P3_ISLAIPLASKISGFTLALVKNAST\saureus_SrtA_1T2W__P3_ISLAIPLASKISGFTLALVKNAST__rep3_best.pdbqt,E:\0github\git-sync\git-pull-arena-01a0ff69\results\docking\AMP_Docking_Vina_R255\poses\saureus_SrtA_1T2W\P3_ISLAIPLASKISGFTLALVKNAST\saureus_SrtA_1T2W__P3_ISLAIPLASKISGFTLALVKNAST__rep3_vina.log,-14.350406709829283,-20.951492348440272,-11.197598587404348,30.0,30.0,30.0
