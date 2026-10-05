@@ -34,8 +34,10 @@ function Run-Capped([string]$Name,[scriptblock]$Block,[int]$TimeoutSec) {
 }
 function Find-Python {
     $cands = @()
+    # Prefer the existing scientific/conda Python on E: over the Store/local
+    # Python 3.12, because vina wheels are not always available for 3.12.
+    foreach ($p in @('E:\spider\python.exe','E:\spider\envs\mcp_pymol\python.exe','E:\spider\envs\spyder-runtime\python.exe','C:\Python311\python.exe')) { if (Test-Path -LiteralPath $p) { $cands += $p } }
     try { $cmd = Get-Command python -ErrorAction SilentlyContinue | Select-Object -First 1; if ($cmd) { $cands += [string]$cmd.Source } } catch { }
-    foreach ($p in @('E:\spider\python.exe','E:\spider\envs\mcp_pymol\python.exe','C:\Python311\python.exe')) { if (Test-Path -LiteralPath $p) { $cands += $p } }
     foreach ($p in ($cands | Select-Object -Unique)) {
         try {
             $v = (& $p -c "import sys; print(sys.version.split()[0])" 2>$null | Out-String).Trim()
@@ -82,9 +84,18 @@ L ('python=' + (San $py))
 try { L ('python_version=' + (San ((& $py -c "import sys; print(sys.version)" 2>&1 | Out-String).Trim()))) } catch { }
 
 L '## Dependency setup'
-$deps = @('numpy','matplotlib','rdkit','vina')
-$install = Run-Capped 'pip_install' { & $using:py -m pip install --user --upgrade --quiet numpy matplotlib rdkit vina 2>&1 | Out-String } 900
-foreach ($ln in (($install.text -split "`r?`n") | Where-Object { $_.Trim() } | Select-Object -Last 30)) { L ('pip| ' + (San $ln)) }
+$install1 = Run-Capped 'pip_install_core' { & $using:py -m pip install --user --upgrade --quiet numpy matplotlib 2>&1 | Out-String } 600
+foreach ($ln in (($install1.text -split "`r?`n") | Where-Object { $_.Trim() } | Select-Object -Last 12)) { L ('pip_core| ' + (San $ln)) }
+$install2 = Run-Capped 'pip_install_rdkit' { & $using:py -m pip install --user --upgrade --quiet rdkit 2>&1 | Out-String } 900
+foreach ($ln in (($install2.text -split "`r?`n") | Where-Object { $_.Trim() } | Select-Object -Last 20)) { L ('pip_rdkit| ' + (San $ln)) }
+$rdImport = Run-Capped 'rdkit_import_check' { & $using:py -c "import rdkit; print('RDKIT_OK=True')" 2>&1 | Out-String } 60
+if ($rdImport.text -notmatch 'RDKIT_OK=True') {
+    L 'rdkit first install did not import; trying rdkit-pypi fallback'
+    $install2b = Run-Capped 'pip_install_rdkit_pypi' { & $using:py -m pip install --user --upgrade --quiet rdkit-pypi 2>&1 | Out-String } 900
+    foreach ($ln in (($install2b.text -split "`r?`n") | Where-Object { $_.Trim() } | Select-Object -Last 20)) { L ('pip_rdkit_pypi| ' + (San $ln)) }
+}
+$install3 = Run-Capped 'pip_install_vina' { & $using:py -m pip install --user --upgrade --quiet vina 2>&1 | Out-String } 900
+foreach ($ln in (($install3.text -split "`r?`n") | Where-Object { $_.Trim() } | Select-Object -Last 30)) { L ('pip_vina| ' + (San $ln)) }
 $import = Run-Capped 'import_check' { & $using:py -c "import rdkit, vina, matplotlib, numpy; print('IMPORT_OK=True')" 2>&1 | Out-String } 60
 foreach ($ln in (($import.text -split "`r?`n") | Where-Object { $_.Trim() } | Select-Object -Last 20)) { L ('import| ' + (San $ln)) }
 if ($import.text -notmatch 'IMPORT_OK=True') {
