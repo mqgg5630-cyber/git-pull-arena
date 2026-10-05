@@ -1,0 +1,91 @@
+{
+    "ready":  false,
+    "desktop":  "D:\\桌面",
+    "eRoot":  "E:\\0mcp-agv-arena-optimized",
+    "desktopOrganizer":  {
+                             "dir":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer",
+                             "manifest":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\MOVE_MANIFEST.txt",
+                             "restore":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\RESTORE_MOVES.ps1",
+                             "dashboard":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\cute_desktop_dashboard.html",
+                             "moved":  87
+                         },
+    "webApps":  [
+                    {
+                        "name":  "Douyin",
+                        "url":  "https://www.douyin.com/",
+                        "dir":  "E:\\0mcp-agv-arena-optimized\\apps\\web-apps\\douyin",
+                        "profile":  "E:\\0mcp-agv-arena-optimized\\apps\\web-apps\\douyin\\profile",
+                        "launcher":  "E:\\0mcp-agv-arena-optimized\\apps\\web-apps\\douyin\\launch-douyin.cmd",
+                        "desktopShortcut":  "D:\\桌面\\Douyin.lnk",
+                        "cuteShortcut":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\New-Shortcuts\\Douyin.lnk",
+                        "exists":  true
+                    },
+                    {
+                        "name":  "Xiaohongshu",
+                        "url":  "https://www.xiaohongshu.com/",
+                        "dir":  "E:\\0mcp-agv-arena-optimized\\apps\\web-apps\\xiaohongshu",
+                        "profile":  "E:\\0mcp-agv-arena-optimized\\apps\\web-apps\\xiaohongshu\\profile",
+                        "launcher":  "E:\\0mcp-agv-arena-optimized\\apps\\web-apps\\xiaohongshu\\launch-xiaohongshu.cmd",
+                        "desktopShortcut":  "D:\\桌面\\Xiaohongshu.lnk",
+                        "cuteShortcut":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\New-Shortcuts\\Xiaohongshu.lnk",
+                        "exists":  true
+                    },
+                    {
+                        "name":  "WeChat Official Account",
+                        "url":  "https://mp.weixin.qq.com/",
+                        "dir":  "E:\\0mcp-agv-arena-optimized\\apps\\web-apps\\wechat-official-account",
+                        "profile":  "E:\\0mcp-agv-arena-optimized\\apps\\web-apps\\wechat-official-account\\profile",
+                        "launcher":  "E:\\0mcp-agv-arena-optimized\\apps\\web-apps\\wechat-official-account\\launch-wechat-official-account.cmd",
+                        "desktopShortcut":  "D:\\桌面\\WeChat Official Account.lnk",
+                        "cuteShortcut":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\New-Shortcuts\\WeChat Official Account.lnk",
+                        "exists":  true
+                    },
+                    {
+                        "name":  "Jianying",
+                        "url":  "https://www.capcut.cn/",
+                        "dir":  "E:\\0mcp-agv-arena-optimized\\apps\\web-apps\\jianying",
+                        "profile":  "E:\\0mcp-agv-arena-optimized\\apps\\web-apps\\jianying\\profile",
+                        "launcher":  "E:\\0mcp-agv-arena-optimized\\apps\\web-apps\\jianying\\launch-jianying.cmd",
+                        "desktopShortcut":  "D:\\桌面\\Jianying.lnk",
+                        "cuteShortcut":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\New-Shortcuts\\Jianying.lnk",
+                        "exists":  true
+                    }
+                ],
+    "winget":  "C:\\Users\\文少\\AppData\\Local\\Microsoft\\WindowsApps\\winget.exe",
+    "nativeResults":  [
+                          {
+                              "id":  "ByteDance.Douyin",
+                              "location":  "E:\\0mcp-agv-arena-optimized\\apps\\DouyinNative",
+                              "exit":  0,
+                              "tail":  "  -v,--version                鏄剧ず宸ュ叿鐨勭増鏈? |   --info                      鏄剧ず宸ュ叿鐨勫父瑙勪俊鎭? |   -?,--help                   鏄剧ず閫夊畾鍛戒护鐨勫府鍔╀俊鎭? |   --wait                      鎻愮ず鐢ㄦ埛鍦ㄩ€€鍑哄墠鎸変换鎰忛敭 |   --logs,--open-logs          鎵撳紑榛樿鏃ュ織浣嶇疆 |   --verbose,--verbose-logs    鍚敤 WinGet 鐨勮缁嗘棩蹇楄褰? |   --nowarn,--ignore-warnings  绂佹鏄剧ず璀﹀憡杈撳嚭 |   --disable-interactivity     绂佺敤浜や簰寮忔彁绀? |   --proxy                     璁剧疆瑕佺敤浜庢鎵ц鐨勪唬鐞? |   --no-proxy                  绂佹瀵规鎵ц浣跨敤浠ｇ悊 |  | 鍙湪姝ゆ壘鍒版洿澶氬府鍔? \"https://aka.ms/winget-command-help\""
+                          },
+                          {
+                              "id":  "ByteDance.JianyingPro",
+                              "location":  "E:\\0mcp-agv-arena-optimized\\apps\\JianyingNative",
+                              "exit":  0,
+                              "tail":  "  -v,--version                鏄剧ず宸ュ叿鐨勭増鏈? |   --info                      鏄剧ず宸ュ叿鐨勫父瑙勪俊鎭? |   -?,--help                   鏄剧ず閫夊畾鍛戒护鐨勫府鍔╀俊鎭? |   --wait                      鎻愮ず鐢ㄦ埛鍦ㄩ€€鍑哄墠鎸変换鎰忛敭 |   --logs,--open-logs          鎵撳紑榛樿鏃ュ織浣嶇疆 |   --verbose,--verbose-logs    鍚敤 WinGet 鐨勮缁嗘棩蹇楄褰? |   --nowarn,--ignore-warnings  绂佹鏄剧ず璀﹀憡杈撳嚭 |   --disable-interactivity     绂佺敤浜や簰寮忔彁绀? |   --proxy                     璁剧疆瑕佺敤浜庢鎵ц鐨勪唬鐞? |   --no-proxy                  绂佹瀵规鎵ц浣跨敤浠ｇ悊 |  | 鍙湪姝ゆ壘鍒版洿澶氬府鍔? \"https://aka.ms/winget-command-help\""
+                          }
+                      ],
+    "deskboxDir":  "E:\\0mcp-agv-arena-optimized\\apps\\DeskBox",
+    "deskboxInstaller":  "",
+    "deskboxExe":  "",
+    "deskboxShortcut":  "D:\\桌面\\DeskBox Cute.lnk",
+    "photoOriginal":  "E:\\0mcp-agv-arena-optimized\\images\\career-id-photo\\cute_professional_id_photo_original.png",
+    "photo295":  "E:\\0mcp-agv-arena-optimized\\images\\career-id-photo\\career_id_photo_295x413.png",
+    "photo413":  "E:\\0mcp-agv-arena-optimized\\images\\career-id-photo\\career_id_photo_413x579.png",
+    "desktopPhoto":  "D:\\桌面\\cute_professional_id_photo_295x413.png",
+    "xiutuDir":  "E:\\0mcp-agv-arena-optimized\\skills\\xiutu.skill",
+    "aiJobSearchDir":  "E:\\0mcp-agv-arena-optimized\\career\\ai-job-search",
+    "careerOpsDir":  "E:\\0mcp-agv-arena-optimized\\career\\career-ops",
+    "node":  "E:\\hermes\\node\\node.exe",
+    "npm":  "E:\\hermes\\node\\npm.cmd",
+    "bun":  "",
+    "hypitDir":  "E:\\0mcp-agv-arena-optimized\\video\\hypit",
+    "hypitGlobal":  "E:\\0mcp-agv-arena-optimized\\tools\\npm-global-hypit",
+    "hypitCmd":  "E:\\0mcp-agv-arena-optimized\\tools\\npm-global-hypit\\hypit.cmd",
+    "hypitProject":  "E:\\0mcp-agv-arena-optimized\\video\\hypit-safe-viral-clone-r241",
+    "hypitVideo":  null,
+    "desktopVideo":  "D:\\桌面\\hypit_safe_viral_clone_r241.mp4",
+    "pathsSummary":  "E:\\0mcp-agv-arena-optimized\\r241-paths-and-tools\\PATHS.txt",
+    "pathsShortcut":  "D:\\桌面\\R241 Paths and Tools.lnk"
+}
