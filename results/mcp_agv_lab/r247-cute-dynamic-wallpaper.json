@@ -1,0 +1,26 @@
+{
+    "ready":  true,
+    "desktop":  "D:\\桌面",
+    "eRoot":  "E:\\0mcp-agv-arena-optimized",
+    "htmlProject":  "E:\\0mcp-agv-arena-optimized\\wallpapers\\cute-anime-live-r247\\lively-html-project",
+    "htmlIndex":  "E:\\0mcp-agv-arena-optimized\\wallpapers\\cute-anime-live-r247\\lively-html-project\\index.html",
+    "livelyInfo":  "E:\\0mcp-agv-arena-optimized\\wallpapers\\cute-anime-live-r247\\lively-html-project\\LivelyInfo.json",
+    "sourceImage":  "E:\\0mcp-agv-arena-optimized\\images\\cute-anime-wallpaper-r247\\cute_anime_live_wallpaper_r247.png",
+    "backupVideo":  "E:\\0mcp-agv-arena-optimized\\wallpapers\\cute-anime-live-r247\\cute_anime_live_wallpaper_r247.mp4",
+    "backupVideoBytes":  10441299,
+    "organizedHtmlProject":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\09-Anime-Wallpapers\\Cute-Anime-Dynamic-R247-HTML-Project",
+    "organizedVideo":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\09-Anime-Wallpapers\\cute_anime_live_wallpaper_r247.mp4",
+    "livelyExe":  "C:\\Program Files\\Lively Wallpaper\\Lively.exe",
+    "livelyCu":  [
+                     "livelycu_download_exit=0",
+                     "livelycu_download_tail=  0      0   0      0   0      0      0      0           00:01              0 |  |   0      0   0      0   0      0      0      0           00:01              0 |   0      0   0      0   0      0      0      0           00:01              0 |  14  9.36M  14  1.38M   0      0 493.0k      0   00:19   00:02   00:17  1.34M | 100  9.36M 100  9.36M   0      0  2.84M      0   00:03   00:03          1.34M | 100  9.36M 100  9.36M   0      0  2.84M      0   00:03   00:03          1.34M | 100  9.36M 100  9.36M   0      0  2.84M      0   00:03   00:03          1.34M",
+                     "E:\\0mcp-agv-arena-optimized\\tools\\lively-command-utility\\livelycu.exe"
+                 ],
+    "dynamicSetOk":  true,
+    "dynamicSetExe":  "C:\\Program Files\\Lively Wallpaper\\Lively.exe",
+    "dynamicSetCmd":  "setwp --file \"E:\\0mcp-agv-arena-optimized\\wallpapers\\cute-anime-live-r247\\lively-html-project\" --monitor 1 setwp --file \"E:\\0mcp-agv-arena-optimized\\wallpapers\\cute-anime-live-r247\\lively-html-project\" setwp --file \"E:\\0mcp-agv-arena-optimized\\wallpapers\\cute-anime-live-r247\\cute_anime_live_wallpaper_r247.mp4\" --monitor 1",
+    "livelyProcessCount":  14,
+    "desktopOrganizer":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer",
+    "tidyManifest":  "D:\\桌面\\DeskBox-Cute-Desktop-Organizer\\AUTO_TIDY_LAST_RUN.txt",
+    "pathsSummary":  "E:\\0mcp-agv-arena-optimized\\r247-cute-dynamic-wallpaper\\PATHS.txt"
+}
