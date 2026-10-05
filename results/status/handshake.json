@@ -1,9 +1,9 @@
 {
-    "round":  253,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 253: restore the actually visible cute anime dynamic wallpaper after the hidden WorkerW diagnostic, verify real desktop screen-diff movement, keep it running, and tidy desktop",
-    "arena_updated":  "2026-10-05 03:32:18",
-    "local_updated":  "2026-10-05 11:34:01"
+  "round": 253,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "round 253: restore the actually visible cute anime dynamic wallpaper after the hidden WorkerW diagnostic, verify real desktop screen-diff movement, keep it running, and tidy desktop",
+  "arena_updated": "2026-10-05 03:34:27",
+  "local_updated": "2026-10-05 11:34:01"
 }
