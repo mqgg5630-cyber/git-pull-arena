@@ -1,0 +1,13 @@
+check round 268 on LAPTOP-R77M5D6M - passed (exit 0)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 4s
+
+== priority task r268: t220_loop_smoke_r268.ps1
+== t220 loop smoke r268 on LAPTOP-R77M5D6M (user 文少), start 2026-10-05 12:22:57 UTC
+   auto_pull_branch_ok=True (HEAD on arena/01a10bf3-git-pull-arena)
+   auto_pull_head_ok=True (HEAD ed2d2821f36cbc8b7a4adb37d82a0e7996287ae2 = origin ed2d2821f36cbc8b7a4adb37d82a0e7996287ae2)
+   code_exec_ok=True ((2+3)*17=85; manifest 14981 B, sha256 98ba65ab6a152ab699d46ee2944cc3fc4e551df8691368c15d0b517fe037335a)
+   self_mapped_ok=True (manifest maps r268 to this task)
+   receipt_written=True (results\mcp_agv_lab\R268_LOOP_POLL_SMOKE.md + results\mcp_agv_lab\r268-loop-poll-smoke.json)
+== t220 loop smoke r268 ok - auto pull proven, code executed, receipt ready for auto_push
+== priority task r268 ok

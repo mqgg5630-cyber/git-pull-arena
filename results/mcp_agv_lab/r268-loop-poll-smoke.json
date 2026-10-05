@@ -1,0 +1,19 @@
+{
+    "round":  268,
+    "branch":  "arena/01a10bf3-git-pull-arena",
+    "host":  "LAPTOP-R77M5D6M",
+    "user":  "??",
+    "started_utc":  "2026-10-05 12:22:57",
+    "finished_utc":  "2026-10-05 12:22:58",
+    "auto_pull_branch_ok":  true,
+    "auto_pull_head_ok":  true,
+    "head_sha":  "ed2d2821f36cbc8b7a4adb37d82a0e7996287ae2",
+    "origin_sha":  "ed2d2821f36cbc8b7a4adb37d82a0e7996287ae2",
+    "code_exec_ok":  true,
+    "calc_result":  85,
+    "manifest_sha256":  "98ba65ab6a152ab699d46ee2944cc3fc4e551df8691368c15d0b517fe037335a",
+    "manifest_bytes":  14981,
+    "self_mapped_ok":  true,
+    "receipt_written":  true,
+    "loop_smoke_ok":  true
+}
