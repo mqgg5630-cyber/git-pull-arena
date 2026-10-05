@@ -224,7 +224,11 @@
     "results/mcp_agv_lab/r242-finish-media-career-tools.json",
     "code/tasks/t194_install_deskbox_r243.ps1",
     "results/mcp_agv_lab/R243_DESKBOX_INSTALL.md",
-    "results/mcp_agv_lab/r243-deskbox-install.json"
+    "results/mcp_agv_lab/r243-deskbox-install.json",
+    "deliverable/assets/anime_dynamic_wallpaper_v2.png",
+    "code/tasks/t195_hard_anime_video_wallpaper_r244.ps1",
+    "results/mcp_agv_lab/R244_HARD_ANIME_VIDEO_WALLPAPER.md",
+    "results/mcp_agv_lab/r244-hard-anime-video-wallpaper.json"
   ],
   "forbid_files": [
     "local/inbox",
@@ -249,7 +253,8 @@
     "results/mcp_agv_lab/GOUTOUJUNSHI_LOVE_LETTER_R239.md": "GOUTOUJUNSHI_LOVE_LETTER_APPLIED=True",
     "results/mcp_agv_lab/LOVE_LETTER_STANDALONE_GEM_R240.md": "LOVE_LETTER_STANDALONE_GEM_READY=True",
     "results/mcp_agv_lab/R242_FINISH_MEDIA_CAREER_TOOLS.md": "R242_MEDIA_CAREER_READY=True",
-    "results/mcp_agv_lab/R243_DESKBOX_INSTALL.md": "R243_DESKBOX_INSTALL_READY=True"
+    "results/mcp_agv_lab/R243_DESKBOX_INSTALL.md": "R243_DESKBOX_INSTALL_READY=True",
+    "results/mcp_agv_lab/R244_HARD_ANIME_VIDEO_WALLPAPER.md": "R244_HARD_VIDEO_WALLPAPER_READY=True"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
@@ -258,7 +263,8 @@
     "results/mcp_agv_lab/GOUTOUJUNSHI_LOVE_LETTER_R239.md": "target_push_exit=0",
     "results/mcp_agv_lab/LOVE_LETTER_STANDALONE_GEM_R240.md": "target_push_exit=0",
     "results/mcp_agv_lab/R242_FINISH_MEDIA_CAREER_TOOLS.md": "(?s)(?=.*web_shortcuts_ok=True)(?=.*deskbox_shortcut_ok=True)(?=.*xiutu_dir_exists=True)(?=.*ai_job_search_dir_exists=True)(?=.*career_ops_dir_exists=True)(?=.*hypit_repo_dir_exists=True)(?=.*id_photo_295_exists=True)(?=.*hypit_safe_clone_video_exists=True)(?=.*hypit_safe_clone_video_bytes=[1-9][0-9]{5,}).*",
-    "results/mcp_agv_lab/R243_DESKBOX_INSTALL.md": "(?s)(?=.*deskbox_shortcut=.*exists=True)(?=.*deskbox_(exe|installer)=.*exists=True)(?=.*R243_DESKBOX_INSTALL_READY=True).*"
+    "results/mcp_agv_lab/R243_DESKBOX_INSTALL.md": "(?s)(?=.*deskbox_shortcut=.*exists=True)(?=.*deskbox_(exe|installer)=.*exists=True)(?=.*R243_DESKBOX_INSTALL_READY=True).*",
+    "results/mcp_agv_lab/R244_HARD_ANIME_VIDEO_WALLPAPER.md": "(?s)(?=.*hard_video_ok=True)(?=.*wallpaper_video_ok=True)(?=.*wallpaper_applied_ok=True)(?=.*desktop_tidy_done=True)(?=.*hard_video_bytes=[1-9][0-9]{6,})(?=.*wallpaper_video_bytes=[1-9][0-9]{5,}).*"
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,
@@ -283,7 +289,11 @@
     "results/mcp_agv_lab/r242-finish-media-career-tools.json": 1000,
     "code/tasks/t194_install_deskbox_r243.ps1": 5000,
     "results/mcp_agv_lab/R243_DESKBOX_INSTALL.md": 500,
-    "results/mcp_agv_lab/r243-deskbox-install.json": 200
+    "results/mcp_agv_lab/r243-deskbox-install.json": 200,
+    "deliverable/assets/anime_dynamic_wallpaper_v2.png": 50000,
+    "code/tasks/t195_hard_anime_video_wallpaper_r244.ps1": 25000,
+    "results/mcp_agv_lab/R244_HARD_ANIME_VIDEO_WALLPAPER.md": 2500,
+    "results/mcp_agv_lab/r244-hard-anime-video-wallpaper.json": 800
   },
   "max_bytes": {
     "deliverable/LINK_PROOF_v2.8.1.docx": 3000000,
