@@ -265,7 +265,11 @@
     "code/tasks/t206_apply_existing_wallpaper_unlock_r255.ps1",
     "results/mcp_agv_lab/R255_EXISTING_ANIME_WALLPAPER_ARMED.md",
     "results/mcp_agv_lab/r255-existing-anime-wallpaper-armed.json",
-    "results/mcp_agv_lab/r255_current_screen.png"
+    "results/mcp_agv_lab/r255_current_screen.png",
+    "code/tasks/t207_confirm_existing_wallpaper_armed_r256.ps1",
+    "results/mcp_agv_lab/R256_CONFIRM_EXISTING_ANIME_WALLPAPER_ARMED.md",
+    "results/mcp_agv_lab/r256-confirm-existing-anime-wallpaper-armed.json",
+    "results/mcp_agv_lab/r256_current_screen.png"
   ],
   "forbid_files": [
     "local/inbox",
@@ -300,7 +304,8 @@
     "results/mcp_agv_lab/R250_LIVELY_EXACT_ARGS.md": "R250_LIVELY_EXACT_ARGS_READY=True",
     "results/mcp_agv_lab/R251_VISIBLE_DYNAMIC_WALLPAPER.md": "R251_VISIBLE_DYNAMIC_WALLPAPER_READY=True",
     "results/mcp_agv_lab/R253_RESTORE_VISIBLE_DYNAMIC_WALLPAPER.md": "R253_RESTORE_VISIBLE_DYNAMIC_WALLPAPER_READY=True",
-    "results/mcp_agv_lab/R255_EXISTING_ANIME_WALLPAPER_ARMED.md": "R255_EXISTING_ANIME_WALLPAPER_ARMED=True"
+    "results/mcp_agv_lab/R255_EXISTING_ANIME_WALLPAPER_ARMED.md": "R255_EXISTING_ANIME_WALLPAPER_ARMED=True",
+    "results/mcp_agv_lab/R256_CONFIRM_EXISTING_ANIME_WALLPAPER_ARMED.md": "R256_CONFIRM_EXISTING_ANIME_WALLPAPER_ARMED_READY=True"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
@@ -318,7 +323,8 @@
     "results/mcp_agv_lab/R250_LIVELY_EXACT_ARGS.md": "(?s)(?=.*html_dynamic_project_ok=True)(?=.*exact_arg_set_ok=True)(?=.*lively_process_seen=True)(?=.*desktop_tidy_ok=True)(?=.*desktop_tidy_done=True).*",
     "results/mcp_agv_lab/R251_VISIBLE_DYNAMIC_WALLPAPER.md": "(?s)(?=.*visible_dynamic_screen_proof=True)(?=.*visible_host_running=True)(?=.*desktop_tidy_ok=True)(?=.*screen_diff_ratio=0\\.(00[3-9]|0[1-9]|[1-9])).*",
     "results/mcp_agv_lab/R253_RESTORE_VISIBLE_DYNAMIC_WALLPAPER.md": "(?s)(?=.*visible_dynamic_screen_proof=True)(?=.*visible_host_running=True)(?=.*desktop_tidy_ok=True)(?=.*screen_diff_ratio=(0\\.(00[3-9]|0[1-9]|[1-9])|1\\.000000)).*",
-    "results/mcp_agv_lab/R255_EXISTING_ANIME_WALLPAPER_ARMED.md": "(?s)(?=.*existing_live_wallpaper_downloaded=True)(?=.*apply_script_ready=True)(?=.*unlock_or_logon_auto_apply_ready=True)(?=.*desktop_tidy_ok=True).*"
+    "results/mcp_agv_lab/R255_EXISTING_ANIME_WALLPAPER_ARMED.md": "(?s)(?=.*existing_live_wallpaper_downloaded=True)(?=.*apply_script_ready=True)(?=.*unlock_or_logon_auto_apply_ready=True)(?=.*desktop_tidy_ok=True).*",
+    "results/mcp_agv_lab/R256_CONFIRM_EXISTING_ANIME_WALLPAPER_ARMED.md": "(?s)(?=.*existing_live_wallpaper_downloaded=True)(?=.*apply_script_ready=True)(?=.*unlock_or_logon_auto_apply_ready=True)(?=.*desktop_tidy_ok=True).*"
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,
@@ -377,13 +383,17 @@
     "code/tasks/t205_existing_anime_lively_wallpaper_r254.ps1": 18000,
     "results/mcp_agv_lab/R254_EXISTING_ANIME_LIVELY_WALLPAPER.md": 2500,
     "results/mcp_agv_lab/r254-existing-anime-lively-wallpaper.json": 800,
-    "results/mcp_agv_lab/r254_desktop_before.png": 100000,
-    "results/mcp_agv_lab/r254_desktop_after_a.png": 100000,
-    "results/mcp_agv_lab/r254_desktop_after_b.png": 100000,
+    "results/mcp_agv_lab/r254_desktop_before.png": 5000,
+    "results/mcp_agv_lab/r254_desktop_after_a.png": 5000,
+    "results/mcp_agv_lab/r254_desktop_after_b.png": 5000,
     "code/tasks/t206_apply_existing_wallpaper_unlock_r255.ps1": 23000,
     "results/mcp_agv_lab/R255_EXISTING_ANIME_WALLPAPER_ARMED.md": 2200,
     "results/mcp_agv_lab/r255-existing-anime-wallpaper-armed.json": 700,
-    "results/mcp_agv_lab/r255_current_screen.png": 100000
+    "results/mcp_agv_lab/r255_current_screen.png": 5000,
+    "code/tasks/t207_confirm_existing_wallpaper_armed_r256.ps1": 9000,
+    "results/mcp_agv_lab/R256_CONFIRM_EXISTING_ANIME_WALLPAPER_ARMED.md": 1500,
+    "results/mcp_agv_lab/r256-confirm-existing-anime-wallpaper-armed.json": 500,
+    "results/mcp_agv_lab/r256_current_screen.png": 5000
   },
   "max_bytes": {
     "deliverable/LINK_PROOF_v2.8.1.docx": 3000000,
