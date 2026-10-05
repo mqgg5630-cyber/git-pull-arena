@@ -1,9 +1,9 @@
 {
-  "round": 266,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "round 266: persistent dynamic wallpaper. Start VLC Direct3D video-wallpaper detached with --loop --repeat --input-repeat=65535 using the cute Mahiru MP4, then after 75 seconds capture two more real desktop frames, verify VLC still exists and pixels are moving. Keep it running only if proven; rollback if not.",
-  "arena_updated": "2026-10-05 09:29:16",
-  "local_updated": "2026-10-05 17:27:59"
+  "round": 267,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 267: user gives up on dynamic. Stop VLC/Lively dynamic wallpaper, remove the video wallpaper, set a good static cute anime wallpaper, capture the actual desktop screenshot as PNG, and tidy desktop.",
+  "arena_updated": "2026-10-05 11:37:40",
+  "local_updated": null
 }
