@@ -1,9 +1,9 @@
 {
-    "round":  307,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 307: URGENT desktop rollback (user cannot see desktop or taskbar). taskkill mpv+Lively, reg add HideIcons=0, taskkill the three deskbox pids, remove our Startup autostart entries, restart explorer (taskkill then launch), show a completion popup. Keep RECOVERY-recover-data.bat on the desktop and everything in deskbox-v2. Nothing else deleted",
-    "arena_updated":  "2026-10-06 11:08:36",
-    "local_updated":  "2026-10-06 19:19:09"
+  "round": 307,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-06 11:19:51",
+  "local_updated": "2026-10-06 19:19:09"
 }
