@@ -1,9 +1,9 @@
 {
-  "round": 297,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 297: retry the wallpaper embed (r296 crashed in 1s because state.json current=17 is an int - now handled via glob). taskkill mpv+Lively, Progman 0x052C to ensure WorkerW exists, run mpv --wid=<hwnd> --no-audio --loop-file=inf --no-border --osc=no with the current wallpaper (glob 17-*.mp4 under E:\\...\\wallpapers\\lively-12), guarded-poll up to 90s for a non-explorer fullscreen child under WorkerW, report layer_final and the owning process. Leave the three deskbox windows untouched; read-only except the wallpaper player",
-  "arena_updated": "2026-10-06 10:17:00",
-  "local_updated": null
+    "round":  297,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 297: retry the wallpaper embed (r296 crashed in 1s because state.json current=17 is an int - now handled via glob). taskkill mpv+Lively, Progman 0x052C to ensure WorkerW exists, run mpv --wid=\u003chwnd\u003e --no-audio --loop-file=inf --no-border --osc=no with the current wallpaper (glob 17-*.mp4 under E:\\...\\wallpapers\\lively-12), guarded-poll up to 90s for a non-explorer fullscreen child under WorkerW, report layer_final and the owning process. Leave the three deskbox windows untouched; read-only except the wallpaper player",
+    "arena_updated":  "2026-10-06 10:17:00",
+    "local_updated":  "2026-10-06 18:20:00"
 }
