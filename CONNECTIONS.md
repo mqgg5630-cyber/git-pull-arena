@@ -736,3 +736,9 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - 磁盘：C: 100GB/40GB free，D: 137GB/50GB free，E: 715GB/282GB free。
 - **最终结论（已告知用户）**：本机无还原点、无文件备份；且系统还原机制本身只回滚系统文件/注册表/驱动/程序、只保护系统盘——E 盘用户文件双重不在覆盖范围，"还原到最近一次"救不回 library 还会回滚最近装的程序。恢复线正式全部关闭。剩余可选项：关休眠（6.5GB，需用户主动同意一次 UAC）/删 ms-playwright（1.4GB，无 UAC）。
 - 状态：✅ 完结，无排队任务。
+
+## round 327 (2026-10-06，恢复第二阶段：只要文档的侦察)
+- 用户改口：只要恢复一些文档即可。r327 = `t278_*` 只读非提权侦察：①三个盘回收站清点+$I 元数据解析（原始路径/删除时间/大小）——若 library 是资源管理器删的，可能整包还在回收站 ②E:/D:/用户目录全盘搜现存文档类文件（doc/docx/xls/xlsx/ppt/pptx/pdf/txt/md/csv/rtf/odt）③桌面 44 快捷方式目标解析 ④winfr /? 全文（确认 vintage 是否有签名模式）。
+- 若回收站无货、无副本 → 候选：签名雕刻（PhotoRec/DMDE 或 winfr 签名模式若有）——需下载+一次 UAC，须用户同意。
+- 沙箱重置#7 SOP 修复（同 #6：tmp-r327 保 01a9cb5→修 sync.config→reset --hard origin(5197806)→checkout 回 t278→重登记）。
+- 状态：⏳ 已排队。
