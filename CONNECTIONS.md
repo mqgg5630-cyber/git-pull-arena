@@ -742,3 +742,8 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - 若回收站无货、无副本 → 候选：签名雕刻（PhotoRec/DMDE 或 winfr 签名模式若有）——需下载+一次 UAC，须用户同意。
 - 沙箱重置#7 SOP 修复（同 #6：tmp-r327 保 01a9cb5→修 sync.config→reset --hard origin(5197806)→checkout 回 t278→重登记）。
 - 状态：⏳ 已排队。
+
+## round 328 (2026-10-06，文档去向定向排查)
+- r327 线索：E:回收站空（library 真删）；**D:回收站有 3 份文档**（AI_English.docx 2.6MB / plag_English.pdf 1.6MB / AI_English.pdf 1.5MB，原路径 D:\<中文>\）；E: 有 0docx/0word/0writing/0md 目录；**D:\DeskBoxLibrary** 疑似 deskbox 旧库；**E:\WDR-20261006230705** 23:07 出现（疑似用户自跑恢复工具）。
+- r328 = `t279_*`：DeskBoxLibrary 全量清点 + E: 文档目录 census + WDR 全列 + deskbox-v2 残余结构 + D: 根文档 + 桌面/D-bin $I 精确路径（unicode_escape 保中文）。只读无 UAC。
+- 状态：⏳ 已排队。
