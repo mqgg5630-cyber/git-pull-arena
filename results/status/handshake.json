@@ -1,9 +1,9 @@
 {
-  "round": 323,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-10-06 14:24:58",
-  "local_updated": "2026-10-06 22:24:24"
+  "round": 324,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 324: read-only. Wait up to 15 minutes for helper v10's verdict (WINFR_DONE / WINFR_ZERO / WINFR_STILL_RUNNING, monitor window ends ~22:59), print the vss_out.txt tail, count C:\\recovery_winfr_E files+MB and WinFR processes, and write the overnight recommendation: if still running with zero files, let it run overnight and read the tally in the morning (do not shut down, avoid large writes to E:). If WINFR_DONE, census the Recovery_* dirs now",
+  "arena_updated": "2026-10-06 14:25:48",
+  "local_updated": null
 }
