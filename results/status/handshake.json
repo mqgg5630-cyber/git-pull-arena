@@ -1,9 +1,9 @@
 {
-    "round":  280,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 280: reuse the 5 already-downloaded fresh wallpapers, fix the rebuild KeyError, final pack = hotori + 11 fresh CDN, live switch + motion test",
-    "arena_updated":  "2026-10-06 05:34:58",
-    "local_updated":  "2026-10-06 13:38:26"
+  "round": 281,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 281: safe disk-trusting rebuild - re-download 6 deleted wallpapers, two-phase rename, final 12-pack = hotori + 11 fresh, live switch + motion test",
+  "arena_updated": "2026-10-06 05:45:35",
+  "local_updated": null
 }
