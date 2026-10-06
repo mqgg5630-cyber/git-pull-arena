@@ -567,3 +567,11 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 305 (2026-10-06, 恢复阶段 4：桌面自提升 bat+用户双击)
 - r305 = `t256_*`：① 诊断：uac_err unicode_escape 原样抓出+watcher SessionId ② 桌面放 `RECOVERY-recover-data.bat`（net session 自检→Start-Process -Verb RunAs 自提升→跑 vss_helper.ps1）③ 同步 WScript Popup 指引（45s 自动关）"请双击桌面 RECOVERY-recover-data.bat 并点是" ④ 轮询 vss_out.txt 300s ⑤ classify 汇报（awaiting_user_doubleclick=用户没点，bat 留桌面）。
 - 状态：⏳ 已排队。
+
+## round 305 结果（2026-10-06 18:55，❌ awaiting_user_doubleclick / exit 6/328s）
+- UAC 失败真相：uac_err 中文 = "没有应用程序与此操作的指定文件有关联"——watcher 的 PS 会话 runas verb 关联损坏，Start-Process -Verb RunAs 无法弹 UAC（r303 12s 崩溃同源）。watcher SessionId=1（交互会话无误）。
+- 桌面 bat 就位：D:\桌面\RECOVERY-recover-data.bat（549B，net session 自检+自提升+跑 vss_helper.ps1）。指引 popup 显示（rc=0）。300s 轮询无 vss_out.txt——用户未双击（可能不在屏幕前）。
+
+## round 306 (2026-10-06, 恢复阶段 5：等待用户双击+读结果)
+- r306 = `t257_*`：轮询 vss_out.txt 600s（300s 时再弹一次指引 popup）；出现后 classify+robocopy/winfr 日志尾+recovery 目录进度；未出现 → awaiting_user_doubleclick。已在聊天中明确请用户双击桌面 RECOVERY-recover-data.bat。
+- 状态：⏳ 已排队。

@@ -880,6 +880,9 @@
     ],
     "305": [
       "t256_recovery_deskbat_r305.ps1"
+    ],
+    "306": [
+      "t257_recovery_wait_r306.ps1"
     ]
   }
 }
