@@ -1,9 +1,9 @@
 {
-    "round":  287,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 287: user says the boxes never appeared on their desktop (previous rounds killed them after testing) and the proof shot looked unchanged. This round: patch installed box.py alpha 0.85-\u003e0.72, spawn boxes, two screenshots with NO MinimizeAll, per-box pixel gate (cyan title + bright list text inside each box rect), wallpaper layer + motion probe, and LEAVE THE BOXES RUNNING on the desktop (final_alive\u003e=2 required)",
-    "arena_updated":  "2026-10-06 08:02:18",
-    "local_updated":  "2026-10-06 16:09:39"
+  "round": 288,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 288: r287 pixel gates judged a FROZEN stale frame (locked session / display off - all four shots pairwise diff 0.0002 over 60s). This round adds a magenta live-capture probe (retry ~3min so a sleeping display can wake), idempotent box liveness, per-box gates only on a LIVE capture, ascii dumps of each box region into the receipt, quser session state, mpv CPU sampling, wallpaper layer+motion, boxes left running",
+  "arena_updated": "2026-10-06 08:16:28",
+  "local_updated": null
 }
