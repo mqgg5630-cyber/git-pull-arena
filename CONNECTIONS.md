@@ -599,3 +599,7 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 309 (2026-10-06, 恢复阶段 6：修 winfr 安装)
 - r309 = `t260_*`：helper v3（winget --version 落盘 + attempt1 winget 源 --silent 去 --disable-interactivity + attempt2 msstore 源 9N26S50LN705 + 全输出 UTF-8 落盘 vss_out.txt，winfr 找三处路径）→ 弹"请再双击一次"指引 → 轮询新鲜 vss_out 600s → winget 错误行 unicode_escape 原样打回。恢复仍只写 C 盘。
 - 状态：⏳ 已排队。
+
+## round 309 结果（2026-10-06 19:32，❌ awaiting_user_doubleclick/613s）
+- helper v3 已写入（4640B，修好的 winget 安装器）。弹窗+600s 轮询期间用户未双击。旧 vss_out mtime=19:28:44（r309 前用户曾自己再跑过一次 v2，仍是装失败的旧版）。bat 在桌面，只差用户双击 v3 版。
+- 决定：不再自动弹窗打扰，等用户主动双击后跑读结果轮。
