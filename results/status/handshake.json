@@ -1,9 +1,9 @@
 {
-  "round": 298,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 298: screenshot verification of the wallpaper layer. r297 spawned mpv --wid successfully but EnumChildWindows cannot see it (mpv renders directly onto the target hwnd with no child window) - the desktop may already be showing the video. Jobs: 1) GDI BitBlt capture the bottom clear band of the screen (boxes are parked at the top), compute brightness/colorfulness stats; if colorful (>=8% colorful pixels, >=30% non-black) the wallpaper IS rendering - save evidence r298_wallpaper_band.bmp. 2) If not: locate the canonical WorkerW (GW_HWNDNEXT sibling of SHELLDLL_DefView), taskkill mpv+Lively, re-embed mpv --wid with the current wallpaper, poll screenshots every 12s up to 75s. 3) Leave the three boxes untouched. Read-only except the wallpaper player",
-  "arena_updated": "2026-10-06 10:21:55",
-  "local_updated": null
+    "round":  298,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 298: screenshot verification of the wallpaper layer. r297 spawned mpv --wid successfully but EnumChildWindows cannot see it (mpv renders directly onto the target hwnd with no child window) - the desktop may already be showing the video. Jobs: 1) GDI BitBlt capture the bottom clear band of the screen (boxes are parked at the top), compute brightness/colorfulness stats; if colorful (\u003e=8% colorful pixels, \u003e=30% non-black) the wallpaper IS rendering - save evidence r298_wallpaper_band.bmp. 2) If not: locate the canonical WorkerW (GW_HWNDNEXT sibling of SHELLDLL_DefView), taskkill mpv+Lively, re-embed mpv --wid with the current wallpaper, poll screenshots every 12s up to 75s. 3) Leave the three boxes untouched. Read-only except the wallpaper player",
+    "arena_updated":  "2026-10-06 10:21:55",
+    "local_updated":  "2026-10-06 18:23:01"
 }
