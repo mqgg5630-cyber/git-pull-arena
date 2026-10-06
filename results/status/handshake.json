@@ -1,9 +1,9 @@
 {
-    "round":  308,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 308: DATA RECOVERY retry - the desktop is visible again (r307 rollback), so the user can now actually see and double-click RECOVERY-recover-data.bat. 1) If vss_out.txt already exists, read it, classify, report progress evidence (robocopy/winfr log tails, C:\\recovery_vss and C:\\recovery_winfr_E entry counts). 2) Else rewrite the bat if missing, verify vss_helper.ps1 exists, show the ACTION NEEDED popup, poll vss_out.txt for 600s with one reminder popup at 300s, then classify. Honest verdict: recovering_vss / winfr_running / no_shadows / vss_empty_winfr_unavailable / vss_seen_no_hit / awaiting_user_doubleclick. Delete nothing",
-    "arena_updated":  "2026-10-06 11:25:16",
-    "local_updated":  "2026-10-06 19:26:58"
+  "round": 308,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-06 11:27:40",
+  "local_updated": "2026-10-06 19:26:58"
 }
