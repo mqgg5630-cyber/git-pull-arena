@@ -466,3 +466,12 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 293 (2026-10-06, 线程守护版接管收尾)
 - r293 = `t244_*`：与 r292 相同的 v3.1 交付物（同盘挪库 D:\DeskBoxLibrary、E 盘 20GB 副本清理、九类盒子、HideIcons、层恢复），任务侧全面加固：L() 全 flush、windows_report/PrintWindow/层轮询全部 guarded(线程+join 超时)、rmdir 后台 Popen 不等待、explorer 重启后先 sleep 20 再枚举。全链幂等（r292 半途状态可安全接续）。
 - 状态：⏳ 已排队。
+
+## round 293 结果（2026-10-06 17:41，❌ FAIL 但交付物全绿；爆出数据完整性警报）
+- 全绿：v3.1 三盒 spawn+存活（c01=52@14,14 / c05=4@326,14 / c07=5@638,14 三列布局）、**PrintWindow 3/3 VISIBLE**、**HideIcons=0x1 ✓**、留驻 3/3、alpha 0.72、无 crash log、297s 无挂死（线程守护+flush 生效）。
+- **警报：D:\DeskBoxLibrary 只剩 07-Old-Folders(2 项)**——九类库（01-Apps 61 项、09-Anime-Wallpapers 20GB 等）不在库里也不在桌面；E 盘 r291 副本也没了。数据可能散失（待定位）。壁纸层仍 down（Lively 重启+120s 轮询没恢复）。
+- ready=False 仅为 layer_final+库数据问题；盒子/图标/透明度已达用户要求形态。
+
+## round 294 (2026-10-06, 数据大搜查+壁纸修复·只读)
+- r294 = `t245_*`：① deskbox-v2 现场 mtime 取证（r292 走到哪）② D:\ / D:\桌面 / D:\DeskBoxLibrary(2层) / E:\0mcp 区全列目录 + junction 检查 ③ 关键词守卫搜索（anime-wallpapers/apps-shortcuts/deskbox-cute/job-archives，D 300s / E 240s）④ **恢复选项**：vssadmin 影子副本 + 回收站 COM 清点 ⑤ Lively 壁纸源健在验证（lively-12/state.json/当前壁纸文件）⑥ 壁纸层修复（kill mpv+Lively → 直接启动 → 守卫轮询 150s）⑦ 盒子不动（<2 才补）。**只读不删任何数据**。
+- 状态：⏳ 已排队。
