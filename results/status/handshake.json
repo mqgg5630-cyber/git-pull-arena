@@ -1,9 +1,9 @@
 {
-    "round":  281,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 281: safe disk-trusting rebuild - re-download 6 deleted wallpapers, two-phase rename, final 12-pack = hotori + 11 fresh, live switch + motion test",
-    "arena_updated":  "2026-10-06 05:45:35",
-    "local_updated":  "2026-10-06 13:52:02"
+  "round": 281,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-06 05:52:47",
+  "local_updated": "2026-10-06 13:52:02"
 }
