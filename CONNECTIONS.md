@@ -528,3 +528,7 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 300 (2026-10-06, 正式收尾回执)
 - r300 = `t251_*`：修复 struct.pack，重截证据带 r300_wallpaper_band.bmp + 盒子普查 + HideIcons 复核 + 正式 ready 判定（layer_visual + boxes>=2）。**round 300 预期首个任务级 PASS。**
 - 数据结论不变：九类库 C/D/E 均缺失（见 R294-R296），用户知情汇报随后发出。
+
+## round 300 结果（2026-10-06 18:29，✅ 判定全绿 / exit 1 存证崩）
+- band_stats colorful 53 / nonblack 61 → layer_visual=True（第二次截图证实壁纸稳定渲染）。exit 1 根因：WT 用 write_text 收到 BMP bytes——TypeError。修为 write_bytes。
+- r301 = `t252_*` 同逻辑收尾，预期正式 PASS。
