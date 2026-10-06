@@ -1,9 +1,9 @@
 {
-    "round":  326,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 326: read-only non-elevated census of restore/backup mechanisms, NO elevation, NO UAC, change nothing. 1) system restore points: Get-ComputerRestorePoint, Get-CimInstance -Namespace root/default -ClassName SystemRestore and SystemRestoreConfig (catch access-denied), one vssadmin list shadows attempt (expected to require elevation - just record the output). 2) registry state: HKLM SOFTWARE Microsoft Windows NT CurrentVersion SystemRestore values and the Policies DisableSR key. 3) File History: Get-Service FhSvc status and whether LOCALAPPDATA Microsoft Windows FileHistory Configuration exists. 4) Get-Service wbengine. 5) Win32_LogicalDisk table. Report every result verbatim so we can answer: do restore points exist at all",
-    "arena_updated":  "2026-10-06 15:05:07",
-    "local_updated":  "2026-10-06 23:07:39"
+  "round": 326,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-06 15:08:06",
+  "local_updated": "2026-10-06 23:07:39"
 }
