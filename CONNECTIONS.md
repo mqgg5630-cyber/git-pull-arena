@@ -302,3 +302,9 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - 保险：**Keeper 已装**——Startup `Lively Wallpaper Keeper.bat` → pythonw `E:\0mcp-agv-arena-optimized\wallpapers\lively-hotori\keeper_lively_hotori.py`：登录等 45s → 壁纸层空就拉 Lively + setwp（重试 3 次）→ 写 `keeper.log`。壁纸永久存放在 `lively-hotori` 目录。
 - 本轮：setwp ✅、WorkerW 结构 ✅、双探针像素 ✅、keeper_installed ✅、自动 accept。
 - 验证方法：再重启一次，登录后等 1 分钟；若还没回来，看 keeper.log + 告诉我，值守循环会修。
+
+## round 276 (2026-10-06, 桌面一键修复)
+- 用户要求：壁纸"容易被其他杀掉"，桌面给一个**一键启动**，被杀后手动双击恢复。
+- r276 = `t228_*`：① 写 `E:\...\lively-hotori\repair_lively_hotori.py`（中文控制台进度 + repair.log；`--auto`=机器模式免按回车）② 桌面 `一键启动动态壁纸.bat`（ASCII 内容、中文文件名；找 python→py -3 兜底；结尾 pause 显示结果）③ **真实杀进程演习**：taskkill Lively+mpv+Livelycu → 证明壁纸层空 → 以用户方式跑修复 --auto → 证明壁纸层恢复 + 45 秒双帧运动探针 ④ 兜底：修复失败就走直接恢复路径，绝不留无壁纸状态。
+- 备注：本轮准备期间沙箱被重置回会话基点（本地分支回到 25cae55、配置回退），已 `reset --hard origin/arena/01a10bf3` 恢复（远端提交链完好），再叠加 r276 改动。
+- 状态：⏳ 已排队。

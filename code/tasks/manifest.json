@@ -790,6 +790,9 @@
     ],
     "275": [
       "t227_run_lively_reboot_proof_r275.ps1"
+    ],
+    "276": [
+      "t228_run_lively_one_click_repair_r276.ps1"
     ]
   }
 }
