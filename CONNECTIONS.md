@@ -369,3 +369,9 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - 实测：tkinter 可用、进程存活、按 PID 匹配窗口枚举、带面板截图存证、壁纸层+运动无影响。选 tkinter 躲 AMSI（r259 老坑）。
 - 注：准备期间沙箱第四次静默重置，已照 SOP 恢复（备份→reset --hard origin→重叠加→远端核验）。
 - 状态：⏳ 已排队。
+
+## round 283 结果（2026-10-06 16:10，✅ 半透明面板 UI 上线）
+- 实测全绿：tkinter ok、panel.py 6549B、桌面 `壁纸面板.bat`（D 盘真桌面）+ Startup 自启 bat、面板进程 44468 存活、**TkTopLevel 窗口 rect(1150,98,1522,766)=右缘停靠**、带面板截图存证 `r283_panel_visible.bmp`、kill 干净、壁纸层+运动（0.876 ratio）不受影响。自动 accept。
+- UI：无边框深色半透明（alpha 0.85）右缘停靠、可拖动、24 款彩色编号卡片、当前款 ✓、悬停高亮、底部 下一张/自动开/自动关/间隔循环（15s→30s→1m→5m→30m→1h）/修复；import switcher 零子进程；单实例 pid 锁。
+- 重启链：Startup 面板 bat（登录 10s 弹出）+ keeper12 恢复壁纸/自动轮换 + 面板活读 state —— 三者独立互备。
+- 轮换池 [P] 细配仍在控制台菜单（动态壁纸切换器.bat）。
