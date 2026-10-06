@@ -817,6 +817,10 @@
     ],
     "284": [
       "t236_run_deskbox_translucent_r284.ps1"
+    ],
+    "285": [
+      "t237_deskbox_one_process_per_box_r285.ps1",
+      "t237_deskbox_one_process_per_box_r285.py"
     ]
   }
 }

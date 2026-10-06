@@ -381,3 +381,18 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - r284 = `t236_*`：① 全盘搜索 deskbox（真实桌面/D 盘二级/E:\0mcp/AppData/Program Files/注册表/进程/Startup）② **DeskBox v2 半透明整理盒**（Fences 风格：文件夹/程序/文档/图片/视频/压缩包/其他 自动分类浮盒，alpha 0.85 深色玻璃，双击打开，拖动位置持久化，− 折叠 ✕ 退出，5 秒自刷新，单实例，左缘纵列避开壁纸面板）③ 桌面 `桌面整理盒.bat` + Startup 自启（重启生效）④ 实测 pid/窗口/分类计数/截图/壁纸无影响。预检抓到 `\U` 转义真 bug 已修。
 - 注：准备期间沙箱第五次静默重置，照 SOP 恢复。
 - 状态：⏳ 已排队。
+
+## round 284 结果（2026-10-06 15:21，❌ FAIL：盒进程闪退）
+- 发现全成功：真 DeskBox 三处（`D:\桌面\DeskBox Cute.lnk`、`D:\桌面\DeskBox-Cute-Desktop-Organizer\`、`E:\0mcp-agv-arena-optimized\apps\DeskBox\`，r243 旧装）+ 我的 deskbox-v2。桌面实测 4 文件夹/53 程序/5 文档。
+- 其余全绿：tkinter ok、双 bat 已装（D 盘真桌面 + Startup）、截图 ok（无盒）、壁纸层 mpv 存活、motion 0.994。
+- **FAIL 原因：deskbox.py 写完 pid 后秒死（box_windows_found=0）**——Popen stderr=DEVNULL 吞掉 traceback，死因无诊断信息。教训：GUI 实测必须重定向 stderr/自带 crash log。
+- 嫌疑差异点（vs r283 存活面板）：root.withdraw+多 Toplevel、每盒 Canvas+bind_all(MouseWheel)。
+
+## round 285 (2026-10-06, DeskBox v2 重建：每盒一进程·纯已验证模式)
+- 思路：r283 面板在本机实测存活（root 窗口 + overrideredirect + alpha + Canvas 滚动 + bind_all）；r284 死因未知 → **只用已验证构造**：
+  - `box.py <key> <title> <x> <y>`：**一进程=一盒**（root 即盒窗，r283 同款），每盒独立 pid 锁（deskbox-\<key\>.pid）、独立配置（deskbox-\<key\>.json）、**独立 crash log（deskbox-\<key\>-crash.log，try/except+traceback，再闪退可见原因）**。
+  - `deskbox.py`：supervisor——扫桌面一次，按非空类别各拉起一个 box（槽位坐标 2 列纵列：14/326 + 行距 442，避开右缘壁纸面板），写 deskbox-launch.log，自带 crash log。
+  - 双 bat（r284 已装）不动，仍指向 deskbox.py（现为 supervisor），兼容。
+- 预检抓到并修掉 3 真bug：① `'%%%c'` 外层误转义 → 按钮显示 `%✳`；② 5s rescan 用启动旧 cfg 重设坐标 → 拖动后弹回；③ supervisor 未传默认槽位 → 全盒叠同点；另修 sup 漏 import os、符号改用 r283 实测渲染过的 ✕(0x2715)/−(0x2212)、坐标 SW/SH 夹紧。
+- 实测门：spawn 后 ≥2 盒 pid 存活、按 pid 集匹配 ≥2 个 300 宽盒窗、launch log/崩溃日志读回执、截图、壁纸层+30s 运动探针、锁屏拒测。
+- 状态：⏳ 已排队。
