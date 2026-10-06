@@ -512,3 +512,11 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 298 (2026-10-06, 截图取证验证壁纸层)
 - r298 = `t249_*`：① GDI BitBlt 截取底部净带（盒子都在顶部 y=14）→ 亮度/色彩统计判定壁纸是否在渲染 ② 若无：换标准 WorkerW 定位（SHELLDLL_DefView 的 GW_HWNDNEXT 兄弟，Wallpaper Engine 同款算法）重嵌 mpv → 12s 间隔轮询截图 75s ③ 存证据图 r298_wallpaper_band.bmp ④ 盒子不动。
 - 状态：⏳ 已排队。**本轮后立即向用户完整汇报。**
+
+## round 298 结果（2026-10-06 18:22，❌ exit 6/4s，两个 bug）
+- capture_band 字节索引解包 TypeError（截图统计炸）；FindWindowW 找 SHELLDLL_DefView 返回 0（DefView 是子窗口非顶层）。均未影响系统状态：mpv（r297 spawn）仍活着，盒子 3/3。
+- 修复进 r299：字节索引直取 int；WorkerW 改 EnumWindows 收集全部候选逐个试嵌（每候选 36s 截图轮询）。
+
+## round 299 (2026-10-06, 截图验证修复版·最后一轮技术尝试)
+- r299 = `t250_*`：修复后的底部净带截图统计 → 若 r297 的嵌入已在渲染则直接存证；否则 Progman 0x052C 后 EnumWindows 收集全部顶层 WorkerW 候选（≤4 个），逐个 kill mpv → mpv --wid=<候选> → 12s×3 截图轮询，色彩达标即停。盒子不动。
+- 状态：⏳ 已排队。**本轮结束立即向用户完整汇报数据三态。**
