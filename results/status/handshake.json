@@ -1,9 +1,9 @@
 {
-  "round": 305,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 305: DATA RECOVERY phase 4. Watcher auto-elevation is broken (UAC never reaches the user), so: 1) dump the real uac_err message via unicode_escape and the watcher session id; 2) write a self-elevating RECOVERY-recover-data.bat onto the real desktop (net session check, then Start-Process -Verb RunAs itself, then run the vss_helper.ps1 elevated); 3) show a synchronous WScript Popup (45s) telling the user to double-click the bat and click Yes; 4) poll vss_out.txt for 300s; 5) classify the result honestly (recovering_vss / winfr_running / no_shadows / vss_empty_winfr_unavailable / vss_seen_no_hit / awaiting_user_doubleclick). The bat stays on the desktop if the user did not run it. Delete nothing",
-  "arena_updated": "2026-10-06 10:54:51",
-  "local_updated": null
+    "round":  305,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 305: DATA RECOVERY phase 4. Watcher auto-elevation is broken (UAC never reaches the user), so: 1) dump the real uac_err message via unicode_escape and the watcher session id; 2) write a self-elevating RECOVERY-recover-data.bat onto the real desktop (net session check, then Start-Process -Verb RunAs itself, then run the vss_helper.ps1 elevated); 3) show a synchronous WScript Popup (45s) telling the user to double-click the bat and click Yes; 4) poll vss_out.txt for 300s; 5) classify the result honestly (recovering_vss / winfr_running / no_shadows / vss_empty_winfr_unavailable / vss_seen_no_hit / awaiting_user_doubleclick). The bat stays on the desktop if the user did not run it. Delete nothing",
+    "arena_updated":  "2026-10-06 10:54:51",
+    "local_updated":  "2026-10-06 19:01:19"
 }
