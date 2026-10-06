@@ -1,0 +1,27 @@
+{
+  "ready": true,
+  "locked": false,
+  "powerSource": "ac",
+  "batteryPercent": 100,
+  "livelyExe": "C:\\Program Files\\Lively Wallpaper\\Lively.exe",
+  "appStarted": true,
+  "setwpExit": 0,
+  "workerwChildLively": false,
+  "wallpaperLayerProven": true,
+  "wallpaperPlayerOwners": [
+    "mpv.exe"
+  ],
+  "coverWindows": 0,
+  "settingsFlipped": 2,
+  "zombiesBefore": 0,
+  "zombiesAfter": 0,
+  "mp4": "E:\\0mcp-agv-arena-optimized\\wallpapers\\lively-dynamic-r274\\hotori_dynamic_wallpaper_r274.mp4",
+  "mp4Bytes": 2664174,
+  "desktopChangedFromBeforeRatio": 0.8839819637345679,
+  "desktopLateMotionRatio": 0.2039327739197531,
+  "desktopLate2MotionRatio": 0.19251543209876543,
+  "persistentMotionProven": true,
+  "autostartReady": true,
+  "livelyOwnAutostart": true,
+  "tidyManifest": "C:\\Users\\文少\\Desktop\\DeskBox-Cute-Desktop-Organizer\\AUTO_TIDY_LAST_RUN.txt"
+}
