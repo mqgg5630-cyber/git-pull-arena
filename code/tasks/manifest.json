@@ -862,6 +862,9 @@
     ],
     "299": [
       "t250_screenshot_verify2_r299.ps1"
+    ],
+    "300": [
+      "t251_final_pass_r300.ps1"
     ]
   }
 }

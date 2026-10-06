@@ -520,3 +520,11 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 299 (2026-10-06, 截图验证修复版·最后一轮技术尝试)
 - r299 = `t250_*`：修复后的底部净带截图统计 → 若 r297 的嵌入已在渲染则直接存证；否则 Progman 0x052C 后 EnumWindows 收集全部顶层 WorkerW 候选（≤4 个），逐个 kill mpv → mpv --wid=<候选> → 12s×3 截图轮询，色彩达标即停。盒子不动。
 - 状态：⏳ 已排队。**本轮结束立即向用户完整汇报数据三态。**
+
+## round 299 结果（2026-10-06 18:26，判定成功/存证小崩）
+- **壁纸层确认在渲染**：底部净带 colorful_pct=53 / nonblack_pct=61——r297 的 mpv --wid=67222 嵌入实际成功。mpv 存活。exit 1 仅因 bmp_save 用了 ctypes.pack（应为 struct.pack），证据图未存。
+- 盒子 3/3。系统形态已全部达标。
+
+## round 300 (2026-10-06, 正式收尾回执)
+- r300 = `t251_*`：修复 struct.pack，重截证据带 r300_wallpaper_band.bmp + 盒子普查 + HideIcons 复核 + 正式 ready 判定（layer_visual + boxes>=2）。**round 300 预期首个任务级 PASS。**
+- 数据结论不变：九类库 C/D/E 均缺失（见 R294-R296），用户知情汇报随后发出。
