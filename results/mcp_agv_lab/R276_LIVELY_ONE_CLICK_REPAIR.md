@@ -1,0 +1,49 @@
+# R276 Lively dynamic wallpaper - desktop one-click repair
+time=2026-10-06 11:09:10
+user_request=desktop one-click launcher so a killed wallpaper can be restored manually
+screen_locked_detected=False
+lively_exe=C:\Program Files\Lively Wallpaper\Lively.exe
+mp4_exists=True bytes=2664174
+repair_py=E:\0mcp-agv-arena-optimized\wallpapers\lively-hotori\repair_lively_hotori.py exists=True bytes=4393
+desktop_bat_exists=True bytes=578
+   bat| @echo off
+   bat| title Lively Wallpaper One-Click Repair
+   bat| echo ==================================================
+   bat| echo   Dynamic Wallpaper One-Click Repair (r276)
+   bat| echo ==================================================
+   bat| echo.
+   bat| set "SCRIPT=E:\0mcp-agv-arena-optimized\wallpapers\lively-hotori\repair_lively_hotori.py"
+   bat| set "PY="
+   bat| where python.exe >nul 2>&1 && set "PY=python"
+   bat| if not defined PY where py.exe >nul 2>&1 && set "PY=py -3"
+   bat| if not defined PY (
+   bat|   echo [ERROR] Python not found - tell the agent.
+   bat|   pause
+   bat|   exit /b 1
+   bat| )
+   bat| %PY% "%SCRIPT%"
+   bat| echo.
+   bat| pause
+paths_txt_refreshed=True
+kill_test_start (simulating: something killed the wallpaper)
+taskkill_exit=128
+lively_processes_after_kill=0
+mpv_processes_after_kill=0
+layer_empty_after_kill=True players=0
+   repair| ========================================
+   repair|      ???? ???? (r276)
+   repair| ========================================
+   repair| [1/3] checking wallpaper state...
+   repair|      Lively ?????????...
+   repair|      ????????????
+repair_auto_exit=0
+   wallpaper_player| class=mpv owner=mpv.exe rect=(0, 0, 1536, 864)
+layer_present_after_repair=True
+frame_c_after_repair=E:\0github\git-sync\git-pull-arena-01a10bf3\results\mcp_agv_lab\r276_frame_c_after_repair.bmp ok=True width=1536 height=864 err=
+frame_d_after_repair=E:\0github\git-sync\git-pull-arena-01a10bf3\results\mcp_agv_lab\r276_frame_d_after_repair.bmp ok=True width=1536 height=864 err=
+motion_after_repair_ratio=0.073483
+motion_after_repair_avg=10.664
+motion_after_repair_proven=True
+one_click_repair_ready=True
+desktop_tidy_done=True
+LIVELY_ONE_CLICK_REPAIR_READY=True
