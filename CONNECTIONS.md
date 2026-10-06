@@ -696,3 +696,10 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 322 (2026-10-06, 恢复阶段 17：清场单实例重跑·最后一次 UAC)
 - r322 = `t273_*`：helper v10（提权独立）——① Stop-Process 全部 WinFR ② 单实例 `-WindowStyle Minimized` **无重定向**（真 console 仅最小化，排除管道阻塞）③ 60 分钟监控（60s/次 MON2 行）④ 终判 WINFR_DONE/WINFR_ZERO/WINFR_STILL_RUNNING。task：预告 popup→UAC→确认启动即退。
 - 状态：⏳ 已排队。
+
+## round 322 结果（2026-10-06 21:59，✅ task PASSED——清场成功）
+- UAC 确认（用户点"是"）。killed=3 remaining=0；单实例启动（Minimized 无重定向）；MON2 60s alive=True；winfr_procs=1。helper v10 独立监控至 ~22:59。
+
+## round 323 (2026-10-06, 恢复阶段 18：单实例进度)
+- r323 = `t274_*`：等 20 分钟读 MON2 行；WINFR_DONE/ZERO/STILL_RUNNING 出现即止；recovery 目录计数+进程数；有文件则按 Recovery_* 目录清点。
+- 状态：⏳ 已排队。
