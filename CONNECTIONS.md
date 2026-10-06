@@ -622,3 +622,10 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 312 (2026-10-06, 恢复阶段 9：全路径 UAC 触发)
 - r312 = `t263_*`：假设 watcher Start-Process -Verb RunAs 失败是 PATH 缺 powershell 目录（"没有应用程序与此操作…关联"）→ **全路径修复**：先弹 20s 预告 popup，再 attempt A（Start-Process 全路径 powershell.exe -Verb RunAs）→ 失败则 attempt B（全路径 cmd.exe 包装）。UAC 成功 → helper v4 直接跑（用户只点一次"是"）。仍失败 → 弹 bat 指引+300s 轮询兜底。
 - 状态：⏳ 已排队。
+
+## round 312 结果（2026-10-06 20:08，❌ crashed/14s——预告弹窗已显示但 UAC 没来）
+- launcher 的 .format() 遇到未转义的 try{ 花括号 → ValueError 崩溃（用户可能白等了 UAC）。教训：嵌入 PS 代码禁用 .format，改纯字符串拼接。
+
+## round 313 (2026-10-06, 恢复阶段 9b：拼接版重跑)
+- r313 = `t264_*`：t263 逻辑不变，launcher 改纯拼接（无 format 花括号）。预告 popup → attempt A（全路径 powershell -Verb RunAs）→ attempt B（cmd 包装）→ helper v4 跑 winfr segment 模式 → bat 兜底。
+- 状态：⏳ 已排队。
