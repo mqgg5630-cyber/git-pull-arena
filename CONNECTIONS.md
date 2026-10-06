@@ -285,3 +285,9 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - r273 复盘：壁纸其实**装好了**——Lively v2.2.1 用 mpv.exe 当播放器，`class=mpv owner=mpv.exe` 的窗口就嵌在 WorkerW 壁纸层（图标层之下，无覆盖窗口），像素 88% 变化 + 双探针持续运动。但判据写死找"Lively 名字的进程"→ 误判 → 回滚拆掉了装好的壁纸。
 - r274 = `t226_*`：结构判据改为「WorkerW/Progman 层内任何**非 explorer** 的全屏播放窗口」都算壁纸层（mpv/webview/gif 播放器通吃）；BatteryPause/PowerSaveModePause 按 0/1 整数正确关闭（r273 翻转 0 条的教训）；其余流程不变（杀僵尸→改设置→起 Lively→setwp→play→结构+像素双证→不回滚）。
 - 状态：⏳ 已排队。
+
+## round 274 结果（2026-10-06 10:31，✅ 真·动态壁纸成立，闭环）
+- **Lively Wallpaper v2.2.1** 正在播放 **Hotori Above a Sunset City**（hotori mp4）：`class=mpv owner=mpv.exe rect=(0,0,1536,864)` 的播放窗口嵌在 **WorkerW 壁纸层**（`wallpaper_layer_proven=True`，桌面图标层之下，无覆盖窗口）。
+- 像素：换上 88.4% 变化；~105s 20.4% / ~200s 19.3% 持续运动 → `persistent_motion_proven=True`。
+- `BatteryPause`/`PowerSaveModePause` 已按 0/1 整数正确关闭（电池供电也继续动）；开机自启走 Lively 自带 `Startup=true`。
+- round 274 自动 accept。轮询循环总账：268 ✅ 269-271 ❌ 272 ✅(VLC假壁纸,用户否决) 273 ❌(壁纸装好了但判据误杀回滚) **274 ✅ 真壁纸**。
