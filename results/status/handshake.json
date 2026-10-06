@@ -1,9 +1,9 @@
 {
-    "round":  297,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 297: retry the wallpaper embed (r296 crashed in 1s because state.json current=17 is an int - now handled via glob). taskkill mpv+Lively, Progman 0x052C to ensure WorkerW exists, run mpv --wid=\u003chwnd\u003e --no-audio --loop-file=inf --no-border --osc=no with the current wallpaper (glob 17-*.mp4 under E:\\...\\wallpapers\\lively-12), guarded-poll up to 90s for a non-explorer fullscreen child under WorkerW, report layer_final and the owning process. Leave the three deskbox windows untouched; read-only except the wallpaper player",
-    "arena_updated":  "2026-10-06 10:17:00",
-    "local_updated":  "2026-10-06 18:20:00"
+  "round": 298,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 298: screenshot verification of the wallpaper layer. r297 spawned mpv --wid successfully but EnumChildWindows cannot see it (mpv renders directly onto the target hwnd with no child window) - the desktop may already be showing the video. Jobs: 1) GDI BitBlt capture the bottom clear band of the screen (boxes are parked at the top), compute brightness/colorfulness stats; if colorful (>=8% colorful pixels, >=30% non-black) the wallpaper IS rendering - save evidence r298_wallpaper_band.bmp. 2) If not: locate the canonical WorkerW (GW_HWNDNEXT sibling of SHELLDLL_DefView), taskkill mpv+Lively, re-embed mpv --wid with the current wallpaper, poll screenshots every 12s up to 75s. 3) Leave the three boxes untouched. Read-only except the wallpaper player",
+  "arena_updated": "2026-10-06 10:21:55",
+  "local_updated": null
 }
