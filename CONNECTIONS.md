@@ -761,3 +761,11 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 330 (WDR 内容嗅探)
 - r330 = `t281_*`：对 WDR 全部文件做魔数分类（PK-zip / OLE2-doc / PDF / RTF / zeros / unknown + 全零检测 + 最大文件头 16 进制）+ 文件数是否还在涨 + 有窗口进程列表（找恢复工具本体）。只读无 UAC。
 - 状态：⏳ 已排队。
+
+## round 330 结果（2026-10-06 23:35，✅ PASSED——WDR 产物=纯零）
+- **524 文件/1015MB 内容全零，37 个 0KB**：WDR 工具只写出了文件名清单（疑从 USN journal/MFT 残迹取名），数据一个字节没恢复——demo/付费墙套路。它还向 E: 写了 1GB 零（对可恢复簇是伤害）。文件数稳定 561（工具已停）。进程列表步骤因 unpack bug 崩（r331 补查）。
+- 判定：WDR 工具弃用；但 561 个文件名清单=丢失文档完整清单（WDR_INDEX.md）。
+
+## round 331 (磁盘介质判定——雕刻可行性)
+- r331 = `t282_*`：Get-PhysicalDisk MediaType/BusType + Win32_DiskDrive 型号 + 盘符映射 + 窗口进程列表（找 WDR 工具本体）+ E: 剩余空间复查。**E: 若 SSD+TRIM → 数据簇已被清、雕刻无望；若 HDD → 大部分簇应存活，PhotoRec/DMDE 有真机会**。只读无 UAC。
+- 状态：⏳ 已排队。
