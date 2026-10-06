@@ -327,7 +327,11 @@
     "results/mcp_agv_lab/R274_LIVELY_DYNAMIC_WALLPAPER.md",
     "results/mcp_agv_lab/r274-lively-dynamic-wallpaper.json",
     "results/mcp_agv_lab/r274_frame_b_after.bmp",
-    "results/mcp_agv_lab/r274_frame_f_late2.bmp"
+    "results/mcp_agv_lab/r274_frame_f_late2.bmp",
+    "code/tasks/t227_run_lively_reboot_proof_r275.ps1",
+    "code/tasks/t227_lively_reboot_proof_r275.py",
+    "results/mcp_agv_lab/R275_LIVELY_WALLPAPER_REBOOT_PROOF.md",
+    "results/mcp_agv_lab/r275-lively-wallpaper-reboot-proof.json"
   ],
   "forbid_files": [
     "local/inbox",
@@ -389,7 +393,8 @@
     "results/mcp_agv_lab/R267_STATIC_ANIME_WALLPAPER.md": "(?s)(?=.*static_wallpaper_set=True)(?=.*screenshot_png=.*exists=True)(?=.*vlc_process_count=0)(?=.*desktop_tidy_done=True).*",
     "results/mcp_agv_lab/R268_LOOP_POLL_SMOKE.md": "(?s)(?=.*auto_pull_branch_ok=True)(?=.*auto_pull_head_ok=True)(?=.*code_exec_ok=True)(?=.*self_mapped_ok=True)(?=.*receipt_written=True)(?=.*loop_smoke_ok=True).*",
     "results/mcp_agv_lab/R272_DYNAMIC_VIDEO_WALLPAPER.md": "(?s)(?=.*wallpaper_inherently_dynamic=True)(?=.*persistent_motion_proven=True)(?=.*actual_desktop_changed_to_new_wallpaper=True)(?=.*actual_desktop_is_moving_late=True)(?=.*actual_desktop_is_moving_late2=True)(?=.*autostart_ready=True)(?=.*DYNAMIC_VIDEO_WALLPAPER_READY=True).*",
-    "results/mcp_agv_lab/R274_LIVELY_DYNAMIC_WALLPAPER.md": "(?s)(?=.*wallpaper_layer_proven=True)(?=.*persistent_motion_proven=True)(?=.*actual_desktop_changed_to_new_wallpaper=True)(?=.*actual_desktop_is_moving_late=True)(?=.*actual_desktop_is_moving_late2=True)(?=.*autostart_ready=True)(?=.*LIVELY_DYNAMIC_WALLPAPER_READY=True).*"
+    "results/mcp_agv_lab/R274_LIVELY_DYNAMIC_WALLPAPER.md": "(?s)(?=.*wallpaper_layer_proven=True)(?=.*persistent_motion_proven=True)(?=.*actual_desktop_changed_to_new_wallpaper=True)(?=.*actual_desktop_is_moving_late=True)(?=.*actual_desktop_is_moving_late2=True)(?=.*autostart_ready=True)(?=.*LIVELY_DYNAMIC_WALLPAPER_READY=True).*",
+    "results/mcp_agv_lab/R275_LIVELY_WALLPAPER_REBOOT_PROOF.md": "(?s)(?=.*keeper_installed=True)(?=.*wallpaper_layer_proven=True)(?=.*persistent_motion_proven=True)(?=.*setwp_ok=True)(?=.*LIVELY_WALLPAPER_REBOOT_PROOF_READY=True).*"
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,
@@ -516,7 +521,11 @@
     "results/mcp_agv_lab/R274_LIVELY_DYNAMIC_WALLPAPER.md": 1500,
     "results/mcp_agv_lab/r274-lively-dynamic-wallpaper.json": 800,
     "results/mcp_agv_lab/r274_frame_b_after.bmp": 1000000,
-    "results/mcp_agv_lab/r274_frame_f_late2.bmp": 1000000
+    "results/mcp_agv_lab/r274_frame_f_late2.bmp": 1000000,
+    "code/tasks/t227_run_lively_reboot_proof_r275.ps1": 300,
+    "code/tasks/t227_lively_reboot_proof_r275.py": 19755,
+    "results/mcp_agv_lab/R275_LIVELY_WALLPAPER_REBOOT_PROOF.md": 3216,
+    "results/mcp_agv_lab/r275-lively-wallpaper-reboot-proof.json": 624
   },
   "max_bytes": {
     "deliverable/LINK_PROOF_v2.8.1.docx": 3000000,

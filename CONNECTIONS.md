@@ -296,3 +296,9 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - 用户报告：**重启后动态壁纸没了**（Lively `Startup=true` 没有恢复）。
 - r275 = `t227_*`：① 重启后状态诊断（Lively/mpv 进程、壁纸层、HKCU/HKLM Run + Startup + 计划任务里的 lively 注册、WallpaperLayout.json 前后对比、Lively 目录日志）② 重设壁纸（杀僵尸→起 Lively→setwp→play）+ WorkerW 结构证明 + 双探针像素证明 ③ **装开机守护 Keeper**：Startup `Lively Wallpaper Keeper.bat` → pythonw 跑 `E:\0mcp-agv-arena-optimized\wallpapers\lively-hotori\keeper_lively_hotori.py`（登录等 45 秒 → Lively 没跑就拉起 → 壁纸层空就重设 setwp，重试 3 次，写 keeper.log）。壁纸永久存放在 `lively-hotori` 目录（不再带轮次号）。
 - 状态：⏳ 已排队。
+
+## round 275 结果（2026-10-06 11:05，✅ 重启自愈闭环）
+- 诊断：HKCU Run 里 Lively 自启在（`Lively REG_SZ "...\Lively.exe"`）；**轮询执行时 Lively/mpv/壁纸层都已自己恢复**——即重启后壁纸会回来，但 Lively 恢复慢（`WallpaperWaitTime=20s` + 应用启动 + 播放器拉起，登录后约 30-60 秒才可见），用户看到的是"刚登录还没铺回来"的窗口期。
+- 保险：**Keeper 已装**——Startup `Lively Wallpaper Keeper.bat` → pythonw `E:\0mcp-agv-arena-optimized\wallpapers\lively-hotori\keeper_lively_hotori.py`：登录等 45s → 壁纸层空就拉 Lively + setwp（重试 3 次）→ 写 `keeper.log`。壁纸永久存放在 `lively-hotori` 目录。
+- 本轮：setwp ✅、WorkerW 结构 ✅、双探针像素 ✅、keeper_installed ✅、自动 accept。
+- 验证方法：再重启一次，登录后等 1 分钟；若还没回来，看 keeper.log + 告诉我，值守循环会修。
