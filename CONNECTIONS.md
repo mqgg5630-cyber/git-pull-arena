@@ -486,3 +486,12 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 295 (2026-10-06, C 盘搜索+壁纸硬修复)
 - r295 = `t246_*`：① keeper12 守护脚本恢复壁纸层（失败则 kill mpv/Lively + 直接重启 + 180s 长轮询）② C:\Users 全目录关键词搜索（r294 未覆盖 C 盘；Auto Tidy 目标可能在用户配置目录）③ 旧 DeskBox 残余清点（schtasks 匹配 tidy/deskbox/organiz/cute、apps\DeskBox 目录、进程、quark-cloud-drive 一级）④ 盒子不动。只读不删。
 - 状态：⏳ 已排队。
+
+## round 295 结果（2026-10-06 18:04，❌ FAIL：C 盘也无、壁纸仍未嵌入）
+- C:\Users 全目录关键词 0 命中——三盘（C/D/E）均无九类库副本。计划任务无 tidy/deskbox 匹配；旧 DeskBox.exe 未运行；quark-cloud-drive 只是应用本体非同步目录。桌面缩水非计划任务/旧应用/网盘所为。
+- keeper12.py（630B）跑过但未恢复层；Lively 直接重启+180s 轮询仍 False。mpv+Lively 进程活着但从未嵌入 WorkerW。盒子 3/3。exit 6（333s）。
+- 剩余嫌疑：v3.1 盒子自身是否"收纳"桌面文件（关键词搜不到的自建目录）→ r296 读 box.py/deskbox.py 源码定性。
+
+## round 296 (2026-10-06, 盒子源码定性+mpv 直嵌)
+- r296 = `t247_*`：① 完整转储 box.py(8501B)/deskbox.py(4121B) 源码到回执供审计 ② 源码里挖 shutil/move/copy/rename/路径候选——若盒子收纳桌面文件则顺藤摸瓜找回 44 个消失的 lnk ③ 壁纸改自管 mpv：kill mpv/Lively → Progman 0x052C 生成 WorkerW → `mpv --wid=<hwnd> --loop-file=inf` 直嵌 17-pure-soul.mp4 → 轮询验证 ④ 盒子不动。只读。
+- 状态：⏳ 已排队。
