@@ -1,0 +1,656 @@
+check round 324 on LAPTOP-R77M5D6M - passed (exit 0)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 936s
+
+OK: all .ps1 files are ASCII-only
+OK: sync.config.json branch=arena/01a10bf3-git-pull-arena
+OK: sync.config.json branch matches HEAD (arena/01a10bf3-git-pull-arena)
+OK: root scripts identical to skills/git-sync/scripts
+OK: no drive-style variable typos ($var:)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+OK: every .ps1 parses
+   (gate ran via E:\hermes\git\bin\bash.exe [git])
+== accept 2a: silent push PROVEN (ls-remote + push --dry-run, prompts disabled)
+== accept 2b (fallback): one LONG-LIVED loop process - one brief flash per logon,
+   not per poll. For zero flash: admin PowerShell -> .\watch.ps1 -Unregister ;
+   .\watch.ps1 -Register -Headless   (or fix the launcher, see watch-*.log)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+== check_loop_summary PASSED
+== accept 2c: watcher closing lines verified (every exit path has its summary)
+== deliverables: 2 Office file(s) declared in deliverable/OFFICE_HASHES.json
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.docx (39743 B, docx)
+   OK   3b all 6 required parts present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.docx (17 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B, pptx)
+   OK   3b all 9 required parts present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.pptx (52 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3g slides in deliverable/LINK_PROOF_v2.8.1.pptx : 8 >= 8
+   OK   3h Word.Application opened read-only, name=LINK_PROOF_v2.8.1.docx : deliverable\LINK_PROOF_v2.8.1.docx
+   OK   3h PowerPoint.Application opened read-only, slides=8 : deliverable\LINK_PROOF_v2.8.1.pptx
+== task r324: t275_winfr_overnight_r324.ps1
+# R324 helper v10 final verdict + overnight decision
+time=2026-10-06 22:27:18
+verdict=None
+  tail| MON2 elapsed=1861s alive=True files=0
+  tail| MON2 elapsed=1921s alive=True files=0
+  tail| MON2 elapsed=1981s alive=True files=0
+  tail| MON2 elapsed=2041s alive=True files=0
+  tail| MON2 elapsed=2101s alive=True files=0
+  tail| MON2 elapsed=2161s alive=True files=0
+  tail| MON2 elapsed=2221s alive=True files=0
+  tail| MON2 elapsed=2281s alive=True files=0
+  tail| MON2 elapsed=2341s alive=True files=0
+  tail| MON2 elapsed=2401s alive=True files=0
+  tail| MON2 elapsed=2461s alive=True files=0
+  tail| MON2 elapsed=2521s alive=True files=0
+recovery now: 0 files, 0MB
+winfr_procs=0
+no verdict yet - treat as still running.
+R324_OVERNIGHT_DECISION_COMPLETE=True
+== task r324 t275_winfr_overnight_r324.ps1 ok (902s)
+== accept 2d: hands-free auto_pull/auto_push present in watch.ps1
+== success criteria: results/status/success_criteria.json
+   v2.8.1 on arena/01a10bf3-git-pull-arena (hands-free loop smoke round 268): the newest skill (source branch arena/01a0a98d-git-pull-arena, installer refuses to downgrade) plus the repo gate (code/check_all.sh, which now proves each python candidate python3 / python / py -3) and the real-machine check (code/local_check.ps1, sections 3a-3h). The deliverables LINK_PROOF_v2.8.1.docx / .pptx travel through git and are judged by the Windows watcher: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide count and a real Word/PowerPoint open. 'Local' means that machine's scheduled watcher - never a sandbox folder, never a hand-made stand-in skill. From round 22 on the repo also ships code/tasks/*.ps1 (mapped per round in code/tasks/manifest.json) which run on the machine inside local_check.ps1 section 4 as child processes: round 22 = read-only diagnostics for the Antigravity login, the Java install state and E: cleanup candidates.
+   OK   exists: 01a0a821.md (2016 B)
+   OK   exists: skills/git-sync/VERSION (6 B)
+   OK   exists: skills/git-sync/scripts/agent-install.sh (13404 B)
+   OK   exists: skills/git-sync/scripts/agent-handoff.sh (4603 B)
+   OK   exists: skills/git-sync/scripts/agent-handsfree.sh (3989 B)
+   OK   exists: skills/git-sync/scripts/agent-criteria.sh (5190 B)
+   OK   exists: skills/git-sync/scripts/watch.ps1 (84094 B)
+   OK   exists: skills/git-sync/templates/one-sentence.md (6524 B)
+   OK   exists: skills/git-sync/templates/gate.yml (1166 B)
+   OK   exists: code/check_all.sh (9945 B)
+   OK   exists: code/local_check.ps1 (32116 B)
+   OK   exists: code/make_link_proof.py (22948 B)
+   OK   exists: deliverable/OFFICE_HASHES.json (2401 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.docx (39743 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B)
+   OK   exists: watch.ps1 (84094 B)
+   OK   exists: code/tasks/manifest.json (18409 B)
+   OK   exists: code/tasks/t1_antigravity_diag.ps1 (14461 B)
+   OK   exists: code/tasks/t2_java_diag.ps1 (8626 B)
+   OK   exists: code/tasks/t3_edrive_scan.ps1 (9393 B)
+   OK   exists: code/tasks/t1_fix_antigravity.ps1 (10411 B)
+   OK   exists: code/tasks/t3_edrive_scan2.ps1 (9007 B)
+   OK   exists: code/tasks/t2_install_java.ps1 (14030 B)
+   OK   exists: code/tasks/t3_edrive_scan3.ps1 (7084 B)
+   OK   exists: code/tasks/t4_cleanup_dryrun.ps1 (5995 B)
+   OK   exists: code/tasks/t1_antigravity_verify.ps1 (3793 B)
+   OK   exists: code/tasks/t2_cleanup_exec.ps1 (12624 B)
+   OK   exists: results/status/round22_findings.md (3511 B)
+   OK   exists: code/tasks/t5_cleanup_fix.ps1 (7475 B)
+   OK   exists: code/tasks/t7_ligplus_test.ps1 (6214 B)
+   OK   exists: code/tasks/t1_antigravity_tun2.ps1 (7694 B)
+   OK   exists: code/tasks/t6_docker_report.ps1 (5648 B)
+   OK   exists: code/tasks/t8_uvcache_finish.ps1 (2719 B)
+   OK   exists: code/tasks/t9_ligplus_upgrade.ps1 (8739 B)
+   OK   exists: code/tasks/t10_ligplus_final.ps1 (9282 B)
+   OK   exists: code/tasks/t11_javagui_fix.ps1 (3986 B)
+   OK   exists: code/tasks/t12_ligplus_new.ps1 (7178 B)
+   OK   exists: code/tasks/t13_docker_autofigure.ps1 (2917 B)
+   OK   exists: code/tasks/t14_recyclebin_empty.ps1 (2689 B)
+   OK   exists: code/tasks/t15_uvcache_final.ps1 (4126 B)
+   OK   exists: code/tasks/t16_uvcache_final2.ps1 (3987 B)
+   OK   exists: code/tasks/t17_uv_delete_bg.ps1 (4570 B)
+   OK   exists: code/tasks/t18_edrive_survey.ps1 (15793 B)
+   OK   exists: code/tasks/t17b_uv_finish.ps1 (3803 B)
+   OK   exists: code/tasks/t19_cleanup_approved.ps1 (9331 B)
+   OK   exists: code/tasks/t20_docker_pagefile.ps1 (5765 B)
+   OK   exists: code/tasks/t21_optimize_review.ps1 (7881 B)
+   OK   exists: code/tasks/t22_pagefile_uac.ps1 (2571 B)
+   OK   exists: code/tasks/t23_tailscale_verify.ps1 (2476 B)
+   OK   exists: code/tasks/t24_oldsync_cleanup.ps1 (2537 B)
+   OK   exists: code/tasks/t25_oldtask_uac.ps1 (4503 B)
+   OK   exists: code/tasks/t26_pagefile_fix_uac.ps1 (4880 B)
+   OK   exists: code/tasks/t27_pagefile_registry.ps1 (4513 B)
+   OK   exists: code/tasks/t28_reboot_verify.ps1 (2764 B)
+   OK   exists: code/tasks/t29_ddrive_survey.ps1 (9818 B)
+   OK   exists: code/tasks/t30_tailscale_prep.ps1 (5189 B)
+   OK   exists: code/tasks/t31_enable_rdp_ssh.ps1 (4127 B)
+   OK   exists: code/tasks/t32_wsl26_survey.ps1 (4565 B)
+   OK   exists: code/tasks/t33_hpc_probe.ps1 (5024 B)
+   OK   exists: code/tasks/t34_hpc_bridge.ps1 (4027 B)
+   OK   exists: code/tasks/t35_desktop_access_probe.ps1 (4368 B)
+   OK   exists: code/tasks/t36_autostart_vpn_tailscale.ps1 (6281 B)
+   OK   exists: code/tasks/t37_software_inventory.ps1 (6288 B)
+   OK   exists: code/tasks/t38_uninstall_qwenpaw.ps1 (6601 B)
+   OK   exists: code/tasks/t39_toolbox_and_paths.ps1 (6919 B)
+   OK   exists: code/tasks/t40_mcp_n8n_r_survey.ps1 (12366 B)
+   OK   exists: code/tasks/t41_bigdocs_report.ps1 (8722 B)
+   OK   exists: code/tasks/t42_fix_desktop_and_rdetail.ps1 (3650 B)
+   OK   exists: code/tasks/t43_wsl_r_probe2.ps1 (1800 B)
+   OK   exists: code/tasks/t44_r_final_check.ps1 (1752 B)
+   OK   exists: code/tasks/t45_r_versions_cleanup.ps1 (6361 B)
+   OK   exists: code/tasks/t46_zotero_recon.ps1 (11043 B)
+   OK   exists: code/tasks/t47_pipeline_fetch.ps1 (6956 B)
+   OK   exists: code/tasks/t48_run.ps1 (2765 B)
+   OK   exists: code/tasks/t48_english_citations.py (3044 B)
+   OK   exists: code/tasks/t48_zotero_match.py (2228 B)
+   OK   exists: code/tasks/t49_run.ps1 (912 B)
+   OK   exists: code/tasks/t49_dump_refs.py (3503 B)
+   OK   exists: code/tasks/t50_run.ps1 (1969 B)
+   OK   exists: code/tasks/t50_zotero_link.py (14995 B)
+   OK   exists: code/tasks/t51_run.ps1 (1053 B)
+   OK   exists: code/tasks/t51_verify_fix.py (16798 B)
+   OK   exists: code/tasks/t52_run.ps1 (1041 B)
+   OK   exists: code/tasks/t52_build_final.py (17034 B)
+   OK   exists: code/tasks/t53_word_check.ps1 (1876 B)
+   OK   exists: code/tasks/t54_recon2.ps1 (6934 B)
+   OK   exists: code/tasks/t54_crossref_verify.py (3308 B)
+   OK   exists: code/tasks/t55_run.ps1 (4739 B)
+   OK   exists: code/tasks/t55_rebuild9.py (17034 B)
+   OK   exists: code/tasks/t56_abtest.ps1 (5636 B)
+   OK   exists: code/tasks/t56_import_zotero.py (2992 B)
+   OK   exists: code/tasks/t57_run.ps1 (981 B)
+   OK   exists: code/tasks/t57_bind_uris.py (5318 B)
+   OK   exists: code/tasks/t58_recon_install.ps1 (6846 B)
+   OK   exists: code/tasks/t59_install_bridge.ps1 (10039 B)
+   OK   exists: code/tasks/t60_rot_bridge.ps1 (7846 B)
+   OK   exists: code/tasks/t61_rot_fallback.ps1 (6145 B)
+   OK   exists: code/tasks/t62_file_bridge.ps1 (12790 B)
+   OK   exists: code/tasks/fig1_rebuild_worker.ps1 (17400 B)
+   OK   exists: code/tasks/t63_final_rebuild.ps1 (3259 B)
+   OK   exists: code/tasks/t64_poll_rebuild.ps1 (4877 B)
+   OK   exists: code/tasks/t65_relaunch_worker.ps1 (3077 B)
+   OK   exists: code/tasks/t66_diag_rebuild.ps1 (3307 B)
+   OK   exists: code/tasks/t67_probe_ai_state.ps1 (6861 B)
+   OK   exists: code/tasks/t68_bridge_v2_resume.ps1 (7061 B)
+   OK   exists: code/tasks/t69_tfprobe.ps1 (5639 B)
+   OK   exists: code/tasks/t70_v2_rebuild.ps1 (5637 B)
+   OK   exists: code/tasks/t71_install_celllct.ps1 (11998 B)
+   OK   exists: code/tasks/t72_fix_getcs.ps1 (3975 B)
+   OK   exists: code/tasks/t73_v5_relaunch.ps1 (2813 B)
+   OK   exists: code/tasks/t74_hpc_watch.ps1 (4333 B)
+   OK   exists: code/tasks/t75_test_celllct.ps1 (8744 B)
+   OK   exists: code/tasks/t76_test_cellsu7.ps1 (8729 B)
+   OK   exists: code/tasks/t77_demo_celllct.ps1 (3053 B)
+   OK   exists: code/tasks/t78_demo_cellsu7.ps1 (3053 B)
+   OK   exists: code/tasks/t79_desktop_ssh_and_paths.ps1 (8292 B)
+   OK   exists: code/tasks/t80_desktop_ssh_stability.ps1 (3135 B)
+   OK   exists: code/tasks/t81_smb_key_install.ps1 (6256 B)
+   OK   exists: code/tasks/t82_bni_ssh_test.ps1 (2170 B)
+   OK   exists: code/tasks/t83_deskprobe.ps1 (3312 B)
+   OK   exists: code/tasks/t84_deskstage_sync.ps1 (5216 B)
+   OK   exists: code/tasks/desktop_worker.ps1 (11147 B)
+   OK   exists: code/tasks/install_desktop.ps1 (7594 B)
+   OK   exists: code/tasks/t85_syncfix.ps1 (3014 B)
+   OK   exists: code/tasks/t86_deskinstall.ps1 (3447 B)
+   OK   exists: code/tasks/t87_deskpython.ps1 (5575 B)
+   OK   exists: code/tasks/t88_deskdeps.ps1 (3839 B)
+   OK   exists: code/tasks/t89_desk_fixture.ps1 (3801 B)
+   OK   exists: code/tasks/t90_desk_fig1.ps1 (3772 B)
+   OK   exists: code/tasks/t91_desk_fig1b.ps1 (3773 B)
+   OK   exists: code/tasks/t92_desk_collect.ps1 (3232 B)
+   OK   exists: code/tasks/t93_desk_antigravity.ps1 (2326 B)
+   OK   exists: code/tasks/desk_antigravity_diag.ps1 (6657 B)
+   OK   exists: code/tasks/t94_desk_agy_fix.ps1 (2146 B)
+   OK   exists: code/tasks/desk_antigravity_fix.ps1 (5081 B)
+   OK   exists: code/tasks/t95_desk_agy_fix2.ps1 (2152 B)
+   OK   exists: code/tasks/desk_antigravity_fix2.ps1 (5225 B)
+   OK   exists: code/tasks/t96_desk_agy_verify.ps1 (2060 B)
+   OK   exists: code/tasks/desk_antigravity_verify.ps1 (2657 B)
+   OK   exists: code/tasks/t97_desk_agy_fix3.ps1 (2000 B)
+   OK   exists: code/tasks/desk_antigravity_fix3.ps1 (4558 B)
+   OK   exists: code/tasks/t98_desk_agy_verify2.ps1 (2079 B)
+   OK   exists: code/tasks/desk_antigravity_verify2.ps1 (3475 B)
+   OK   exists: code/tasks/t99_desk_agy_verify3.ps1 (3333 B)
+   OK   exists: code/tasks/desk_antigravity_verify3.ps1 (6500 B)
+   OK   exists: code/tasks/t100_desk_agy_fix4.ps1 (2698 B)
+   OK   exists: code/tasks/desk_antigravity_fix4.ps1 (13273 B)
+   OK   exists: code/tasks/t101_desk_agy_fix4.ps1 (3191 B)
+   OK   exists: code/tasks/t102_desk_agy_verify4.ps1 (2522 B)
+   OK   exists: code/tasks/desk_antigravity_verify4.ps1 (6413 B)
+   OK   exists: code/tasks/t103_desk_sync_survey.ps1 (7289 B)
+   OK   exists: code/tasks/desk_survey_sync.ps1 (3855 B)
+   OK   exists: code/tasks/t104_desk_ide_sync.ps1 (7597 B)
+   OK   exists: code/tasks/desk_sync_ide.ps1 (6997 B)
+   OK   exists: code/tasks/t105_laptop_wps_harness.ps1 (11541 B)
+   OK   exists: code/tasks/t106_laptop_impress_patch.ps1 (6865 B)
+   OK   exists: code/tasks/desk_wps_install.ps1 (7691 B)
+   OK   exists: code/tasks/verify_pptx.py (710 B)
+   OK   exists: code/tasks/t107_laptop_impress_patch2.ps1 (6920 B)
+   OK   exists: code/tasks/t108_laptop_harness_patch2.ps1 (5486 B)
+   OK   exists: code/tasks/patch_harness.py (4098 B)
+   OK   exists: code/tasks/wpsdl.cmd (1189 B)
+   OK   exists: code/tasks/t109_laptop_impress_retry.ps1 (4040 B)
+   OK   exists: code/tasks/t109_cancel_desktop_status.ps1 (1495 B)
+   OK   exists: code/tasks/t110_desk_wpsdl_fix.ps1 (3592 B)
+   OK   exists: code/tasks/t111_desk_wps_go.ps1 (2776 B)
+   OK   exists: code/tasks/t112_desk_deck_collect.ps1 (2851 B)
+   OK   exists: code/tasks/desk_harness_deck.py (8671 B)
+   OK   exists: code/tasks/t111b_desk_wps_go2.ps1 (3934 B)
+   OK   exists: code/tasks/t113_desk_wps_silent.ps1 (3065 B)
+   OK   exists: code/tasks/desk_wps_install2.ps1 (8618 B)
+   OK   exists: code/tasks/t114_desk_wps_launch.ps1 (2486 B)
+   OK   exists: code/tasks/desk_wps_launch.ps1 (8930 B)
+   OK   exists: code/tasks/t115_desk_wps_register.ps1 (2456 B)
+   OK   exists: code/tasks/desk_wps_register.ps1 (9949 B)
+   OK   exists: code/tasks/t116_desk_interactive.ps1 (4975 B)
+   OK   exists: code/tasks/desk_wps_interactive.ps1 (6845 B)
+   OK   exists: code/tasks/wpsrun.cmd (103 B)
+   OK   exists: code/tasks/t117_desk_automation.ps1 (3344 B)
+   OK   exists: code/tasks/desk_wps_automation.ps1 (9332 B)
+   OK   exists: code/tasks/t118_desk_final.ps1 (3671 B)
+   OK   exists: code/tasks/desk_wps_final.ps1 (5305 B)
+   OK   exists: code/tasks/t119_desk_final2.ps1 (3522 B)
+   OK   exists: code/tasks/desk_wps_final2.ps1 (5158 B)
+   OK   exists: code/tasks/t120_desk_warm.ps1 (3525 B)
+   OK   exists: code/tasks/desk_wpp_warm.ps1 (6716 B)
+   OK   exists: code/tasks/t121_desk_warm2.ps1 (4123 B)
+   OK   exists: code/tasks/desk_warm2.ps1 (6012 B)
+   OK   exists: code/tasks/deck_warm_build.py (7937 B)
+   OK   exists: code/tasks/t122_amp_deck.ps1 (3809 B)
+   OK   exists: code/tasks/desk_amp_deck.ps1 (4495 B)
+   OK   exists: code/tasks/amp_deck_build.py (16739 B)
+   OK   exists: code/tasks/t123_amp_deck2.ps1 (3851 B)
+   OK   exists: code/tasks/desk_amp_deck2.ps1 (4553 B)
+   OK   exists: code/tasks/amp_deck_v2_build.py (36459 B)
+   OK   exists: code/tasks/t124_cpe_setup.ps1 (2615 B)
+   OK   exists: code/tasks/desk_cpe_setup.ps1 (6175 B)
+   OK   exists: code/tasks/t125_cpe_setup2.ps1 (2624 B)
+   OK   exists: code/tasks/t126_cpe_test.ps1 (3617 B)
+   OK   exists: code/tasks/desk_cpe_test.ps1 (5058 B)
+   OK   exists: code/tasks/t127_cpe_test2.ps1 (3950 B)
+   OK   exists: code/tasks/desk_cpe_test2.ps1 (6813 B)
+   OK   exists: code/tasks/t128_cpe_test3.ps1 (4550 B)
+   OK   exists: code/tasks/desk_cpe_test3.ps1 (9346 B)
+   OK   exists: code/tasks/watcher.ps1 (4592 B)
+   OK   exists: code/tasks/prepcpe.ps1 (4427 B)
+   OK   exists: code/tasks/t129_cpe_test4.ps1 (4516 B)
+   OK   exists: code/tasks/desk_cpe_test4.ps1 (8865 B)
+   OK   exists: deliverable/patches/goutoujunshi-love-letter-confession-bfb071b.patch (104153 B)
+   OK   exists: code/tasks/t190_apply_goutoujunshi_love_letter_r239.ps1 (7583 B)
+   OK   exists: results/mcp_agv_lab/GOUTOUJUNSHI_LOVE_LETTER_R239.md (3838 B)
+   OK   exists: deliverable/patches/goutoujunshi-standalone-love-letter-gem.patch (109761 B)
+   OK   exists: code/tasks/t191_apply_love_letter_standalone_gem_r240.ps1 (7613 B)
+   OK   exists: results/mcp_agv_lab/LOVE_LETTER_STANDALONE_GEM_R240.md (3336 B)
+   OK   exists: deliverable/assets/cute_professional_id_photo.png (2678790 B)
+   OK   exists: code/tasks/t192_install_media_career_tools_r241.ps1 (34732 B)
+   OK   exists: results/mcp_agv_lab/R241_INSTALL_MEDIA_CAREER_TOOLS.md (4957 B)
+   OK   exists: results/mcp_agv_lab/r241-install-media-career-tools.json (7353 B)
+   OK   exists: code/tasks/t193_finish_media_career_tools_r242.ps1 (27164 B)
+   OK   exists: results/mcp_agv_lab/R242_FINISH_MEDIA_CAREER_TOOLS.md (7966 B)
+   OK   exists: results/mcp_agv_lab/r242-finish-media-career-tools.json (2732 B)
+   OK   exists: code/tasks/t194_install_deskbox_r243.ps1 (7060 B)
+   OK   exists: results/mcp_agv_lab/R243_DESKBOX_INSTALL.md (1208 B)
+   OK   exists: results/mcp_agv_lab/r243-deskbox-install.json (374 B)
+   OK   exists: deliverable/assets/anime_dynamic_wallpaper_v2.png (4252118 B)
+   OK   exists: code/tasks/t195_hard_anime_video_wallpaper_r244.ps1 (29844 B)
+   OK   exists: results/mcp_agv_lab/R244_HARD_ANIME_VIDEO_WALLPAPER.md (1259 B)
+   OK   exists: results/mcp_agv_lab/r244-hard-anime-video-wallpaper.json (2425 B)
+   OK   exists: code/tasks/t196_set_dynamic_wallpaper_report_r245.ps1 (11909 B)
+   OK   exists: results/mcp_agv_lab/R245_DYNAMIC_WALLPAPER_VERIFY.md (1781 B)
+   OK   exists: results/mcp_agv_lab/r245-dynamic-wallpaper-verify.json (1529 B)
+   OK   exists: deliverable/assets/anime_ultra_dynamic_wallpaper_r246.png (4243754 B)
+   OK   exists: code/tasks/t197_ultra_hypit_wallpaper_r246.ps1 (24946 B)
+   OK   exists: results/mcp_agv_lab/R246_ULTRA_HYPIT_ANIME_WALLPAPER.md (4504 B)
+   OK   exists: results/mcp_agv_lab/r246-ultra-hypit-anime-wallpaper.json (1647 B)
+   OK   exists: deliverable/assets/cute_anime_live_wallpaper_r247.png (3966340 B)
+   OK   exists: code/tasks/t198_cute_dynamic_wallpaper_r247.ps1 (21576 B)
+   OK   exists: results/mcp_agv_lab/R247_CUTE_DYNAMIC_WALLPAPER.md (12677 B)
+   OK   exists: results/mcp_agv_lab/r247-cute-dynamic-wallpaper.json (2601 B)
+   OK   exists: code/tasks/t199_force_lively_args_r248.ps1 (12206 B)
+   OK   exists: results/mcp_agv_lab/R248_FORCE_LIVELY_DYNAMIC.md (7121 B)
+   OK   exists: results/mcp_agv_lab/r248-force-lively-dynamic.json (1151 B)
+   OK   exists: code/tasks/t200_lively_equals_r249.ps1 (9605 B)
+   OK   exists: results/mcp_agv_lab/R249_LIVELY_EQUALS_DYNAMIC.md (6040 B)
+   OK   exists: results/mcp_agv_lab/r249-lively-equals-dynamic.json (762 B)
+   OK   exists: code/tasks/t201_lively_exact_args_r250.ps1 (5473 B)
+   OK   exists: results/mcp_agv_lab/R250_LIVELY_EXACT_ARGS.md (1372 B)
+   OK   exists: results/mcp_agv_lab/r250-lively-exact-args.json (440 B)
+   OK   exists: code/tasks/t202_visible_dynamic_wallpaper_r251.ps1 (22936 B)
+   OK   exists: results/mcp_agv_lab/R251_VISIBLE_DYNAMIC_WALLPAPER.md (2048 B)
+   OK   exists: results/mcp_agv_lab/r251-visible-dynamic-wallpaper.json (1598 B)
+   OK   exists: code/tasks/t203_workerw_dynamic_wallpaper_r252.ps1 (25239 B)
+   OK   exists: code/tasks/t204_restore_visible_dynamic_wallpaper_r253.ps1 (23009 B)
+   OK   exists: results/mcp_agv_lab/R253_RESTORE_VISIBLE_DYNAMIC_WALLPAPER.md (2064 B)
+   OK   exists: results/mcp_agv_lab/r253-restore-visible-dynamic-wallpaper.json (1628 B)
+   OK   exists: code/tasks/t205_existing_anime_lively_wallpaper_r254.ps1 (20738 B)
+   OK   exists: results/mcp_agv_lab/R254_EXISTING_ANIME_LIVELY_WALLPAPER.md (7795 B)
+   OK   exists: results/mcp_agv_lab/r254-existing-anime-lively-wallpaper.json (1607 B)
+   OK   exists: results/mcp_agv_lab/r254_desktop_before.png (8698 B)
+   OK   exists: results/mcp_agv_lab/r254_desktop_after_a.png (8698 B)
+   OK   exists: results/mcp_agv_lab/r254_desktop_after_b.png (8698 B)
+   OK   exists: code/tasks/t206_apply_existing_wallpaper_unlock_r255.ps1 (23907 B)
+   OK   exists: results/mcp_agv_lab/R255_EXISTING_ANIME_WALLPAPER_ARMED.md (3841 B)
+   OK   exists: results/mcp_agv_lab/r255-existing-anime-wallpaper-armed.json (1827 B)
+   OK   exists: results/mcp_agv_lab/r255_current_screen.png (8698 B)
+   OK   exists: code/tasks/t207_confirm_existing_wallpaper_armed_r256.ps1 (10268 B)
+   OK   exists: results/mcp_agv_lab/R256_CONFIRM_EXISTING_ANIME_WALLPAPER_ARMED.md (1872 B)
+   OK   exists: results/mcp_agv_lab/r256-confirm-existing-anime-wallpaper-armed.json (1057 B)
+   OK   exists: results/mcp_agv_lab/r256_current_screen.png (8698 B)
+   OK   exists: code/tasks/t208_emergency_wallpaper_recover_r257.ps1 (12794 B)
+   OK   exists: results/mcp_agv_lab/R257_EMERGENCY_WALLPAPER_RECOVERY.md (1373 B)
+   OK   exists: results/mcp_agv_lab/r257-emergency-wallpaper-recovery.json (858 B)
+   OK   exists: results/mcp_agv_lab/r257_desktop_after_recovery.png (1612989 B)
+   OK   exists: code/tasks/t209_safe_lively_dynamic_r258.ps1 (17947 B)
+   OK   exists: results/mcp_agv_lab/R258_SAFE_LIVELY_DYNAMIC_WALLPAPER.md (2472 B)
+   OK   exists: results/mcp_agv_lab/r258-safe-lively-dynamic-wallpaper.json (1128 B)
+   OK   exists: results/mcp_agv_lab/r258_desktop_before.png (1612989 B)
+   OK   exists: results/mcp_agv_lab/r258_desktop_after_a.png (1612989 B)
+   OK   exists: results/mcp_agv_lab/r258_desktop_after_b.png (1612989 B)
+   OK   exists: code/tasks/t210_clean_restart_lively_r259.ps1 (13794 B)
+   OK   exists: code/tasks/t211_simple_lively_restart_r260.ps1 (10829 B)
+   OK   exists: code/tasks/t212_vlc_video_wallpaper_r261.ps1 (10192 B)
+   OK   exists: code/tasks/t213_run_vlc_video_wallpaper_r262.ps1 (584 B)
+   OK   exists: code/tasks/t213_vlc_video_wallpaper_r262.py (10137 B)
+   OK   exists: code/tasks/t214_run_vlc_video_wallpaper_r263.ps1 (584 B)
+   OK   exists: code/tasks/t214_vlc_video_wallpaper_r263.py (10199 B)
+   OK   exists: code/tasks/t215_run_vlc_direct3d_wallpaper_r264.ps1 (503 B)
+   OK   exists: code/tasks/t215_vlc_direct3d_wallpaper_r264.py (8959 B)
+   OK   exists: results/mcp_agv_lab/r264-vlc-direct3d-wallpaper.json (1106 B)
+   OK   exists: results/mcp_agv_lab/r264_desktop_before.bmp (3981366 B)
+   OK   exists: results/mcp_agv_lab/r264_desktop_after_a.bmp (3981366 B)
+   OK   exists: results/mcp_agv_lab/r264_desktop_after_b.bmp (3981366 B)
+   OK   exists: code/tasks/t216_run_confirm_vlc_dynamic_r265.ps1 (497 B)
+   OK   exists: code/tasks/t216_confirm_vlc_dynamic_r265.py (5049 B)
+   OK   exists: results/mcp_agv_lab/R265_CONFIRM_VLC_DYNAMIC_WALLPAPER.md (734 B)
+   OK   exists: results/mcp_agv_lab/r265-confirm-vlc-dynamic-wallpaper.json (627 B)
+   OK   exists: results/mcp_agv_lab/r265_desktop_frame_a.bmp (3981366 B)
+   OK   exists: results/mcp_agv_lab/r265_desktop_frame_b.bmp (3981366 B)
+   OK   exists: code/tasks/t217_run_vlc_persistent_wallpaper_r266.ps1 (507 B)
+   OK   exists: code/tasks/t217_vlc_persistent_wallpaper_r266.py (8486 B)
+   OK   exists: results/mcp_agv_lab/R266_PERSISTENT_VLC_DYNAMIC_WALLPAPER.md (1343 B)
+   OK   exists: results/mcp_agv_lab/r266-persistent-vlc-dynamic-wallpaper.json (1036 B)
+   OK   exists: results/mcp_agv_lab/r266_frame_a.bmp (3981366 B)
+   OK   exists: results/mcp_agv_lab/r266_frame_b.bmp (3981366 B)
+   OK   exists: results/mcp_agv_lab/r266_frame_c_late.bmp (3981366 B)
+   OK   exists: results/mcp_agv_lab/r266_frame_d_late.bmp (3981366 B)
+   OK   exists: code/tasks/t218_run_static_anime_wallpaper_r267.ps1 (503 B)
+   OK   exists: code/tasks/t218_static_anime_wallpaper_r267.py (8239 B)
+   OK   exists: results/mcp_agv_lab/R267_STATIC_ANIME_WALLPAPER.md (696 B)
+   OK   exists: results/mcp_agv_lab/r267-static-anime-wallpaper.json (629 B)
+   OK   exists: results/mcp_agv_lab/r267_static_desktop_after.png (2944825 B)
+   OK   exists: code/tasks/t220_loop_smoke_r268.ps1 (5791 B)
+   OK   exists: results/mcp_agv_lab/R268_LOOP_POLL_SMOKE.md (925 B)
+   OK   exists: results/mcp_agv_lab/r268-loop-poll-smoke.json (677 B)
+   OK   exists: code/tasks/t224_run_dynamic_video_wallpaper_r272.ps1 (505 B)
+   OK   exists: code/tasks/t224_dynamic_video_wallpaper_r272.py (15809 B)
+   OK   exists: results/mcp_agv_lab/R272_DYNAMIC_VIDEO_WALLPAPER.md (2767 B)
+   OK   exists: results/mcp_agv_lab/r272-dynamic-video-wallpaper.json (1625 B)
+   OK   exists: results/mcp_agv_lab/r272_frame_b_after.bmp (3981366 B)
+   OK   exists: results/mcp_agv_lab/r272_frame_e_late2.bmp (3981366 B)
+   OK   exists: results/mcp_agv_lab/r272_frame_f_late2.bmp (3981366 B)
+   OK   exists: code/tasks/t226_run_lively_dynamic_wallpaper_r274.ps1 (507 B)
+   OK   exists: code/tasks/t226_lively_dynamic_wallpaper_r274.py (20281 B)
+   OK   exists: results/mcp_agv_lab/R274_LIVELY_DYNAMIC_WALLPAPER.md (5863 B)
+   OK   exists: results/mcp_agv_lab/r274-lively-dynamic-wallpaper.json (898 B)
+   OK   exists: results/mcp_agv_lab/r274_frame_b_after.bmp (3981366 B)
+   OK   exists: results/mcp_agv_lab/r274_frame_f_late2.bmp (3981366 B)
+   OK   exists: code/tasks/t227_run_lively_reboot_proof_r275.ps1 (497 B)
+   OK   exists: code/tasks/t227_lively_reboot_proof_r275.py (20255 B)
+   OK   exists: results/mcp_agv_lab/R275_LIVELY_WALLPAPER_REBOOT_PROOF.md (3586 B)
+   OK   exists: results/mcp_agv_lab/r275-lively-wallpaper-reboot-proof.json (791 B)
+   OK   exists: code/tasks/t228_run_lively_one_click_repair_r276.ps1 (505 B)
+   OK   exists: code/tasks/t228_lively_one_click_repair_r276.py (18995 B)
+   OK   exists: results/mcp_agv_lab/R276_LIVELY_ONE_CLICK_REPAIR.md (2214 B)
+   OK   exists: results/mcp_agv_lab/r276-one-click-repair.json (528 B)
+   OK   exists: results/mcp_agv_lab/r276_frame_c_after_repair.bmp (3981366 B)
+   OK   exists: results/mcp_agv_lab/r276_frame_d_after_repair.bmp (3981366 B)
+   OK   exists: code/tasks/t229_run_wallpaper_switcher_12pack_r277.ps1 (509 B)
+   OK   exists: code/tasks/t229_wallpaper_switcher_12pack_r277.py (29672 B)
+   OK   exists: code/tasks/t230_run_wallpaper_pack_fix_r278.ps1 (495 B)
+   OK   exists: code/tasks/t230_wallpaper_pack_fix_r278.py (17237 B)
+   OK   exists: code/tasks/t233_run_wallpaper_rebuild_safe_r281.ps1 (503 B)
+   OK   exists: code/tasks/t233_wallpaper_rebuild_safe_r281.py (13615 B)
+   OK   exists: results/mcp_agv_lab/R277_WALLPAPER_SWITCHER_12PACK.md (3392 B)
+   OK   exists: results/mcp_agv_lab/r277-wallpaper-switcher-12pack.json (2553 B)
+   OK   exists: results/mcp_agv_lab/R278_WALLPAPER_PACK_DISTINCT.md (4075 B)
+   OK   exists: results/mcp_agv_lab/r278-wallpaper-pack-distinct.json (2169 B)
+   OK   exists: results/mcp_agv_lab/R281_WALLPAPER_SAFE_REBUILD.md (2480 B)
+   OK   exists: results/mcp_agv_lab/r281-wallpaper-safe-rebuild.json (2162 B)
+   OK   exists: results/mcp_agv_lab/r277_p1_wallpaper1.bmp (3981366 B)
+   OK   exists: results/mcp_agv_lab/r277_p2_wallpaper2.bmp (3981366 B)
+   OK   exists: results/mcp_agv_lab/r281_pa_wallpaper1.bmp (3981366 B)
+   OK   exists: results/mcp_agv_lab/r281_pb_wallpaper2.bmp (3981366 B)
+   OK   exists: code/tasks/t234_run_cute_girls_24pack_r282.ps1 (497 B)
+   OK   exists: code/tasks/t234_run_cute_girls_24pack_r282.py (30867 B)
+   OK   exists: results/mcp_agv_lab/R282_CUTE_GIRLS_24PACK.md (3919 B)
+   OK   exists: results/mcp_agv_lab/r282-cute-girls-24pack.json (4267 B)
+   OK   exists: results/mcp_agv_lab/r282_pa_wallpaper1.bmp (3981366 B)
+   OK   exists: results/mcp_agv_lab/r282_pb_wallpaper7.bmp (3981366 B)
+   OK   exists: code/tasks/t235_run_translucent_panel_r283.ps1 (497 B)
+   OK   exists: code/tasks/t235_run_translucent_panel_r283.py (19046 B)
+   OK   exists: results/mcp_agv_lab/R283_WALLPAPER_PANEL.md (905 B)
+   OK   exists: results/mcp_agv_lab/r283-wallpaper-panel.json (445 B)
+   OK   exists: results/mcp_agv_lab/r283_panel_visible.bmp (3981366 B)
+   OK   absent: local/inbox
+   OK   absent: local/status_receipts
+   OK   absent: skills/docx_skill.py
+   OK   absent: local_bridge_skill.py
+   OK   contains skills/git-sync/VERSION <- 2.8.1
+   OK   contains 01a0a821.md <- arena/01a0a98d-git-pull-arena
+   OK   contains skills/git-sync/sync.config.json <- arena/01a10bf3-git-pull-arena
+   OK   contains skills/git-sync/templates/one-sentence.md <- agent-handoff.sh
+   OK   contains skills/git-sync/scripts/agent-install.sh <- refusing to downgrade
+   OK   contains code/check_all.sh <- py -3
+   OK   contains code/local_check.ps1 <- no Office deliverable declared
+   OK   contains deliverable/OFFICE_HASHES.json <- arena/01a0a9f0-git-pull-arena
+   OK   contains watch.ps1 <- function Invoke-AutoPull
+   OK   contains skills/git-sync/scripts/watch.ps1 <- function Invoke-Focus
+   OK   contains code/tasks/manifest.json <- t3_edrive_scan.ps1
+   OK   contains code/tasks/t1_fix_antigravity.ps1 <- http.proxy
+   OK   contains code/tasks/t2_install_java.ps1 <- E:\java
+   OK   contains results/mcp_agv_lab/GOUTOUJUNSHI_LOVE_LETTER_R239.md <- GOUTOUJUNSHI_LOVE_LETTER_APPLIED=True
+   OK   contains results/mcp_agv_lab/LOVE_LETTER_STANDALONE_GEM_R240.md <- LOVE_LETTER_STANDALONE_GEM_READY=True
+   OK   contains results/mcp_agv_lab/R242_FINISH_MEDIA_CAREER_TOOLS.md <- R242_MEDIA_CAREER_READY=True
+   OK   contains results/mcp_agv_lab/R243_DESKBOX_INSTALL.md <- R243_DESKBOX_INSTALL_READY=True
+   OK   contains results/mcp_agv_lab/R244_HARD_ANIME_VIDEO_WALLPAPER.md <- R244_HARD_VIDEO_WALLPAPER_READY=True
+   OK   contains results/mcp_agv_lab/R245_DYNAMIC_WALLPAPER_VERIFY.md <- R245_DYNAMIC_WALLPAPER_READY=True
+   OK   contains results/mcp_agv_lab/R246_ULTRA_HYPIT_ANIME_WALLPAPER.md <- R246_ULTRA_HYPIT_WALLPAPER_READY=True
+   OK   contains results/mcp_agv_lab/R247_CUTE_DYNAMIC_WALLPAPER.md <- R247_CUTE_DYNAMIC_WALLPAPER_READY=True
+   OK   contains results/mcp_agv_lab/R248_FORCE_LIVELY_DYNAMIC.md <- R248_FORCE_LIVELY_DYNAMIC_READY=True
+   OK   contains results/mcp_agv_lab/R249_LIVELY_EQUALS_DYNAMIC.md <- R249_LIVELY_EQUALS_DYNAMIC_READY=True
+   OK   contains results/mcp_agv_lab/R250_LIVELY_EXACT_ARGS.md <- R250_LIVELY_EXACT_ARGS_READY=True
+   OK   contains results/mcp_agv_lab/R251_VISIBLE_DYNAMIC_WALLPAPER.md <- R251_VISIBLE_DYNAMIC_WALLPAPER_READY=True
+   OK   contains results/mcp_agv_lab/R253_RESTORE_VISIBLE_DYNAMIC_WALLPAPER.md <- R253_RESTORE_VISIBLE_DYNAMIC_WALLPAPER_READY=True
+   OK   contains results/mcp_agv_lab/R255_EXISTING_ANIME_WALLPAPER_ARMED.md <- R255_EXISTING_ANIME_WALLPAPER_ARMED=True
+   OK   contains results/mcp_agv_lab/R256_CONFIRM_EXISTING_ANIME_WALLPAPER_ARMED.md <- R256_CONFIRM_EXISTING_ANIME_WALLPAPER_ARMED_READY=True
+   OK   contains results/mcp_agv_lab/R257_EMERGENCY_WALLPAPER_RECOVERY.md <- R257_EMERGENCY_WALLPAPER_RECOVERY_READY=True
+   OK   contains results/mcp_agv_lab/R267_STATIC_ANIME_WALLPAPER.md <- R267_STATIC_ANIME_WALLPAPER_READY=True
+   OK   regex watch.ps1
+   OK   regex code/local_check.ps1
+   OK   regex deliverable/OFFICE_HASHES.json
+   OK   regex results/mcp_agv_lab/GOUTOUJUNSHI_LOVE_LETTER_R239.md
+   OK   regex results/mcp_agv_lab/LOVE_LETTER_STANDALONE_GEM_R240.md
+   OK   regex results/mcp_agv_lab/R242_FINISH_MEDIA_CAREER_TOOLS.md
+   OK   regex results/mcp_agv_lab/R243_DESKBOX_INSTALL.md
+   OK   regex results/mcp_agv_lab/R245_DYNAMIC_WALLPAPER_VERIFY.md
+   OK   regex results/mcp_agv_lab/R246_ULTRA_HYPIT_ANIME_WALLPAPER.md
+   OK   regex results/mcp_agv_lab/R247_CUTE_DYNAMIC_WALLPAPER.md
+   OK   regex results/mcp_agv_lab/R248_FORCE_LIVELY_DYNAMIC.md
+   OK   regex results/mcp_agv_lab/R249_LIVELY_EQUALS_DYNAMIC.md
+   OK   regex results/mcp_agv_lab/R250_LIVELY_EXACT_ARGS.md
+   OK   regex results/mcp_agv_lab/R251_VISIBLE_DYNAMIC_WALLPAPER.md
+   OK   regex results/mcp_agv_lab/R253_RESTORE_VISIBLE_DYNAMIC_WALLPAPER.md
+   OK   regex results/mcp_agv_lab/R255_EXISTING_ANIME_WALLPAPER_ARMED.md
+   OK   regex results/mcp_agv_lab/R256_CONFIRM_EXISTING_ANIME_WALLPAPER_ARMED.md
+   OK   regex results/mcp_agv_lab/R257_EMERGENCY_WALLPAPER_RECOVERY.md
+   OK   regex results/mcp_agv_lab/R267_STATIC_ANIME_WALLPAPER.md
+   OK   regex results/mcp_agv_lab/R268_LOOP_POLL_SMOKE.md
+   OK   regex results/mcp_agv_lab/R272_DYNAMIC_VIDEO_WALLPAPER.md
+   OK   regex results/mcp_agv_lab/R274_LIVELY_DYNAMIC_WALLPAPER.md
+   OK   regex results/mcp_agv_lab/R275_LIVELY_WALLPAPER_REBOOT_PROOF.md
+   OK   regex results/mcp_agv_lab/R276_LIVELY_ONE_CLICK_REPAIR.md
+   OK   regex results/mcp_agv_lab/R277_WALLPAPER_SWITCHER_12PACK.md
+   OK   regex results/mcp_agv_lab/R281_WALLPAPER_SAFE_REBUILD.md
+   OK   regex results/mcp_agv_lab/R282_CUTE_GIRLS_24PACK.md
+   OK   regex results/mcp_agv_lab/R283_WALLPAPER_PANEL.md
+   OK   size skills/git-sync/scripts/agent-handoff.sh: 4603 >= 2000
+   OK   size skills/git-sync/scripts/agent-install.sh: 13404 >= 10000
+   OK   size code/check_all.sh: 9945 >= 8000
+   OK   size code/local_check.ps1: 32116 >= 12000
+   OK   size code/make_link_proof.py: 22948 >= 8000
+   OK   size deliverable/OFFICE_HASHES.json: 2401 >= 500
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 >= 5000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 >= 15000
+   OK   size watch.ps1: 84094 >= 20000
+   OK   size deliverable/patches/goutoujunshi-love-letter-confession-bfb071b.patch: 104153 >= 50000
+   OK   size results/mcp_agv_lab/GOUTOUJUNSHI_LOVE_LETTER_R239.md: 3838 >= 1000
+   OK   size deliverable/patches/goutoujunshi-standalone-love-letter-gem.patch: 109761 >= 50000
+   OK   size results/mcp_agv_lab/LOVE_LETTER_STANDALONE_GEM_R240.md: 3336 >= 1000
+   OK   size deliverable/assets/cute_professional_id_photo.png: 2678790 >= 50000
+   OK   size code/tasks/t192_install_media_career_tools_r241.ps1: 34732 >= 20000
+   OK   size results/mcp_agv_lab/R241_INSTALL_MEDIA_CAREER_TOOLS.md: 4957 >= 2000
+   OK   size results/mcp_agv_lab/r241-install-media-career-tools.json: 7353 >= 1000
+   OK   size code/tasks/t193_finish_media_career_tools_r242.ps1: 27164 >= 20000
+   OK   size results/mcp_agv_lab/R242_FINISH_MEDIA_CAREER_TOOLS.md: 7966 >= 2000
+   OK   size results/mcp_agv_lab/r242-finish-media-career-tools.json: 2732 >= 1000
+   OK   size code/tasks/t194_install_deskbox_r243.ps1: 7060 >= 5000
+   OK   size results/mcp_agv_lab/R243_DESKBOX_INSTALL.md: 1208 >= 500
+   OK   size results/mcp_agv_lab/r243-deskbox-install.json: 374 >= 200
+   OK   size deliverable/assets/anime_dynamic_wallpaper_v2.png: 4252118 >= 50000
+   OK   size code/tasks/t195_hard_anime_video_wallpaper_r244.ps1: 29844 >= 25000
+   OK   size results/mcp_agv_lab/R244_HARD_ANIME_VIDEO_WALLPAPER.md: 1259 >= 1000
+   OK   size results/mcp_agv_lab/r244-hard-anime-video-wallpaper.json: 2425 >= 800
+   OK   size code/tasks/t196_set_dynamic_wallpaper_report_r245.ps1: 11909 >= 10000
+   OK   size results/mcp_agv_lab/R245_DYNAMIC_WALLPAPER_VERIFY.md: 1781 >= 1500
+   OK   size results/mcp_agv_lab/r245-dynamic-wallpaper-verify.json: 1529 >= 700
+   OK   size deliverable/assets/anime_ultra_dynamic_wallpaper_r246.png: 4243754 >= 50000
+   OK   size code/tasks/t197_ultra_hypit_wallpaper_r246.ps1: 24946 >= 24000
+   OK   size results/mcp_agv_lab/R246_ULTRA_HYPIT_ANIME_WALLPAPER.md: 4504 >= 2500
+   OK   size results/mcp_agv_lab/r246-ultra-hypit-anime-wallpaper.json: 1647 >= 900
+   OK   size deliverable/assets/cute_anime_live_wallpaper_r247.png: 3966340 >= 50000
+   OK   size code/tasks/t198_cute_dynamic_wallpaper_r247.ps1: 21576 >= 20000
+   OK   size results/mcp_agv_lab/R247_CUTE_DYNAMIC_WALLPAPER.md: 12677 >= 2500
+   OK   size results/mcp_agv_lab/r247-cute-dynamic-wallpaper.json: 2601 >= 1000
+   OK   size code/tasks/t199_force_lively_args_r248.ps1: 12206 >= 10000
+   OK   size results/mcp_agv_lab/R248_FORCE_LIVELY_DYNAMIC.md: 7121 >= 2000
+   OK   size results/mcp_agv_lab/r248-force-lively-dynamic.json: 1151 >= 800
+   OK   size code/tasks/t200_lively_equals_r249.ps1: 9605 >= 9000
+   OK   size results/mcp_agv_lab/R249_LIVELY_EQUALS_DYNAMIC.md: 6040 >= 1800
+   OK   size results/mcp_agv_lab/r249-lively-equals-dynamic.json: 762 >= 600
+   OK   size code/tasks/t201_lively_exact_args_r250.ps1: 5473 >= 4500
+   OK   size results/mcp_agv_lab/R250_LIVELY_EXACT_ARGS.md: 1372 >= 1000
+   OK   size results/mcp_agv_lab/r250-lively-exact-args.json: 440 >= 300
+   OK   size code/tasks/t202_visible_dynamic_wallpaper_r251.ps1: 22936 >= 12000
+   OK   size results/mcp_agv_lab/R251_VISIBLE_DYNAMIC_WALLPAPER.md: 2048 >= 1600
+   OK   size results/mcp_agv_lab/r251-visible-dynamic-wallpaper.json: 1598 >= 500
+   OK   size code/tasks/t204_restore_visible_dynamic_wallpaper_r253.ps1: 23009 >= 12000
+   OK   size results/mcp_agv_lab/R253_RESTORE_VISIBLE_DYNAMIC_WALLPAPER.md: 2064 >= 1600
+   OK   size results/mcp_agv_lab/r253-restore-visible-dynamic-wallpaper.json: 1628 >= 500
+   OK   size code/tasks/t205_existing_anime_lively_wallpaper_r254.ps1: 20738 >= 18000
+   OK   size results/mcp_agv_lab/R254_EXISTING_ANIME_LIVELY_WALLPAPER.md: 7795 >= 2500
+   OK   size results/mcp_agv_lab/r254-existing-anime-lively-wallpaper.json: 1607 >= 800
+   OK   size results/mcp_agv_lab/r254_desktop_before.png: 8698 >= 5000
+   OK   size results/mcp_agv_lab/r254_desktop_after_a.png: 8698 >= 5000
+   OK   size results/mcp_agv_lab/r254_desktop_after_b.png: 8698 >= 5000
+   OK   size code/tasks/t206_apply_existing_wallpaper_unlock_r255.ps1: 23907 >= 23000
+   OK   size results/mcp_agv_lab/R255_EXISTING_ANIME_WALLPAPER_ARMED.md: 3841 >= 2200
+   OK   size results/mcp_agv_lab/r255-existing-anime-wallpaper-armed.json: 1827 >= 700
+   OK   size results/mcp_agv_lab/r255_current_screen.png: 8698 >= 5000
+   OK   size code/tasks/t207_confirm_existing_wallpaper_armed_r256.ps1: 10268 >= 9000
+   OK   size results/mcp_agv_lab/R256_CONFIRM_EXISTING_ANIME_WALLPAPER_ARMED.md: 1872 >= 1500
+   OK   size results/mcp_agv_lab/r256-confirm-existing-anime-wallpaper-armed.json: 1057 >= 500
+   OK   size results/mcp_agv_lab/r256_current_screen.png: 8698 >= 5000
+   OK   size code/tasks/t208_emergency_wallpaper_recover_r257.ps1: 12794 >= 12000
+   OK   size results/mcp_agv_lab/R257_EMERGENCY_WALLPAPER_RECOVERY.md: 1373 >= 1200
+   OK   size results/mcp_agv_lab/r257-emergency-wallpaper-recovery.json: 858 >= 500
+   OK   size results/mcp_agv_lab/r257_desktop_after_recovery.png: 1612989 >= 3000
+   OK   size code/tasks/t209_safe_lively_dynamic_r258.ps1: 17947 >= 17000
+   OK   size results/mcp_agv_lab/R258_SAFE_LIVELY_DYNAMIC_WALLPAPER.md: 2472 >= 2400
+   OK   size results/mcp_agv_lab/r258-safe-lively-dynamic-wallpaper.json: 1128 >= 800
+   OK   size results/mcp_agv_lab/r258_desktop_before.png: 1612989 >= 5000
+   OK   size results/mcp_agv_lab/r258_desktop_after_a.png: 1612989 >= 5000
+   OK   size results/mcp_agv_lab/r258_desktop_after_b.png: 1612989 >= 5000
+   OK   size code/tasks/t210_clean_restart_lively_r259.ps1: 13794 >= 13000
+   OK   size code/tasks/t211_simple_lively_restart_r260.ps1: 10829 >= 9000
+   OK   size code/tasks/t212_vlc_video_wallpaper_r261.ps1: 10192 >= 9000
+   OK   size code/tasks/t213_run_vlc_video_wallpaper_r262.ps1: 584 >= 300
+   OK   size code/tasks/t213_vlc_video_wallpaper_r262.py: 10137 >= 9000
+   OK   size code/tasks/t214_run_vlc_video_wallpaper_r263.ps1: 584 >= 300
+   OK   size code/tasks/t214_vlc_video_wallpaper_r263.py: 10199 >= 9000
+   OK   size code/tasks/t215_run_vlc_direct3d_wallpaper_r264.ps1: 503 >= 300
+   OK   size code/tasks/t215_vlc_direct3d_wallpaper_r264.py: 8959 >= 8500
+   OK   size results/mcp_agv_lab/r264-vlc-direct3d-wallpaper.json: 1106 >= 650
+   OK   size results/mcp_agv_lab/r264_desktop_before.bmp: 3981366 >= 5000
+   OK   size results/mcp_agv_lab/r264_desktop_after_a.bmp: 3981366 >= 5000
+   OK   size results/mcp_agv_lab/r264_desktop_after_b.bmp: 3981366 >= 5000
+   OK   size code/tasks/t216_run_confirm_vlc_dynamic_r265.ps1: 497 >= 300
+   OK   size code/tasks/t216_confirm_vlc_dynamic_r265.py: 5049 >= 5000
+   OK   size results/mcp_agv_lab/R265_CONFIRM_VLC_DYNAMIC_WALLPAPER.md: 734 >= 700
+   OK   size results/mcp_agv_lab/r265-confirm-vlc-dynamic-wallpaper.json: 627 >= 300
+   OK   size results/mcp_agv_lab/r265_desktop_frame_a.bmp: 3981366 >= 5000
+   OK   size results/mcp_agv_lab/r265_desktop_frame_b.bmp: 3981366 >= 5000
+   OK   size code/tasks/t217_run_vlc_persistent_wallpaper_r266.ps1: 507 >= 300
+   OK   size code/tasks/t217_vlc_persistent_wallpaper_r266.py: 8486 >= 8000
+   OK   size results/mcp_agv_lab/R266_PERSISTENT_VLC_DYNAMIC_WALLPAPER.md: 1343 >= 1300
+   OK   size results/mcp_agv_lab/r266-persistent-vlc-dynamic-wallpaper.json: 1036 >= 650
+   OK   size results/mcp_agv_lab/r266_frame_a.bmp: 3981366 >= 5000
+   OK   size results/mcp_agv_lab/r266_frame_b.bmp: 3981366 >= 5000
+   OK   size results/mcp_agv_lab/r266_frame_c_late.bmp: 3981366 >= 5000
+   OK   size results/mcp_agv_lab/r266_frame_d_late.bmp: 3981366 >= 5000
+   OK   size code/tasks/t218_run_static_anime_wallpaper_r267.ps1: 503 >= 300
+   OK   size code/tasks/t218_static_anime_wallpaper_r267.py: 8239 >= 8000
+   OK   size results/mcp_agv_lab/R267_STATIC_ANIME_WALLPAPER.md: 696 >= 650
+   OK   size results/mcp_agv_lab/r267-static-anime-wallpaper.json: 629 >= 300
+   OK   size results/mcp_agv_lab/r267_static_desktop_after.png: 2944825 >= 5000
+   OK   size code/tasks/t220_loop_smoke_r268.ps1: 5791 >= 5000
+   OK   size results/mcp_agv_lab/R268_LOOP_POLL_SMOKE.md: 925 >= 800
+   OK   size results/mcp_agv_lab/r268-loop-poll-smoke.json: 677 >= 500
+   OK   size code/tasks/t224_run_dynamic_video_wallpaper_r272.ps1: 505 >= 300
+   OK   size code/tasks/t224_dynamic_video_wallpaper_r272.py: 15809 >= 8000
+   OK   size results/mcp_agv_lab/R272_DYNAMIC_VIDEO_WALLPAPER.md: 2767 >= 1400
+   OK   size results/mcp_agv_lab/r272-dynamic-video-wallpaper.json: 1625 >= 800
+   OK   size results/mcp_agv_lab/r272_frame_b_after.bmp: 3981366 >= 1000000
+   OK   size results/mcp_agv_lab/r272_frame_e_late2.bmp: 3981366 >= 1000000
+   OK   size results/mcp_agv_lab/r272_frame_f_late2.bmp: 3981366 >= 1000000
+   OK   size code/tasks/t226_run_lively_dynamic_wallpaper_r274.ps1: 507 >= 300
+   OK   size code/tasks/t226_lively_dynamic_wallpaper_r274.py: 20281 >= 14000
+   OK   size results/mcp_agv_lab/R274_LIVELY_DYNAMIC_WALLPAPER.md: 5863 >= 1500
+   OK   size results/mcp_agv_lab/r274-lively-dynamic-wallpaper.json: 898 >= 800
+   OK   size results/mcp_agv_lab/r274_frame_b_after.bmp: 3981366 >= 1000000
+   OK   size results/mcp_agv_lab/r274_frame_f_late2.bmp: 3981366 >= 1000000
+   OK   size code/tasks/t227_run_lively_reboot_proof_r275.ps1: 497 >= 300
+   OK   size code/tasks/t227_lively_reboot_proof_r275.py: 20255 >= 19755
+   OK   size results/mcp_agv_lab/R275_LIVELY_WALLPAPER_REBOOT_PROOF.md: 3586 >= 3216
+   OK   size results/mcp_agv_lab/r275-lively-wallpaper-reboot-proof.json: 791 >= 624
+   OK   size code/tasks/t228_run_lively_one_click_repair_r276.ps1: 505 >= 379
+   OK   size code/tasks/t228_lively_one_click_repair_r276.py: 18995 >= 14247
+   OK   size results/mcp_agv_lab/R276_LIVELY_ONE_CLICK_REPAIR.md: 2214 >= 1624
+   OK   size results/mcp_agv_lab/r276-one-click-repair.json: 528 >= 387
+   OK   size results/mcp_agv_lab/r276_frame_c_after_repair.bmp: 3981366 >= 2986025
+   OK   size results/mcp_agv_lab/r276_frame_d_after_repair.bmp: 3981366 >= 2986025
+   OK   size code/tasks/t229_run_wallpaper_switcher_12pack_r277.ps1: 509 >= 382
+   OK   size code/tasks/t229_wallpaper_switcher_12pack_r277.py: 29672 >= 22254
+   OK   size code/tasks/t230_run_wallpaper_pack_fix_r278.ps1: 495 >= 372
+   OK   size code/tasks/t230_wallpaper_pack_fix_r278.py: 17237 >= 12928
+   OK   size code/tasks/t233_run_wallpaper_rebuild_safe_r281.ps1: 503 >= 378
+   OK   size code/tasks/t233_wallpaper_rebuild_safe_r281.py: 13615 >= 10212
+   OK   size results/mcp_agv_lab/R277_WALLPAPER_SWITCHER_12PACK.md: 3392 >= 2490
+   OK   size results/mcp_agv_lab/r277-wallpaper-switcher-12pack.json: 2553 >= 1836
+   OK   size results/mcp_agv_lab/R278_WALLPAPER_PACK_DISTINCT.md: 4075 >= 3000
+   OK   size results/mcp_agv_lab/r278-wallpaper-pack-distinct.json: 2169 >= 1563
+   OK   size results/mcp_agv_lab/R281_WALLPAPER_SAFE_REBUILD.md: 2480 >= 1821
+   OK   size results/mcp_agv_lab/r281-wallpaper-safe-rebuild.json: 2162 >= 1558
+   OK   size results/mcp_agv_lab/r277_p1_wallpaper1.bmp: 3981366 >= 2986025
+   OK   size results/mcp_agv_lab/r277_p2_wallpaper2.bmp: 3981366 >= 2986025
+   OK   size results/mcp_agv_lab/r281_pa_wallpaper1.bmp: 3981366 >= 2986025
+   OK   size results/mcp_agv_lab/r281_pb_wallpaper2.bmp: 3981366 >= 2986025
+   OK   size code/tasks/t234_run_cute_girls_24pack_r282.ps1: 497 >= 373
+   OK   size code/tasks/t234_run_cute_girls_24pack_r282.py: 30867 >= 23151
+   OK   size results/mcp_agv_lab/R282_CUTE_GIRLS_24PACK.md: 3919 >= 2887
+   OK   size results/mcp_agv_lab/r282-cute-girls-24pack.json: 4267 >= 3079
+   OK   size results/mcp_agv_lab/r282_pa_wallpaper1.bmp: 3981366 >= 2986025
+   OK   size results/mcp_agv_lab/r282_pb_wallpaper7.bmp: 3981366 >= 2986025
+   OK   size code/tasks/t235_run_translucent_panel_r283.ps1: 497 >= 373
+   OK   size code/tasks/t235_run_translucent_panel_r283.py: 19046 >= 14285
+   OK   size results/mcp_agv_lab/R283_WALLPAPER_PANEL.md: 905 >= 661
+   OK   size results/mcp_agv_lab/r283-wallpaper-panel.json: 445 >= 325
+   OK   size results/mcp_agv_lab/r283_panel_visible.bmp: 3981366 >= 2986025
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 <= 3000000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 <= 3000000
+== local checks passed
