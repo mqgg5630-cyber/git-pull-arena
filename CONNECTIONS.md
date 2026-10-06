@@ -629,3 +629,11 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 313 (2026-10-06, 恢复阶段 9b：拼接版重跑)
 - r313 = `t264_*`：t263 逻辑不变，launcher 改纯拼接（无 format 花括号）。预告 popup → attempt A（全路径 powershell -Verb RunAs）→ attempt B（cmd 包装）→ helper v4 跑 winfr segment 模式 → bat 兜底。
 - 状态：⏳ 已排队。
+
+## round 313 结果（2026-10-06 20:12，✅ task PASSED——UAC 全路径触发成功）
+- **ELEVATED_RUN_OK**：全路径 powershell.exe 修复了 runas 关联问题——watcher 直接触发 UAC、用户点"是"、helper v4 提权运行。"你触发我点同意"模式打通，bat 不再必需。
+- 但 winfr 0.1.20151.0（2020.5 初版）segment 与 regular 都报 "Switch used is incompatible"——疑初版不认 /y 或 /regular。错误提示 /! 为帮助。
+
+## round 314 (2026-10-06, 恢复阶段 10：初版兼容调用)
+- r314 = `t265_*`：helper v5——① winfr /! 抓本版真实用法落盘 ② attempt1 `echo Y| winfr E: dest /n \0mcp...\library\*`（无 /y 无模式开关）③ attempt2 winget upgrade 新版后带 /y ④ attempt3 `echo Y| winfr E: dest /r`（初版签名模式兜底，丢文件名）——每步 40s 存活检查+log 尾。python 侧 UAC 直发（r313 模式）+多编码日志解码+recovery 目录计数。
+- 状态：⏳ 已排队。
