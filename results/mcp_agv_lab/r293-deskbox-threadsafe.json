@@ -1,0 +1,20 @@
+{
+  "ready": false,
+  "locked": false,
+  "installed": true,
+  "migrated": true,
+  "lnkGone": true,
+  "iconsHidden": true,
+  "alpha72": true,
+  "boxPids": [
+    48148,
+    53216,
+    48108
+  ],
+  "boxesAlive": 3,
+  "boxWindows": 3,
+  "printedVisible": 3,
+  "layerFinal": false,
+  "liveCapture": false,
+  "boxesLeftRunning": 3
+}
