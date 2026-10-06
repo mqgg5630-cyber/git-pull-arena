@@ -1,9 +1,9 @@
 {
-  "round": 325,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 325: recovery abandoned by user, cleanup round, NO elevation and NO UAC anywhere. 1) record helper v10's final verdict from vss_out.txt tail, check if WinFR still runs and try a non-elevated Stop-Process (it is elevated, so likely fails - just report). 2) audit read-only sizes: C:\\recovery_winfr_E, user temp, CrashDumps, C:\\Windows\\Temp, SoftwareDistribution\\Download, C:\\.Bin, WER, Windows Search index, pip cache, DeliveryOptimization, pagefile/hiberfil, LOCALAPPDATA top-15 dirs. 3) clean user-level only: user TEMP contents, CrashDumps, pip cache, Edge/Chrome per-profile Cache + Code Cache + GPUCache + Media Cache dirs; delete C:\\recovery_winfr_E if winfr is dead; remove recovery debris: DBOX vss_helper.ps1, vss_launch_v10.ps1, vss_out.txt, uac_err.txt and the desktop RECOVERY-recover-data.bat. 4) report freed MB, C: free before/after, and admin-only candidates. Do NOT touch recycle bin contents or any user data",
-  "arena_updated": "2026-10-06 14:51:43",
-  "local_updated": null
+    "round":  325,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 325: recovery abandoned by user, cleanup round, NO elevation and NO UAC anywhere. 1) record helper v10\u0027s final verdict from vss_out.txt tail, check if WinFR still runs and try a non-elevated Stop-Process (it is elevated, so likely fails - just report). 2) audit read-only sizes: C:\\recovery_winfr_E, user temp, CrashDumps, C:\\Windows\\Temp, SoftwareDistribution\\Download, C:\\.Bin, WER, Windows Search index, pip cache, DeliveryOptimization, pagefile/hiberfil, LOCALAPPDATA top-15 dirs. 3) clean user-level only: user TEMP contents, CrashDumps, pip cache, Edge/Chrome per-profile Cache + Code Cache + GPUCache + Media Cache dirs; delete C:\\recovery_winfr_E if winfr is dead; remove recovery debris: DBOX vss_helper.ps1, vss_launch_v10.ps1, vss_out.txt, uac_err.txt and the desktop RECOVERY-recover-data.bat. 4) report freed MB, C: free before/after, and admin-only candidates. Do NOT touch recycle bin contents or any user data",
+    "arena_updated":  "2026-10-06 14:51:43",
+    "local_updated":  "2026-10-06 22:53:53"
 }
