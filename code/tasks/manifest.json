@@ -895,6 +895,9 @@
     ],
     "310": [
       "t261_read_winfr_state_r310.ps1"
+    ],
+    "311": [
+      "t262_winfr_segment_r311.ps1"
     ]
   }
 }

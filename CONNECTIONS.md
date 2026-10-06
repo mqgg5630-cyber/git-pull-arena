@@ -608,3 +608,10 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - 用户报告 bat 窗口正常跑完（显示 DONE）。r310 = `t261_*`：读 vss_out.txt 全文（winget 真实错误 unicode_escape）+ winfr 进程/log 尾/C:\recovery_winfr_E 递归计数。纯只读。
 - 沙箱重置 #4 事故已修复（sync.config.json 分支被重置为父分支 arena/01a0fa39 → 改回 arena/01a10bf3；本地 reset 到远端 6c1f19e 后重建 r310）。
 - 状态：⏳ 已排队。
+
+## round 310 结果（2026-10-06 19:50，✅ task PASSED——winfr 已装但参数报错）
+- v3 helper 成功：winget 双源重试装上了 Windows File Recovery 0.1.20151.0。WINFR_START 后 winfr 立即退出：日志（UTF-16）"Switch used is incompatible with recovery mode"——/regular 不支持 `\path\*` 通配符过滤。recovery_winfr_E 0 文件。
+
+## round 311 (2026-10-06, 恢复阶段 8：segment 模式修正)
+- r311 = `t262_*`：helper v4——① segment 模式（默认，支持通配符+保名）`winfr E: C:\recovery_winfr_E /n \0mcp...\library\* /y` 启动后等 35s 查进程存活 ② 死了则回退 `/regular /n \...\library\`（尾反斜杠目录式）再验证 ③ 都死 → WINFR_FAILED_BOTH+log 尾。python 侧弹"最后一次双击"指引+轮询 v4 标记+独立进程检查+UTF-16 日志解码。
+- 状态：⏳ 已排队。
