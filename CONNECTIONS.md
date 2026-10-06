@@ -504,3 +504,11 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 297 (2026-10-06, mpv 直嵌修复重跑)
 - r297 = `t248_*`：t247 的 C/D 段（源码转储已砍）+ int-current 修复（glob '17-*.mp4'）。kill mpv/Lively → Progman 0x052C → mpv --wid 直嵌 → 90s 轮询 → 盒子不动。
 - 状态：⏳ 已排队。跑完无论结果如何即向用户完整汇报数据三态。
+
+## round 297 结果（2026-10-06 18:17，❌ exit 6/100s，但 mpv 已 spawn）
+- mpv 路径确认（Lively plugins\mpv\mpv.exe）、WorkerW=67222、mpv_spawn=True——但 EnumChildWindows 检测仍 False。判断：--wid 模式 mpv 直接渲染到目标 hwnd、不建子窗口，**检测方法失效而非嵌入失败**。壁纸可能已经在播。
+- 盒子 3/3。
+
+## round 298 (2026-10-06, 截图取证验证壁纸层)
+- r298 = `t249_*`：① GDI BitBlt 截取底部净带（盒子都在顶部 y=14）→ 亮度/色彩统计判定壁纸是否在渲染 ② 若无：换标准 WorkerW 定位（SHELLDLL_DefView 的 GW_HWNDNEXT 兄弟，Wallpaper Engine 同款算法）重嵌 mpv → 12s 间隔轮询截图 75s ③ 存证据图 r298_wallpaper_band.bmp ④ 盒子不动。
+- 状态：⏳ 已排队。**本轮后立即向用户完整汇报。**
