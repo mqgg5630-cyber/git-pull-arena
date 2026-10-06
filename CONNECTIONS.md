@@ -443,3 +443,9 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - **PrintWindow(PW_RENDERFULLCONTENT) 三盒全部 VISIBLE**（显示器熄屏无关）：programs 300x430（title 273/cyan 249/list 4037）、docs 300x220（208/188/2141）、folders 300x190（271/237/1536）；ASCII 图可辨标题栏/卡片行/按钮。渲染图 `r290_box_<pid>.bmp` ×3 + 拼接预览 `r290_deskbox_preview.png`。
 - 会话诊断：current=1 console=1 input_desktop_open=True（控制台会话、未锁屏，纯显示器熄屏）；SC_MONITORPOWER/SendInput 10 次仍点不亮（合成输入不唤醒熄屏）——屏幕活帧证明就此放弃，PrintWindow 证明成立。mpv 层完好（运动探针跳过：非交付物条件）。
 - 盒子 3/3 留驻运行、alpha 0.72、用户拖动位置已持久化（programs x=354,y=17）。watcher passed → criteria 590/0 → **accepted**。
+
+## round 291 (2026-10-06, DeskBox v3：半透明盒子全面替代旧 DeskBox)
+- 用户指令：替代旧（r243 不透明）DeskBox 桌面；只保留半透明的；按旧 DeskBox 分类；设计更合理。
+- r291 = `t242_*`：① **box.py v3**：九类沿用旧 DeskBox（01程序/02工作工具/03视频创作/04图片证件/05文档/06压缩安装包/07旧文件夹/08其他/09动漫壁纸），每盒=library 子文件夹内容+散落桌面文件按扩展名自动归入（去重、文件夹→07、无匹配→08）；**每类专属主题色**；窗口构造 100% 沿用已验证代码（r283 模式+crash log+pid 锁+拖动持久化+0.72 alpha）② **supervisor v3**：三列贪心布局（x=14/326/638，按盒高堆叠不重叠）③ **迁移（只挪不删）**：robocopy /MOVE `D:\桌面\DeskBox-Cute-Desktop-Organizer` → `deskbox-v2\library`；`DeskBox Cute.lnk` → backup；E:\...\apps\DeskBox 不动 ④ **隐藏桌面图标**（HideIcons=1+explorer 重启，桌面只剩壁纸+盒子；注册表可一句话恢复）→ explorer 重启后验证壁纸层，丢失则 taskkill mpv+重启 Lively 自动修复 ⑤ PrintWindow 每盒内容证明（r290 方法）+尽力活帧截图 ⑥ 杀 v2 盒升级（按 pid 文件）⑦ 盒子留驻。
+- ready 门：v3 installed + migrated + lnk 移除 + icons_hidden + boxes≥2 + printed_visible≥2 + layer_final + final_alive≥2 + alpha72 + 未锁屏。
+- 状态：⏳ 已排队。
