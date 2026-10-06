@@ -1,0 +1,23 @@
+{
+  "ready": false,
+  "locked": false,
+  "discoveryHits": [
+    "D:\\桌面\\DeskBox Cute.lnk",
+    "D:\\桌面\\DeskBox-Cute-Desktop-Organizer",
+    "E:\\0mcp-agv-arena-optimized\\apps\\DeskBox",
+    "E:\\0mcp-agv-arena-optimized\\deskbox-v2"
+  ],
+  "deskboxPy": "E:\\0mcp-agv-arena-optimized\\deskbox-v2\\deskbox.py",
+  "deskboxBat": "D:\\桌面\\桌面整理盒.bat",
+  "startupBat": "C:\\Users\\文少\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\DeskBox Startup.bat",
+  "boxPid": 48452,
+  "boxAlive": false,
+  "boxWindows": 0,
+  "categoryCounts": {
+    "folders": 4,
+    "programs": 53,
+    "docs": 5
+  },
+  "layerFinal": true,
+  "motionFinalRatio": 0.9942370756172839
+}
