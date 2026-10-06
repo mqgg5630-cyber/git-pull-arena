@@ -1,9 +1,9 @@
 {
-    "round":  293,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 293: complete the DeskBox takeover with hardened tooling - every log line flushes (progress survives a kill), all window enumerations and PrintWindow calls run in guarded threads with join timeouts (r292 hung to the 30-min watcher kill, most likely EnumChildWindows on a half-dead window right after the explorer restart), the 20GB E: copy removal is a detached background rmdir. Deliverables unchanged from r292: same-drive library move to D:\\DeskBoxLibrary, v3.1 nine-category boxes with per-category accents, HideIcons, wallpaper layer recovery loop, PrintWindow proof, boxes left running. Flow is idempotent - it safely finishes whatever r292 half-did",
-    "arena_updated":  "2026-10-06 09:38:52",
-    "local_updated":  "2026-10-06 17:46:27"
+  "round": 294,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 294: DATA AUDIT (read-only, do not delete anything). r293 revealed D:\\DeskBoxLibrary holds only 07-Old-Folders (2 items) - the nine-category organizer data (including the 20GB 09-Anime-Wallpapers) is not in the library, not on the desktop, and the E: copy from r291 is gone. Locate every remaining copy: scene forensics (mtimes in deskbox-v2), full listings of D:\\, the real desktop, D:\\DeskBoxLibrary, E:\\ app dirs, guarded keyword search (anime-wallpapers/apps-shortcuts/deskbox-cute/job-tools) on both drives, VSS shadow copies + recycle bin (recovery options), Lively wallpaper source intactness, wallpaper layer repair (Lively restart + 150s guarded poll), leave the running boxes alone (respawn only if fewer than 2 alive)",
+  "arena_updated": "2026-10-06 09:51:26",
+  "local_updated": null
 }
