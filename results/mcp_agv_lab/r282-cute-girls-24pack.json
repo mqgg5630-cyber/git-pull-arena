@@ -1,0 +1,162 @@
+{
+  "ready": true,
+  "locked": false,
+  "valid": 24,
+  "distinct": 24,
+  "catalogSize": 24,
+  "newCuteDownloads": 18,
+  "malesLeft": [],
+  "scriptsOk": true,
+  "switchProven": true,
+  "switchDiffRatio": 0.8796899112654321,
+  "poolTestOk": true,
+  "interval15Proven": true,
+  "motionFinalRatio": 0.17062114197530864,
+  "layerFinal": true,
+  "catalog": [
+    {
+      "idx": 1,
+      "slug": "hotori",
+      "cn": "Hotori（原壁纸）",
+      "file": "01-hotori.mp4"
+    },
+    {
+      "idx": 2,
+      "slug": "evening-window-view",
+      "cn": "夕阳窗边的黑猫",
+      "file": "02-evening-window-view.mp4"
+    },
+    {
+      "idx": 3,
+      "slug": "midnight-sakura-train-station",
+      "cn": "午夜樱花车站",
+      "file": "03-midnight-sakura-train-station.mp4"
+    },
+    {
+      "idx": 4,
+      "slug": "peaceful-anime-tree-swing-live-wallpaper",
+      "cn": "云端树秋千",
+      "file": "04-peaceful-anime-tree-swing-live-wallpaper.mp4"
+    },
+    {
+      "idx": 5,
+      "slug": "autumn-spirit-dance",
+      "cn": "枫叶精灵起舞",
+      "file": "05-autumn-spirit-dance.mp4"
+    },
+    {
+      "idx": 6,
+      "slug": "butterfly-bloom-sword-spirit-forest",
+      "cn": "蝶舞剑灵之森",
+      "file": "06-butterfly-bloom-sword-spirit-forest.mp4"
+    },
+    {
+      "idx": 7,
+      "slug": "ryuuge-kisaki-blue-archive",
+      "cn": "戒戒·金鱼梦中",
+      "file": "07-ryuuge-kisaki-blue-archive.mp4"
+    },
+    {
+      "idx": 8,
+      "slug": "mahiru-shiina-in-a-flower-field",
+      "cn": "真昼·金色花田",
+      "file": "08-mahiru-shiina-in-a-flower-field.mp4"
+    },
+    {
+      "idx": 9,
+      "slug": "mahiru-shiina-summer-sky",
+      "cn": "真昼·夏日晴空",
+      "file": "09-mahiru-shiina-summer-sky.mp4"
+    },
+    {
+      "idx": 10,
+      "slug": "furina-on-the-throne-genshin-impact",
+      "cn": "芙宁娜·水中神座",
+      "file": "10-furina-on-the-throne-genshin-impact.mp4"
+    },
+    {
+      "idx": 11,
+      "slug": "elaina-witch-of-the-roads",
+      "cn": "伊蕾娜·雪中森林",
+      "file": "11-elaina-witch-of-the-roads.mp4"
+    },
+    {
+      "idx": 12,
+      "slug": "elaina-reading-magic-book-wandering-witch",
+      "cn": "伊蕾娜·魔导书",
+      "file": "12-elaina-reading-magic-book-wandering-witch.mp4"
+    },
+    {
+      "idx": 13,
+      "slug": "nier-automata-2b-forest-ruins",
+      "cn": "2B·废墟森林",
+      "file": "13-nier-automata-2b-forest-ruins.mp4"
+    },
+    {
+      "idx": 14,
+      "slug": "at-girl-on-a-mountain-lake",
+      "cn": "猫耳少女·山间湖畔",
+      "file": "14-at-girl-on-a-mountain-lake.mp4"
+    },
+    {
+      "idx": 15,
+      "slug": "pink-blossom",
+      "cn": "樱花与相机少女",
+      "file": "15-pink-blossom.mp4"
+    },
+    {
+      "idx": 16,
+      "slug": "cozy-reading-girl",
+      "cn": "窗边读书的少女",
+      "file": "16-cozy-reading-girl.mp4"
+    },
+    {
+      "idx": 17,
+      "slug": "pure-soul",
+      "cn": "水中白银少女",
+      "file": "17-pure-soul.mp4"
+    },
+    {
+      "idx": 18,
+      "slug": "neon-gaze-mysterious-anime-girl",
+      "cn": "霓虹凝视·少女",
+      "file": "18-neon-gaze-mysterious-anime-girl.mp4"
+    },
+    {
+      "idx": 19,
+      "slug": "phoebe-cozy-bedroom",
+      "cn": "菲比·温馨卧室",
+      "file": "19-phoebe-cozy-bedroom.mp4"
+    },
+    {
+      "idx": 20,
+      "slug": "phoebe-wuthering-waves",
+      "cn": "菲比·鸣潮旷野",
+      "file": "20-phoebe-wuthering-waves.mp4"
+    },
+    {
+      "idx": 21,
+      "slug": "winter-wanderer-xayah",
+      "cn": "雪之行者·霞",
+      "file": "21-winter-wanderer-xayah.mp4"
+    },
+    {
+      "idx": 22,
+      "slug": "anime-girl-sword-reflection",
+      "cn": "剑刃倒影少女",
+      "file": "22-anime-girl-sword-reflection.mp4"
+    },
+    {
+      "idx": 23,
+      "slug": "crimson-anime-eyes",
+      "cn": "绯红眼瞳少女",
+      "file": "23-crimson-anime-eyes.mp4"
+    },
+    {
+      "idx": 24,
+      "slug": "violet-evergarden-chinese",
+      "cn": "薇尔莉特·水墨",
+      "file": "24-violet-evergarden-chinese.mp4"
+    }
+  ]
+}
