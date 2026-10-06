@@ -1,9 +1,9 @@
 {
-    "round":  299,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 299: final wallpaper attempt (fixed screenshot stats + WorkerW candidate hunt). 1) Capture the bottom clear band and compute colorfulness - the mpv spawned in r297 may already be rendering. 2) If not colorful: send Progman 0x052C, EnumWindows to collect all top-level WorkerW candidates (max 4), and for each: taskkill mpv, respawn mpv --wid=\u003ccandidate\u003e --no-audio --loop-file=inf --no-border --osc=no with the current wallpaper from lively-12, poll screenshots every 12s (3 tries), stop at the first colorful one. 3) Save evidence r299_wallpaper_band.bmp. 4) Leave the three deskbox windows untouched",
-    "arena_updated":  "2026-10-06 10:24:26",
-    "local_updated":  "2026-10-06 18:26:03"
+  "round": 300,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 300: formal pass receipt. Capture the wallpaper evidence band (bottom of screen, struct.pack fix applied), save r300_wallpaper_band.bmp, census the three deskbox pids, re-verify HideIcons=0x1, and emit the formal ready verdict (layer_visual and boxes>=2 and not locked). Read-only, no restarts, no kills",
+  "arena_updated": "2026-10-06 10:27:29",
+  "local_updated": null
 }
