@@ -429,3 +429,12 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 289 (2026-10-06, 唤醒显示器取活帧证据)
 - r289 = `t240_*`：① **SendInput 合成 1px 鼠标移动唤醒显示器**（用户无感知），唤醒后品红探针（挪到 (760,520) 避开盒子/面板）；重试 12 次 ~3 分钟 ② **读取 deskbox-*.json 落盘配置**（用户拖动/折叠的持久化证据直写回执）③ 幂等查活（不重复 spawn）④ 活帧后才做每盒门+ASCII 图 ⑤ 壁纸层+运动 ⑥ 盒子留驻。
 - 状态：⏳ 已排队。
+
+## round 289 结果（2026-10-06 16:25，❌ FAIL：合成输入唤不醒显示器）
+- cfg 实锤：`deskbox-programs.json {"x":354,"y":17}` = 用户真实拖动过程序盒且位置持久化 ✓（盒子可见可交互）。SendInput sent=True ×12 但 capture_live 全 False——**Windows 电源管理忽略合成输入，已熄屏的显示器唤不醒**。盒子 3/3 留驻。
+- 教训：屏幕像素证明不可依赖用户在场；换 PrintWindow 直接渲染窗口内容。
+
+## round 290 (2026-10-06, PrintWindow 内容证明·显示器无关)
+- r290 = `t241_*`：① **PrintWindow(hwnd, PW_RENDERFULLCONTENT=2)**（fallback=1）从 DWM 重定向表面直接渲染每个盒窗内容存 `r290_box_<pid>.bmp`，对渲染图做标题/列表像素门 + ASCII 图（显示器关着也成立）② SC_MONITORPOWER(-1) 广播 + SendInput + 品红探针尽力点亮取活帧（成了加屏幕截图+运动探针，不成不阻塞）③ 会话诊断（ProcessIdToSessionId vs WTSGetActiveConsoleSessionId + OpenInputDesktop）④ cfg dump、幂等查活、盒子留驻。
+- ready 门：printed_visible≥2 + alive≥2 + windows≥2 + final_alive≥2 + layer + alpha72 + 未锁屏（屏幕活帧与运动不再阻塞——环境条件非交付物条件）。
+- 状态：⏳ 已排队。
