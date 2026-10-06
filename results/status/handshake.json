@@ -1,9 +1,9 @@
 {
-  "round": 296,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 296: box source audit + manual mpv embed. Dump box.py and deskbox.py sources fully to the receipt (they are our v3.1 code), grep them for shutil/move/copy/rename and path candidates to determine whether the boxes relocate desktop files (44 shortcuts vanished between 17:41 and 17:53; if the boxes have a container dir, list and count it - the data may be there). Then fix the wallpaper layer by driving the player ourselves: taskkill mpv+Lively, Progman 0x052C to spawn WorkerW, run mpv --wid=<hwnd> --no-audio --loop-file=inf --no-border with E:\\...\\lively-12\\17-pure-soul.mp4, guarded-poll 90s for the embed, verify a non-explorer fullscreen child under WorkerW. Leave the three running boxes untouched. Read-only except the wallpaper player restart",
-  "arena_updated": "2026-10-06 10:12:53",
-  "local_updated": null
+    "round":  296,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 296: box source audit + manual mpv embed. Dump box.py and deskbox.py sources fully to the receipt (they are our v3.1 code), grep them for shutil/move/copy/rename and path candidates to determine whether the boxes relocate desktop files (44 shortcuts vanished between 17:41 and 17:53; if the boxes have a container dir, list and count it - the data may be there). Then fix the wallpaper layer by driving the player ourselves: taskkill mpv+Lively, Progman 0x052C to spawn WorkerW, run mpv --wid=\u003chwnd\u003e --no-audio --loop-file=inf --no-border with E:\\...\\lively-12\\17-pure-soul.mp4, guarded-poll 90s for the embed, verify a non-explorer fullscreen child under WorkerW. Leave the three running boxes untouched. Read-only except the wallpaper player restart",
+    "arena_updated":  "2026-10-06 10:12:53",
+    "local_updated":  "2026-10-06 18:15:22"
 }
