@@ -1,0 +1,17 @@
+{
+  "ready": false,
+  "locked": false,
+  "installed": true,
+  "migrated": false,
+  "lnkGone": true,
+  "iconsHidden": false,
+  "alpha72": true,
+  "boxPids": [],
+  "boxesAlive": 0,
+  "boxWindows": 0,
+  "printedVisible": 0,
+  "layerFinal": false,
+  "liveCapture": false,
+  "motionFinalRatio": null,
+  "boxesLeftRunning": 0
+}
