@@ -637,3 +637,11 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 314 (2026-10-06, 恢复阶段 10：初版兼容调用)
 - r314 = `t265_*`：helper v5——① winfr /! 抓本版真实用法落盘 ② attempt1 `echo Y| winfr E: dest /n \0mcp...\library\*`（无 /y 无模式开关）③ attempt2 winget upgrade 新版后带 /y ④ attempt3 `echo Y| winfr E: dest /r`（初版签名模式兜底，丢文件名）——每步 40s 存活检查+log 尾。python 侧 UAC 直发（r313 模式）+多编码日志解码+recovery 目录计数。
 - 状态：⏳ 已排队。
+
+## round 314 结果（2026-10-06 20:19，✅ task PASSED——拿到关键情报）
+- **winfr_help.log 抓到本版开关表**：无 /y 无 /regular——**用 /a（accepts all user prompts）**，默认模式 Regular。r314 卡死根因：winfr 停在 "Continue? (y/n)" 等 stdin（echo Y 管道无效）+ helper 同步 cmd /c 等待 → launcher 420s 超时。winfr 曾于 20:19:30 启动（Mode: Regular, Filter 正确）但卡提示被清，0 文件。
+- UAC 直发再次成功（用户点了是）。launcher_rc=998 只是超时，非提权失败。
+
+## round 315 (2026-10-06, 恢复阶段 11：最终形态 /a)
+- r315 = `t266_*`：helper v6——attempt1 `winfr E: dest /n \0mcp...\library\* /a` **后台 Start-Process**（不同步等）+40s 存活 → attempt2 尾反斜杠变体 → WINFR_SCAN_RUNNING / WINFR_FAILED_ALL_ATTEMPTS。launcher timeout 280s。
+- 状态：⏳ 已排队。
