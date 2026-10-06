@@ -1,9 +1,9 @@
 {
-  "round": 327,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-10-06 15:24:20",
-  "local_updated": "2026-10-06 23:22:35"
+  "round": 328,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 328: read-only targeted inspection, NO elevation, NO UAC. 1) full census of D:\\DeskBoxLibrary (file count, total MB, extension histogram, top-level entries with per-dir sizes, newest 12 doc-type files with unicode-escaped paths). 2) quick census of E:\\0docx, E:\\0word, E:\\0writing, E:\\0md, E:\\0github. 3) full recursive listing of E:\\WDR-20261006230705. 4) census of what survives in E:\\0mcp-agv-arena-optimized\\deskbox-v2. 5) documents at D:\\ root. 6) exact unicode-escaped desktop path and D: recycle-bin $I original paths with deletion timestamps. Keep the walk under about 12 minutes",
+  "arena_updated": "2026-10-06 15:26:12",
+  "local_updated": null
 }
