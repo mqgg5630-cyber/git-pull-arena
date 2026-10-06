@@ -1,9 +1,9 @@
 {
-  "round": 326,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-10-06 15:08:06",
-  "local_updated": "2026-10-06 23:07:39"
+  "round": 327,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 327: read-only document-recovery recon, NO elevation, NO UAC, NO downloads, change nothing. 1) census the E:, D: and C: recycle bins: file counts and total MB, parse the $I metadata files (original path, deletion timestamp, size), highlight any entries under deskbox or library paths, show the $R extension histogram. 2) scan E:\\, D:\\ and the user profile for existing document-type files (.doc .docx .xls .xlsx .ppt .pptx .pdf .txt .md .csv .rtf .odt), skipping .git, node_modules, Windows and Program Files; report counts per drive and the 30 most recently modified hits, plus any hits under deskbox/library/0mcp paths. 3) resolve every desktop .lnk target via WScript.Shell. 4) capture the full winfr /? help text to check whether this vintage build has a signature scan mode. Keep the walk bounded to about 14 minutes",
+  "arena_updated": "2026-10-06 15:18:51",
+  "local_updated": null
 }
