@@ -348,3 +348,10 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - 系统最终架构：`E:\...\lively-12\`（12 mp4 + wallpapers.json + state.json + switcher.py + auto_rotate.py + keeper12.py）；D 盘真桌面（注册表 Shell Folders 确认 `D:\桌面`）`动态壁纸切换器.bat`（菜单 1-12/N/A/S/R/Q）；Startup Keeper→keeper12（登录恢复当前选择+自动续开）；C 盘旧 bat+DeskBox 已清、旧 lively-hotori 目录已删。
 - 下载方法论（可复用）：livelywallpaper.app 壁纸页 HTML 提取 cdn mp4 直链 → Invoke-WebRequest(UA) 240s；curl 会 60s 超时断流、certutil 兜底。
 - 沙箱运维教训：本会话沙箱 .git/文件系统多次静默重置/闪烁（t233 一度提交成空文件）——**提交后必须 gh api 远端核验**；恢复 = reset --hard origin + 重叠加未提交改动。
+
+## round 282 (2026-10-06, 可爱少女 24 款 + 间隔/轮换池)
+- 用户要求：去掉男性角色款换可爱女生款、总数 24、自动切换多档间隔（含 15 秒）、可选哪几款参与轮换。
+- r282 = `t234_*`：保留 6（hotori/黑猫/樱花车站/秋千/枫叶/蝶舞）→ 删 6 男性 → 下 18 款女生（戒戒金鱼[Blue Archive]、真昼×2、芙宁娜、伊蕾娜×2、2B、猫耳少女、樱花相机、读书少女、白银水中、霓虹凝视、菲比×2、霞、剑刃倒影、绯红眼瞳、薇尔莉特 + 10 fallback）→ IWR 快速链 + 18 分钟自限 + `_fresh` 断点复用 → 两阶段改名重建。
+- **switcher v2**：`[T]` 间隔 15s/30s/1m/5m/30m/1h/自定义；`[P]` 轮换池 `1,3,5-8`（空=全部，`*` 标记）；auto_rotate v2 活读 state、auto_off 自退出；keeper12 不变。
+- 实测：1→7 像素 diff、池 [1,7]@15s ⊆{1,7} ≥3 切换、运动探针。注：本轮准备期间沙箱第三次重置，已照方恢复。
+- 状态：⏳ 已排队。
