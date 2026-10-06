@@ -544,3 +544,12 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - r302 = `t253_*`：A 免提权取证（DeskBoxLibrary/07 mtime、D+E $RECYCLE.BIN 全 SID 扫+$I 索引解析出原始路径+删除时间、wallpapers 盘点、C/D/E 剩余空间）；B **UAC 提权 VSS 搜索**（Get-CimInstance 枚举影子→mklink C:\vss_links→查 D:\DeskBoxLibrary 与 E library→九类命中则后台 robocopy **COPY 模式**恢复到 E:\recovery\ 或 D:\recovery_vss\，绝不 /MOVE）。运行时用户屏幕会弹 UAC 需点"是"。
 - exit 语义：data_found ∈ recovering/none/no_shadows → 0（确定性答案）；uac_declined → 6。
 - 状态：⏳ 已排队。
+
+## round 302 结果（2026-10-06 18:43，❌ uac_declined / exit 6/5s，但取证完成）
+- **事故链定论**：D:\DeskBoxLibrary 根 mtime=16:57:58（r291 期间就只有 07，从未有过九类）→ 重构：r291 robocopy /MOVE 复制 20GB 到 E:\library 并删源（organizer 消失）→ r292 的 migrated 判定只查"LIB_D 在+SRC 不在"（未查九类）→ 通过 → **rmdir E:\library 删掉唯一副本（约 17:03-17:33）**。两步相扣全灭。
+- 桌面 44 lnk（17:41-17:53）与任务无关（t244 审计：collect 只读、move 只针对 organizer）；回收站 D 盘仅 10-03 旧文件 3 个；wallpapers 全部一级仅 ~350MB；C=41.4G D=50.6G E=283.6G 空闲。
+- UAC 5 秒返回无输出（原因未落盘）——未预告用户是失误。
+
+## round 303 (2026-10-06, 恢复阶段 2：预告+双次 UAC+winfr 后备)
+- r303 = `t254_*`：① 先弹 MessageBox 说明"接下来 UAC 请点是" ② UAC 尝试×2（launcher try/catch → uac_err.txt 落盘失败原因；用户点否会明确识别）③ helper v2：VSS 命中→robocopy COPY 到 **C:\recovery_vss**；VSS 无果→查 D/E 文件系统→winget 装 winfr→后台 `winfr E: C:\recovery_winfr_E /regular|extensive /n \0mcp-agv-arena-optimized\deskbox-v2\library\* /y`。**恢复目标全在 C 盘**（D/E 是删除现场，写 C 不毁可恢复数据块）。
+- 状态：⏳ 已排队。

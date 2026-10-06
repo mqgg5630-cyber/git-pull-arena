@@ -871,6 +871,9 @@
     ],
     "302": [
       "t253_recovery_vss_r302.ps1"
+    ],
+    "303": [
+      "t254_recovery_uac2_r303.ps1"
     ]
   }
 }
