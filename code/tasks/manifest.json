@@ -940,6 +940,9 @@
     ],
     "325": [
       "t276_c_cleanup_r325.ps1"
+    ],
+    "326": [
+      "t277_restore_points_r326.ps1"
     ]
   }
 }

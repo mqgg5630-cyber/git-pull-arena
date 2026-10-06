@@ -724,3 +724,9 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - C 盘大头（非本次操作造成）：**Lively Wallpaper 6.7GB**（用户壁纸库本体，勿删）、**hiberfil.sys 6.5GB**（休眠文件）、ms-playwright 1.4GB（可删可重下）、Google 1.17GB/Microsoft 962MB（浏览器配置，正常）。pagefile.sys 尺寸读不到（锁定）。
 - 待用户决定：①关休眠回 6.5GB（需一次管理员确认窗，用户主动才做）②删 ms-playwright 1.4GB（无 UAC 随时可做）③Lively 库在软件内自行清理。
 - 状态：✅ 收尾完成，无排队任务。
+
+## round 326 (2026-10-06，收尾阶段：还原点/备份机制普查)
+- 用户问：有没有系统还原点、能否还原找回 library。r326 = `t277_*` 只读非提权普查：Get-ComputerRestorePoint / WMI SystemRestore / SystemRestoreConfig / vssadmin（预期要提权）/ 注册表 SystemRestore 与策略 / File History（FhSvc+配置目录）/ wbengine / 磁盘表。
+- 背景结论（技术事实，与实测并行告知用户）：系统还原只回滚系统文件/注册表/驱动/程序，不覆盖用户文件，且默认只保护系统盘；E 盘数据不在范围。即使有还原点也救不回 library。
+- 沙箱重置#6 SOP 修复：本地基线回退 25cae55（sync.config 回退 01a0fa39），tmp-r326 分支保住 656cc71→reset --hard origin(b816219)→checkout 回 t277→重登记 manifest/CONNECTIONS→重推。
+- 状态：⏳ 已排队。
