@@ -1,9 +1,9 @@
 {
-    "round":  274,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 274: real dynamic wallpaper via Lively - fixed gate accepts any WorkerW-layer player (mpv), pause rules flipped as 0/1 ints, setwp hotori mp4, structural + pixel proof",
-    "arena_updated":  "2026-10-06 02:22:31",
-    "local_updated":  "2026-10-06 10:27:59"
+  "round": 274,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-06 02:28:41",
+  "local_updated": "2026-10-06 10:27:59"
 }
