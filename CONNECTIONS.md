@@ -659,3 +659,7 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 317 (2026-10-06, 恢复阶段 13：一次提权全自动)
 - r317 = `t268_*`：**helper v8 = 独立长跑提权进程**（launcher 不带 -Wait，task 退出后继续跑 ≤40 分钟）：winfr 直启+原生重定向 → 每 30s MONITOR 行（alive+files 数）→ 死亡自动 dump 输出+换过滤器重试（v1 通配/v2 目录式/v3 上层目录）→ WINFR_DONE files= MB= 终判。task 侧：预告 popup→UAC（最后一次）→ 确认 monitor 启动即退。
 - 状态：⏳ 已排队。
+
+## round 317 结果（2026-10-06 20:45，✅ task PASSED 但 UAC 无人点/超时）
+- helper v8（一次提权全自动监控重试版）已就位于 DBOX（vss_helper.ps1 + vss_launch_v8.ps1 + 桌面 bat 同源）。UAC 弹出 151s 无人响应自动取消（用户大概率离开）。连续两次 UAC 未确认。
+- 决定：停止自动弹窗。等用户回来后：要么说一声由我触发（点一次"是"），要么自己双击桌面 bat。之后全自动（helper v8 独立跑 ≤40 分钟，MONITOR 行+自动重试+WINFR_DONE 终判）。
