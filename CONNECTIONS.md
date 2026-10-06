@@ -280,3 +280,8 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - 用户判定：**VLC 那不是壁纸**（`--video-wallpaper` 在 Win11 上是无边框覆盖窗口，像素测试无法区分"壁纸层"和"盖桌面的窗口"——结构证明缺失是我的验收漏洞）。
 - r273 = `t225_*`：① 彻底退役 VLC（杀进程 + 删 R272 自启/bat，保留 mp4）② 清 Lively 僵尸（r258 的死因）③ Settings.json 备份后关掉 pause 规则（电池暂停默认开！）④ 干净启动 Lively 主程序（维基要求先运行）⑤ setwp hotori mp4 ⑥ **结构性证明**：枚举窗口树，Lively 播放窗口必须是 WorkerW/Progman 的子窗口（真正图标层之下的壁纸层）+ 双晚期像素探针。全量诊断（Settings schema/电源状态/窗口树）入回执。
 - 状态：⏳ 已排队。
+
+## round 274 (2026-10-06, 判据修正)
+- r273 复盘：壁纸其实**装好了**——Lively v2.2.1 用 mpv.exe 当播放器，`class=mpv owner=mpv.exe` 的窗口就嵌在 WorkerW 壁纸层（图标层之下，无覆盖窗口），像素 88% 变化 + 双探针持续运动。但判据写死找"Lively 名字的进程"→ 误判 → 回滚拆掉了装好的壁纸。
+- r274 = `t226_*`：结构判据改为「WorkerW/Progman 层内任何**非 explorer** 的全屏播放窗口」都算壁纸层（mpv/webview/gif 播放器通吃）；BatteryPause/PowerSaveModePause 按 0/1 整数正确关闭（r273 翻转 0 条的教训）；其余流程不变（杀僵尸→改设置→起 Lively→setwp→play→结构+像素双证→不回滚）。
+- 状态：⏳ 已排队。
