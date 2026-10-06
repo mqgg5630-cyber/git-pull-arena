@@ -1,9 +1,9 @@
 {
-  "round": 331,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 331: read-only disk media check. 1) Get-PhysicalDisk table (DeviceId, Model, MediaType, BusType, SizeGB). 2) Get-CimInstance Win32_DiskDrive (Model, Index, Size, InterfaceType). 3) Win32_LogicalDiskToPartition mapping so we know which physical disk E: lives on. 4) windowed process list (ProcessName + MainWindowTitle) to identify the recovery tool the user ran. 5) E: free space and the WDR folder file count again. NO elevation, NO UAC, change nothing",
-  "arena_updated": "2026-10-06 15:37:54",
-  "local_updated": null
+    "round":  331,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 331: read-only disk media check. 1) Get-PhysicalDisk table (DeviceId, Model, MediaType, BusType, SizeGB). 2) Get-CimInstance Win32_DiskDrive (Model, Index, Size, InterfaceType). 3) Win32_LogicalDiskToPartition mapping so we know which physical disk E: lives on. 4) windowed process list (ProcessName + MainWindowTitle) to identify the recovery tool the user ran. 5) E: free space and the WDR folder file count again. NO elevation, NO UAC, change nothing",
+    "arena_updated":  "2026-10-06 15:37:54",
+    "local_updated":  "2026-10-06 23:39:17"
 }
