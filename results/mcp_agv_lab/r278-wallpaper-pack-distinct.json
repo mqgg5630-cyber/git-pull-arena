@@ -1,0 +1,86 @@
+{
+  "ready": true,
+  "locked": false,
+  "valid": 12,
+  "distinct": 12,
+  "newCdnDownloads": 6,
+  "catalog": [
+    {
+      "idx": 1,
+      "slug": "hotori",
+      "cn": "Hotori（原壁纸）",
+      "file": "01-hotori.mp4"
+    },
+    {
+      "idx": 2,
+      "slug": "anime-live-r244",
+      "cn": "旧藏·动漫 r244",
+      "file": "02-anime-live-r244.mp4"
+    },
+    {
+      "idx": 3,
+      "slug": "anime-ultra-r246",
+      "cn": "旧藏·燃系动漫 r246",
+      "file": "03-anime-ultra-r246.mp4"
+    },
+    {
+      "idx": 4,
+      "slug": "cute-anime-r247",
+      "cn": "旧藏·可爱动漫 r247",
+      "file": "04-cute-anime-r247.mp4"
+    },
+    {
+      "idx": 5,
+      "slug": "meteor-girl",
+      "cn": "流星夜空下的少女",
+      "file": "05-meteor-girl.mp4"
+    },
+    {
+      "idx": 6,
+      "slug": "mahiru-golden",
+      "cn": "金色午后的椎名真昼",
+      "file": "06-mahiru-golden.mp4"
+    },
+    {
+      "idx": 7,
+      "slug": "evening-window-view",
+      "cn": "夕阳窗边的黑猫",
+      "file": "07-evening-window-view.mp4"
+    },
+    {
+      "idx": 8,
+      "slug": "midnight-sakura-train-station",
+      "cn": "午夜樱花车站",
+      "file": "08-midnight-sakura-train-station.mp4"
+    },
+    {
+      "idx": 9,
+      "slug": "peaceful-anime-tree-swing-live-wallpaper",
+      "cn": "云端树秋千",
+      "file": "09-peaceful-anime-tree-swing-live-wallpaper.mp4"
+    },
+    {
+      "idx": 10,
+      "slug": "gojo-satoru-train",
+      "cn": "五条悟·霓虹列车",
+      "file": "10-gojo-satoru-train.mp4"
+    },
+    {
+      "idx": 11,
+      "slug": "tanjiro-kamado-crimson-moon",
+      "cn": "炭治郎·红月",
+      "file": "11-tanjiro-kamado-crimson-moon.mp4"
+    },
+    {
+      "idx": 12,
+      "slug": "itachi-uchiha-crimson-shadows",
+      "cn": "鼬·绯红暗影",
+      "file": "12-itachi-uchiha-crimson-shadows.mp4"
+    }
+  ],
+  "switchProven": true,
+  "switchDiffRatio": 0.8871648341049383,
+  "motionFinalRatio": 0.9935860339506173,
+  "layerFinal": true,
+  "livelyExe": "C:\\Program Files\\Lively Wallpaper\\Lively.exe"
+}
