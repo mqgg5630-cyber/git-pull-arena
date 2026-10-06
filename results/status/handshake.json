@@ -1,9 +1,9 @@
 {
-  "round": 292,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 292: r291 left the desktop with NO boxes (robocopy /MOVE of the 20GB organizer half-finished: everything copied to E:, source not deleted, migration gate failed, v3 never spawned after v2 was killed) and the wallpaper WorkerW layer broken by the explorer restart. This round: same-drive shutil.move organizer -> D:\\DeskBoxLibrary (instant rename), remove the failed 20GB E: copy after verifying D:, box.py v3.1 library_base prefers D:\\DeskBoxLibrary, spawn boxes (desktop restored), HideIcons with reg diagnostics, wallpaper layer recovery loop (90s poll -> Lively restart -> 120s poll), PrintWindow proof, boxes left running",
-  "arena_updated": "2026-10-06 09:03:19",
-  "local_updated": null
+    "round":  292,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 292: r291 left the desktop with NO boxes (robocopy /MOVE of the 20GB organizer half-finished: everything copied to E:, source not deleted, migration gate failed, v3 never spawned after v2 was killed) and the wallpaper WorkerW layer broken by the explorer restart. This round: same-drive shutil.move organizer -\u003e D:\\DeskBoxLibrary (instant rename), remove the failed 20GB E: copy after verifying D:, box.py v3.1 library_base prefers D:\\DeskBoxLibrary, spawn boxes (desktop restored), HideIcons with reg diagnostics, wallpaper layer recovery loop (90s poll -\u003e Lively restart -\u003e 120s poll), PrintWindow proof, boxes left running",
+    "arena_updated":  "2026-10-06 09:03:19",
+    "local_updated":  "2026-10-06 17:33:51"
 }
