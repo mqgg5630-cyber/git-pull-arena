@@ -1,9 +1,9 @@
 {
-    "round":  330,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 330: read-only magic-sniff of every file in E:\\WDR-20261006230705. Classify by first bytes: PK-zip, OLE2-doc (D0CF11E0), PDF, RTF, JPEG, PNG, zero-fill, unknown; detect files that are entirely zero; hex-dump the first 24 bytes of the 5 largest files; report whether the file count grew past 561 (tool still writing); list all windowed processes to spot the recovery tool. NO elevation, NO UAC, change nothing",
-    "arena_updated":  "2026-10-06 15:34:48",
-    "local_updated":  "2026-10-06 23:35:55"
+  "round": 330,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-06 15:36:24",
+  "local_updated": "2026-10-06 23:35:55"
 }
