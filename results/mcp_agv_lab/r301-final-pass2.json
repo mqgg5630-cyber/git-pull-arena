@@ -1,0 +1,11 @@
+{
+  "ready": false,
+  "layerVisual": false,
+  "boxesAlive": 3,
+  "hideicons": true,
+  "band": {
+    "mean": 46,
+    "colorful_pct": 5,
+    "nonblack_pct": 100
+  }
+}
