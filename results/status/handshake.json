@@ -1,9 +1,9 @@
 {
-  "round": 314,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 314: UAC full-path trigger (proven in r313) runs helper v5 elevated: 0) winfr /! captures this vintage build's usage screen; 1) echo Y | winfr E: C:\\recovery_winfr_E /n \\0mcp-agv-arena-optimized\\deskbox-v2\\library\\* (no /y, no mode switch) with 40s liveness check; 2) winget upgrade Microsoft.WindowsFileRecovery then retry with /y; 3) echo Y | winfr E: dest /r (vintage signature mode, last resort); log tails at every failure, final verdict WINFR_SCAN_RUNNING or WINFR_FAILED_ALL_ATTEMPTS. The task shows the heads-up popup first, then triggers the UAC. Verify the winfr process and C:\\recovery_winfr_E contents afterwards. Delete nothing",
-  "arena_updated": "2026-10-06 12:17:04",
-  "local_updated": null
+    "round":  314,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 314: UAC full-path trigger (proven in r313) runs helper v5 elevated: 0) winfr /! captures this vintage build\u0027s usage screen; 1) echo Y | winfr E: C:\\recovery_winfr_E /n \\0mcp-agv-arena-optimized\\deskbox-v2\\library\\* (no /y, no mode switch) with 40s liveness check; 2) winget upgrade Microsoft.WindowsFileRecovery then retry with /y; 3) echo Y | winfr E: dest /r (vintage signature mode, last resort); log tails at every failure, final verdict WINFR_SCAN_RUNNING or WINFR_FAILED_ALL_ATTEMPTS. The task shows the heads-up popup first, then triggers the UAC. Verify the winfr process and C:\\recovery_winfr_E contents afterwards. Delete nothing",
+    "arena_updated":  "2026-10-06 12:17:04",
+    "local_updated":  "2026-10-06 20:26:22"
 }
