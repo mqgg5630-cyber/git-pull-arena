@@ -353,7 +353,13 @@
     "results/mcp_agv_lab/r277_p1_wallpaper1.bmp",
     "results/mcp_agv_lab/r277_p2_wallpaper2.bmp",
     "results/mcp_agv_lab/r281_pa_wallpaper1.bmp",
-    "results/mcp_agv_lab/r281_pb_wallpaper2.bmp"
+    "results/mcp_agv_lab/r281_pb_wallpaper2.bmp",
+    "code/tasks/t234_run_cute_girls_24pack_r282.ps1",
+    "code/tasks/t234_run_cute_girls_24pack_r282.py",
+    "results/mcp_agv_lab/R282_CUTE_GIRLS_24PACK.md",
+    "results/mcp_agv_lab/r282-cute-girls-24pack.json",
+    "results/mcp_agv_lab/r282_pa_wallpaper1.bmp",
+    "results/mcp_agv_lab/r282_pb_wallpaper7.bmp"
   ],
   "forbid_files": [
     "local/inbox",
@@ -419,7 +425,8 @@
     "results/mcp_agv_lab/R275_LIVELY_WALLPAPER_REBOOT_PROOF.md": "(?s)(?=.*keeper_installed=True)(?=.*wallpaper_layer_proven=True)(?=.*persistent_motion_proven=True)(?=.*setwp_ok=True)(?=.*LIVELY_WALLPAPER_REBOOT_PROOF_READY=True).*",
     "results/mcp_agv_lab/R276_LIVELY_ONE_CLICK_REPAIR.md": "(?s)(?=.*desktop_bat_exists=True)(?=.*layer_empty_after_kill=True)(?=.*repair_auto_exit=0)(?=.*layer_present_after_repair=True)(?=.*motion_after_repair_proven=True)(?=.*LIVELY_ONE_CLICK_REPAIR_READY=True).*",
     "results/mcp_agv_lab/R277_WALLPAPER_SWITCHER_12PACK.md": "(?s)(?=.*LIVELY_SWITCHER_12PACK_READY=True)(?=.*manual_switch_proven=True)(?=.*auto_rotation_switches=2)(?=.*keeper12_now_exit=0).*",
-    "results/mcp_agv_lab/R281_WALLPAPER_SAFE_REBUILD.md": "(?s)(?=.*WALLPAPER_SAFE_REBUILD_READY=True)(?=.*switch_proven=True)(?=.*motion_final_proven=True)(?=.*layer_final=True)(?=.*catalog_size=12 valid=12 distinct=12).*"
+    "results/mcp_agv_lab/R281_WALLPAPER_SAFE_REBUILD.md": "(?s)(?=.*WALLPAPER_SAFE_REBUILD_READY=True)(?=.*switch_proven=True)(?=.*motion_final_proven=True)(?=.*layer_final=True)(?=.*catalog_size=12 valid=12 distinct=12).*",
+    "results/mcp_agv_lab/R282_CUTE_GIRLS_24PACK.md": "(?s)(?=.*CUTE_GIRLS_24PACK_READY=True)(?=.*switch_proven=True)(?=.*pool_test switches=\\d+ seen=\\[1, 7\\] subset_ok=True)(?=.*interval_15s_proven=True)(?=.*males_left=\\[\\]).*"
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,
@@ -572,7 +579,13 @@
     "results/mcp_agv_lab/r277_p1_wallpaper1.bmp": 2986025,
     "results/mcp_agv_lab/r277_p2_wallpaper2.bmp": 2986025,
     "results/mcp_agv_lab/r281_pa_wallpaper1.bmp": 2986025,
-    "results/mcp_agv_lab/r281_pb_wallpaper2.bmp": 2986025
+    "results/mcp_agv_lab/r281_pb_wallpaper2.bmp": 2986025,
+    "code/tasks/t234_run_cute_girls_24pack_r282.ps1": 373,
+    "code/tasks/t234_run_cute_girls_24pack_r282.py": 23151,
+    "results/mcp_agv_lab/R282_CUTE_GIRLS_24PACK.md": 2887,
+    "results/mcp_agv_lab/r282-cute-girls-24pack.json": 3079,
+    "results/mcp_agv_lab/r282_pa_wallpaper1.bmp": 2986025,
+    "results/mcp_agv_lab/r282_pb_wallpaper7.bmp": 2986025
   },
   "max_bytes": {
     "deliverable/LINK_PROOF_v2.8.1.docx": 3000000,
