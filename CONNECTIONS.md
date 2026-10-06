@@ -475,3 +475,14 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 294 (2026-10-06, 数据大搜查+壁纸修复·只读)
 - r294 = `t245_*`：① deskbox-v2 现场 mtime 取证（r292 走到哪）② D:\ / D:\桌面 / D:\DeskBoxLibrary(2层) / E:\0mcp 区全列目录 + junction 检查 ③ 关键词守卫搜索（anime-wallpapers/apps-shortcuts/deskbox-cute/job-archives，D 300s / E 240s）④ **恢复选项**：vssadmin 影子副本 + 回收站 COM 清点 ⑤ Lively 壁纸源健在验证（lively-12/state.json/当前壁纸文件）⑥ 壁纸层修复（kill mpv+Lively → 直接启动 → 守卫轮询 150s）⑦ 盒子不动（<2 才补）。**只读不删任何数据**。
 - 状态：⏳ 已排队。
+
+## round 294 结果（2026-10-06 17:53，❌ FAIL：数据未找到+层未恢复）
+- **D、E 两盘全盘关键词搜索 0 命中**（anime-wallpapers/apps-shortcuts/deskbox-cute/job-tools）——九类库（~98903 文件/20.1GB）在 D、E 均已不存在。D:\DeskBoxLibrary 仍只有 07-Old-Folders(2)。
+- 桌面缩水：r293 时 c01 还数到 52 个程序，r294 桌面仅剩 ~8 lnk + 3 bat + 2 AMP 目录 + 5 ~$ 临时文件。桌面残留 `Auto Tidy Desktop.lnk`（旧 DeskBox 自动整理入口）为头号嫌疑——它可能把桌面文件搬到 C 盘某处（r295 查）。
+- VSS 查询需管理员权限（vssadmin rc=2 / CIM 0x80041014），影子副本状态未知。回收站仅 3 项（AI_English 等，旧文件）。
+- 壁纸源 wallpaper 包 lively-12 完好（35 项，state.json current=17-pure-soul.mp4）；mpv+Lively 进程活着但未嵌入 WorkerW → 层 DOWN；r294 重启 Lively 未救回。
+- 盒子 3/3 存活未动。exit 6（310s）。
+
+## round 295 (2026-10-06, C 盘搜索+壁纸硬修复)
+- r295 = `t246_*`：① keeper12 守护脚本恢复壁纸层（失败则 kill mpv/Lively + 直接重启 + 180s 长轮询）② C:\Users 全目录关键词搜索（r294 未覆盖 C 盘；Auto Tidy 目标可能在用户配置目录）③ 旧 DeskBox 残余清点（schtasks 匹配 tidy/deskbox/organiz/cute、apps\DeskBox 目录、进程、quark-cloud-drive 一级）④ 盒子不动。只读不删。
+- 状态：⏳ 已排队。
