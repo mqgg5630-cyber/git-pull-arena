@@ -717,3 +717,10 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## 用户决定（~22:50）：放弃恢复，转入收尾清理
 - C 盘少了好几个 G → r325 = `t276_*`：①记录 v10 终判+确认/尝试停 WinFR（非提权 best-effort；用户手动关窗口）②C 盘审计（回收站/更新缓存/浏览器缓存/搜索索引/页面文件等尺寸）③清用户级缓存（TEMP/CrashDumps/pip/浏览器 Cache 子目录）+删恢复残留（C:\recovery_winfr_E、DBOX vss 四件、桌面 RECOVERY bat）④汇报释放量+需管理员项（用户自己去 设置>存储 清）。不碰回收站内容、不删用户数据、零 UAC。
 - 状态：⏳ 已排队。后续若 winfr 仍活 → r326 收尾删 recovery 目录。
+
+## round 325 结果（2026-10-06 22:53，✅ 9s PASSED——恢复正式终结 + C 盘清理）
+- **终判 WINFR_ZERO**：winfr 22:43 自行退出、0 文件（helper v10 记录在案）。MFT 记录确认已灭，恢复线关闭。
+- 已清理：pip 395MB、Edge 缓存 59MB、崩溃转储 2MB、C:\recovery_winfr_E、桌面 RECOVERY-recover-data.bat、DBOX 4 个 vss 脚本。C 盘 38571→38971MB（+400MB）。
+- C 盘大头（非本次操作造成）：**Lively Wallpaper 6.7GB**（用户壁纸库本体，勿删）、**hiberfil.sys 6.5GB**（休眠文件）、ms-playwright 1.4GB（可删可重下）、Google 1.17GB/Microsoft 962MB（浏览器配置，正常）。pagefile.sys 尺寸读不到（锁定）。
+- 待用户决定：①关休眠回 6.5GB（需一次管理员确认窗，用户主动才做）②删 ms-playwright 1.4GB（无 UAC 随时可做）③Lively 库在软件内自行清理。
+- 状态：✅ 收尾完成，无排队任务。
