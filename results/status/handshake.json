@@ -1,9 +1,9 @@
 {
-  "round": 317,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 317: ONE-SHOT recovery. helper v8 (written) is a standalone long-running elevated process: launcher starts it WITHOUT -Wait (task exit does not kill it); it launches winfr directly with native redirects, writes MONITOR lines every 30s (alive + recovered file count) into vss_out.txt, auto-retries with different filters (wildcard / dir / parent dir) if winfr dies, and finishes with WINFR_DONE files= MB= or WINFR_FAILED_ALL plus all captured output. The task: heads-up popup telling the user this is the LAST permission click, full-path UAC trigger, confirm ELEVATED_RUN_OK, read the first MONITOR lines (up to 100s), verify the winfr process, count C:\\recovery_winfr_E files, report monitor_started. Delete nothing",
-  "arena_updated": "2026-10-06 12:43:37",
-  "local_updated": null
+    "round":  317,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 317: ONE-SHOT recovery. helper v8 (written) is a standalone long-running elevated process: launcher starts it WITHOUT -Wait (task exit does not kill it); it launches winfr directly with native redirects, writes MONITOR lines every 30s (alive + recovered file count) into vss_out.txt, auto-retries with different filters (wildcard / dir / parent dir) if winfr dies, and finishes with WINFR_DONE files= MB= or WINFR_FAILED_ALL plus all captured output. The task: heads-up popup telling the user this is the LAST permission click, full-path UAC trigger, confirm ELEVATED_RUN_OK, read the first MONITOR lines (up to 100s), verify the winfr process, count C:\\recovery_winfr_E files, report monitor_started. Delete nothing",
+    "arena_updated":  "2026-10-06 12:43:37",
+    "local_updated":  "2026-10-06 20:48:15"
 }
