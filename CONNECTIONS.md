@@ -575,3 +575,12 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 306 (2026-10-06, 恢复阶段 5：等待用户双击+读结果)
 - r306 = `t257_*`：轮询 vss_out.txt 600s（300s 时再弹一次指引 popup）；出现后 classify+robocopy/winfr 日志尾+recovery 目录进度；未出现 → awaiting_user_doubleclick。已在聊天中明确请用户双击桌面 RECOVERY-recover-data.bat。
 - 状态：⏳ 已排队。
+
+## round 306 状态 + 用户紧急回滚请求（2026-10-06 19:0x）
+- r306（等待用户双击 bat+读结果）已被 watcher 拉取（05a1f41 awaiting local check）。期间本地 handsfree 被用户中止，且发生第二次沙箱重置（本地 git 回 25cae55，已修复为基于远端 HEAD 重建 r307）。
+- 用户报告：看不到桌面、看不到任务栏——explorer 疑似挂掉。用户指令："恢复我之前的桌面"。
+- 判定无需重启电脑：HideIcons=1 是注册表持久项重启不消失+自启动会把盒子拉回，必须主动回滚。
+
+## round 307 (2026-10-06, 全面桌面回滚·紧急)
+- r307 = `t258_*`：① taskkill mpv+Lively（停壁纸）② reg add HideIcons=0（图标可见）③ taskkill 3 盒（pid 来自 deskbox-*.pid）④ 清 Startup 里我们装的 DeskBox 自启动项 ⑤ taskkill+重启 explorer（任务栏/桌面重建）⑥ 完成确认 popup（explorer 回来后可见）。**保留**：桌面 RECOVERY-recover-data.bat（数据恢复入口）、deskbox-v2 全部文件、backup。
+- 状态：⏳ 已排队（紧急）。

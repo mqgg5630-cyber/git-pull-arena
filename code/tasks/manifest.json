@@ -883,6 +883,9 @@
     ],
     "306": [
       "t257_recovery_wait_r306.ps1"
+    ],
+    "307": [
+      "t258_rollback_desktop_r307.ps1"
     ]
   }
 }
