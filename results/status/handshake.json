@@ -1,9 +1,9 @@
 {
-  "round": 308,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-10-06 11:27:40",
-  "local_updated": "2026-10-06 19:26:58"
+  "round": 309,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 309: DATA RECOVERY phase 6 - the helper has been rewritten (v3) with a fixed winget installer (version log, attempt 1 via winget source with --silent but no --disable-interactivity, attempt 2 via msstore source 9N26S50LN705, full UTF-8 logs in vss_out.txt, winfr looked up in three locations). Show the ACTION NEEDED popup asking the user to double-click RECOVERY-recover-data.bat one more time, poll for fresh vss_out.txt (mtime newer than round start) up to 600s with a reminder popup at 300s, then classify: recovering_vss / winfr_running / winfr_install_failed / no_shadows / awaiting_user_doubleclick. Print winget error lines via unicode_escape so the real Chinese errors reach the receipt. Recovery output to C:\\ only. Delete nothing",
+  "arena_updated": "2026-10-06 11:29:33",
+  "local_updated": null
 }
