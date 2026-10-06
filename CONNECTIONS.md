@@ -314,3 +314,9 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - 交付物：桌面 **`一键启动动态壁纸.bat`**（578B，中文文件名/ASCII 内容，python→py -3 兜底，结尾 pause 显示结果）→ 跑 `E:\...\lively-hotori\repair_lively_hotori.py`（中文进度 + `repair.log`；`--auto` 免回车）。修复逻辑：杀 Livelycu 僵尸 → Lively 没跑就拉起等 25s → 壁纸层空就 setwp+play，重试 3 次。
 - 注意：回执里 repair 中文行显示 ??? 是 receipt L() ascii-replace 所致；用户实际控制台与 repair.log 均为正常中文。
 - keeper 双保险仍在（logon Keeper + 桌面一键修复）。PATHS.txt 已更新。
+
+## round 277 (2026-10-06, 12款壁纸切换器)
+- 用户要求：再找 11 款好看动漫动态壁纸（共 12）、手动选择+自动切换、入口放 **D 盘桌面**（用户桌面在 D 盘）、清掉 C 盘旧物。
+- r277 = `t229_*`：注册表读真实桌面 → 12 款（CDN hd.mp4→preview.mp4→本地兜底）入 `E:\...\lively-12\` → switcher.py/auto_rotate.py/keeper12.py → D 盘桌面 `动态壁纸切换器.bat` → Startup keeper 改指 keeper12 → 实测（手动切换像素 diff、自动 25s×2、keeper12 --now、运动探针）→ 清 C 盘旧 bat+DeskBox+旧 lively-hotori 目录。
+- 运维注记：沙箱本轮再次静默重置（HEAD 回 25cae55），已 reset --hard origin 恢复；local_check.ps1 的 fast-path 扩展从未被提交过也从不影响 accept，以后不再做这个 sed。
+- 状态：⏳ 已排队。
