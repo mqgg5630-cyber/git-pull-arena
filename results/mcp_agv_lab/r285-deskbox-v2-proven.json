@@ -1,0 +1,15 @@
+{
+  "ready": true,
+  "locked": false,
+  "boxPy": "E:\\0mcp-agv-arena-optimized\\deskbox-v2\\box.py",
+  "supPy": "E:\\0mcp-agv-arena-optimized\\deskbox-v2\\deskbox.py",
+  "boxPids": [
+    49460,
+    48696,
+    49548
+  ],
+  "boxesAlive": 3,
+  "boxWindows": 3,
+  "layerFinal": true,
+  "motionFinalRatio": 0.8758198302469136
+}
