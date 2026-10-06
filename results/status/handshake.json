@@ -1,9 +1,9 @@
 {
-  "round": 322,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 322: CLEAN RESTART, the user is present and expects the UAC. helper v10 (written): kill all WinFR instances, start ONE instance with -WindowStyle Minimized and NO redirects (real console, minimized), monitor 60 minutes writing MON2 lines every 60s, final verdict WINFR_DONE files= MB= / WINFR_ZERO / WINFR_STILL_RUNNING. Task: heads-up popup, full-path UAC trigger, verify ELEVATED_RUN_OK, read the startup lines (killed=, single instance started, first MON2), verify process count, exit - helper keeps running independently",
-  "arena_updated": "2026-10-06 13:56:46",
-  "local_updated": null
+    "round":  322,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 322: CLEAN RESTART, the user is present and expects the UAC. helper v10 (written): kill all WinFR instances, start ONE instance with -WindowStyle Minimized and NO redirects (real console, minimized), monitor 60 minutes writing MON2 lines every 60s, final verdict WINFR_DONE files= MB= / WINFR_ZERO / WINFR_STILL_RUNNING. Task: heads-up popup, full-path UAC trigger, verify ELEVATED_RUN_OK, read the startup lines (killed=, single instance started, first MON2), verify process count, exit - helper keeps running independently",
+    "arena_updated":  "2026-10-06 13:56:46",
+    "local_updated":  "2026-10-06 22:01:27"
 }
