@@ -1,9 +1,9 @@
 {
-  "round": 279,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 279: download 6 more fresh CDN anime wallpapers, replace old local entries, final pack hotori + 11 fresh, live switch test",
-  "arena_updated": "2026-10-06 05:28:20",
-  "local_updated": null
+    "round":  279,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 279: download 6 more fresh CDN anime wallpapers, replace old local entries, final pack hotori + 11 fresh, live switch test",
+    "arena_updated":  "2026-10-06 05:28:20",
+    "local_updated":  "2026-10-06 13:33:20"
 }
