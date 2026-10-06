@@ -652,3 +652,10 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 316 (2026-10-06, 恢复阶段 12：直启+原生重定向)
 - r316 = `t267_*`：helper v7——Start-Process -FilePath winfr **ArgumentList 数组 + -RedirectStandardOutput/Error**（完全绕开 cmd 解析；Hidden 失败自动 NoNewWindow）；attempt1 通配符 attempt2 目录式，各 60s 存活；死亡时 stdout/stderr 尾落盘 vss_out。python 侧同 r315 + r315 遗留诊断（log mtime、Recovery_* 子目录 mtime）。
 - 状态：⏳ 已排队。
+
+## round 316 结果（2026-10-06 20:38，✅ task PASSED 但 UAC 被拒）
+- 用户第 5 次面对 UAC 选择了拒绝/超时（147s）。winfr 直启+原生重定向方案未获执行。r315 遗留：winfr_E.log 20:19:30 未更新、Recovery_201930 空目录。
+
+## round 317 (2026-10-06, 恢复阶段 13：一次提权全自动)
+- r317 = `t268_*`：**helper v8 = 独立长跑提权进程**（launcher 不带 -Wait，task 退出后继续跑 ≤40 分钟）：winfr 直启+原生重定向 → 每 30s MONITOR 行（alive+files 数）→ 死亡自动 dump 输出+换过滤器重试（v1 通配/v2 目录式/v3 上层目录）→ WINFR_DONE files= MB= 终判。task 侧：预告 popup→UAC（最后一次）→ 确认 monitor 启动即退。
+- 状态：⏳ 已排队。
