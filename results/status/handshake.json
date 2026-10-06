@@ -1,9 +1,9 @@
 {
-  "round": 286,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 286: re-run the SAME t237_deskbox_one_process_per_box_r285.ps1 (round 285 task itself was fully green on the machine: 3/3 boxes alive, 3 windows, screenshot, wallpaper intact, DESKBOX_V2_PROVEN_READY=True; the round failed only because the manifest wrongly listed the .py as a second entry). Manifest fixed to ps1-only. Verify DeskBox v2 end to end: supervisor spawns per-category boxes, >=2 alive, >=2 windows, launch log readback, no crash logs, screenshot, wallpaper layer + motion probe",
-  "arena_updated": "2026-10-06 07:42:20",
-  "local_updated": null
+    "round":  286,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 286: re-run the SAME t237_deskbox_one_process_per_box_r285.ps1 (round 285 task itself was fully green on the machine: 3/3 boxes alive, 3 windows, screenshot, wallpaper intact, DESKBOX_V2_PROVEN_READY=True; the round failed only because the manifest wrongly listed the .py as a second entry). Manifest fixed to ps1-only. Verify DeskBox v2 end to end: supervisor spawns per-category boxes, \u003e=2 alive, \u003e=2 windows, launch log readback, no crash logs, screenshot, wallpaper layer + motion probe",
+    "arena_updated":  "2026-10-06 07:42:20",
+    "local_updated":  "2026-10-06 15:45:24"
 }
