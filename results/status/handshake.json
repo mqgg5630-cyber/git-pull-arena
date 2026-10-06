@@ -1,9 +1,9 @@
 {
-    "round":  311,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 311: winfr is installed but /regular rejected the wildcard filter. helper v4 (already written) now: segment mode with wildcard filter first (35s liveness check), fallback to /regular with trailing-backslash directory filter, log tails on failure, final verdict WINFR_SCAN_RUNNING or WINFR_FAILED_BOTH. Show the LAST-TIME popup asking the user to double-click RECOVERY-recover-data.bat once more, poll for fresh vss_out.txt 600s, verify the winfr process independently, decode the UTF-16 logs, count files in C:\\recovery_winfr_E. Delete nothing",
-    "arena_updated":  "2026-10-06 11:52:28",
-    "local_updated":  "2026-10-06 20:03:37"
+  "round": 312,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 312: the user asked for the flow where WE trigger the permission dialog and THEY only click Yes. Hypothesis: the watcher's Start-Process -Verb RunAs failed because 'powershell' could not be resolved via a stripped PATH ('no application is associated...'). Fix with FULL PATHS: heads-up popup (20s, tells the user a UAC is coming and to click Yes), then attempt A = Start-Process -FilePath C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -Verb RunAs -Wait running vss_helper.ps1 (helper v4: winfr segment mode with wildcard filter, 35s liveness check, regular-mode dir-filter fallback, WINFR_SCAN_RUNNING verdict); attempt B = cmd.exe full path wrapper if A fails; capture elevation errors to uac_err.txt with unicode_escape readback. If elevation still impossible: popup pointing to RECOVERY-recover-data.bat + 300s poll fallback. Verify the winfr process independently and count C:\\recovery_winfr_E files. Delete nothing",
+  "arena_updated": "2026-10-06 12:06:21",
+  "local_updated": null
 }
