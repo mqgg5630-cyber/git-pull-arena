@@ -753,3 +753,11 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - r329 = `t280_*`：对 561 个 docx 逐个 zip/OOXML 结构校验（OK/ZIP-ONLY/NOTZIP/ERR/ZERO）+ 重复组 + mtime 年份直方图 + 完整索引写 results/mcp_agv_lab/WDR_INDEX.md。只读无 UAC。
 - 风险提示：WDR 输出写回 E: 源盘——若还要进一步雕刻，输出必须改到 C:/D:。
 - 状态：⏳ 已排队。
+
+## round 329 结果（2026-10-06 23:32，✅ PASSED——WDR 产物全军覆没）
+- 561 个文件：**0 个合法 docx**；547 个 NOTZIP + 14 个 0KB。名字/大小/mtime 全对但内容不合法——典型"元数据有了、内容没写对"（demo 版限制或簇内容错）。
+- mtime 分布 2019:1 / 2022:3 / 2023:2 / 2024:187 / 2025:176 / 2026:192——正是用户历年文档清单，索引已写 results/mcp_agv_lab/WDR_INDEX.md。
+
+## round 330 (WDR 内容嗅探)
+- r330 = `t281_*`：对 WDR 全部文件做魔数分类（PK-zip / OLE2-doc / PDF / RTF / zeros / unknown + 全零检测 + 最大文件头 16 进制）+ 文件数是否还在涨 + 有窗口进程列表（找恢复工具本体）。只读无 UAC。
+- 状态：⏳ 已排队。
