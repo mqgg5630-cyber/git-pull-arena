@@ -892,6 +892,9 @@
     ],
     "309": [
       "t260_recovery_winfr_r309.ps1"
+    ],
+    "310": [
+      "t261_read_winfr_state_r310.ps1"
     ]
   }
 }

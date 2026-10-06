@@ -603,3 +603,8 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 309 结果（2026-10-06 19:32，❌ awaiting_user_doubleclick/613s）
 - helper v3 已写入（4640B，修好的 winget 安装器）。弹窗+600s 轮询期间用户未双击。旧 vss_out mtime=19:28:44（r309 前用户曾自己再跑过一次 v2，仍是装失败的旧版）。bat 在桌面，只差用户双击 v3 版。
 - 决定：不再自动弹窗打扰，等用户主动双击后跑读结果轮。
+
+## round 310 (2026-10-06, 读 v3 helper 运行结果)
+- 用户报告 bat 窗口正常跑完（显示 DONE）。r310 = `t261_*`：读 vss_out.txt 全文（winget 真实错误 unicode_escape）+ winfr 进程/log 尾/C:\recovery_winfr_E 递归计数。纯只读。
+- 沙箱重置 #4 事故已修复（sync.config.json 分支被重置为父分支 arena/01a0fa39 → 改回 arena/01a10bf3；本地 reset 到远端 6c1f19e 后重建 r310）。
+- 状态：⏳ 已排队。
