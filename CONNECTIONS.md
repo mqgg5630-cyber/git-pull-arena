@@ -553,3 +553,10 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 303 (2026-10-06, 恢复阶段 2：预告+双次 UAC+winfr 后备)
 - r303 = `t254_*`：① 先弹 MessageBox 说明"接下来 UAC 请点是" ② UAC 尝试×2（launcher try/catch → uac_err.txt 落盘失败原因；用户点否会明确识别）③ helper v2：VSS 命中→robocopy COPY 到 **C:\recovery_vss**；VSS 无果→查 D/E 文件系统→winget 装 winfr→后台 `winfr E: C:\recovery_winfr_E /regular|extensive /n \0mcp-agv-arena-optimized\deskbox-v2\library\* /y`。**恢复目标全在 C 盘**（D/E 是删除现场，写 C 不毁可恢复数据块）。
 - 状态：⏳ 已排队。
+
+## round 303 结果（2026-10-06 18:49，❌ exit 1/12s 崩溃无 traceback）
+- 崩在 UAC attempt 1 启动后、launcher_rc 打印前——推测 12 秒内 UAC 可能已弹且被接受、提权 helper 可能已跑完（vss_out.txt 或已有答案），但 python 主线程死因不明（无 stderr 落盘）。说明 MessageBox 和 UAC 已至少出现在用户屏幕一次。
+
+## round 304 (2026-10-06, 恢复阶段 3：读回+加固重试)
+- r304 = `t255_*`：① 先只读 r303 遗留的 vss_out.txt/uac_err.txt（若已含 RECOVERY_START/WINFR_START 直接得答案，不再弹 UAC）② 不明确才重试：MessageBox 说明+UAC×2，全程 try/except+traceback 落盘、每步 flush_report、不用线程包裹（直接 subprocess.run timeout=380）。
+- 状态：⏳ 已排队。

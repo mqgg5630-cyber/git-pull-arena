@@ -874,6 +874,9 @@
     ],
     "303": [
       "t254_recovery_uac2_r303.ps1"
+    ],
+    "304": [
+      "t255_recovery_readback_r304.ps1"
     ]
   }
 }
