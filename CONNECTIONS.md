@@ -438,3 +438,8 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - r290 = `t241_*`：① **PrintWindow(hwnd, PW_RENDERFULLCONTENT=2)**（fallback=1）从 DWM 重定向表面直接渲染每个盒窗内容存 `r290_box_<pid>.bmp`，对渲染图做标题/列表像素门 + ASCII 图（显示器关着也成立）② SC_MONITORPOWER(-1) 广播 + SendInput + 品红探针尽力点亮取活帧（成了加屏幕截图+运动探针，不成不阻塞）③ 会话诊断（ProcessIdToSessionId vs WTSGetActiveConsoleSessionId + OpenInputDesktop）④ cfg dump、幂等查活、盒子留驻。
 - ready 门：printed_visible≥2 + alive≥2 + windows≥2 + final_alive≥2 + layer + alpha72 + 未锁屏（屏幕活帧与运动不再阻塞——环境条件非交付物条件）。
 - 状态：⏳ 已排队。
+
+## round 290 结果（2026-10-06 16:34，✅ DeskBox 内容证明·已 accept）
+- **PrintWindow(PW_RENDERFULLCONTENT) 三盒全部 VISIBLE**（显示器熄屏无关）：programs 300x430（title 273/cyan 249/list 4037）、docs 300x220（208/188/2141）、folders 300x190（271/237/1536）；ASCII 图可辨标题栏/卡片行/按钮。渲染图 `r290_box_<pid>.bmp` ×3 + 拼接预览 `r290_deskbox_preview.png`。
+- 会话诊断：current=1 console=1 input_desktop_open=True（控制台会话、未锁屏，纯显示器熄屏）；SC_MONITORPOWER/SendInput 10 次仍点不亮（合成输入不唤醒熄屏）——屏幕活帧证明就此放弃，PrintWindow 证明成立。mpv 层完好（运动探针跳过：非交付物条件）。
+- 盒子 3/3 留驻运行、alpha 0.72、用户拖动位置已持久化（programs x=354,y=17）。watcher passed → criteria 590/0 → **accepted**。
