@@ -406,3 +406,8 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - 复验全绿（同 t237 重跑，50s）：3 盒 spawn（folders=4@14,14 / programs=53@326,14 / docs=5@14,456）、boxes_alive=3/3、box_windows_found=3（TkTopLevel 槽位精确）、launch_log 读回、无 crash log、截图 `r285_deskbox_visible.bmp`、kill 干净、壁纸 mpv 层存活、motion 0.8782、`DESKBOX_V2_PROVEN_READY=True`。watcher 判 passed → handsfree criteria 590/0 → **accepted**。
 - 最终形态：`E:\0mcp-agv-arena-optimized\deskbox-v2\`{box.py(一进程一盒) + deskbox.py(supervisor)}；桌面 `桌面整理盒.bat`（D 盘真桌面）+ Startup `DeskBox Startup.bat`（重启生效）；每盒独立 pid 锁/配置 deskbox-<key>.json/崩溃日志；双击打开、拖动持久化、−折叠 ✕关单盒、5 秒自刷新、滚轮滚动；左缘两列纵列避开右缘壁纸面板。
 - r284 闪退之谜最终定论：withdraw+多 Toplevel 单进程方案在该机器不可靠（stderr 被 DEVNULL 吞无迹可查）；一进程一盒（root 即盒窗，r283 已验证构造）后零异常零 crash log，两轮实测稳定。
+
+## round 287 (2026-10-06, DeskBox v2 透明度+留驻桌面+像素级可见证据)
+- 用户反馈 r286：给的截图"和我原来的一样"——①任务测完全杀了盒子，用户桌面没有盒子；②截图里 3 盒只有 docs 盒渲染出来（folders/programs 区域是原始桌面图标，且截图前调过 MinimizeAll）；③alpha 0.85 深色玻璃叠深色壁纸看不出"偏透明"。
+- r287 = `t238_*`：① 已装 box.py 原地补丁 alpha 0.85→0.72（备份 box.py.r285bak，不重嵌源码）；② spawn 后双截图且**全程不调 MinimizeAll**；③ **每盒像素门**：盒窗 rect 内标题青字≥6px + 列表白字≥25px（双取最大，折叠盒只查标题），拍不到就 FAIL；④ 壁纸层+运动探针（盒子不杀）；⑤ **测完盒子留在桌面运行**（final_alive≥2 才算 ready）；⑥ PATHS.txt 更新。manifest 只登记 .ps1（新铁律）。
+- 状态：⏳ 已排队。
