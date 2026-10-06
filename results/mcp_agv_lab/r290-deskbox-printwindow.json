@@ -1,0 +1,18 @@
+{
+  "ready": true,
+  "locked": false,
+  "alpha72": true,
+  "boxPids": [
+    52552,
+    52452,
+    52504
+  ],
+  "boxesAlive": 3,
+  "boxWindows": 3,
+  "printedVisible": 3,
+  "liveCapture": false,
+  "layerFinal": true,
+  "motionFinalRatio": null,
+  "motionSkipped": true,
+  "boxesLeftRunning": 3
+}

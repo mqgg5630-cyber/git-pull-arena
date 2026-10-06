@@ -1,9 +1,9 @@
 {
-  "round": 290,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 290: prove DeskBox box CONTENT via PrintWindow(PW_RENDERFULLCONTENT) straight from the DWM redirection surface - works even while the display is off (r287-r289 screen captures were frozen frames). Per-box printed bitmaps + pixel gates + ascii dumps; best-effort SC_MONITORPOWER wake for an extra live screen shot; session diagnostics; boxes left running. Ready = printed_visible>=2 and alive/windows/final_alive>=2, layer intact, alpha 0.72",
-  "arena_updated": "2026-10-06 08:33:01",
-  "local_updated": null
+    "round":  290,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 290: prove DeskBox box CONTENT via PrintWindow(PW_RENDERFULLCONTENT) straight from the DWM redirection surface - works even while the display is off (r287-r289 screen captures were frozen frames). Per-box printed bitmaps + pixel gates + ascii dumps; best-effort SC_MONITORPOWER wake for an extra live screen shot; session diagnostics; boxes left running. Ready = printed_visible\u003e=2 and alive/windows/final_alive\u003e=2, layer intact, alpha 0.72",
+    "arena_updated":  "2026-10-06 08:33:01",
+    "local_updated":  "2026-10-06 16:36:55"
 }
