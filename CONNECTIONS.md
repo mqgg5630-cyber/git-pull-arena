@@ -675,3 +675,10 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 319 (2026-10-06, 恢复阶段 14：等终判+清点)
 - r319 = `t270_*`：轮询 vss_out.txt 20 分钟（每 60s 打最新 MONITOR 行）→ WINFR_DONE/WINFR_FAILED_ALL 即止 → Recovery_* 子目录清点（文件数/MB）+ 九类目录条目统计 + 扩展名 Top12。
 - 状态：⏳ 已排队。
+
+## round 319 结果（2026-10-06 21:03，✅ task PASSED——20 分钟监视：僵局确认）
+- 3 个 WinFR 进程全程 alive 但 27+ 分钟 0 文件。3 个 Recovery_* 目录全空（20:19 r314 / 20:56 用户自己双击 bat / 21:00 r318——共 3 实例）。判断：winfr 交互 console 程序在 Hidden+管道重定向下阻塞（解释 r315 40 秒死与本次僵死）。
+
+## round 320 (2026-10-06, 恢复阶段 15：僵局诊断，无提权)
+- r320 = `t271_*`：WinFR CPU 时间双快照对比（90s）→ 卡死判定；读最新 MONITOR；等 helper v8 deadline/done（≤15 分钟）；终态快照+recovery 计数。r321 预告=提权清理全部 WinFR+单实例可见窗口不重定向重跑。
+- 状态：⏳ 已排队。

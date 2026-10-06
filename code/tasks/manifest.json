@@ -922,6 +922,9 @@
     ],
     "319": [
       "t270_winfr_tally_r319.ps1"
+    ],
+    "320": [
+      "t271_diagnose_winfr_r320.ps1"
     ]
   }
 }
