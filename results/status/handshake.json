@@ -1,9 +1,9 @@
 {
-  "round": 286,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-10-06 07:46:09",
-  "local_updated": "2026-10-06 15:45:24"
+  "round": 287,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 287: user says the boxes never appeared on their desktop (previous rounds killed them after testing) and the proof shot looked unchanged. This round: patch installed box.py alpha 0.85->0.72, spawn boxes, two screenshots with NO MinimizeAll, per-box pixel gate (cyan title + bright list text inside each box rect), wallpaper layer + motion probe, and LEAVE THE BOXES RUNNING on the desktop (final_alive>=2 required)",
+  "arena_updated": "2026-10-06 08:02:18",
+  "local_updated": null
 }
