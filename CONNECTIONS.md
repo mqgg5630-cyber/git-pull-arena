@@ -615,3 +615,10 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 311 (2026-10-06, 恢复阶段 8：segment 模式修正)
 - r311 = `t262_*`：helper v4——① segment 模式（默认，支持通配符+保名）`winfr E: C:\recovery_winfr_E /n \0mcp...\library\* /y` 启动后等 35s 查进程存活 ② 死了则回退 `/regular /n \...\library\`（尾反斜杠目录式）再验证 ③ 都死 → WINFR_FAILED_BOTH+log 尾。python 侧弹"最后一次双击"指引+轮询 v4 标记+独立进程检查+UTF-16 日志解码。
 - 状态：⏳ 已排队。
+
+## round 311 结果（2026-10-06 19:53，❌ awaiting_user_doubleclick/623s）
+- helper v4 就位（segment 模式+regular 回退+存活检查）。弹窗+600s 无人双击。用户上轮要求"你触发权限我点同意"模式。
+
+## round 312 (2026-10-06, 恢复阶段 9：全路径 UAC 触发)
+- r312 = `t263_*`：假设 watcher Start-Process -Verb RunAs 失败是 PATH 缺 powershell 目录（"没有应用程序与此操作…关联"）→ **全路径修复**：先弹 20s 预告 popup，再 attempt A（Start-Process 全路径 powershell.exe -Verb RunAs）→ 失败则 attempt B（全路径 cmd.exe 包装）。UAC 成功 → helper v4 直接跑（用户只点一次"是"）。仍失败 → 弹 bat 指引+300s 轮询兜底。
+- 状态：⏳ 已排队。

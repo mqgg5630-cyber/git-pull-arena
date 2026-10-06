@@ -898,6 +898,9 @@
     ],
     "311": [
       "t262_winfr_segment_r311.ps1"
+    ],
+    "312": [
+      "t263_uac_fullpath_r312.ps1"
     ]
   }
 }
