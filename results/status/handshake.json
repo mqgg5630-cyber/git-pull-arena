@@ -1,9 +1,9 @@
 {
-    "round":  319,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 319: wait for the helper v8 verdict. Poll vss_out.txt for up to 20 minutes (print the newest MONITOR line each minute), stop at WINFR_DONE / WINFR_FAILED_ALL / WINFR_NOT_FOUND. Then print the key lines (VARIANT, out:, WINFR_*), census C:\\recovery_winfr_E (Recovery_* dirs, per-dir file count and MB, per-category counts for the nine category names, top 12 extensions). Pure read-only",
-    "arena_updated":  "2026-10-06 13:02:57",
-    "local_updated":  "2026-10-06 21:23:53"
+  "round": 319,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-06 13:24:30",
+  "local_updated": "2026-10-06 21:23:53"
 }
