@@ -1,9 +1,9 @@
 {
-    "round":  301,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 301: formal pass receipt, one-line fix from r300 (write_bytes for the BMP). Capture the wallpaper evidence band, save r301_wallpaper_band.bmp, census the three deskbox pids, re-verify HideIcons=0x1, emit the formal ready verdict. Read-only",
-    "arena_updated":  "2026-10-06 10:30:08",
-    "local_updated":  "2026-10-06 18:32:05"
+  "round": 302,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 302: DATA RECOVERY phase 1 (user-ordered). A) read-only forensics: mtimes of D:\\DeskBoxLibrary and its contents, full scan of D:\\$RECYCLE.BIN and E:\\$RECYCLE.BIN (all SIDs, parse \\ index files for original paths and deletion times), wallpapers pack census, free space on C/D/E. B) A UAC PROMPT WILL APPEAR ON SCREEN - the user has been told to click Yes: elevated helper enumerates VSS shadow copies (Get-CimInstance Win32_ShadowCopy), links them under C:\\vss_links, checks each for the nine-category library (D:\\DeskBoxLibrary and the old E: library path), and if a hit has nine categories it starts a BACKGROUND robocopy in COPY mode (never /MOVE) to E:\\recovery\\DeskBoxLibrary_vss (or D:\\recovery_vss if E: is low). Report data_found honestly: recovering / none / no_shadows / uac_declined. Delete nothing",
+  "arena_updated": "2026-10-06 10:41:43",
+  "local_updated": null
 }
