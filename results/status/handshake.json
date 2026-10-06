@@ -1,9 +1,9 @@
 {
-    "round":  310,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 310: read the recovery state after the user double-clicked the bat. Dump vss_out.txt fully (real winget errors via unicode_escape), check the winfr process, tail winfr_E.log, and recursively count files/bytes in C:\\recovery_winfr_E. Pure read-only, no popups, no installs",
-    "arena_updated":  "2026-10-06 11:47:38",
-    "local_updated":  "2026-10-06 19:50:14"
+  "round": 310,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-06 11:50:45",
+  "local_updated": "2026-10-06 19:50:14"
 }
