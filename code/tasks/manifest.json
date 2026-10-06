@@ -841,6 +841,9 @@
     ],
     "292": [
       "t243_deskbox_dlibrary_fix_r292.ps1"
+    ],
+    "293": [
+      "t244_deskbox_threadsafe_r293.ps1"
     ]
   }
 }

@@ -458,3 +458,11 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 292 (2026-10-06, 同盘挪库+层恢复轮询)
 - r292 = `t243_*`：① **同盘 move**：D:\桌面\DeskBox-Cute-Desktop-Organizer → **D:\DeskBoxLibrary**（shutil.move 同盘=纯 rename 瞬间，零复制）② 验证 D 库完整后删 r291 残留的 E 盘 20GB 副本（rmdir /s /q，gated on migrated）③ box.py v3.1 `library_base()` 优先 D:\DeskBoxLibrary ④ spawn 恢复桌面盒子 ⑤ HideIcons 带 reg add/query 全诊断 ⑥ **壁纸层恢复轮询**：90s 轮询 → 不行 kill mpv+Lively → 重启 Lively → 再轮询 120s ⑦ PrintWindow 每盒证明+留驻。
 - 状态：⏳ 已排队。
+
+## round 292 结果（2026-10-06 17:03，❌ FAIL：30 分钟硬超时被杀·零输出）
+- elapsed=1800s 任务被 watcher 杀掉、stdout 一行没有——python 块缓冲被杀即丢 + 某步挂死。最可能：explorer 强杀重启的窗口期，EnumChildWindows/PrintWindow 向挂起线程注入回调永久阻塞。
+- 教训（新铁律）：**值守任务的 GUI/窗口操作必须 ① print flush=True（被杀也留进度）② 线程守护+超时放弃（单点挂死不拖死全任务）③ 大文件删除后台化不等待**。
+
+## round 293 (2026-10-06, 线程守护版接管收尾)
+- r293 = `t244_*`：与 r292 相同的 v3.1 交付物（同盘挪库 D:\DeskBoxLibrary、E 盘 20GB 副本清理、九类盒子、HideIcons、层恢复），任务侧全面加固：L() 全 flush、windows_report/PrintWindow/层轮询全部 guarded(线程+join 超时)、rmdir 后台 Popen 不等待、explorer 重启后先 sleep 20 再枚举。全链幂等（r292 半途状态可安全接续）。
+- 状态：⏳ 已排队。
