@@ -1,9 +1,9 @@
 {
-  "round": 295,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 295: C-drive search + hard wallpaper repair. r294 found zero copies of the nine-category library on D: and E:, and the desktop shrank from 52 shortcuts to ~8 (Auto Tidy Desktop.lnk from the old DeskBox app is the prime suspect - it may have relocated files to C:). Jobs: 1) recover the wallpaper layer (keeper12 guard script first, then kill mpv/Lively + direct restart + 180s guarded poll; lively-12 pack is intact with current=17-pure-soul.mp4), 2) keyword search C:\\Users recursively for anime-wallpapers/apps-shortcuts/deskbox-cute/job-tools/deskboxlibrary, 3) inventory old DeskBox remnants (schtasks matching tidy/deskbox/organiz/cute, apps\\DeskBox listing, suspicious processes, quark-cloud-drive top level), 4) leave the three running boxes untouched. Read-only on data - delete nothing",
-  "arena_updated": "2026-10-06 10:02:09",
-  "local_updated": null
+    "round":  295,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 295: C-drive search + hard wallpaper repair. r294 found zero copies of the nine-category library on D: and E:, and the desktop shrank from 52 shortcuts to ~8 (Auto Tidy Desktop.lnk from the old DeskBox app is the prime suspect - it may have relocated files to C:). Jobs: 1) recover the wallpaper layer (keeper12 guard script first, then kill mpv/Lively + direct restart + 180s guarded poll; lively-12 pack is intact with current=17-pure-soul.mp4), 2) keyword search C:\\Users recursively for anime-wallpapers/apps-shortcuts/deskbox-cute/job-tools/deskboxlibrary, 3) inventory old DeskBox remnants (schtasks matching tidy/deskbox/organiz/cute, apps\\DeskBox listing, suspicious processes, quark-cloud-drive top level), 4) leave the three running boxes untouched. Read-only on data - delete nothing",
+    "arena_updated":  "2026-10-06 10:02:09",
+    "local_updated":  "2026-10-06 18:10:02"
 }
