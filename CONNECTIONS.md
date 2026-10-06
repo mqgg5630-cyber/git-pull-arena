@@ -703,3 +703,10 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 323 (2026-10-06, 恢复阶段 18：单实例进度)
 - r323 = `t274_*`：等 20 分钟读 MON2 行；WINFR_DONE/ZERO/STILL_RUNNING 出现即止；recovery 目录计数+进程数；有文件则按 Recovery_* 目录清点。
 - 状态：⏳ 已排队。
+
+## round 323 结果（2026-10-06 22:04，✅ task PASSED——单实例 24 分钟仍 0 文件）
+- MON2 全程 alive=True files=0（1441s）。单实例无干扰无重定向仍慢——winfr Regular 对 766GB 盘逐 MFT+簇读取，可能需数小时。
+
+## round 324 (2026-10-06, 恢复阶段 19：终判+过夜决策)
+- r324 = `t275_*`：等 15 分钟读 helper v10 终判（WINFR_DONE/ZERO/STILL_RUNNING，窗口 ~22:59 关）+ recovery 计数 + 进程数 → 过夜建议（让 winfr 跑通宵，明早读 tally）。
+- 状态：⏳ 已排队。
