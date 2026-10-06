@@ -730,3 +730,9 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - 背景结论（技术事实，与实测并行告知用户）：系统还原只回滚系统文件/注册表/驱动/程序，不覆盖用户文件，且默认只保护系统盘；E 盘数据不在范围。即使有还原点也救不回 library。
 - 沙箱重置#6 SOP 修复：本地基线回退 25cae55（sync.config 回退 01a0fa39），tmp-r326 分支保住 656cc71→reset --hard origin(b816219)→checkout 回 t277→重登记 manifest/CONNECTIONS→重推。
 - 状态：⏳ 已排队。
+
+## round 326 结果（2026-10-06 23:07，✅ 10s PASSED——还原点/备份普查）
+- **系统还原=关闭**：注册表 RPSessionInterval=0 + SystemRestoreConfig RPSessionInterval=0（枚举类查询要提权被拒，但配置可读已证实）。File History（FhSvc）Stopped+无配置目录；wbengine Stopped；早前实测 VSS shadow_count=0。
+- 磁盘：C: 100GB/40GB free，D: 137GB/50GB free，E: 715GB/282GB free。
+- **最终结论（已告知用户）**：本机无还原点、无文件备份；且系统还原机制本身只回滚系统文件/注册表/驱动/程序、只保护系统盘——E 盘用户文件双重不在覆盖范围，"还原到最近一次"救不回 library 还会回滚最近装的程序。恢复线正式全部关闭。剩余可选项：关休眠（6.5GB，需用户主动同意一次 UAC）/删 ms-playwright（1.4GB，无 UAC）。
+- 状态：✅ 完结，无排队任务。
