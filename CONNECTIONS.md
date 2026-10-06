@@ -591,3 +591,11 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 308 (2026-10-06, 恢复重试——桌面可见后)
 - r308 = `t259_*`：① vss_out.txt 已存在（用户已双击过）→ 直接读取+classify+进度证据 ② 否则补写 bat/helper（若缺）→ 指引 popup → 轮询 600s（300s 再提醒）③ robocopy/winfr 日志尾+C:\recovery_* 目录计数。
 - 状态：⏳ 已排队。
+
+## round 308 结果（2026-10-06 19:26，✅ task PASSED/2s——用户双击成功）
+- **用户双击 bat → helper 跑通**（4 秒）：shadow_count=0（**本机无任何 VSS 影子副本，该路关闭**）；fs E=NTFS D=NTFS（可按名恢复）；winget 装 winfr 失败（中文错误被吞，疑老版 winget 不认 --disable-interactivity）。
+- 提权通道（用户双击 bat）已验证可行。
+
+## round 309 (2026-10-06, 恢复阶段 6：修 winfr 安装)
+- r309 = `t260_*`：helper v3（winget --version 落盘 + attempt1 winget 源 --silent 去 --disable-interactivity + attempt2 msstore 源 9N26S50LN705 + 全输出 UTF-8 落盘 vss_out.txt，winfr 找三处路径）→ 弹"请再双击一次"指引 → 轮询新鲜 vss_out 600s → winget 错误行 unicode_escape 原样打回。恢复仍只写 C 盘。
+- 状态：⏳ 已排队。
