@@ -645,3 +645,10 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 315 (2026-10-06, 恢复阶段 11：最终形态 /a)
 - r315 = `t266_*`：helper v6——attempt1 `winfr E: dest /n \0mcp...\library\* /a` **后台 Start-Process**（不同步等）+40s 存活 → attempt2 尾反斜杠变体 → WINFR_SCAN_RUNNING / WINFR_FAILED_ALL_ATTEMPTS。launcher timeout 280s。
 - 状态：⏳ 已排队。
+
+## round 315 结果（2026-10-06 20:31，✅ task PASSED 但 winfr 短命）
+- UAC 成功、helper v6 WINFR_SCAN_RUNNING（40s 时 winfr 活着）——但 task 尾部 winfr 已死（活约 40-50s），且 winfr_E.log 仍是 r314 旧内容——cmd 包装的重定向没生效，winfr 死因无从知晓。Recovery_20261006_201930 空目录残留。
+
+## round 316 (2026-10-06, 恢复阶段 12：直启+原生重定向)
+- r316 = `t267_*`：helper v7——Start-Process -FilePath winfr **ArgumentList 数组 + -RedirectStandardOutput/Error**（完全绕开 cmd 解析；Hidden 失败自动 NoNewWindow）；attempt1 通配符 attempt2 目录式，各 60s 存活；死亡时 stdout/stderr 尾落盘 vss_out。python 侧同 r315 + r315 遗留诊断（log mtime、Recovery_* 子目录 mtime）。
+- 状态：⏳ 已排队。
