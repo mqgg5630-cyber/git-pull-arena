@@ -663,3 +663,8 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 317 结果（2026-10-06 20:45，✅ task PASSED 但 UAC 无人点/超时）
 - helper v8（一次提权全自动监控重试版）已就位于 DBOX（vss_helper.ps1 + vss_launch_v8.ps1 + 桌面 bat 同源）。UAC 弹出 151s 无人响应自动取消（用户大概率离开）。连续两次 UAC 未确认。
 - 决定：停止自动弹窗。等用户回来后：要么说一声由我触发（点一次"是"），要么自己双击桌面 bat。之后全自动（helper v8 独立跑 ≤40 分钟，MONITOR 行+自动重试+WINFR_DONE 终判）。
+
+## round 318 (2026-10-06, 用户选择 A：我触发)
+- 用户在线并要求触发。r318 = `t269_*`：重写 helper v8（防漂移）→ 15s 预告 popup → 全路径 UAC（launcher 无 -Wait）→ 确认 ELEVATED_RUN_OK → 读首批 MONITOR 行（150s 窗口）→ winfr 进程+recovery 目录确认 → monitor_started。
+- 沙箱重置 #5 已修复（sync.config 分支重置+本地基线回退，SOP 处理）。
+- 状态：⏳ 已排队。
