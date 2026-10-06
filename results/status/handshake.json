@@ -1,9 +1,9 @@
 {
-    "round":  288,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 288: r287 pixel gates judged a FROZEN stale frame (locked session / display off - all four shots pairwise diff 0.0002 over 60s). This round adds a magenta live-capture probe (retry ~3min so a sleeping display can wake), idempotent box liveness, per-box gates only on a LIVE capture, ascii dumps of each box region into the receipt, quser session state, mpv CPU sampling, wallpaper layer+motion, boxes left running",
-    "arena_updated":  "2026-10-06 08:16:28",
-    "local_updated":  "2026-10-06 16:20:20"
+  "round": 289,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 289: wake the sleeping display with a 1px synthesized mouse move (r287/r288 pixel evidence was judged on frozen stale frames while the display slept - boxes were alive the whole time and the user even dragged one), then magenta live-capture probe, dump persisted deskbox-*.json configs (user interaction evidence), per-box gates + ascii dumps on a LIVE frame, wallpaper layer + motion, boxes left running",
+  "arena_updated": "2026-10-06 08:23:39",
+  "local_updated": null
 }
