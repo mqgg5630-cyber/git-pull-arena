@@ -402,6 +402,7 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - **round FAIL 原因（元数据错误，与交付物无关）**：manifest rounds['285'] 误把 `.py` 也登记进条目，local_check 把条目内每个文件按 PowerShell 跑 → `powershell -File *.py` 拒绝（"不具有 '.ps1' 扩展名"）→ exit -196608。
 - **教训（新铁律）**：manifest rounds 条目**只登记 .ps1 wrapper**，.py 由 wrapper 内部 Join-Path 调用，绝不入条目（对照 274/282/283/284 惯例）。
 
-## round 286 (2026-10-06, DeskBox v2 复验)
-- 修正 manifest：285 条目改回仅 .ps1；登记 286 = 同一个 `t237_deskbox_one_process_per_box_r285.ps1` 重跑（任务幂等：清 pid/旧 crash log → spawn → 验证 → kill → 截图 → 运动探针）。
-- 状态：⏳ 已排队。
+## round 286 结果（2026-10-06 15:44，✅ DeskBox v2 上线·已 accept）
+- 复验全绿（同 t237 重跑，50s）：3 盒 spawn（folders=4@14,14 / programs=53@326,14 / docs=5@14,456）、boxes_alive=3/3、box_windows_found=3（TkTopLevel 槽位精确）、launch_log 读回、无 crash log、截图 `r285_deskbox_visible.bmp`、kill 干净、壁纸 mpv 层存活、motion 0.8782、`DESKBOX_V2_PROVEN_READY=True`。watcher 判 passed → handsfree criteria 590/0 → **accepted**。
+- 最终形态：`E:\0mcp-agv-arena-optimized\deskbox-v2\`{box.py(一进程一盒) + deskbox.py(supervisor)}；桌面 `桌面整理盒.bat`（D 盘真桌面）+ Startup `DeskBox Startup.bat`（重启生效）；每盒独立 pid 锁/配置 deskbox-<key>.json/崩溃日志；双击打开、拖动持久化、−折叠 ✕关单盒、5 秒自刷新、滚轮滚动；左缘两列纵列避开右缘壁纸面板。
+- r284 闪退之谜最终定论：withdraw+多 Toplevel 单进程方案在该机器不可靠（stderr 被 DEVNULL 吞无迹可查）；一进程一盒（root 即盒窗，r283 已验证构造）后零异常零 crash log，两轮实测稳定。
