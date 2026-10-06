@@ -1,9 +1,9 @@
 {
-    "round":  329,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 329: read-only validation of the 561 recovered docx files in E:\\WDR-20261006230705. For each file: zip/OOXML structural check (valid docx = zip containing [Content_Types].xml and word/* parts), zero-byte detection, duplicate grouping by size+mtime, mtime year histogram. Print the 40 newest files with status tags, list all non-valid files, and write the complete 561-row index (date, size, status, filename) to results/mcp_agv_lab/WDR_INDEX.md. NO elevation, NO UAC, change nothing on E:",
-    "arena_updated":  "2026-10-06 15:31:20",
-    "local_updated":  "2026-10-06 23:32:48"
+  "round": 329,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-06 15:33:15",
+  "local_updated": "2026-10-06 23:32:48"
 }
