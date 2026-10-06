@@ -1,9 +1,9 @@
 {
-  "round": 320,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 320: read-only diagnosis of the frozen WinFR trio (no UAC, no kills): snapshot WinFR CPU times, wait 90s, snapshot again to detect freezing; print the latest MONITOR lines from vss_out.txt; wait up to 15 minutes for the helper v8 done marker / deadline; final process snapshot and recovery dir count. The cleanup plus single visible-window unredirected retry is planned for r321",
-  "arena_updated": "2026-10-06 13:25:47",
-  "local_updated": null
+    "round":  320,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 320: read-only diagnosis of the frozen WinFR trio (no UAC, no kills): snapshot WinFR CPU times, wait 90s, snapshot again to detect freezing; print the latest MONITOR lines from vss_out.txt; wait up to 15 minutes for the helper v8 done marker / deadline; final process snapshot and recovery dir count. The cleanup plus single visible-window unredirected retry is planned for r321",
+    "arena_updated":  "2026-10-06 13:25:47",
+    "local_updated":  "2026-10-06 21:36:22"
 }
