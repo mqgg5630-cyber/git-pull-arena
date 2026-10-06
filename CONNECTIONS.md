@@ -449,3 +449,12 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - r291 = `t242_*`：① **box.py v3**：九类沿用旧 DeskBox（01程序/02工作工具/03视频创作/04图片证件/05文档/06压缩安装包/07旧文件夹/08其他/09动漫壁纸），每盒=library 子文件夹内容+散落桌面文件按扩展名自动归入（去重、文件夹→07、无匹配→08）；**每类专属主题色**；窗口构造 100% 沿用已验证代码（r283 模式+crash log+pid 锁+拖动持久化+0.72 alpha）② **supervisor v3**：三列贪心布局（x=14/326/638，按盒高堆叠不重叠）③ **迁移（只挪不删）**：robocopy /MOVE `D:\桌面\DeskBox-Cute-Desktop-Organizer` → `deskbox-v2\library`；`DeskBox Cute.lnk` → backup；E:\...\apps\DeskBox 不动 ④ **隐藏桌面图标**（HideIcons=1+explorer 重启，桌面只剩壁纸+盒子；注册表可一句话恢复）→ explorer 重启后验证壁纸层，丢失则 taskkill mpv+重启 Lively 自动修复 ⑤ PrintWindow 每盒内容证明（r290 方法）+尽力活帧截图 ⑥ 杀 v2 盒升级（按 pid 文件）⑦ 盒子留驻。
 - ready 门：v3 installed + migrated + lnk 移除 + icons_hidden + boxes≥2 + printed_visible≥2 + layer_final + final_alive≥2 + alpha72 + 未锁屏。
 - 状态：⏳ 已排队。
+
+## round 291 结果（2026-10-06 16:53，❌ FAIL：20GB 跨盘 /MOVE 半途而废·桌面进入中间态）
+- robocopy rc=9：20.1GB/98903 文件全部**复制**到 E:\...\deskbox-v2\library（09-Anime-Wallpapers 是 20GB 壁纸库），但删源失败（某文件被锁）→ migration=False → **v3 没起**而 v2 已杀 → 桌面无盒子。lnk 已移 ✓ v3 已装 ✓。
+- explorer 重启把壁纸 WorkerW 层搞坏，14 秒 Lively 重启不够。HideIcons 验证失败（无诊断输出）。
+- 教训：**同盘目录挪动必须用 shutil.move（纯 rename 秒完成），robocopy 跨盘 /MOVE 对 20GB 库是复制+删两阶段，锁文件即半途**；explorer 重启后壁纸层需要轮询等待恢复（90s+），不是一次 14s restart。
+
+## round 292 (2026-10-06, 同盘挪库+层恢复轮询)
+- r292 = `t243_*`：① **同盘 move**：D:\桌面\DeskBox-Cute-Desktop-Organizer → **D:\DeskBoxLibrary**（shutil.move 同盘=纯 rename 瞬间，零复制）② 验证 D 库完整后删 r291 残留的 E 盘 20GB 副本（rmdir /s /q，gated on migrated）③ box.py v3.1 `library_base()` 优先 D:\DeskBoxLibrary ④ spawn 恢复桌面盒子 ⑤ HideIcons 带 reg add/query 全诊断 ⑥ **壁纸层恢复轮询**：90s 轮询 → 不行 kill mpv+Lively → 重启 Lively → 再轮询 120s ⑦ PrintWindow 每盒证明+留驻。
+- 状态：⏳ 已排队。

@@ -838,6 +838,9 @@
     ],
     "291": [
       "t242_deskbox_replace_old_r291.ps1"
+    ],
+    "292": [
+      "t243_deskbox_dlibrary_fix_r292.ps1"
     ]
   }
 }
