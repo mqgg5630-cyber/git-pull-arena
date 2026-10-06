@@ -689,3 +689,10 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 321 (2026-10-06, 恢复阶段 16：纯观察，无提权)
 - r321 = `t272_*`：每 60s 数 recovery 文件数+进程内存，15 分钟；files>0 → PRODUCTIVE 继续等 10 分钟；仍 0 → 判定 dead/still_zero，r322 提权单实例可见窗口重跑。
 - 状态：⏳ 已排队。
+
+## round 321 结果（2026-10-06 21:39，✅ task PASSED——观察 15 分钟仍 0 文件）
+- 两个 WinFR 内存波动增长（60→108MB 峰值）但 1 小时 0 文件（三实例互抢）。VERDICT=still_zero_but_alive。判定：清场重跑。
+
+## round 322 (2026-10-06, 恢复阶段 17：清场单实例重跑·最后一次 UAC)
+- r322 = `t273_*`：helper v10（提权独立）——① Stop-Process 全部 WinFR ② 单实例 `-WindowStyle Minimized` **无重定向**（真 console 仅最小化，排除管道阻塞）③ 60 分钟监控（60s/次 MON2 行）④ 终判 WINFR_DONE/WINFR_ZERO/WINFR_STILL_RUNNING。task：预告 popup→UAC→确认启动即退。
+- 状态：⏳ 已排队。

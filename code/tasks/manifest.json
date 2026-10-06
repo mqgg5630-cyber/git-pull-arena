@@ -928,6 +928,9 @@
     ],
     "321": [
       "t272_watch_winfr_r321.ps1"
+    ],
+    "322": [
+      "t273_clean_restart_r322.ps1"
     ]
   }
 }
