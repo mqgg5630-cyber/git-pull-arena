@@ -495,3 +495,12 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 296 (2026-10-06, 盒子源码定性+mpv 直嵌)
 - r296 = `t247_*`：① 完整转储 box.py(8501B)/deskbox.py(4121B) 源码到回执供审计 ② 源码里挖 shutil/move/copy/rename/路径候选——若盒子收纳桌面文件则顺藤摸瓜找回 44 个消失的 lnk ③ 壁纸改自管 mpv：kill mpv/Lively → Progman 0x052C 生成 WorkerW → `mpv --wid=<hwnd> --loop-file=inf` 直嵌 17-pure-soul.mp4 → 轮询验证 ④ 盒子不动。只读。
 - 状态：⏳ 已排队。
+
+## round 296 结果（2026-10-06 18:14，❌ exit 1/1s，但源码审计已完成）
+- **盒子清白（铁证）**：box.py(8501B)/deskbox.py(4121B) 全文转储，shutil/move(/copy(/rename( 全部 0 次——盒子仅 iterdir 读取显示，从不移动文件。桌面 52→8 缩水非盒子所为（17:41-17:53 间只有用户在操作机器）。
+- box.py 逻辑确认：real_desktop() 走注册表（D:\桌面）；library_base() 首选 D:\DeskBoxLibrary，缺失则 fallback deskbox-v2\library（已被 r292 删）。
+- 崩溃根因：state.json 的 current=17 是 int，`L12/cur` TypeError，1s 退出，mpv 嵌入未执行。exit 1。
+
+## round 297 (2026-10-06, mpv 直嵌修复重跑)
+- r297 = `t248_*`：t247 的 C/D 段（源码转储已砍）+ int-current 修复（glob '17-*.mp4'）。kill mpv/Lively → Progman 0x052C → mpv --wid 直嵌 → 90s 轮询 → 盒子不动。
+- 状态：⏳ 已排队。跑完无论结果如何即向用户完整汇报数据三态。
