@@ -1,9 +1,9 @@
 {
-  "round": 310,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-10-06 11:50:45",
-  "local_updated": "2026-10-06 19:50:14"
+  "round": 311,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 311: winfr is installed but /regular rejected the wildcard filter. helper v4 (already written) now: segment mode with wildcard filter first (35s liveness check), fallback to /regular with trailing-backslash directory filter, log tails on failure, final verdict WINFR_SCAN_RUNNING or WINFR_FAILED_BOTH. Show the LAST-TIME popup asking the user to double-click RECOVERY-recover-data.bat once more, poll for fresh vss_out.txt 600s, verify the winfr process independently, decode the UTF-16 logs, count files in C:\\recovery_winfr_E. Delete nothing",
+  "arena_updated": "2026-10-06 11:52:28",
+  "local_updated": null
 }
