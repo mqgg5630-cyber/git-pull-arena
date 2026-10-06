@@ -1,0 +1,106 @@
+{
+  "ready": true,
+  "locked": false,
+  "packDir": "E:\\0mcp-agv-arena-optimized\\wallpapers\\lively-12",
+  "packCount": 12,
+  "validFiles": 12,
+  "catalog": [
+    {
+      "idx": 1,
+      "slug": "hotori",
+      "cn": "Hotori（原壁纸）",
+      "file": "01-hotori.mp4",
+      "bytes": 2664174
+    },
+    {
+      "idx": 2,
+      "slug": "local-2",
+      "cn": "本机动漫壁纸 2",
+      "file": "02-local2.mp4",
+      "bytes": 30261071
+    },
+    {
+      "idx": 3,
+      "slug": "local-3",
+      "cn": "本机动漫壁纸 3",
+      "file": "03-local3.mp4",
+      "bytes": 10232799
+    },
+    {
+      "idx": 4,
+      "slug": "local-4",
+      "cn": "本机动漫壁纸 4",
+      "file": "04-local4.mp4",
+      "bytes": 10441299
+    },
+    {
+      "idx": 5,
+      "slug": "local-5",
+      "cn": "本机动漫壁纸 5",
+      "file": "05-local5.mp4",
+      "bytes": 2664174
+    },
+    {
+      "idx": 6,
+      "slug": "local-6",
+      "cn": "本机动漫壁纸 6",
+      "file": "06-local6.mp4",
+      "bytes": 2664174
+    },
+    {
+      "idx": 7,
+      "slug": "local-7",
+      "cn": "本机动漫壁纸 7",
+      "file": "07-local7.mp4",
+      "bytes": 2664174
+    },
+    {
+      "idx": 8,
+      "slug": "local-8",
+      "cn": "本机动漫壁纸 8",
+      "file": "08-local8.mp4",
+      "bytes": 2229291
+    },
+    {
+      "idx": 9,
+      "slug": "local-9",
+      "cn": "本机动漫壁纸 9",
+      "file": "09-local9.mp4",
+      "bytes": 1211443
+    },
+    {
+      "idx": 10,
+      "slug": "local-10",
+      "cn": "本机动漫壁纸 10",
+      "file": "10-local10.mp4",
+      "bytes": 2664174
+    },
+    {
+      "idx": 11,
+      "slug": "local-11",
+      "cn": "本机动漫壁纸 11",
+      "file": "11-local11.mp4",
+      "bytes": 2664174
+    },
+    {
+      "idx": 12,
+      "slug": "local-12",
+      "cn": "本机动漫壁纸 12",
+      "file": "12-local12.mp4",
+      "bytes": 2664174
+    }
+  ],
+  "desktopDir": "D:\\桌面",
+  "menuBat": "D:\\桌面\\动态壁纸切换器.bat",
+  "keeperBat": "C:\\Users\\文少\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\Lively Wallpaper Keeper.bat",
+  "manualSwitchProven": true,
+  "manualDiffRatio": 0.8871407214506173,
+  "autoSwitches": 2,
+  "autoStopped": true,
+  "keeper12Tested": true,
+  "motionFinalRatio": 0.9935257523148148,
+  "layerFinal": true,
+  "cCleanupDone": true,
+  "oldFolderLeft": false,
+  "livelyExe": "C:\\Program Files\\Lively Wallpaper\\Lively.exe"
+}
