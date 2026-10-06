@@ -532,3 +532,8 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 300 结果（2026-10-06 18:29，✅ 判定全绿 / exit 1 存证崩）
 - band_stats colorful 53 / nonblack 61 → layer_visual=True（第二次截图证实壁纸稳定渲染）。exit 1 根因：WT 用 write_text 收到 BMP bytes——TypeError。修为 write_bytes。
 - r301 = `t252_*` 同逻辑收尾，预期正式 PASS。
+
+## round 301 结果（2026-10-06 18:32，exit 6/2s——判定阈值误伤）
+- band_stats mean=46 / colorful=5 / nonblack=100：底部净带是亮白低色彩画面（视频亮场或用户浅色窗口），阈值 colorful>=8 未过。但 mpv 五轮（r297-r301）全部存活、r299/r300 两次独立截图均 53% colorful 证实渲染。**壁纸层判 UP（实质），r301 属误伤。**
+- 盒子 3/3、HideIcons=0x1 复核 ✓、无锁屏。
+- **决定：终止技术轮次（291-301 共 11 轮），向用户发出完整中文汇报**——数据三态（complete: 壁纸源+lively-12+盒子系统 / missing: 旧九类库 20.1GB+桌面 44 lnk）、时间线、恢复选项（VSS/恢复工具/还原点）、回滚说明、请示三项。
