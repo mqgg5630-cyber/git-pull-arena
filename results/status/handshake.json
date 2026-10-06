@@ -1,9 +1,9 @@
 {
-  "round": 313,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 313: same plan as r312 with the launcher fixed (plain string concatenation, no .format braces): heads-up popup, then attempt A = Start-Process full-path powershell.exe -Verb RunAs -Wait running vss_helper.ps1 (helper v4: winfr segment mode with wildcard filter + regular dir-filter fallback + liveness checks), attempt B = cmd.exe wrapper, elevation errors captured with unicode_escape readback; if elevation still impossible fall back to the desktop bat popup + 300s poll. Verify winfr process and C:\\recovery_winfr_E contents. Delete nothing",
-  "arena_updated": "2026-10-06 12:10:55",
-  "local_updated": null
+    "round":  313,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 313: same plan as r312 with the launcher fixed (plain string concatenation, no .format braces): heads-up popup, then attempt A = Start-Process full-path powershell.exe -Verb RunAs -Wait running vss_helper.ps1 (helper v4: winfr segment mode with wildcard filter + regular dir-filter fallback + liveness checks), attempt B = cmd.exe wrapper, elevation errors captured with unicode_escape readback; if elevation still impossible fall back to the desktop bat popup + 300s poll. Verify winfr process and C:\\recovery_winfr_E contents. Delete nothing",
+    "arena_updated":  "2026-10-06 12:10:55",
+    "local_updated":  "2026-10-06 20:13:33"
 }
