@@ -925,6 +925,9 @@
     ],
     "320": [
       "t271_diagnose_winfr_r320.ps1"
+    ],
+    "321": [
+      "t272_watch_winfr_r321.ps1"
     ]
   }
 }

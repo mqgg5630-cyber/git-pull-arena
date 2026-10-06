@@ -682,3 +682,10 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 320 (2026-10-06, 恢复阶段 15：僵局诊断，无提权)
 - r320 = `t271_*`：WinFR CPU 时间双快照对比（90s）→ 卡死判定；读最新 MONITOR；等 helper v8 deadline/done（≤15 分钟）；终态快照+recovery 计数。r321 预告=提权清理全部 WinFR+单实例可见窗口不重定向重跑。
 - 状态：⏳ 已排队。
+
+## round 320 结果（2026-10-06 21:26，✅ task PASSED——诊断修正）
+- 两个 WinFR 内存持续增长（64→77MB / 74→85MB）= 在真扫描；一个恒 1MB = 僵死。helper v8 已 done（40min deadline 到），3 个 WinFR 存活，0 文件。766GB E 盘+3 实例互抢=极慢。
+
+## round 321 (2026-10-06, 恢复阶段 16：纯观察，无提权)
+- r321 = `t272_*`：每 60s 数 recovery 文件数+进程内存，15 分钟；files>0 → PRODUCTIVE 继续等 10 分钟；仍 0 → 判定 dead/still_zero，r322 提权单实例可见窗口重跑。
+- 状态：⏳ 已排队。
