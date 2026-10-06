@@ -361,3 +361,11 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - **switcher v2**：[T] 间隔 15s/30s/1m/5m/30m/1h/自定义秒数；[P] 轮换池（1,3,5-8 空格逗号均可，空=全部，池内带 * 标记）；auto_rotate v2 每拍活读 state（运行中改间隔/池即时生效，auto_on=false 自行退出）；keeper12 兼容不变；菜单 bat 无需改（动态读 catalog）。
 - 实测：18 款下载全 OK（IWR 直连 17 + page 1）、1→7 切换像素 diff、轮换池 [1,7]@15s 观测 {1,7} 且 3 次切换、15s 间隔证明、auto 自退出 pid 清理、运动探针、层结构。自动 accept，用时 ~11 分钟。
 - 沙箱本会话累计 3 次静默重置，恢复 SOP 已固化：备份未提交文件 → fetch → reset --hard origin → 重叠加改动 → 提交后 gh api 远端核验字节数。
+
+## round 283 (2026-10-06, 半透明面板 UI)
+- 用户要求：比 DeskBox 好看的 UI、半透明不遮挡壁纸、壁纸启动/切换入口留桌面、重启生效。
+- r283 = `t235_*`：**python tkinter 半透明面板** `panel.py`（无边框 + alpha 0.85、深色卡片、右缘停靠可拖动、单实例 pid 锁、24 款彩色编号卡片、当前款 ✓ 高亮、底部 下一张/自动开/自动关/间隔循环/修复；直接 import switcher，零子进程零新依赖）。
+- 启动：桌面 `壁纸面板.bat`（pythonw）；**重启生效**：Startup `Wallpaper Panel Startup.bat`（登录 10 秒后自动弹出）。原控制台菜单 bat 保留（[P] 轮换池配置仍在控制台）。
+- 实测：tkinter 可用、进程存活、按 PID 匹配窗口枚举、带面板截图存证、壁纸层+运动无影响。选 tkinter 躲 AMSI（r259 老坑）。
+- 注：准备期间沙箱第四次静默重置，已照 SOP 恢复（备份→reset --hard origin→重叠加→远端核验）。
+- 状态：⏳ 已排队。
