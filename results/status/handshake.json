@@ -1,9 +1,9 @@
 {
-  "round": 277,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-10-06 05:07:42",
-  "local_updated": "2026-10-06 13:06:54"
+  "round": 278,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 278: rebuild 12-wallpaper pack with distinct content - full CDN diagnostics, page-extracted links, multi-method download, sha256 dedupe, live switch test",
+  "arena_updated": "2026-10-06 05:12:30",
+  "local_updated": null
 }
