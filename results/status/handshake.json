@@ -1,9 +1,9 @@
 {
-    "round":  312,
-    "arena_state":  "awaiting_check",
-    "local_state":  "failed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 312: the user asked for the flow where WE trigger the permission dialog and THEY only click Yes. Hypothesis: the watcher\u0027s Start-Process -Verb RunAs failed because \u0027powershell\u0027 could not be resolved via a stripped PATH (\u0027no application is associated...\u0027). Fix with FULL PATHS: heads-up popup (20s, tells the user a UAC is coming and to click Yes), then attempt A = Start-Process -FilePath C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -Verb RunAs -Wait running vss_helper.ps1 (helper v4: winfr segment mode with wildcard filter, 35s liveness check, regular-mode dir-filter fallback, WINFR_SCAN_RUNNING verdict); attempt B = cmd.exe full path wrapper if A fails; capture elevation errors to uac_err.txt with unicode_escape readback. If elevation still impossible: popup pointing to RECOVERY-recover-data.bat + 300s poll fallback. Verify the winfr process independently and count C:\\recovery_winfr_E files. Delete nothing",
-    "arena_updated":  "2026-10-06 12:06:21",
-    "local_updated":  "2026-10-06 20:09:13"
+  "round": 313,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 313: same plan as r312 with the launcher fixed (plain string concatenation, no .format braces): heads-up popup, then attempt A = Start-Process full-path powershell.exe -Verb RunAs -Wait running vss_helper.ps1 (helper v4: winfr segment mode with wildcard filter + regular dir-filter fallback + liveness checks), attempt B = cmd.exe wrapper, elevation errors captured with unicode_escape readback; if elevation still impossible fall back to the desktop bat popup + 300s poll. Verify winfr process and C:\\recovery_winfr_E contents. Delete nothing",
+  "arena_updated": "2026-10-06 12:10:55",
+  "local_updated": null
 }
