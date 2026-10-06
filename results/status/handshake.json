@@ -1,9 +1,9 @@
 {
-  "round": 315,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "hands-free: criteria met",
-  "arena_updated": "2026-10-06 12:33:21",
-  "local_updated": "2026-10-06 20:32:43"
+  "round": 316,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "round 316: helper v7 launches winfr DIRECTLY (Start-Process -FilePath winfr, ArgumentList array, native -RedirectStandardOutput/-RedirectStandardError - no cmd parsing; falls back to -NoNewWindow if Hidden fails) with /a and the wildcard filter, 60s liveness, then a dir-filter variant; on death the stdout/stderr tails go into vss_out.txt so we finally see WHY the scan dies. Diagnose r315 leftovers (log mtimes, Recovery_* subdirs) first. Heads-up popup then full-path UAC. Verify process + recovery dir after. Delete nothing",
+  "arena_updated": "2026-10-06 12:36:16",
+  "local_updated": null
 }
