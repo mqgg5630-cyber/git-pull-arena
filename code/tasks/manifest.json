@@ -886,6 +886,9 @@
     ],
     "307": [
       "t258_rollback_desktop_r307.ps1"
+    ],
+    "308": [
+      "t259_recovery_retry_r308.ps1"
     ]
   }
 }
