@@ -1,0 +1,85 @@
+{
+  "ready": true,
+  "locked": false,
+  "valid": 12,
+  "distinct": 12,
+  "redownloaded": 6,
+  "catalog": [
+    {
+      "idx": 1,
+      "slug": "hotori",
+      "cn": "Hotori（原壁纸）",
+      "file": "01-hotori.mp4"
+    },
+    {
+      "idx": 2,
+      "slug": "evening-window-view",
+      "cn": "夕阳窗边的黑猫",
+      "file": "02-evening-window-view.mp4"
+    },
+    {
+      "idx": 3,
+      "slug": "midnight-sakura-train-station",
+      "cn": "午夜樱花车站",
+      "file": "03-midnight-sakura-train-station.mp4"
+    },
+    {
+      "idx": 4,
+      "slug": "peaceful-anime-tree-swing-live-wallpaper",
+      "cn": "云端树秋千",
+      "file": "04-peaceful-anime-tree-swing-live-wallpaper.mp4"
+    },
+    {
+      "idx": 5,
+      "slug": "gojo-satoru-train",
+      "cn": "五条悟·霓虹列车",
+      "file": "05-gojo-satoru-train.mp4"
+    },
+    {
+      "idx": 6,
+      "slug": "tanjiro-kamado-crimson-moon",
+      "cn": "炭治郎·红月",
+      "file": "06-tanjiro-kamado-crimson-moon.mp4"
+    },
+    {
+      "idx": 7,
+      "slug": "itachi-uchiha-crimson-shadows",
+      "cn": "鼬·绯红暗影",
+      "file": "07-itachi-uchiha-crimson-shadows.mp4"
+    },
+    {
+      "idx": 8,
+      "slug": "zoro-king-of-hell",
+      "cn": "索隆·阎魔之王",
+      "file": "08-zoro-king-of-hell.mp4"
+    },
+    {
+      "idx": 9,
+      "slug": "ultra-instinct-goku",
+      "cn": "悟空·自在极意功",
+      "file": "09-ultra-instinct-goku.mp4"
+    },
+    {
+      "idx": 10,
+      "slug": "luffy-before-the-storm",
+      "cn": "路飞·风暴前夕",
+      "file": "10-luffy-before-the-storm.mp4"
+    },
+    {
+      "idx": 11,
+      "slug": "autumn-spirit-dance",
+      "cn": "枫叶精灵起舞",
+      "file": "11-autumn-spirit-dance.mp4"
+    },
+    {
+      "idx": 12,
+      "slug": "butterfly-bloom-sword-spirit-forest",
+      "cn": "蝶舞剑灵之森",
+      "file": "12-butterfly-bloom-sword-spirit-forest.mp4"
+    }
+  ],
+  "switchProven": true,
+  "switchDiffRatio": 0.8818238811728395,
+  "motionFinalRatio": 0.1673779899691358,
+  "layerFinal": true
+}
