@@ -919,6 +919,9 @@
     ],
     "318": [
       "t269_trigger_oneshot_r318.ps1"
+    ],
+    "319": [
+      "t270_winfr_tally_r319.ps1"
     ]
   }
 }

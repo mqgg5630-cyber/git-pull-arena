@@ -668,3 +668,10 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - 用户在线并要求触发。r318 = `t269_*`：重写 helper v8（防漂移）→ 15s 预告 popup → 全路径 UAC（launcher 无 -Wait）→ 确认 ELEVATED_RUN_OK → 读首批 MONITOR 行（150s 窗口）→ winfr 进程+recovery 目录确认 → monitor_started。
 - 沙箱重置 #5 已修复（sync.config 分支重置+本地基线回退，SOP 处理）。
 - 状态：⏳ 已排队。
+
+## round 318 结果（2026-10-06 21:00，✅ task PASSED——UAC 确认，helper v8 已独立运行）
+- ELEVATED_RUN_OK（用户点了"是"）。VARIANT v1 启动（正确过滤器），MONITOR elapsed=270s winfr 存活（3 个 WinFR 进程——可能用户此前还双击过 bat 造成双实例），files=0（Regular 模式先全盘 MFT 扫描再吐文件，正常）。task 的 tasklist winfr.exe 查询 False 系进程名大小写/过滤问题，MONITOR 行为准。
+
+## round 319 (2026-10-06, 恢复阶段 14：等终判+清点)
+- r319 = `t270_*`：轮询 vss_out.txt 20 分钟（每 60s 打最新 MONITOR 行）→ WINFR_DONE/WINFR_FAILED_ALL 即止 → Recovery_* 子目录清点（文件数/MB）+ 九类目录条目统计 + 扩展名 Top12。
+- 状态：⏳ 已排队。
