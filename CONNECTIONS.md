@@ -320,3 +320,9 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - r277 = `t229_*`：注册表读真实桌面 → 12 款（CDN hd.mp4→preview.mp4→本地兜底）入 `E:\...\lively-12\` → switcher.py/auto_rotate.py/keeper12.py → D 盘桌面 `动态壁纸切换器.bat` → Startup keeper 改指 keeper12 → 实测（手动切换像素 diff、自动 25s×2、keeper12 --now、运动探针）→ 清 C 盘旧 bat+DeskBox+旧 lively-hotori 目录。
 - 运维注记：沙箱本轮再次静默重置（HEAD 回 25cae55），已 reset --hard origin 恢复；local_check.ps1 的 fast-path 扩展从未被提交过也从不影响 accept，以后不再做这个 sed。
 - 状态：⏳ 已排队。
+
+## round 278 (2026-10-06, 修 12 款包内容)
+- r277 后检：**23 个 CDN 下载全部失败**（当时没记错误文本），本地兜底混入 3 个 hotori 重复副本——功能全绿但内容不合格。
+- r278 = `t230_*`：① 诊断（curl -v 全文 + IWR + 页面可达性）② 新下载链：壁纸页 HTML 提取 mp4 直链 → hd.mp4 → preview.mp4，三种方式 curl(UA)/Invoke-WebRequest/certutil，成功方式记名 ③ sha256 全包去重，meteor/mahiru/r244/r246/r247 按文件名扫描认领正名 ④ 重建 12 款目录（hotori #1 + CDN 新款优先 + 本地不同款补尾）⑤ 实测切换 1→2 像素 diff + 运动探针。
+- 门槛：12 款全部有效且互不相同 + **≥6 款 CDN 新下载** + 切换/运动/结构证明。
+- 状态：⏳ 已排队。
