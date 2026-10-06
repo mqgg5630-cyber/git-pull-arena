@@ -1,9 +1,9 @@
 {
-  "round": 304,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 304: DATA RECOVERY phase 3. Step A: read the leftover vss_out.txt and uac_err.txt from r303 (the UAC may have been accepted in those 12 seconds and the elevated helper may have already completed - if RECOVERY_START or WINFR_START is present we have the answer, no new UAC). Step B only if inconclusive: show the explanation MessageBox, then retry the UAC twice, fully wrapped in try/except with traceback captured to the receipt, plain subprocess timeout 380s, report flushed to disk after every step. Report data_found honestly. Delete nothing",
-  "arena_updated": "2026-10-06 10:51:50",
-  "local_updated": null
+    "round":  304,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 304: DATA RECOVERY phase 3. Step A: read the leftover vss_out.txt and uac_err.txt from r303 (the UAC may have been accepted in those 12 seconds and the elevated helper may have already completed - if RECOVERY_START or WINFR_START is present we have the answer, no new UAC). Step B only if inconclusive: show the explanation MessageBox, then retry the UAC twice, fully wrapped in try/except with traceback captured to the receipt, plain subprocess timeout 380s, report flushed to disk after every step. Report data_found honestly. Delete nothing",
+    "arena_updated":  "2026-10-06 10:51:50",
+    "local_updated":  "2026-10-06 18:52:48"
 }

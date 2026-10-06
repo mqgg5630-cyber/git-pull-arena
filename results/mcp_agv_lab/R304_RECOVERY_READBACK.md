@@ -1,0 +1,21 @@
+# R304 DATA RECOVERY phase 3 - readback + hardened retry
+time=2026-10-06 18:52:26
+screen_locked_detected=False
+== A: leftover helper output from r303 ==
+vss_out.txt exists=False uac_err=
+classify_leftover=no_file
+== B: UAC retry 1 ==
+showing explanation MessageBox
+launching elevated helper (subprocess timeout 380s)
+launcher_rc=0 out=[]
+classify_after=no_file
+uac_err=?ELEVATION_FAILED: ????????????????: ????????????????????
+== B: UAC retry 2 ==
+showing explanation MessageBox
+launching elevated helper (subprocess timeout 380s)
+launcher_rc=0 out=[]
+classify_after=no_file
+uac_err=?ELEVATION_FAILED: ????????????????: ????????????????????
+data_found=no_file
+boxes_alive_now=3 [48148, 53216, 48108]
+R304_RECOVERY_PHASE3_COMPLETE=False
