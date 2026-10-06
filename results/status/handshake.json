@@ -1,9 +1,9 @@
 {
-    "round":  321,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 321: read-only observation of the two working WinFR scans (no UAC, no kills): every 60s for 15 minutes count C:\\recovery_winfr_E files and snapshot WinFR process memory; if files start appearing mark PRODUCTIVE and keep watching up to 10 more minutes or until all WinFR exit; final verdict productive / still_zero_but_alive / all_exited_zero",
-    "arena_updated":  "2026-10-06 13:37:47",
-    "local_updated":  "2026-10-06 21:54:20"
+  "round": 321,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-06 13:55:07",
+  "local_updated": "2026-10-06 21:54:20"
 }
