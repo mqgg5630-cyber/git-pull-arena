@@ -1,9 +1,9 @@
 {
-    "round":  276,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 276: desktop one-click wallpaper repair - install repair script + desktop bat, live kill test (kill Lively+mpv, run repair, prove wallpaper returns + motion)",
-    "arena_updated":  "2026-10-06 03:09:03",
-    "local_updated":  "2026-10-06 11:10:37"
+  "round": 276,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-06 03:11:29",
+  "local_updated": "2026-10-06 11:10:37"
 }
