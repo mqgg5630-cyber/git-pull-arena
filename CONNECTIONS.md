@@ -291,3 +291,8 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - 像素：换上 88.4% 变化；~105s 20.4% / ~200s 19.3% 持续运动 → `persistent_motion_proven=True`。
 - `BatteryPause`/`PowerSaveModePause` 已按 0/1 整数正确关闭（电池供电也继续动）；开机自启走 Lively 自带 `Startup=true`。
 - round 274 自动 accept。轮询循环总账：268 ✅ 269-271 ❌ 272 ✅(VLC假壁纸,用户否决) 273 ❌(壁纸装好了但判据误杀回滚) **274 ✅ 真壁纸**。
+
+## round 275 (2026-10-06, 重启自愈)
+- 用户报告：**重启后动态壁纸没了**（Lively `Startup=true` 没有恢复）。
+- r275 = `t227_*`：① 重启后状态诊断（Lively/mpv 进程、壁纸层、HKCU/HKLM Run + Startup + 计划任务里的 lively 注册、WallpaperLayout.json 前后对比、Lively 目录日志）② 重设壁纸（杀僵尸→起 Lively→setwp→play）+ WorkerW 结构证明 + 双探针像素证明 ③ **装开机守护 Keeper**：Startup `Lively Wallpaper Keeper.bat` → pythonw 跑 `E:\0mcp-agv-arena-optimized\wallpapers\lively-hotori\keeper_lively_hotori.py`（登录等 45 秒 → Lively 没跑就拉起 → 壁纸层空就重设 setwp，重试 3 次，写 keeper.log）。壁纸永久存放在 `lively-hotori` 目录（不再带轮次号）。
+- 状态：⏳ 已排队。
