@@ -1,9 +1,9 @@
 {
-    "round":  315,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "round 315: final winfr invocation. helper v6 (written) uses the vintage-correct switch /a (accepts all prompts) with a BACKGROUND start (no synchronous wait): attempt1 winfr E: C:\\recovery_winfr_E /n \\0mcp-agv-arena-optimized\\deskbox-v2\\library\\* /a with 40s liveness check, attempt2 trailing-backslash dir filter if attempt1 dies, log tails on failure. The task shows the heads-up popup then triggers the UAC via the proven full-path launcher (timeout 280s). Afterwards verify the winfr process, decode logs, count C:\\recovery_winfr_E files. Delete nothing",
-    "arena_updated":  "2026-10-06 12:29:13",
-    "local_updated":  "2026-10-06 20:32:43"
+  "round": 315,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-06 12:33:21",
+  "local_updated": "2026-10-06 20:32:43"
 }
