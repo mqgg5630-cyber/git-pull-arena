@@ -877,6 +877,9 @@
     ],
     "304": [
       "t255_recovery_readback_r304.ps1"
+    ],
+    "305": [
+      "t256_recovery_deskbat_r305.ps1"
     ]
   }
 }

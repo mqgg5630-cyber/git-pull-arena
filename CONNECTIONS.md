@@ -560,3 +560,10 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 304 (2026-10-06, 恢复阶段 3：读回+加固重试)
 - r304 = `t255_*`：① 先只读 r303 遗留的 vss_out.txt/uac_err.txt（若已含 RECOVERY_START/WINFR_START 直接得答案，不再弹 UAC）② 不明确才重试：MessageBox 说明+UAC×2，全程 try/except+traceback 落盘、每步 flush_report、不用线程包裹（直接 subprocess.run timeout=380）。
 - 状态：⏳ 已排队。
+
+## round 304 结果（2026-10-06 18:51，❌ exit 6/23s，但 UAC 失败原因落盘）
+- 两次 UAC 均 ELEVATION_FAILED 立即返回（无用户交互等待）——watcher 进程的 Start-Process -Verb RunAs 无法把 UAC 弹到用户桌面（r303 的 12s 崩溃同源）。vss_out.txt 不存在（r303 的 helper 从未跑成）。真实错误消息是中文（被 ASCII 替换成 ?，待 r305 unicode_escape 抓出）。
+
+## round 305 (2026-10-06, 恢复阶段 4：桌面自提升 bat+用户双击)
+- r305 = `t256_*`：① 诊断：uac_err unicode_escape 原样抓出+watcher SessionId ② 桌面放 `RECOVERY-recover-data.bat`（net session 自检→Start-Process -Verb RunAs 自提升→跑 vss_helper.ps1）③ 同步 WScript Popup 指引（45s 自动关）"请双击桌面 RECOVERY-recover-data.bat 并点是" ④ 轮询 vss_out.txt 300s ⑤ classify 汇报（awaiting_user_doubleclick=用户没点，bat 留桌面）。
+- 状态：⏳ 已排队。
