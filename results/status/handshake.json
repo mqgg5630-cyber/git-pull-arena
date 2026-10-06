@@ -1,9 +1,9 @@
 {
-  "round": 323,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "round 323: read-only progress check of the single winfr instance (started 21:59, helper v10 monitors until ~22:59). Wait 20 minutes reading MON2 lines from vss_out.txt (print new ones), stop early if WINFR_DONE / WINFR_ZERO / WINFR_STILL_RUNNING appears, then report the recovery dir file count and MB, the last 14 lines of vss_out.txt, and the WinFR process count. If files exist, census the Recovery_* dirs",
-  "arena_updated": "2026-10-06 14:03:00",
-  "local_updated": null
+    "round":  323,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "round 323: read-only progress check of the single winfr instance (started 21:59, helper v10 monitors until ~22:59). Wait 20 minutes reading MON2 lines from vss_out.txt (print new ones), stop early if WINFR_DONE / WINFR_ZERO / WINFR_STILL_RUNNING appears, then report the recovery dir file count and MB, the last 14 lines of vss_out.txt, and the WinFR process count. If files exist, census the Recovery_* dirs",
+    "arena_updated":  "2026-10-06 14:03:00",
+    "local_updated":  "2026-10-06 22:24:24"
 }
