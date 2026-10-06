@@ -275,3 +275,8 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - 像素证明：换上前→后 99.5% 变化；~105s 两帧 8.4% 运动、~200s 两帧 13.3% 运动 → `persistent_motion_proven=True`；`DYNAMIC_VIDEO_WALLPAPER_READY=True`；round 272 自动 accept（判据 485+ 全过）。
 - 持久化：`E:\0mcp-agv-arena-optimized\wallpapers\dynamic-video-r272\`（mp4 + Start/Stop bat + PATHS.txt）；开机自启 = Startup 文件夹 `R272 Dynamic Video Wallpaper Start.bat`（开机延迟 20 秒启动；不想开机自动恢复就删它；停止用 Stop bat；换回静态 = 右键个性化或重设 r267 png）。
 - 本会话总账：round 268 通道冒烟 ✅ → 269 编码崩溃 ❌ → 270 进程计数误判回滚 ❌（但像素证明在播）→ 271 助手侧 NameError ❌ → 272 ✅ 闭环。「自动 pull → 执行代码 → push 本地结果 → 反复轮询」全链路在 5 轮里自动运转，两轮完全 hands-free accept（268、272）。
+
+## round 273 (2026-10-05, 用户否决 VLC，Lively 上场)
+- 用户判定：**VLC 那不是壁纸**（`--video-wallpaper` 在 Win11 上是无边框覆盖窗口，像素测试无法区分"壁纸层"和"盖桌面的窗口"——结构证明缺失是我的验收漏洞）。
+- r273 = `t225_*`：① 彻底退役 VLC（杀进程 + 删 R272 自启/bat，保留 mp4）② 清 Lively 僵尸（r258 的死因）③ Settings.json 备份后关掉 pause 规则（电池暂停默认开！）④ 干净启动 Lively 主程序（维基要求先运行）⑤ setwp hotori mp4 ⑥ **结构性证明**：枚举窗口树，Lively 播放窗口必须是 WorkerW/Progman 的子窗口（真正图标层之下的壁纸层）+ 双晚期像素探针。全量诊断（Settings schema/电源状态/窗口树）入回执。
+- 状态：⏳ 已排队。
