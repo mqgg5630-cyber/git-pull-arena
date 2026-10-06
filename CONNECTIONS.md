@@ -710,3 +710,10 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 ## round 324 (2026-10-06, 恢复阶段 19：终判+过夜决策)
 - r324 = `t275_*`：等 15 分钟读 helper v10 终判（WINFR_DONE/ZERO/STILL_RUNNING，窗口 ~22:59 关）+ recovery 计数 + 进程数 → 过夜建议（让 winfr 跑通宵，明早读 tally）。
 - 状态：⏳ 已排队。
+
+## round 324 结果（2026-10-06 22:27-22:42，✅ task PASSED——单实例 42 分钟仍 0 文件）
+- MON2 至 elapsed=2521s alive=True files=0；recovery 0 files/0MB。winfr 无终判（helper 窗口 ~22:59 才关）。恢复判定：无望。
+
+## 用户决定（~22:50）：放弃恢复，转入收尾清理
+- C 盘少了好几个 G → r325 = `t276_*`：①记录 v10 终判+确认/尝试停 WinFR（非提权 best-effort；用户手动关窗口）②C 盘审计（回收站/更新缓存/浏览器缓存/搜索索引/页面文件等尺寸）③清用户级缓存（TEMP/CrashDumps/pip/浏览器 Cache 子目录）+删恢复残留（C:\recovery_winfr_E、DBOX vss 四件、桌面 RECOVERY bat）④汇报释放量+需管理员项（用户自己去 设置>存储 清）。不碰回收站内容、不删用户数据、零 UAC。
+- 状态：⏳ 已排队。后续若 winfr 仍活 → r326 收尾删 recovery 目录。
