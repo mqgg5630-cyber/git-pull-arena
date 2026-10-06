@@ -337,7 +337,23 @@
     "results/mcp_agv_lab/R276_LIVELY_ONE_CLICK_REPAIR.md",
     "results/mcp_agv_lab/r276-one-click-repair.json",
     "results/mcp_agv_lab/r276_frame_c_after_repair.bmp",
-    "results/mcp_agv_lab/r276_frame_d_after_repair.bmp"
+    "results/mcp_agv_lab/r276_frame_d_after_repair.bmp",
+    "code/tasks/t229_run_wallpaper_switcher_12pack_r277.ps1",
+    "code/tasks/t229_wallpaper_switcher_12pack_r277.py",
+    "code/tasks/t230_run_wallpaper_pack_fix_r278.ps1",
+    "code/tasks/t230_wallpaper_pack_fix_r278.py",
+    "code/tasks/t233_run_wallpaper_rebuild_safe_r281.ps1",
+    "code/tasks/t233_wallpaper_rebuild_safe_r281.py",
+    "results/mcp_agv_lab/R277_WALLPAPER_SWITCHER_12PACK.md",
+    "results/mcp_agv_lab/r277-wallpaper-switcher-12pack.json",
+    "results/mcp_agv_lab/R278_WALLPAPER_PACK_DISTINCT.md",
+    "results/mcp_agv_lab/r278-wallpaper-pack-distinct.json",
+    "results/mcp_agv_lab/R281_WALLPAPER_SAFE_REBUILD.md",
+    "results/mcp_agv_lab/r281-wallpaper-safe-rebuild.json",
+    "results/mcp_agv_lab/r277_p1_wallpaper1.bmp",
+    "results/mcp_agv_lab/r277_p2_wallpaper2.bmp",
+    "results/mcp_agv_lab/r281_pa_wallpaper1.bmp",
+    "results/mcp_agv_lab/r281_pb_wallpaper2.bmp"
   ],
   "forbid_files": [
     "local/inbox",
@@ -401,7 +417,9 @@
     "results/mcp_agv_lab/R272_DYNAMIC_VIDEO_WALLPAPER.md": "(?s)(?=.*wallpaper_inherently_dynamic=True)(?=.*persistent_motion_proven=True)(?=.*actual_desktop_changed_to_new_wallpaper=True)(?=.*actual_desktop_is_moving_late=True)(?=.*actual_desktop_is_moving_late2=True)(?=.*autostart_ready=True)(?=.*DYNAMIC_VIDEO_WALLPAPER_READY=True).*",
     "results/mcp_agv_lab/R274_LIVELY_DYNAMIC_WALLPAPER.md": "(?s)(?=.*wallpaper_layer_proven=True)(?=.*persistent_motion_proven=True)(?=.*actual_desktop_changed_to_new_wallpaper=True)(?=.*actual_desktop_is_moving_late=True)(?=.*actual_desktop_is_moving_late2=True)(?=.*autostart_ready=True)(?=.*LIVELY_DYNAMIC_WALLPAPER_READY=True).*",
     "results/mcp_agv_lab/R275_LIVELY_WALLPAPER_REBOOT_PROOF.md": "(?s)(?=.*keeper_installed=True)(?=.*wallpaper_layer_proven=True)(?=.*persistent_motion_proven=True)(?=.*setwp_ok=True)(?=.*LIVELY_WALLPAPER_REBOOT_PROOF_READY=True).*",
-    "results/mcp_agv_lab/R276_LIVELY_ONE_CLICK_REPAIR.md": "(?s)(?=.*desktop_bat_exists=True)(?=.*layer_empty_after_kill=True)(?=.*repair_auto_exit=0)(?=.*layer_present_after_repair=True)(?=.*motion_after_repair_proven=True)(?=.*LIVELY_ONE_CLICK_REPAIR_READY=True).*"
+    "results/mcp_agv_lab/R276_LIVELY_ONE_CLICK_REPAIR.md": "(?s)(?=.*desktop_bat_exists=True)(?=.*layer_empty_after_kill=True)(?=.*repair_auto_exit=0)(?=.*layer_present_after_repair=True)(?=.*motion_after_repair_proven=True)(?=.*LIVELY_ONE_CLICK_REPAIR_READY=True).*",
+    "results/mcp_agv_lab/R277_WALLPAPER_SWITCHER_12PACK.md": "(?s)(?=.*LIVELY_SWITCHER_12PACK_READY=True)(?=.*manual_switch_proven=True)(?=.*auto_rotation_switches=2)(?=.*keeper12_now_exit=0).*",
+    "results/mcp_agv_lab/R281_WALLPAPER_SAFE_REBUILD.md": "(?s)(?=.*WALLPAPER_SAFE_REBUILD_READY=True)(?=.*switch_proven=True)(?=.*motion_final_proven=True)(?=.*layer_final=True)(?=.*catalog_size=12 valid=12 distinct=12).*"
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,
@@ -538,7 +556,23 @@
     "results/mcp_agv_lab/R276_LIVELY_ONE_CLICK_REPAIR.md": 1624,
     "results/mcp_agv_lab/r276-one-click-repair.json": 387,
     "results/mcp_agv_lab/r276_frame_c_after_repair.bmp": 2986025,
-    "results/mcp_agv_lab/r276_frame_d_after_repair.bmp": 2986025
+    "results/mcp_agv_lab/r276_frame_d_after_repair.bmp": 2986025,
+    "code/tasks/t229_run_wallpaper_switcher_12pack_r277.ps1": 382,
+    "code/tasks/t229_wallpaper_switcher_12pack_r277.py": 22254,
+    "code/tasks/t230_run_wallpaper_pack_fix_r278.ps1": 372,
+    "code/tasks/t230_wallpaper_pack_fix_r278.py": 12928,
+    "code/tasks/t233_run_wallpaper_rebuild_safe_r281.ps1": 378,
+    "code/tasks/t233_wallpaper_rebuild_safe_r281.py": 10212,
+    "results/mcp_agv_lab/R277_WALLPAPER_SWITCHER_12PACK.md": 2490,
+    "results/mcp_agv_lab/r277-wallpaper-switcher-12pack.json": 1836,
+    "results/mcp_agv_lab/R278_WALLPAPER_PACK_DISTINCT.md": 3000,
+    "results/mcp_agv_lab/r278-wallpaper-pack-distinct.json": 1563,
+    "results/mcp_agv_lab/R281_WALLPAPER_SAFE_REBUILD.md": 1821,
+    "results/mcp_agv_lab/r281-wallpaper-safe-rebuild.json": 1558,
+    "results/mcp_agv_lab/r277_p1_wallpaper1.bmp": 2986025,
+    "results/mcp_agv_lab/r277_p2_wallpaper2.bmp": 2986025,
+    "results/mcp_agv_lab/r281_pa_wallpaper1.bmp": 2986025,
+    "results/mcp_agv_lab/r281_pb_wallpaper2.bmp": 2986025
   },
   "max_bytes": {
     "deliverable/LINK_PROOF_v2.8.1.docx": 3000000,

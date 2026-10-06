@@ -341,3 +341,10 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - r280 教训：r279 崩溃时已改名一半文件、json 未写 → r280 拿旧名找不到源 → **先 unlink 目标位（正是改名后的真身）再 rename 失败** → 6 款 r278 CDN 壁纸被误删。盘上剩 hotori + 5 款（索隆/悟空/路飞/枫叶/蝶舞）。
 - r281 = `t233_*`：**不信 json 信磁盘**——扫盘按文件名匹配 12 款计划清单 → 缺的 6 款（夕阳黑猫/樱花车站/云端秋千/五条悟/炭治郎/鼬）重下（页面直链+IWR 链）→ **两阶段改名**（全部先挪 `_tmp-NN` 再落位 `NN-slug`，互相覆盖不可能）→ 重写目录+state → 实测切换+运动。
 - 状态：⏳ 已排队。
+
+## round 281 结果（2026-10-06 14:05，✅ 12 款壁纸切换器·最终态）
+- **最终目录（12 款，sha256 全互异）**：01 hotori｜02 夕阳窗边的黑猫｜03 午夜樱花车站｜04 云端树秋千｜05 五条悟·霓虹列车｜06 炭治郎·红月｜07 鼬·绯红暗影｜08 索隆·阎魔之王｜09 悟空·自在极意功｜10 路飞·风暴前夕｜11 枫叶精灵起舞｜12 蝶舞剑灵之森。= hotori + **11 款全新 CDN 下载**（用户要求达成）。
+- 三轮翻车链：r279 KeyError 崩在重建（get 默认值无条件求值）→ r280 拿旧名找不到源、unlink 误删 6 款 → r281 不信 json 信磁盘 + 两阶段改名（_tmp 中转）+ 6 款重下，一次通过。
+- 系统最终架构：`E:\...\lively-12\`（12 mp4 + wallpapers.json + state.json + switcher.py + auto_rotate.py + keeper12.py）；D 盘真桌面（注册表 Shell Folders 确认 `D:\桌面`）`动态壁纸切换器.bat`（菜单 1-12/N/A/S/R/Q）；Startup Keeper→keeper12（登录恢复当前选择+自动续开）；C 盘旧 bat+DeskBox 已清、旧 lively-hotori 目录已删。
+- 下载方法论（可复用）：livelywallpaper.app 壁纸页 HTML 提取 cdn mp4 直链 → Invoke-WebRequest(UA) 240s；curl 会 60s 超时断流、certutil 兜底。
+- 沙箱运维教训：本会话沙箱 .git/文件系统多次静默重置/闪烁（t233 一度提交成空文件）——**提交后必须 gh api 远端核验**；恢复 = reset --hard origin + 重叠加未提交改动。
