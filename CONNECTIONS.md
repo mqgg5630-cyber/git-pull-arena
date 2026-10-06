@@ -537,3 +537,10 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - band_stats mean=46 / colorful=5 / nonblack=100：底部净带是亮白低色彩画面（视频亮场或用户浅色窗口），阈值 colorful>=8 未过。但 mpv 五轮（r297-r301）全部存活、r299/r300 两次独立截图均 53% colorful 证实渲染。**壁纸层判 UP（实质），r301 属误伤。**
 - 盒子 3/3、HideIcons=0x1 复核 ✓、无锁屏。
 - **决定：终止技术轮次（291-301 共 11 轮），向用户发出完整中文汇报**——数据三态（complete: 壁纸源+lively-12+盒子系统 / missing: 旧九类库 20.1GB+桌面 44 lnk）、时间线、恢复选项（VSS/恢复工具/还原点）、回滚说明、请示三项。
+
+## 数据恢复阶段（2026-10-06 18:40 起，用户下令"恢复数据"）
+- 沙箱重置事故：本地仓库被重置到 25cae55，git fetch+ff-only 从远端恢复到 bbe7ff4，无损（所有 t243-t252 与回执都在远端）。
+- t243 源码审计结论：r291 robocopy 目标是 E:\library（复制成功/源未删）；r292 ①同盘 rename organizer→D:\DeskBoxLibrary ②migrated=True 才 rmdir E 副本（→ 17:03-17:33 间 D 库曾完整）③装盒子后挂死被杀。九类消失在 17:33-17:41 无任务窗口。删除全是快速删除 → 数据块可能未覆写，VSS 若存在可完整恢复。
+- r302 = `t253_*`：A 免提权取证（DeskBoxLibrary/07 mtime、D+E $RECYCLE.BIN 全 SID 扫+$I 索引解析出原始路径+删除时间、wallpapers 盘点、C/D/E 剩余空间）；B **UAC 提权 VSS 搜索**（Get-CimInstance 枚举影子→mklink C:\vss_links→查 D:\DeskBoxLibrary 与 E library→九类命中则后台 robocopy **COPY 模式**恢复到 E:\recovery\ 或 D:\recovery_vss\，绝不 /MOVE）。运行时用户屏幕会弹 UAC 需点"是"。
+- exit 语义：data_found ∈ recovering/none/no_shadows → 0（确定性答案）；uac_declined → 6。
+- 状态：⏳ 已排队。
