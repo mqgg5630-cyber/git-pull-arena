@@ -1,9 +1,9 @@
 {
-  "round": 306,
+  "round": 307,
   "arena_state": "awaiting_check",
   "local_state": "pending",
   "host": "",
-  "note": "round 306: DATA RECOVERY phase 5 - the user has been instructed in chat to double-click RECOVERY-recover-data.bat on the desktop and click Yes. Poll vss_out.txt for up to 600s (one reminder popup at 300s if still silent). When the helper output appears: classify it (recovering_vss / winfr_running / no_shadows / vss_empty_winfr_unavailable / vss_seen_no_hit), print the shadow/hit/winfr lines, tail the robocopy and winfr logs, and count entries in C:\\recovery_vss and C:\\recovery_winfr_E. Honest verdict. Delete nothing",
-  "arena_updated": "2026-10-06 11:03:09",
+  "note": "round 307: URGENT desktop rollback (user cannot see desktop or taskbar). taskkill mpv+Lively, reg add HideIcons=0, taskkill the three deskbox pids, remove our Startup autostart entries, restart explorer (taskkill then launch), show a completion popup. Keep RECOVERY-recover-data.bat on the desktop and everything in deskbox-v2. Nothing else deleted",
+  "arena_updated": "2026-10-06 11:08:36",
   "local_updated": null
 }
