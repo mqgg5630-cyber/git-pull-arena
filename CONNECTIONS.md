@@ -747,3 +747,9 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - r327 线索：E:回收站空（library 真删）；**D:回收站有 3 份文档**（AI_English.docx 2.6MB / plag_English.pdf 1.6MB / AI_English.pdf 1.5MB，原路径 D:\<中文>\）；E: 有 0docx/0word/0writing/0md 目录；**D:\DeskBoxLibrary** 疑似 deskbox 旧库；**E:\WDR-20261006230705** 23:07 出现（疑似用户自跑恢复工具）。
 - r328 = `t279_*`：DeskBoxLibrary 全量清点 + E: 文档目录 census + WDR 全列 + deskbox-v2 残余结构 + D: 根文档 + 桌面/D-bin $I 精确路径（unicode_escape 保中文）。只读无 UAC。
 - 状态：⏳ 已排队。
+
+## round 329 (2026-10-06，WDR 恢复产物验证)
+- r328 重大发现：**E:\WDR-20261006230705 = 561 个 docx / 1016MB**（23:07:05 出现，疑似用户自跑恢复工具 WDR 的输出），文件名即用户文档（万事达-招商、AMP 系列、中期_最终版等）。另：D:\DeskBoxLibrary=空（死线索）；E:\0writing 有 English.docx 多副本（10-05 最新 4.2MB）；E:\0docx/0word/0md 为旧文档。
+- r329 = `t280_*`：对 561 个 docx 逐个 zip/OOXML 结构校验（OK/ZIP-ONLY/NOTZIP/ERR/ZERO）+ 重复组 + mtime 年份直方图 + 完整索引写 results/mcp_agv_lab/WDR_INDEX.md。只读无 UAC。
+- 风险提示：WDR 输出写回 E: 源盘——若还要进一步雕刻，输出必须改到 C:/D:。
+- 状态：⏳ 已排队。
