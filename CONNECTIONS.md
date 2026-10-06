@@ -308,3 +308,9 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - r276 = `t228_*`：① 写 `E:\...\lively-hotori\repair_lively_hotori.py`（中文控制台进度 + repair.log；`--auto`=机器模式免按回车）② 桌面 `一键启动动态壁纸.bat`（ASCII 内容、中文文件名；找 python→py -3 兜底；结尾 pause 显示结果）③ **真实杀进程演习**：taskkill Lively+mpv+Livelycu → 证明壁纸层空 → 以用户方式跑修复 --auto → 证明壁纸层恢复 + 45 秒双帧运动探针 ④ 兜底：修复失败就走直接恢复路径，绝不留无壁纸状态。
 - 备注：本轮准备期间沙箱被重置回会话基点（本地分支回到 25cae55、配置回退），已 `reset --hard origin/arena/01a10bf3` 恢复（远端提交链完好），再叠加 r276 改动。
 - 状态：⏳ 已排队。
+
+## round 276 结果（2026-10-06 11:35，✅ 桌面一键修复闭环）
+- **真实演习通过**：taskkill Lively+mpv（Livelycu 本就没在跑，exit 128 不影响）→ Lively/mpv 进程归零、壁纸层空（players=0）→ 以用户双击同路径跑 `repair_lively_hotori.py --auto` → exit 0 → mpv 回到 WorkerW 全屏 (0,0,1536,864) → 45 秒双帧运动 ratio 0.0735 / avg 10.664 ✅。
+- 交付物：桌面 **`一键启动动态壁纸.bat`**（578B，中文文件名/ASCII 内容，python→py -3 兜底，结尾 pause 显示结果）→ 跑 `E:\...\lively-hotori\repair_lively_hotori.py`（中文进度 + `repair.log`；`--auto` 免回车）。修复逻辑：杀 Livelycu 僵尸 → Lively 没跑就拉起等 25s → 壁纸层空就 setwp+play，重试 3 次。
+- 注意：回执里 repair 中文行显示 ??? 是 receipt L() ascii-replace 所致；用户实际控制台与 repair.log 均为正常中文。
+- keeper 双保险仍在（logon Keeper + 桌面一键修复）。PATHS.txt 已更新。
