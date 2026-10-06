@@ -396,3 +396,12 @@ git clone --quiet --depth 1 -b arena/01a0a821-git-pull-arena \
 - 预检抓到并修掉 3 真bug：① `'%%%c'` 外层误转义 → 按钮显示 `%✳`；② 5s rescan 用启动旧 cfg 重设坐标 → 拖动后弹回；③ supervisor 未传默认槽位 → 全盒叠同点；另修 sup 漏 import os、符号改用 r283 实测渲染过的 ✕(0x2715)/−(0x2212)、坐标 SW/SH 夹紧。
 - 实测门：spawn 后 ≥2 盒 pid 存活、按 pid 集匹配 ≥2 个 300 宽盒窗、launch log/崩溃日志读回执、截图、壁纸层+30s 运动探针、锁屏拒测。
 - 状态：⏳ 已排队。
+
+## round 285 结果（2026-10-06 15:38，❌ FAIL：任务全绿、manifest 登记错误）
+- **DeskBox v2 实测全部达成**：3 盒 spawn（folders=4@14,14 / programs=53@326,14 / docs=5@14,456）、boxes_alive=3/3、**box_windows_found=3**（TkTopLevel、槽位精确命中）、截图 ok、kill 干净、壁纸 mpv 层存活、motion 0.8758、无 crash log、`DESKBOX_V2_PROVEN_READY=True`、ps1 任务 ok (50s)。**每盒一进程 + r283 已验证模式彻底解决了 r284 闪退。**
+- **round FAIL 原因（元数据错误，与交付物无关）**：manifest rounds['285'] 误把 `.py` 也登记进条目，local_check 把条目内每个文件按 PowerShell 跑 → `powershell -File *.py` 拒绝（"不具有 '.ps1' 扩展名"）→ exit -196608。
+- **教训（新铁律）**：manifest rounds 条目**只登记 .ps1 wrapper**，.py 由 wrapper 内部 Join-Path 调用，绝不入条目（对照 274/282/283/284 惯例）。
+
+## round 286 (2026-10-06, DeskBox v2 复验)
+- 修正 manifest：285 条目改回仅 .ps1；登记 286 = 同一个 `t237_deskbox_one_process_per_box_r285.ps1` 重跑（任务幂等：清 pid/旧 crash log → spawn → 验证 → kill → 截图 → 运动探针）。
+- 状态：⏳ 已排队。
