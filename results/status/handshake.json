@@ -1,9 +1,9 @@
 {
-  "round": 269,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "append docking methods/results to method (1).docx with the user's own SCI figures, and write the reproduction method doc",
-  "arena_updated": "2026-10-07 07:49:47",
-  "local_updated": null
+    "round":  269,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "append docking methods/results to method (1).docx with the user\u0027s own SCI figures, and write the reproduction method doc",
+    "arena_updated":  "2026-10-07 07:49:47",
+    "local_updated":  "2026-10-07 15:50:54"
 }
