@@ -758,6 +758,9 @@
     ],
     "264": [
       "t203_cleanup_backups_and_make_1txt.ps1"
+    ],
+    "265": [
+      "t204_collect_user_amp_assets.ps1"
     ]
   }
 }
