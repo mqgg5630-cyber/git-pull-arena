@@ -764,6 +764,9 @@
     ],
     "266": [
       "t205_collect_clues_v2.ps1"
+    ],
+    "267": [
+      "t206_wsl_amp_scan.ps1"
     ]
   }
 }
