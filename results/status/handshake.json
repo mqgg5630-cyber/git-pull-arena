@@ -1,9 +1,9 @@
 {
-    "round":  272,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "retry supplement generation with correct repo root",
-    "arena_updated":  "2026-10-07 07:58:05",
-    "local_updated":  "2026-10-07 16:00:20"
+  "round": 272,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "method docx supplemented with docking sections and the user's own SCI figures; reproduction method doc delivered",
+  "arena_updated": "2026-10-07 08:01:01",
+  "local_updated": "2026-10-07 16:00:20"
 }
