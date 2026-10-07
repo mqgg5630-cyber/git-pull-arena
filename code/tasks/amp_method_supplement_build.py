@@ -62,7 +62,7 @@ SUITE_DIR = os.path.join(RESULT_DIR, "SCI_Docking_Figure4_Suite")
 FIG_DIR = os.path.join(SUITE_DIR, "sci_composite_figures")
 TABLE_DIR = os.path.join(RESULT_DIR, "tables")
 
-REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SRC_DIR = os.path.join(REPO, "sources", "user_amp")
 METHOD_DOCX = os.path.join(SRC_DIR, "method (1).docx")
 
