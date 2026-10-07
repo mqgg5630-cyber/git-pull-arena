@@ -1,0 +1,593 @@
+check round 265 on LAPTOP-R77M5D6M - passed (exit 0)
+cmd: powershell -NoProfile -ExecutionPolicy Bypass -File code/local_check.ps1
+elapsed: 40s
+
+OK: all .ps1 files are ASCII-only
+OK: sync.config.json branch=arena/01a0ff69-git-pull-arena
+OK: sync.config.json branch matches HEAD (arena/01a0ff69-git-pull-arena)
+OK: root scripts identical to skills/git-sync/scripts
+OK: no drive-style variable typos ($var:)
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+OK: every .ps1 parses
+   (gate ran via E:\hermes\git\bin\bash.exe [git])
+== accept 2a: silent push PROVEN (ls-remote + push --dry-run, prompts disabled)
+== accept 2b: ZERO window - session 0 (S4U), logon type S4U
+== exits in Invoke-PollRound: 6
+OK: every exit path sets its closing summary
+== exits in Invoke-PollOnce: 2 (lock held / crashed / normal)
+OK: loop closing lines covered (6 exit paths, all with their own summary)
+== check_loop_summary PASSED
+== accept 2c: watcher closing lines verified (every exit path has its summary)
+== deliverables: 2 Office file(s) declared in deliverable/OFFICE_HASHES.json
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.docx (39743 B, docx)
+   OK   3b all 6 required parts present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.docx (17 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.docx
+   OK   3a sha256 + bytes match: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B, pptx)
+   OK   3b all 9 required parts present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3c every XML part parses in deliverable/LINK_PROOF_v2.8.1.pptx (52 parts)
+   OK   3d every relationship target resolves in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3e content types cover every part of deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3f all 6 text markers present in deliverable/LINK_PROOF_v2.8.1.pptx
+   OK   3g slides in deliverable/LINK_PROOF_v2.8.1.pptx : 8 >= 8
+   OK   3h Word.Application opened read-only, name=LINK_PROOF_v2.8.1.docx : deliverable\LINK_PROOF_v2.8.1.docx
+   OK   3h PowerPoint.Application opened read-only, slides=8 : deliverable\LINK_PROOF_v2.8.1.pptx
+== task r265: t204_collect_user_amp_assets.ps1
+HOST=LAPTOP-R77M5D6M
+REPO=E:\0github\git-sync\git-pull-arena-01a0ff69
+## 1. requested source files
+COPIED method (1).docx <- E:\Users\文少\Downloads\method (1).docx size=147801 sha256=46BAC35D8DA30CE37206A0C76E2798262C6A2A7F59B0065ABFE21E8525E9C1DD
+COPIED Prediction_Result.csv <- E:\Users\文少\Downloads\Prediction_Result.csv size=294 sha256=A7656F25272B287B992745262686650E57F268845C05F38090F1F14E723B8C6B
+COPIED Prediction_Result(1).csv <- E:\Users\文少\Downloads\Prediction_Result(1).csv size=1433 sha256=963D4533817DC49CD8BEBA7F36A7833897BC6EDBB1D12ECDA4300A2921DC074A
+COPIED run_algpred2_allergen.sh <- E:\Users\文少\Downloads\run_algpred2_allergen.sh size=14626 sha256=9623834736FDD3D3A83F189C267B2E8BAB04B1295486F563ED15666678A36F3F
+COPIED jieguo.csv <- E:\Users\文少\Downloads\jieguo.csv size=878 sha256=0762B2B99BE79244B4816B56F44B9118A65AC24C52B70215C9AC303E4A1EB6CC
+MISSING requested :: E:\Users\文少\Downloads\crocodile_gut_amp_flow.svg
+COPIED_SVG flow_06-network-signature.svg <- E:\Users\文少\Downloads\06-network-signature.svg size=25114
+COPIED_SVG flow_1.svg <- E:\Users\文少\Downloads\1.svg size=4093714
+COPIED_SVG flow_1ml_syringe_with_25G_needle.svg <- E:\Users\文少\Downloads\1ml_syringe_with_25G_needle.svg size=15418
+COPIED_SVG flow_Abeoforma-whisleri-tricolorstroke.svg <- E:\Users\文少\Downloads\Abeoforma-whisleri-tricolorstroke.svg size=8624
+COPIED_SVG flow_Adult_mouse.svg <- E:\Users\文少\Downloads\Adult_mouse.svg size=45191
+COPIED_SVG flow_AD_gut_AMP_biorender_style_v5__1_.svg <- E:\Users\文少\Downloads\AD_gut_AMP_biorender_style_v5 (1).svg size=927550
+COPIED_SVG flow_AD_gut_AMP_biorender_style_v5.svg <- E:\Users\文少\Downloads\AD_gut_AMP_biorender_style_v5.svg size=1087893
+COPIED_SVG flow_AD_gut_AMP_review_native_clean.svg <- E:\Users\文少\Downloads\AD_gut_AMP_review_native_clean.svg size=45391
+COPIED_SVG flow_AD_gut_microbiome_AMP_review_high_fidelity.svg <- E:\Users\文少\Downloads\AD_gut_microbiome_AMP_review_high_fidelity.svg size=712063
+COPIED_SVG flow_alligator_amp_workflow_nature_style.svg <- E:\Users\文少\Downloads\alligator_amp_workflow_nature_style.svg size=6621
+COPIED_SVG flow_alligator_amp_workflow_sci.svg <- E:\Users\文少\Downloads\alligator_amp_workflow_sci.svg size=7076
+COPIED_SVG flow_alligator_amp_workflow_sci_minimal.svg <- E:\Users\文少\Downloads\alligator_amp_workflow_sci_minimal.svg size=9396
+COPIED_SVG flow_alligator_amp_workflow_submission_clean_1_.svg <- E:\Users\文少\Downloads\alligator_amp_workflow_submission_clean(1).svg size=13836
+COPIED_SVG flow_alligator_amp_workflow_submission_clean.svg <- E:\Users\文少\Downloads\alligator_amp_workflow_submission_clean.svg size=13836
+COPIED_SVG flow_AMP-DeepLearning-Review_1_.svg <- E:\Users\文少\Downloads\AMP-DeepLearning-Review(1).svg size=48445
+COPIED_SVG flow_AMP-DeepLearning-Review.svg <- E:\Users\文少\Downloads\AMP-DeepLearning-Review.svg size=60056
+COPIED_SVG flow_AMP候选药物发现综合流程图_参考样式版.svg <- E:\Users\文少\Downloads\AMP候选药物发现综合流程图_参考样式版.svg size=11424
+COPIED_SVG flow_AMP候选药物发现综合流程图_同版式.svg <- E:\Users\文少\Downloads\AMP候选药物发现综合流程图_同版式.svg size=11429
+COPIED_SVG flow_AMP候选药物发现综合流程图_术语修正版_单行小字.svg <- E:\Users\文少\Downloads\AMP候选药物发现综合流程图_术语修正版_单行小字.svg size=11979
+COPIED_SVG flow_bacteria.svg <- E:\Users\文少\Downloads\bacteria.svg size=127595
+COPIED_SVG flow_Beakers.svg <- E:\Users\文少\Downloads\Beakers.svg size=39085
+COPIED_SVG flow_black_pepper_myosin_graphical_abstract_template.svg <- E:\Users\文少\Downloads\black_pepper_myosin_graphical_abstract_template.svg size=9110
+COPIED_SVG flow_concept1_workflow.svg <- E:\Users\文少\Downloads\concept1_workflow.svg size=1123493
+COPIED_SVG flow_d10_mechanism__1_.svg <- E:\Users\文少\Downloads\d10_mechanism (1).svg size=1209618
+COPIED_SVG flow_d10_mechanism.svg <- E:\Users\文少\Downloads\d10_mechanism.svg size=1053652
+COPIED_SVG flow_dna.svg <- E:\Users\文少\Downloads\dna.svg size=6492
+COPIED_SVG flow_eppendorf.svg <- E:\Users\文少\Downloads\eppendorf.svg size=28705
+COPIED_SVG flow_eppendorf_closed.svg <- E:\Users\文少\Downloads\eppendorf_closed.svg size=14071
+COPIED_SVG flow_export-2026-03-19_084446.svg <- E:\Users\文少\Downloads\export-2026-03-19 084446.svg size=3954545
+COPIED_SVG flow_F03_dl_architecture.svg <- E:\Users\文少\Downloads\F03_dl_architecture.svg size=16082
+COPIED_SVG flow_Falcon_Tube_clip_art.svg <- E:\Users\文少\Downloads\Falcon_Tube_clip_art.svg size=10975
+COPIED_SVG flow_fig1_graphical_abstract_editable.svg <- E:\Users\文少\Downloads\fig1_graphical_abstract_editable.svg size=1133735
+COPIED_SVG flow_Fig1_Pg牙周菌_AD机制.svg <- E:\Users\文少\Downloads\Fig1_Pg牙周菌_AD机制.svg size=27222
+COPIED_SVG flow_Figure_01_Graphical_Abstract_Overview.svg <- E:\Users\文少\Downloads\Figure_01_Graphical_Abstract_Overview.svg size=8672
+COPIED_SVG flow_figure_1_editable.svg <- E:\Users\文少\Downloads\figure_1_editable.svg size=3002109
+COPIED_SVG flow_figure_traced.svg <- E:\Users\文少\Downloads\figure_traced.svg size=278008
+COPIED_SVG flow_file.svg <- E:\Users\文少\Downloads\file.svg size=38243
+COPIED_SVG flow_final.svg <- E:\Users\文少\Downloads\final.svg size=280535
+COPIED_SVG flow_final_editable_v2.svg <- E:\Users\文少\Downloads\final_editable_v2.svg size=176196
+COPIED_SVG flow_final_editable_v3.svg <- E:\Users\文少\Downloads\final_editable_v3.svg size=194596
+COPIED_SVG flow_final_editable_v5.svg <- E:\Users\文少\Downloads\final_editable_v5.svg size=1006250
+COPIED_SVG flow_flowchart_complete_editable.svg <- E:\Users\文少\Downloads\flowchart_complete_editable.svg size=16311
+COPIED_SVG flow_full_1_.svg <- E:\Users\文少\Downloads\full(1).svg size=1533161
+COPIED_SVG flow_full_2_.svg <- E:\Users\文少\Downloads\full(2).svg size=1532983
+COPIED_SVG flow_full_3_.svg <- E:\Users\文少\Downloads\full(3).svg size=690452
+COPIED_SVG flow_full.svg <- E:\Users\文少\Downloads\full.svg size=266698
+COPIED_SVG flow_ga_machine_learning_umami_peptides.svg <- E:\Users\文少\Downloads\ga_machine_learning_umami_peptides.svg size=13161
+COPIED_SVG flow_Gemini_Generated_Image_xted44xted44xted.svg <- E:\Users\文少\Downloads\Gemini_Generated_Image_xted44xted44xted.svg size=1464787
+COPIED_SVG flow_Gemini_Generated_Image_ytczbmytczbmytcz.svg <- E:\Users\文少\Downloads\Gemini_Generated_Image_ytczbmytczbmytcz.svg size=311517
+COPIED_SVG flow_Generated_Image_February_05__2026_-_9_01PM.svg <- E:\Users\文少\Downloads\Generated Image February 05, 2026 - 9_01PM.svg size=192240
+COPIED_SVG flow_Generated_Image_February_06__2026_-_10_00AM.svg <- E:\Users\文少\Downloads\Generated Image February 06, 2026 - 10_00AM.svg size=476636
+COPIED_SVG flow_Generated_Image_February_06__2026_-_10_21AM.svg <- E:\Users\文少\Downloads\Generated Image February 06, 2026 - 10_21AM.svg size=111687
+COPIED_SVG flow_Generated_Image_February_06__2026_-_10_36AM.svg <- E:\Users\文少\Downloads\Generated Image February 06, 2026 - 10_36AM.svg size=126115
+COPIED_SVG flow_Generated_Image_February_06__2026_-_10_49AM.svg <- E:\Users\文少\Downloads\Generated Image February 06, 2026 - 10_49AM.svg size=37950
+COPIED_SVG flow_Generated_Image_February_06__2026_-_11_11AM.svg <- E:\Users\文少\Downloads\Generated Image February 06, 2026 - 11_11AM.svg size=1716407
+COPIED_SVG flow_human_brain_9nD0KD3.svg <- E:\Users\文少\Downloads\human_brain_9nD0KD3.svg size=581186
+COPIED_SVG flow_Human_Digestive_Tract__NIH_BioArt_212_-_657933_.svg <- E:\Users\文少\Downloads\Human_Digestive_Tract_(NIH_BioArt_212_-_657933).svg size=517713
+COPIED_SVG flow_jiqiu.svg <- E:\Users\文少\Downloads\jiqiu.svg size=1133573
+COPIED_SVG flow_liverIcon.svg <- E:\Users\文少\Downloads\liverIcon.svg size=47840
+COPIED_SVG flow_logo.svg <- E:\Users\文少\Downloads\logo.svg size=27067
+COPIED_SVG flow_macrophage.svg <- E:\Users\文少\Downloads\macrophage.svg size=381996
+COPIED_SVG flow_mouse_fRZ60gP.svg <- E:\Users\文少\Downloads\mouse_fRZ60gP.svg size=43764
+COPIED_SVG flow_mouse_head_brain.svg <- E:\Users\文少\Downloads\mouse_head_brain.svg size=24043
+COPIED_SVG flow_neuron_3.svg <- E:\Users\文少\Downloads\neuron_3.svg size=28879
+COPIED_SVG flow_petri.svg <- E:\Users\文少\Downloads\petri.svg size=5619
+COPIED_SVG flow_petri_dish_color.svg <- E:\Users\文少\Downloads\petri_dish_color.svg size=26567
+COPIED_SVG flow_PG-AChE-AB-GraphicalAbstract_1_.svg <- E:\Users\文少\Downloads\PG-AChE-AB-GraphicalAbstract(1).svg size=30417
+COPIED_SVG flow_PG-AChE-AB-GraphicalAbstract_2_.svg <- E:\Users\文少\Downloads\PG-AChE-AB-GraphicalAbstract(2).svg size=36798
+COPIED_SVG flow_PG-AChE-AB-GraphicalAbstract.svg <- E:\Users\文少\Downloads\PG-AChE-AB-GraphicalAbstract.svg size=22682
+COPIED_SVG flow_PG-AChE-AB-Review.svg <- E:\Users\文少\Downloads\PG-AChE-AB-Review.svg size=34163
+COPIED_SVG flow_Photoreceptor_cell.svg <- E:\Users\文少\Downloads\Photoreceptor_cell.svg size=826394
+COPIED_SVG flow_R-ICO-012339.svg <- E:\Users\文少\Downloads\R-ICO-012339.svg size=2279
+COPIED_SVG flow_sci_brain_gut_cell_019cb667-6816-7bc4-bc6d-946dc78111e5.svg <- E:\Users\文少\Downloads\sci_brain_gut_cell_019cb667-6816-7bc4-bc6d-946dc78111e5.svg size=21498
+COPIED_SVG flow_structured__1_.svg <- E:\Users\文少\Downloads\structured (1).svg size=737464
+COPIED_SVG flow_structured__2_.svg <- E:\Users\文少\Downloads\structured (2).svg size=1497478
+COPIED_SVG flow_structured.svg <- E:\Users\文少\Downloads\structured.svg size=112438
+COPIED_SVG flow_syring.svg <- E:\Users\文少\Downloads\syring.svg size=9582
+COPIED_SVG flow_TubeofBlood.svg <- E:\Users\文少\Downloads\TubeofBlood.svg size=19808
+COPIED_SVG flow_umami_peptide_ml_graphical_abstract.svg <- E:\Users\文少\Downloads\umami_peptide_ml_graphical_abstract.svg size=1139161
+COPIED_SVG flow_剪贴板.svg <- E:\Users\文少\Downloads\剪贴板.svg size=1000219
+COPIED_SVG flow_口腔.svg <- E:\Users\文少\Downloads\口腔.svg size=28119
+COPIED_SVG flow_图片转PPT_202602061431.svg <- E:\Users\文少\Downloads\图片转PPT_202602061431.svg size=169263
+COPIED_SVG flow_机器学习筛选鲜味肽-全景汇报.svg <- E:\Users\文少\Downloads\机器学习筛选鲜味肽-全景汇报.svg size=242038
+COPIED_SVG flow_机器学习筛选鲜味肽_全流程虚拟筛选全景架构_含图标.svg <- E:\Users\文少\Downloads\机器学习筛选鲜味肽_全流程虚拟筛选全景架构_含图标.svg size=22981
+COPIED_SVG flow_机器学习筛选鲜味肽_特征工程与算法演进全景矩阵.svg <- E:\Users\文少\Downloads\机器学习筛选鲜味肽_特征工程与算法演进全景矩阵.svg size=12904
+COPIED_SVG flow_沉积.svg <- E:\Users\文少\Downloads\沉积.svg size=117068
+COPIED_SVG flow_海马区.svg <- E:\Users\文少\Downloads\海马区.svg size=27721
+COPIED_SVG flow_淀粉样受体.svg <- E:\Users\文少\Downloads\淀粉样受体.svg size=3421
+COPIED_SVG flow_淀粉样受体1.svg <- E:\Users\文少\Downloads\淀粉样受体1.svg size=3423
+COPIED_SVG flow_神经元.svg <- E:\Users\文少\Downloads\神经元.svg size=34070
+COPIED_SVG flow_神经元损伤.svg <- E:\Users\文少\Downloads\神经元损伤.svg size=18741
+COPIED_SVG flow_细菌.svg <- E:\Users\文少\Downloads\细菌.svg size=108779
+COPIED_SVG flow_细菌1.svg <- E:\Users\文少\Downloads\细菌1.svg size=293299
+COPIED_SVG flow_聚集.svg <- E:\Users\文少\Downloads\聚集.svg size=50576
+COPIED_SVG flow_肽.svg <- E:\Users\文少\Downloads\肽.svg size=50605
+COPIED_SVG flow_肽1.svg <- E:\Users\文少\Downloads\肽1.svg size=54395
+COPIED_SVG flow_肽2.svg <- E:\Users\文少\Downloads\肽2.svg size=129711
+COPIED_SVG flow_肽3.svg <- E:\Users\文少\Downloads\肽3.svg size=116562
+COPIED_SVG flow_肽4.svg <- E:\Users\文少\Downloads\肽4.svg size=5479
+COPIED_SVG flow_肽5.svg <- E:\Users\文少\Downloads\肽5.svg size=177203
+COPIED_SVG flow_血管.svg <- E:\Users\文少\Downloads\血管.svg size=300876
+COPIED_SVG flow_血管1.svg <- E:\Users\文少\Downloads\血管1.svg size=74769
+COPIED_SVG flow_血管2.svg <- E:\Users\文少\Downloads\血管2.svg size=33668
+COPIED_SVG flow_血脑屏障.svg <- E:\Users\文少\Downloads\血脑屏障.svg size=122329
+COPIED_SVG flow_鳄鱼肠道抗菌肽流程图_中文单行结果版.svg <- E:\Users\文少\Downloads\鳄鱼肠道抗菌肽流程图_中文单行结果版.svg size=14058
+## 2. user SCI figure suite
+FIG_DIR=D:\桌面\AMP_Docking_Vina_R255_20261005_1552\SCI_Docking_Figure4_Suite\sci_composite_figures
+FIG_DIR_EXISTS=True
+PYTHON_WITH_PIL=E:\spider\python.exe
+USERFIG Figure_4_Part1_A-F_300dpi.png size=2077455
+  preview -> Figure_4_Part1_A-F_300dpi_preview.jpg  dim=2060 1744
+USERFIG Figure_4_Part2_G-L_300dpi.png size=2066724
+  preview -> Figure_4_Part2_G-L_300dpi_preview.jpg  dim=2060 1744
+USERFIG Figure_S1_12_Combined_300dpi.png size=2406384
+  preview -> Figure_S1_12_Combined_300dpi_preview.jpg  dim=2392 1826
+SUITE_TREE=E:\0github\git-sync\git-pull-arena-01a0ff69\results\user_amp\user_suite_tree.txt
+## 3. machine-wide clue sweep
+CLUE_SWEEP=E:\0github\git-sync\git-pull-arena-01a0ff69\results\user_amp\clue_sweep.csv  rows=0
+## 4. small text clues inlined
+---- head of Prediction_Result.csv ----
+| Number,Sequence,Class
+| 1,AYGKPFSFKKGL,negative
+| 2,VSTLKAMSLKL,negative
+| 3,WRPTVLRKVSA,negative
+| 4,QPWRPPGHFADRYG,negative
+| 5,YRPGPIHKTVWRPGTGAKVRFRT,negative
+| 6,DTPHWVPTKAAG,negative
+| 7,WPRTSATSHPYTPPGWRP,negative
+| 8,KWSHFSRI,negative
+| 9,KIYKQYKSI,negative
+| 10,WGTWQKAPK,negative
+| 11,SAIPNKSKPLPM,positive
+---- lines=12 ----
+---- head of Prediction_Result(1).csv ----
+| Number,Sequence,Class
+| 1,AYGKPFSFKKGL,negative
+| 2,VSTLKAMSLKL,negative
+| 3,WRPTVLRKVSA,positive
+| 4,THWKSAA,negative
+| 5,QPWRPPGHFADRYG,negative
+| 6,YRPGPIHKTVWRPGTGAKVRFRT,negative
+| 7,DTPHWVPTKAAG,negative
+| 8,WPRTSATSHPYTPPGWRP,positive
+| 9,KWSHFSRI,negative
+| 10,KIYKQYKSI,negative
+| 11,WGTWQKAPK,negative
+| 12,SAIPNKSKPLPM,negative
+| 13,TYWKPIRATS,negative
+| 14,WSGHRPRPLRTHTW,negative
+---- lines=47 ----
+---- head of jieguo.csv ----
+| 表1 CAMP与AxPep联合筛选结果汇总,,,,,,,,,,
+| 肽ID,肽序列,CAMP支持票数,AxPep支持票数,综合判定,,,,,,
+| pep_003,WRPTVLRKVSA,1/4,2/3,复核保留,,,,,,
+| pep_008,WPRTSATSHPYTPPGWRP,0/4,3/3,复核保留,,,,,,
+| pep_015,KPLHPVSTWK,0/4,2/3,复核保留,,,,,,
+| pep_016,GPPGWTDHPAF,0/4,0/3,不优先,,,,,,
+| pep_018,FVNKLNRIIPVKGFSMR,4/4,2/3,优先保留,,,,,,
+| pep_019,AIKSKNKITKRVQLE,1/4,0/3,不优先,,,,,,
+| pep_020,NGAGLHFRYGAATGWHHKNMS,4/4,1/3,复核保留,,,,,,
+| pep_029,LISNTKKFGTAIASHR,3/4,2/3,优先保留,,,,,,
+| pep_034,KPWLTAWPTAS,0/4,3/3,复核保留,,,,,,
+| pep_036,SAFFAHKITARQWRAVLIGVSRGSARCGHRSV,4/4,1/3,复核保留,,,,,,
+| pep_037,ISLAIPLASKISGFTLALVKNAST,4/4,3/3,优先保留,,,,,,
+| pep_039,KWISTVISVQYSGIWCQMQ,0/4,1/3,不优先,,,,,,
+| pep_044,EATSSDWGFLAGAGGSWGSGGSR,0/4,0/3,不优先,,,,,,
+---- lines=20 ----
+---- head of run_algpred2_allergen.sh ----
+| #!/usr/bin/env bash
+| set -Eeuo pipefail
+| 
+| # =========================================================
+| # run_algpred2_allergen.sh
+| # One-file installer + allergenicity screening wrapper for peptides/proteins
+| # based on AlgPred2.
+| #
+| # Modes:
+| #   install : create Python venv and install algpred2 (and optional repo assets)
+| #   run     : run allergenicity prediction and split outputs into
+| #             non_allergen.fa / allergen.fa / summary.tsv
+| #   all     : install then run
+| #
+| # Default model: 1 (AAC-RF)
+---- lines=472 ----
+COLLECT_204_OK=True
+== task r265 t204_collect_user_amp_assets.ps1 ok (4s)
+== accept 2d: hands-free auto_pull/auto_push present in watch.ps1
+== success criteria: results/status/success_criteria.json
+   v2.8.1 on arena/01a0ff69-git-pull-arena: the newest skill (source branch arena/01a0a98d-git-pull-arena, installer refuses to downgrade) plus the repo gate (code/check_all.sh, which now proves each python candidate python3 / python / py -3) and the real-machine check (code/local_check.ps1, sections 3a-3h). The deliverables LINK_PROOF_v2.8.1.docx / .pptx travel through git and are judged by the Windows watcher: sha256 + byte size, OOXML parts, XML parse, relationship targets, content types, markers, slide count and a real Word/PowerPoint open. 'Local' means that machine's scheduled watcher - never a sandbox folder, never a hand-made stand-in skill. From round 22 on the repo also ships code/tasks/*.ps1 (mapped per round in code/tasks/manifest.json) which run on the machine inside local_check.ps1 section 4 as child processes: round 22 = read-only diagnostics for the Antigravity login, the Java install state and E: cleanup candidates. Round 247 requires Qingjian IME installed/configured on the Windows laptop and the Muse smoke trigger completed. Round 249 requires Google Drive rclone remote gdrive_jzthjyz with probe write and a fresh laptop computer-use/Windows MCP UIA smoke. Round 254 closes the interop update with computer-use skill docs after empirical laptop success. Round 255 requires an AutoDock Vina antimicrobial-peptide docking workflow with 3 repeats per pair, standardized/minimized inputs, visual/contact outputs, and a Desktop result folder.
+   OK   exists: 01a0a821.md (2016 B)
+   OK   exists: skills/git-sync/VERSION (6 B)
+   OK   exists: skills/git-sync/scripts/agent-install.sh (13404 B)
+   OK   exists: skills/git-sync/scripts/agent-handoff.sh (4603 B)
+   OK   exists: skills/git-sync/scripts/agent-handsfree.sh (3989 B)
+   OK   exists: skills/git-sync/scripts/agent-criteria.sh (5190 B)
+   OK   exists: skills/git-sync/scripts/watch.ps1 (84094 B)
+   OK   exists: skills/git-sync/templates/one-sentence.md (6524 B)
+   OK   exists: skills/git-sync/templates/gate.yml (1166 B)
+   OK   exists: code/check_all.sh (9945 B)
+   OK   exists: code/local_check.ps1 (30124 B)
+   OK   exists: code/make_link_proof.py (22948 B)
+   OK   exists: deliverable/OFFICE_HASHES.json (2401 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.docx (39743 B)
+   OK   exists: deliverable/LINK_PROOF_v2.8.1.pptx (35886 B)
+   OK   exists: watch.ps1 (84094 B)
+   OK   exists: code/tasks/manifest.json (14675 B)
+   OK   exists: code/tasks/t1_antigravity_diag.ps1 (14461 B)
+   OK   exists: code/tasks/t2_java_diag.ps1 (8626 B)
+   OK   exists: code/tasks/t3_edrive_scan.ps1 (9393 B)
+   OK   exists: code/tasks/t1_fix_antigravity.ps1 (10411 B)
+   OK   exists: code/tasks/t3_edrive_scan2.ps1 (9007 B)
+   OK   exists: code/tasks/t2_install_java.ps1 (14030 B)
+   OK   exists: code/tasks/t3_edrive_scan3.ps1 (7084 B)
+   OK   exists: code/tasks/t4_cleanup_dryrun.ps1 (5995 B)
+   OK   exists: code/tasks/t1_antigravity_verify.ps1 (3793 B)
+   OK   exists: code/tasks/t2_cleanup_exec.ps1 (12624 B)
+   OK   exists: results/status/round22_findings.md (3511 B)
+   OK   exists: code/tasks/t5_cleanup_fix.ps1 (7475 B)
+   OK   exists: code/tasks/t7_ligplus_test.ps1 (6214 B)
+   OK   exists: code/tasks/t1_antigravity_tun2.ps1 (7694 B)
+   OK   exists: code/tasks/t6_docker_report.ps1 (5648 B)
+   OK   exists: code/tasks/t8_uvcache_finish.ps1 (2719 B)
+   OK   exists: code/tasks/t9_ligplus_upgrade.ps1 (8739 B)
+   OK   exists: code/tasks/t10_ligplus_final.ps1 (9282 B)
+   OK   exists: code/tasks/t11_javagui_fix.ps1 (3986 B)
+   OK   exists: code/tasks/t12_ligplus_new.ps1 (7178 B)
+   OK   exists: code/tasks/t13_docker_autofigure.ps1 (2917 B)
+   OK   exists: code/tasks/t14_recyclebin_empty.ps1 (2689 B)
+   OK   exists: code/tasks/t15_uvcache_final.ps1 (4126 B)
+   OK   exists: code/tasks/t16_uvcache_final2.ps1 (3987 B)
+   OK   exists: code/tasks/t17_uv_delete_bg.ps1 (4570 B)
+   OK   exists: code/tasks/t18_edrive_survey.ps1 (15793 B)
+   OK   exists: code/tasks/t17b_uv_finish.ps1 (3803 B)
+   OK   exists: code/tasks/t19_cleanup_approved.ps1 (9331 B)
+   OK   exists: code/tasks/t20_docker_pagefile.ps1 (5765 B)
+   OK   exists: code/tasks/t21_optimize_review.ps1 (7881 B)
+   OK   exists: code/tasks/t22_pagefile_uac.ps1 (2571 B)
+   OK   exists: code/tasks/t23_tailscale_verify.ps1 (2476 B)
+   OK   exists: code/tasks/t24_oldsync_cleanup.ps1 (2537 B)
+   OK   exists: code/tasks/t25_oldtask_uac.ps1 (4503 B)
+   OK   exists: code/tasks/t26_pagefile_fix_uac.ps1 (4880 B)
+   OK   exists: code/tasks/t27_pagefile_registry.ps1 (4513 B)
+   OK   exists: code/tasks/t28_reboot_verify.ps1 (2764 B)
+   OK   exists: code/tasks/t29_ddrive_survey.ps1 (9818 B)
+   OK   exists: code/tasks/t30_tailscale_prep.ps1 (5189 B)
+   OK   exists: code/tasks/t31_enable_rdp_ssh.ps1 (4127 B)
+   OK   exists: code/tasks/t32_wsl26_survey.ps1 (4565 B)
+   OK   exists: code/tasks/t33_hpc_probe.ps1 (5024 B)
+   OK   exists: code/tasks/t34_hpc_bridge.ps1 (4027 B)
+   OK   exists: code/tasks/t35_desktop_access_probe.ps1 (4368 B)
+   OK   exists: code/tasks/t36_autostart_vpn_tailscale.ps1 (6281 B)
+   OK   exists: code/tasks/t37_software_inventory.ps1 (6288 B)
+   OK   exists: code/tasks/t38_uninstall_qwenpaw.ps1 (6601 B)
+   OK   exists: code/tasks/t39_toolbox_and_paths.ps1 (6919 B)
+   OK   exists: code/tasks/t40_mcp_n8n_r_survey.ps1 (12366 B)
+   OK   exists: code/tasks/t41_bigdocs_report.ps1 (8722 B)
+   OK   exists: code/tasks/t42_fix_desktop_and_rdetail.ps1 (3650 B)
+   OK   exists: code/tasks/t43_wsl_r_probe2.ps1 (1800 B)
+   OK   exists: code/tasks/t44_r_final_check.ps1 (1752 B)
+   OK   exists: code/tasks/t45_r_versions_cleanup.ps1 (6361 B)
+   OK   exists: code/tasks/t46_zotero_recon.ps1 (11043 B)
+   OK   exists: code/tasks/t47_pipeline_fetch.ps1 (6956 B)
+   OK   exists: code/tasks/t48_run.ps1 (2765 B)
+   OK   exists: code/tasks/t48_english_citations.py (3044 B)
+   OK   exists: code/tasks/t48_zotero_match.py (2228 B)
+   OK   exists: code/tasks/t49_run.ps1 (912 B)
+   OK   exists: code/tasks/t49_dump_refs.py (3503 B)
+   OK   exists: code/tasks/t50_run.ps1 (1969 B)
+   OK   exists: code/tasks/t50_zotero_link.py (14995 B)
+   OK   exists: code/tasks/t51_run.ps1 (1053 B)
+   OK   exists: code/tasks/t51_verify_fix.py (16798 B)
+   OK   exists: code/tasks/t52_run.ps1 (1041 B)
+   OK   exists: code/tasks/t52_build_final.py (17034 B)
+   OK   exists: code/tasks/t53_word_check.ps1 (1876 B)
+   OK   exists: code/tasks/t54_recon2.ps1 (6934 B)
+   OK   exists: code/tasks/t54_crossref_verify.py (3308 B)
+   OK   exists: code/tasks/t55_run.ps1 (4739 B)
+   OK   exists: code/tasks/t55_rebuild9.py (17034 B)
+   OK   exists: code/tasks/t56_abtest.ps1 (5636 B)
+   OK   exists: code/tasks/t56_import_zotero.py (2992 B)
+   OK   exists: code/tasks/t57_run.ps1 (981 B)
+   OK   exists: code/tasks/t57_bind_uris.py (5318 B)
+   OK   exists: code/tasks/t58_recon_install.ps1 (6846 B)
+   OK   exists: code/tasks/t59_install_bridge.ps1 (10039 B)
+   OK   exists: code/tasks/t60_rot_bridge.ps1 (7846 B)
+   OK   exists: code/tasks/t61_rot_fallback.ps1 (6145 B)
+   OK   exists: code/tasks/t62_file_bridge.ps1 (12790 B)
+   OK   exists: code/tasks/fig1_rebuild_worker.ps1 (17400 B)
+   OK   exists: code/tasks/t63_final_rebuild.ps1 (3259 B)
+   OK   exists: code/tasks/t64_poll_rebuild.ps1 (4877 B)
+   OK   exists: code/tasks/t65_relaunch_worker.ps1 (3077 B)
+   OK   exists: code/tasks/t66_diag_rebuild.ps1 (3307 B)
+   OK   exists: code/tasks/t67_probe_ai_state.ps1 (6861 B)
+   OK   exists: code/tasks/t68_bridge_v2_resume.ps1 (7061 B)
+   OK   exists: code/tasks/t69_tfprobe.ps1 (5639 B)
+   OK   exists: code/tasks/t70_v2_rebuild.ps1 (5637 B)
+   OK   exists: code/tasks/t71_install_celllct.ps1 (11998 B)
+   OK   exists: code/tasks/t72_fix_getcs.ps1 (3975 B)
+   OK   exists: code/tasks/t73_v5_relaunch.ps1 (2813 B)
+   OK   exists: code/tasks/t74_hpc_watch.ps1 (4333 B)
+   OK   exists: code/tasks/t75_test_celllct.ps1 (8744 B)
+   OK   exists: code/tasks/t76_test_cellsu7.ps1 (8729 B)
+   OK   exists: code/tasks/t77_demo_celllct.ps1 (3053 B)
+   OK   exists: code/tasks/t78_demo_cellsu7.ps1 (3053 B)
+   OK   exists: code/tasks/t79_desktop_ssh_and_paths.ps1 (8292 B)
+   OK   exists: code/tasks/t80_desktop_ssh_stability.ps1 (3135 B)
+   OK   exists: code/tasks/t81_smb_key_install.ps1 (6256 B)
+   OK   exists: code/tasks/t82_bni_ssh_test.ps1 (2170 B)
+   OK   exists: code/tasks/t83_deskprobe.ps1 (3312 B)
+   OK   exists: code/tasks/t84_deskstage_sync.ps1 (5216 B)
+   OK   exists: code/tasks/desktop_worker.ps1 (11147 B)
+   OK   exists: code/tasks/install_desktop.ps1 (7594 B)
+   OK   exists: code/tasks/t85_syncfix.ps1 (3014 B)
+   OK   exists: code/tasks/t86_deskinstall.ps1 (3447 B)
+   OK   exists: code/tasks/t87_deskpython.ps1 (5575 B)
+   OK   exists: code/tasks/t88_deskdeps.ps1 (3839 B)
+   OK   exists: code/tasks/t89_desk_fixture.ps1 (3801 B)
+   OK   exists: code/tasks/t90_desk_fig1.ps1 (3772 B)
+   OK   exists: code/tasks/t91_desk_fig1b.ps1 (3773 B)
+   OK   exists: code/tasks/t92_desk_collect.ps1 (3232 B)
+   OK   exists: code/tasks/t93_desk_antigravity.ps1 (2326 B)
+   OK   exists: code/tasks/desk_antigravity_diag.ps1 (6657 B)
+   OK   exists: code/tasks/t94_desk_agy_fix.ps1 (2146 B)
+   OK   exists: code/tasks/desk_antigravity_fix.ps1 (5081 B)
+   OK   exists: code/tasks/t95_desk_agy_fix2.ps1 (2152 B)
+   OK   exists: code/tasks/desk_antigravity_fix2.ps1 (5225 B)
+   OK   exists: code/tasks/t96_desk_agy_verify.ps1 (2060 B)
+   OK   exists: code/tasks/desk_antigravity_verify.ps1 (2657 B)
+   OK   exists: code/tasks/t97_desk_agy_fix3.ps1 (2000 B)
+   OK   exists: code/tasks/desk_antigravity_fix3.ps1 (4558 B)
+   OK   exists: code/tasks/t98_desk_agy_verify2.ps1 (2079 B)
+   OK   exists: code/tasks/desk_antigravity_verify2.ps1 (3475 B)
+   OK   exists: code/tasks/t99_desk_agy_verify3.ps1 (3333 B)
+   OK   exists: code/tasks/desk_antigravity_verify3.ps1 (6500 B)
+   OK   exists: code/tasks/t100_desk_agy_fix4.ps1 (2698 B)
+   OK   exists: code/tasks/desk_antigravity_fix4.ps1 (13273 B)
+   OK   exists: code/tasks/t101_desk_agy_fix4.ps1 (3191 B)
+   OK   exists: code/tasks/t102_desk_agy_verify4.ps1 (2522 B)
+   OK   exists: code/tasks/desk_antigravity_verify4.ps1 (6413 B)
+   OK   exists: code/tasks/t103_desk_sync_survey.ps1 (7289 B)
+   OK   exists: code/tasks/desk_survey_sync.ps1 (3855 B)
+   OK   exists: code/tasks/t104_desk_ide_sync.ps1 (7597 B)
+   OK   exists: code/tasks/desk_sync_ide.ps1 (6997 B)
+   OK   exists: code/tasks/t105_laptop_wps_harness.ps1 (11541 B)
+   OK   exists: code/tasks/t106_laptop_impress_patch.ps1 (6865 B)
+   OK   exists: code/tasks/desk_wps_install.ps1 (7691 B)
+   OK   exists: code/tasks/verify_pptx.py (710 B)
+   OK   exists: code/tasks/t107_laptop_impress_patch2.ps1 (6920 B)
+   OK   exists: code/tasks/t108_laptop_harness_patch2.ps1 (5486 B)
+   OK   exists: code/tasks/patch_harness.py (4098 B)
+   OK   exists: code/tasks/wpsdl.cmd (1189 B)
+   OK   exists: code/tasks/t109_laptop_impress_retry.ps1 (4040 B)
+   OK   exists: code/tasks/t109_cancel_desktop_status.ps1 (1495 B)
+   OK   exists: code/tasks/t110_desk_wpsdl_fix.ps1 (3592 B)
+   OK   exists: code/tasks/t111_desk_wps_go.ps1 (2776 B)
+   OK   exists: code/tasks/t112_desk_deck_collect.ps1 (2851 B)
+   OK   exists: code/tasks/desk_harness_deck.py (8671 B)
+   OK   exists: code/tasks/t111b_desk_wps_go2.ps1 (3934 B)
+   OK   exists: code/tasks/t113_desk_wps_silent.ps1 (3065 B)
+   OK   exists: code/tasks/desk_wps_install2.ps1 (8618 B)
+   OK   exists: code/tasks/t114_desk_wps_launch.ps1 (2486 B)
+   OK   exists: code/tasks/desk_wps_launch.ps1 (8930 B)
+   OK   exists: code/tasks/t115_desk_wps_register.ps1 (2456 B)
+   OK   exists: code/tasks/desk_wps_register.ps1 (9949 B)
+   OK   exists: code/tasks/t116_desk_interactive.ps1 (4975 B)
+   OK   exists: code/tasks/desk_wps_interactive.ps1 (6845 B)
+   OK   exists: code/tasks/wpsrun.cmd (103 B)
+   OK   exists: code/tasks/t117_desk_automation.ps1 (3344 B)
+   OK   exists: code/tasks/desk_wps_automation.ps1 (9332 B)
+   OK   exists: code/tasks/t118_desk_final.ps1 (3671 B)
+   OK   exists: code/tasks/desk_wps_final.ps1 (5305 B)
+   OK   exists: code/tasks/t119_desk_final2.ps1 (3522 B)
+   OK   exists: code/tasks/desk_wps_final2.ps1 (5158 B)
+   OK   exists: code/tasks/t120_desk_warm.ps1 (3525 B)
+   OK   exists: code/tasks/desk_wpp_warm.ps1 (6716 B)
+   OK   exists: code/tasks/t121_desk_warm2.ps1 (4123 B)
+   OK   exists: code/tasks/desk_warm2.ps1 (6012 B)
+   OK   exists: code/tasks/deck_warm_build.py (7937 B)
+   OK   exists: code/tasks/t122_amp_deck.ps1 (3809 B)
+   OK   exists: code/tasks/desk_amp_deck.ps1 (4495 B)
+   OK   exists: code/tasks/amp_deck_build.py (16739 B)
+   OK   exists: code/tasks/t123_amp_deck2.ps1 (3851 B)
+   OK   exists: code/tasks/desk_amp_deck2.ps1 (4553 B)
+   OK   exists: code/tasks/amp_deck_v2_build.py (36459 B)
+   OK   exists: code/tasks/t124_cpe_setup.ps1 (2615 B)
+   OK   exists: code/tasks/desk_cpe_setup.ps1 (6175 B)
+   OK   exists: code/tasks/t125_cpe_setup2.ps1 (2624 B)
+   OK   exists: code/tasks/t126_cpe_test.ps1 (3617 B)
+   OK   exists: code/tasks/desk_cpe_test.ps1 (5058 B)
+   OK   exists: code/tasks/t127_cpe_test2.ps1 (3950 B)
+   OK   exists: code/tasks/desk_cpe_test2.ps1 (6813 B)
+   OK   exists: code/tasks/t128_cpe_test3.ps1 (4550 B)
+   OK   exists: code/tasks/desk_cpe_test3.ps1 (9346 B)
+   OK   exists: code/tasks/watcher.ps1 (4592 B)
+   OK   exists: code/tasks/prepcpe.ps1 (4427 B)
+   OK   exists: code/tasks/t129_cpe_test4.ps1 (4516 B)
+   OK   exists: code/tasks/desk_cpe_test4.ps1 (8865 B)
+   OK   exists: code/tasks/t189_muse_tailscale_probe_r238.ps1 (7634 B)
+   OK   exists: results/status/muse_tailscale_probe_r238.md (1890 B)
+   OK   exists: code/tasks/make_timeonly_turnitin_pdfs.py (4532 B)
+   OK   exists: code/tasks/t190_deliver_timeonly_pdfs_r239.ps1 (2632 B)
+   OK   exists: deliverable/AI_English_from_docx.pdf (1527133 B)
+   OK   exists: deliverable/plag_English_from_docx.pdf (1625379 B)
+   OK   exists: results/status/timeonly_pdfs_r239.json (947 B)
+   OK   exists: results/status/timeonly_pdfs_r239.md (983 B)
+   OK   exists: code/tasks/t191_deliver_no_overwrite_pdfs_r241.ps1 (4256 B)
+   OK   exists: results/status/no_overwrite_pdf_manifest_r241.json (905 B)
+   OK   exists: deliverable/AI_English_timeonly_20261003_1545.pdf (1527133 B)
+   OK   exists: deliverable/plag_English_timeonly_20261003_1545.pdf (1625379 B)
+   OK   exists: deliverable/AI_English_previous_01a0ff64_r244_20261003_1045.pdf (1901872 B)
+   OK   exists: deliverable/plag_English_previous_01a0ff64_r244_20261003_1045.pdf (2316099 B)
+   OK   exists: results/muse/HANDOFF.md (2557 B)
+   OK   exists: sources/muse/.gitkeep (0 B)
+   OK   exists: deliverable/muse/.gitkeep (0 B)
+   OK   exists: code/tasks/t192_muse_interconnect_probe_r242.ps1 (9399 B)
+   OK   exists: results/muse/INTERCONNECT_R242.md (2281 B)
+   OK   exists: results/muse/INTERCONNECT_R242.json (2847 B)
+   OK   exists: code/tasks/t193_muse_interconnect_probe_r243.ps1 (9399 B)
+   OK   exists: results/muse/INTERCONNECT_R243.md (2376 B)
+   OK   exists: results/muse/INTERCONNECT_R243.json (2861 B)
+   OK   exists: results/muse/bridge_test_20261003.json (174 B)
+   OK   exists: code/tasks/t194_muse_v2ray_takeover_r244.ps1 (18501 B)
+   OK   exists: sources/muse/muse_out_20261003_1633.zip (1482 B)
+   OK   exists: results/muse/status_20261003_1633.json (292 B)
+   OK   exists: results/muse/MUSE_V2RAY_TAKEOVER_R244.md (6078 B)
+   OK   exists: results/muse/MUSE_V2RAY_TAKEOVER_R244.json (567 B)
+   OK   exists: results/muse/extracted_20261003_1633/README.txt (512 B)
+   OK   exists: results/muse/extracted_20261003_1633/outputs/Hello-World/README (13 B)
+   OK   exists: results/antigravity/V2RAY_TAKEOVER_LOCAL_R244.md (2149 B)
+   OK   exists: code/tasks/t195_install_qingjian_ime_r247.ps1 (8622 B)
+   OK   exists: results/input/QINGJIAN_INSTALL_R247.md (1004 B)
+   OK   exists: sources/muse/muse_out_smoke_20261003_1718.zip (660 B)
+   OK   exists: results/muse/status_smoke_20261003_1718.json (349 B)
+   OK   exists: results/muse/requests/muse-smoke-20261003-1718.json (1053 B)
+   OK   exists: skills/cloud-interop/SKILL.md (2869 B)
+   OK   exists: skills/cloud-interop/README_CN.md (4380 B)
+   OK   exists: skills/cloud-interop/scripts/setup-gdrive-rclone.ps1 (6670 B)
+   OK   exists: skills/cloud-interop/scripts/interop-health.ps1 (6277 B)
+   OK   exists: code/tasks/t196_gdrive_computer_use_r249.ps1 (13206 B)
+   OK   exists: results/cloud_interop/GDRIVE_SETUP_R249.md (3147 B)
+   OK   exists: results/cloud_interop/INTEROP_HEALTH.md (1181 B)
+   OK   exists: results/computer_use/COMPUTER_USE_LAPTOP_R249.md (2382 B)
+   OK   exists: results/computer_use/COMPUTER_USE_LAPTOP_R249.json (4214 B)
+   OK   exists: skills/computer-use/SKILL.md (3537 B)
+   OK   exists: skills/computer-use/README_CN.md (2724 B)
+   OK   exists: code/tasks/t197_amp_vina_docking_r255.ps1 (9180 B)
+   OK   exists: code/tasks/peptide_vina_pipeline.py (32370 B)
+   OK   exists: results/docking/AMP_DOCKING_R255.md (12348 B)
+   OK   exists: results/docking/AMP_Docking_Vina_R255/REPORT.md (6476 B)
+   OK   exists: results/docking/AMP_Docking_Vina_R255/tables/vina_summary_mean_of_3.csv (4000 B)
+   OK   exists: results/docking/AMP_Docking_Vina_R255/tables/vina_repeats.csv (20601 B)
+   OK   exists: results/docking/AMP_Docking_Vina_R255/figures/vina_affinity_heatmap.png (110971 B)
+   OK   exists: results/docking/AMP_Docking_Vina_R255/tables/selected_best_complexes_for_figures.csv (5432 B)
+   OK   exists: code/tasks/amp_docking_report_and_sci_figures.py (39648 B)
+   OK   exists: code/tasks/t199_amp_report_sci_figures_r260.ps1 (8375 B)
+   OK   exists: results/docking/AMP_REPORT_SCI_FIGURES_R260.md (3216 B)
+   OK   exists: results/docking/AMP_Docking_Vina_R255/AMP_Docking_Targets_Methods_Results.md (12580 B)
+   OK   exists: results/docking/AMP_Docking_Vina_R255/AMP_Docking_Targets_Methods_Results.docx (6939691 B)
+   OK   exists: results/docking/AMP_Docking_Vina_R255/complexes_best_vina/sci_composite_figures/Figure_4_Part1_A-F_300dpi.png (1764604 B)
+   OK   exists: results/docking/AMP_Docking_Vina_R255/complexes_best_vina/sci_composite_figures/Figure_4_Part2_G-L_300dpi.png (1914815 B)
+   OK   exists: results/docking/AMP_Docking_Vina_R255/complexes_best_vina/sci_composite_figures/Figure_S1_12_Combined_300dpi.png (3357436 B)
+   OK   exists: results/docking/AMP_Docking_Vina_R255/complexes_best_vina/all_panel_render_records.csv (11497 B)
+   OK   absent: local/inbox
+   OK   absent: local/status_receipts
+   OK   absent: skills/docx_skill.py
+   OK   absent: local_bridge_skill.py
+   OK   contains skills/git-sync/VERSION <- 2.8.1
+   OK   contains 01a0a821.md <- arena/01a0a98d-git-pull-arena
+   OK   contains skills/git-sync/sync.config.json <- arena/01a0ff69-git-pull-arena
+   OK   contains skills/git-sync/templates/one-sentence.md <- agent-handoff.sh
+   OK   contains skills/git-sync/scripts/agent-install.sh <- refusing to downgrade
+   OK   contains code/check_all.sh <- py -3
+   OK   contains code/local_check.ps1 <- no Office deliverable declared
+   OK   contains deliverable/OFFICE_HASHES.json <- arena/01a0a9f0-git-pull-arena
+   OK   contains watch.ps1 <- function Invoke-AutoPull
+   OK   contains skills/git-sync/scripts/watch.ps1 <- function Invoke-Focus
+   OK   contains code/tasks/manifest.json <- t194_muse_v2ray_takeover_r244.ps1
+   OK   contains code/tasks/t1_fix_antigravity.ps1 <- http.proxy
+   OK   contains code/tasks/t2_install_java.ps1 <- E:\java
+   OK   contains results/status/muse_tailscale_probe_r238.md <- MUSE_TAILSCALE_PROBE_DONE
+   OK   contains results/status/timeonly_pdfs_r239.md <- only replace the two cover-page date strings
+   OK   contains results/status/timeonly_pdfs_r239.json <- Oct 3, 2026, 3:45 PM GMT
+   OK   contains results/status/no_overwrite_pdf_manifest_r241.json <- no-overwrite named copies
+   OK   contains results/muse/HANDOFF.md <- outbound-only Tailscale client
+   OK   contains code/tasks/t191_deliver_no_overwrite_pdfs_r241.ps1 <- no existing file was overwritten
+   OK   contains code/tasks/t192_muse_interconnect_probe_r242.ps1 <- INTERCONNECT_PROBE_DONE
+   OK   contains results/muse/INTERCONNECT_R242.md <- Report paths:
+   OK   contains code/tasks/t193_muse_interconnect_probe_r243.ps1 <- INTERCONNECT_PROBE_DONE
+   OK   contains results/muse/INTERCONNECT_R243.md <- MUSE_PUSH_SEEN: yes
+   OK   contains results/muse/bridge_test_20261003.json <- bridge_ok
+   OK   contains code/tasks/t194_muse_v2ray_takeover_r244.ps1 <- MUSE_V2RAY_TAKEOVER_DONE
+   OK   contains results/muse/status_20261003_1633.json <- muse-20261003-1633
+   OK   contains results/muse/MUSE_V2RAY_TAKEOVER_R244.md <- zip_file=logs/package.log
+   OK   contains results/input/QINGJIAN_INSTALL_R247.md <- QINGJIAN_INSTALL_OK=True
+   OK   contains results/muse/requests/muse-smoke-20261003-1718.json <- "state": "done"
+   OK   contains results/muse/status_smoke_20261003_1718.json <- "state": "done"
+   OK   contains results/muse/REQUEST_PROTOCOL.md <- Muse GitHub-trigger protocol
+   OK   contains skills/cloud-interop/README_CN.md <- gdrive_jzthjyz
+   OK   contains skills/cloud-interop/SKILL.md <- Google Drive policy
+   OK   contains results/cloud_interop/GDRIVE_SETUP_R249.md <- GDRIVE_SETUP_OK=True
+   OK   contains results/cloud_interop/INTEROP_HEALTH.md <- gdrive_probe_write=True
+   OK   contains results/computer_use/COMPUTER_USE_LAPTOP_R249.md <- COMPUTER_USE_LAPTOP_OK=True
+   OK   contains skills/computer-use/SKILL.md <- WCU_UIA_INVOKE_OK=True
+   OK   contains skills/computer-use/README_CN.md <- Windows-MCP
+   OK   contains results/skills/SKILLS_INTEROP_SUMMARY.md <- Empirical updates from laptop round 253
+   OK   contains CONNECTIONS.md <- gdrive_jzthjyz:Arena/interop/probe-20261003-203544.txt
+   OK   contains results/docking/AMP_DOCKING_R255.md <- AMP_DOCKING_DONE=True
+   OK   contains results/docking/AMP_Docking_Vina_R255/REPORT.md <- DOCKING_PIPELINE_DONE=True
+   OK   contains results/docking/AMP_Docking_Vina_R255/tables/vina_summary_mean_of_3.csv <- FVNKLNRIIPVKGFSMR
+   OK   contains results/docking/AMP_Docking_Vina_R255/tables/vina_repeats.csv <- best_affinity_kcal_mol
+   OK   contains code/tasks/t197_amp_vina_docking_r255.ps1 <- VINA_REPEATS_PER_PAIR=3
+   OK   contains results/docking/AMP_REPORT_SCI_FIGURES_R260.md <- AMP_REPORT_SCI_FIGURES_DONE=True
+   OK   contains results/docking/AMP_Docking_Vina_R255/AMP_Docking_Targets_Methods_Results.md <- AMP_DOC_REPORT_DONE=True
+   OK   contains results/docking/AMP_Docking_Vina_R255/complexes_best_vina/all_panel_render_records.csv <- panel_png
+   OK   regex watch.ps1
+   OK   regex code/local_check.ps1
+   OK   regex deliverable/OFFICE_HASHES.json
+   OK   regex results/muse/INTERCONNECT_R242.md
+   OK   regex results/muse/INTERCONNECT_R243.md
+   OK   regex results/muse/MUSE_V2RAY_TAKEOVER_R244.md
+   OK   regex results/input/QINGJIAN_INSTALL_R247.md
+   OK   regex results/computer_use/COMPUTER_USE_LAPTOP_R249.md
+   OK   regex results/docking/AMP_DOCKING_R255.md
+   OK   regex results/docking/AMP_Docking_Vina_R255/REPORT.md
+   OK   regex results/docking/AMP_REPORT_SCI_FIGURES_R260.md
+   OK   size skills/git-sync/scripts/agent-handoff.sh: 4603 >= 2000
+   OK   size skills/git-sync/scripts/agent-install.sh: 13404 >= 10000
+   OK   size code/check_all.sh: 9945 >= 8000
+   OK   size code/local_check.ps1: 30124 >= 12000
+   OK   size code/make_link_proof.py: 22948 >= 8000
+   OK   size deliverable/OFFICE_HASHES.json: 2401 >= 500
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 >= 5000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 >= 15000
+   OK   size watch.ps1: 84094 >= 20000
+   OK   size deliverable/AI_English_from_docx.pdf: 1527133 >= 1000000
+   OK   size deliverable/plag_English_from_docx.pdf: 1625379 >= 1000000
+   OK   size deliverable/AI_English_timeonly_20261003_1545.pdf: 1527133 >= 1000000
+   OK   size deliverable/plag_English_timeonly_20261003_1545.pdf: 1625379 >= 1000000
+   OK   size deliverable/AI_English_previous_01a0ff64_r244_20261003_1045.pdf: 1901872 >= 1000000
+   OK   size deliverable/plag_English_previous_01a0ff64_r244_20261003_1045.pdf: 2316099 >= 1000000
+   OK   size sources/muse/muse_out_20261003_1633.zip: 1482 >= 1000
+   OK   size deliverable/LINK_PROOF_v2.8.1.docx: 39743 <= 3000000
+   OK   size deliverable/LINK_PROOF_v2.8.1.pptx: 35886 <= 3000000
+== local checks passed

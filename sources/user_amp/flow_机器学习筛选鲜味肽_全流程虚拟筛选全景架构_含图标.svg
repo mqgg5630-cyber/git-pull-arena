@@ -1,0 +1,378 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 820" width="1400" height="820" style="background:#F8FAFC; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans SC', 'Microsoft YaHei', sans-serif;">
+  <defs>
+    
+    <!-- Database Icon -->
+    <g id="icon-database">
+      <ellipse cx="12" cy="5" rx="9" ry="3" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M3 5v6c0 1.66 4.03 3 9 3s9-1.34 9-3V5" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M3 11v6c0 1.66 4.03 3 9 3s9-1.34 9-3v-6" fill="none" stroke="currentColor" stroke-width="2"/>
+    </g>
+
+    <!-- Scissors / Enzyme Cleavage Icon -->
+    <g id="icon-scissors">
+      <circle cx="6" cy="6" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+      <circle cx="6" cy="18" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+      <line x1="20" y1="4" x2="8.12" y2="15.88" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="14.47" y1="14.48" x2="20" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="8.12" y1="8.12" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </g>
+
+    <!-- DNA / Peptide Chain Icon -->
+    <g id="icon-peptide">
+      <circle cx="6" cy="6" r="3" fill="currentColor"/>
+      <circle cx="12" cy="12" r="3" fill="currentColor"/>
+      <circle cx="18" cy="8" r="3" fill="currentColor"/>
+      <circle cx="15" cy="18" r="3" fill="currentColor"/>
+      <line x1="6" y1="6" x2="12" y2="12" stroke="currentColor" stroke-width="2"/>
+      <line x1="12" y1="12" x2="18" y2="8" stroke="currentColor" stroke-width="2"/>
+      <line x1="12" y1="12" x2="15" y2="18" stroke="currentColor" stroke-width="2"/>
+    </g>
+
+    <!-- Vector Matrix / Feature Icon -->
+    <g id="icon-matrix">
+      <rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+      <line x1="3" y1="9" x2="21" y2="9" stroke="currentColor" stroke-width="1.5"/>
+      <line x1="3" y1="15" x2="21" y2="15" stroke="currentColor" stroke-width="1.5"/>
+      <line x1="9" y1="3" x2="9" y2="21" stroke="currentColor" stroke-width="1.5"/>
+      <line x1="15" y1="3" x2="15" y2="21" stroke="currentColor" stroke-width="1.5"/>
+    </g>
+
+    <!-- AI Brain / Neural Network Icon -->
+    <g id="icon-brain">
+      <path d="M12 2a4 4 0 0 0-4 4c0 .3.03.6.1.87A4 4 0 0 0 5 10.5c0 .64.15 1.25.43 1.79A4 4 0 0 0 4 15.5 4 4 0 0 0 8 19.5c.34 0 .67-.04 1-.12A4 4 0 0 0 12 22a4 4 0 0 0 3-2.62c.33.08.66.12 1 .12a4 4 0 0 0 4-4 4 4 0 0 0-1.43-3.21c.28-.54.43-1.15.43-1.79a4 4 0 0 0-3.1-3.63c.07-.27.1-.57.1-.87a4 4 0 0 0-4-4z" fill="none" stroke="currentColor" stroke-width="2"/>
+      <line x1="12" y1="2" x2="12" y2="22" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2,2"/>
+    </g>
+
+    <!-- Chip / AI Processor Icon -->
+    <g id="icon-chip">
+      <rect x="5" y="5" width="14" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+      <rect x="8" y="8" width="8" height="8" rx="1" fill="currentColor"/>
+      <line x1="9" y1="1" x2="9" y2="5" stroke="currentColor" stroke-width="2"/>
+      <line x1="15" y1="1" x2="15" y2="5" stroke="currentColor" stroke-width="2"/>
+      <line x1="9" y1="19" x2="9" y2="23" stroke="currentColor" stroke-width="2"/>
+      <line x1="15" y1="19" x2="15" y2="23" stroke="currentColor" stroke-width="2"/>
+      <line x1="1" y1="9" x2="5" y2="9" stroke="currentColor" stroke-width="2"/>
+      <line x1="1" y1="15" x2="5" y2="15" stroke="currentColor" stroke-width="2"/>
+      <line x1="19" y1="9" x2="23" y2="9" stroke="currentColor" stroke-width="2"/>
+      <line x1="19" y1="15" x2="23" y2="15" stroke="currentColor" stroke-width="2"/>
+    </g>
+
+    <!-- Molecular Docking / Atom Icon -->
+    <g id="icon-docking">
+      <circle cx="12" cy="12" r="3" fill="currentColor"/>
+      <ellipse cx="12" cy="12" rx="9" ry="4" fill="none" stroke="currentColor" stroke-width="1.5" transform="rotate(30 12 12)"/>
+      <ellipse cx="12" cy="12" rx="9" ry="4" fill="none" stroke="currentColor" stroke-width="1.5" transform="rotate(-30 12 12)"/>
+    </g>
+
+    <!-- Chemical Flask / Beaker Icon -->
+    <g id="icon-flask">
+      <path d="M10 2v5L4.5 17.5A2 2 0 0 0 6.2 21h11.6a2 2 0 0 0 1.7-3.5L14 7V2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="8.5" y1="2" x2="15.5" y2="2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M6.5 15h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="10" cy="18" r="1" fill="currentColor"/>
+      <circle cx="13" cy="17" r="1.5" fill="currentColor"/>
+    </g>
+
+    <!-- Taste / Sensory Tongue / Wave Icon -->
+    <g id="icon-sensory">
+      <path d="M12 2C6.5 2 2 6.5 2 12c0 4.5 3 8 7 9.5V17a3 3 0 0 1 6 0v4.5c4-1.5 7-5 7-9.5 0-5.5-4.5-10-10-10z" fill="none" stroke="currentColor" stroke-width="2"/>
+      <line x1="12" y1="6" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M9 10a3 3 0 0 0 6 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </g>
+
+    <!-- Target / Accuracy Icon -->
+    <g id="icon-target">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+      <circle cx="12" cy="12" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="12" cy="12" r="2" fill="currentColor"/>
+      <line x1="12" y1="2" x2="12" y2="5" stroke="currentColor" stroke-width="2"/>
+      <line x1="12" y1="19" x2="12" y2="22" stroke="currentColor" stroke-width="2"/>
+      <line x1="2" y1="12" x2="5" y2="12" stroke="currentColor" stroke-width="2"/>
+      <line x1="19" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="2"/>
+    </g>
+
+    <!-- Funnel / Filter Icon -->
+    <g id="icon-funnel">
+      <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- Sync / Loop Icon -->
+    <g id="icon-sync">
+      <path d="M21.5 2v6h-6M2.5 22v-6h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M19.9 11a8 8 0 0 0-14.9-3.2L2.5 11m19 2l-2.5 3.2a8 8 0 0 1-14.9 3.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- Shield / Safety ADMET Icon -->
+    <g id="icon-shield">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- Lightning / Salt Bridge Energy Icon -->
+    <g id="icon-lightning">
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+    </g>
+
+    <!-- Microchip / Automation Channel Icon -->
+    <g id="icon-automate">
+      <circle cx="12" cy="12" r="3" fill="currentColor"/>
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" fill="none" stroke="currentColor" stroke-width="2"/>
+    </g>
+
+    <linearGradient id="gradNavy" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="gradBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284C7"/>
+      <stop offset="100%" stop-color="#0369A1"/>
+    </linearGradient>
+    <linearGradient id="gradGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0D9488"/>
+      <stop offset="100%" stop-color="#0F766E"/>
+    </linearGradient>
+    <linearGradient id="gradOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EA580C"/>
+      <stop offset="100%" stop-color="#C2410C"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0F172A" flood-opacity="0.06"/>
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#0F172A" flood-opacity="0.04"/>
+    </filter>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#0284C7" />
+    </marker>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#EA580C" />
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#0D9488" />
+    </marker>
+  </defs>
+
+  <!-- Top Header Bar -->
+  <g transform="translate(60, 35)">
+    <rect x="0" y="0" width="8" height="42" rx="4" fill="#0284C7"/>
+    <text x="24" y="32" font-size="28" font-weight="800" fill="#0F172A" letter-spacing="0.5">机器学习筛选鲜味肽 · 全流程虚拟筛选全景架构</text>
+    <text x="750" y="30" font-size="16" font-weight="600" fill="#64748B">End-to-End High-Throughput Virtual Screening Pipeline</text>
+    
+    <!-- Top Right KPI Badge -->
+    <rect x="1130" y="6" width="150" height="32" rx="16" fill="#E0F2FE" stroke="#BAE6FD"/>
+    <g transform="translate(1142, 10)" color="#0284C7">
+      <use href="#icon-target" x="0" y="0" width="22" height="22"/>
+    </g>
+    <text x="1215" y="27" font-size="13" font-weight="800" fill="#0369A1" text-anchor="middle">准确率 > 90%</text>
+  </g>
+
+  <!-- Lane 1: In Silico (干实验计算) -->
+  <rect x="60" y="100" width="1280" height="400" rx="18" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5" filter="url(#cardShadow)"/>
+  <rect x="60" y="100" width="1280" height="48" rx="18" fill="#F1F5F9"/>
+  <rect x="60" y="130" width="1280" height="18" fill="#F1F5F9"/>
+  <g transform="translate(80, 112)" color="#0284C7">
+    <use href="#icon-chip" x="0" y="0" width="24" height="24"/>
+  </g>
+  <text x="115" y="131" font-size="17" font-weight="800" fill="#0F172A">干实验计算高通量富集 (In Silico Virtual Screening)</text>
+  <text x="1170" y="130" font-size="13" font-weight="600" fill="#64748B">高通量 · 毫秒级打分</text>
+
+  <!-- Step 1: 数据造库 -->
+  <g transform="translate(90, 170)">
+    <rect x="0" y="0" width="200" height="295" rx="14" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+    <rect x="12" y="12" width="44" height="44" rx="10" fill="#E0F2FE"/>
+    <g transform="translate(22, 22)" color="#0284C7">
+      <use href="#icon-database" x="0" y="0" width="24" height="24"/>
+    </g>
+    <text x="66" y="34" font-size="14" font-weight="800" fill="#0284C7">STEP 01</text>
+    <text x="66" y="52" font-size="17" font-weight="800" fill="#0F172A">数据造库</text>
+    
+    <!-- Mini Items -->
+    <rect x="12" y="68" width="176" height="42" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="100" y="94" font-size="13" font-weight="600" fill="#334155" text-anchor="middle">BIOPEP-UWM 数据库</text>
+    
+    <rect x="12" y="118" width="176" height="42" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="100" y="144" font-size="13" font-weight="600" fill="#334155" text-anchor="middle">文献验证鲜味正样本</text>
+    
+    <rect x="12" y="168" width="176" height="42" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="100" y="194" font-size="13" font-weight="600" fill="#334155" text-anchor="middle">苦味/无味对照负样本</text>
+
+    <rect x="12" y="222" width="176" height="48" rx="8" fill="#FEF3C7" stroke="#FDE68A"/>
+    <g transform="translate(22, 234)" color="#D97706">
+      <use href="#icon-funnel" x="0" y="0" width="22" height="22"/>
+    </g>
+    <text x="110" y="251" font-size="13" font-weight="700" fill="#B45309" text-anchor="middle">SMOTE 平衡处理</text>
+  </g>
+
+  <!-- Arrow 1 -> 2 -->
+  <line x1="295" y1="315" x2="335" y2="315" stroke="#0284C7" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- Step 2: 虚拟酶解 -->
+  <g transform="translate(340, 170)">
+    <rect x="0" y="0" width="200" height="295" rx="14" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+    <rect x="12" y="12" width="44" height="44" rx="10" fill="#E0F2FE"/>
+    <g transform="translate(22, 22)" color="#0284C7">
+      <use href="#icon-scissors" x="0" y="0" width="24" height="24"/>
+    </g>
+    <text x="66" y="34" font-size="14" font-weight="800" fill="#0284C7">STEP 02</text>
+    <text x="66" y="52" font-size="17" font-weight="800" fill="#0F172A">虚拟酶解</text>
+    
+    <rect x="12" y="68" width="176" height="42" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="100" y="94" font-size="13" font-weight="600" fill="#334155" text-anchor="middle">天然蛋白序列输入</text>
+    
+    <rect x="12" y="118" width="176" height="42" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="100" y="144" font-size="13" font-weight="600" fill="#334155" text-anchor="middle">胰蛋白酶/胃蛋白酶</text>
+    
+    <rect x="12" y="168" width="176" height="42" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="100" y="194" font-size="13" font-weight="600" fill="#334155" text-anchor="middle">2–8 短肽多肽库</text>
+
+    <rect x="12" y="222" width="176" height="48" rx="8" fill="#E0F2FE" stroke="#BAE6FD"/>
+    <g transform="translate(22, 234)" color="#0284C7">
+      <use href="#icon-peptide" x="0" y="0" width="22" height="22"/>
+    </g>
+    <text x="110" y="251" font-size="13" font-weight="700" fill="#0369A1" text-anchor="middle">万级候选肽生成</text>
+  </g>
+
+  <!-- Arrow 2 -> 3 -->
+  <line x1="545" y1="315" x2="585" y2="315" stroke="#0284C7" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- Step 3: 特征工程 -->
+  <g transform="translate(590, 170)">
+    <rect x="0" y="0" width="200" height="295" rx="14" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+    <rect x="12" y="12" width="44" height="44" rx="10" fill="#E0F2FE"/>
+    <g transform="translate(22, 22)" color="#0284C7">
+      <use href="#icon-matrix" x="0" y="0" width="24" height="24"/>
+    </g>
+    <text x="66" y="34" font-size="14" font-weight="800" fill="#0284C7">STEP 03</text>
+    <text x="66" y="52" font-size="17" font-weight="800" fill="#0F172A">特征工程</text>
+    
+    <rect x="12" y="68" width="176" height="42" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="100" y="94" font-size="13" font-weight="600" fill="#334155" text-anchor="middle">AAC / DPC 组成</text>
+    
+    <rect x="12" y="118" width="176" height="42" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="100" y="144" font-size="13" font-weight="600" fill="#334155" text-anchor="middle">CTD / PAAC 理化</text>
+    
+    <rect x="12" y="168" width="176" height="42" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="100" y="194" font-size="13" font-weight="600" fill="#334155" text-anchor="middle">ESM-2 / ProtBERT</text>
+
+    <rect x="12" y="222" width="176" height="48" rx="8" fill="#CCFBF1" stroke="#99F6E4"/>
+    <g transform="translate(22, 234)" color="#0D9488">
+      <use href="#icon-chip" x="0" y="0" width="22" height="22"/>
+    </g>
+    <text x="110" y="251" font-size="13" font-weight="700" fill="#0F766E" text-anchor="middle">深度密集嵌入向量</text>
+  </g>
+
+  <!-- Arrow 3 -> 4 -->
+  <line x1="795" y1="315" x2="835" y2="315" stroke="#0284C7" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- Step 4: 模型预测 (Core Highlight) -->
+  <g transform="translate(840, 170)">
+    <rect x="0" y="0" width="220" height="295" rx="14" fill="url(#gradNavy)" stroke="#0284C7" stroke-width="2.5" filter="url(#cardShadow)"/>
+    <rect x="12" y="12" width="44" height="44" rx="10" fill="#0284C7"/>
+    <g transform="translate(22, 22)" color="#FFFFFF">
+      <use href="#icon-brain" x="0" y="0" width="24" height="24"/>
+    </g>
+    <text x="66" y="34" font-size="14" font-weight="800" fill="#38BDF8">STEP 04</text>
+    <text x="66" y="52" font-size="17" font-weight="800" fill="#FFFFFF">模型智能预测</text>
+    
+    <rect x="12" y="68" width="196" height="42" rx="8" fill="#1E293B" stroke="#334155"/>
+    <text x="110" y="94" font-size="13" font-weight="600" fill="#E2E8F0" text-anchor="middle">SVM / RF / GBDT</text>
+    
+    <rect x="12" y="118" width="196" height="42" rx="8" fill="#1E293B" stroke="#334155"/>
+    <text x="110" y="144" font-size="13" font-weight="600" fill="#E2E8F0" text-anchor="middle">Umami-MRNN (LSTM)</text>
+    
+    <rect x="12" y="168" width="196" height="42" rx="8" fill="#1E293B" stroke="#334155"/>
+    <text x="110" y="194" font-size="13" font-weight="600" fill="#E2E8F0" text-anchor="middle">Umami-BERT / 对比学习</text>
+
+    <rect x="12" y="222" width="196" height="48" rx="8" fill="url(#gradOrange)"/>
+    <g transform="translate(22, 234)" color="#FFFFFF">
+      <use href="#icon-target" x="0" y="0" width="22" height="22"/>
+    </g>
+    <text x="120" y="252" font-size="14" font-weight="800" fill="#FFFFFF" text-anchor="middle">Top 1% 高潜候选富集</text>
+  </g>
+
+  <!-- Arrow 4 -> 5 -->
+  <line x1="1065" y1="315" x2="1105" y2="315" stroke="#0284C7" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- Step 5: 分子对接 -->
+  <g transform="translate(1110, 170)">
+    <rect x="0" y="0" width="200" height="295" rx="14" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+    <rect x="12" y="12" width="44" height="44" rx="10" fill="#E0F2FE"/>
+    <g transform="translate(22, 22)" color="#0284C7">
+      <use href="#icon-docking" x="0" y="0" width="24" height="24"/>
+    </g>
+    <text x="66" y="34" font-size="14" font-weight="800" fill="#0284C7">STEP 05</text>
+    <text x="66" y="52" font-size="17" font-weight="800" fill="#0F172A">分子对接</text>
+    
+    <rect x="12" y="68" width="176" height="42" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="100" y="94" font-size="13" font-weight="600" fill="#334155" text-anchor="middle">T1R1/T1R3 受体晶体</text>
+    
+    <rect x="12" y="118" width="176" height="42" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="100" y="144" font-size="13" font-weight="600" fill="#334155" text-anchor="middle">Venus Flytrap (VFD)</text>
+    
+    <rect x="12" y="168" width="176" height="42" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="100" y="194" font-size="13" font-weight="600" fill="#334155" text-anchor="middle">Arg277 盐桥 / 氢键</text>
+
+    <rect x="12" y="222" width="176" height="48" rx="8" fill="#E0F2FE" stroke="#BAE6FD"/>
+    <g transform="translate(22, 234)" color="#0369A1">
+      <use href="#icon-lightning" x="0" y="0" width="22" height="22"/>
+    </g>
+    <text x="110" y="251" font-size="13" font-weight="700" fill="#0369A1" text-anchor="middle">结合自由能打分</text>
+  </g>
+
+  <!-- Lane 2: In Vitro (湿实验确证) -->
+  <rect x="60" y="530" width="1280" height="170" rx="18" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5" filter="url(#cardShadow)"/>
+  <rect x="60" y="530" width="1280" height="44" rx="18" fill="#FFF7ED"/>
+  <rect x="60" y="555" width="1280" height="19" fill="#FFF7ED"/>
+  <g transform="translate(80, 540)" color="#EA580C">
+    <use href="#icon-flask" x="0" y="0" width="24" height="24"/>
+  </g>
+  <text x="115" y="559" font-size="17" font-weight="800" fill="#0F172A">湿实验精准验证 (In Vitro Wet-Lab Validation)</text>
+  <text x="1170" y="558" font-size="13" font-weight="600" fill="#EA580C">精准验证 · 标定感官</text>
+
+  <!-- Step 6 Card -->
+  <g transform="translate(90, 595)">
+    <rect x="0" y="0" width="360" height="85" rx="12" fill="#FFF7ED" stroke="#FDBA74" stroke-width="1.5"/>
+    <g transform="translate(20, 26)" color="#C2410C">
+      <use href="#icon-flask" x="0" y="0" width="32" height="32"/>
+    </g>
+    <text x="65" y="38" font-size="16" font-weight="700" fill="#9A3412">化学固相合成 (SPPS)</text>
+    <text x="65" y="62" font-size="13" font-weight="500" fill="#C2410C">纯度 > 95% 定制合成验证</text>
+  </g>
+
+  <line x1="465" y1="637" x2="515" y2="637" stroke="#EA580C" stroke-width="3" marker-end="url(#arrowOrange)"/>
+
+  <g transform="translate(530, 595)">
+    <rect x="0" y="0" width="360" height="85" rx="12" fill="#FFF7ED" stroke="#FDBA74" stroke-width="1.5"/>
+    <g transform="translate(20, 26)" color="#C2410C">
+      <use href="#icon-sensory" x="0" y="0" width="32" height="32"/>
+    </g>
+    <text x="65" y="38" font-size="16" font-weight="700" fill="#9A3412">电子舌与感官品评</text>
+    <text x="65" y="62" font-size="13" font-weight="500" fill="#C2410C">鲜味阈值测定 (0.22–0.38 mmol/L)</text>
+  </g>
+
+  <line x1="905" y1="637" x2="955" y2="637" stroke="#EA580C" stroke-width="3" marker-end="url(#arrowOrange)"/>
+
+  <g transform="translate(970, 595)">
+    <rect x="0" y="0" width="340" height="85" rx="12" fill="url(#gradGreen)"/>
+    <g transform="translate(20, 26)" color="#FFFFFF">
+      <use href="#icon-target" x="0" y="0" width="32" height="32"/>
+    </g>
+    <text x="65" y="38" font-size="16" font-weight="700" fill="#FFFFFF">新鲜味肽确证与产品应用</text>
+    <text x="65" y="62" font-size="13" font-weight="500" fill="#CCFBF1">鲜味强度达 MSG 的 3–5 倍</text>
+  </g>
+
+  <!-- Connecting Line from Docking to Synthesis -->
+  <path d="M 1210 465 L 1210 505 L 270 505 L 270 585" fill="none" stroke="#EA580C" stroke-width="2.5" stroke-dasharray="6,6" marker-end="url(#arrowOrange)"/>
+
+  <!-- Feedback Loop (数据反哺闭环) -->
+  <path d="M 1140 680 L 1140 730 L 190 730 L 190 475" fill="none" stroke="#0D9488" stroke-width="2.5" stroke-dasharray="6,6" marker-end="url(#arrowGreen)"/>
+  
+  <g transform="translate(580, 715)">
+    <rect x="0" y="0" width="240" height="32" rx="16" fill="#0D9488"/>
+    <g transform="translate(14, 6)" color="#FFFFFF">
+      <use href="#icon-sync" x="0" y="0" width="20" height="20"/>
+    </g>
+    <text x="130" y="21" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">实验验证数据反哺模型更新</text>
+  </g>
+
+  <!-- Bottom Footer -->
+  <text x="60" y="785" font-size="13" font-weight="500" fill="#94A3B8">双轨驱动范式：干实验高通量虚拟筛选 (In Silico) + 湿实验精准确证 (In Vitro) · 全流程闭环自迭代</text>
+</svg>

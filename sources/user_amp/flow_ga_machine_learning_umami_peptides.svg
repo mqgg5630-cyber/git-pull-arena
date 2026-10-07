@@ -1,0 +1,138 @@
+<svg viewBox="0 0 1240 418" width="2244" height="757" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ga-title ga-desc">
+<title id="ga-title">Machine-learning-guided discovery of umami peptides</title>
+<desc id="ga-desc">Workflow from protein libraries and curated taste data through feature encoding and ML/DL prediction models to consensus docking, sensory validation and low-sodium food application.</desc>
+
+<defs>
+  <marker id="arr" markerWidth="9" markerHeight="8" refX="8" refY="4" orient="auto"><polygon points="0,0 9,4 0,8" fill="#5E6E7C"/></marker>
+<g id="i-pep"><circle cx="4" cy="12" r="2.4" fill="#5E9670"/><circle cx="10" cy="12" r="2.4" fill="#8FB89A"/><circle cx="16" cy="12" r="2.4" fill="#C9A45C"/><circle cx="22" cy="12" r="2.4" fill="#5F8CB0"/><path d="M6.4 12h1.2M12.4 12h1.2M18.4 12h1.2" stroke="#22303C" stroke-width="1.1" opacity="0.35"/></g>
+<g id="i-db"><path d="M4.6 5.8c0 1.5 3.3 2.8 7.4 2.8s7.4-1.3 7.4-2.8M4.6 5.8v12.4c0 1.5 3.3 2.8 7.4 2.8s7.4-1.3 7.4-2.8V5.8c0 1.5-3.3 2.8-7.4 2.8s-7.4-1.3-7.4-2.8z" fill="#F2F6FA" stroke="#3F6F96" stroke-width="1.7"/><ellipse cx="12" cy="5.8" rx="7.4" ry="2.8" fill="#DCE8F3" stroke="#3F6F96" stroke-width="1.7"/></g>
+<g id="i-code"><path d="M9.6 5.4 4.6 12l5 6.6M14.4 5.4l5 6.6-5 6.6" fill="none" stroke="#5E6E7C" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="0.9" fill="#5E6E7C"/></g>
+<g id="i-nn"><path d="M5.2 6.8c.4-1.7 1.8-2.4 3.2-1.9M5.2 12c.4-1.7 1.8-2.4 3.2-1.9M5.2 17.2c.4-1.7 1.8-2.4 3.2-1.9M10.6 5.4c.4-1.7 1.8-2.4 3.2-1.9M10.6 12c.4-1.7 1.8-2.4 3.2-1.9M10.6 18.6c.4-1.7 1.8-2.4 3.2-1.9M15.6 6.8c.4-1.7 1.8-2.4 3.2-1.9M15.6 12c.4-1.7 1.8-2.4 3.2-1.9M15.6 17.2c.4-1.7 1.8-2.4 3.2-1.9" fill="none" stroke="#7FB294" stroke-width="1.2"/><circle cx="3.8" cy="6" r="1.7" fill="#3F7A52"/><circle cx="3.8" cy="12" r="1.7" fill="#3F7A52"/><circle cx="3.8" cy="18" r="1.7" fill="#3F7A52"/><circle cx="9.2" cy="4.2" r="1.7" fill="#3F7A52"/><circle cx="9.2" cy="12" r="1.7" fill="#5E9670"/><circle cx="9.2" cy="19.8" r="1.7" fill="#3F7A52"/><circle cx="14.2" cy="5.4" r="1.7" fill="#3F7A52"/><circle cx="14.2" cy="12" r="1.7" fill="#5E9670"/><circle cx="14.2" cy="18.6" r="1.7" fill="#3F7A52"/><circle cx="20.2" cy="6" r="1.9" fill="#6E5598"/><circle cx="20.2" cy="12" r="1.9" fill="#6E5598"/><circle cx="20.2" cy="18" r="1.9" fill="#6E5598"/></g>
+<g id="i-struct"><path d="M2.6 9.2q4.2-3.6 8.4 0t8.4 0" fill="none" stroke="#6E5598" stroke-width="1.8" stroke-linecap="round"/><path d="M2.6 14.8q4.2-3.6 8.4 0t8.4 0" fill="none" stroke="#AC9ACB" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="2.1" fill="#F1ECF7" stroke="#6E5598" stroke-width="1.5"/><circle cx="8.4" cy="8.4" r="1.4" fill="#DCCFEF"/><circle cx="16.2" cy="10" r="1.2" fill="#DCCFEF"/></g>
+<g id="i-tongue"><path d="M4.4 9.6c0-4.6 15.2-4.6 15.2 0 0 5.4-3.4 8.8-7.6 8.8S4.4 15 4.4 9.6z" fill="#FBE4DE" stroke="#C26A54" stroke-width="1.7"/><path d="M12 5.8v6.8M12 12.6c-1.6 0-2.4-1-2.8-2.4M14.8 10.4c-.4 1.2-1.4 1.9-2.8 1.9" fill="none" stroke="#C26A54" stroke-width="1.3" stroke-linecap="round"/><circle cx="7.8" cy="11.6" r="0.85" fill="#B05A44"/><circle cx="9.8" cy="13.9" r="0.8" fill="#B05A44"/><circle cx="14.6" cy="14" r="0.8" fill="#B05A44"/></g>
+<g id="i-shaker"><rect x="7.8" y="6" width="8.4" height="2.9" rx="1.45" fill="#C9A45C"/><rect x="8.3" y="8.9" width="7.4" height="11.2" rx="2" fill="#FBF4E6" stroke="#C9A45C" stroke-width="1.6"/><path d="M10.2 11c.3 1.3-.3 1.9-.6 2.6-.3.7-.3 1.5.6 2M13.8 11c.3 1.3-.3 1.9-.6 2.6-.3.7-.3 1.5.6 2" fill="none" stroke="#C9A45C" stroke-width="1.1" stroke-linecap="round"/></g>
+<g id="i-gauge"><path d="M5 17.4a7.4 7.4 0 0 1 14 0" fill="none" stroke="#5E6E7C" stroke-width="1.9" stroke-linecap="round"/><path d="M12 17.4 15.8 11.6" stroke="#3F7A52" stroke-width="1.9" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.6" fill="#3F7A52"/><path d="M4.4 20h15.2" stroke="#B9C3CC" stroke-width="1.4" stroke-linecap="round"/></g>
+<g id="i-curve"><path d="M5 19.5V4.8M4.8 19.5H19.4" stroke="#C3CFD9" stroke-width="1.4" stroke-linecap="round"/><path d="M6 16.8C9.4 15.2 11.6 9.6 17.4 6.4" fill="none" stroke="#3F7A52" stroke-width="1.9" stroke-linecap="round"/></g>
+<g id="i-clock"><circle cx="12" cy="12" r="8" fill="#FFFFFF" stroke="#3F6F96" stroke-width="1.7"/><path d="M12 6.8V12l3.6 2.2" fill="none" stroke="#3F6F96" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></g>
+</defs>
+
+<rect width="1660" height="560" fill="#FFFFFF"/>
+<g transform="scale(0.746988)">
+
+<text x="830" y="46" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" fill="#22303C">Machine-learning-guided discovery of umami peptides</text>
+<text x="830" y="72" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14.5" fill="#5E6E7C">protein libraries → in-silico ranking → sensory validation → low-sodium food application</text>
+
+<!-- stage boxes -->
+<g font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+  <g>
+    <rect x="35" y="104" width="210" height="206" rx="12" fill="#F2F6FA" stroke="#B9C9D8" stroke-width="1.3"/>
+    <circle cx="57" cy="126" r="13" fill="#3F6F96"/><text x="57" y="131" font-size="14" font-weight="700" fill="#FFFFFF">1</text>
+    <use href="#i-pep" transform="translate(128,116) scale(1.55)"/>
+    <text x="140" y="196" font-size="16.5" font-weight="700" fill="#22303C">Peptide</text>
+    <text x="140" y="216" font-size="16.5" font-weight="700" fill="#22303C">libraries</text>
+    <line x1="47" y1="230" x2="233" y2="230" stroke="#D5DEE6" stroke-width="1"/>
+    <text x="140" y="258" font-size="12.5" fill="#46586A">hydrolysates · fermentates</text>
+    <text x="140" y="278" font-size="12.5" fill="#46586A">LC-MS/MS peptidomics</text>
+  </g>
+  <line x1="245" y1="207" x2="265" y2="207" stroke="#7C8B99" stroke-width="2" marker-end="url(#arr)"/>
+
+  <g>
+    <rect x="265" y="104" width="210" height="206" rx="12" fill="#F2F6FA" stroke="#B9C9D8" stroke-width="1.3"/>
+    <circle cx="287" cy="126" r="13" fill="#3F6F96"/><text x="287" y="131" font-size="14" font-weight="700" fill="#FFFFFF">2</text>
+    <use href="#i-db" transform="translate(358,116) scale(1.55)"/>
+    <text x="370" y="196" font-size="16.5" font-weight="700" fill="#22303C">Taste</text>
+    <text x="370" y="216" font-size="16.5" font-weight="700" fill="#22303C">benchmarks</text>
+    <line x1="277" y1="230" x2="463" y2="230" stroke="#D5DEE6" stroke-width="1"/>
+    <text x="370" y="258" font-size="12.5" fill="#46586A">umami vs bitter labels</text>
+    <text x="370" y="278" font-size="12.5" fill="#46586A">curated public archives</text>
+  </g>
+  <line x1="475" y1="207" x2="495" y2="207" stroke="#7C8B99" stroke-width="2" marker-end="url(#arr)"/>
+
+  <g>
+    <rect x="495" y="104" width="210" height="206" rx="12" fill="#EAF4EC" stroke="#9CC7AB" stroke-width="1.3"/>
+    <circle cx="517" cy="126" r="13" fill="#3F7A52"/><text x="517" y="131" font-size="14" font-weight="700" fill="#FFFFFF">3</text>
+    <use href="#i-code" transform="translate(588,118) scale(1.55)"/>
+    <text x="600" y="196" font-size="16.5" font-weight="700" fill="#22303C">Encoding</text>
+    <text x="600" y="216" font-size="16.5" font-weight="700" fill="#22303C">&amp; embeddings</text>
+    <line x1="507" y1="230" x2="693" y2="230" stroke="#D5DEE6" stroke-width="1"/>
+    <text x="600" y="258" font-size="12.5" fill="#2E5C3D">physicochemical features</text>
+    <text x="600" y="278" font-size="12.5" fill="#2E5C3D">ProtBERT fine-tuning</text>
+  </g>
+  <line x1="705" y1="207" x2="725" y2="207" stroke="#7C8B99" stroke-width="2" marker-end="url(#arr)"/>
+
+  <g>
+    <rect x="725" y="104" width="210" height="206" rx="12" fill="#EAF4EC" stroke="#3F7A52" stroke-width="1.9"/>
+    <circle cx="747" cy="126" r="13" fill="#3F7A52"/><text x="747" y="131" font-size="14" font-weight="700" fill="#FFFFFF">4</text>
+    <use href="#i-nn" transform="translate(818,116) scale(1.55)"/>
+    <text x="830" y="196" font-size="16.5" font-weight="700" fill="#22303C">ML / DL</text>
+    <text x="830" y="216" font-size="16.5" font-weight="700" fill="#22303C">screening</text>
+    <line x1="737" y1="230" x2="923" y2="230" stroke="#D5DEE6" stroke-width="1"/>
+    <text x="830" y="258" font-size="12.5" fill="#2E5C3D">SCM · GBDT · RNN-MLP · BERT</text>
+    <text x="830" y="278" font-size="12.5" fill="#2E5C3D">ACC 86–96% · AUC &gt; 0.9</text>
+  </g>
+  <line x1="935" y1="207" x2="955" y2="207" stroke="#7C8B99" stroke-width="2" marker-end="url(#arr)"/>
+
+  <g>
+    <rect x="955" y="104" width="210" height="206" rx="12" fill="#F1ECF7" stroke="#AC9ACB" stroke-width="1.3"/>
+    <circle cx="977" cy="126" r="13" fill="#6E5598"/><text x="977" y="131" font-size="14" font-weight="700" fill="#FFFFFF">5</text>
+    <use href="#i-struct" transform="translate(1048,116) scale(1.55)"/>
+    <text x="1060" y="196" font-size="16.5" font-weight="700" fill="#22303C">Consensus +</text>
+    <text x="1060" y="216" font-size="16.5" font-weight="700" fill="#22303C">docking</text>
+    <line x1="967" y1="230" x2="1153" y2="230" stroke="#D5DEE6" stroke-width="1"/>
+    <text x="1060" y="258" font-size="12.5" fill="#4E3C73">multi-predictor voting</text>
+    <text x="1060" y="278" font-size="12.5" fill="#4E3C73">T1R1/3 pose ranking</text>
+  </g>
+  <line x1="1165" y1="207" x2="1185" y2="207" stroke="#B05A44" stroke-width="2" marker-end="url(#arr)"/>
+
+  <g>
+    <rect x="1185" y="104" width="210" height="206" rx="12" fill="#FBF1F0" stroke="#DCA08E" stroke-width="1.3"/>
+    <circle cx="1207" cy="126" r="13" fill="#B05A44"/><text x="1207" y="131" font-size="14" font-weight="700" fill="#FFFFFF">6</text>
+    <use href="#i-tongue" transform="translate(1278,116) scale(1.55)"/>
+    <text x="1290" y="196" font-size="16.5" font-weight="700" fill="#22303C">Taste</text>
+    <text x="1290" y="216" font-size="16.5" font-weight="700" fill="#22303C">validation</text>
+    <line x1="1197" y1="230" x2="1383" y2="230" stroke="#D5DEE6" stroke-width="1"/>
+    <text x="1290" y="258" font-size="12.5" fill="#5E4A44">sensory panel · E-tongue</text>
+    <text x="1290" y="278" font-size="12.5" fill="#5E4A44">cell-based receptor assay</text>
+  </g>
+  <line x1="1395" y1="207" x2="1415" y2="207" stroke="#B98F3F" stroke-width="2" marker-end="url(#arr)"/>
+
+  <g>
+    <rect x="1415" y="104" width="210" height="206" rx="12" fill="#FBF1D9" stroke="#C9A45C" stroke-width="1.4"/>
+    <circle cx="1437" cy="126" r="13" fill="#8A6A28"/><text x="1437" y="131" font-size="14" font-weight="700" fill="#FFFFFF">7</text>
+    <use href="#i-shaker" transform="translate(1508,116) scale(1.55)"/>
+    <text x="1520" y="196" font-size="16.5" font-weight="700" fill="#22303C">Low-sodium</text>
+    <text x="1520" y="216" font-size="16.5" font-weight="700" fill="#22303C">foods</text>
+    <line x1="1427" y1="230" x2="1613" y2="230" stroke="#D5DEE6" stroke-width="1"/>
+    <text x="1520" y="258" font-size="12.5" fill="#6E5B31">salt reduction · seasonings</text>
+    <text x="1520" y="278" font-size="12.5" fill="#6E5B31">clean-label umami</text>
+  </g>
+</g>
+
+<!-- phase bands -->
+<rect x="35" y="330" width="1130" height="26" rx="13" fill="none" stroke="#7E97AC" stroke-width="1.2" stroke-dasharray="5,4"/>
+<text x="600" y="347" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="600" fill="#3F6F96">COMPUTATIONAL (IN SILICO)</text>
+<rect x="1185" y="330" width="440" height="26" rx="13" fill="none" stroke="#CE8471" stroke-width="1.2" stroke-dasharray="5,4"/>
+<text x="1405" y="347" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13.5" font-weight="600" fill="#B05A44">WET-LAB VALIDATION</text>
+
+<!-- metric capsules -->
+<g font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+  <rect x="326" y="394" width="320" height="62" rx="10" fill="#F4F6F8" stroke="#D5DEE6" stroke-width="1.2"/>
+  <use href="#i-gauge" transform="translate(352,410) scale(1.15)"/>
+  <text x="505" y="423" font-size="17.5" font-weight="700" fill="#3F6F96">ACC 86–96%</text>
+  <text x="505" y="445" font-size="13" fill="#7C8B99">independent-test reports</text>
+
+  <rect x="670" y="394" width="320" height="62" rx="10" fill="#F4F6F8" stroke="#D5DEE6" stroke-width="1.2"/>
+  <use href="#i-curve" transform="translate(696,410) scale(1.15)"/>
+  <text x="849" y="423" font-size="17.5" font-weight="700" fill="#3F7A52">AUC &gt; 0.90</text>
+  <text x="849" y="445" font-size="13" fill="#7C8B99">deep models · held-out sets</text>
+
+  <rect x="1014" y="394" width="320" height="62" rx="10" fill="#F4F6F8" stroke="#D5DEE6" stroke-width="1.2"/>
+  <use href="#i-clock" transform="translate(1040,410) scale(1.15)"/>
+  <text x="1193" y="423" font-size="17.5" font-weight="700" fill="#B05A44">validation cost ↓ ≈90%</text>
+  <text x="1193" y="445" font-size="13" fill="#7C8B99">fewer candidates reach the lab</text>
+</g>
+
+<text x="830" y="510" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#46586A">rank first, then taste — ML narrows 10³–10⁶ candidate sequences to a handful of sensory-grade hits</text>
+
+</g>
+</svg>

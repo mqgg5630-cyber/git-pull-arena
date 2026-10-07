@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1100" viewBox="0 0 1800 1100">
+<defs>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+    <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#DCE6F4" flood-opacity="0.8"/>
+  </filter>
+  <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#F8FBFF"/>
+    <stop offset="100%" stop-color="#F3F7FB"/>
+  </linearGradient>
+  <linearGradient id="headerGrad" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#2F80ED"/>
+    <stop offset="50%" stop-color="#9B51E0"/>
+    <stop offset="100%" stop-color="#EB5757"/>
+  </linearGradient>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#C8D3E1"/>
+  </marker>
+  <style>
+    .title { font-family: Arial, Helvetica, sans-serif; font-size: 32px; font-weight: 700; fill: #183153; }
+    .subtitle { font-family: Arial, Helvetica, sans-serif; font-size: 16px; fill: #5B6B82; }
+    .boxTitle { font-family: Arial, Helvetica, sans-serif; font-size: 23px; font-weight: 700; fill: #183153; }
+    .boxText { font-family: Arial, Helvetica, sans-serif; font-size: 17px; fill: #5B6B82; }
+    .resTitle { font-family: Arial, Helvetica, sans-serif; font-size: 27px; font-weight: 700; fill: #183153; }
+    .resText { font-family: Arial, Helvetica, sans-serif; font-size: 18px; font-weight: 700; fill: #183153; }
+    .resSmall { font-family: Arial, Helvetica, sans-serif; font-size: 15px; fill: #5B6B82; }
+    .panelLabel { font-family: Arial, Helvetica, sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 1.2px; fill: #5B6B82; }
+    .stepNum { font-family: Arial, Helvetica, sans-serif; font-size: 18px; font-weight: 700; fill: white; }
+  </style>
+</defs>
+<rect width="100%" height="100%" fill="url(#bgGrad)"/>
+<rect x="80" y="26" width="1640" height="6" rx="3" fill="url(#headerGrad)"/>
+<text x="90" y="58" class="title">Genome-resolved discovery and prioritization of candidate antimicrobial peptides</text>
+<text x="90" y="86" class="subtitle">Alligator gut metagenome | streamlined workflow and key results</text>
+
+<rect x="90" y="152" width="980" height="796" rx="28" fill="#FFFFFF" filter="url(#shadow)"/>
+<rect x="1140" y="152" width="580" height="796" rx="28" fill="#FFFFFF" filter="url(#shadow)"/>
+<text x="124" y="188" class="panelLabel">WORKFLOW</text>
+<text x="1174" y="188" class="panelLabel">KEY RESULTS</text>
+<line x1="310.0" y1="258" x2="310.0" y2="274" stroke="#C8D3E1" stroke-width="6" marker-end="url(#arrow)"/>
+    <rect x="130" y="170" width="360" height="88" rx="22" fill="#FFFFFF" stroke="#2F80ED" stroke-width="3.5"/>
+    <rect x="144" y="184" width="12" height="60" rx="6" fill="#2F80ED"/>
+    <text x="172" y="206" class="boxTitle">Raw metagenome</text>
+    <text x="172" y="233" class="boxText">Paired-end shotgun reads</text>
+    <circle cx="545" cy="214.0" r="21" fill="#2F80ED" />
+    <text x="545" y="221.0" text-anchor="middle" class="stepNum">1</text>
+    <line x1="310.0" y1="372" x2="310.0" y2="388" stroke="#C8D3E1" stroke-width="6" marker-end="url(#arrow)"/>
+    <rect x="130" y="284" width="360" height="88" rx="22" fill="#FFFFFF" stroke="#2F80ED" stroke-width="3.5"/>
+    <rect x="144" y="298" width="12" height="60" rx="6" fill="#2F80ED"/>
+    <text x="172" y="320" class="boxTitle">QC and host removal</text>
+    <text x="172" y="347" class="boxText">fastp + KneadData</text>
+    <circle cx="545" cy="328.0" r="21" fill="#2F80ED" />
+    <text x="545" y="335.0" text-anchor="middle" class="stepNum">2</text>
+    <line x1="310.0" y1="486" x2="310.0" y2="502" stroke="#C8D3E1" stroke-width="6" marker-end="url(#arrow)"/>
+    <rect x="130" y="398" width="360" height="88" rx="22" fill="#FFFFFF" stroke="#27AE60" stroke-width="3.5"/>
+    <rect x="144" y="412" width="12" height="60" rx="6" fill="#27AE60"/>
+    <text x="172" y="434" class="boxTitle">Assembly and binning</text>
+    <text x="172" y="461" class="boxText">MEGAHIT + metaWRAP</text>
+    <circle cx="545" cy="442.0" r="21" fill="#27AE60" />
+    <text x="545" y="449.0" text-anchor="middle" class="stepNum">3</text>
+    <line x1="310.0" y1="600" x2="310.0" y2="616" stroke="#C8D3E1" stroke-width="6" marker-end="url(#arrow)"/>
+    <rect x="130" y="512" width="360" height="88" rx="22" fill="#FFFFFF" stroke="#27AE60" stroke-width="3.5"/>
+    <rect x="144" y="526" width="12" height="60" rx="6" fill="#27AE60"/>
+    <text x="172" y="548" class="boxTitle">Target MAG selection</text>
+    <text x="172" y="575" class="boxText">bin.1 retained</text>
+    <circle cx="545" cy="556.0" r="21" fill="#27AE60" />
+    <text x="545" y="563.0" text-anchor="middle" class="stepNum">4</text>
+    <line x1="310.0" y1="714" x2="310.0" y2="730" stroke="#C8D3E1" stroke-width="6" marker-end="url(#arrow)"/>
+    <rect x="130" y="626" width="360" height="88" rx="22" fill="#FFFFFF" stroke="#9B51E0" stroke-width="3.5"/>
+    <rect x="144" y="640" width="12" height="60" rx="6" fill="#9B51E0"/>
+    <text x="172" y="662" class="boxTitle">sORF mining</text>
+    <text x="172" y="689" class="boxText">EMBOSS getorf</text>
+    <circle cx="545" cy="670.0" r="21" fill="#9B51E0" />
+    <text x="545" y="677.0" text-anchor="middle" class="stepNum">5</text>
+    <line x1="310.0" y1="828" x2="310.0" y2="844" stroke="#C8D3E1" stroke-width="6" marker-end="url(#arrow)"/>
+    <rect x="130" y="740" width="360" height="88" rx="22" fill="#FFFFFF" stroke="#F2994A" stroke-width="3.5"/>
+    <rect x="144" y="754" width="12" height="60" rx="6" fill="#F2994A"/>
+    <text x="172" y="776" class="boxTitle">Deep-learning AMP screen</text>
+    <text x="172" y="803" class="boxText">Attention + LSTM + BERT</text>
+    <circle cx="545" cy="784.0" r="21" fill="#F2994A" />
+    <text x="545" y="791.0" text-anchor="middle" class="stepNum">6</text>
+    
+    <rect x="130" y="854" width="360" height="88" rx="22" fill="#FFFFFF" stroke="#EB5757" stroke-width="3.5"/>
+    <rect x="144" y="868" width="12" height="60" rx="6" fill="#EB5757"/>
+    <text x="172" y="890" class="boxTitle">Multi-step prioritization</text>
+    <text x="172" y="917" class="boxText">ToxinPred2 → AlgPred2 → PepFun → TheraPepNet → AxPep</text>
+    <circle cx="545" cy="898.0" r="21" fill="#EB5757" />
+    <text x="545" y="905.0" text-anchor="middle" class="stepNum">7</text>
+    
+<path d="M 590 808 C 740 808, 860 808, 1110 808" fill="none" stroke="#C8D3E1" stroke-width="6" stroke-dasharray="10 10" marker-end="url(#arrow)"/>
+<text x="1176" y="240" class="resTitle">Progressive reduction of candidates</text>
+<text x="1176" y="270" class="subtitle">Only the main quantitative milestones are shown.</text>
+<rect x="1176" y="305" width="508" height="52" rx="18" fill="#27AE6018" stroke="#27AE60" stroke-width="2.2"/><circle cx="1200" cy="331.0" r="8" fill="#27AE60"/><text x="1218" y="339" class="resText">3 refined bins</text><rect x="1176" y="373" width="508" height="52" rx="18" fill="#27AE6018" stroke="#27AE60" stroke-width="2.2"/><circle cx="1200" cy="399.0" r="8" fill="#27AE60"/><text x="1218" y="407" class="resText">Target MAG: bin.1</text><rect x="1176" y="441" width="508" height="52" rx="18" fill="#27AE6018" stroke="#27AE60" stroke-width="2.2"/><circle cx="1200" cy="467.0" r="8" fill="#27AE60"/><text x="1218" y="465" class="resText">97.04% completeness</text><text x="1218" y="483" class="resSmall">0.146% contamination</text><rect x="1176" y="509" width="508" height="52" rx="18" fill="#9B51E018" stroke="#9B51E0" stroke-width="2.2"/><circle cx="1200" cy="535.0" r="8" fill="#9B51E0"/><text x="1218" y="543" class="resText">131,816 candidate peptides</text><rect x="1176" y="577" width="508" height="52" rx="18" fill="#F2994A18" stroke="#F2994A" stroke-width="2.2"/><circle cx="1200" cy="603.0" r="8" fill="#F2994A"/><text x="1218" y="611" class="resText">13,296 high-confidence AMP candidates</text><rect x="1176" y="645" width="508" height="52" rx="18" fill="#14B8A618" stroke="#14B8A6" stroke-width="2.2"/><circle cx="1200" cy="671.0" r="8" fill="#14B8A6"/><text x="1218" y="679" class="resText">935 non-toxic peptides</text><rect x="1176" y="713" width="508" height="52" rx="18" fill="#14B8A618" stroke="#14B8A6" stroke-width="2.2"/><circle cx="1200" cy="739.0" r="8" fill="#14B8A6"/><text x="1218" y="747" class="resText">268 low-allergen peptides</text><rect x="1176" y="781" width="508" height="52" rx="18" fill="#14B8A618" stroke="#14B8A6" stroke-width="2.2"/><circle cx="1200" cy="807.0" r="8" fill="#14B8A6"/><text x="1218" y="815" class="resText">49 developable peptides</text><rect x="1176" y="849" width="508" height="52" rx="18" fill="#14B8A618" stroke="#14B8A6" stroke-width="2.2"/><circle cx="1200" cy="875.0" r="8" fill="#14B8A6"/><text x="1218" y="883" class="resText">15 therapeutic-priority peptides</text><rect x="1176" y="917" width="508" height="52" rx="18" fill="#EB575718" stroke="#EB5757" stroke-width="2.2"/><circle cx="1200" cy="943.0" r="8" fill="#EB5757"/><text x="1218" y="951" class="resText">3 final prioritized candidates</text>
+<rect x="90" y="975" width="1630" height="82" rx="24" fill="#FFFFFF" stroke="#C8D3E1" stroke-width="2"/>
+<text x="120" y="1010" class="boxTitle">Final output</text>
+<text x="120" y="1038" class="boxText">A short list of 3 prioritized candidate antimicrobial peptides for downstream synthesis and experimental validation.</text>
+</svg>

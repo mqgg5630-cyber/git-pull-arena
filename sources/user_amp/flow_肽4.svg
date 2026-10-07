@@ -1,0 +1,158 @@
+<svg width="1e3" height="900" version="1.1" viewBox="0 0 265 238" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0 -59)" stroke="#333" fill="none" stroke-width="1.5">
+<path d="m71 91c13 1 21 2 9 19"/>
+<path d="m66 100c-15 0-16-16 0-16"/>
+<path d="m46 125c15 0 16 16 0 16"/>
+<path d="m40 136c-13-1-21-2-9-19"/>
+<path d="m226 93c13 1 21 2 9 19"/>
+<path d="m221 102c-15 0-16-16 0-16"/>
+<path d="m201 128c15 0 16 16 0 16"/>
+<path d="m195 138c-13-1-21-2-9-19"/>
+<path d="m226 226c13 1 21 2 9 19"/>
+<path d="m221 235c-15 0-16-16 0-16"/>
+<path d="m201 261c15 0 16 16 0 16"/>
+<path d="m195 271c-13-1-21-2-9-19"/>
+<path d="m52 197c13 1 21 2 9 19"/>
+<path d="m69 232c-15 0-16-16 0-16"/>
+<path d="m44 250c15 0 16 16 0 16"/>
+<path d="m60 284c-13-1-21-2-9-19"/>
+<g fill="#999">
+<g fill="#666">
+<circle cx="143" cy="199" r="4"/>
+<circle cx="143" cy="192" r="4"/>
+<circle cx="145" cy="184" r="4"/>
+<circle cx="145" cy="206" r="4"/>
+<circle cx="150" cy="178" r="4"/>
+<circle cx="150" cy="212" r="4"/>
+<circle cx="156" cy="217" r="4"/>
+<circle cx="156" cy="173" r="4"/>
+<circle cx="163" cy="218" r="4"/>
+<circle cx="163" cy="171" r="4"/>
+</g>
+<circle cx="65" cy="155" r="7"/>
+<circle cx="65" cy="69" r="7"/>
+<circle cx="78" cy="153" r="7"/>
+<circle cx="78" cy="72" r="7"/>
+<circle cx="89" cy="81" r="7"/>
+<circle cx="89" cy="144" r="7"/>
+<circle cx="98" cy="93" r="7"/>
+<circle cx="98" cy="133" r="7"/>
+<circle cx="102" cy="119" r="7"/>
+<circle cx="102" cy="106" r="7"/>
+<circle cx="217" cy="155" r="7"/>
+<circle cx="217" cy="69" r="7"/>
+<circle cx="231" cy="153" r="7"/>
+<circle cx="231" cy="72" r="7"/>
+<circle cx="241" cy="81" r="7"/>
+<circle cx="241" cy="144" r="7"/>
+<circle cx="250" cy="93" r="7"/>
+<circle cx="250" cy="133" r="7"/>
+<circle cx="254" cy="119" r="7"/>
+<circle cx="254" cy="106" r="7"/>
+<circle cx="9" cy="119" r="7"/>
+<circle cx="9" cy="106" r="7"/>
+<circle cx="15" cy="93" r="7"/>
+<circle cx="15" cy="133" r="7"/>
+<circle cx="23" cy="81" r="7"/>
+<circle cx="23" cy="144" r="7"/>
+<circle cx="34" cy="153" r="7"/>
+<circle cx="34" cy="72" r="7"/>
+<circle cx="47" cy="155" r="7"/>
+<circle cx="47" cy="69" r="7"/>
+<circle cx="153" cy="202" r="4"/>
+<circle cx="153" cy="195" r="4"/>
+<circle cx="155" cy="187" r="4"/>
+<circle cx="155" cy="209" r="4"/>
+<circle cx="160" cy="181" r="4"/>
+<circle cx="160" cy="216" r="4"/>
+<circle cx="165" cy="220" r="4"/>
+<circle cx="165" cy="176" r="4"/>
+<circle cx="173" cy="222" r="4"/>
+<circle cx="173" cy="174" r="4"/>
+<circle cx="163" cy="119" r="7"/>
+<circle cx="163" cy="106" r="7"/>
+<circle cx="167" cy="93" r="7"/>
+<circle cx="167" cy="133" r="7"/>
+<circle cx="176" cy="81" r="7"/>
+<circle cx="176" cy="144" r="7"/>
+<circle cx="186" cy="153" r="7"/>
+<circle cx="186" cy="72" r="7"/>
+<circle cx="199" cy="155" r="7"/>
+<circle cx="199" cy="69" r="7"/>
+</g>
+<g fill="#4a0">
+<path d="m58 95a15 15 0 0 1 15 15 15 15 0 0 1-15 15v-15z"/>
+<path d="m54 130a15 15 0 0 1-13-7 15 15 0 0 1 0-15 15 15 0 0 1 13-7v15z"/>
+<path d="m213 95a15 15 0 0 1 15 15 15 15 0 0 1-15 15v-15z"/>
+<path d="m209 130a15 15 0 0 1-13-7 15 15 0 0 1 0-15 15 15 0 0 1 13-7v15z"/>
+<path d="m213 231a15 15 0 0 1 15 15 15 15 0 0 1-15 15v-15z"/>
+<path d="m209 266a15 15 0 0 1-13-7 15 15 0 0 1 0-15 15 15 0 0 1 13-7v15z"/>
+<path d="m58 226v7s7 0 7 7c0 7-8 8-8 8v7s15 0 15-15c0-15-15-14-15-14z"/>
+<path d="m55 255v-7s-7-0-7-7c0-7 8-8 8-8v-7s-15-0-15 15c0 15 15 14 15 14z"/>
+</g>
+<g fill="#00f">
+<circle cx="42" cy="136" r="8"/>
+<circle cx="70" cy="90" r="8"/>
+<circle cx="198" cy="136" r="8"/>
+<circle cx="226" cy="90" r="8"/>
+<circle cx="198" cy="272" r="8"/>
+<circle cx="226" cy="226" r="8"/>
+<circle cx="48" cy="266" r="8"/>
+<circle cx="67" cy="215" r="8"/>
+</g>
+<g fill="#0ff">
+<circle cx="70" cy="130" r="8"/>
+<circle cx="42" cy="94" r="8"/>
+<circle cx="225" cy="130" r="8"/>
+<circle cx="198" cy="94" r="8"/>
+<circle cx="226" cy="266" r="8"/>
+<circle cx="198" cy="230" r="8"/>
+<circle cx="73" cy="256" r="8"/>
+<circle cx="41" cy="224" r="8"/>
+</g>
+<g fill="#f00">
+<circle cx="81" cy="110" r="8"/>
+<circle cx="31" cy="116" r="8"/>
+<circle cx="236" cy="110" r="8"/>
+<circle cx="186" cy="116" r="8"/>
+<circle cx="236" cy="246" r="8"/>
+<circle cx="186" cy="252" r="8"/>
+<circle cx="50" cy="200" r="8"/>
+<circle cx="63" cy="279" r="8"/>
+</g>
+<g stroke="#f0f" stroke-width="3">
+<path d="m42 86c13 0 5 17 17 17s12-12 12-12c0-13-15-13-13-23"/>
+<path d="m70 138c-13 0-5-17-17-17-12 0-12 12-12 12 0 13 15 13 13 23"/>
+<path d="m125 85c13 0 5 17 17 17 12 0 12-12 12-12 0-13-15-13-13-23"/>
+<path d="m137 80c-13 0-5-17-17-17-12 0-12 12-12 12 0 13 15 13 13 23"/>
+<g stroke="#333">
+<path d="m112 126h36"/>
+<path d="m142 117 7 9-8 8"/>
+<path d="m202 171v36"/>
+<path d="m211 201-9 7-8-8"/>
+<path d="m112 243h36"/>
+<path d="m118 252-7-9 8-8"/>
+<path d="m121 111 9-7 8 8"/>
+<path d="m115 126c8 0 15-3 15-21"/>
+<path d="m187 200-7-9 8-8"/>
+<path d="m181 192c19 0 21-8 21-15"/>
+</g>
+</g>
+<path d="m62 117c7 0 9 7 9 16"/>
+<path d="m50 108c-7 0-9-7-9-16"/>
+<path d="m217 118c7 0 9 7 9 16"/>
+<path d="m204 109c-7 0-9-7-9-16"/>
+<path d="m217 252c7 0 9 7 9 16"/>
+<path d="m205 243c-7 0-9-7-9-16"/>
+<path d="m67 243c7 0 9 7 9 16"/>
+<path d="m47 237c-7 0-9-7-9-16"/>
+<g fill="#333" font-family="sans" font-size="14px" stroke-width="0">
+<text x="99" y="160">IIa (fibrin)</text>
+<text x="220" y="180">Ca</text>
+<text x="212" y="196">(fibrin)</text>
+<text x="238" y="172" font-size="11px">2+</text>
+<text x="115" y="269">Ca</text>
+<text x="132" y="261" font-size="11px">2+</text>
+</g>
+</g>
+</svg>
