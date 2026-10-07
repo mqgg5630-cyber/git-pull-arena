@@ -1,0 +1,13 @@
+﻿panel,title,target,peptide,complex_file,contact_residues_count,contact_residues
+A,E. coli FtsZ - P1,E. coli FtsZ (6UNX),P1 (FVNKLNRIIPVKGFSMR),A_ecoli_FtsZ_6UNX__P1_FVNKLNRIIPVKGFSMR_complex_best.pdb,2,GLU-178; PHE-182
+B,E. coli FtsZ - P2,E. coli FtsZ (6UNX),P2 (LISNTKKFGTAIASHR),B_ecoli_FtsZ_6UNX__P2_LISNTKKFGTAIASHR_complex_best.pdb,2,ARG-142; GLU-27
+C,E. coli FtsZ - P3,E. coli FtsZ (6UNX),P3 (ISLAIPLASKISGFTLALVKNAST),C_ecoli_FtsZ_6UNX__P3_ISLAIPLASKISGFTLALVKNAST_complex_best.pdb,4,GLU-178; ARG-142; ALA-72; ASP-45
+D,E. coli GyrB - P1,E. coli GyrB (4DUH),P1 (FVNKLNRIIPVKGFSMR),D_ecoli_GyrB_4DUH__P1_FVNKLNRIIPVKGFSMR_complex_best.pdb,1,LYS-57
+E,E. coli GyrB - P2,E. coli GyrB (4DUH),P2 (LISNTKKFGTAIASHR),E_ecoli_GyrB_4DUH__P2_LISNTKKFGTAIASHR_complex_best.pdb,2,ASP-74; THR-163
+F,E. coli GyrB - P3,E. coli GyrB (4DUH),P3 (ISLAIPLASKISGFTLALVKNAST),F_ecoli_GyrB_4DUH__P3_ISLAIPLASKISGFTLALVKNAST_complex_best.pdb,1,GLU-161
+G,S. aureus FtsZ - P1,S. aureus FtsZ (5MN4),P1 (FVNKLNRIIPVKGFSMR),G_saureus_FtsZ_5MN4__P1_FVNKLNRIIPVKGFSMR_complex_best.pdb,3,MET-179; GLU-139; ALA-138
+H,S. aureus FtsZ - P2,S. aureus FtsZ (5MN4),P2 (LISNTKKFGTAIASHR),H_saureus_FtsZ_5MN4__P2_LISNTKKFGTAIASHR_complex_best.pdb,1,ARG-143
+I,S. aureus FtsZ - P3,S. aureus FtsZ (5MN4),P3 (ISLAIPLASKISGFTLALVKNAST),I_saureus_FtsZ_5MN4__P3_ISLAIPLASKISGFTLALVKNAST_complex_best.pdb,5,ASN-25; GLY-21; GLY-72; ALA-138; ARG-143
+J,S. aureus SrtA - P1,S. aureus SrtA (1T2W),P1 (FVNKLNRIIPVKGFSMR),J_saureus_SrtA_1T2W__P1_FVNKLNRIIPVKGFSMR_complex_best.pdb,8,TYR-75; GLU-77; GLY-139; SER-140; LYS-138; ASP-185; ASP-186; ASP-124
+K,S. aureus SrtA - P2,S. aureus SrtA (1T2W),P2 (LISNTKKFGTAIASHR),K_saureus_SrtA_1T2W__P2_LISNTKKFGTAIASHR_complex_best.pdb,4,LYS-206; THR-150; LYS-84; ASP-82
+L,S. aureus SrtA - P3,S. aureus SrtA (1T2W),P3 (ISLAIPLASKISGFTLALVKNAST),L_saureus_SrtA_1T2W__P3_ISLAIPLASKISGFTLALVKNAST_complex_best.pdb,11,ASN-148; GLU-149; THR-150; GLU-77; GLU-85; ILE-78; LYS-84; ASP-82; ASN-132; ASN-127; PRO-126
