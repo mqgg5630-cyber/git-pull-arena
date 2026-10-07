@@ -1,9 +1,9 @@
 {
-  "round": 261,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "accepted: AMP report docs and PyMOL SCI figures generated and desktop folder updated",
-  "arena_updated": "2026-10-05 09:50:46",
-  "local_updated": "2026-10-05 17:49:54"
+  "round": 262,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "post-reboot heartbeat: confirm watcher polling resumed on LAPTOP-R77M5D6M",
+  "arena_updated": "2026-10-07 01:29:27",
+  "local_updated": null
 }
