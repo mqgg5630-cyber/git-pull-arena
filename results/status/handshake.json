@@ -1,9 +1,9 @@
 {
-  "round": 262,
-  "arena_state": "accepted",
+  "round": 263,
+  "arena_state": "awaiting_check",
   "local_state": "pending",
   "host": "",
-  "note": "closed by user: all local watchers stopped, no further rounds queued",
-  "arena_updated": "2026-10-07 04:35:09",
+  "note": "heartbeat after flash-window cleanup: confirm hidden watcher is polling again",
+  "arena_updated": "2026-10-07 07:04:30",
   "local_updated": null
 }
