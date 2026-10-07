@@ -1,9 +1,9 @@
 {
-    "round":  267,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "scan WSL for c_AMPs-prediction pipeline files, candidate FASTA/CSV results and shell history",
-    "arena_updated":  "2026-10-07 07:40:24",
-    "local_updated":  "2026-10-07 15:42:18"
+  "round": 268,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "retry WSL AMP pipeline scan with fixed path handling",
+  "arena_updated": "2026-10-07 07:43:08",
+  "local_updated": null
 }
