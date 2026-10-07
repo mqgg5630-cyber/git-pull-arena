@@ -1,9 +1,9 @@
 {
   "round": 262,
-  "arena_state": "awaiting_check",
+  "arena_state": "accepted",
   "local_state": "pending",
   "host": "",
-  "note": "post-reboot heartbeat: confirm watcher polling resumed on LAPTOP-R77M5D6M",
-  "arena_updated": "2026-10-07 01:29:27",
+  "note": "closed by user: all local watchers stopped, no further rounds queued",
+  "arena_updated": "2026-10-07 04:35:09",
   "local_updated": null
 }
