@@ -1,9 +1,9 @@
 {
-  "round": 270,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "retry method docx supplement + reproduction docs",
-  "arena_updated": "2026-10-07 07:51:54",
-  "local_updated": null
+    "round":  270,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "retry method docx supplement + reproduction docs",
+    "arena_updated":  "2026-10-07 07:51:54",
+    "local_updated":  "2026-10-07 15:54:01"
 }
