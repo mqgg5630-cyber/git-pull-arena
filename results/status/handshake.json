@@ -1,9 +1,9 @@
 {
-    "round":  265,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "collect method docx, prediction CSVs, algpred script, flow SVG, user SCI figure previews and a machine-wide clue sweep",
-    "arena_updated":  "2026-10-07 07:31:44",
-    "local_updated":  "2026-10-07 15:33:30"
+  "round": 266,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "deep sweep for AMP pipeline code/results on the laptop and WSL",
+  "arena_updated": "2026-10-07 07:35:30",
+  "local_updated": null
 }
