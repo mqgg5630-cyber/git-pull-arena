@@ -752,6 +752,9 @@
     "262": [
       "t202_flash_window_diag.ps1",
       "t200_heartbeat_r262.ps1"
+    ],
+    "263": [
+      "t200_heartbeat_r262.ps1"
     ]
   }
 }
