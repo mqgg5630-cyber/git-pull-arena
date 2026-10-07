@@ -1,9 +1,9 @@
 {
-  "round": 264,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "backups deleted, Desktop 1.txt created",
-  "arena_updated": "2026-10-07 07:20:11",
-  "local_updated": "2026-10-07 15:19:18"
+  "round": 265,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "collect method docx, prediction CSVs, algpred script, flow SVG, user SCI figure previews and a machine-wide clue sweep",
+  "arena_updated": "2026-10-07 07:31:44",
+  "local_updated": null
 }
