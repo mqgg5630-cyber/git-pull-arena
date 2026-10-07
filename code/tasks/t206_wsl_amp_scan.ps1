@@ -34,12 +34,16 @@ echo "=== conda envs ==="
 ~/miniconda3/bin/conda env list 2>/dev/null
 '@
 
-$tmp = Join-Path $env:TEMP "wslscan.sh"
+$tmp = Join-Path $repo "wslscan.sh"
 [IO.File]::WriteAllText($tmp, ($bash -replace "`r`n","`n"), (New-Object Text.UTF8Encoding($false)))
-$wslPath = (& wsl.exe wslpath -a ($tmp -replace '\\','/')) 2>$null
+# build the /mnt/<drive>/... path manually (wslpath chokes on non-ASCII user dirs)
+$drive = $tmp.Substring(0,1).ToLower()
+$wslPath = "/mnt/" + $drive + ($tmp.Substring(2) -replace '\\','/')
+Write-Output "WSL_SCRIPT=$wslPath"
 $out = & wsl.exe bash $wslPath 2>&1
+Remove-Item -LiteralPath $tmp -Force -ErrorAction SilentlyContinue
 $outFile = Join-Path $inv "wsl_amp_scan.txt"
-$out | Set-Content -LiteralPath $outFile -Encoding UTF8
+[IO.File]::WriteAllLines($outFile, [string[]]$out, (New-Object Text.UTF8Encoding($false)))
 $out | ForEach-Object { Write-Output ("W| " + $_) }
 Write-Output "WSL_SCAN_FILE=$outFile"
 Write-Output "SCAN_206_OK=True"
