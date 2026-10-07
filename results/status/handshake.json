@@ -1,9 +1,9 @@
 {
-  "round": 263,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "heartbeat after flash-window cleanup: confirm hidden watcher is polling again",
-  "arena_updated": "2026-10-07 07:04:30",
-  "local_updated": null
+    "round":  263,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "heartbeat after flash-window cleanup: confirm hidden watcher is polling again",
+    "arena_updated":  "2026-10-07 07:04:30",
+    "local_updated":  "2026-10-07 15:07:10"
 }
