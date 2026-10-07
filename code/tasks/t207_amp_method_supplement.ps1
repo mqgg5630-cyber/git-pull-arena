@@ -15,6 +15,8 @@ if (-not $py) { Write-Output "NO_PYTHON"; exit 1 }
 try { & $py -m pip install --user --quiet "python-docx" "pillow" 2>&1 | ForEach-Object { Write-Output ("pip| " + $_) } } catch { Write-Output ("pip-warn| " + $_.Exception.Message) }
 & $py -c "import docx, PIL; print('DEPS_OK=True')" 2>&1 | ForEach-Object { Write-Output ("import| " + $_) }
 
+$env:DESKTOP_DIR = [Environment]::GetFolderPath("Desktop")
+Write-Output ("DESKTOP_DIR=" + $env:DESKTOP_DIR)
 $script = Join-Path $repo "code\tasks\amp_method_supplement_build.py"
 Write-Output "## running generator"
 & $py $script 2>&1 | ForEach-Object { Write-Output ("run| " + $_) }
@@ -22,8 +24,12 @@ $rc = $LASTEXITCODE
 Write-Output "GENERATOR_EXIT=$rc"
 if ($rc -ne 0) { Write-Output "GENERATOR_FAILED"; exit 1 }
 
-$desk = [Environment]::GetFolderPath("Desktop")
-$res  = Join-Path $desk "AMP_Docking_Vina_R255_20261005_1552"
+$folder = "AMP_Docking_Vina_R255_20261005_1552"
+$res = $null
+foreach ($d in @([Environment]::GetFolderPath("Desktop"), ("D:\" + [char]0x684C + [char]0x9762), (Join-Path $env:USERPROFILE "Desktop"))) {
+    if ($d -and (Test-Path -LiteralPath (Join-Path $d $folder))) { $res = Join-Path $d $folder; break }
+}
+if (-not $res) { Write-Output "NO_RESULT_DIR"; exit 1 }
 Write-Output "RESULT_DIR=$res"
 
 $want = @("AMP_Pipeline_Reproduction_Method.md","AMP_Figure_Style_Review.md","AMP_Method_Supplement_manifest.json")

@@ -36,19 +36,24 @@ except Exception as exc:  # pragma: no cover
 # --------------------------------------------------------------------------
 
 def find_desktop():
-    for env in ("DESKTOP_DIR",):
-        v = os.environ.get(env)
-        if v and os.path.isdir(v):
-            return v
+    """Pick the desktop that actually holds the docking result folder."""
+    target = "AMP_Docking_Vina_R255_20261005_1552"
     cands = []
+    v = os.environ.get("DESKTOP_DIR")
+    if v:
+        cands.append(v)
+    cands.append("D:\\\u684c\u9762")
     up = os.environ.get("USERPROFILE", "")
     if up:
         cands.append(os.path.join(up, "Desktop"))
-    cands.append("D:\\\u684c\u9762")
+        cands.append(os.path.join(up, "OneDrive", "Desktop"))
     for c in cands:
-        if os.path.isdir(c):
+        if c and os.path.isdir(os.path.join(c, target)):
             return c
-    return cands[-1]
+    for c in cands:
+        if c and os.path.isdir(c):
+            return c
+    return cands[0] if cands else ""
 
 
 DESKTOP = find_desktop()
