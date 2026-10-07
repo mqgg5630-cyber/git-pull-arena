@@ -761,6 +761,9 @@
     ],
     "265": [
       "t204_collect_user_amp_assets.ps1"
+    ],
+    "266": [
+      "t205_collect_clues_v2.ps1"
     ]
   }
 }
