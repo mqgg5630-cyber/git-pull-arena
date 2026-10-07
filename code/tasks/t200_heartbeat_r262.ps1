@@ -1,0 +1,12 @@
+$ErrorActionPreference = "Stop"
+Write-Output "HOST=$env:COMPUTERNAME"
+Write-Output "USER=$env:USERNAME"
+Write-Output "TIME=$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+$up = (Get-Date) - (Get-CimInstance Win32_OperatingSystem).LastBootUpTime
+Write-Output ("UPTIME_MINUTES={0:N1}" -f $up.TotalMinutes)
+$desk = Join-Path ([Environment]::GetFolderPath("Desktop")) "AMP_Docking_Vina_R255_20261005_1552"
+Write-Output "DESKTOP_RESULT_FOLDER=$desk"
+Write-Output "DESKTOP_RESULT_FOLDER_EXISTS=$(Test-Path -LiteralPath $desk)"
+$pm = Get-Command pymol -ErrorAction SilentlyContinue
+Write-Output "PYMOL_FOUND=$([bool]$pm)"
+Write-Output "HEARTBEAT_OK=True"
