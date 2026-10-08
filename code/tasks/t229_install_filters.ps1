@@ -16,18 +16,18 @@ T=$HOME/tools
 mkdir -p "$T"
 source "$HOME/miniconda3/etc/profile.d/conda.sh" 2>/dev/null
 
-echo "=== 1. create a filter env (python 3.10) ==="
-if [ ! -d "$HOME/miniconda3/envs/ampfilter" ] ; then
-  conda create -y -n ampfilter python=3.10 > "$T/ampfilter_create.log" 2>&1
-  echo "create_exit=$?" ; tail -3 "$T/ampfilter_create.log"
-else
-  echo "ampfilter already exists"
+echo "=== 1. create a filter venv (no conda) ==="
+V=$HOME/tools/ampfilter
+if [ ! -x "$V/bin/python" ] ; then
+  python3 -m venv "$V" 2>&1 | tail -3
+  echo "venv_exit=$?"
 fi
-PY="$HOME/miniconda3/envs/ampfilter/bin/python"
-PIP="$HOME/miniconda3/envs/ampfilter/bin/pip"
+PY="$V/bin/python"
+PIP="$V/bin/pip"
+if [ ! -x "$PY" ] ; then echo "VENV_FAILED" ; exit 1 ; fi
 "$PY" -V
+"$PIP" install -q --upgrade pip 2>&1 | tail -2
 
-echo
 echo "=== 2. core deps ==="
 "$PIP" install -q --no-input biopython pandas numpy scikit-learn 2>&1 | tail -3
 "$PY" -c "import Bio, pandas, sklearn; print('deps ok', Bio.__version__, pandas.__version__, sklearn.__version__)"
@@ -35,18 +35,18 @@ echo "=== 2. core deps ==="
 echo
 echo "=== 3. toxinpred2 ==="
 "$PIP" install -q --no-input toxinpred2 2>&1 | tail -5
-"$HOME/miniconda3/envs/ampfilter/bin/toxinpred2" -h 2>&1 | head -15
+"$V/bin/toxinpred2" -h 2>&1 | head -15
 echo "toxinpred2_exit=$?"
 
 echo
 echo "=== 4. algpred2 ==="
 "$PIP" install -q --no-input algpred2 2>&1 | tail -5
-"$HOME/miniconda3/envs/ampfilter/bin/algpred2" -h 2>&1 | head -15
+"$V/bin/algpred2" -h 2>&1 | head -15
 echo "algpred2_exit=$?"
 
 echo
 echo "=== 5. what landed in bin ==="
-ls "$HOME/miniconda3/envs/ampfilter/bin" | grep -iE "tox|alg|pep" | head
+ls "$V/bin" | grep -iE "tox|alg|pep" | head
 
 echo
 echo "=== 6. biopython instability index smoke test ==="
