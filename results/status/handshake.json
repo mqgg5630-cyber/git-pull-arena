@@ -1,9 +1,9 @@
 {
-    "round":  319,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "build the AlgPred2 environment and run it",
-    "arena_updated":  "2026-10-08 06:30:06",
-    "local_updated":  "2026-10-08 14:46:26"
+  "round": 320,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "run AlgPred2 with pinned numpy and sklearn",
+  "arena_updated": "2026-10-08 06:47:39",
+  "local_updated": null
 }
