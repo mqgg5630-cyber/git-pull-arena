@@ -1,9 +1,9 @@
 {
-  "round": 304,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "copy the small e-yu downstream artifacts into the repo",
-  "arena_updated": "2026-10-08 04:59:52",
-  "local_updated": null
+    "round":  304,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "copy the small e-yu downstream artifacts into the repo",
+    "arena_updated":  "2026-10-08 04:59:52",
+    "local_updated":  "2026-10-08 13:01:14"
 }
