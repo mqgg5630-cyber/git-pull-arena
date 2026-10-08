@@ -1,9 +1,9 @@
 {
-  "round": 309,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "grab the live e-yu downstream artifacts",
-  "arena_updated": "2026-10-08 05:12:33",
-  "local_updated": null
+    "round":  309,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "grab the live e-yu downstream artifacts",
+    "arena_updated":  "2026-10-08 05:12:33",
+    "local_updated":  "2026-10-08 13:14:40"
 }
