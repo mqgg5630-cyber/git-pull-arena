@@ -1,9 +1,9 @@
 {
-    "round":  279,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "inventory only the wsh-eyu directory on the HPC",
-    "arena_updated":  "2026-10-08 02:55:05",
-    "local_updated":  "2026-10-08 10:55:56"
+  "round": 279,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "HPC reachable via key auth; wsh-eyu identified as the crocodile dataset",
+  "arena_updated": "2026-10-08 02:57:11",
+  "local_updated": "2026-10-08 10:55:56"
 }
