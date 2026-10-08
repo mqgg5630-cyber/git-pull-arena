@@ -18,6 +18,7 @@ source "$HOME/miniconda3/etc/profile.d/conda.sh" 2>/dev/null
 
 echo "=== 1. create a filter venv (no conda) ==="
 V=$HOME/tools/ampfilter
+if [ -e "$V" ] && [ ! -x "$V/bin/pip" ] ; then rm -rf "$V" ; echo "removed stale venv" ; fi
 if [ ! -x "$V/bin/python" ] ; then
   BASEPY=""
   for c in "$HOME/miniconda3/bin/python3.11" "$HOME/miniconda3/bin/python3.10" "$HOME/miniconda3/bin/python3" /usr/bin/python3.11 /usr/bin/python3.10 /usr/bin/python3 ; do
