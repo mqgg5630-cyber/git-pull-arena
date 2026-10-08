@@ -1,9 +1,9 @@
 {
-    "round":  286,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "poll the AMP reproduction progress",
-    "arena_updated":  "2026-10-08 03:51:55",
-    "local_updated":  "2026-10-08 11:52:53"
+  "round": 287,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "poll the AMP reproduction progress",
+  "arena_updated": "2026-10-08 03:53:38",
+  "local_updated": null
 }
