@@ -1,9 +1,9 @@
 {
-  "round": 281,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "wsh-eyu detail captured",
-  "arena_updated": "2026-10-08 03:02:23",
-  "local_updated": "2026-10-08 11:01:44"
+  "round": 282,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "fetch the bin.1 sORF catalog into WSL and harvest the real assembly, binning and annotation parameters",
+  "arena_updated": "2026-10-08 03:06:32",
+  "local_updated": null
 }
