@@ -1,9 +1,9 @@
 {
-  "round": 276,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "mu01 alias restored and host reachable; key auth rejected, public key needs re-registering",
-  "arena_updated": "2026-10-08 02:33:05",
-  "local_updated": "2026-10-08 10:32:27"
+  "round": 277,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "inventory the HPC home directory with focus on wsh-eyu and the three sORF artifacts",
+  "arena_updated": "2026-10-08 02:40:34",
+  "local_updated": null
 }
