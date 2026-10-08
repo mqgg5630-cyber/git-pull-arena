@@ -1,9 +1,9 @@
 {
-  "round": 274,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "interop index and skills docs delivered to Desktop folder",
-  "arena_updated": "2026-10-08 02:07:05",
-  "local_updated": "2026-10-08 10:06:18"
+  "round": 275,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "recover HPC ssh alias from WSL, probe which proxy works, apply resilient git transport and retry the subs-check-pro clone",
+  "arena_updated": "2026-10-08 02:20:38",
+  "local_updated": null
 }
