@@ -1,9 +1,9 @@
 {
-  "round": 275,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "transport fixed (socks5h 10808), clone succeeded; HPC alias missing in WSL config",
-  "arena_updated": "2026-10-08 02:23:35",
-  "local_updated": "2026-10-08 10:22:56"
+  "round": 276,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "restore the mu01 ssh alias pointing at 10.10.5.210 and verify HPC login plus the sorf pipeline directory",
+  "arena_updated": "2026-10-08 02:30:29",
+  "local_updated": null
 }
