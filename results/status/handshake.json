@@ -1,9 +1,9 @@
 {
-    "round":  342,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "t244 feature dump",
-    "arena_updated":  "2026-10-08 12:18:51",
-    "local_updated":  "2026-10-08 20:22:33"
+  "round": 343,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "t245 shifted parse",
+  "arena_updated": "2026-10-08 12:47:48",
+  "local_updated": null
 }
