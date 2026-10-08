@@ -788,6 +788,9 @@
     ],
     "274": [
       "t209_push_interop_skills_desktop.ps1"
+    ],
+    "275": [
+      "t210_fix_hpc_and_clone.ps1"
     ]
   }
 }
