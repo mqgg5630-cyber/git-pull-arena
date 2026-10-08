@@ -791,6 +791,9 @@
     ],
     "275": [
       "t210_fix_hpc_and_clone.ps1"
+    ],
+    "276": [
+      "t211_restore_hpc_ssh.ps1"
     ]
   }
 }
