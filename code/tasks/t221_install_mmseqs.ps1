@@ -13,7 +13,7 @@ mkdir -p "$S" "$HOME/tools"
 echo "=== 0. proxy for downloads ==="
 HOSTIP=$(ip route | awk "/^default/ {print \$3}" | head -1)
 echo "HOSTIP=$HOSTIP"
-for P in "http://$HOSTIP:4067" "http://$HOSTIP:18088" "http://$HOSTIP:10808" ; do
+for P in "http://${HOSTIP}:4067" "http://${HOSTIP}:18088" "http://${HOSTIP}:10808" ; do
   if timeout 8 curl -sSI -x "$P" https://github.com >/dev/null 2>&1 ; then
     export http_proxy="$P" https_proxy="$P"
     echo "PROXY_OK=$P" ; break
