@@ -121,11 +121,13 @@ for b in best[:15]: print("  cov=%d/46 seed=%d hard=%d | %s" % (b[0],b[2],b[3],b
 PY
 '@
 
-$bash = $bash -replace "`r`n", "`n"
-$tmp = "$env:TEMP\t242.sh"
-[IO.File]::WriteAllText($tmp, $bash, (New-Object Text.UTF8Encoding($false)))
-$wtmp = "/mnt/c" + ($tmp.Substring(2) -replace '\\','/')
-$log = wsl.exe -d Ubuntu -- bash -lc "bash '$wtmp' 2>&1"
-$log = ($log | Where-Object { $_ -notmatch "Predicting:" }) -join "`n"
-[IO.File]::WriteAllText((Join-Path $out "match46.txt"), $log, (New-Object Text.UTF8Encoding($false)))
-Write-Output "DONE"
+$tmp = Join-Path $repo "m46.sh"
+[IO.File]::WriteAllText($tmp, ($bash -replace "`r`n","`n"), (New-Object Text.UTF8Encoding($false)))
+$drive = $tmp.Substring(0,1).ToLower()
+$wslPath = "/mnt/" + $drive + ($tmp.Substring(2) -replace '\\','/')
+$o = & wsl.exe bash $wslPath 2>&1
+Remove-Item -LiteralPath $tmp -Force -ErrorAction SilentlyContinue
+$o = $o | Where-Object { $_ -notmatch "Predicting:" }
+$o | ForEach-Object { Write-Output ("F| " + $_) }
+[IO.File]::WriteAllLines((Join-Path $out "match46.txt"), [string[]]$o, (New-Object Text.UTF8Encoding($false)))
+Write-Output "MATCH46_DONE=True"
