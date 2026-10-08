@@ -50,10 +50,10 @@ else
     export BERT_NUM_WORKERS=0
     export BERT_USE_CUDA=auto
     export BERT_EVAL_BATCH_SIZE=64
-    nohup bash "$PROJ/amp_pipeline/run_pipeline_one.sh" "$IN" "$OUTD" "$PROJ" camps-tf114 py36 \
+    nohup bash "$PROJ/amp_pipeline/run_pipeline_one.sh" "$IN" "$OUTD" "$PROJ" "$HOME/miniconda3/envs/camps-tf114" "$HOME/miniconda3/envs/py36" \
       > "$W/pipeline.log" 2>&1 &
     echo "LAUNCHED pid=$!"
-    sleep 25
+    sleep 90
   else
     echo "ENTRYPOINT_MISSING"
   fi
