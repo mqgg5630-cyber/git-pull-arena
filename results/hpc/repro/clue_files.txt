@@ -1,0 +1,802 @@
+downloads dir: E:\Users\文少\Downloads
+exists: True
+
+=== algpred2_onefile_py311.sh ===
+size=6386 B  mtime=2026-03-22 17:05:07
+lines=226
+--- full text ---
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+# Robust AlgPred2 installer + runner for WSL/Linux
+# Uses a dedicated conda env with Python 3.11, installs AlgPred2 and patches
+# a pandas-related compatibility bug in the package source.
+
+usage() {
+  cat <<'EOF'
+Usage:
+  bash algpred2_onefile_py311.sh install [--env-name algpred2_py311]
+  bash algpred2_onefile_py311.sh run -i input.fa -o outdir [--env-name algpred2_py311] [-m 1] [-t 0.3] [-d 2]
+  bash algpred2_onefile_py311.sh all -i input.fa -o outdir [--env-name algpred2_py311] [-m 1] [-t 0.3] [-d 2]
+
+Notes:
+  - Requires conda/mamba to be available in PATH.
+  - Default model 1 = AAC-RF
+  - Default threshold 0.3
+  - Default display 2
+EOF
+}
+
+log(){ echo "[INFO] $*"; }
+die(){ echo "[ERROR] $*" >&2; exit 1; }
+
+ENV_NAME="algpred2_py311"
+MODEL="1"
+THRESH="0.3"
+DISPLAY="2"
+INPUT=""
+OUTDIR=""
+
+need_conda() {
+  command -v conda >/dev/null 2>&1 || die "conda not found in PATH"
+}
+
+abspath() {
+  python - "$1" <<'PY'
+import os, sys
+print(os.path.abspath(os.path.expanduser(sys.argv[1])))
+PY
+}
+
+patch_algpred2() {
+  log "Patching installed algpred2 source for pandas compatibility"
+  python - <<'PY'
+import inspect
+from pathlib import Path
+import algpred2.python_scripts.algpred2 as m
+
+p = Path(inspect.getsourcefile(m))
+text = p.read_text(encoding="utf-8")
+
+old = 'CM.to_csv("Sequence_1",header=False,index=None,sep="\\n")'
+new = 'Path("Sequence_1").write_text("\\n".join(map(str, CM.iloc[:,0].tolist())) + "\\n", encoding="utf-8")'
+
+if old not in text:
+    print(f"[INFO] patch target not found, maybe already patched: {p}")
+else:
+    if 'from pathlib import Path\n' not in text:
+        text = text.replace('import warnings\n', 'import warnings\nfrom pathlib import Path\n', 1)
+    text = text.replace(old, new)
+    p.write_text(text, encoding="utf-8")
+    print(f"[INFO] patched: {p}")
+PY
+}
+
+install_env() {
+  need_conda
+  log "Creating conda env: ${ENV_NAME}"
+  conda create -y -n "${ENV_NAME}" python=3.11 pip
+  eval "$(conda shell.bash hook)"
+  conda activate "${ENV_NAME}"
+
+  log "Installing AlgPred2 and dependencies"
+  python -m pip install -U pip setuptools wheel
+  python -m pip install "pandas==2.2.3" numpy scikit-learn joblib
+  python -m pip install algpred2
+
+  patch_algpred2
+
+  log "Verifying imports"
+  python - <<'PY'
+import algpred2, joblib, pandas, sklearn, numpy
+print("[INFO] algpred2 ok")
+print("[INFO] pandas", pandas.__version__)
+print("[INFO] sklearn", sklearn.__version__)
+PY
+
+  log "Install complete. Activate with: conda activate ${ENV_NAME}"
+}
+
+run_algpred2() {
+  [[ -n "${INPUT}" ]] || die "-i input.fa is required"
+  [[ -n "${OUTDIR}" ]] || die "-o outdir is required"
+
+  INPUT="$(abspath "${INPUT}")"
+  OUTDIR="$(abspath "${OUTDIR}")"
+  mkdir -p "${OUTDIR}/raw"
+
+  [[ -f "${INPUT}" ]] || die "Input FASTA not found: ${INPUT}"
+
+  need_conda
+  eval "$(conda shell.bash hook)"
+  conda activate "${ENV_NAME}" || die "Failed to activate conda env ${ENV_NAME}. Run install first."
+
+  command -v algpred2 >/dev/null 2>&1 || die "algpred2 command not found in env ${ENV_NAME}. Run install first."
+
+  log "Running AlgPred2"
+  algpred2 -i "${INPUT}" -o "${OUTDIR}/raw/algpred2_raw.csv" -m "${MODEL}" -t "${THRESH}" -d "${DISPLAY}"
+
+  log "Post-processing outputs"
+  python - "${INPUT}" "${OUTDIR}/raw/algpred2_raw.csv" "${OUTDIR}" <<'PY'
+import csv, os, sys
+from pathlib import Path
+
+fasta = Path(sys.argv[1])
+raw_csv = Path(sys.argv[2])
+outdir = Path(sys.argv[3])
+
+def read_fasta(path):
+    recs = []
+    header = None
+    seq = []
+    with open(path, 'r', encoding='utf-8', errors='ignore') as fh:
+        for line in fh:
+            line=line.strip()
+            if not line:
+                continue
+            if line.startswith('>'):
+                if header is not None:
+                    recs.append((header, ''.join(seq)))
+                header = line[1:].strip()
+                seq = []
+            else:
+                seq.append(line)
+        if header is not None:
+            recs.append((header, ''.join(seq)))
+    return recs
+
+records = read_fasta(fasta)
+
+# Try to parse the output flexibly.
+rows = []
+with open(raw_csv, 'r', encoding='utf-8', errors='ignore') as fh:
+    sample = fh.read()
+if not sample.strip():
+    raise SystemExit("AlgPred2 output is empty")
+
+# split lines robustly
+lines = [x.strip() for x in sample.splitlines() if x.strip()]
+for line in lines:
+    # most outputs are comma-separated or tab-separated
+    if '\t' in line:
+        parts = [p.strip() for p in line.split('\t')]
+    else:
+        parts = [p.strip() for p in line.split(',')]
+    rows.append(parts)
+
+# build summary heuristically
+summary = []
+for i, (h, s) in enumerate(records):
+    pred = ""
+    score = ""
+    raw = rows[i] if i < len(rows) else []
+    joined = " | ".join(raw)
+    low = joined.lower()
+    if "non-allergen" in low or "non allergen" in low:
+        pred = "non_allergen"
+    elif "allergen" in low:
+        pred = "allergen"
+    else:
+        pred = "unknown"
+    # pick last float-like token as score if present
+    for tok in reversed(raw):
+        try:
+            float(tok)
+            score = tok
+            break
+        except Exception:
+            pass
+    summary.append((h, s, pred, score, joined))
+
+(outdir / "allergen_summary.tsv").write_text(
+    "peptide_id\tsequence\tprediction\tscore\traw_result\n" +
+    "\n".join("\t".join(x) for x in summary) + "\n",
+    encoding="utf-8"
+)
+
+def write_fa(path, items):
+    with open(path, "w", encoding="utf-8") as w:
+        for h, s, *_ in items:
+            w.write(f">{h}\n{s}\n")
+
+write_fa(outdir / "non_allergen.fa", [x for x in summary if x[2] == "non_allergen"])
+write_fa(outdir / "allergen.fa", [x for x in summary if x[2] == "allergen"])
+print("[INFO] wrote", outdir / "allergen_summary.tsv")
+print("[INFO] wrote", outdir / "non_allergen.fa")
+print("[INFO] wrote", outdir / "allergen.fa")
+PY
+}
+
+cmd="${1:-}"
+[[ -n "${cmd}" ]] || { usage; exit 1; }
+shift || true
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --env-name) ENV_NAME="$2"; shift 2;;
+    -i|--input) INPUT="$2"; shift 2;;
+    -o|--outdir) OUTDIR="$2"; shift 2;;
+    -m) MODEL="$2"; shift 2;;
+    -t) THRESH="$2"; shift 2;;
+    -d) DISPLAY="$2"; shift 2;;
+    -h|--help) usage; exit 0;;
+    *) die "Unknown argument: $1";;
+  esac
+done
+
+case "${cmd}" in
+  install) install_env ;;
+  run) run_algpred2 ;;
+  all) install_env; run_algpred2 ;;
+  *) usage; exit 1 ;;
+esac
+
+
+=== run_algpred2_allergen.sh ===
+size=14626 B  mtime=2026-03-22 16:47:40
+lines=473
+--- full text ---
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+# =========================================================
+# run_algpred2_allergen.sh
+# One-file installer + allergenicity screening wrapper for peptides/proteins
+# based on AlgPred2.
+#
+# Modes:
+#   install : create Python venv and install algpred2 (and optional repo assets)
+#   run     : run allergenicity prediction and split outputs into
+#             non_allergen.fa / allergen.fa / summary.tsv
+#   all     : install then run
+#
+# Default model: 1 (AAC-RF)
+# Optional model: 2 (Hybrid; requires BLAST and local repo assets)
+# =========================================================
+
+MODE=""
+INPUT=""
+OUTDIR=""
+PREFIX="${HOME}/algpred2_allergen"
+PYTHON_BIN="python3"
+MODEL="1"
+THRESHOLD="0.3"
+DISPLAY="2"
+THREADS="4"
+FORCE_REINSTALL="0"
+REPO_URL="https://github.com/raghavagps/algpred2.git"
+
+usage() {
+  cat <<USAGE
+Usage:
+  bash run_algpred2_allergen.sh install [options]
+  bash run_algpred2_allergen.sh run     -i input.fa -o outdir [options]
+  bash run_algpred2_allergen.sh all     -i input.fa -o outdir [options]
+
+Modes:
+  install   Install AlgPred2 into a Python virtual environment.
+  run       Run allergenicity prediction.
+  all       Install first, then run prediction.
+
+Required for run/all:
+  -i, --input FILE         Input FASTA or one-sequence-per-line file.
+  -o, --outdir DIR         Output directory.
+
+Optional:
+      --prefix DIR         Install prefix. Default: ~/algpred2_allergen
+      --python EXE         Python executable. Default: python3
+  -m, --model {1,2}        1 = AAC-RF; 2 = Hybrid. Default: 1
+  -t, --threshold FLOAT    AlgPred2 threshold. Default: 0.3
+  -d, --display {1,2}      1 = allergens only; 2 = all peptides. Default: 2
+      --threads INT        Reserved for future use. Default: 4
+      --force-reinstall    Recreate env / reinstall package
+  -h, --help               Show help
+
+Examples:
+  bash run_algpred2_allergen.sh install --prefix ~/tools/algpred2_only
+
+  bash run_algpred2_allergen.sh run \
+    -i candidates.fa \
+    -o algpred2_result \
+    --prefix ~/tools/algpred2_only \
+    -m 1 -t 0.3 -d 2
+
+  bash run_algpred2_allergen.sh all \
+    -i candidates.fa \
+    -o algpred2_result \
+    --prefix ~/tools/algpred2_only \
+    -m 1
+USAGE
+}
+
+log() { echo "[INFO] $*"; }
+warn() { echo "[WARN] $*" >&2; }
+die() { echo "[ERROR] $*" >&2; exit 1; }
+
+need_cmd() {
+  command -v "$1" >/dev/null 2>&1 || die "Missing command: $1"
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    install|run|all)
+      MODE="$1"; shift ;;
+    -i|--input)
+      INPUT="$2"; shift 2 ;;
+    -o|--outdir)
+      OUTDIR="$2"; shift 2 ;;
+    --prefix)
+      PREFIX="$2"; shift 2 ;;
+    --python)
+      PYTHON_BIN="$2"; shift 2 ;;
+    -m|--model)
+      MODEL="$2"; shift 2 ;;
+    -t|--threshold)
+      THRESHOLD="$2"; shift 2 ;;
+    -d|--display)
+      DISPLAY="$2"; shift 2 ;;
+    --threads)
+      THREADS="$2"; shift 2 ;;
+    --force-reinstall)
+      FORCE_REINSTALL="1"; shift ;;
+    -h|--help)
+      usage; exit 0 ;;
+    *)
+      die "Unknown argument: $1"
+      ;;
+  esac
+done
+
+[[ -n "$MODE" ]] || { usage; exit 1; }
+[[ "$MODEL" == "1" || "$MODEL" == "2" ]] || die "--model must be 1 or 2"
+[[ "$DISPLAY" == "1" || "$DISPLAY" == "2" ]] || die "--display must be 1 or 2"
+
+VENV_DIR="${PREFIX}/venv"
+REPO_DIR="${PREFIX}/algpred2_repo"
+TOOLS_ENV_SH="${PREFIX}/env_algpred2.sh"
+
+install_algpred2() {
+  need_cmd "$PYTHON_BIN"
+  mkdir -p "$PREFIX"
+
+  if [[ -d "$VENV_DIR" && "$FORCE_REINSTALL" == "1" ]]; then
+    log "Removing existing virtual environment: $VENV_DIR"
+    rm -rf "$VENV_DIR"
+  fi
+
+  if [[ ! -d "$VENV_DIR" ]]; then
+    log "Creating Python virtual environment: $VENV_DIR"
+    "$PYTHON_BIN" -m venv "$VENV_DIR"
+  fi
+
+  # shellcheck disable=SC1090
+  source "$VENV_DIR/bin/activate"
+
+  log "Upgrading pip/setuptools/wheel"
+  python -m pip install --upgrade pip setuptools wheel
+
+  log "Installing algpred2 from PyPI"
+  python -m pip install --upgrade algpred2 pandas
+
+  if command -v git >/dev/null 2>&1; then
+    if [[ -d "$REPO_DIR/.git" ]]; then
+      log "Updating AlgPred2 repository clone"
+      git -C "$REPO_DIR" pull --ff-only || warn "git pull failed; keeping existing repo clone"
+    else
+      log "Cloning AlgPred2 repository"
+      git clone "$REPO_URL" "$REPO_DIR" || warn "git clone failed; Model 2 local assets may be unavailable"
+    fi
+  else
+    warn "git not found; skipping repository clone"
+  fi
+
+  if [[ "$MODEL" == "2" ]]; then
+    if ! command -v blastp >/dev/null 2>&1; then
+      if command -v conda >/dev/null 2>&1; then
+        warn "Model 2 needs blastp; trying to install ncbi-blast+ via conda base"
+        conda install -y -n base -c bioconda blast || warn "conda install blast failed"
+      elif command -v apt-get >/dev/null 2>&1; then
+        warn "Model 2 needs blastp; trying apt-get install ncbi-blast+"
+        sudo apt-get update && sudo apt-get install -y ncbi-blast+ || warn "apt-get install ncbi-blast+ failed"
+      else
+        warn "blastp not found. Model 2 may fail until BLAST+ is installed manually."
+      fi
+    fi
+  fi
+
+  cat > "$TOOLS_ENV_SH" <<EOS
+# shellcheck shell=bash
+export ALGPRED2_PREFIX="$PREFIX"
+export ALGPRED2_VENV="$VENV_DIR"
+export ALGPRED2_REPO="$REPO_DIR"
+EOS
+
+  log "Install finished"
+  log "Activate later with: source '$VENV_DIR/bin/activate'"
+}
+
+patch_envfile_for_model2() {
+  local envfile="$REPO_DIR/envfile"
+  [[ -f "$envfile" ]] || die "Model 2 requested but envfile not found: $envfile"
+  command -v blastp >/dev/null 2>&1 || die "Model 2 requested but blastp not found in PATH"
+  [[ -d "$REPO_DIR/Database" ]] || die "Model 2 requested but Database directory not found in $REPO_DIR"
+  [[ -d "$REPO_DIR/progs" ]] || die "Model 2 requested but progs directory not found in $REPO_DIR"
+
+  local blast_path merci_path db_path motif_path
+  blast_path="$(command -v blastp)"
+  merci_path="$REPO_DIR/progs/MERCI_motif_locator.pl"
+  db_path="$REPO_DIR/Database/data"
+  motif_path="$REPO_DIR/Database/pos_ige_motifs.txt"
+
+  [[ -f "$merci_path" ]] || die "MERCI script not found: $merci_path"
+  [[ -e "$db_path" ]] || die "BLAST database path not found: $db_path"
+  [[ -f "$motif_path" ]] || die "Motif file not found: $motif_path"
+
+  python <<PY
+from pathlib import Path
+p = Path(r'''$envfile''')
+text = p.read_text()
+new_lines = [
+    '#Path information for BLAST and MERCI commands',
+    '',
+    '#Path information of the data required to run the BLAST and MERCI',
+    '',
+    '#User can change the paths according to their machines',
+    '',
+    f'BLAST:{r"$blast_path"}',
+    '',
+    f'BLAST database:{r"$db_path"}',
+    '',
+    f'MERCI:{r"$merci_path"}',
+    '',
+    f'MERCI motif file:{r"$motif_path"}',
+]
+p.write_text("\n".join(new_lines) + "\n")
+print(f'Patched envfile: {p}')
+PY
+}
+
+run_algpred2() {
+  [[ -n "$INPUT" ]] || die "--input is required for run/all"
+  [[ -n "$OUTDIR" ]] || die "--outdir is required for run/all"
+  [[ -f "$INPUT" ]] || die "Input file not found: $INPUT"
+  [[ -d "$VENV_DIR" ]] || die "Virtual environment not found: $VENV_DIR. Run install first."
+
+  mkdir -p "$OUTDIR"
+  local RAW_DIR="$OUTDIR/raw"
+  mkdir -p "$RAW_DIR"
+
+  # shellcheck disable=SC1090
+  source "$VENV_DIR/bin/activate"
+
+  local algpred_cmd=""
+  if command -v algpred2 >/dev/null 2>&1; then
+    algpred_cmd="algpred2"
+  elif command -v algpred2.py >/dev/null 2>&1; then
+    algpred_cmd="algpred2.py"
+  else
+    algpred_cmd="python -m algpred2"
+  fi
+
+  if [[ "$MODEL" == "2" ]]; then
+    patch_envfile_for_model2
+    log "Model 2 selected (Hybrid)"
+  else
+    log "Model 1 selected (AAC-RF)"
+  fi
+
+  local RAW_CSV="$RAW_DIR/algpred2_raw.csv"
+  local CMD_SCRIPT="$RAW_DIR/run_algpred2_command.sh"
+  cat > "$CMD_SCRIPT" <<EOS
+#!/usr/bin/env bash
+set -Eeuo pipefail
+source "$VENV_DIR/bin/activate"
+cd "$REPO_DIR" 2>/dev/null || true
+$algpred_cmd -i "$INPUT" -o "$RAW_CSV" -t "$THRESHOLD" -m "$MODEL" -d "$DISPLAY"
+EOS
+  chmod +x "$CMD_SCRIPT"
+
+  log "Running AlgPred2"
+  bash "$CMD_SCRIPT"
+
+  [[ -f "$RAW_CSV" ]] || die "AlgPred2 did not produce expected output: $RAW_CSV"
+
+  local SUMMARY_TSV="$OUTDIR/allergen_summary.tsv"
+  local PASS_FA="$OUTDIR/non_allergen.fa"
+  local FAIL_FA="$OUTDIR/allergen.fa"
+  local PASS_TXT="$OUTDIR/non_allergen_ids.txt"
+  local FAIL_TXT="$OUTDIR/allergen_ids.txt"
+
+  export INPUT_FASTA="$INPUT"
+  export RAW_CSV_FILE="$RAW_CSV"
+  export SUMMARY_TSV_FILE="$SUMMARY_TSV"
+  export PASS_FA_FILE="$PASS_FA"
+  export FAIL_FA_FILE="$FAIL_FA"
+  export PASS_TXT_FILE="$PASS_TXT"
+  export FAIL_TXT_FILE="$FAIL_TXT"
+
+  python <<'PY'
+import csv
+import os
+import re
+from pathlib import Path
+
+input_fa = Path(os.environ['INPUT_FASTA'])
+raw_csv = Path(os.environ['RAW_CSV_FILE'])
+summary_tsv = Path(os.environ['SUMMARY_TSV_FILE'])
+pass_fa = Path(os.environ['PASS_FA_FILE'])
+fail_fa = Path(os.environ['FAIL_FA_FILE'])
+pass_txt = Path(os.environ['PASS_TXT_FILE'])
+fail_txt = Path(os.environ['FAIL_TXT_FILE'])
+
+# ---------- read FASTA ----------
+def read_fasta(path: Path):
+    records = []
+    name = None
+    seq_lines = []
+    with path.open() as fh:
+        for line in fh:
+            line = line.strip()
+            if not line:
+                continue
+            if line.startswith('>'):
+                if name is not None:
+                    records.append((name, ''.join(seq_lines)))
+                name = line[1:].strip().split()[0]
+                seq_lines = []
+            else:
+                seq_lines.append(re.sub(r'\s+', '', line))
+        if name is not None:
+            records.append((name, ''.join(seq_lines)))
+    return records
+
+records = read_fasta(input_fa)
+seq_by_id = {rid: seq for rid, seq in records}
+order = [rid for rid, _ in records]
+
+# ---------- read AlgPred2 CSV robustly ----------
+with raw_csv.open(newline='') as fh:
+    sample = fh.read(4096)
+    fh.seek(0)
+    try:
+        dialect = csv.Sniffer().sniff(sample)
+    except Exception:
+        dialect = csv.excel
+    reader = csv.DictReader(fh, dialect=dialect)
+    rows = list(reader)
+    fieldnames = reader.fieldnames or []
+
+norm = {fn.lower().strip(): fn for fn in fieldnames}
+
+# likely columns based on AlgPred2 docs/web output:
+# header/id, ml score / hybrid score, prediction
+pred_col = None
+score_col = None
+id_col = None
+sequence_col = None
+for fn in fieldnames:
+    fl = fn.lower().strip()
+    if pred_col is None and ('prediction' in fl or fl == 'pred'):
+        pred_col = fn
+    if score_col is None and ('hybrid score' in fl or 'ml score' in fl or fl.endswith('score') or fl == 'score'):
+        score_col = fn
+    if id_col is None and (fl in {'seqid', 'sequence id', 'seq id', 'id', 'name', 'header', 'protein', 'peptide'} or 'header' in fl):
+        id_col = fn
+    if sequence_col is None and (fl == 'sequence' or 'seq' == fl):
+        sequence_col = fn
+
+# fallback: first column as ID-like if explicit id field missing
+if id_col is None and fieldnames:
+    id_col = fieldnames[0]
+
+# match raw rows back to fasta ids in a tolerant way
+result_map = {}
+used_input_ids = set()
+for row in rows:
+    raw_id = (row.get(id_col, '') if id_col else '').strip()
+    pred = (row.get(pred_col, '') if pred_col else '').strip()
+    score = (row.get(score_col, '') if score_col else '').strip()
+    seqv = (row.get(sequence_col, '') if sequence_col else '').strip()
+
+    candidate_ids = []
+    if raw_id:
+        candidate_ids.append(raw_id)
+        candidate_ids.append(raw_id.split()[0])
+        candidate_ids.append(raw_id.lstrip('>'))
+        candidate_ids.append(raw_id.lstrip('>').split()[0])
+    matched = None
+    for cid in candidate_ids:
+        if cid in seq_by_id and cid not in used_input_ids:
+            matched = cid
+            break
+    if matched is None and seqv:
+        seqv_clean = re.sub(r'\s+', '', seqv)
+        for rid, seq in seq_by_id.items():
+            if rid not in used_input_ids and seq == seqv_clean:
+                matched = rid
+                break
+    if matched is None:
+        # last fallback: append row order later
+        continue
+    used_input_ids.add(matched)
+    result_map[matched] = {
+        'prediction_raw': pred,
+        'score_raw': score,
+    }
+
+# fallback by order if row count matches fasta count and mapping incomplete
+if len(result_map) < len(records) and len(rows) == len(records):
+    for (rid, _), row in zip(records, rows):
+        result_map.setdefault(rid, {
+            'prediction_raw': (row.get(pred_col, '') if pred_col else '').strip(),
+            'score_raw': (row.get(score_col, '') if score_col else '').strip(),
+        })
+
+# ---------- classify ----------
+def normalize_pred(s: str):
+    sl = s.strip().lower()
+    if 'non' in sl and 'allergen' in sl:
+        return 'non_allergen'
+    if 'allergen' in sl:
+        return 'allergen'
+    return 'unknown'
+
+summary_rows = []
+pass_ids = []
+fail_ids = []
+for rid in order:
+    seq = seq_by_id[rid]
+    meta = result_map.get(rid, {'prediction_raw': 'NA', 'score_raw': 'NA'})
+    pred_norm = normalize_pred(meta['prediction_raw'])
+    pass_flag = 'True' if pred_norm == 'non_allergen' else 'False'
+    if pred_norm == 'non_allergen':
+        pass_ids.append(rid)
+    else:
+        fail_ids.append(rid)
+    summary_rows.append({
+        'peptide_id': rid,
+        'sequence': seq,
+        'algpred2_prediction_raw': meta['prediction_raw'],
+        'algpred2_prediction_norm': pred_norm,
+        'algpred2_score': meta['score_raw'],
+        'allergen_pass': pass_flag,
+    })
+
+with summary_tsv.open('w', newline='') as out:
+    writer = csv.DictWriter(out, fieldnames=list(summary_rows[0].keys()) if summary_rows else [
+        'peptide_id','sequence','algpred2_prediction_raw','algpred2_prediction_norm','algpred2_score','allergen_pass'
+    ], delimiter='\t')
+    writer.writeheader()
+    writer.writerows(summary_rows)
+
+with pass_fa.open('w') as out:
+    for rid in pass_ids:
+        out.write(f'>{rid}\n{seq_by_id[rid]}\n')
+with fail_fa.open('w') as out:
+    for rid in fail_ids:
+        out.write(f'>{rid}\n{seq_by_id[rid]}\n')
+
+pass_txt.write_text('\n'.join(pass_ids) + ('\n' if pass_ids else ''))
+fail_txt.write_text('\n'.join(fail_ids) + ('\n' if fail_ids else ''))
+
+print(f'Total input sequences: {len(records)}')
+print(f'Non-allergen passed:  {len(pass_ids)}')
+print(f'Allergen/unknown:     {len(fail_ids)}')
+print(f'Summary TSV:          {summary_tsv}')
+print(f'Pass FASTA:           {pass_fa}')
+print(f'Fail FASTA:           {fail_fa}')
+PY
+
+  log "Finished"
+  log "Summary: $SUMMARY_TSV"
+  log "Pass FASTA: $PASS_FA"
+  log "Fail FASTA: $FAIL_FA"
+}
+
+case "$MODE" in
+  install)
+    install_algpred2
+    ;;
+  run)
+    run_algpred2
+    ;;
+  all)
+    install_algpred2
+    run_algpred2
+    ;;
+  *)
+    die "Unsupported mode: $MODE"
+    ;;
+esac
+
+
+=== Prediction_Result(1).csv ===
+size=1433 B  mtime=2026-03-23 20:45:34
+lines=47
+--- header + first 12 rows ---
+Number,Sequence,Class
+1,AYGKPFSFKKGL,negative
+2,VSTLKAMSLKL,negative
+3,WRPTVLRKVSA,positive
+4,THWKSAA,negative
+5,QPWRPPGHFADRYG,negative
+6,YRPGPIHKTVWRPGTGAKVRFRT,negative
+7,DTPHWVPTKAAG,negative
+8,WPRTSATSHPYTPPGWRP,positive
+9,KWSHFSRI,negative
+10,KIYKQYKSI,negative
+11,WGTWQKAPK,negative
+12,SAIPNKSKPLPM,negative
+--- last 3 rows ---
+44,EATSSDWGFLAGAGGSWGSGGSR,positive
+45,SIGAIVRLWCPVLRGPGWRGGGSAATISCCNHSHLQTITMQTGHHANTSQ,positive
+46,SATFFGPIPPVGQNFTWGRGAAMAASALVPPFASAGKNLRWS,positive
+csv rows=46
+csv cols: Number | Sequence | Class
+  counts[Class]: negative=31, positive=15
+
+=== jieguo.csv ===
+size=878 B  mtime=2026-03-25 17:21:55
+lines=21
+--- header + first 12 rows ---
+表1 CAMP与AxPep联合筛选结果汇总,,,,,,,,,,
+肽ID,肽序列,CAMP支持票数,AxPep支持票数,综合判定,,,,,,
+pep_003,WRPTVLRKVSA,1/4,2/3,复核保留,,,,,,
+pep_008,WPRTSATSHPYTPPGWRP,0/4,3/3,复核保留,,,,,,
+pep_015,KPLHPVSTWK,0/4,2/3,复核保留,,,,,,
+pep_016,GPPGWTDHPAF,0/4,0/3,不优先,,,,,,
+pep_018,FVNKLNRIIPVKGFSMR,4/4,2/3,优先保留,,,,,,
+pep_019,AIKSKNKITKRVQLE,1/4,0/3,不优先,,,,,,
+pep_020,NGAGLHFRYGAATGWHHKNMS,4/4,1/3,复核保留,,,,,,
+pep_029,LISNTKKFGTAIASHR,3/4,2/3,优先保留,,,,,,
+pep_034,KPWLTAWPTAS,0/4,3/3,复核保留,,,,,,
+pep_036,SAFFAHKITARQWRAVLIGVSRGSARCGHRSV,4/4,1/3,复核保留,,,,,,
+pep_037,ISLAIPLASKISGFTLALVKNAST,4/4,3/3,优先保留,,,,,,
+--- last 3 rows ---
+,,,,,,,,,,
+,,,,,,,,,,
+
+csv rows=19
+csv cols: ��1 CAMP��AxPep����ɸѡ�������
+
+=== other algpred/pepfun/toxin files in Downloads ===
+cnki_amp_papers_manifest.json  2 B  2026-09-10 16:55:52
+cnki_amp_authentic_manifest.json  2 B  2026-09-10 16:52:02
+amp_search_results.json  2 B  2026-09-10 16:51:03
+Metaproteomic_AMP_Discovery_Engine.pptx  16967401 B  2026-08-29 17:17:57
+XAMP-main.zip  7984927 B  2026-08-28 17:39:09
+AMP-DeepLearning-Review(1).svg  48445 B  2026-08-28 15:20:24
+AMP-DeepLearning-Review.svg  60056 B  2026-08-28 15:14:24
+AMP预测代码框架.zip  32636 B  2026-08-19 16:45:40
+AD_gut_AMP_biorender_style_v5 (1).svg  927550 B  2026-08-02 13:02:05
+AD_AMP_BioRender_V5_Complete.zip  3057164 B  2026-07-28 20:46:42
+AD_gut_AMP_biorender_style_v5.svg  1087893 B  2026-07-28 20:42:07
+AD_gut_AMP_review_native_clean.svg  45391 B  2026-07-28 20:09:54
+AD_gut_microbiome_AMP_review_high_fidelity.svg  712063 B  2026-07-28 19:52:21
+硕士学位论文_AD肠道AMP深度学习差异研究.docx  1206490 B  2026-07-28 1:18:45
+AD_AMP_硕士学位论文.docx  496673 B  2026-07-28 1:06:56
+AD_AMP_硕士学位论文.pdf  563157 B  2026-07-28 1:06:08
+CAMP_2026-07-11 19-01-28.csv  1747186 B  2026-07-11 21:28:07
+CAMP_2026-07-11 18-54-41.csv  6429186 B  2026-07-11 21:21:20
+natural_amps.fasta  550475 B  2026-07-11 21:18:55
+general_amps.fasta  445659 B  2026-07-11 21:18:31
+DLFea4AMPGen-main.zip  20477182 B  2026-06-05 17:00:26
+jieguo.csv  878 B  2026-03-25 17:21:55
+AMP候选药物发现综合流程图_术语修正版_单行小字.svg  11979 B  2026-03-25 10:35:36
+AMP候选药物发现综合流程图_同版式.svg  11429 B  2026-03-24 11:39:18
+AMP候选药物发现综合流程图_参考样式版.svg  11424 B  2026-03-24 11:34:31
+alligator_amp_workflow_submission_clean(1).svg  13836 B  2026-03-24 11:22:38
+alligator_amp_workflow_submission_clean.svg  13836 B  2026-03-24 11:20:39
+alligator_amp_workflow_nature_style.svg  6621 B  2026-03-24 11:06:52
+alligator_amp_workflow_sci_minimal.svg  9396 B  2026-03-24 11:04:29
+alligator_amp_workflow_sci.svg  7076 B  2026-03-24 11:00:32
+8b95b280-3984-49ad-ae46-24ffa1636571-activity-prediction.csv  1254 B  2026-03-24 9:49:32
+Prediction_Result(1).csv  1433 B  2026-03-23 20:45:34
+Prediction_Result.csv  294 B  2026-03-23 20:44:10
+algpred2_onefile_py311.sh  6386 B  2026-03-22 17:05:07
+run_algpred2_allergen_absfix.sh  7180 B  2026-03-22 17:01:38
+run_algpred2_allergen_pandasfix.sh  7180 B  2026-03-22 17:01:22
+run_algpred2_allergen.sh  14626 B  2026-03-22 16:47:40
+alligator_metagenome_amp_pipeline.sh  11981 B  2026-03-12 9:52:57
+deep-learning-in-antimicrobial-peptide-prediction.eps  2942028 B  2026-02-07 19:37:15
+deep-learning-in-antimicrobial-peptide-prediction.pdf  6134723 B  2026-02-07 19:35:28
