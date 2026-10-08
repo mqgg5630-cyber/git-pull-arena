@@ -1,9 +1,9 @@
 {
-    "round":  336,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "t240 result",
-    "arena_updated":  "2026-10-08 08:06:48",
-    "local_updated":  "2026-10-08 16:08:38"
+  "round": 337,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "read the surviving algpred2 scripts and result CSVs in Downloads",
+  "arena_updated": "2026-10-08 11:40:32",
+  "local_updated": null
 }
