@@ -1,8 +1,8 @@
 # 最近一轮同步回执（agent -> 分支）
 
-- 时间：2026-10-08 05:21 UTC
+- 时间：2026-10-08 05:23 UTC
 - 分支：`arena/01a0ff69-git-pull-arena`
-- 本轮助手提交：fix: use a venv instead of conda for the filter tools
+- 本轮助手提交：fix: pick a pip-capable python for the filter venv
 - 本轮改动文件：
    M code/tasks/t229_install_filters.ps1
 

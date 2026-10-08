@@ -19,8 +19,20 @@ source "$HOME/miniconda3/etc/profile.d/conda.sh" 2>/dev/null
 echo "=== 1. create a filter venv (no conda) ==="
 V=$HOME/tools/ampfilter
 if [ ! -x "$V/bin/python" ] ; then
-  python3 -m venv "$V" 2>&1 | tail -3
+  BASEPY=""
+  for c in "$HOME/miniconda3/bin/python3.11" "$HOME/miniconda3/bin/python3.10" "$HOME/miniconda3/bin/python3" /usr/bin/python3.11 /usr/bin/python3.10 /usr/bin/python3 ; do
+    if [ -x "$c" ] ; then
+      v=$("$c" -c "import sys;print('%d.%d'%sys.version_info[:2])" 2>/dev/null)
+      case "$v" in 3.9|3.10|3.11|3.12) BASEPY="$c" ; break ;; esac
+    fi
+  done
+  echo "BASEPY=$BASEPY ($("$BASEPY" -V 2>&1))"
+  [ -n "$BASEPY" ] || { echo "NO_SUITABLE_PYTHON" ; exit 1 ; }
+  "$BASEPY" -m venv "$V" 2>&1 | tail -3
   echo "venv_exit=$?"
+  if [ ! -x "$V/bin/pip" ] ; then
+    "$V/bin/python" -m ensurepip --upgrade 2>&1 | tail -3
+  fi
 fi
 PY="$V/bin/python"
 PIP="$V/bin/pip"
