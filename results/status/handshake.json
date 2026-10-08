@@ -1,9 +1,9 @@
 {
-    "round":  281,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "detail the easy_98 results under wsh-eyu: bins, checkm, gtdbtk, and the two getorf_sorf output sets",
-    "arena_updated":  "2026-10-08 02:59:26",
-    "local_updated":  "2026-10-08 11:01:44"
+  "round": 281,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "wsh-eyu detail captured",
+  "arena_updated": "2026-10-08 03:02:23",
+  "local_updated": "2026-10-08 11:01:44"
 }
