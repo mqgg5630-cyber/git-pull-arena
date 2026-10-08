@@ -1,9 +1,9 @@
 {
-    "round":  296,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "survey the downstream filtering tools for toxicity, allergenicity and physicochemical screening",
-    "arena_updated":  "2026-10-08 04:27:59",
-    "local_updated":  "2026-10-08 12:30:12"
+  "round": 297,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "survey the downstream filtering tools",
+  "arena_updated": "2026-10-08 04:30:59",
+  "local_updated": null
 }
