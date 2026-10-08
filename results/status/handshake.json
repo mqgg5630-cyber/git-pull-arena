@@ -1,9 +1,9 @@
 {
-  "round": 328,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "search AlgPred2 versions",
-  "arena_updated": "2026-10-08 07:17:45",
-  "local_updated": null
+    "round":  328,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "search AlgPred2 versions",
+    "arena_updated":  "2026-10-08 07:17:45",
+    "local_updated":  "2026-10-08 15:18:54"
 }
