@@ -1,9 +1,9 @@
 {
-  "round": 322,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "run the PepFun physicochemical stage and the instability hard filter",
-  "arena_updated": "2026-10-08 06:58:41",
-  "local_updated": null
+    "round":  322,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "run the PepFun physicochemical stage and the instability hard filter",
+    "arena_updated":  "2026-10-08 06:58:41",
+    "local_updated":  "2026-10-08 15:00:27"
 }
