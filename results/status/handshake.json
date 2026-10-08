@@ -1,9 +1,9 @@
 {
-    "round":  338,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "t241 read clue files",
-    "arena_updated":  "2026-10-08 12:02:13",
-    "local_updated":  "2026-10-08 20:04:14"
+  "round": 339,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "t242 match the known 46",
+  "arena_updated": "2026-10-08 12:06:25",
+  "local_updated": null
 }
