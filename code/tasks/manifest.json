@@ -800,6 +800,9 @@
     ],
     "278": [
       "t213_hpc_inventory2.ps1"
+    ],
+    "279": [
+      "t214_eyu_detail.ps1"
     ]
   }
 }
