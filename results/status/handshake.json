@@ -1,9 +1,9 @@
 {
-  "round": 276,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "restore the mu01 ssh alias pointing at 10.10.5.210 and verify HPC login plus the sorf pipeline directory",
-  "arena_updated": "2026-10-08 02:30:29",
-  "local_updated": null
+    "round":  276,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "restore the mu01 ssh alias pointing at 10.10.5.210 and verify HPC login plus the sorf pipeline directory",
+    "arena_updated":  "2026-10-08 02:30:29",
+    "local_updated":  "2026-10-08 10:32:27"
 }
