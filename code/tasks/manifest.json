@@ -797,6 +797,9 @@
     ],
     "277": [
       "t212_hpc_inventory_wsheyu.ps1"
+    ],
+    "278": [
+      "t213_hpc_inventory2.ps1"
     ]
   }
 }
