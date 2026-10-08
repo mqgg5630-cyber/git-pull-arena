@@ -1,9 +1,9 @@
 {
-  "round": 325,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "trace the three peptides",
-  "arena_updated": "2026-10-08 07:06:23",
-  "local_updated": null
+    "round":  325,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "trace the three peptides",
+    "arena_updated":  "2026-10-08 07:06:23",
+    "local_updated":  "2026-10-08 15:08:35"
 }
