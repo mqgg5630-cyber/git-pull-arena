@@ -16,28 +16,19 @@ T=$HOME/tools
 mkdir -p "$T"
 source "$HOME/miniconda3/etc/profile.d/conda.sh" 2>/dev/null
 
-echo "=== 1. create a filter venv (no conda) ==="
-V=$HOME/tools/ampfilter
-if [ -e "$V" ] && [ ! -x "$V/bin/pip" ] ; then rm -rf "$V" ; echo "removed stale venv" ; fi
-if [ ! -x "$V/bin/python" ] ; then
-  BASEPY=""
-  for c in "$HOME/miniconda3/bin/python3.11" "$HOME/miniconda3/bin/python3.10" "$HOME/miniconda3/bin/python3" /usr/bin/python3.11 /usr/bin/python3.10 /usr/bin/python3 ; do
-    if [ -x "$c" ] ; then
-      v=$("$c" -c "import sys;print('%d.%d'%sys.version_info[:2])" 2>/dev/null)
-      case "$v" in 3.9|3.10|3.11|3.12) BASEPY="$c" ; break ;; esac
-    fi
-  done
-  echo "BASEPY=$BASEPY ($("$BASEPY" -V 2>&1))"
-  [ -n "$BASEPY" ] || { echo "NO_SUITABLE_PYTHON" ; exit 1 ; }
-  "$BASEPY" -m venv "$V" 2>&1 | tail -3
-  echo "venv_exit=$?"
-  if [ ! -x "$V/bin/pip" ] ; then
-    "$V/bin/python" -m ensurepip --upgrade 2>&1 | tail -3
-  fi
+echo "=== 1. create a filter env via conda-forge only ==="
+V=$HOME/miniconda3/envs/ampfilter
+if [ ! -x "$V/bin/pip" ] ; then
+  conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main > /dev/null 2>&1
+  conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r    > /dev/null 2>&1
+  conda create -y -n ampfilter --override-channels -c conda-forge python=3.10 pip \
+    > "$HOME/tools/ampfilter_create.log" 2>&1
+  echo "create_exit=$?"
+  tail -5 "$HOME/tools/ampfilter_create.log"
 fi
 PY="$V/bin/python"
 PIP="$V/bin/pip"
-if [ ! -x "$PY" ] ; then echo "VENV_FAILED" ; exit 1 ; fi
+if [ ! -x "$PY" ] ; then echo "ENV_FAILED" ; exit 1 ; fi
 "$PY" -V
 "$PIP" install -q --upgrade pip 2>&1 | tail -2
 
