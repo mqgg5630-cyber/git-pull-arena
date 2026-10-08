@@ -1,9 +1,9 @@
 {
-    "round":  284,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "launch the three-model AMP prediction on the recovered bin.1 sORF catalog",
-    "arena_updated":  "2026-10-08 03:15:04",
-    "local_updated":  "2026-10-08 11:17:24"
+  "round": 285,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "relaunch the AMP prediction with full conda env prefixes",
+  "arena_updated": "2026-10-08 03:18:03",
+  "local_updated": null
 }
