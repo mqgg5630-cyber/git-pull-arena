@@ -1,9 +1,9 @@
 {
-  "round": 282,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "bin.1 catalog fetched to WSL, real parameters harvested",
-  "arena_updated": "2026-10-08 03:10:55",
-  "local_updated": "2026-10-08 11:10:08"
+  "round": 283,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "launch the three-model AMP prediction on the recovered bin.1 sORF catalog",
+  "arena_updated": "2026-10-08 03:11:26",
+  "local_updated": null
 }
