@@ -815,6 +815,12 @@
     ],
     "283": [
       "t215_fetch_bin1_and_params.ps1"
+    ],
+    "284": [
+      "t216_launch_amp_repro.ps1"
+    ],
+    "285": [
+      "t216_launch_amp_repro.ps1"
     ]
   }
 }
