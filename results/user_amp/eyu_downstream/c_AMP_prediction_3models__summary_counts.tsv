@@ -1,0 +1,7 @@
+Metric	Count	Ratio	Percent
+raw_sorf	131816	NA	NA
+valid_for_prediction	131816	1.000000	100.0000%
+amp_positive_2of3	51049	0.387275	38.7275%
+amp_positive_3of3	13296	0.100868	10.0868%
+amp_positive_2of3_vs_valid	51049	0.387275	38.7275%
+amp_positive_3of3_vs_valid	13296	0.100868	10.0868%

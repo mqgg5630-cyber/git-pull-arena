@@ -1,0 +1,7 @@
+known_amp_db: /mnt/d/桌面/AI/e-yu/flow3_ripp_pipeline/input/known_amp_merged_canonical.fa
+query_fasta: /mnt/d/桌面/AI/e-yu/AMP_positive_3of3.fa
+total_query_records: 13296
+exact_known_matches: 0
+exact_novel_candidates: 13296
+invalid_noncanonical_or_empty: 0
+duplicate_records_within_query: 0

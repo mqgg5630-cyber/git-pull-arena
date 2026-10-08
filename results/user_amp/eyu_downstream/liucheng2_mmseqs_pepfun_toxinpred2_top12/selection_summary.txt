@@ -1,0 +1,4 @@
+repo_filter_passed	14
+selected_top12	12
+ranking_tsv	/mnt/d/桌面/AI/e-yu/bin.1_getorf_sorf/03_filter/c_AMP_prediction_3models/liucheng2_mmseqs_pepfun_toxinpred2_top12/ranking.tsv
+top_fasta	/mnt/d/桌面/AI/e-yu/bin.1_getorf_sorf/03_filter/c_AMP_prediction_3models/liucheng2_mmseqs_pepfun_toxinpred2_top12/top12_for_synthesis.fa
