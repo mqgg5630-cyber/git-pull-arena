@@ -1,9 +1,9 @@
 {
-    "round":  277,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "inventory the HPC home directory with focus on wsh-eyu and the three sORF artifacts",
-    "arena_updated":  "2026-10-08 02:40:34",
-    "local_updated":  "2026-10-08 10:46:38"
+  "round": 278,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "re-run the HPC inventory with per-section timeouts, covering wsh-eyu and 0amp-src",
+  "arena_updated": "2026-10-08 02:47:44",
+  "local_updated": null
 }
