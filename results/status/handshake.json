@@ -1,9 +1,9 @@
 {
-    "round":  316,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "run ToxinPred2 on the non-redundant peptides",
-    "arena_updated":  "2026-10-08 06:22:00",
-    "local_updated":  "2026-10-08 14:23:54"
+  "round": 317,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "parse ToxinPred2 and run AlgPred2",
+  "arena_updated": "2026-10-08 06:24:58",
+  "local_updated": null
 }
