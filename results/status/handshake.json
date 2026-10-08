@@ -1,9 +1,9 @@
 {
-  "round": 299,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "inventory the e-yu downstream workspace",
-  "arena_updated": "2026-10-08 04:45:22",
-  "local_updated": null
+    "round":  299,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "inventory the e-yu downstream workspace",
+    "arena_updated":  "2026-10-08 04:45:22",
+    "local_updated":  "2026-10-08 12:47:27"
 }
