@@ -1,9 +1,9 @@
 {
-  "round": 335,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "seed268 + AlgPred2-on-49 test",
-  "arena_updated": "2026-10-08 08:03:37",
-  "local_updated": null
+    "round":  335,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "seed268 + AlgPred2-on-49 test",
+    "arena_updated":  "2026-10-08 08:03:37",
+    "local_updated":  "2026-10-08 16:05:51"
 }
