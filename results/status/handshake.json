@@ -1,9 +1,9 @@
 {
-    "round":  323,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "run the PepFun stage",
-    "arena_updated":  "2026-10-08 07:01:18",
-    "local_updated":  "2026-10-08 15:03:09"
+  "round": 324,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "trace the three published peptides through every stage",
+  "arena_updated": "2026-10-08 07:04:24",
+  "local_updated": null
 }
