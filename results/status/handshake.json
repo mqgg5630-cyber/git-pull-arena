@@ -1,9 +1,9 @@
 {
-  "round": 279,
-  "arena_state": "accepted",
-  "local_state": "passed",
-  "host": "LAPTOP-R77M5D6M",
-  "note": "HPC reachable via key auth; wsh-eyu identified as the crocodile dataset",
-  "arena_updated": "2026-10-08 02:57:11",
-  "local_updated": "2026-10-08 10:55:56"
+  "round": 280,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "detail the easy_98 results under wsh-eyu: bins, checkm, gtdbtk, and the two getorf_sorf output sets",
+  "arena_updated": "2026-10-08 02:57:17",
+  "local_updated": null
 }
