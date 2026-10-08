@@ -26,10 +26,12 @@ fi
 
 echo "--- install algpred2 then pin sklearn back ---"
 "$A/bin/pip" install -q --no-input algpred2 2>&1 | tail -3
-for V in "1.0.2" "1.1.3" "1.2.2" "0.24.2" ; do
-  echo "== trying scikit-learn==$V"
-  "$A/bin/pip" install -q --no-input "scikit-learn==$V" 2>&1 | tail -2
-  "$A/bin/python" -c "import sklearn;print('sklearn',sklearn.__version__)" 2>&1 | tail -1
+for COMBO in "numpy==1.23.5 scipy==1.9.3 scikit-learn==1.1.3" \
+             "numpy==1.21.6 scipy==1.7.3 scikit-learn==1.0.2" \
+             "numpy==1.19.5 scipy==1.5.4 scikit-learn==0.24.2" ; do
+  echo "== trying $COMBO"
+  "$A/bin/pip" install -q --no-input --force-reinstall $COMBO 2>&1 | tail -2
+  "$A/bin/python" -c "import numpy,sklearn;print('numpy',numpy.__version__,'sklearn',sklearn.__version__)" 2>&1 | tail -1
   cd "$S" || exit 0
   rm -f "$S/algpred2_raw.csv"
   timeout 900 "$A/bin/algpred2" -i "$S/non_toxin.fa" -o "$S/algpred2_raw.csv" -t 0.3 -m 1 -d 2 \
@@ -37,12 +39,12 @@ for V in "1.0.2" "1.1.3" "1.2.2" "0.24.2" ; do
   rc=$?
   echo "   algpred2_exit=$rc"
   if [ $rc -eq 0 ] && [ -s "$S/algpred2_raw.csv" ] ; then
-    echo "SKLEARN_WORKING=$V"
+    echo "WORKING_COMBO=$COMBO"
     echo "ALG_ROWS=$(wc -l < "$S/algpred2_raw.csv")"
     head -3 "$S/algpred2_raw.csv"
     break
   else
-    tail -4 "$S/algpred2.log" | head -4
+    grep -aE "Error|error|Exception" "$S/algpred2.log" | tail -3
   fi
 done
 
