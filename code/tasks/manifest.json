@@ -794,6 +794,9 @@
     ],
     "276": [
       "t211_restore_hpc_ssh.ps1"
+    ],
+    "277": [
+      "t212_hpc_inventory_wsheyu.ps1"
     ]
   }
 }
