@@ -1,9 +1,9 @@
 {
-    "round":  300,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "dump the key e-yu downstream artifacts and scripts",
-    "arena_updated":  "2026-10-08 04:48:30",
-    "local_updated":  "2026-10-08 12:50:12"
+  "round": 301,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "dump the key e-yu downstream artifacts and scripts",
+  "arena_updated": "2026-10-08 04:50:41",
+  "local_updated": null
 }
