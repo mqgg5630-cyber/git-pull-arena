@@ -1,9 +1,9 @@
 {
-  "round": 295,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "install mmseqs and reproduce the dedup step",
-  "arena_updated": "2026-10-08 04:24:09",
-  "local_updated": null
+    "round":  295,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "install mmseqs and reproduce the dedup step",
+    "arena_updated":  "2026-10-08 04:24:09",
+    "local_updated":  "2026-10-08 12:26:56"
 }
