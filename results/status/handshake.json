@@ -1,9 +1,9 @@
 {
-  "round": 293,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "dedup the 13296 consensus peptides",
-  "arena_updated": "2026-10-08 04:18:48",
-  "local_updated": null
+    "round":  293,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "dedup the 13296 consensus peptides",
+    "arena_updated":  "2026-10-08 04:18:48",
+    "local_updated":  "2026-10-08 12:20:48"
 }
