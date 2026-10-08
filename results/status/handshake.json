@@ -1,9 +1,9 @@
 {
-    "round":  313,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "install the filter tools into a venv",
-    "arena_updated":  "2026-10-08 05:23:55",
-    "local_updated":  "2026-10-08 13:25:41"
+  "round": 314,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "install the filter tools into a venv",
+  "arena_updated": "2026-10-08 05:26:38",
+  "local_updated": null
 }
