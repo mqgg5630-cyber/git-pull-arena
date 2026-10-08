@@ -1,9 +1,9 @@
 {
-    "round":  275,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "recover HPC ssh alias from WSL, probe which proxy works, apply resilient git transport and retry the subs-check-pro clone",
-    "arena_updated":  "2026-10-08 02:20:38",
-    "local_updated":  "2026-10-08 10:22:56"
+  "round": 275,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "transport fixed (socks5h 10808), clone succeeded; HPC alias missing in WSL config",
+  "arena_updated": "2026-10-08 02:23:35",
+  "local_updated": "2026-10-08 10:22:56"
 }
