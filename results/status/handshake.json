@@ -1,9 +1,9 @@
 {
-  "round": 303,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "read the real downstream funnel counts",
-  "arena_updated": "2026-10-08 04:56:15",
-  "local_updated": null
+    "round":  303,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "read the real downstream funnel counts",
+    "arena_updated":  "2026-10-08 04:56:15",
+    "local_updated":  "2026-10-08 12:58:29"
 }
