@@ -1,9 +1,9 @@
 {
-  "round": 347,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "t250 long headers",
-  "arena_updated": "2026-10-09 02:03:08",
-  "local_updated": null
+    "round":  347,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "t250 long headers",
+    "arena_updated":  "2026-10-09 02:03:08",
+    "local_updated":  "2026-10-09 10:05:26"
 }
