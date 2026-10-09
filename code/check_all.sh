@@ -155,6 +155,24 @@ else
     fail=1
 fi
 
+# ------------------------ 3b2. loop variable shadowing another by case only
+CASESCAN=""
+for cand in code/scan_ps_case_shadow.py skills/git-sync/templates/scan_ps_case_shadow.py; do
+    if [ -f "$cand" ]; then CASESCAN="$cand"; break; fi
+done
+if [ -z "$CASESCAN" ]; then
+    echo "SKIP: case-shadow scanner not present in this repo"
+elif [ -z "$PY" ]; then
+    echo "SKIP: no python on PATH - case-shadow scan skipped"
+elif ! $PY -c 'import sys; sys.exit(0)' >/dev/null 2>&1; then
+    echo "SKIP: $PY is not a working python - case-shadow scan skipped here"
+    echo "      (it still runs in the agent sandbox before every push)"
+elif $PY "$CASESCAN"; then
+    :
+else
+    fail=1
+fi
+
 # ------------------------ 3c. does every poll exit print a closing line?
 # A poll that returns without recording a closing line leaves the watcher
 # console sitting on whatever the previous round printed, which reads as

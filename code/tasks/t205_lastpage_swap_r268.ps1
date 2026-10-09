@@ -22,13 +22,13 @@ $repo = (Get-Location).Path
 
 $outRoot = Join-Path $repo 'results\status'
 New-Item -ItemType Directory -Force -Path $outRoot | Out-Null
-$reportMd   = Join-Path $outRoot 'LASTPAGE_SWAP_R268.md'
-$reportJson = Join-Path $outRoot 'LASTPAGE_SWAP_R268.json'
+$reportMd   = Join-Path $outRoot 'LASTPAGE_SWAP.md'
+$reportJson = Join-Path $outRoot 'LASTPAGE_SWAP.json'
 $dest = Join-Path $repo 'sources\zhongqi'
 New-Item -ItemType Directory -Force -Path $dest | Out-Null
 
-$L = New-Object System.Collections.Generic.List[string]
-function Say([string]$s) { $L.Add($s) | Out-Null; Write-Output $s }
+$Report = New-Object System.Collections.Generic.List[string]
+function Say([string]$s) { $Report.Add($s) | Out-Null; Write-Output $s }
 function CpStr([int[]]$codes) { return (-join ($codes | ForEach-Object { [char]$_ })) }
 function Esc([string]$s) {
     if ($null -eq $s) { return '' }
@@ -52,9 +52,9 @@ $stamp = (Get-Date).ToString('yyyyMMdd-HHmmss')
 $outPath = Join-Path $dir ((CpStr $stemCodes) + ' (1)_signed-lastpage_' + $stamp + '.docx')
 $pdfAfter = Join-Path $dest 'lastpage_after.pdf'
 
-$result = [ordered]@{ round = 268; time = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss zzz'); host = $env:COMPUTERNAME }
+$result = [ordered]@{ round = 269; time = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss zzz'); host = $env:COMPUTERNAME }
 
-Say '# replace the last page with the signed scan - round 268'
+Say '# replace the last page with the signed scan - round 269'
 Say ''
 Say ('time=' + (Get-Date).ToString('yyyy-MM-dd HH:mm:ss zzz'))
 Say ('host=' + $env:COMPUTERNAME)
@@ -67,7 +67,7 @@ if (-not (Test-Path -LiteralPath $docPath) -or -not (Test-Path -LiteralPath $img
     Say 'FATAL input missing'
     Say 'LASTPAGE_SWAP_OK=False'
     Say 'LASTPAGE_SWAP_DONE=True'
-    $L | Set-Content -LiteralPath $reportMd -Encoding UTF8
+    $Report | Set-Content -LiteralPath $reportMd -Encoding UTF8
     $result['status'] = 'input_missing'
     ($result | ConvertTo-Json -Depth 6) | Set-Content -LiteralPath $reportJson -Encoding UTF8
     exit 7
@@ -86,7 +86,7 @@ if (-not $prog) {
     Say 'FATAL no Word/WPS COM server registered - cannot repaginate reliably'
     Say 'LASTPAGE_SWAP_OK=False'
     Say 'LASTPAGE_SWAP_DONE=True'
-    $L | Set-Content -LiteralPath $reportMd -Encoding UTF8
+    $Report | Set-Content -LiteralPath $reportMd -Encoding UTF8
     $result['status'] = 'no_com'
     ($result | ConvertTo-Json -Depth 6) | Set-Content -LiteralPath $reportJson -Encoding UTF8
     exit 7
@@ -96,6 +96,26 @@ $job = Start-Job -ArgumentList $prog, $outPath, $imgPath, $pdfAfter -ScriptBlock
     param($srv, $docFile, $picFile, $pdfFile)
     $log = New-Object System.Collections.Generic.List[string]
     function Add-Log($s) { $log.Add([string]$s) | Out-Null }
+    function E([string]$t) {
+        if ($null -eq $t) { return '' }
+        $sb = New-Object System.Text.StringBuilder
+        foreach ($ch in $t.ToCharArray()) {
+            $c = [int][char]$ch
+            if ($c -ge 32 -and $c -le 126) { [void]$sb.Append($ch) } else { [void]$sb.Append(('\u{0:X4}' -f $c)) }
+        }
+        return $sb.ToString()
+    }
+    function NormText([string]$t) {
+        # drop every control character: \r paragraph marks, \a cell marks and
+        # \f page breaks are layout, not content, and inserting a page break
+        # must not look like the text changed
+        if ($null -eq $t) { return '' }
+        $sb = New-Object System.Text.StringBuilder
+        foreach ($ch in $t.ToCharArray()) {
+            if ([int][char]$ch -ge 32) { [void]$sb.Append($ch) }
+        }
+        return $sb.ToString()
+    }
     $app = New-Object -ComObject $srv
     try {
         try { $app.Visible = $false } catch { }
@@ -110,11 +130,11 @@ $job = Start-Job -ArgumentList $prog, $outPath, $imgPath, $pdfAfter -ScriptBlock
         # --- remember pages 1..(n-1) so we can prove they are untouched
         $startLast = $doc.GoTo(1, 1, $pagesBefore)             # wdGoToPage, wdGoToAbsolute
         $prefix = $doc.Range(0, $startLast.Start)
-        $prefixText = [string]$prefix.Text
+        $prefixText = NormText ([string]$prefix.Text)
         $sha = [System.Security.Cryptography.SHA256]::Create()
         $prefixHash = ([System.BitConverter]::ToString(
             $sha.ComputeHash([System.Text.Encoding]::Unicode.GetBytes($prefixText)))).Replace('-','').ToLower()
-        Add-Log ('PREFIX_CHARS=' + $prefixText.Length)
+        Add-Log ('PREFIX_CHARS_BEFORE=' + $prefixText.Length)
         Add-Log ('PREFIX_SHA_BEFORE=' + $prefixHash)
 
         # --- page geometry (printable area)
@@ -180,11 +200,23 @@ $job = Start-Job -ArgumentList $prog, $outPath, $imgPath, $pdfAfter -ScriptBlock
         # --- prove pages 1..(n-1) are byte-identical in text
         $startLast2 = $doc.GoTo(1, 1, $pagesAfter)
         $prefix2 = $doc.Range(0, $startLast2.Start)
-        $prefixText2 = [string]$prefix2.Text
+        $prefixText2 = NormText ([string]$prefix2.Text)
         $prefixHash2 = ([System.BitConverter]::ToString(
             $sha.ComputeHash([System.Text.Encoding]::Unicode.GetBytes($prefixText2)))).Replace('-','').ToLower()
+        Add-Log ('PREFIX_CHARS_AFTER=' + $prefixText2.Length)
         Add-Log ('PREFIX_SHA_AFTER=' + $prefixHash2)
         Add-Log ('PREFIX_UNCHANGED=' + ($prefixHash2 -eq $prefixHash))
+        if ($prefixHash2 -ne $prefixHash) {
+            # show exactly where pages 1..n-1 drifted, so the next round can see it
+            $n = [math]::Min($prefixText.Length, $prefixText2.Length)
+            $d = -1
+            for ($q = 0; $q -lt $n; $q++) { if ($prefixText[$q] -ne $prefixText2[$q]) { $d = $q; break } }
+            if ($d -lt 0) { $d = $n }
+            Add-Log ('PREFIX_FIRST_DIFF_AT=' + $d)
+            $from = [math]::Max(0, $d - 40)
+            Add-Log ('PREFIX_BEFORE_WINDOW=' + (E ($prefixText.Substring($from, [math]::Min(90, $prefixText.Length - $from)))))
+            Add-Log ('PREFIX_AFTER_WINDOW=' + (E ($prefixText2.Substring($from, [math]::Min(90, $prefixText2.Length - $from)))))
+        }
 
         $doc.Save()
         # export just the new last page so the agent can look at it
@@ -247,7 +279,7 @@ Say ('original_sha256_still=' + (Sha256File $docPath))
 Say ''
 Say ('LASTPAGE_SWAP_OK=' + $overall)
 Say 'LASTPAGE_SWAP_DONE=True'
-$L | Set-Content -LiteralPath $reportMd -Encoding UTF8
+$Report | Set-Content -LiteralPath $reportMd -Encoding UTF8
 
 if ($overall) { $result['status'] = 'ok' } else { $result['status'] = 'failed' }
 $result['result_path'] = $outPath

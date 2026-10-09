@@ -1,5 +1,5 @@
 {
-  "description": "Round 268 on arena/01a10bfd-git-pull-arena: the round 267 evidence settled the request - image-1.jpeg (1280x1840) is a photograph of page 6 of this same document, signed by the supervisor, signed by the panel chair and stamped with the red seal, while page 6 of the docx is that same form left blank. So 'replace the last page' means: make the signed scan BE page 6, keep the document at 6 pages, and leave pages 1-5 untouched. code/tasks/t205_lastpage_swap_r268.ps1 drives Word on a COPY: it hashes the text of pages 1..5, deletes the last page, drops the scan on a fresh final page scaled to the printable area with its aspect locked, shrinks 2% at a time until the page count is back to 6, then re-hashes pages 1..5 to prove they survived and exports the new last page to sources/zhongqi/lastpage_after.pdf for visual review. The original file is never opened read-write. 'Local' means that machine's scheduled watcher - never a sandbox folder. The v2.8.1 skill, code/check_all.sh (which refuses functions shadowed by a default PowerShell alias), code/local_check.ps1 and every deliverable inherited from earlier rounds stay in force.",
+  "description": "Round 269 on arena/01a10bfd-git-pull-arena: finish the last-page swap and prove it. image-1.jpeg is a photograph of page 6 of this document, signed and stamped; page 6 of the docx is that same form left blank, so 'replace the last page' means make the scan BE page 6 with the document still 6 pages and pages 1-5 untouched. Round 268 already did the edit correctly (6 -> 6 pages, image fitted to 453x651.6pt) but its receipt was destroyed by a PowerShell trap: variable names are case-insensitive, so 'foreach ($l in $lines)' overwrote the $L report buffer, and the prefix hash counted the inserted page-break character as a content change. Both are fixed - the buffer is renamed, pages 1-5 are now compared on visible text only, and code/scan_ps_case_shadow.py is wired into code/check_all.sh so a loop variable can never again clobber another variable by case alone. 'Local' means that machine's scheduled watcher - never a sandbox folder. The v2.8.1 skill, the alias-shadow gate, code/local_check.ps1 and every deliverable inherited from earlier rounds stay in force.",
   "require_files": [
     "01a0a821.md",
     "skills/git-sync/VERSION",
@@ -291,9 +291,11 @@
     "sources/zhongqi/image-1.jpeg",
     "sources/zhongqi/lastpage.pdf",
     "code/tasks/t205_lastpage_swap_r268.ps1",
-    "results/status/LASTPAGE_SWAP_R268.md",
-    "results/status/LASTPAGE_SWAP_R268.json",
-    "sources/zhongqi/lastpage_after.pdf"
+    "sources/zhongqi/lastpage_after.pdf",
+    "results/status/LASTPAGE_SWAP.md",
+    "results/status/LASTPAGE_SWAP.json",
+    "code/scan_ps_case_shadow.py",
+    "skills/git-sync/templates/scan_ps_case_shadow.py"
   ],
   "forbid_files": [
     "local/inbox",
@@ -307,7 +309,7 @@
     "skills/git-sync/sync.config.json": "arena/01a10bfd-git-pull-arena",
     "skills/git-sync/templates/one-sentence.md": "agent-handoff.sh",
     "skills/git-sync/scripts/agent-install.sh": "refusing to downgrade",
-    "code/check_all.sh": "shadows a built-in PowerShell alias",
+    "code/check_all.sh": "scan_ps_case_shadow.py",
     "code/local_check.ps1": "no Office deliverable declared",
     "deliverable/OFFICE_HASHES.json": "arena/01a0a9f0-git-pull-arena",
     "watch.ps1": "function Invoke-AutoPull",
@@ -358,7 +360,8 @@
     "code/tasks/t202_docx_last_image_replace_r264.ps1": "DOCUMENT_XML_UNCHANGED",
     "results/status/DOCX_IMAGE_REPLACE.md": "DOCX_IMAGE_REPLACE_DIAGNOSED=True",
     "results/status/LASTPAGE_EVIDENCE_R267.md": "LASTPAGE_EVIDENCE_DONE=True",
-    "results/status/LASTPAGE_SWAP_R268.md": "LASTPAGE_SWAP_OK=True"
+    "results/status/LASTPAGE_SWAP.md": "LASTPAGE_SWAP_OK=True",
+    "code/scan_ps_case_shadow.py": "case-insensitive"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
@@ -380,8 +383,8 @@
     "results/status/DOCX_IMAGE_REPLACE.md": "pages_total=\\d+[\\s\\S]*candidates_on_last_page=",
     "results/status/DOCX_IMAGE_REPLACE.json": "\"status\":\\s*\"(ok|needs_decision|ole_picture)\"",
     "results/status/LASTPAGE_EVIDENCE_R267.md": "IMAGE_COPIED=True[\\s\\S]*LASTPAGE_PDF_EXPORTED=True",
-    "results/status/LASTPAGE_SWAP_R268.md": "docx_found=True[\\s\\S]*image_found=True[\\s\\S]*PAGE_COUNT_UNCHANGED=True[\\s\\S]*PAGES_1_TO_N_MINUS_1_UNCHANGED=True[\\s\\S]*result_path_raw=\\S[\\s\\S]*LASTPAGE_SWAP_OK=True",
-    "results/status/LASTPAGE_SWAP_R268.json": "\"status\":\\s*\"ok\""
+    "results/status/LASTPAGE_SWAP.md": "docx_found=True[\\s\\S]*image_found=True[\\s\\S]*PAGES_BEFORE=6[\\s\\S]*PAGES_AFTER=6[\\s\\S]*PAGE_COUNT_UNCHANGED=True[\\s\\S]*PAGES_1_TO_N_MINUS_1_UNCHANGED=True[\\s\\S]*result_path_raw=\\S[\\s\\S]*LASTPAGE_SWAP_OK=True",
+    "results/status/LASTPAGE_SWAP.json": "\"status\":\\s*\"ok\""
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,
@@ -411,7 +414,8 @@
     "sources/zhongqi/image-1.jpeg": 10000,
     "sources/zhongqi/lastpage.pdf": 1000,
     "code/tasks/t205_lastpage_swap_r268.ps1": 7000,
-    "sources/zhongqi/lastpage_after.pdf": 1000
+    "sources/zhongqi/lastpage_after.pdf": 1000,
+    "results/status/LASTPAGE_SWAP.md": 700
   },
   "max_bytes": {
     "deliverable/LINK_PROOF_v2.8.1.docx": 3000000,
