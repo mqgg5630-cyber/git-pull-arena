@@ -19,15 +19,24 @@ $ErrorActionPreference = 'Continue'
 Set-Location (Join-Path $PSScriptRoot '..\..')
 $repo = (Get-Location).Path
 
-$round = 264
+$round = 265
 $outRoot = Join-Path $repo 'results\status'
 New-Item -ItemType Directory -Force -Path $outRoot | Out-Null
-$reportMd   = Join-Path $outRoot ('DOCX_IMAGE_REPLACE_R' + $round + '.md')
-$reportJson = Join-Path $outRoot ('DOCX_IMAGE_REPLACE_R' + $round + '.json')
+$reportMd   = Join-Path $outRoot 'DOCX_IMAGE_REPLACE.md'
+$reportJson = Join-Path $outRoot 'DOCX_IMAGE_REPLACE.json'
 
 $L = New-Object System.Collections.Generic.List[string]
 function Say([string]$s) { $L.Add($s) | Out-Null; Write-Output $s }
-function CP([int[]]$codes) { return (-join ($codes | ForEach-Object { [char]$_ })) }
+# NOTE: do NOT name this 'CP' - 'cp' is a built-in alias for Copy-Item and
+# PowerShell resolves aliases BEFORE functions, so the alias would win.
+function CpStr([int[]]$codes) { return (-join ($codes | ForEach-Object { [char]$_ })) }
+function CodesOf([string]$s) { return @($s.ToCharArray() | ForEach-Object { [int][char]$_ }) }
+function CodesStartWith([string]$s, [int[]]$prefix) {
+    $c = CodesOf $s
+    if ($c.Count -lt $prefix.Count) { return $false }
+    for ($i = 0; $i -lt $prefix.Count; $i++) { if ($c[$i] -ne $prefix[$i]) { return $false } }
+    return $true
+}
 function Esc([string]$s) {
     if ($null -eq $s) { return '' }
     $sb = New-Object System.Text.StringBuilder
@@ -66,10 +75,11 @@ try {
 $dir = 'E:\0zhongqi\zhongqi-arena_out\deliverable'
 $imgPath = Join-Path $dir 'image-1.jpeg'
 # "<CJK>_<CJK> (1).docx"  ->  code points keep this file ASCII-only
-$docStem = (CP @(0x4E2D, 0x671F, 0x005F, 0x6700, 0x7EC8, 0x7248)) + ' (1)'
+$stemCodes = @(0x4E2D, 0x671F, 0x005F, 0x6700, 0x7EC8, 0x7248)
+$docStem = (CpStr $stemCodes) + ' (1)'
 $docPath = Join-Path $dir ($docStem + '.docx')
 
-Say '# docx last-page image replace - round 264'
+Say ('# docx last-page image replace - round ' + $round)
 Say ''
 Say ('time=' + (Get-Date).ToString('yyyy-MM-dd HH:mm:ss zzz'))
 Say ('host=' + $env:COMPUTERNAME)
@@ -77,11 +87,20 @@ Say ''
 Say '## 1. inputs'
 Say ('dir_raw=' + $dir)
 
+Say ('stem_built_escaped=' + (Esc $docStem) + '  chars=' + $docStem.Length)
 if (-not (Test-Path -LiteralPath $docPath)) {
-    # fallback: any .docx in that folder carrying the same stem
-    $cand = @(Get-ChildItem -LiteralPath $dir -Filter '*.docx' -ErrorAction SilentlyContinue |
-              Where-Object { $_.BaseName -like ($docStem + '*') } | Sort-Object LastWriteTime -Descending)
-    if ($cand.Count -gt 0) { $docPath = $cand[0].FullName }
+    # fallback: compare CODE POINTS on disk, so the match cannot depend on how
+    # this file was encoded or on the console code page
+    $all = @(Get-ChildItem -LiteralPath $dir -Filter '*.docx' -ErrorAction SilentlyContinue)
+    $exact = @($all | Where-Object { (CodesOf $_.BaseName) -join ',' -eq ((CodesOf ((CpStr $stemCodes) + ' (1)')) -join ',') })
+    if ($exact.Count -eq 0) {
+        $exact = @($all | Where-Object { CodesStartWith $_.BaseName $stemCodes } |
+                   Sort-Object { $_.BaseName.Length })
+    }
+    if ($exact.Count -gt 0) {
+        $docPath = $exact[0].FullName
+        Say ('fallback_match_escaped=' + (Esc $exact[0].Name))
+    }
 }
 
 $docOk = Test-Path -LiteralPath $docPath

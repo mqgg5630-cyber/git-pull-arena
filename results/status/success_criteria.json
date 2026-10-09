@@ -1,5 +1,5 @@
 {
-  "description": "Round 264 on arena/01a10bfd-git-pull-arena: on the Windows machine, replace the picture on the LAST page of E:\\0zhongqi\\zhongqi-arena_out\\deliverable\\<CJK> (1).docx with image-1.jpeg from the same folder, WITHOUT changing the layout or the page count. code/tasks/t202_docx_last_image_replace_r264.ps1 does it by swapping only the bytes of the referenced media part inside the docx zip: word/document.xml is never rewritten, so the <wp:extent> display box - and therefore the reflow and the page count - are bit-for-bit unchanged. The new JPEG is letterboxed onto a canvas with the ORIGINAL aspect ratio (no stretching, no cropping) and the canvas DPI is scaled so the natural size is identical too. The receipt must show DOCUMENT_XML_UNCHANGED=True and, when Word/WPS COM is available, pages_before == pages_after. The original file is left untouched; the edit lands in a new _img-replaced_<stamp>.docx next to it and the receipt carries the absolute result path. 'Local' means that machine's scheduled watcher - never a sandbox folder. The v2.8.1 skill, code/check_all.sh, code/local_check.ps1 and every deliverable inherited from earlier rounds stay in force.",
+  "description": "Round 265 on arena/01a10bfd-git-pull-arena: on the Windows machine, replace the picture on the LAST page of E:\\0zhongqi\\zhongqi-arena_out\\deliverable\\<CJK> (1).docx with image-1.jpeg from the same folder, WITHOUT changing the layout or the page count. code/tasks/t202_docx_last_image_replace_r264.ps1 does it by swapping only the bytes of the referenced media part inside the docx zip: word/document.xml is never rewritten, so the <wp:extent> display box - and therefore the reflow and the page count - are bit-for-bit unchanged. The new JPEG is letterboxed onto a canvas with the ORIGINAL aspect ratio (no stretching, no cropping) and the canvas DPI is scaled so the natural size is identical too. Round 264 failed on a PowerShell trap - the helper was named CP, and cp is a built-in alias for Copy-Item, which wins over functions, so the CJK filename came out empty; the helper is renamed and code/check_all.sh now refuses any function that shadows a default alias. The receipt must show DOCUMENT_XML_UNCHANGED=True and, when Word/WPS COM is available, pages_before == pages_after. The original file is left untouched; the edit lands in a new _img-replaced_<stamp>.docx next to it and the receipt carries the absolute result path. 'Local' means that machine's scheduled watcher - never a sandbox folder. The v2.8.1 skill, code/check_all.sh, code/local_check.ps1 and every deliverable inherited from earlier rounds stay in force.",
   "require_files": [
     "01a0a821.md",
     "skills/git-sync/VERSION",
@@ -282,8 +282,9 @@
     "results/status/LOOP_PROOF_R263.json",
     "results/status/LOOP_LEDGER.md",
     "code/tasks/t202_docx_last_image_replace_r264.ps1",
-    "results/status/DOCX_IMAGE_REPLACE_R264.md",
-    "results/status/DOCX_IMAGE_REPLACE_R264.json"
+    "results/status/DOCX_IMAGE_REPLACE.md",
+    "results/status/DOCX_IMAGE_REPLACE.json",
+    "code/ps_alias_legacy.txt"
   ],
   "forbid_files": [
     "local/inbox",
@@ -297,7 +298,7 @@
     "skills/git-sync/sync.config.json": "arena/01a10bfd-git-pull-arena",
     "skills/git-sync/templates/one-sentence.md": "agent-handoff.sh",
     "skills/git-sync/scripts/agent-install.sh": "refusing to downgrade",
-    "code/check_all.sh": "py -3",
+    "code/check_all.sh": "shadows a built-in PowerShell alias",
     "code/local_check.ps1": "no Office deliverable declared",
     "deliverable/OFFICE_HASHES.json": "arena/01a0a9f0-git-pull-arena",
     "watch.ps1": "function Invoke-AutoPull",
@@ -346,7 +347,7 @@
     "results/status/LOOP_PROOF_R263.md": "LOOP_REPEAT_OK=True",
     "results/status/LOOP_LEDGER.md": "run sha256",
     "code/tasks/t202_docx_last_image_replace_r264.ps1": "DOCUMENT_XML_UNCHANGED",
-    "results/status/DOCX_IMAGE_REPLACE_R264.md": "DOCX_IMAGE_REPLACE_OK=True"
+    "results/status/DOCX_IMAGE_REPLACE.md": "DOCX_IMAGE_REPLACE_OK=True"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
@@ -365,8 +366,8 @@
     "results/status/LOOP_PROOF_R263.md": "BRANCH_MATCHES=True[\\s\\S]*PREV_ROUND_OK=True[\\s\\S]*nonce_differs_from_prev=True[\\s\\S]*CODE_EXECUTED=True[\\s\\S]*auto_push=True[\\s\\S]*LOOP_REPEAT_OK=True",
     "results/status/LOOP_PROOF_R263.json": "\"repeat_ok\":\\s*true",
     "results/status/LOOP_LEDGER.md": "\\|\\s*262\\s*\\|[\\s\\S]*\\|\\s*263\\s*\\|",
-    "results/status/DOCX_IMAGE_REPLACE_R264.md": "docx_found=True[\\s\\S]*image_found=True[\\s\\S]*picked_rid=rId\\d+[\\s\\S]*DOCUMENT_XML_UNCHANGED=True[\\s\\S]*result_path_raw=\\S[\\s\\S]*DOCX_IMAGE_REPLACE_OK=True",
-    "results/status/DOCX_IMAGE_REPLACE_R264.json": "\"status\":\\s*\"ok\""
+    "results/status/DOCX_IMAGE_REPLACE.md": "docx_found=True[\\s\\S]*image_found=True[\\s\\S]*picked_rid=rId\\d+[\\s\\S]*DOCUMENT_XML_UNCHANGED=True[\\s\\S]*result_path_raw=\\S[\\s\\S]*DOCX_IMAGE_REPLACE_OK=True",
+    "results/status/DOCX_IMAGE_REPLACE.json": "\"status\":\\s*\"ok\""
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,
@@ -390,8 +391,8 @@
     "code/tasks/t201_loop_repeat_r263.ps1": 4000,
     "results/status/LOOP_PROOF_R263.md": 500,
     "results/status/LOOP_LEDGER.md": 300,
-    "code/tasks/t202_docx_last_image_replace_r264.ps1": 8000,
-    "results/status/DOCX_IMAGE_REPLACE_R264.md": 600
+    "code/tasks/t202_docx_last_image_replace_r264.ps1": 9000,
+    "results/status/DOCX_IMAGE_REPLACE.md": 600
   },
   "max_bytes": {
     "deliverable/LINK_PROOF_v2.8.1.docx": 3000000,

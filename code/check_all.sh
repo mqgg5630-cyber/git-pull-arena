@@ -194,6 +194,50 @@ fi
 # in the watcher that means every verification round fails silently. Use
 # PowerShell's own parser when one is on PATH (git-bash on Windows finds
 # powershell.exe; Linux/macOS may have pwsh). Skipped loudly when absent.
+
+# ---------------------------------------------------------------- alias shadow
+# PowerShell resolves ALIAS before FUNCTION. Defining `function CP {...}` does
+# NOT override the built-in `cp` -> Copy-Item alias: the alias still wins, the
+# helper silently never runs and returns nothing. That cost round 264 a full
+# loop (the CJK filename came out empty). Refuse any function whose name is a
+# default alias.
+PS_ALIASES="ac asnp cat cd chdir clc clear clhy cli clp cls clv cnsn compare copy cp cpi cpp curl cvpa dbp del diff dir dnsn ebp echo epal epcsv epsn erase etsn exsn fc fhx fl foreach ft fw gal gbp gc gcb gci gcm gcs gdr getmac ghy gi gin gjb gl gm gmo gp gps gpv group gsn gsnp gsv gtz gu gv gwmi h history icm iex ihy ii ipal ipcsv ipmo ipsn irm ise iwmi iwr kill lp ls man md measure mi mount move mp mv nal ndr ni nmo npssc nsn nv ogv oh popd ps pushd pwd r rbp rcjb rcsn rd rdr ren ri rjb rm rmdir rmo rni rnp rp rsn rsnp rujb rv rvpa rwmi sajb sal saps sasv sbp sc scb select set shcm si sl sleep sls sort sp spjb spps spsv start stz sujb sv swmi tee trcm type where wget wjb write"
+PS_ALIAS_LEGACY_FILE="code/ps_alias_legacy.txt"
+PS_ALIAS_LEGACY="$( [ -f "$PS_ALIAS_LEGACY_FILE" ] && grep -vE "^[[:space:]]*(#|$)" "$PS_ALIAS_LEGACY_FILE" | tr "
+" " " )"
+alias_bad=0
+alias_legacy=0
+while IFS= read -r hit; do
+    [ -z "$hit" ] && continue
+    file="${hit%%:*}"
+    rest="${hit#*:}"
+    line="${rest%%:*}"
+    fname="$(printf '%s' "$rest" | sed -E 's/^[0-9]+:[[:space:]]*function[[:space:]]+([A-Za-z0-9_-]+).*/\1/')"
+    lower="$(printf '%s' "$fname" | tr 'A-Z' 'a-z')"
+    case " $PS_ALIASES " in
+        *" $lower "*)
+            case " $PS_ALIAS_LEGACY " in
+                *" $file "*)
+                    echo "WARN: $file:$line defines 'function $fname' shadowed by the '$lower' alias (legacy round, not run any more)"
+                    alias_legacy=$((alias_legacy + 1))
+                    ;;
+                *)
+                    echo "[FAIL] $file:$line defines 'function $fname' but '$lower' is a built-in PowerShell alias"
+                    echo "       aliases win over functions, so the helper would never run - rename it"
+                    alias_bad=1
+                    ;;
+            esac
+            ;;
+    esac
+done <<EOF_ALIAS
+$(grep -rnE '^[[:space:]]*function[[:space:]]+[A-Za-z0-9_-]+' --include='*.ps1' . 2>/dev/null | grep -v '/\.git/')
+EOF_ALIAS
+if [ "$alias_bad" -eq 0 ]; then
+    echo "OK: no function shadows a built-in PowerShell alias (${alias_legacy} legacy warning(s))"
+else
+    fail=1
+fi
+
 SH_EXE=""
 if command -v pwsh >/dev/null 2>&1; then SH_EXE="pwsh"
 elif command -v powershell >/dev/null 2>&1; then SH_EXE="powershell"

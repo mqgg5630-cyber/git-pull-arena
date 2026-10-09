@@ -1,0 +1,10 @@
+# .ps1 files from finished rounds that define a function shadowed by a built-in
+# PowerShell alias. Kept as WARN so the rule is enforced on NEW code without
+# rewriting history. Do not add to this list - fix the script instead.
+./code/tasks/t167_antigravity_cdp_dom_dialog_probe.ps1
+./code/tasks/t168_antigravity_cdp_dom_dialog_probe_fix.ps1
+./code/tasks/t169_antigravity_cdp_targeted_message_input.ps1
+./code/tasks/t173_resume_skills_compute_antigravity.ps1
+./code/tasks/t174_scientific_browser_kaggle_tailscale.ps1
+./code/tasks/t175_antigravity_illustrator_browser_phone_share.ps1
+./code/tasks/t177_antigravity_sendinput_browserskill_r225.ps1
