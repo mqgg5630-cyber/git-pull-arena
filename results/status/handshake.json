@@ -1,9 +1,9 @@
 {
-  "round": 344,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "t247 py311 rescore",
-  "arena_updated": "2026-10-09 01:03:24",
-  "local_updated": null
+    "round":  344,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "t247 py311 rescore",
+    "arena_updated":  "2026-10-09 01:03:24",
+    "local_updated":  "2026-10-09 09:54:52"
 }
