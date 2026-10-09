@@ -1,9 +1,9 @@
 {
-  "round": 343,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "t245 shifted parse",
-  "arena_updated": "2026-10-08 12:47:48",
-  "local_updated": null
+    "round":  343,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "t245 shifted parse",
+    "arena_updated":  "2026-10-08 12:47:48",
+    "local_updated":  "2026-10-09 08:56:15"
 }
