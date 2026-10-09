@@ -1,9 +1,9 @@
 {
-    "round":  269,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "verify r269: signed scan is page 6, 6 pages total, pages 1-5 unchanged, receipt intact",
-    "arena_updated":  "2026-10-09 10:02:38",
-    "local_updated":  "2026-10-09 18:06:49"
+  "round": 269,
+  "arena_state": "accepted",
+  "local_state": "passed",
+  "host": "LAPTOP-R77M5D6M",
+  "note": "hands-free: criteria met",
+  "arena_updated": "2026-10-09 10:07:19",
+  "local_updated": "2026-10-09 18:06:49"
 }
