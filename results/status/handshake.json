@@ -1,9 +1,9 @@
 {
-  "round": 264,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "verify r264: swap last-page image in zhongqi docx with image-1.jpeg, keep layout + page count, report result path",
-  "arena_updated": "2026-10-09 09:31:46",
-  "local_updated": null
+    "round":  264,
+    "arena_state":  "awaiting_check",
+    "local_state":  "failed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "verify r264: swap last-page image in zhongqi docx with image-1.jpeg, keep layout + page count, report result path",
+    "arena_updated":  "2026-10-09 09:31:46",
+    "local_updated":  "2026-10-09 17:32:15"
 }
