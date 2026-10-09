@@ -1,5 +1,5 @@
 {
-  "description": "Round 266 on arena/01a10bfd-git-pull-arena: identify WHICH picture is on the LAST page of E:\\0zhongqi\\zhongqi-arena_out\\deliverable\\<CJK> (1).docx and replace just that one with image-1.jpeg, leaving layout and page count untouched. Round 265 proved 'last in XML order' is not the same as 'on the last page': all three pictures share a 6.35x2.22 cm box and the last XML reference is a .wmf. So code/tasks/t203_docx_lastpage_r266.ps1 asks Word for the real page number of every InlineShape, dumps the markup around each picture, and only acts when exactly one picture sits on the last page and it is not an OLE preview. The edit adds a NEW media part and repoints that single relationship, so word/document.xml stays byte-identical and the page count cannot move. A diagnosis-only run (status=needs_decision) is a legitimate pass for this round. 'Local' means that machine's scheduled watcher - never a sandbox folder. The v2.8.1 skill, code/check_all.sh (which now refuses functions shadowed by a default PowerShell alias), code/local_check.ps1 and every deliverable inherited from earlier rounds stay in force.",
+  "description": "Round 267 on arena/01a10bfd-git-pull-arena: gather the evidence needed to place image-1.jpeg correctly. Round 266 established the facts: the document has 6 pages, its only real picture is a 180x63pt floating logo anchored on page 1, and the two things Word reports on page 6 are the WMF previews of two Forms.CheckBox.1 ActiveX controls - so the last page contains NO picture to replace and the guard correctly refused to edit. code/tasks/t204_lastpage_evidence_r267.ps1 therefore ships only what is needed to decide: sources/zhongqi/image-1.jpeg and sources/zhongqi/lastpage.pdf (page 6 only, exported by Word, so the rest of the thesis is not published). The document is NOT modified in this round. 'Local' means that machine's scheduled watcher - never a sandbox folder. The v2.8.1 skill, code/check_all.sh (which now refuses functions shadowed by a default PowerShell alias), code/local_check.ps1 and every deliverable inherited from earlier rounds stay in force.",
   "require_files": [
     "01a0a821.md",
     "skills/git-sync/VERSION",
@@ -285,7 +285,11 @@
     "results/status/DOCX_IMAGE_REPLACE.md",
     "results/status/DOCX_IMAGE_REPLACE.json",
     "code/ps_alias_legacy.txt",
-    "code/tasks/t203_docx_lastpage_r266.ps1"
+    "code/tasks/t203_docx_lastpage_r266.ps1",
+    "code/tasks/t204_lastpage_evidence_r267.ps1",
+    "results/status/LASTPAGE_EVIDENCE_R267.md",
+    "sources/zhongqi/image-1.jpeg",
+    "sources/zhongqi/lastpage.pdf"
   ],
   "forbid_files": [
     "local/inbox",
@@ -304,7 +308,7 @@
     "deliverable/OFFICE_HASHES.json": "arena/01a0a9f0-git-pull-arena",
     "watch.ps1": "function Invoke-AutoPull",
     "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus",
-    "code/tasks/manifest.json": "t203_docx_lastpage_r266.ps1",
+    "code/tasks/manifest.json": "t204_lastpage_evidence_r267.ps1",
     "code/tasks/t1_fix_antigravity.ps1": "http.proxy",
     "code/tasks/t2_install_java.ps1": "E:\\java",
     "results/status/muse_tailscale_probe_r238.md": "MUSE_TAILSCALE_PROBE_DONE",
@@ -348,7 +352,8 @@
     "results/status/LOOP_PROOF_R263.md": "LOOP_REPEAT_OK=True",
     "results/status/LOOP_LEDGER.md": "run sha256",
     "code/tasks/t202_docx_last_image_replace_r264.ps1": "DOCUMENT_XML_UNCHANGED",
-    "results/status/DOCX_IMAGE_REPLACE.md": "DOCX_IMAGE_REPLACE_DIAGNOSED=True"
+    "results/status/DOCX_IMAGE_REPLACE.md": "DOCX_IMAGE_REPLACE_DIAGNOSED=True",
+    "results/status/LASTPAGE_EVIDENCE_R267.md": "LASTPAGE_EVIDENCE_DONE=True"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
@@ -367,8 +372,9 @@
     "results/status/LOOP_PROOF_R263.md": "BRANCH_MATCHES=True[\\s\\S]*PREV_ROUND_OK=True[\\s\\S]*nonce_differs_from_prev=True[\\s\\S]*CODE_EXECUTED=True[\\s\\S]*auto_push=True[\\s\\S]*LOOP_REPEAT_OK=True",
     "results/status/LOOP_PROOF_R263.json": "\"repeat_ok\":\\s*true",
     "results/status/LOOP_LEDGER.md": "\\|\\s*262\\s*\\|[\\s\\S]*\\|\\s*263\\s*\\|",
-    "results/status/DOCX_IMAGE_REPLACE.md": "docx_found=True[\\s\\S]*image_found=True[\\s\\S]*pages_total=\\d+[\\s\\S]*images_in_body=\\d+[\\s\\S]*candidates_on_last_page=",
-    "results/status/DOCX_IMAGE_REPLACE.json": "\"status\":\\s*\"(ok|needs_decision|ole_picture)\""
+    "results/status/DOCX_IMAGE_REPLACE.md": "pages_total=\\d+[\\s\\S]*candidates_on_last_page=",
+    "results/status/DOCX_IMAGE_REPLACE.json": "\"status\":\\s*\"(ok|needs_decision|ole_picture)\"",
+    "results/status/LASTPAGE_EVIDENCE_R267.md": "IMAGE_COPIED=True[\\s\\S]*LASTPAGE_PDF_EXPORTED=True"
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,
@@ -394,7 +400,9 @@
     "results/status/LOOP_LEDGER.md": 300,
     "code/tasks/t202_docx_last_image_replace_r264.ps1": 9000,
     "results/status/DOCX_IMAGE_REPLACE.md": 600,
-    "code/tasks/t203_docx_lastpage_r266.ps1": 9000
+    "code/tasks/t203_docx_lastpage_r266.ps1": 9000,
+    "sources/zhongqi/image-1.jpeg": 10000,
+    "sources/zhongqi/lastpage.pdf": 1000
   },
   "max_bytes": {
     "deliverable/LINK_PROOF_v2.8.1.docx": 3000000,
