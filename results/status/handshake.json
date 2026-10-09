@@ -1,9 +1,9 @@
 {
-  "round": 346,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "t249 rank scores",
-  "arena_updated": "2026-10-09 01:59:04",
-  "local_updated": null
+    "round":  346,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "t249 rank scores",
+    "arena_updated":  "2026-10-09 01:59:04",
+    "local_updated":  "2026-10-09 10:00:27"
 }
