@@ -1,9 +1,9 @@
 {
-  "round": 345,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "t248 positional join",
-  "arena_updated": "2026-10-09 01:56:47",
-  "local_updated": null
+    "round":  345,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "t248 positional join",
+    "arena_updated":  "2026-10-09 01:56:47",
+    "local_updated":  "2026-10-09 09:57:42"
 }
