@@ -1,5 +1,5 @@
 {
-  "description": "Round 263 on arena/01a10bfd-git-pull-arena: prove the local loop REPEATS. Round 262 already closed (agent push -> watcher auto_pull -> code/tasks/t200_loop_proof_r262.ps1 ran on LAPTOP-R77M5D6M -> auto_push of results/status/LOOP_PROOF_R262.*). Round 263 runs code/tasks/t201_loop_repeat_r263.ps1, which re-executes the compute with a FRESH nonce, verifies the round-262 receipt came back through git, and appends a row per round to results/status/LOOP_LEDGER.md. Acceptance needs LOOP_REPEAT_OK=True plus both rounds present in the ledger. 'Local' means that machine's scheduled watcher - never a sandbox folder, never a hand-made stand-in skill. The v2.8.1 skill, the repo gate (code/check_all.sh) and code/local_check.ps1 stay in force, and all deliverables inherited from earlier rounds must still be present.",
+  "description": "Round 264 on arena/01a10bfd-git-pull-arena: on the Windows machine, replace the picture on the LAST page of E:\\0zhongqi\\zhongqi-arena_out\\deliverable\\<CJK> (1).docx with image-1.jpeg from the same folder, WITHOUT changing the layout or the page count. code/tasks/t202_docx_last_image_replace_r264.ps1 does it by swapping only the bytes of the referenced media part inside the docx zip: word/document.xml is never rewritten, so the <wp:extent> display box - and therefore the reflow and the page count - are bit-for-bit unchanged. The new JPEG is letterboxed onto a canvas with the ORIGINAL aspect ratio (no stretching, no cropping) and the canvas DPI is scaled so the natural size is identical too. The receipt must show DOCUMENT_XML_UNCHANGED=True and, when Word/WPS COM is available, pages_before == pages_after. The original file is left untouched; the edit lands in a new _img-replaced_<stamp>.docx next to it and the receipt carries the absolute result path. 'Local' means that machine's scheduled watcher - never a sandbox folder. The v2.8.1 skill, code/check_all.sh, code/local_check.ps1 and every deliverable inherited from earlier rounds stay in force.",
   "require_files": [
     "01a0a821.md",
     "skills/git-sync/VERSION",
@@ -280,7 +280,10 @@
     "code/tasks/t201_loop_repeat_r263.ps1",
     "results/status/LOOP_PROOF_R263.md",
     "results/status/LOOP_PROOF_R263.json",
-    "results/status/LOOP_LEDGER.md"
+    "results/status/LOOP_LEDGER.md",
+    "code/tasks/t202_docx_last_image_replace_r264.ps1",
+    "results/status/DOCX_IMAGE_REPLACE_R264.md",
+    "results/status/DOCX_IMAGE_REPLACE_R264.json"
   ],
   "forbid_files": [
     "local/inbox",
@@ -299,7 +302,7 @@
     "deliverable/OFFICE_HASHES.json": "arena/01a0a9f0-git-pull-arena",
     "watch.ps1": "function Invoke-AutoPull",
     "skills/git-sync/scripts/watch.ps1": "function Invoke-Focus",
-    "code/tasks/manifest.json": "t201_loop_repeat_r263.ps1",
+    "code/tasks/manifest.json": "t202_docx_last_image_replace_r264.ps1",
     "code/tasks/t1_fix_antigravity.ps1": "http.proxy",
     "code/tasks/t2_install_java.ps1": "E:\\java",
     "results/status/muse_tailscale_probe_r238.md": "MUSE_TAILSCALE_PROBE_DONE",
@@ -341,7 +344,9 @@
     "results/status/LOOP_PROOF_R262.md": "LOOP_PULL_EXEC_PUSH_OK=True",
     "code/tasks/t201_loop_repeat_r263.ps1": "LOOP_REPEAT_OK",
     "results/status/LOOP_PROOF_R263.md": "LOOP_REPEAT_OK=True",
-    "results/status/LOOP_LEDGER.md": "run sha256"
+    "results/status/LOOP_LEDGER.md": "run sha256",
+    "code/tasks/t202_docx_last_image_replace_r264.ps1": "DOCUMENT_XML_UNCHANGED",
+    "results/status/DOCX_IMAGE_REPLACE_R264.md": "DOCX_IMAGE_REPLACE_OK=True"
   },
   "require_regex": {
     "watch.ps1": "function Invoke-AutoPush",
@@ -359,7 +364,9 @@
     "results/status/LOOP_PROOF_R262.json": "\"loop_ok\":\\s*true",
     "results/status/LOOP_PROOF_R263.md": "BRANCH_MATCHES=True[\\s\\S]*PREV_ROUND_OK=True[\\s\\S]*nonce_differs_from_prev=True[\\s\\S]*CODE_EXECUTED=True[\\s\\S]*auto_push=True[\\s\\S]*LOOP_REPEAT_OK=True",
     "results/status/LOOP_PROOF_R263.json": "\"repeat_ok\":\\s*true",
-    "results/status/LOOP_LEDGER.md": "\\|\\s*262\\s*\\|[\\s\\S]*\\|\\s*263\\s*\\|"
+    "results/status/LOOP_LEDGER.md": "\\|\\s*262\\s*\\|[\\s\\S]*\\|\\s*263\\s*\\|",
+    "results/status/DOCX_IMAGE_REPLACE_R264.md": "docx_found=True[\\s\\S]*image_found=True[\\s\\S]*picked_rid=rId\\d+[\\s\\S]*DOCUMENT_XML_UNCHANGED=True[\\s\\S]*result_path_raw=\\S[\\s\\S]*DOCX_IMAGE_REPLACE_OK=True",
+    "results/status/DOCX_IMAGE_REPLACE_R264.json": "\"status\":\\s*\"ok\""
   },
   "min_bytes": {
     "skills/git-sync/scripts/agent-handoff.sh": 2000,
@@ -382,7 +389,9 @@
     "results/status/LOOP_PROOF_R262.md": 400,
     "code/tasks/t201_loop_repeat_r263.ps1": 4000,
     "results/status/LOOP_PROOF_R263.md": 500,
-    "results/status/LOOP_LEDGER.md": 300
+    "results/status/LOOP_LEDGER.md": 300,
+    "code/tasks/t202_docx_last_image_replace_r264.ps1": 8000,
+    "results/status/DOCX_IMAGE_REPLACE_R264.md": 600
   },
   "max_bytes": {
     "deliverable/LINK_PROOF_v2.8.1.docx": 3000000,
