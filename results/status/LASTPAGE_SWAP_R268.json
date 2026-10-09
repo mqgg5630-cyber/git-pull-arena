@@ -1,0 +1,11 @@
+﻿{
+    "round":  268,
+    "time":  "2026-10-09 17:59:13 +08:00",
+    "host":  "LAPTOP-R77M5D6M",
+    "status":  "failed",
+    "result_path":  "E:\\0zhongqi\\zhongqi-arena_out\\deliverable\\中期_最终版 (1)_signed-lastpage_20261009-175913.docx",
+    "pages_before":  "6",
+    "pages_after":  "6",
+    "prefix_unchanged":  "False",
+    "transcript":  "PAGES_BEFORE=6\nPREFIX_CHARS=2739\nPREFIX_SHA_BEFORE=bda4022dcc6a0877aec0060de2f47b8ccff1e4131ff9e50e57b1547025b4d0e4\nCONTENT_AREA_PT=453.5x717.2\nPAGES_AFTER_DELETE=5\nINSERTED_PAGE_BREAK=True\nPICTURE_NATIVE_PT=453x651\nTRY 0 scale=1.0011 size=453x651.6 pages=6\nFINAL_SCALE=1.0011\nFINAL_SIZE_PT=453x651.6\nPAGES_AFTER=6\nPREFIX_SHA_AFTER=9e4fac687b1e7d9f69ce5908eb20a581f1bbe6dac918b01b8fd049a3ca91348e\nPREFIX_UNCHANGED=False\nEXPORTED_LASTPAGE_PDF=True"
+}
