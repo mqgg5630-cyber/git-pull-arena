@@ -1,9 +1,9 @@
 {
-  "round": 355,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "t258 install fixed docx",
-  "arena_updated": "2026-10-12 02:15:11",
-  "local_updated": null
+    "round":  355,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "t258 install fixed docx",
+    "arena_updated":  "2026-10-12 02:15:11",
+    "local_updated":  "2026-10-12 10:15:44"
 }

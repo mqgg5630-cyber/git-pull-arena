@@ -1,0 +1,10 @@
+fixed exists=True
+installed manuscript -> D:\桌面\AMP_Docking_Vina_R255_20261005_1552\AMP_Alligator_Gut_SCI_Manuscript.docx
+installed manuscript -> D:\桌面\AMP_SCI_Paper\AMP_Alligator_Gut_SCI_Manuscript.docx
+copied into update folder
+Word opened: paragraphs=409 inlineShapes=4 tables=3
+shape 1: w=432 h=525
+shape 2: w=470 h=398
+shape 3: w=470 h=398
+shape 4: w=470 h=359
+Word verification: PASSED
