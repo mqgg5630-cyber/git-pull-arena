@@ -1,0 +1,54 @@
+edits=9
+shipped files to D:\桌面\AMP_Docking_Vina_R255_20261005_1552
+shipped files to D:\桌面\AMP_SCI_Paper
+shipped files to D:\桌面\AMP_Docking_Vina_R255_20261005_1552\AMP_Pipeline_Update_20261012-085534
+backup -> D:\桌面\AMP_Docking_Vina_R255_20261005_1552\AMP_Alligator_Gut_SCI_Manuscript_OLD_20261012-091419.docx.bak
+opened: paragraphs=407
+replaced [386] old='本研究以鳄鱼肠道宏基因组为资源宝库，成功构建并实施了基于高质量MAG、sORF深'
+replaced [62] old='综上，本研究建立了“目标MAG确定-sORF挖掘-深度学习初筛-本地安全性预筛-'
+replaced [58] old='在935条non-toxic候选肽基础上，首先采用AlgPred2进行过敏性筛选'
+replaced [32] old='对经PepFun理化性质评估后保留的候选肽，进一步采用TheraPepNet进行'
+replaced [30] old='对于通过安全性筛选的候选肽，进一步采用PepFun进行理化性质评估。主要计算指标'
+replaced [29] old='2.7.2 理化性质评估'
+replaced [28] old='首先，采用AlgPred2对non-toxic候选肽进行过敏原风险评估，仅保留被'
+replaced [27] old='2.7.1 过敏性筛选'
+replaced [26] old='为进一步从本地预筛保留的non-toxic候选肽中筛选出适于后续化学合成与体外验'
+inserted flowchart after paragraph 62, w=432 h=525
+saved: paragraphs=409 inlineShapes=4
+mirrored manuscript to AMP_SCI_Paper
+=== D:\桌面\AMP_Docking_Vina_R255_20261005_1552
+   AMP_Alligator_Gut_SCI_Manuscript.docx  5434585 B
+   AMP_Alligator_Gut_SCI_Manuscript_OLD_20261012-091419.docx.bak  4915454 B
+   AMP_Docking_Report_SciFigures_manifest.json  1003 B
+   AMP_Docking_Targets_Methods_Results.docx  6939691 B
+   AMP_Docking_Targets_Methods_Results.md  12580 B
+   AMP_Figure_Style_Review.md  2386 B
+   AMP_MD_Simulation_Protocol.docx  42409 B
+   AMP_MD_Simulation_Protocol.md  8976 B
+   AMP_Method_Supplement_manifest.json  483 B
+   AMP_Pipeline_Flowchart_20261012.svg  7858 B
+   AMP_Pipeline_Flowchart_20261012_300dpi.png  475611 B
+   AMP_Pipeline_Reproduction_Method.md  9437 B
+   AMP_Pipeline_Reproduction_Method_OLD_20261012-085534.md.bak  12107 B
+   manifest.json  16824 B
+   method_with_docking_20261007_1600.docx  5002859 B
+   REPORT.md  6476 B
+=== D:\桌面\AMP_SCI_Paper
+   AMP_Alligator_Gut_SCI_Manuscript.docx  5434585 B
+   AMP_Figure_Style_Review.md  2386 B
+   AMP_MD_Simulation_Protocol.docx  42409 B
+   AMP_MD_Simulation_Protocol.md  8976 B
+   AMP_Method_Supplement_manifest.json  483 B
+   AMP_Pipeline_Flowchart_20261012.svg  7858 B
+   AMP_Pipeline_Flowchart_20261012_300dpi.png  475611 B
+   AMP_Pipeline_Reproduction_Method.md  9437 B
+   AMP_Pipeline_Reproduction_Method_OLD_20261012-085534.md.bak  12107 B
+   fig_screening_cascade_SUPERSEDED_20261012-085816.png  212659 B
+   fig_screening_cascade_SUPERSEDED_20261012-085816.svg  57794 B
+   method_with_docking_20261007_1600.docx  5002859 B
+=== D:\桌面\AMP_Docking_Vina_R255_20261005_1552\AMP_Pipeline_Update_20261012-085534
+   AMP_MD_Simulation_Protocol.docx  42409 B
+   AMP_MD_Simulation_Protocol.md  8976 B
+   AMP_Pipeline_Flowchart_20261012.svg  7858 B
+   AMP_Pipeline_Flowchart_20261012_300dpi.png  475611 B
+   AMP_Pipeline_Reproduction_Method.md  9437 B
