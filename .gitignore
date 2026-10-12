@@ -36,3 +36,4 @@ _export/
 #   mkdir .github\workflows ; copy skills\git-sync\templates\gate.yml .github\workflows\gate.yml
 #   .\push.ps1 "ci: enable the gate workflow"
 .github/workflows/
+work/
