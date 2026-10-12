@@ -1,9 +1,9 @@
 {
-  "round": 350,
-  "arena_state": "awaiting_check",
-  "local_state": "pending",
-  "host": "",
-  "note": "t253 png + docx dump",
-  "arena_updated": "2026-10-12 01:10:49",
-  "local_updated": null
+    "round":  350,
+    "arena_state":  "awaiting_check",
+    "local_state":  "passed",
+    "host":  "LAPTOP-R77M5D6M",
+    "note":  "t253 png + docx dump",
+    "arena_updated":  "2026-10-12 01:10:49",
+    "local_updated":  "2026-10-12 09:11:41"
 }

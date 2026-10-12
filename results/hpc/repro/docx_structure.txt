@@ -1,0 +1,369 @@
+PNG 3300 x 4020 px, 475611 B
+DOC=D:\桌面\AMP_Docking_Vina_R255_20261005_1552\AMP_Alligator_Gut_SCI_Manuscript.docx exists=True
+paragraphs=407 tables=3 inlineShapes=3
+[1] <正文> 基于鳄鱼肠道宏基因组的新型抗菌肽深度挖掘与分子对接表征
+[2] <正文> Discovery and Molecular Docking Characterization of Novel Antimicrobial Peptides from the Alligator Gut Metage
+[3] <正文> 摘要
+[4] <正文> 全球抗生素耐药性（Antimicrobial Resistance, AMR）的迅速蔓延严重威胁公共卫生安全，亟需挖掘全新机制的抗菌先导物。爬行动物鳄鱼具备强大的天然固有免疫防御系统，其肠道极端共生微生态中蕴含着丰度高、
+[5] <正文> 关键词： 鳄鱼肠道；宏基因组；短开放阅读框（sORF）；抗菌肽；深度学习；分子对接；AutoDock Vina；PyMOL相互作用
+[6] <正文> 1. 引言 (Introduction)
+[7] <正文> 全球范围内抗生素的广泛乃至滥用已引发严重的抗生素耐药性（Antimicrobial Resistance, AMR）危机。世界卫生组织（WHO）及疾病预防控制中心（CDC）近年发布的预警报告指出，耐药菌感染导致的致死率与
+[8] <正文> 作为现存最古老的爬行动物类群之一，鳄鱼（Alligator mississippiensis / Alligator sinensis）栖息于微生物密度极高、病原体繁杂的水域与淤泥环境中。尽管常伴随争斗致伤或恶劣捕食伤口
+[9] <正文> 随着高通量测序技术与计算生物学的飞速发展，宏基因组学（Metagenomics）为未经培养微生物暗物质的直接发掘提供了革命性手段。尤其是短开放阅读框（short open reading frames, sORFs，编码
+[10] <正文> 尽管计算预测能够大幅压缩候选多肽空间，但计算机发现的短肽能否与致病菌的关键分子靶标发生特异性物理相互作用，是决定其能否作为先导物推进的核心关口。针对细菌关键生理周期的分子靶向研究表明，细胞分裂蛋白FtsZ（负责分裂Z环组
+[11] <正文> 基于此，本研究提出了一套针对鳄鱼肠道宏基因组的端到端抗菌肽发现与分子对接评价技术体系。首先，利用高质量鳄鱼肠道双端Shotgun宏基因组测序数据，剔除宿主染色体背景后完成从头组装与基因组分箱，获得近完整的高质量目标MAG
+[12] <正文> 2. 材料与方法 (Materials and Methods)
+[13] <正文> 2.1 原始宏基因组数据与研究总体设计
+[14] <正文> 本研究以双端shotgun宏基因组测序数据SRR18112698_1.fastq.gz和SRR18112698_2.fastq.gz为原始输入，对鳄鱼肠道宏基因组开展genome-resolved分析、短肽挖掘及候选抗菌
+[15] <正文> 2.2 质量控制与宿主序列去除
+[16] <正文> 原始双端reads首先采用fastp进行质量控制，以完成序列质量评估和基础过滤。随后，利用KneadData结合宿主参考数据库去除宿主来源污染序列，仅保留成对的非宿主reads用于后续组装分析。KneadData运行过程
+[17] <正文> 2.3 宏基因组组装、分箱及目标MAG确定
+[18] <正文> 宿主去除后的clean reads采用MEGAHIT进行de novo组装。所得contigs进一步输入metaWRAP的binning模块，并联合使用MetaBAT2和MaxBin2两种分箱算法进行初始分箱。随后，采用
+[19] <正文> 2.4 基于目标MAG的sORF挖掘
+[20] <正文> 针对目标MAG，采用EMBOSS软件包中的getorf工具进行sORF预测。预测过程中使用细菌遗传密码表11，并限定ORF长度范围为15-150 nt。所有contigs上预测得到的ORFs首先进行合并，随后基于完全相同
+[21] <正文> 2.5 基于三模型集成的抗菌肽深度学习预测
+[22] <正文> 由目标MAG获得的候选短肽进一步输入c_AMPs-prediction框架进行抗菌肽预测。首先，将候选序列整理为单行FASTA格式，并过滤含有非标准氨基酸字符或长度大于300 aa的条目。对于Attention和LSTM
+[23] <正文> 2.6 高置信度候选肽的本地预筛
+[24] <正文> 对于三模型一致支持的高置信度候选抗菌肽，首先进行本地预筛，以去除明显不适合后续实验推进的序列。该阶段包括基础合法性检查、序列去冗余和毒性预筛。首先，仅保留由20种标准氨基酸组成且长度位于4-50 aa范围内的序列。随后，
+[25] <正文> 2.7 网页服务器多级终筛流程
+[26] <正文> 为进一步从本地预筛保留的non-toxic候选肽中筛选出适于后续化学合成与体外验证的小规模高优先级序列，本研究构建了网页服务器多级终筛流程。该流程依次包括过敏性筛选、理化性质评估、肽活性预测、CAMP与AxPep联合筛选
+[27] <正文> 2.7.1 过敏性筛选
+[28] <正文> 首先，采用AlgPred2对non-toxic候选肽进行过敏原风险评估，仅保留被预测为non-allergen的序列进入下一步分析。AlgPred2运行参数设置为model1、threshold=0.3。随后，将AlgP
+[29] <正文> 2.7.2 理化性质评估
+[30] <正文> 对于通过安全性筛选的候选肽，进一步采用PepFun进行理化性质评估。主要计算指标包括净电荷、平均疏水性、instability index、溶解性规则失败数(solubility_fail)以及合成性规则失败数(synt
+[31] <正文> 2.7.3 肽活性预测
+[32] <正文> 对经PepFun理化性质评估后保留的候选肽，进一步采用TheraPepNet进行肽活性预测。该步骤旨在从具有较好理化特征的候选集中，优先保留预测活性较高的序列，为后续联合筛选提供更聚焦的候选集合。
+[33] <正文> 2.7.4 CAMP与AxPep联合筛选
+[34] <正文> 对经TheraPepNet肽活性预测后保留的候选肽，进一步采用CAMP和AxPep进行联合筛选。CAMP用于评估候选序列的AMP样特征，AxPep用于评估候选序列的抗菌肽活性预测支持。对于CAMP，综合支持向量机、随机森
+[35] <正文> 2.7.5 肽级新颖性核查
+[36] <正文> 对于联合筛选后优先保留的候选肽，进一步采用UniProt peptide search进行肽级序列检索，以核查是否存在已知肽条目命中。本研究未将前期自建已知AMP合并库的exact match检索作为正式主流程步骤，而将
+[37] <正文> 2.8 最终候选肽的序列特征分析
+[38] <正文> 对于经UniProt检索未命中的最终候选肽，进一步采用ExPASy ProtParam进行基础序列特征分析。主要计算指标包括肽长、理论等电点(theoretical pI)、分子量、氨基酸组成、instability i
+[39] <正文> 2.9 最终候选肽的分子对接验证
+[40] <正文> 2.9.1 对接靶点的选择依据
+[41] <正文> 为进一步评估2.7—2.8节确定的3条最终候选抗菌肽(pep_018、pep_029、pep_037)与细菌关键蛋白相互作用的可能性，本研究在革兰氏阴性与革兰氏阳性代表菌中各选择两个与抗菌作用高度相关的蛋白靶点，开展分子
+[42] <正文> 2.9.2 受体与配体准备
+[43] <正文> 受体结构自RCSB PDB获取。仅保留第一个model的蛋白ATOM记录，去除结晶水、离子与共晶小分子，统一加氢并转换为刚性受体PDBQT格式。候选肽配体由肽序列经RDKit的MolFromFASTA构建，加氢后使用ET
+[44] <正文> 2.9.3 对接参数与重复设置
+[45] <正文> 分子对接采用AutoDock Vina 1.2.7命令行版本完成。对接盒以受体几何中心(或已知配体/核苷酸结合位点)为中心，边长设置为30 Å×30 Å×30 Å，以覆盖目标口袋及其邻近区域。每个peptide-targ
+[46] <正文> 2.9.4 相互作用分析与可视化
+[47] <正文> 对每个组合的最优构象，计算受体中与肽配体距离在4 Å以内的残基，作为接触残基集合，并识别可能的氢键与极性接触。可视化使用PyMOL无头(headless)模式批量渲染：左侧为受体整体视图，右侧为结合位点4 Å局部放大视图
+[48] <正文> 3. 结果 (Results)
+[49] <正文> 3.1 宏基因组组装、分箱与目标MAG确定
+[50] <正文> 经宿主序列去除后，保留的非宿主双端reads进入后续宏基因组组装与分箱分析。基于MEGAHIT组装和metaWRAP分箱整合流程，最终获得3个refined bins。经CheckM评估后，bin.1的完整度为97.04
+[51] <正文> 3.2 目标MAG中的sORF挖掘结果
+[52] <正文> 基于目标MAG bin.1，采用getorf进行sORF挖掘。经ORF预测、序列合并及肽序列去冗余后，最终获得131,816条候选短肽。所有候选短肽均通过输入有效性检查，并进入后续深度学习预测流程。
+[53] <正文> 3.3 三模型集成抗菌肽预测结果
+[54] <正文> 将131,816条候选短肽输入c_AMPs-prediction框架后，分别由Attention、LSTM和BERT三个预训练模型进行预测。以三个模型一致判定为阳性作为高置信度标准，最终共获得13,296条高置信度候选抗
+[55] <正文> 3.4 本地预筛结果
+[56] <正文> 对13,296条高置信度候选抗菌肽进行基础合法性检查后，保留序列数仍为13,296条，表明三模型一致阳性集合在氨基酸组成与长度范围上整体满足后续筛选要求。随后，经MMseqs2去冗余处理后获得13,294条代表序列，提示
+[57] <正文> 3.5 网页服务器多级终筛结果
+[58] <正文> 在935条non-toxic候选肽基础上，首先采用AlgPred2进行过敏性筛选，最终保留268条同时满足低毒性和低过敏性要求的候选肽。随后，采用PepFun从理化性质角度进一步压缩候选范围，最终保留49条候选肽。对该4
+[59] <正文> 3.6 最终候选肽的新颖性与理化特征
+[60] <正文> 对最终优先保留的3条候选抗菌肽，即pep_018、pep_029和pep_037，进一步进行UniProt peptide search检索，结果均未发现直接肽条目命中，提示这些候选肽在当前数据库及当前检索条件下具有10
+[61] <正文> 3.7 候选肽逐级压缩结果概述
+[62] <正文> 综上，本研究建立了“目标MAG确定-sORF挖掘-深度学习初筛-本地安全性预筛-网页服务器多级终筛-最终新颖性核查与理化表征”的逐级压缩流程。具体而言，目标MAG bin.1中共挖掘得到131816条候选短肽，经三模型一
+[63] <正文> 3.8 最终候选肽的分子对接结果
+[64] <正文> 3条最终候选抗菌肽与4个细菌靶点共12个组合、36次独立对接均成功完成。各组合3次重复的结合能均值、标准差与最优单次值见表2。在Escherichia coli的两个靶点中，3条候选肽对GyrB ATPase结构域(4D
+[65] <正文> 3.9 结合位点接触残基与可视化
+[66] <正文> 对12个组合的最优构象分别计算4 Å以内的接触残基，结果详见表3。对应的三维相互作用高清可视化见图2与图3，12个复合物的全景总览见图S1。结合位点相互作用表明，候选肽主要通过疏水氨基酸插入受体疏水口袋，并由外围碱性氨基
+[67] <正文> 3.10 对接结果的解释与局限
+[68] <正文> 需要指出的是，AutoDock Vina的评分函数主要针对小分子配体优化，并非专用的柔性大肽对接引擎。本研究将经RDKit/UFF能量最小化后的刚性肽构象对接至标准化受体活性中心，其主要价值在于建立可复现、开源透明的计算
+[70] <正文> 表1 CAMP与AxPep联合筛选结果汇总 (CAMP & AxPep Combined Screening Summary)
+[71] <正文> 肽ID
+[72] <正文> 肽序列
+[73] <正文> CAMP支持票数 (Max 4)
+[74] <正文> AxPep支持票数 (Max 3)
+[75] <正文> 综合判定
+[77] <正文> pep_003
+[78] <正文> WRPTVLRKVSA
+[79] <正文> 1/4
+[80] <正文> 2/3
+[81] <正文> 复核保留
+[83] <正文> pep_008
+[84] <正文> WPRTSATSHPYTPPGWRP
+[85] <正文> 0/4
+[86] <正文> 3/3
+[87] <正文> 复核保留
+[89] <正文> pep_015
+[90] <正文> KPLHPVSTWK
+[91] <正文> 0/4
+[92] <正文> 2/3
+[93] <正文> 复核保留
+[95] <正文> pep_016
+[96] <正文> GPPGWTDHPAF
+[97] <正文> 0/4
+[98] <正文> 0/3
+[99] <正文> 不优先
+[101] <正文> pep_018
+[102] <正文> FVNKLNRIIPVKGFSMR
+[103] <正文> 4/4
+[104] <正文> 2/3
+[105] <正文> 优先保留
+[107] <正文> pep_019
+[108] <正文> AIKSKNKITKRVQLE
+[109] <正文> 1/4
+[110] <正文> 0/3
+[111] <正文> 不优先
+[113] <正文> pep_020
+[114] <正文> NGAGLHFRYGAATGWHHKNMS
+[115] <正文> 4/4
+[116] <正文> 1/3
+[117] <正文> 复核保留
+[119] <正文> pep_029
+[120] <正文> LISNTKKFGTAIASHR
+[121] <正文> 3/4
+[122] <正文> 2/3
+[123] <正文> 优先保留
+[125] <正文> pep_034
+[126] <正文> KPWLTAWPTAS
+[127] <正文> 0/4
+[128] <正文> 3/3
+[129] <正文> 复核保留
+[131] <正文> pep_036
+[132] <正文> SAFFAHKITARQWRAVLIGVSRGSARCGHRSV
+[133] <正文> 4/4
+[134] <正文> 1/3
+[135] <正文> 复核保留
+[137] <正文> pep_037
+[138] <正文> ISLAIPLASKISGFTLALVKNAST
+[139] <正文> 4/4
+[140] <正文> 3/3
+[141] <正文> 优先保留
+[143] <正文> pep_039
+[144] <正文> KWISTVISVQYSGIWCQMQ
+[145] <正文> 0/4
+[146] <正文> 1/3
+[147] <正文> 不优先
+[149] <正文> pep_044
+[150] <正文> EATSSDWGFLAGAGGSWGSGGSR
+[151] <正文> 0/4
+[152] <正文> 0/3
+[153] <正文> 不优先
+[155] <正文> pep_045
+[156] <正文> SIGAIVRLWCPVLRGPGWRGGGSAATISCCNHSHLQTITMQTGHHANTSQ
+[157] <正文> 4/4
+[158] <正文> 1/3
+[159] <正文> 复核保留
+[162] <正文> 表2 最终候选抗菌肽与4个细菌关键靶点的AutoDock Vina分子对接结果 (3次独立重复，n=3)
+[163] <正文> 菌种 (Organism)
+[164] <正文> 蛋白靶点 (Target)
+[165] <正文> PDB
+[166] <正文> 肽ID
+[167] <正文> 肽序列 (Sequence)
+[168] <正文> 重复数 (n)
+[169] <正文> 结合能均值 (kcal/mol)
+[170] <正文> 标准差 (SD)
+[171] <正文> 最优单次 (kcal/mol)
+[173] <正文> Escherichia coli
+[174] <正文> DNA gyrase B ATPase domain
+[175] <正文> 4DUH
+[176] <正文> pep_018
+[177] <正文> FVNKLNRIIPVKGFSMR
+[178] <正文> 3
+[179] <正文> -10.753
+[180] <正文> 0.006
+[181] <正文> -10.760
+[183] <正文> Escherichia coli
+[184] <正文> DNA gyrase B ATPase domain
+[185] <正文> 4DUH
+[186] <正文> pep_029
+[187] <正文> LISNTKKFGTAIASHR
+[188] <正文> 3
+[189] <正文> -9.750
+[190] <正文> 0.083
+[191] <正文> -9.811
+[193] <正文> Escherichia coli
+[194] <正文> DNA gyrase B ATPase domain
+[195] <正文> 4DUH
+[196] <正文> pep_037
+[197] <正文> ISLAIPLASKISGFTLALVKNAST
+[198] <正文> 3
+[199] <正文> -8.172
+[200] <正文> 0.413
+[201] <正文> -8.642
+[203] <正文> Escherichia coli
+[204] <正文> FtsZ cell-division protein
+[205] <正文> 6UNX
+[206] <正文> pep_018
+[207] <正文> FVNKLNRIIPVKGFSMR
+[208] <正文> 3
+[209] <正文> -7.242
+[210] <正文> 0.020
+[211] <正文> -7.261
+[213] <正文> Escherichia coli
+[214] <正文> FtsZ cell-division protein
+[215] <正文> 6UNX
+[216] <正文> pep_029
+[217] <正文> LISNTKKFGTAIASHR
+[218] <正文> 3
+[219] <正文> -8.793
+[220] <正文> 0.022
+[221] <正文> -8.819
+[223] <正文> Escherichia coli
+[224] <正文> FtsZ cell-division protein
+[225] <正文> 6UNX
+[226] <正文> pep_037
+[227] <正文> ISLAIPLASKISGFTLALVKNAST
+[228] <正文> 3
+[229] <正文> 2.433
+[230] <正文> 0.021
+[231] <正文> 2.410
+[233] <正文> Staphylococcus aureus
+[234] <正文> FtsZ cell-division protein
+[235] <正文> 5MN4
+[236] <正文> pep_018
+[237] <正文> FVNKLNRIIPVKGFSMR
+[238] <正文> 3
+[239] <正文> 1.020
+[240] <正文> 5.436
+[241] <正文> -3.766
+[243] <正文> Staphylococcus aureus
+[244] <正文> FtsZ cell-division protein
+[245] <正文> 5MN4
+[246] <正文> pep_029
+[247] <正文> LISNTKKFGTAIASHR
+[248] <正文> 3
+[249] <正文> -6.741
+[250] <正文> 0.187
+[251] <正文> -6.957
+[253] <正文> Staphylococcus aureus
+[254] <正文> FtsZ cell-division protein
+[255] <正文> 5MN4
+[256] <正文> pep_037
+[257] <正文> ISLAIPLASKISGFTLALVKNAST
+[258] <正文> 3
+[259] <正文> 0.548
+[260] <正文> 0.055
+[261] <正文> 0.495
+[263] <正文> Staphylococcus aureus
+[264] <正文> Sortase A transpeptidase
+[265] <正文> 1T2W
+[266] <正文> pep_018
+[267] <正文> FVNKLNRIIPVKGFSMR
+[268] <正文> 3
+[269] <正文> 197.733
+[270] <正文> 13.378
+[271] <正文> 186.200
+[273] <正文> Staphylococcus aureus
+[274] <正文> Sortase A transpeptidase
+[275] <正文> 1T2W
+[276] <正文> pep_029
+[277] <正文> LISNTKKFGTAIASHR
+[278] <正文> 3
+[279] <正文> 49.730
+[280] <正文> 26.132
+[281] <正文> 32.430
+[283] <正文> Staphylococcus aureus
+[284] <正文> Sortase A transpeptidase
+[285] <正文> 1T2W
+[286] <正文> pep_037
+[287] <正文> ISLAIPLASKISGFTLALVKNAST
+[288] <正文> 3
+[289] <正文> 605.833
+[290] <正文> 443.850
+[291] <正文> 288.300
+[294] <正文> 表3 12个靶点-候选肽最优复合物构象的4 Å界面接触残基统计 (Interface Contact Residues)
+[295] <正文> 面板 (Panel)
+[296] <正文> 受体靶点 (Target Receptor)
+[297] <正文> 候选肽 (Peptide)
+[298] <正文> 接触残基数 (Count)
+[299] <正文> 关键接触残基 (Contact Residues ≤ 4 Å)
+[301] <正文> A
+[302] <正文> E. coli FtsZ (6UNX)
+[303] <正文> P1 (FVNKLNRIIPVKGFSMR)
+[304] <正文> 2
+[305] <正文> GLU-178; PHE-182
+[307] <正文> B
+[308] <正文> E. coli FtsZ (6UNX)
+[309] <正文> P2 (LISNTKKFGTAIASHR)
+[310] <正文> 2
+[311] <正文> ARG-142; GLU-27
+[313] <正文> C
+[314] <正文> E. coli FtsZ (6UNX)
+[315] <正文> P3 (ISLAIPLASKISGFTLALVKNAST)
+[316] <正文> 4
+[317] <正文> GLU-178; ARG-142; ALA-72; ASP-45
+[319] <正文> D
+[320] <正文> E. coli GyrB (4DUH)
+[321] <正文> P1 (FVNKLNRIIPVKGFSMR)
+[322] <正文> 1
+[323] <正文> LYS-57
+[325] <正文> E
+[326] <正文> E. coli GyrB (4DUH)
+[327] <正文> P2 (LISNTKKFGTAIASHR)
+[328] <正文> 2
+[329] <正文> ASP-74; THR-163
+[331] <正文> F
+[332] <正文> E. coli GyrB (4DUH)
+[333] <正文> P3 (ISLAIPLASKISGFTLALVKNAST)
+[334] <正文> 1
+[335] <正文> GLU-161
+[337] <正文> G
+[338] <正文> S. aureus FtsZ (5MN4)
+[339] <正文> P1 (FVNKLNRIIPVKGFSMR)
+[340] <正文> 3
+[341] <正文> MET-179; GLU-139; ALA-138
+[343] <正文> H
+[344] <正文> S. aureus FtsZ (5MN4)
+[345] <正文> P2 (LISNTKKFGTAIASHR)
+[346] <正文> 1
+[347] <正文> ARG-143
+[349] <正文> I
+[350] <正文> S. aureus FtsZ (5MN4)
+[351] <正文> P3 (ISLAIPLASKISGFTLALVKNAST)
+[352] <正文> 5
+[353] <正文> ASN-25; GLY-21; GLY-72; ALA-138; ARG-143
+[355] <正文> J
+[356] <正文> S. aureus SrtA (1T2W)
+[357] <正文> P1 (FVNKLNRIIPVKGFSMR)
+[358] <正文> 8
+[359] <正文> TYR-75; GLU-77; GLY-139; SER-140; LYS-138; ASP-185; ASP-186; ASP-124
+[361] <正文> K
+[362] <正文> S. aureus SrtA (1T2W)
+[363] <正文> P2 (LISNTKKFGTAIASHR)
+[364] <正文> 4
+[365] <正文> LYS-206; THR-150; LYS-84; ASP-82
+[367] <正文> L
+[368] <正文> S. aureus SrtA (1T2W)
+[369] <正文> P3 (ISLAIPLASKISGFTLALVKNAST)
+[370] <正文> 11
+[371] <正文> ASN-148; GLU-149; THR-150; GLU-77; GLU-85; ILE-78; LYS-84; ASP-82; ASN-132; ASN-127; PRO-126
+[374] <正文> /
+[375] <正文> 图2 最终候选抗菌肽与Escherichia coli靶点分子对接三维相互作用图(A—F)。A—C为FtsZ(6UNX)分别与pep_018、pep_029、pep_037的最优对接复合物；D—F为GyrB ATPas
+[376] <正文> /
+[377] <正文> 图3 最终候选抗菌肽与Staphylococcus aureus靶点分子对接三维相互作用图(G—L)。G—I为FtsZ(5MN4)分别与pep_018、pep_029、pep_037的最优对接复合物；J—L为转肽酶So
+[378] <正文> /
+[379] <正文> 图S1 3条最终候选抗菌肽与4个细菌生理靶点共12个复合物的PyMOL分子对接全景图(A—L)。完整展示了全部36次计算对接中遴选出的最优能量构象与口袋相互作用全貌，展示了从大肠杆菌胞质分裂蛋白到金葡菌表面锚定酶的全面
+[380] <正文> 4. 讨论 (Discussion)
+[381] <正文> 抗生素耐药基因在全球生态圈的扩散正使得传统抗生素快速逼近效能极限。爬行动物源天然抗菌肽作为经过漫长自然进化检验的宿主防御武器，因其广谱杀菌、快速裂膜及多靶点干扰特性，已成为攻克超级耐药菌感染的重要希望所在。本研究通过整合
+[382] <正文> 在靶点结合特性方面，分子对接数据揭示出明显的靶标选择性偏好。对于革兰氏阴性菌E. coli，三条候选肽对DNA促旋酶GyrB ATPase结构域（4DUH）表现出极强烈的结合倾向，结合能均值达到 -8.17 至 -10.
+[383] <正文> 在革兰氏阳性菌S. aureus中，pep_029表现出对细胞分裂蛋白FtsZ（5MN4）的高亲和力（-6.741 kcal/mol），并与Arg-143形成明确的界面接触。FtsZ在细菌胞质分裂起始时负责聚合成Z环并招
+[384] <正文> 从序列与理化性质来看，三条候选肽均呈现典型的阳离子两亲性特征（理论等电点 9.70—11.26，净电荷 +1 至 +3，instability index 均 < 30 提示高度稳定）。这种高正电荷与疏水性两亲排布是抗菌
+[385] <正文> 5. 结论 (Conclusions)
+[386] <正文> 本研究以鳄鱼肠道宏基因组为资源宝库，成功构建并实施了基于高质量MAG、sORF深度挖掘、三模型深度学习集成预测、严格安全性与理化终筛、以及多靶点分子对接验证的完整抗菌肽研发链条。筛选获得的3条全新候选肽（pep_018、
+[387] <正文> 参考文献 (References)
+[388] <正文> [1] Murray, C. J., et al. (2022). Global burden of bacterial antimicrobial resistance in 2019: a systematic an
+[389] <正文> [2] Mahlapuu, M., Håkansson, J., Ringstad, L., & Björn, C. (2016). Antimicrobial peptides: an emerging categor
+[390] <正文> [3] Merchant, M., Leger, N., Thibodeaux, D., et al. (2006). Broad spectrum antimicrobial activity of leukocyte
+[391] <正文> [4] Barksdale, S. M., et al. (2014). Antimicrobial peptides from the American alligator: Characterization of n
+[392] <正文> [5] Kang, X., et al. (2019). c_AMPs-prediction: Deep learning framework for antimicrobial peptide prediction u
+[393] <正文> [6] Ursu, O., Rayan, A., Goldblum, A., & Oprea, T. I. (2020). Understanding antimicrobial peptide specificity 
+[394] <正文> [7] Li, D., Liu, C. M., Luo, R., Sadakane, K., & Lam, T. W. (2015). MEGAHIT: an ultra-fast single-node solutio
+[395] <正文> [8] Uritskiy, G. V., DiRuggiero, J., & Taylor, J. (2018). MetaWRAP—a flexible pipeline for genome-resolved met
+[396] <正文> [9] Parks, D. H., et al. (2015). CheckM: assessing the quality of microbial genomes recovered from isolates, s
+[397] <正文> [10] Rice, P., Longden, I., & Bleasby, A. (2000). EMBOSS: the European Molecular Biology Open Software Suite. 
+[398] <正文> [11] Sharma, R., et al. (2022). AlgPred 2.0: an improved method for predicting allergenic proteins and mapping
+[399] <正文> [12] Gupta, S., Kapoor, P., Chaudhary, K., et al. (2013). In silico approach for predicting toxicity of peptid
+[400] <正文> [13] Eberhardt, J., Santos-Martins, D., Tillack, A. F., & Forli, S. (2021). AutoDock Vina 1.2.0: New docking m
+[401] <正文> [14] Schrödinger, LLC. (2020). The PyMOL Molecular Graphics System, Version 2.5.
+[402] <正文> [15] Löwe, J., & Amos, L. A. (1998). Crystal structure of the bacterial cell-division protein FtsZ. Nature, 39
+[403] <正文> [16] Bellon, S., et al. (2004). Crystal structure of Escherichia coli DNA gyrase B ATPase domain complexed wit
+[404] <正文> [17] Ton-That, H., & Schneewind, O. (2004). Assembly of pili on the surface of Staphylococcus aureus by sortas
+[405] <正文> [18] Zasloff, M. (2002). Antimicrobial peptides of multicellular organisms. Nature, 415(6870), 389-395.
+[406] <正文> [19] Hancock, R. E., & Sahl, H. G. (2006). Antimicrobial and host-defense peptides as new anti-infective thera
+[407] <正文> [20] Waghu, F. H., et al. (2016). CAMP_R3: a database on antimicrobial peptides for better understanding of pe
+--- inline shapes ---
+shape 1: type=3 w=470 h=398
+shape 2: type=3 w=470 h=398
+shape 3: type=3 w=470 h=359
