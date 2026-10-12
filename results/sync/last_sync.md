@@ -1,8 +1,50 @@
 # 最近一轮同步回执（agent -> 分支）
 
-- 时间：2026-10-08 11:19 UTC
+- 时间：2026-10-12 01:10 UTC
 - 分支：`arena/01a0ff69-git-pull-arena`
 - 本轮纳入的**本机侧**提交（本机 -> 助手 ✅）：
+  - 050904a check: round 349 passed
+  - fd4619d check: request round 349 (awaiting local check)
+  - b5adb46 t252: render the new flowchart to 300 dpi PNG and supersede the old cascade figure
+  - c712e93 check: round 348 passed
+  - 6c8e294 deliver: revised pipeline method, new flowchart SVG and MD protocol to the Desktop handoff folder
+  - 22a4e76 check: request round 348 (awaiting local check)
+  - 65a94dc final: exhaustive negative results on the 268 step plus the reproducible 153 deliverable
+  - 11b1d8a check: round 347 passed
+  - 39447d0 check: request round 347 (awaiting local check)
+  - 830510c t250: rerun AlgPred2 on the 935 with the original long headers
+  - bdd26de check: round 346 passed
+  - 597d749 check: request round 346 (awaiting local check)
+  - 091fa97 t249: pull the three model scores for the 935 and test rank-based selection
+  - 81d1bb3 check: round 345 passed
+  - 4e8b622 check: request round 345 (awaiting local check)
+  - e6bb56a t248: test positional joins of the 13294-wide AlgPred2 output onto the 935
+  - 514b5fa check: round 344 passed
+  - 7316858 docs: reproduction status report with the recovered 46/15/3
+  - e16ddf4 check: request round 344 (awaiting local check)
+  - e82165d t247: rebuild the pandas-2.2.3/py3.11 AlgPred2 env and rescore the 935
+  - 5c17e99 check: round 343 passed
+  - bf553c3 t246: shifted-parse test plus copy the small intermediates into the repo
+  - 7f2ff0b check: request round 343 (awaiting local check)
+  - d78a1e8 t245: replicate the off-by-one AlgPred2 parser and fine-scan for 268
+  - e6d08f1 check: round 342 passed
+  - adcba1f check: request round 342 (awaiting local check)
+  - 94cc356 t244: dump the 153-peptide feature table with the known-46 flag
+  - 0c74003 check: round 341 passed
+  - 14675b1 check: request round 341 (awaiting local check)
+  - 6f7196b t243: rebuild the user's py3.11 AlgPred2 env and test it against the known 46
+  - f0c3ccd check: round 340 passed
+  - f1e0f19 check: request round 340 (awaiting local check)
+  - dd4eb20 t242: use the proven wsl.exe bash invocation
+  - 50c7bd9 check: round 339 passed
+  - e51b655 check: request round 339 (awaiting local check)
+  - 5c153d3 t242: reverse-engineer the prefilter from the 46 known candidates
+  - 19f1522 check: round 338 passed
+  - 47a9d97 check: request round 338 (awaiting local check)
+  - a753fb5 manifest: put rounds 338+ under rounds{} where the watcher actually reads them
+  - 28b6474 check: round 337 passed
+  - 4b491b0 check: request round 337 (awaiting local check)
+  - f2c2c5d sync: agent update 2026-10-08 11:19
   - 5f127c3 t240: map to rounds 335-349 so the next watcher round picks it up
   - bf2f631 check: round 336 passed
   - 32df516 check: request round 336 (awaiting local check)
@@ -315,6 +357,7 @@
   - 205529c chore: prepare local sync bridge for session branch
 - 本轮改动文件：
    M code/tasks/manifest.json
-  ?? code/tasks/t241_read_clues.ps1
+   M deliverables/AMP_MD_Simulation_Protocol.md
+  ?? code/tasks/t253_fix_png_and_dump_docx.ps1
 
 > 完整历史：`git log --oneline -10`；本机 `.\sync.ps1` 之后即可看到本文件。
