@@ -1,8 +1,17 @@
 # 最近一轮同步回执（agent -> 分支）
 
-- 时间：2026-10-12 01:10 UTC
+- 时间：2026-10-12 01:24 UTC
 - 分支：`arena/01a0ff69-git-pull-arena`
 - 本轮纳入的**本机侧**提交（本机 -> 助手 ✅）：
+  - 2e58c99 check: round 352 passed
+  - 838b662 check: request round 352 (awaiting local check)
+  - d941d5e t255: verify the edited manuscript paragraphs and figure
+  - 615ddc3 check: round 351 passed
+  - 8a81668 check: request round 351 (awaiting local check)
+  - 59eac7e t254: rewrite the manuscript screening sections, insert the new cascade figure, ship the MD docx
+  - 15e2947 check: round 350 passed
+  - a5499ed check: request round 350 (awaiting local check)
+  - 413cf8b sync: agent update 2026-10-12 01:10
   - 050904a check: round 349 passed
   - fd4619d check: request round 349 (awaiting local check)
   - b5adb46 t252: render the new flowchart to 300 dpi PNG and supersede the old cascade figure
@@ -357,7 +366,7 @@
   - 205529c chore: prepare local sync bridge for session branch
 - 本轮改动文件：
    M code/tasks/manifest.json
-   M deliverables/AMP_MD_Simulation_Protocol.md
-  ?? code/tasks/t253_fix_png_and_dump_docx.ps1
+   M deliverables/AMP_Pipeline_Flowchart_20261012.svg
+  ?? code/tasks/t256_fix_figure.ps1
 
 > 完整历史：`git log --oneline -10`；本机 `.\sync.ps1` 之后即可看到本文件。
