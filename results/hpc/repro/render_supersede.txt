@@ -1,0 +1,41 @@
+SVG exists=True
+rendered with Edge headless: C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe
+PNG rendered=True
+PNG size=426722
+=== D:\桌面\AMP_Docking_Vina_R255_20261005_1552
+   wrote 300dpi PNG
+     AMP_Alligator_Gut_SCI_Manuscript.docx  4915454 B
+     AMP_Docking_Report_SciFigures_manifest.json  1003 B
+     AMP_Docking_Targets_Methods_Results.docx  6939691 B
+     AMP_Docking_Targets_Methods_Results.md  12580 B
+     AMP_Figure_Style_Review.md  2386 B
+     AMP_MD_Simulation_Protocol.md  8234 B
+     AMP_Method_Supplement_manifest.json  483 B
+     AMP_Pipeline_Flowchart_20261012.svg  7858 B
+     AMP_Pipeline_Flowchart_20261012_300dpi.png  426722 B
+     AMP_Pipeline_Reproduction_Method.md  9437 B
+     AMP_Pipeline_Reproduction_Method_OLD_20261012-085534.md.bak  12107 B
+     manifest.json  16824 B
+     method_with_docking_20261007_1600.docx  5002859 B
+     REPORT.md  6476 B
+=== D:\桌面\AMP_SCI_Paper
+   wrote 300dpi PNG
+   superseded: fig_screening_cascade.png
+   superseded: fig_screening_cascade.svg
+     AMP_Alligator_Gut_SCI_Manuscript.docx  4915454 B
+     AMP_Figure_Style_Review.md  2386 B
+     AMP_MD_Simulation_Protocol.md  8234 B
+     AMP_Method_Supplement_manifest.json  483 B
+     AMP_Pipeline_Flowchart_20261012.svg  7858 B
+     AMP_Pipeline_Flowchart_20261012_300dpi.png  426722 B
+     AMP_Pipeline_Reproduction_Method.md  9437 B
+     AMP_Pipeline_Reproduction_Method_OLD_20261012-085534.md.bak  12107 B
+     fig_screening_cascade_SUPERSEDED_20261012-085816.png  212659 B
+     fig_screening_cascade_SUPERSEDED_20261012-085816.svg  57794 B
+     method_with_docking_20261007_1600.docx  5002859 B
+=== D:\桌面\AMP_Docking_Vina_R255_20261005_1552\AMP_Pipeline_Update_20261012-085534
+   wrote 300dpi PNG
+     AMP_MD_Simulation_Protocol.md  8234 B
+     AMP_Pipeline_Flowchart_20261012.svg  7858 B
+     AMP_Pipeline_Flowchart_20261012_300dpi.png  426722 B
+     AMP_Pipeline_Reproduction_Method.md  9437 B
