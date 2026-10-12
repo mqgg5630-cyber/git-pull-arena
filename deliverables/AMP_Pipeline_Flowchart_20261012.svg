@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1310" viewBox="0 0 1080 1310" font-family="Source Han Sans SC, Microsoft YaHei, Arial, sans-serif">
+<rect width="1080" height="1310" fill="#ffffff"/>
+<text x="540" y="40" text-anchor="middle" font-size="26" font-weight="bold" fill="#1a2b45">鳄鱼肠道宏基因组抗菌肽挖掘与逐级压缩流程</text>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#5b6b82"/></marker></defs>
+<rect x="60" y="70" width="700" height="74" rx="10" fill="#eef3fb" stroke="#9fb0c8" stroke-width="1.2"/>
+<text x="82" y="100" font-size="18" font-weight="bold" fill="#17263d">原始测序数据 SRR18112698 (alligator_gut)</text>
+<text x="82" y="125" font-size="14" fill="#5b6b82">fastp + kneaddata</text>
+<rect x="790" y="70" width="230" height="74" rx="10" fill="#ffffff" stroke="#c3cedd" stroke-width="1.2"/>
+<text x="905" y="114" text-anchor="middle" font-size="17" font-weight="bold" fill="#b3261e">3,057,669 对清洁 reads</text>
+<line x1="410" y1="144" x2="410" y2="166" stroke="#5b6b82" stroke-width="2" marker-end="url(#a)"/>
+<rect x="60" y="170" width="700" height="74" rx="10" fill="#eef3fb" stroke="#9fb0c8" stroke-width="1.2"/>
+<text x="82" y="200" font-size="18" font-weight="bold" fill="#17263d">MEGAHIT v1.2.9 组装</text>
+<text x="82" y="225" font-size="14" fill="#5b6b82">--min-contig-len 200, k=21..141</text>
+<rect x="790" y="170" width="230" height="74" rx="10" fill="#ffffff" stroke="#c3cedd" stroke-width="1.2"/>
+<text x="905" y="214" text-anchor="middle" font-size="17" font-weight="bold" fill="#b3261e">61,470 contigs</text>
+<line x1="410" y1="244" x2="410" y2="266" stroke="#5b6b82" stroke-width="2" marker-end="url(#a)"/>
+<rect x="60" y="270" width="700" height="74" rx="10" fill="#eef3fb" stroke="#9fb0c8" stroke-width="1.2"/>
+<text x="82" y="300" font-size="18" font-weight="bold" fill="#17263d">metabat2 + maxbin2 → metaWRAP -c 50 -x 10</text>
+<text x="82" y="325" font-size="14" fill="#5b6b82">GTDB-Tk 分类</text>
+<rect x="790" y="270" width="230" height="74" rx="10" fill="#ffffff" stroke="#c3cedd" stroke-width="1.2"/>
+<text x="905" y="298" text-anchor="middle" font-size="14" font-weight="bold" fill="#b3261e">bin.1  Aeromonas dhakensis</text>
+<text x="905" y="320" text-anchor="middle" font-size="14" font-weight="bold" fill="#b3261e">完整度 97.04% / 污染 0.146%</text>
+<line x1="410" y1="344" x2="410" y2="366" stroke="#5b6b82" stroke-width="2" marker-end="url(#a)"/>
+<rect x="60" y="370" width="700" height="74" rx="10" fill="#e8f5ee" stroke="#9fb0c8" stroke-width="1.2"/>
+<text x="82" y="400" font-size="18" font-weight="bold" fill="#17263d">getorf sORF 挖掘 + 去冗余 + 剔除已知 AMP</text>
+<rect x="790" y="370" width="230" height="74" rx="10" fill="#ffffff" stroke="#c3cedd" stroke-width="1.2"/>
+<text x="905" y="414" text-anchor="middle" font-size="17" font-weight="bold" fill="#b3261e">131,816 条候选短肽</text>
+<line x1="410" y1="444" x2="410" y2="466" stroke="#5b6b82" stroke-width="2" marker-end="url(#a)"/>
+<rect x="60" y="470" width="700" height="74" rx="10" fill="#e8f5ee" stroke="#9fb0c8" stroke-width="1.2"/>
+<text x="82" y="500" font-size="18" font-weight="bold" fill="#17263d">深度学习初筛  LSTM + Attention + BERT  (阈值 0.5)</text>
+<text x="82" y="525" font-size="14" fill="#5b6b82">2/3 一致</text>
+<rect x="790" y="470" width="230" height="74" rx="10" fill="#ffffff" stroke="#c3cedd" stroke-width="1.2"/>
+<text x="905" y="514" text-anchor="middle" font-size="17" font-weight="bold" fill="#b3261e">51,049 条</text>
+<line x1="410" y1="544" x2="410" y2="566" stroke="#5b6b82" stroke-width="2" marker-end="url(#a)"/>
+<rect x="60" y="570" width="700" height="74" rx="10" fill="#e8f5ee" stroke="#9fb0c8" stroke-width="1.2"/>
+<text x="82" y="600" font-size="18" font-weight="bold" fill="#17263d">三模型 3/3 一致</text>
+<rect x="790" y="570" width="230" height="74" rx="10" fill="#ffffff" stroke="#c3cedd" stroke-width="1.2"/>
+<text x="905" y="614" text-anchor="middle" font-size="17" font-weight="bold" fill="#b3261e">13,296 条</text>
+<line x1="410" y1="644" x2="410" y2="666" stroke="#5b6b82" stroke-width="2" marker-end="url(#a)"/>
+<rect x="60" y="670" width="700" height="74" rx="10" fill="#fdf3e3" stroke="#9fb0c8" stroke-width="1.2"/>
+<text x="82" y="700" font-size="18" font-weight="bold" fill="#17263d">MMseqs2 easy-cluster  --min-seq-id 1.0 -c 1.0 --cov-mode 1</text>
+<rect x="790" y="670" width="230" height="74" rx="10" fill="#ffffff" stroke="#c3cedd" stroke-width="1.2"/>
+<text x="905" y="714" text-anchor="middle" font-size="17" font-weight="bold" fill="#b3261e">13,294 条代表序列</text>
+<line x1="410" y1="744" x2="410" y2="766" stroke="#5b6b82" stroke-width="2" marker-end="url(#a)"/>
+<rect x="60" y="770" width="700" height="74" rx="10" fill="#fdf3e3" stroke="#9fb0c8" stroke-width="1.2"/>
+<text x="82" y="800" font-size="18" font-weight="bold" fill="#17263d">ToxinPred2  -t 0.6 -m 1 -d 2</text>
+<text x="82" y="825" font-size="14" fill="#5b6b82">non-toxic</text>
+<rect x="790" y="770" width="230" height="74" rx="10" fill="#ffffff" stroke="#c3cedd" stroke-width="1.2"/>
+<text x="905" y="814" text-anchor="middle" font-size="17" font-weight="bold" fill="#b3261e">935 条</text>
+<line x1="410" y1="844" x2="410" y2="866" stroke="#5b6b82" stroke-width="2" marker-end="url(#a)"/>
+<rect x="60" y="870" width="700" height="74" rx="10" fill="#fdf3e3" stroke="#9fb0c8" stroke-width="1.2"/>
+<text x="82" y="900" font-size="18" font-weight="bold" fill="#17263d">理化硬过滤  instability index < 40</text>
+<text x="82" y="925" font-size="14" fill="#5b6b82">AlgPred2 作过敏原性注释</text>
+<rect x="790" y="870" width="230" height="74" rx="10" fill="#ffffff" stroke="#c3cedd" stroke-width="1.2"/>
+<text x="905" y="914" text-anchor="middle" font-size="17" font-weight="bold" fill="#b3261e">153 条</text>
+<line x1="410" y1="944" x2="410" y2="966" stroke="#5b6b82" stroke-width="2" marker-end="url(#a)"/>
+<rect x="60" y="970" width="700" height="74" rx="10" fill="#fbe9e9" stroke="#9fb0c8" stroke-width="1.2"/>
+<text x="82" y="1000" font-size="18" font-weight="bold" fill="#17263d">TheraPepNet 活性预测（网页）</text>
+<text x="82" y="1025" font-size="14" fill="#5b6b82">46 条送检 → positive</text>
+<rect x="790" y="970" width="230" height="74" rx="10" fill="#ffffff" stroke="#c3cedd" stroke-width="1.2"/>
+<text x="905" y="1014" text-anchor="middle" font-size="17" font-weight="bold" fill="#b3261e">15 条</text>
+<line x1="410" y1="1044" x2="410" y2="1066" stroke="#5b6b82" stroke-width="2" marker-end="url(#a)"/>
+<rect x="60" y="1070" width="700" height="74" rx="10" fill="#fbe9e9" stroke="#9fb0c8" stroke-width="1.2"/>
+<text x="82" y="1100" font-size="18" font-weight="bold" fill="#17263d">CAMP (4 模型) + AxPep (3 模型) 联合投票</text>
+<text x="82" y="1125" font-size="14" fill="#5b6b82">CAMP ≥3/4 且 AxPep ≥2/3</text>
+<rect x="790" y="1070" width="230" height="74" rx="10" fill="#ffffff" stroke="#c3cedd" stroke-width="1.2"/>
+<text x="905" y="1114" text-anchor="middle" font-size="17" font-weight="bold" fill="#b3261e">3 条优先保留</text>
+<line x1="410" y1="1144" x2="410" y2="1166" stroke="#5b6b82" stroke-width="2" marker-end="url(#a)"/>
+<rect x="60" y="1170" width="700" height="74" rx="10" fill="#f1e9fb" stroke="#9fb0c8" stroke-width="1.2"/>
+<text x="82" y="1200" font-size="18" font-weight="bold" fill="#17263d">UniProt 新颖性核查 + ExPASy 特征表征</text>
+<text x="82" y="1225" font-size="14" fill="#5b6b82">0 条已知 AMP 精确命中</text>
+<rect x="790" y="1170" width="230" height="74" rx="10" fill="#ffffff" stroke="#c3cedd" stroke-width="1.2"/>
+<text x="905" y="1214" text-anchor="middle" font-size="17" font-weight="bold" fill="#b3261e">pep_018 / pep_029 / pep_037</text>
+</svg>
