@@ -1,9 +1,9 @@
 {
-    "round":  348,
-    "arena_state":  "awaiting_check",
-    "local_state":  "passed",
-    "host":  "LAPTOP-R77M5D6M",
-    "note":  "resume watcher: heartbeat check",
-    "arena_updated":  "2026-10-12 00:49:48",
-    "local_updated":  "2026-10-12 08:55:35"
+  "round": 349,
+  "arena_state": "awaiting_check",
+  "local_state": "pending",
+  "host": "",
+  "note": "t252 render flowchart png",
+  "arena_updated": "2026-10-12 00:56:56",
+  "local_updated": null
 }
