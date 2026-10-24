@@ -3,13 +3,14 @@
     "host":  "LAPTOP-R77M5D6M",
     "repo":  "git-pull-arena",
     "branch":  "arena/01a0a4f5-git-pull-arena",
-    "source_commit":  "bec74fa9116f18f5a053bcc52026423513b60be8",
-    "synced_at_utc":  "2026-10-24T07:05:53Z",
-    "synced_at_local":  "2026-10-24 15:05:53",
-    "poll_interval_sec":  15,
+    "source_commit":  "128036e7f7b964a3d4e89445c69759b21f89112e",
+    "synced_at_utc":  "2026-10-24T08:02:13Z",
+    "synced_at_local":  "2026-10-24 16:02:13",
+    "poll_interval_sec":  null,
     "local_results_dir":  "E:\\0github\\results\\git-pull-arena-01a0a4f5-git-pull-arena",
     "synced_files_count":  66,
     "tasks_executed_count":  0,
+    "tasks_all_ok":  true,
     "tasks_executed":  [
 
                        ],
