@@ -1,0 +1,20 @@
+﻿{
+    "status":  "synced",
+    "host":  "LAPTOP-R77M5D6M",
+    "repo":  "git-pull-arena",
+    "branch":  "arena/01a0a9ba-git-pull-arena",
+    "source_commit":  "e51025c86ac29d458c10620d0f2870774223f0be",
+    "synced_at_utc":  "2026-10-24T07:06:16Z",
+    "synced_at_local":  "2026-10-24 15:06:16",
+    "poll_interval_sec":  15,
+    "local_results_dir":  "E:\\0github\\results\\git-pull-arena-01a0a9ba-git-pull-arena",
+    "synced_files_count":  87,
+    "tasks_executed_count":  0,
+    "tasks_executed":  [
+
+                       ],
+    "copied_targets":  [
+
+                       ],
+    "mode":  "auto-poll-exec-and-sync-zero-window-v4.0"
+}
